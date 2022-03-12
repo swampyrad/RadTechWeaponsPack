@@ -1,0 +1,3 @@
+GameInfo { 	AddEventHandlers = "Minerva_Spawner" } 
+
+GameInfo { 	AddEventHandlers = "MinervaInjector" } 

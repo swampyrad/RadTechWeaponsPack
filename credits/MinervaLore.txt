@@ -1,0 +1,12 @@
+Minerva Lore
+============
+The Minerva 9mm Chaingun is a 6-barrel rotary weapon 
+manufactured by Spartan Arms in the year 2035, designed 
+for the use of UAC SMG magazines, in an attempt to win their 
+bid for a reliable yet formidable support weapon, but lost out 
+to Volt due to their Vulcanette providing far superior 
+firepower and higher RPM ratings. It was named after a woman 
+one of its developers had met during its creation, who claimed 
+her great grandfather was a secret agent during WWII. He had a 
+hard time believing her, but he was always finding himself
+lost in the gaze of her bright, skyblue eyes.

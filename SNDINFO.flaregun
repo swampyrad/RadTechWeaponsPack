@@ -1,0 +1,28 @@
+// plastic breaking.
+weapons/fgnclk dsrifclk
+$limit weapons/fgnclk 0
+
+// reloading.
+weapons/fgnrel1 dsrifck2
+$limit weapons/fgnrel1 0
+
+// reloading. 
+weapons/fgnrel2 dsgopen
+$limit weapons/fgnrel2 0
+
+// reloading.
+weapons/fgnrel3 dsdbload
+$limit weapons/fgnrel3 0
+
+// shell firing.
+weapons/fgnshell dsshotg
+$limit weapons/fgnshell 0
+
+// flare firing.
+weapons/fgnblast FGNBLAST
+$limit weapons/fgnblast 0
+
+
+// For flare projectiles.
+flaregun/flareburn FLARBURN
+$limit flaregun/flareburn 0

@@ -1,0 +1,196 @@
+sprite 45BXA0, 24,153{
+  offset 12,13
+  patch 45BXA0,0,0{}
+}
+
+
+sprite RSALA0, 44,15{
+  offset 22,15
+  patch RSALA0,0,0{}
+}
+
+sprite RSAGA0,53,89{
+	offset -130,-81
+	patch rsarhand,0,48{}
+	patch rsaready,15,0{}
+}
+sprite RSAGB0,53,89{
+	offset -130,-82
+	patch RSAGA0,0,0{}
+	patch rsaham2,15,24{}
+}
+sprite RSAGC0,53,89{
+	offset -130,-81
+	patch RSAGA0,0,0{}
+	patch rsaham3,20,29{}
+}
+sprite RSAGD0,52,90{
+	offset -130,-81
+	patch rsarchnd,0,52{}
+	patch rsarcoil,14,0{}
+}
+sprite RSVGA0,53,89{
+	offset -137,-81
+	patch rsarhand,0,48{flipx}
+	patch rsaready,7,0{}
+}
+sprite RSVGB0,53,89{
+	offset -137,-82
+	patch RSVGA0,0,0{}
+	patch rsaham2,7,24{}
+}
+sprite RSVGC0,53,89{
+	offset -137,-81
+	patch RSVGA0,0,0{}
+	patch rsaham3,12,29{}
+}
+sprite RSVGD0,52,90{
+	offset -138,-81
+	patch rsarchnd,0,52{flipx}
+	patch rsarcoil,7,0{}
+}
+sprite SARFA0,36,58{
+	offset -143,-60
+	patch rsaflash,0,0{}
+}
+sprite RSAGE0,62,80{
+	offset -140,-100
+	patch rsacyl2,9,0{}
+	patch rsaturn,0,3{}
+}
+sprite RSAGF0,93,79{
+	offset -120,-101
+	patch rsacyl1,43,0{}
+	patch rsaopen,0,16{}
+}
+sprite RSAGG0,93,79{
+	offset -121,-102
+	patch rsacyl2,43,0{}
+	patch rsaopen,0,16{}
+}
+
+sprite RSR1A0,7,7{
+	offset -156,-110
+	patch rsaround,0,0{}
+}
+sprite RSR2A0,7,7{
+	offset -166,-110
+	patch rsaround,0,0{}
+}
+sprite RSR3A0,7,7{
+	offset -170,-117
+	patch rsarnd6,0,0{}
+}
+sprite RSR4A0,7,7{
+	offset -166,-125
+	patch rsarnd3,0,0{}
+}
+sprite RSR5A0,7,7{
+	offset -156,-125
+	patch rsaround,0,0{}
+}
+sprite RSR6A0,7,7{
+	offset -152,-117
+	patch rsaround,0,0{}
+}
+
+sprite RSR1B0,7,7{
+	offset -175,-109
+	patch rsaround,0,0{}
+}
+sprite RSR2B0,7,7{
+	offset -183,-114
+	patch rsaround,0,0{}
+}
+sprite RSR3B0,7,7{
+	offset -183,-123
+	patch rsaround,0,0{}
+}
+sprite RSR4B0,7,7{
+	offset -175,-127
+	patch rsaround,0,0{}
+}
+sprite RSR5B0,7,7{
+	offset -167,-123
+	patch rsaround,0,0{}
+}
+sprite RSR6B0,7,7{
+	offset -167,-114
+	patch rsaround,0,0{}
+}
+
+sprite RSR1D0,7,7{
+	offset -180,-111
+	patch rsaround,0,0{}
+}
+sprite RSR2D0,7,7{
+	offset -184,-119
+	patch rsaround,0,0{}
+}
+sprite RSR3D0,7,7{
+	offset -180,-127
+	patch rsaround,0,0{}
+}
+sprite RSR4D0,7,7{
+	offset -170,-127
+	patch rsaround,0,0{}
+}
+sprite RSR5D0,7,7{
+	offset -166,-119
+	patch rsaround,0,0{}
+}
+sprite RSR6D0,7,7{
+	offset -170,-111
+	patch rsaround,0,0{}
+}
+
+sprite RSR1C0,7,7{
+	offset -180,-111
+	patch rsaround,0,0{}
+}
+sprite RSR2C0,7,7{
+	offset -184,-119
+	patch rsaround,0,0{}
+}
+sprite RSR3C0,7,7{
+	offset -180,-127
+	patch rsaround,0,0{}
+}
+sprite RSR4C0,7,7{
+	offset -170,-127
+	patch rsaround,0,0{}
+}
+sprite RSR5C0,7,7{
+	offset -166,-119
+	patch rsaround,0,0{}
+}
+sprite RSR6C0,7,7{
+	offset -170,-111
+	patch rsaround,0,0{}
+}
+
+sprite RSR2E0,7,7{
+	offset -180,-111
+	patch rsaround,0,0{}
+}
+sprite RSR3E0,7,7{
+	offset -184,-119
+	patch rsaround,0,0{}
+}
+sprite RSR4E0,7,7{
+	offset -180,-127
+	patch rsaround,0,0{}
+}
+sprite RSR5E0,7,7{
+	offset -170,-127
+	patch rsaround,0,0{}
+}
+sprite RSR6E0,7,7{
+	offset -166,-119
+	patch rsaround,0,0{}
+}
+sprite RSR1E0,7,7{
+	offset -170,-111
+	patch rsaround,0,0{}
+}
+

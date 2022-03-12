@@ -1,0 +1,7 @@
+SA Revolver code base taken from 
+the GZDoom mod Hideous Destructor 
+by mc776
+
+Code edits by Swampyrad
+
+Firing SFX contributed by Red/Toxicity
