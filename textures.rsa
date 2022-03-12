@@ -1,6 +1,6 @@
-sprite 45BXA0, 24,153{
+sprite 45LBA0, 24,153{
   offset 12,13
-  patch 45BXA0,0,0{}
+  patch 45LBA0,0,0{}
 }
 
 
