@@ -1,0 +1,6 @@
+server int fl_weapon_spawn_bias       = 19;
+server int fl_metal_chance_bias       = 49;
+server int fl_flare_spawn_bias        = 9;
+server int fl_box_spawn_bias          = 9;
+server int fl_weapon_drop_chance_bias = 49;
+// These are server scope so multiplayer games run properly. 

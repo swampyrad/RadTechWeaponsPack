@@ -1,0 +1,29 @@
+flickerlight2 FLARESHOTLIGHT
+{
+    color 1.0 0.5 0.6
+    size 800
+  secondarySize 600
+  interval 0.01
+    offset 0 0 0
+	attenuate 1
+}
+
+flickerlight2 FLARESHOTLIGHTFADE
+{
+    color 1.0 0.4 0.5
+    size 500
+  secondarySize 300
+  interval 0.01
+    offset 0 0 0
+	attenuate 1
+}
+
+flickerlight2 FLARESHOTLIGHTDYING
+{
+    color 1.0 0.3 0.4
+    size 250
+  secondarySize 150
+  interval 0.01
+    offset 0 0 0
+	attenuate 1
+}
