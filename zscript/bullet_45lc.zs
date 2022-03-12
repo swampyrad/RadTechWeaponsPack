@@ -234,7 +234,7 @@ class HD45LCBoxPickup:HDUPK{
 	default{
 		//$Category "Ammo/Hideous Destructor/"
 		//$Title "Box of .45"
-		//$Sprite "45BXA0"
+		//$Sprite "45LBA0"
 		scale 0.4;
 		hdupk.amount 50;
 		hdupk.pickupsound "weapons/pocket";
@@ -243,6 +243,6 @@ class HD45LCBoxPickup:HDUPK{
 	}
 	states{
 	spawn:
-		45BX A -1;
+		45LB A -1;
 	}
 }
