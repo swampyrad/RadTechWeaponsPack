@@ -1,0 +1,26 @@
+Sig-Cow sprite -
+    based off the Doom Alpha Rifle by iD Software
+
+New SigCow sprites-
+    El Doofer from thr HD Discord
+  and potetobloke for creating the Charlie texturepack
+  its sprites were based of off.
+
+
+Sig-Cow pickup sprite -
+    based of the Super Shotgun sprite, inspired by
+    the bayonet rifle pickup sprite from the Doom prototype
+
+Bullet casing sprites -
+    taken from the Doom prototype spriterip by Superdave938
+
+
+TEXTURES, ZScript code and sprite edits -
+    a1337spy from the HD Discord (thanks a bunch, dude ;) )
+
+10mm Pistol Sprites -
+    ChopBlock223 for making the Delta Elite sprites,
+    based off the FreeDoom pistol sprites
+
+10mm Auto Reloader sprite -
+    a colorshifted edit of the 7mm reloader sprite by mc776
