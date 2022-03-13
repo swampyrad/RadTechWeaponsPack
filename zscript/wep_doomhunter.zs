@@ -33,7 +33,7 @@ override void postbeginplay(){
 		if(hhh)choke=hhh.weaponstatus[HUNTS_CHOKE];
 
 		choke=clamp(choke,0,7);
-		spread=12.5-0.5*choke;//double the spread
+		spread=25-0.5*choke;//4x the spread
 		speedfactor=1.+0.02857*choke;
 
 		double shotpower=getshotpower();
