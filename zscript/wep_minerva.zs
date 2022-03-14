@@ -63,16 +63,16 @@ override void postbeginplay(){
 	override string pickupmessage(){
 		string msg=super.pickupmessage();
 		int bc=weaponstatus[MNVS_BREAKCHANCE];
-	/*	
+		
                 if(bc>100){
-			msg.replace("!","");
-			msg.replace("the","a");
+			msg.replace("!","!");
+			msg.replace("the","the");
 		}
-        */
-		if(!bc)msg=msg.."! She's beautiful!";
-		else if(bc>500)msg=msg.."! She looks alright.";
-		else if(bc>200)msg=msg.."! She ain't looking so hot.";
-		else if(bc>100)msg=msg.."! Hang in there, girl!";
+        
+		if(!bc)msg=msg.." She's beautiful!";
+		else if(bc>500)msg=msg.." She looks alright.";
+		else if(bc>200)msg=msg.." She ain't looking so hot.";
+		else if(bc>100)msg=msg.." She's barely hanging on.";
 		return msg;
 	}
 	override void tick(){
