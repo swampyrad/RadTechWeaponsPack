@@ -9,7 +9,7 @@ class HDSingleActionRevolver:HDHandgun{
 		scale 0.5;
 		weapon.selectionorder 49;
 		weapon.slotnumber 2;
-		weapon.slotpriority 3;
+		weapon.slotpriority 4;
 		weapon.kickback 30;
 		weapon.bobrangex 0.1;
 		weapon.bobrangey 0.6;
@@ -466,7 +466,7 @@ if(ninemil>0){
 	altfire:
 		---- A 0 A_JumpIf(invoker.weaponstatus[0]&BUGF_COCKED,"uncock");
 		#### B 1 offset(0,34) A_ClearRefire();
-		#### B 4 offset(0,36) A_RotateCylinder();// 2 more tics
+		#### B 2 offset(0,36) A_RotateCylinder();
 	cocked:
 		#### C 0 {A_CockHammer(); A_StartSound("weapons/rsa_click",8,CHANF_OVERLAP);}
 		---- A 0 A_JumpIf(pressingaltfire(),"nope");
@@ -480,8 +480,8 @@ if(ninemil>0){
 	reload:
 	unload:
 		#### C 0 A_JumpIf(!(invoker.weaponstatus[0]&BUGF_COCKED),3);
-		#### B 2 offset(0,35)A_CockHammer(false);
-		#### A 2 offset(0,33);
+		#### B 1 offset(0,35)A_CockHammer(false);
+		#### A 1 offset(0,33);
 		#### A 1 A_JumpIf(player.getpsprite(PSP_WEAPON).sprite!=getspriteindex("RSVGA0"),"openslow");
 		RSAG E 2 A_OpenCylinder();
 		goto readyopen;
@@ -501,11 +501,11 @@ if(ninemil>0){
 		RSAG F 1 A_ReadyOpen();
 		goto readyend;
 	open_rotatecylinder:
-		RSAG G 3 A_RotateCylinder(pressingzoom());// 2 more tics
+		RSAG G 1 A_RotateCylinder(pressingzoom());
 		RSAG F 1 A_JumpIf(!pressingaltfire(),"readyopen");
 		goto readyopen;
 	open_loadround:
-		RSAG F 2 A_LoadRound();
+		RSAG F 1 A_LoadRound();
 		//goto open_rotatecylinder;
   goto readyopen;
 	open_closecylinder:
@@ -531,7 +531,7 @@ if(ninemil>0){
 			A_CheckRevolverHand();
 		}goto nope;
 	open_dumpcylinder:
-		RSAG F 2 A_HitExtractor();
+		RSAG F 1 A_HitExtractor();
 /*
   RSAG G 4 A_RotateCylinder(pressingzoom());//works like reloading
 */
