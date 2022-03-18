@@ -12,7 +12,7 @@ List of weapons and loadout codes:
 Delta Elite 10mm Pistol [p1m] 
     - A handgun released in the late 80s, adopted by the FBI following 
      the aftermath of a tragic shooting incident that resulted in the 
-     deaths of 3 special agents. This pistol offers better penetration 
+     deaths of 2 special agents. This pistol offers better penetration 
      and higher muzzle velocity than either 9mm or .355 firearms, but 
      is much harder to control due to increased recoil.
    
