@@ -177,7 +177,7 @@ double strength;
 
 		if(dmg*2>punchee.health)punchee.A_StartSound("misc/bulletflesh",CHAN_AUTO);
 		punchee.damagemobj(self,self,int(dmg),"slashing");
-
+  punchee.damagemobj(self,self,int(dmg),"melee");
 		if(!punchee)invoker.targethealth=0;else{
 			invoker.targethealth=punchee.health;
 			invoker.targetspawnhealth=punchee.spawnhealth();
@@ -334,7 +334,7 @@ double strength;
 		RBAY D 0 A_Recoil(min(0,1.-invoker.strength));
   	RBAY D 0 A_CustomPunch((int(ceil(invoker.strength))),1,CPF_PULLIN,"HDFistPuncher",36);
 		RBAY D 0 {invoker.flicked=true;}
-		RBAY D 0 HDStab(16);
+		RBAY D 0 HDStab(10);
 		RBAY D 4 A_StrengthTics(3,10);
 		RBAY C 2 A_StrengthTics(1,5);
 		//#### B 0 A_DontFreedoomFrameB();
