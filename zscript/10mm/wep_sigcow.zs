@@ -114,8 +114,9 @@ double strength;
 
 
 		//charge!
-		if(invoker.flicked)dmg*=1.5;
-		else dmg+=HDMath.TowardsEachOther(self,punchee)*3;
+		dmg*=1.5;
+		dmg += 1;
+		//else dmg+=HDMath.TowardsEachOther(self,punchee)*3;
 
 		//come in swinging
 		let onr=hdplayerpawn(self);
@@ -176,8 +177,14 @@ double strength;
 		bool puncheewasalive=!punchee.bcorpse&&punchee.health>0;
 
 		if(dmg*2>punchee.health)punchee.A_StartSound("misc/bulletflesh",CHAN_AUTO);
-		punchee.damagemobj(self,self,int(dmg),"slashing");
-  punchee.damagemobj(self,self,int(dmg),"melee");
+		
+		let aaa = HDFistPuncher(invoker.spawn("HDFistPuncher", invoker.pos));
+		if(aaa)
+		{
+			aaa.master = invoker;
+			punchee.damagemobj(aaa,self,int(dmg),"slashing");
+			aaa.destroy();
+		}
 		if(!punchee)invoker.targethealth=0;else{
 			invoker.targethealth=punchee.health;
 			invoker.targetspawnhealth=punchee.spawnhealth();
@@ -332,9 +339,7 @@ double strength;
    RBAY B 1 A_JumpIf(pressingaltfire(),"altfire");//adds a windup bedore stabbing
 		RBAY C 3 {A_StrengthTics(0,2); A_Recoil(-1);}// adds a short charge before stabbing
 		RBAY D 0 A_Recoil(min(0,1.-invoker.strength));
-  	RBAY D 0 A_CustomPunch((int(ceil(invoker.strength))),1,CPF_PULLIN,"HDFistPuncher",36);
-		RBAY D 0 {invoker.flicked=true;}
-		RBAY D 0 HDStab(10);
+		RBAY D 0 HDStab(20);
 		RBAY D 4 A_StrengthTics(3,10);
 		RBAY C 2 A_StrengthTics(1,5);
 		//#### B 0 A_DontFreedoomFrameB();
@@ -707,3 +712,4 @@ class SigCowRandomSpawn:IdleDummy{
 		}stop;
 	}
 }
+
