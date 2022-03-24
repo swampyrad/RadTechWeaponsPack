@@ -213,11 +213,11 @@ class HDB_45lc:HDBulletActor{
 
 }
 
-class HDSpent45LC:HDSpent9mm{default{yscale 0.75;}}
+class HDSpent45LC:HDSpent9mm{default{xscale 0.75; yscale 1.0;}}
 class HD45LCAmmo:HDPistolAmmo{
 	default{
-		xscale 0.6;
-		yscale 0.75;
+		xscale 0.8;
+		yscale 1.0;
 		inventory.pickupmessage "Picked up a .45LC round.";
 		hdpickup.refid "45L";
 		tag ".45LC round";
@@ -227,7 +227,7 @@ class HD45LCAmmo:HDPistolAmmo{
 		itemsthatusethis.push("HDSingleActionRevolver");
 	}
 	override void SplitPickup(){
-		SplitPickupBoxableRound(10,50,"HD45LCBoxPickup","TEN9A0","PRNDA0");
+		SplitPickupBoxableRound(10,50,"HD45LCBoxPickup","T10MA0","PR10A0");
 	}
 }
 class HD45LCBoxPickup:HDUPK{
