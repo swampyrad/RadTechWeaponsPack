@@ -59,7 +59,7 @@ class FireBlooper : HDWeapon
 
 	override double weaponbulk()
 	{
-		double result = 30;
+		double result = 24;
 		if(weaponstatus[0]&FLARE_LOADED)
 			result += ENC_SHELL;
 		else if(weaponstatus[0]&FLARE_LOADEDSHELL)
