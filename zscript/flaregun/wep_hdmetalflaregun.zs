@@ -25,7 +25,7 @@ class MetalFireBlooper: FireBlooper
 
 	override double weaponbulk()
 	{
-		double result = 60;
+		double result = 48;
 		if(weaponstatus[0]&FLARE_LOADED)
 			result += ENC_SHELL;
 		else if(weaponstatus[0]&FLARE_LOADEDSHELL)
