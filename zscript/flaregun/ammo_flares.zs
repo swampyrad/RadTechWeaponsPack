@@ -9,7 +9,7 @@ class HDFlareAmmo:HDRoundAmmo{
 		scale 0.3;
 		tag "flare shells";
 		hdpickup.refid "fsh";
-		hdpickup.bulk ENC_SHELL*2;
+		hdpickup.bulk ENC_SHELL*0.9;
 		inventory.icon "FLA4A0";
 	}
 	override void GetItemsThatUseThis(){
