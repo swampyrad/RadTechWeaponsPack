@@ -192,6 +192,21 @@ class HDB_00Rubber:HDBulletActor{
 			&&!HDPlayerPawn(hitactor)
 		)shockbash>>=3;
 
+
+    //trigger incap on hit
+    //code borrowed from Melonades stone ZScript
+
+		if(HDMobBase(hitactor) 
+    && !HDMobBase(hitactor).bNOINCAP 
+    && hitactor.ResolveState("falldown")
+    && !hitactor.InStateSequence
+        (hitactor.CurState, 
+          hitactor.ResolveState("falldown"))
+  ){
+			hitactor.SetStateLabel("falldown");
+    }
+
+
 		//apply impact/tempcav damage
 		bnoextremedeath=impact<(hitactor.gibhealth<<3);
 		hitactor.damagemobj(self,target,shockbash,"melee",DMG_THRUSTLESS|DMG_NO_ARMOR);
@@ -296,7 +311,6 @@ class HDB_00Rubber:HDBulletActor{
 				}
 			}
 		}
-
 
 		//fragmentation
 		if(!(flags&BLAF_DONTFRAGMENT)&&random(0,100)<woundhealth){
