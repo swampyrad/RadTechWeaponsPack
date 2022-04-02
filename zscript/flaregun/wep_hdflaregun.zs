@@ -37,6 +37,32 @@ class FireBlooper : HDWeapon
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
 
+action void A_SwapFlareguns(){
+		let mwt=SpareWeapons(findinventory("SpareWeapons"));
+		if(!mwt){
+			setweaponstate("whyareyousmiling");
+			return;
+		}
+		int fgunindex=mwt.weapontype.find(invoker.getclassname());
+		if(fgunindex==mwt.weapontype.size()){
+			setweaponstate("whyareyousmiling");
+			return;
+		}
+		A_WeaponBusy();
+
+		array<string> wepstat;
+		string wepstat2="";
+		mwt.weaponstatus[fgunindex].split(wepstat,",");
+		for(int i=0;i<wepstat.size();i++){
+			if(i)wepstat2=wepstat2..",";
+			wepstat2=wepstat2..invoker.weaponstatus[i];
+			invoker.weaponstatus[i]=wepstat[i].toint();
+		}
+		mwt.weaponstatus[fgunindex]=wepstat2;
+
+		//invoker.wronghand=!invoker.wronghand;
+	}
+
 	action int A_GetFrameIndex()
 	{
 		int result = 0;
@@ -222,8 +248,6 @@ class FireBlooper : HDWeapon
 
 
 	hold:
-	altfire:
-		goto ready;
 
 	fire:
 		#### A 0 A_JumpIf(invoker.weaponstatus[0]&FLARE_LOADEDSHELL,"reallyshootshell");
@@ -415,6 +439,42 @@ class FireBlooper : HDWeapon
 		FBL1 A 1 offset(4,40);
 		FBL1 A 1 offset(2,34);
 		goto ready;
+
+ firemode:
+	altfire:
+	swappistols:
+		---- A 0 A_SwapFlareguns();
+		---- A 0{
+				A_Overlay(1025,"raiseright");
+				A_Overlay(1026,"lowerright");
+		}
+		TNT1 A 5;
+		goto nope;
+	lowerright:
+		FBL1 A 0;
+		#### B 1 offset(6,38);
+		#### B 1 offset(12,48);
+		#### B 1 offset(20,60);
+		#### B 1 offset(34,76);
+		#### B 1 offset(50,86);
+		stop;
+	raiseright:
+		FBL1 A 0;
+		#### A 1 offset(50,86);
+		#### A 1 offset(34,76);
+		#### A 1 offset(20,60);
+		#### A 1 offset(12,48);
+		#### A 1 offset(6,38);
+		stop;
+	whyareyousmiling:
+		#### B 1 offset(0,48);
+		#### B 1 offset(0,60);
+		#### B 1 offset(0,76);
+		TNT1 A 7;
+		#### B 1 offset(0,76);
+		#### B 1 offset(0,60);
+		#### B 1 offset(0,48);
+		goto nope;
 	
 	
 	
