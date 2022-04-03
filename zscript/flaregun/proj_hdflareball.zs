@@ -481,7 +481,7 @@ void A_ImpNoSquirt(){
 	DeathInit:
 		  HL1G E 0
 		  {
-			iii_max    = random(100,105) * 35;
+			iii_max    = random(7, 9) * 35;
 			iii_inc    = iii_max/3;
 			iii        = 0;
 			frametick  = 0;
@@ -489,7 +489,7 @@ void A_ImpNoSquirt(){
 	DeathFlamesStrong:
 		  HL1G D 1 light("FLARESHOTLIGHT")
 		  {
-			A_BurnUp(iii, 4, 4, 20, 0);
+			A_BurnUp(iii, 4, 4, 7, 0);
 			iii++;
 		  }
 		  TNT1 A 0 A_JumpIf(iii < iii_max - (iii_inc * 2), "DeathFlamesStrong");
@@ -497,7 +497,7 @@ void A_ImpNoSquirt(){
 	DeathFlames:
 		  HL1G D 2 light("FLARESHOTLIGHT")
 		  {
-			A_BurnUp(iii, 5, 5, 30, 1);
+			A_BurnUp(iii, 3, 3, 5, 1);
 			iii++;
 		  }
 		  TNT1 A 0 A_JumpIf(iii < iii_max - iii_inc, "DeathFlames");
@@ -505,7 +505,7 @@ void A_ImpNoSquirt(){
 	DeathFlamesDying:
 		  HL1G E 3 light("FLARESHOTLIGHTDYING")
 		  {
-			A_BurnUp(iii, 6, 6, 50, 1);
+			A_BurnUp(iii, 2, 2, 3, 1);
 			iii++;
 		  }
 		  TNT1 A 0 A_JumpIf(iii < iii_max, "DeathFlamesDying");
