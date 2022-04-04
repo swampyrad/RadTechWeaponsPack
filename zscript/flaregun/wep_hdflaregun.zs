@@ -197,6 +197,29 @@ action void A_SwapFlareguns(){
 			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
 	}
 
+//the damn thing explodes when you do this,
+//of course the damage output is going to suffer
+action void A_FireShellPlastic()
+	{
+			invoker.weaponstatus[0]&=~FLARE_LOADEDSHELL;
+			HDBulletActor.FireBullet(self,"HDB_wad");
+			let sss=HDBulletActor.FireBullet(self,"HDB_00",
+			spread:35,speedfactor:0.5,amount:10
+			);
+			distantnoise.make(sss,"world/shotgunfar");
+			self.A_StartSound("weapons/hunter",CHAN_WEAPON);
+			invoker.weaponstatus[0]=FLARE_SPENTSHELL;
+			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
+	}
+
+//because firing  
+//shotgun shells in a plastic
+//gun is really dumb
+action void A_Backfire()
+  	{
+   self.damagemobj(self,self,5,"hot",DMG_NO_ARMOR);
+  }
+
 	override void loadoutconfigure(string input){
 
 		int shellround=getloadoutvar(input,"shell",1);
@@ -260,7 +283,7 @@ action void A_SwapFlareguns(){
 		//shoot a fireball
 		#### A 2 offset(0,37)
 		{
-			A_FireShell();
+			A_FireShellPlastic();
 		}
 		#### A 1;
 		#### A 0;
@@ -482,9 +505,11 @@ action void A_SwapFlareguns(){
 		---- A 0
 		{
 			A_StartSound("weapons/fgnclk",CHAN_WEAPON,CHANF_OVERLAP);
+
 			for(int i=0;i<30;i++)A_SpawnItemEx("FourMilChunk",0,0,invoker.owner.height * 0.80,
 				random(4,7),random(-2,2),random(-2,1),0,SXF_NOCHECKPOSITION
 			);
+    A_Backfire();
 			A_SpawnItemEx("HDSpentShell",0,0,invoker.owner.height * 0.80,
 				-random(4,7),-random(-2,2),-random(-2,1),0,SXF_NOCHECKPOSITION
 			);
