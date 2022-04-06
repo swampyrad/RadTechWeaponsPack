@@ -1,0 +1,227 @@
+sprite C45GA0,11,17{
+  xscale 2
+  yscale 2
+	offset 5, 17
+	patch C45GA0,0,0{}
+}
+
+sprite C45GB0,15,16{
+  xscale 2
+  yscale 2
+	offset 7, 16
+	patch C45GB0,0,0{}
+}
+
+
+sprite GC45A0,9,22{
+  xscale 2
+  yscale 2
+	offset 5, 22
+	patch GC45A0,0,0{}
+}
+
+sprite GSIXA0,54,22{
+  xscale 2
+  yscale 2
+	offset 27, 22
+	patch GSIXA0,0,0{}
+}
+
+sprite GLBXA0,59,27{
+  xscale 2
+  yscale 2
+	offset 28, 27
+	patch GLBXA0,0,0{}
+}
+
+sprite GSALA0,31,15{
+ offset 15, 15
+	patch GSALA0,0,0{}
+}
+
+
+sprite GSAGA0,53,89{
+	offset -130,-85
+	patch gsarhand,0,48{}
+	patch gsaready,15,0{}
+}
+sprite GSAGB0,53,89{
+	offset -130,-87
+	patch GSAGA0,0,0{}
+	patch gsaham2,15,20{}
+}
+sprite GSAGC0,53,89{
+	offset -130,-86
+	patch GSAGA0,0,0{}
+	patch gsaham3,20,25{}
+}
+sprite GSAGD0,52,90{
+	offset -130,-85
+	patch gsarchnd,0,52{}
+	patch gsarcoil,14,0{}
+}
+sprite GRVGA0,53,89{
+	offset -137,-85
+	patch gsarhand,0,48{flipx}
+	patch gsaready,7,0{}
+}
+sprite GRVGB0,53,89{
+	offset -137,-87
+	patch GRVGA0,0,0{}
+	patch gsaham2,7,20{}
+}
+sprite GRVGC0,53,89{
+	offset -137,-86
+	patch GRVGA0,0,0{}
+	patch gsaham3,12,25{}
+}
+sprite GRVGD0,52,90{
+	offset -138,-85
+	patch gsarchnd,0,52{flipx}
+	patch gsarcoil,7,0{}
+}
+sprite GLDFA0,36,53{
+	offset -143,-65
+	patch gsaflash,0,0{}
+}
+sprite GSAGE0,62,80{
+	offset -140,-100
+	patch gsacyl2,9,0{}
+	patch gsaturn,0,3{}
+}
+sprite GSAGF0,93,75{
+	offset -120,-100
+	patch gsacyl1,43,0{}
+	patch gsaopen,0,20{}
+}
+sprite GSAGG0,93,75{
+	offset -121,-101
+	patch gsacyl2,43,0{}
+	patch gsaopen,0,20{}
+}
+
+//silver casing sprites
+sprite GSR1A0,7,7{
+	offset -156,-110
+	patch gsaround,0,0{}
+}
+sprite GSR2A0,7,7{
+	offset -166,-110
+	patch gsaround,0,0{}
+}
+sprite GSR3A0,7,7{
+	offset -170,-117
+	patch revrnd6,0,0{}
+}
+sprite GSR4A0,7,7{
+	offset -166,-125
+	patch revrnd3,0,0{}
+}
+sprite GSR5A0,7,7{
+	offset -156,-125
+	patch gsaround,0,0{}
+}
+sprite GSR6A0,7,7{
+	offset -152,-117
+	patch gsaround,0,0{}
+}
+
+sprite GSR1B0,7,7{
+	offset -175,-109
+	patch gsaround,0,0{}
+}
+sprite GSR2B0,7,7{
+	offset -183,-114
+	patch gsaround,0,0{}
+}
+sprite GSR3B0,7,7{
+	offset -183,-123
+	patch gsaround,0,0{}
+}
+sprite GSR4B0,7,7{
+	offset -175,-127
+	patch gsaround,0,0{}
+}
+sprite GSR5B0,7,7{
+	offset -167,-123
+	patch gsaround,0,0{}
+}
+sprite GSR6B0,7,7{
+	offset -167,-114
+	patch gsaround,0,0{}
+}
+
+sprite GSR1D0,7,7{
+	offset -180,-111
+	patch gsaround,0,0{}
+}
+sprite GSR2D0,7,7{
+	offset -184,-119
+	patch gsaround,0,0{}
+}
+sprite GSR3D0,7,7{
+	offset -180,-127
+	patch gsaround,0,0{}
+}
+sprite GSR4D0,7,7{
+	offset -170,-127
+	patch gsaround,0,0{}
+}
+sprite GSR5D0,7,7{
+	offset -166,-119
+	patch gsaround,0,0{}
+}
+sprite GSR6D0,7,7{
+	offset -170,-111
+	patch gsaround,0,0{}
+}
+
+sprite GSR1C0,7,7{
+	offset -180,-111
+	patch gsaround,0,0{}
+}
+sprite GSR2C0,7,7{
+	offset -184,-119
+	patch gsaround,0,0{}
+}
+sprite GSR3C0,7,7{
+	offset -180,-127
+	patch gsaround,0,0{}
+}
+sprite GSR4C0,7,7{
+	offset -170,-127
+	patch gsaround,0,0{}
+}
+sprite GSR5C0,7,7{
+	offset -166,-119
+	patch gsaround,0,0{}
+}
+sprite GSR6C0,7,7{
+	offset -170,-111
+	patch gsaround,0,0{}
+}
+
+sprite GSR2E0,7,7{
+	offset -180,-111
+	patch gsaround,0,0{}
+}
+sprite GSR3E0,7,7{
+	offset -184,-119
+	patch gsaround,0,0{}
+}
+sprite GSR4E0,7,7{
+	offset -180,-127
+	patch gsaround,0,0{}
+}
+sprite GSR5E0,7,7{
+	offset -170,-127
+	patch gsaround,0,0{}
+}
+sprite GSR6E0,7,7{
+	offset -166,-119
+	patch gsaround,0,0{}
+}
+sprite GSR1E0,7,7{
+	offset -170,-111
+	patch gsaround,0,0{}
+}
