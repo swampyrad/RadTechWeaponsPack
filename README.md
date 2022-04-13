@@ -33,7 +33,12 @@ Flare Gun [fgn; fgm, for metal variant]
      fragile, but much heavier.
 
 Juan Horseshoe Pistol [jua] 
-- *j u a n .*
+- *j u a n .* A variant of the standard-issue pistol, albeit with a 
+non-standard issue magazine. As the name suggests, it uses a unique
+"horseshoe" magazine that holds 30 rounds, as many as an SMG magazine.
+However, its small size makes it hard to control in full-auto mode,
+which experienced users remedy by using a "galloping" shooting pattern,
+firing in short, controlled bursts to stay on target.
 
 Hacked ZM66 Assault Rifle [hzm] 
 - A 'jailbroken' model of the Volt ZM66 rifle, this weapon has been
