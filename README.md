@@ -58,3 +58,13 @@ Single Action Revolver [rsa]
      in whatever it hits. Has a greater ricochet chance, handy for bouncing
      rounds off walls and performing trickshots.
 
+Explosive Shotgun [xsg]
+ - The antithesis of the Less-Lethal Shotgun, this modified Hunter fires 
+ shells loaded with miniature HE grenade slugs, causing serious injuries
+ and burns on impact. Use of this weapon is tight quarters is ill-advised,
+ as the slug's propellant may 'splash' back, burning the user as well as
+ the intended target.
+ 
+ 
+ 
+ 
