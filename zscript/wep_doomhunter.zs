@@ -27,22 +27,31 @@ override void postbeginplay(){
 
 	//returns the power of the load just fired
 	static double Fire(actor caller,int choke=1){
-		double spread=12.;
+		double spread=6.;
 		double speedfactor=1.;
 		let hhh=DoomHunter(caller.findinventory("DoomHunter"));
 		if(hhh)choke=hhh.weaponstatus[HUNTS_CHOKE];
 
 		choke=clamp(choke,0,7);
-		spread=25-0.5*choke;//4x the spread
+		spread=15-0.5*choke;
 		speedfactor=1.+0.02857*choke;
 
 		double shotpower=getshotpower();
 		spread*=shotpower;
 		speedfactor*=shotpower;
 		HDBulletActor.FireBullet(caller,"HDB_wad");
-		let p=HDBulletActor.FireBullet(caller,"HDB_00",
-			spread:spread,speedfactor:speedfactor,amount:10
-		);
+
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-1,1),speedfactor:speedfactor,amount:1);//1
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-1,1),speedfactor:speedfactor,amount:1);//2
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-2,2),speedfactor:speedfactor,amount:1);//3
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-3,3),speedfactor:speedfactor,amount:1);//4
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-4,4),speedfactor:speedfactor,amount:1);//5
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-5,5),speedfactor:speedfactor,amount:1);//6
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-6,6),speedfactor:speedfactor,amount:1);//7
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-7,7),speedfactor:speedfactor,amount:1);//8
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-8,8),speedfactor:speedfactor,amount:1);//9
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-8,8),speedfactor:speedfactor,amount:1);//10
+		let p=HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,speedfactor:speedfactor,amount:0);//this one's just so the script works
 		distantnoise.make(p,"world/shotgunfar");
 		caller.A_StartSound("weapons/hunter",CHAN_WEAPON);
 		return shotpower;
