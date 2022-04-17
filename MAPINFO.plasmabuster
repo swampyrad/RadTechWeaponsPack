@@ -1,0 +1,2 @@
+GameInfo { 	AddEventHandlers = "PlasmaBuster_Spawner" } 
+GameInfo { 	AddEventHandlers = "PlasmaBusterInjector" } 
