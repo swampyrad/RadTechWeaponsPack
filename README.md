@@ -23,8 +23,15 @@ Detective Special Snubnose Revolver [snb]
 
 Doomed Shotgun [dsg] 
 - A modified Hunter designed to mimic the behavior of the vanilla 
-     Doom shotgun, with a wider spread and old-school pump action 
-     animation.
+     Doom shotgun, fitted with a duckbill choke for V-pattern spread 
+     and the old-school pump-action animation.
+
+DM-93 Plasma Launcher [d93]
+- An early prototype weapon whose development would lead to the 
+    creation of the "Thunder Buster" ion beam gun. The DM-93
+    energy rifle launches a stream of condensed spheres of plasma,
+    which heat up and burn through targets in seconds. Includes
+    auto-fire and burst-fire triggers.
 
 Flare Gun [fgn; fgm, for metal variant] 
 - A common survival tool, useful for lighting up dark areas,
