@@ -4,7 +4,7 @@
 class DoomHunter:HDShotgun{
 	default{
 		//$Category "Weapons/Hideous Destructor"
-		//$Title "Hunter"
+		//$Title "Doomed Shotgun"
 		//$Sprite "HUNTA0"
 
 		weapon.selectionorder 31;
@@ -13,10 +13,10 @@ class DoomHunter:HDShotgun{
 		weapon.bobrangex 0.21;
 		weapon.bobrangey 0.86;
 		scale 0.6;
-		inventory.pickupmessage "You got the doomed pump-action shotgun!";
+		inventory.pickupmessage "You got the doomed shotgun!";
 		hdweapon.barrelsize 30,0.5,2;
 		hdweapon.refid "dsg";
-		tag "doomed pump shotgun";
+		tag "doomed shotgun";
 		obituary "$OB_MPSHOTGUN";
 	}
 
@@ -330,9 +330,9 @@ override void postbeginplay(){
 		SHTG A 0 A_JumpIf(invoker.weaponstatus[0]&HUNTF_ALTHOLDING,"nope");
 		SHTG A 0 A_SetAltHold(true);
 		SHTG A 1 A_Overlay(120,"playsgco");
-		SHTG ABC 2 A_MuzzleClimb(0,frandom(0.6,1.));
+		SHTG AB 3 A_MuzzleClimb(0,frandom(0.6,1.));
 		SHTG C 2 A_JumpIf(pressingaltfire(),"longstroke");
-		SHTG CB 2 A_MuzzleClimb(0,-frandom(0.6,1.));
+		SHTG CB 3 A_MuzzleClimb(0,-frandom(0.6,1.));
 		SHTG B 0 A_StartSound("weapons/huntshort",8);
 		SHTG A 0 A_Refire("ready");
 		goto ready;
