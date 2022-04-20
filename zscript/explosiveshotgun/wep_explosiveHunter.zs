@@ -9,7 +9,7 @@ class ExplosiveHunter:HDShotgunExplosive{
 
 		weapon.selectionorder 31;
 		weapon.slotnumber 3;
-		weapon.slotpriority 5;
+		weapon.slotpriority 3;
 		weapon.bobrangex 0.21;
 		weapon.bobrangey 0.86;
 		scale 0.6;
@@ -20,7 +20,8 @@ class ExplosiveHunter:HDShotgunExplosive{
 		obituary "$OB_MPSHOTGUN";
 
 /* remove commenting if playing 4.7.1c
-		hdweapon.loadoutcodes "
+		
+  hdweapon.loadoutcodes "
 			\cutype - 0-2, export/regular/hacked
 			\cufiremode - 0-2, pump/semi/auto, subject to the above
 			\cuchoke - 0-7, 0 skeet, 7 full";
@@ -43,7 +44,7 @@ class ExplosiveHunter:HDShotgunExplosive{
 		spread*=shotpower;
 		speedfactor*=shotpower;
 		HDBulletActor.FireBullet(caller,"HDB_wad");
-		let p=HDBulletActor.FireBullet(caller,"HDB_00Explosive",
+		let p=HDBulletActor.FireBullet(caller,"HDB_12GuageSlugExplosive",
 			spread:spread,speedfactor:speedfactor,amount:1
 		);
 		distantnoise.make(p,"world/shotgunfar");

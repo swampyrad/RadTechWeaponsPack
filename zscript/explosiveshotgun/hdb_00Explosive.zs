@@ -30,25 +30,44 @@ class HDMiniExplosion:IdleDummy{
 	}
 }
 
-class HDB_00Explosive:HDB_00{
+class HDB_12GuageSlugExplosive:HDB_00{
 	default{
 		pushfactor 0.3;
-		mass 150;
+		mass 300;
 		speed HDCONST_MPSTODUPT*500;//720;
 		accuracy 200;
 		stamina 1850;
-		woundhealth 3;
-		hdbulletactor.hardness 0;
+		woundhealth 150;
+		hdbulletactor.hardness 1;
 	}
 override actor Puff(){
 		if(max(abs(pos.x),abs(pos.y))>=8192)return null;
 		setorigin(pos-(2*(cos(angle),sin(angle)),0),false);
 
+  A_HDBlast(
+			blastradius:8,
+    blastdamage:120,
+			immolateradius:48,
+    immolateamount:random(12,20),
+    immolatechance:64,
+			source:target
+		);
+
+  DistantQuaker.Quake(self,3,35,64,12);
+		actor aaa=Spawn("HDMiniExplosion",pos,ALLOW_REPLACE);
+		//A_SpawnChunks("BigWallChunk",20,4,20);
+		//A_SpawnChunks("HDSmoke",4,1,7);
+		//aaa=spawn("HDMiniExplosion",pos,ALLOW_REPLACE);
+  aaa.vel.z=2;
+		distantnoise.make(aaa,"world/rocketfar");
+		//A_SpawnChunks("HDSmokeChunk",random(3,4),6,12);
+
 		A_SprayDecal("BrontoScorch",8);
+
 		if(vel==(0,0,0))A_ChangeVelocity(cos(pitch),0,-sin(pitch),CVF_RELATIVE|CVF_REPLACE);
 		else vel*=0.01;
 		if(tracer){ //warhead damage
-			int dmg=random(90,99);//fuck this line of code in particular
+			int dmg=random(0,0);//fuck this line of code in particular
 
 			//find the point at which it would pierce the middle
 			vector3 hitpoint=pos+vel.unit()*tracer.radius;
@@ -60,7 +79,8 @@ override actor Puff(){
 			tracer.damagemobj(
 				self,target,
 				dmg,
-				"electrical",DMG_THRUSTLESS
+				"electrical"
+   //,DMG_THRUSTLESS
 			);
 		}
 		//doordestroyer.destroydoor(self,64,frandom(4,16),6,dedicated:true);
@@ -78,30 +98,14 @@ override actor Puff(){
 
 */
 
-A_HDBlast(
-			fragradius:0,
-    fragtype:"HDB_fragBronto",
-			immolateradius:48,
-    immolateamount:random(12,20),
-    immolatechance:64,
-			source:target
-		);
-
-		DistantQuaker.Quake(self,3,35,64,12);
-		actor aaa=Spawn("HDSmoke",pos,ALLOW_REPLACE);
-		//A_SpawnChunks("BigWallChunk",20,4,20);
-		//A_SpawnChunks("HDSmoke",4,1,7);
-		aaa=spawn("HDMiniExplosion",pos,ALLOW_REPLACE);
-  aaa.vel.z=2;
-		distantnoise.make(aaa,"world/rocketfar");
-		//A_SpawnChunks("HDSmokeChunk",random(3,4),6,12);
-
 		bmissile=false;
 		bnointeraction=true;
 		vel=(0,0,0);
+
 		if(!instatesequence(curstate,findstate("death")))setstatelabel("death");
 		return null;
 	}
+
 	override void onhitactor(actor hitactor,vector3 hitpos,vector3 vu,int flags){
 		double spbak=speed;
 		super.onhitactor(hitactor,hitpos,vu,flags);
@@ -110,7 +114,7 @@ A_HDBlast(
 	
 	states{
 	death:
-		TNT1 A 0{if(tracer)puff();}
+		TNT1 A 0 nodelay{if(tracer)puff();}
 		goto super::death;
 	}
 }
