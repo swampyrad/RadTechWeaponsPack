@@ -25,7 +25,7 @@ class FireBlooper : HDWeapon
 		+hdweapon.fitsinbackpack
 		weapon.selectionorder 93;
 		weapon.slotnumber 3;//flare pistol
-		weapon.slotpriority 3;
+		weapon.slotpriority 9;
 		scale 0.6;
 		inventory.pickupmessage "You got the flare gun! It's like christmas morning...";
 		obituary "%o was set ablaze by %k.";
