@@ -344,7 +344,7 @@ override void postbeginplay(){
 		goto flashfollow;
 	flashfollow:
 		---- A 0{
-			A_MuzzleClimb(0,0,-frandom(0.1,0.3),-frandom(0.4,0.8));
+			A_MuzzleClimb(0,0,-frandom(0.05,0.15),-frandom(0.2,0.4));
 			A_ZoomRecoil(0.99);
 			HDFlashAlpha(invoker.weaponstatus[MNVS_HEAT]*48);
 		}
