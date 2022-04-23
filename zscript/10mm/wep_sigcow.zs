@@ -183,6 +183,12 @@ double strength;
 		{
 			aaa.master = invoker;
 			punchee.damagemobj(aaa,self,int(dmg),"slashing");
+ //bleed code borrowed from PBWeappns knife zscript
+ //bonus points to BenitezClanceIV for suggesting it
+if(!punchee.countinv("HDArmourWorn")){
+	    HDBleedingWound.inflict(punchee,dmg*frandom(0.3,0.8));
+    }
+
 			aaa.destroy();
 		}
 		if(!punchee)invoker.targethealth=0;else{
