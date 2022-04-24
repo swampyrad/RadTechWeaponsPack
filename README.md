@@ -27,11 +27,14 @@ Doomed Shotgun [dsg]
      and the old-school pump-action animation.
 
 DM-93 Plasma Launcher [d93]
-- An early prototype weapon whose development would lead to the 
-    creation of the "Thunder Buster" ion beam gun. The DM-93
-    energy rifle launches a stream of condensed spheres of plasma,
-    which heat up and burn through targets in seconds. Includes
-    auto-fire and burst-fire triggers.
+- An revised version of the "Thunder Buster" particle beam gun. After
+    receiving a disturbing number of incident reports involving self-
+    detonations caused by careless use of the Thunder Buster, UAC tasked
+    a junior reseacher with finding a solution to this problem. The answer
+    was found when they tweaked the ion emitter so that the plasma particles
+    are contained in a electromagnetic field which holds it together until 
+    it impacts a target. This plasma has a smaller, but much safer blast 
+    radius, so direct contact is required to cause maximum damage. 
 
 Flare Gun [fgn; fgm, for metal variant] 
 - A common survival tool, useful for lighting up dark areas,
