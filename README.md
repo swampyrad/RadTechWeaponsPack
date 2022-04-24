@@ -71,7 +71,7 @@ Single Action Revolver [rsa]
 - An ancient firearm better suited for a gunslinger than a space marine.
      Chambered in .45 Long Colt, this revolver will definitely punch a hole 
      in whatever it hits. Has a greater ricochet chance, handy for bouncing
-     rounds off walls and performing kshots.
+     rounds off walls and performing trickshots.
 
 Explosive Shotgun [xsg]
  - The antithesis of the Less-Lethal Shotgun, this modified Hunter fires 
