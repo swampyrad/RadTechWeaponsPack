@@ -1,4 +1,4 @@
-class 10mmPistol_Spawner : EventHandler
+class HD10mmPistol_Spawner : EventHandler
 {
 override void CheckReplacement(ReplaceEvent e) {
 	switch (e.Replacee.GetClassName()) {
