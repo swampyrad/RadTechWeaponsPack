@@ -1,1 +1,2 @@
 GameInfo { 	AddEventHandlers = "Sigcow_Spawner" } 
+GameInfo { 	AddEventHandlers = "10mmPistol_Spawner" } 
