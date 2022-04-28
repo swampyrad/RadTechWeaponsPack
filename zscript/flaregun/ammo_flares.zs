@@ -1,12 +1,12 @@
 // ------------------------------------------------------------
-// Less-Lethal Shotgun Shells
+// Flare Gun Shells
 // ------------------------------------------------------------
 class HDFlareAmmo:HDRoundAmmo{
 	default{
 		+inventory.ignoreskill
 		+hdpickup.multipickup
 		inventory.pickupmessage "Picked up a flare shell.";
-		scale 0.3;
+		scale 0.2;
 		tag "flare shells";
 		hdpickup.refid "fsh";
 		hdpickup.bulk ENC_SHELL*0.9;
