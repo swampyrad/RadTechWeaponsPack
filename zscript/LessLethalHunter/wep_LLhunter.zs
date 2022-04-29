@@ -116,10 +116,10 @@ class LLHunter:HDLLShotgun{
 	override double gunmass(){
 		int tube=weaponstatus[LL_HUNTS_TUBE];
 		if(tube>4)tube+=(tube-4)*2;
-		return 8+tube*0.3+weaponstatus[SHOTS_SIDESADDLE]*0.08;
+		return 7+tube*0.3+weaponstatus[SHOTS_SIDESADDLE]*0.08;
 	}
 	override double weaponbulk(){
-		return 125+(weaponstatus[SHOTS_SIDESADDLE]+weaponstatus[LL_HUNTS_TUBE])*ENC_SHELLLOADED;
+		return 100+(weaponstatus[SHOTS_SIDESADDLE]+weaponstatus[LL_HUNTS_TUBE])*ENC_SHELLLOADED;
 	}
 
 	action void A_SwitchFireMode(bool forwards=true){
