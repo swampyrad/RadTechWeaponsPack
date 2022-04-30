@@ -87,9 +87,7 @@ class LLHunter:HDLLShotgun{
 		..WEPHELP_ALTFIRE.."  Pump\n"
 		..WEPHELP_RELOAD.."  Reload (side saddles first)\n"
 		..WEPHELP_ALTRELOAD.."  Reload (pockets only)\n"
-		..(weaponstatus[0]&LL_HUNTF_EXPORT?"":(WEPHELP_FIREMODE.."  Pump/Semi"..(weaponstatus[0]&LL_HUNTF_CANFULLAUTO?"/Auto":"").."\n"))
-		..WEPHELP_FIREMODE.."+"..WEPHELP_RELOAD.."  Load side saddles\n"
-		..WEPHELP_UNLOADUNLOAD
+	        ..WEPHELP_UNLOADUNLOAD
 		;
 	}
 	override void DrawSightPicture(
