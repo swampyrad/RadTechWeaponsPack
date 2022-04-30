@@ -1,2 +1,0 @@
-GameInfo { 	AddEventHandlers = "DoomShotgun_Spawner" } 
-GameInfo { 	AddEventHandlers = "DoomedShellInjector" } 
