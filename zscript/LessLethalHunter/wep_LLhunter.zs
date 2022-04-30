@@ -87,6 +87,7 @@ class LLHunter:HDLLShotgun{
 		..WEPHELP_ALTFIRE.."  Pump\n"
 		..WEPHELP_RELOAD.."  Reload (side saddles first)\n"
 		..WEPHELP_ALTRELOAD.."  Reload (pockets only)\n"
+                ..WEPHELP_FIREMODE.."+"..WEPHELP_RELOAD.."  Load side saddles\n"
 	        ..WEPHELP_UNLOADUNLOAD
 		;
 	}
