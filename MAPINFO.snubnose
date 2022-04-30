@@ -1,2 +1,0 @@
-GameInfo { 	AddEventHandlers = "SnubNose_Spawner" } 
-GameInfo { 	AddEventHandlers = "SnubNoseInjector" } 
