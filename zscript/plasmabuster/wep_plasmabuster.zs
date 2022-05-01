@@ -101,14 +101,11 @@ class PlasmaBuster:HDCellWeapon{
 		weapon.slotpriority 3;
 		weapon.ammouse 1;
 		scale 0.6;
-		inventory.pickupmessage "You got the DM-93 plasma launcher!";
-		obituary "%o was vaporized by %k's plasma launcher.";
+		inventory.pickupmessage "You got the DM-93 plasma rifle!";
+		obituary "%o was vaporized by %k's plasma rifle.";
 		hdweapon.barrelsize 35,1.6,3;
 		hdweapon.refid "d93";
-		tag "dm-93 plasma launcher";
-
-		hdweapon.loadoutcodes "
-			\cualt - 0/1, whether to start in spray fire mode";
+		tag "DM-93 plasma rifle";
 	}
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
@@ -385,6 +382,11 @@ action void FirePlasmaBall(){
   A_AlertMonsters(400);
   }
 
+action void FirePlasmaBallBurst(){
+  A_SpawnProjectile("PlasmaFoof",(11+hdplayerpawn(self).height/2)*hdplayerpawn(self).heightmult,0, frandom(-5,5), CMF_AIMDIRECTION, pitch+frandom(-3,3));
+  A_AlertMonsters(400);
+  }
+
 	states{
 	ready:
 		PLSG A 1{
@@ -421,16 +423,10 @@ action void FirePlasmaBall(){
 		#### A 0 A_JumpIf(invoker.weaponstatus[TBS_BATTERY]>0,"shoot");
 		goto nope;
 	shoot:
-
-/*
-
-		#### A 1 offset(1,33) A_ThunderZap();//haha, teebee goes zap zap .')
-
-*/
-  #### A 0 A_StartSound("weapons/plasmaf");//zappy noises
+  #### A 0 {A_GunFlash();
+            A_StartSound("weapons/plasmaf");}//zappy noises
   #### A 1 bright FirePlasmaBall();
-//this makes zappy balls fly out
-
+                    //this makes zappy balls fly out
   #### A 0 {
 		//aftereffects
 		if(invoker.weaponstatus[0]&TBF_ALT){
@@ -480,16 +476,12 @@ action void FirePlasmaBall(){
 		#### A 1 offset(1,33) A_ThunderZap();//haha, teebee goes zap zap .')
 
 */
-  #### A 0 A_StartSound("weapons/plasmaf");//zappy noises
-  #### A 1 bright FirePlasmaBall();
-  #### A 0 A_StartSound("weapons/plasmaf");//zappy noises
-  #### A 1 bright FirePlasmaBall();
-  #### A 0 A_StartSound("weapons/plasmaf");//zappy noises
-  #### A 1 bright FirePlasmaBall();
-  #### A 0 A_StartSound("weapons/plasmaf");//zappy noises
-  #### A 1 bright FirePlasmaBall();
-  #### A 0 A_StartSound("weapons/plasmaf");//zappy noises
-  #### A 1 bright FirePlasmaBall();
+  #### A 0 A_GunFlash();
+  #### AAAAA 1 bright {
+    FirePlasmaBallBurst(); 
+    A_StartSound("weapons/plasmaf");//zappy noises
+    
+    }
   #### A 0 {
 		//aftereffects
 		if(invoker.weaponstatus[0]&TBF_ALT){
@@ -504,7 +496,6 @@ action void FirePlasmaBall(){
 		#### A 1 offset(-1,33) A_WeaponReady(WRF_NONE);
   	#### BBB 4{
 			A_WeaponReady(WRF_NOFIRE);
-			//A_GunFlash();
 		}
 		#### A 0{
 			if(invoker.weaponstatus[TBS_BATTERY]<1){
@@ -648,8 +639,5 @@ action void FirePlasmaBall(){
 		weaponstatus[TBS_BATTERY]=20;
 	}
 	override void loadoutconfigure(string input){
-		int fm=getloadoutvar(input,"alt",1);
-		if(!fm)weaponstatus[0]&=~TBF_ALT;
-		else if(fm>0)weaponstatus[0]|=TBF_ALT;
 	}
 }
