@@ -26,7 +26,7 @@ Doomed Shotgun [dsg]
      Doom shotgun, fitted with a duckbill choke for V-pattern spread 
      and the old-school pump-action animation.
 
-DM-93 Plasma Launcher [d93]
+DM-93 Plasma Rifle [d93]
 - An revised version of the "Thunder Buster" particle beam gun. After
     receiving a disturbing number of incident reports involving self-
     detonations caused by careless use of the Thunder Buster, UAC tasked
@@ -34,7 +34,9 @@ DM-93 Plasma Launcher [d93]
     was found when they tweaked the ion emitter so that the plasma particles
     are contained in a electromagnetic field which holds it together until 
     it impacts a target. This plasma has a smaller, but much safer blast 
-    radius, so direct contact is required to cause maximum damage. 
+    radius, so direct contact is required to cause maximum damage. Auto-fire
+    emits an accurate stream of projectiles, while Burst-fire shoots out a
+    spread of multiple shots, useful for close encounters of the demon kind.
 
 Flare Gun [fgn; fgm, for metal variant] 
 - A common survival tool, useful for lighting up dark areas,
