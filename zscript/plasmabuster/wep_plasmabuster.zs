@@ -168,19 +168,19 @@ override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		..WEPHELP_UNLOADUNLOAD
 		;
 	}
-	int rangefinder;
 
-	override void DrawSightPicture(
+
+override void DrawSightPicture(
 		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
 		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
 	){
 		int cx,cy,cw,ch;
 		[cx,cy,cw,ch]=screen.GetClipRect();
 		sb.SetClipRect(
-			-16+bob.x,-4+bob.y,32,16,
+			-16+bob.x,-32+bob.y,32,40,
 			sb.DI_SCREEN_CENTER
 		);
-		vector2 bobb=bob*3;
+		vector2 bobb=bob*2;
 //		bobb.y=clamp(bobb.y,-8,8);
 		sb.drawimage(
 			"tbfrntsit",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP
@@ -190,46 +190,13 @@ override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 			"tbbaksit",(0,0)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
 			alpha:0.9
 		);
-
-		if(scopeview){
-			bool alt=hdw.weaponstatus[0]&TBF_ALT;
-			int scaledyoffset=36;
-
-			bool lz=HDMath.Pre460();
-			name ctex=lz?"HDXHCAM1":"HDXCAM_TB";
-
-			texman.setcameratotexture(hpc,ctex,3);
-			sb.drawimage(
-				ctex,(0,scaledyoffset)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_CENTER,
-				alpha:alt?(hpl.flip?0.7:0.8):1.,scale:(lz?1:(1/1.2),1)
-			);
-			let tb=PlasmaBuster(hdw);
-			sb.drawnum(min(tb.rangefinder,999),
-				24+bob.x,12+bob.y,sb.DI_SCREEN_CENTER,
-				(
-					tb.rangefinder>=10
-					&&tb.rangefinder<hdw.weaponstatus[TBS_MAXRANGEDISPLAY]
-				)?Font.CR_GRAY:Font.CR_RED
-				,0.4
-			);
-			sb.drawnum(hdw.weaponstatus[TBS_MAXRANGEDISPLAY],
-				24+bob.x,20+bob.y,sb.DI_SCREEN_CENTER,Font.CR_WHITE,0.4
-			);
-			if(alt)sb.drawnum(int(2000/HDCONST_ONEMETRE),
-				23+bob.x,19+bob.y,sb.DI_SCREEN_CENTER,Font.CR_BLACK,1.
-			);
-			sb.drawimage(
-				"tbwindow",(0,scaledyoffset)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_CENTER,
-				scale:(1,1)
-			);
-			bobb*=3;
-			double dotoff=max(abs(bobb.x),abs(bobb.y));
-			if(dotoff<40)sb.drawimage(
-				"redpxl",(0,scaledyoffset)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
-				alpha:(alt?0.4:0.9)*(1.-dotoff*0.04),scale:alt?(hpl.flip?(3,3):(1,1)):(2,2)
-			);
-		}
 	}
+
+
+
+	
+
+
 
 	override void failedpickupunload(){
 		failedpickupunloadmag(TBS_BATTERY,"HDBattery");
@@ -393,24 +360,6 @@ action void FirePlasmaBallBurst(){
 			A_CheckIdSprite("THBGA0","PLSGA0");
 			invoker.weaponstatus[TBS_WARMUP]=0;
 
-			//update rangefinder
-			if(
-				invoker.weaponstatus[TBS_BATTERY]>0
-				&&!(level.time&(1|2|4))
-				&&max(abs(vel.x),abs(vel.y),abs(vel.z))<2
-				&&(
-					!player.cmd.pitch
-					&&!player.cmd.yaw
-				)
-			){
-				flinetracedata frt;
-				linetrace(
-					angle,512*HDCONST_ONEMETRE,pitch,flags:TRF_NOSKY,
-					offsetz:height-6,
-					data:frt
-				);
-				invoker.rangefinder=int(frt.distance*(1./HDCONST_ONEMETRE));
-			}
 			A_WeaponReady(WRF_ALL&~WRF_ALLOWUSER1);
 		}goto readyend;
 		PLSG AB 0;
