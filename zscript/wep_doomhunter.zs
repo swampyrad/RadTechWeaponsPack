@@ -67,11 +67,14 @@ override void postbeginplay(){
 		invoker.weaponstatus[HUNTS_CHAMBER]=1;
 		invoker.shotpower=shotpower;
 	}
+
 	override string pickupmessage(){
 		if(weaponstatus[0]&HUNTF_CANFULLAUTO)return string.format("%s You notice some tool marks near the fire selector...",super.pickupmessage());
 		else if(weaponstatus[0]&HUNTF_EXPORT)return string.format("%s Where is the fire selector on this thing!?",super.pickupmessage());
+  else if(weaponstatus[0]&HUNTF_SCOUT)return string.format("%s What force of nature created this cursed thing?",super.pickupmessage());
 		return super.pickupmessage();
 	}
+
 	override string,double getpickupsprite(bool usespare){return "HUNT"..getpickupframe(usespare).."0",1.;}
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
@@ -136,6 +139,7 @@ override void postbeginplay(){
 	override double weaponbulk(){
 		return 125+(weaponstatus[SHOTS_SIDESADDLE]+weaponstatus[HUNTS_TUBE])*ENC_SHELLLOADED;
 	}
+
 	action void A_SwitchFireMode(bool forwards=true){
 		if(invoker.weaponstatus[0]&HUNTF_EXPORT){
 			invoker.weaponstatus[HUNTS_FIREMODE]=0;
@@ -659,9 +663,14 @@ override void postbeginplay(){
 	override void InitializeWepStats(bool idfa){
 		weaponstatus[HUNTS_CHAMBER]=2;
 		if(!idfa){
-			weaponstatus[HUNTS_TUBESIZE]=7;
-			weaponstatus[HUNTS_CHOKE]=1;
+			  weaponstatus[HUNTS_TUBESIZE]=7;
+			  weaponstatus[HUNTS_CHOKE]=1;
 		}
+
+  if(weaponstatus[0]&HUNTF_SCOUT){
+      weaponstatus[HUNTS_TUBESIZE]=5;
+    }
+
 		weaponstatus[HUNTS_TUBE]=weaponstatus[HUNTS_TUBESIZE];
 		weaponstatus[SHOTS_SIDESADDLE]=12;
 		handshells=0;
@@ -682,19 +691,46 @@ override void postbeginplay(){
 				weaponstatus[0]&=~HUNTF_EXPORT;
 				weaponstatus[0]|=HUNTF_CANFULLAUTO;
 				break;
+    case 3:
+				weaponstatus[0]|=HUNTF_SCOUT;
+				weaponstatus[0]&=~HUNTF_CANFULLAUTO;
+				break;
+    case 4:
+				weaponstatus[0]|=HUNTF_SCOUT;
+				weaponstatus[0]|=HUNTF_CANFULLAUTO;
+				break;
 			default:
 				break;
 			}
 		}
-		if(type<0||type>2)type=1;
+		if(type<0||type>4)type=1;
 		int firemode=getloadoutvar(input,"firemode",1);
 		if(firemode>=0)weaponstatus[HUNTS_FIREMODE]=clamp(firemode,0,type);
 		int choke=min(getloadoutvar(input,"choke",1),7);
 		if(choke>=0)weaponstatus[HUNTS_CHOKE]=choke;
 
 		int tubesize=((weaponstatus[0]&HUNTF_EXPORT)?5:7);
+  int tubesizescout=((weaponstatus[0]&HUNTF_SCOUT)?5:7);
+
+//god this is so confusing Dx
+ if(weaponstatus[HUNTS_TUBE]>tubesize)weaponstatus[HUNTS_TUBE]=tubesize;
+		weaponstatus[HUNTS_TUBESIZE]=tubesize;  
+
+if (weaponstatus[0]&HUNTF_SCOUT){
+   if(weaponstatus[HUNTS_TUBE]>tubesizescout){
+    weaponstatus[HUNTS_TUBE]=tubesizescout;
+    }
+		weaponstatus[HUNTS_TUBESIZE]=tubesizescout;  
+  }
+/*  original code for reference
+
+int tubesize=((weaponstatus[0]&HUNTF_EXPORT)?5:7);
 		if(weaponstatus[HUNTS_TUBE]>tubesize)weaponstatus[HUNTS_TUBE]=tubesize;
 		weaponstatus[HUNTS_TUBESIZE]=tubesize;
+
+*/
+
+  
 	}
 }
 enum hunterstatus{
@@ -705,6 +741,7 @@ enum hunterstatus{
 	HUNTF_ALTHOLDING=16,
 	HUNTF_HOLDING=32,
 	HUNTF_EXPORT=64,
+ HUNTF_SCOUT=128,
 
 	HUNTS_FIREMODE=1,
 	HUNTS_CHAMBER=2,
@@ -732,10 +769,30 @@ class DoomHunterRandom:IdleDummy{
 				ggg.weaponstatus[0]|=HUNTF_EXPORT;
 				ggg.weaponstatus[0]&=~HUNTF_CANFULLAUTO;
 			}
+  else if(!random(0,7)){
+				ggg.weaponstatus[0]|=HUNTF_SCOUT;
+				ggg.weaponstatus[0]&=~HUNTF_CANFULLAUTO;
+			}
+  else if(!random(0,7)){
+				ggg.weaponstatus[0]|=HUNTF_SCOUT;
+				ggg.weaponstatus[0]|=HUNTF_CANFULLAUTO;
+			}
 			int tubesize=((ggg.weaponstatus[0]&HUNTF_EXPORT)?5:7);
-			if(ggg.weaponstatus[HUNTS_TUBE]>tubesize)ggg.weaponstatus[HUNTS_TUBE]=tubesize;
-			ggg.weaponstatus[HUNTS_TUBESIZE]=tubesize;
+    int tubesizescout=((ggg.weaponstatus[0]&HUNTF_SCOUT)?5:7);
+
+
+if(ggg.weaponstatus[HUNTS_TUBE]>tubesize)ggg.weaponstatus[HUNTS_TUBE]=tubesize;
+		ggg.weaponstatus[HUNTS_TUBESIZE]=tubesize;  
+
+if (ggg.weaponstatus[0]&HUNTF_SCOUT){
+   if(ggg.weaponstatus[HUNTS_TUBE]>tubesizescout){
+    ggg.weaponstatus[HUNTS_TUBE]=tubesizescout;
+    }
+		ggg.weaponstatus[HUNTS_TUBESIZE]=tubesizescout;  
+  }
+
 		}stop;
 	}
 }
+
 
