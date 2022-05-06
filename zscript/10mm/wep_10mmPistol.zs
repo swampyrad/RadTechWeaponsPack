@@ -278,7 +278,7 @@ class HD10mmPistol:HDHandgun{
 			A_MuzzleClimb(-frandom(0.8,2.7),-frandom(0.8,3.3));
                     //extra recoil (+0.5,+1.5)
 		}                  //kicks like a MFer lol
-		---- A 0 A_StartSound("weapons/sigcow",CHAN_WEAPON);
+		---- A 0 A_StartSound("weapons/delta10mm",CHAN_WEAPON);
 		---- A 0 A_Light0();
 		stop;
 	unload:
