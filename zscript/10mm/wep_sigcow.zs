@@ -664,6 +664,9 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 		}
 
 		int fireswitch=getloadoutvar(input,"fireswitch",1);
+
+  if(fireswitch<0)weaponstatus[SMGS_SWITCHTYPE]=1;
+    //standard issue is semi-only, just like in the books
 		if(fireswitch>3)weaponstatus[SMGS_SWITCHTYPE]=0;
 		else if(fireswitch>0)weaponstatus[SMGS_SWITCHTYPE]=clamp(fireswitch,0,3);
 	}
@@ -704,7 +707,7 @@ class SigCowRandomSpawn:IdleDummy{
 	states{
 	spawn:
 		TNT1 A 0 nodelay{
-			let zzz=HDSigCow(spawn("HDSigCow",pos,ALLOW_REPLACE));
+			let zzz=HDSigCow(spawn("HDSigCowRandom",pos,ALLOW_REPLACE));
 			if(!zzz)return;
 			zzz.special=special;
 			for(int i=0;i<5;i++)zzz.args[i]=args[i];
