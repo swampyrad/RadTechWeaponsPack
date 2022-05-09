@@ -1,5 +1,7 @@
 GameInfo { 	AddEventHandlers = "Sigcow_Spawner" } 
 GameInfo { 	AddEventHandlers = "HD10mmPistol_Spawner" } 
+GameInfo { 	AddEventHandlers = "Reloader10mmInjector" } 
+
 
 GameInfo { 	AddEventHandlers = "DoomShotgun_Spawner" } 
 GameInfo { 	AddEventHandlers = "DoomedShellInjector" } 
