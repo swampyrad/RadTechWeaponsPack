@@ -206,3 +206,15 @@ class TenMilAutoReloader:TenMilAutoReloadingThingy{
 	}
 }
 
+class Reloader10mmInjector:StaticEventHandler{
+override void WorldThingSpawned(WorldEvent e) { 
+		let Reloader10mmAmmo = HDAmmo(e.Thing); 	
+	 if (Reloader10mmAmmo){ 			
+  switch (Reloader10mmAmmo.GetClassName()){
+  case 'HDPistolAmmo': Reloader10mmAmmo.ItemsThatUseThis.Push("TenMilAutoReloader"); 					break;		 		
+        }
+    	}
+ 		} 	
+} 
+
+
