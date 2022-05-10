@@ -1,4 +1,4 @@
-sprite 45LBA0, 24,153{
+sprite 45LBA0, 24,13{
   offset 12,13
   patch 45LBA0,0,0{}
 }
