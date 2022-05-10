@@ -16,7 +16,7 @@ const enc_10MAG25_LOADED=enc_10MAG25*0.8;
 
 
 
-class HD10mAmmo:HDRoundAmmo{//10mm ammp pickup
+class HD10mAmmo:HDRoundAmmo{//10mm ammo pickup
 	default{
 		+inventory.ignoreskill
 		+cannotpush
@@ -38,7 +38,7 @@ class HD10mAmmo:HDRoundAmmo{//10mm ammp pickup
 
 	override void GetItemsThatUseThis(){
 		itemsthatusethis.push("HDSigCow");
-  itemsthatusethis.push("HD10mmPistol");
+                itemsthatusethis.push("HD10mmPistol");
 	}
 
 	states{
@@ -61,7 +61,7 @@ class HD10mMag12:HDMagAmmo{//these actually have 8 rounds lol
 		hdmagammo.magbulk enc_10MAG_EMPTY;
 		tag "10mm pistol magazine";
 		inventory.pickupmessage "Picked up a 10mm pistol magazine.";
-		hdpickup.refid "PM8";
+		hdpickup.refid "SC8";
 	}
 	override string,string,name,double getmagsprite(int thismagamt){
 		string magsprite=(thismagamt>0)?"SC15NORM":"SC15MPTY";
@@ -72,7 +72,7 @@ class HD10mMag12:HDMagAmmo{//these actually have 8 rounds lol
 	}
 	states{
 	spawn:
-		SC15 A -1;//don't have sprites yet
+		SC15 A -1;
 		stop;
 	spawnempty:
 		SC15 B -1{
@@ -92,7 +92,7 @@ class HD10mMag25:HD10mMag12{
 		hdmagammo.magbulk enc_10mag25_EMPTY;
 		tag "Sig-Cow magazine";
 		inventory.pickupmessage "Picked up an Sig-Cow magazine.";
-		hdpickup.refid "SC5";
+		hdpickup.refid "S25";
 	}
 
 	override string,string,name,double getmagsprite(int thismagamt){
