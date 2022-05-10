@@ -44,7 +44,7 @@ Flare Gun [fgn; fgm, for metal variant] (flare shells - [fsh])
      but only once before disintegrating. The metal version is less
      fragile, but much heavier.
 
-Juan Horseshoe Pistol [jua] (horseshoe mags - [hrs])
+Juan Horseshoe Pistol [jua] (horseshoe mags - [j30])
 - *j u a n .* A variant of the standard-issue pistol, albeit with a 
 non-standard issue magazine. As the name suggests, it uses a unique
 "horseshoe" magazine that holds 30 rounds, as many as an SMG magazine.
