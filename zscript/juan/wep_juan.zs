@@ -48,7 +48,7 @@ class HDHorseshoePistol:HDHandgun{
 	}
 	override double gunmass(){
 		int mgg=weaponstatus[HPISS_MAG];
-		return 5+(mgg<0?0:0.25*(mgg+1));
+		return 6+(mgg<0?0:0.25*(mgg+1));
 	}
 	override void failedpickupunload(){
 		failedpickupunloadmag(HPISS_MAG,"hdhorseshoe9m");
@@ -60,7 +60,7 @@ class HDHorseshoePistol:HDHandgun{
 	override string,double getpickupsprite(bool usespare)
     {
         string sprind;
-        string sprname;
+        string sprname="HPIS";
         
         if(GetSpareWeaponValue(0,usespare)&PISF_SELECTFIRE)
         {
