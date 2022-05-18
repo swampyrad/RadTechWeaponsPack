@@ -51,7 +51,7 @@ class MinervaChaingun:ZM66ScopeHaver{
 		obituary "%o got turned into swiss cheese by %k's Minnie-gun.";
 		hdweapon.barrelsize 30,3,4;
 		hdweapon.refid MNV_REFID;
-		tag "Minerva";
+		tag "Minerva 9mm Chaingun";
 	}
 override void postbeginplay(){
 		super.postbeginplay();
@@ -912,7 +912,7 @@ class Minerva_Spawner : EventHandler
 override void CheckReplacement(ReplaceEvent e) {
 	switch (e.Replacee.GetClassName()) {
 	
-		case 'ZM66Random' 			: if (!random(0, 3)) {e.Replacement = "MinervaRandom";} break;
+		case 'ZM66Random' 			: if (!random(0, 5)) {e.Replacement = "MinervaRandom";} break;
 case 'HDSMGRandom' 			: if (!random(0, 3)) {e.Replacement = "MinervaRandom";} break;
 		}
 	e.IsFinal = false;
@@ -922,9 +922,8 @@ case 'HDSMGRandom' 			: if (!random(0, 3)) {e.Replacement = "MinervaRandom";} br
 class MinervaRandom:actor{
 	override void postbeginplay(){
 		super.postbeginplay();
-		let box=spawn("HD9mBoxPickup",pos,ALLOW_REPLACE);
-		if(box)HDF.TransferSpecials(self,box);
 		spawn("MinervaChaingun",pos,ALLOW_REPLACE);
+  spawn("HD9mMag30",pos,ALLOW_REPLACE);
   spawn("HDFragGrenadeAmmo",pos,ALLOW_REPLACE);
 		self.Destroy();
 	}
