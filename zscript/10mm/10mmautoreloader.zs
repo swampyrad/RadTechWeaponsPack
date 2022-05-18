@@ -187,7 +187,7 @@ class TenMilAutoReloader:TenMilAutoReloadingThingy{
 		goto ready;
 	user3:
 		---- A 0{
-			if(countinv("HD10mMag12"))A_MagManager("HD10mMag12");
+			if(countinv("HD10mMag8"))A_MagManager("HD10mMag8");
 			else if(countinv("HD10mMag25"))A_MagManager("HD10mMag25");
 			else A_SelectWeapon("PickupManager");
 		}

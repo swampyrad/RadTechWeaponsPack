@@ -688,37 +688,46 @@ enum smgstatus{
 	SMGS_DOT=6,
 };
 
-class HDSigCowRandom:IdleDummy{
+class HDSigCowSelectfire:IdleDummy{
 	states{
 	spawn:
 		TNT1 A 0 nodelay{
-			let lll=HDSMG(spawn("HDSigCow",pos,ALLOW_REPLACE));
+			let lll=HDSigCow(spawn("HDSigCow",pos,ALLOW_REPLACE));
 			if(!lll)return;
 			lll.special=special;
 			lll.vel=vel;
 			for(int i=0;i<5;i++)lll.args[i]=args[i];
-			if(!random(0,2))lll.weaponstatus[0]|=SMGF_REFLEXSIGHT;
-			if(!random(0,2))lll.weaponstatus[SMGS_SWITCHTYPE]=random(0,3);
+		
 		}stop;
 	}
 }
 
-class SigCowRandomSpawn:IdleDummy{
+class HDSigCowSemi:IdleDummy{
 	states{
 	spawn:
 		TNT1 A 0 nodelay{
-			let zzz=HDSigCow(spawn("HDSigCowRandom",pos,ALLOW_REPLACE));
-			if(!zzz)return;
-			zzz.special=special;
-			for(int i=0;i<5;i++)zzz.args[i]=args[i];
-			if(!random(0,2)){
-				spawn("HD10mMag25",pos+(7,0,0),ALLOW_REPLACE);
-				spawn("HD10mMag25",pos+(5,0,0),ALLOW_REPLACE);
-				spawn("HDFragGrenadeAmmo",pos+(10,0,0),ALLOW_REPLACE);
-				spawn("HDFragGrenadeAmmo",pos+(8,0,0),ALLOW_REPLACE);
-				spawn("TenMilAutoReloader",pos+(5,0,0),ALLOW_REPLACE);
-			}
+			let semi=HDSigCow(spawn("HDSigCow",pos,ALLOW_REPLACE));
+			if(!semi)return;
+			semi.special=special;
+			semi.vel=vel;
+			for(int i=0;i<5;i++)semi.args[i]=args[i];
+			
+			semi.weaponstatus[SMGS_SWITCHTYPE]=1;
 		}stop;
 	}
 }
 
+class HDSigCowSemiBurst:IdleDummy{
+	states{
+	spawn:
+		TNT1 A 0 nodelay{
+			let semiburst=HDSigCow(spawn("HDSigCow",pos,ALLOW_REPLACE));
+			if(!semiburst)return;
+			semiburst.special=special;
+			semiburst.vel=vel;
+			for(int i=0;i<5;i++)semiburst.args[i]=args[i];
+			
+			semiburst.weaponstatus[SMGS_SWITCHTYPE]=2;
+		}stop;
+	}
+}

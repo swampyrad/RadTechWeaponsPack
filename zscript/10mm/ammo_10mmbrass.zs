@@ -16,6 +16,7 @@ class TenMilBrass:HDAmmo{
 	override void GetItemsThatUseThis(){
 		itemsthatusethis.push("TenMilAutoReloader");
   itemsthatusethis.push("HD10mmPistol");
+  itemsthatusethis.push("HDSigCow");
 	}
 	states{
 	spawn:

@@ -50,7 +50,7 @@ class HD10mAmmo:HDRoundAmmo{//10mm ammo pickup
 
 
 
-class HD10mMag12:HDMagAmmo{//these actually have 8 rounds lol
+class HD10mMag8:HDMagAmmo{//these actually have 8 rounds lol
 	default{
 		//$Category "Ammo/Hideous Destructor/"
 		//$Title "Pistol Magazine"
@@ -82,7 +82,7 @@ class HD10mMag12:HDMagAmmo{//these actually have 8 rounds lol
 	}
 }
 
-class HD10mMag25:HD10mMag12{
+class HD10mMag25:HD10mMag8{
 	default{
 		//$Category "Ammo/Hideous Destructor/"
 		//$Title "SigCow Magazine"
@@ -179,7 +179,7 @@ class HD10mPistolEmptyMag:IdleDummy{
 //useless atm, no 10mm pistol yet
 	override void postbeginplay(){
 		super.postbeginplay();
-		HDMagAmmo.SpawnMag(self,"HD10mMag12",0);
+		HDMagAmmo.SpawnMag(self,"HD10mMag8",0);
 		destroy();
 	}
 }

@@ -33,7 +33,7 @@ class HD10mmPistol:HDHandgun{
 		return 8+(mgg<0?0:0.25*(mgg+1));
 	}
 	override void failedpickupunload(){
-		failedpickupunloadmag(PISS_MAG,"HD10mMag12");
+		failedpickupunloadmag(PISS_MAG,"HD10mMag8");
 	}
 	override string,double getpickupsprite(bool usespare){
 		string spr;
@@ -55,7 +55,7 @@ class HD10mmPistol:HDHandgun{
   
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
-			int nextmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory("HD10mMag12")));
+			int nextmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory("HD10mMag8")));
 			if(nextmagloaded>=8){
 				sb.drawimage("SC15NORM",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1,1));
 			}else if(nextmagloaded<1){
@@ -66,7 +66,7 @@ class HD10mmPistol:HDHandgun{
 				(-46,-3),-1,
 				sb.SHADER_VERT,sb.DI_SCREEN_CENTER_BOTTOM
 			);
-			sb.drawnum(hpl.countinv("HD10mMag12"),-43,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+			sb.drawnum(hpl.countinv("HD10mMag8"),-43,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		}
 		if(hdw.weaponstatus[0]&PISF_SELECTFIRE)sb.drawwepcounter(hdw.weaponstatus[0]&PISF_FIREMODE,
 			-22,-10,"RBRSA3A7","STFULAUT"
@@ -124,12 +124,12 @@ class HD10mmPistol:HDHandgun{
 		if(owner){
 			amt=clamp(amt,1,10);
 			if(owner.countinv("HD10mAmmo"))owner.A_DropInventory("HD10mAmmo",amt*8);
-			else owner.A_DropInventory("HD10mMag12",amt);
+			else owner.A_DropInventory("HD10mMag8",amt);
 		}
 	}
 	override void ForceBasicAmmo(){
 		owner.A_TakeInventory("HD10mAmmo");
-		ForceOneBasicAmmo("HD10mMag12");
+		ForceOneBasicAmmo("HD10mMag8");
 	}
 	action void A_CheckPistolHand(){
 		if(invoker.wronghand)player.getpsprite(PSP_WEAPON).sprite=getspriteindex("P10MA0");//just use the same sprites lol
@@ -167,7 +167,7 @@ class HD10mmPistol:HDHandgun{
 		#### # 1 A_WeaponReady(WRF_ALL);
 		goto readyend;
 	user3:
-		---- A 0 A_MagManager("HD10mMag12");
+		---- A 0 A_MagManager("HD10mMag8");
 		goto ready;
 	user2:
 	firemode:
@@ -313,7 +313,7 @@ class HD10mmPistol:HDHandgun{
 	reload:
 		---- A 0{
 			invoker.weaponstatus[0]&=~PISF_JUSTUNLOAD;
-			bool nomags=HDMagAmmo.NothingLoaded(self,"HD10mMag12");
+			bool nomags=HDMagAmmo.NothingLoaded(self,"HD10mMag8");
 			if(invoker.weaponstatus[PISS_MAG]>=8)setweaponstate("nope");
 			else if(
 				invoker.weaponstatus[PISS_MAG]<1
@@ -339,13 +339,13 @@ class HD10mmPistol:HDHandgun{
 			if(pmg<0)setweaponstate("magout");
 			else if(
 				(!PressingUnload()&&!PressingReload())
-				||A_JumpIfInventory("HD10mMag12",0,"null")
+				||A_JumpIfInventory("HD10mMag8",0,"null")
 			){
-				HDMagAmmo.SpawnMag(self,"HD10mMag12",pmg);
+				HDMagAmmo.SpawnMag(self,"HD10mMag8",pmg);
 				setweaponstate("magout");
 			}
 			else{
-				HDMagAmmo.GiveMag(self,"HD10mMag12",pmg);
+				HDMagAmmo.GiveMag(self,"HD10mMag8",pmg);
 				A_StartSound("weapons/pocket",9);
 				setweaponstate("pocketmag");
 			}
@@ -365,7 +365,7 @@ class HD10mmPistol:HDHandgun{
 		---- A 5 offset(0,46) A_MuzzleClimb(frandom(-0.2,0.8),frandom(-0.2,0.4));
 		---- A 3;
 		---- A 0{
-			let mmm=hdmagammo(findinventory("HD10mMag12"));
+			let mmm=hdmagammo(findinventory("HD10mMag8"));
 			if(mmm){
 				invoker.weaponstatus[PISS_MAG]=mmm.TakeMag(true);
 				A_StartSound("weapons/pismagclick",8);
