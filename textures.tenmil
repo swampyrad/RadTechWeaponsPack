@@ -255,7 +255,7 @@ yscale 1
 patch P10MC0,0,0{}
 }
 
-
+/* unused currently, meant for wronghand sprites
 sprite P1MSA0,79,84{
 offset -135, -55
 xscale 1
@@ -276,8 +276,6 @@ xscale 1
 yscale 1
 patch P1MSC0,0,0{}
 }
-
-
-
+*/
 
 
