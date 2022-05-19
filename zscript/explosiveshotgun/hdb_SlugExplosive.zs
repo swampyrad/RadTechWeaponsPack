@@ -77,7 +77,7 @@ override actor Puff(){
 
 	states{
 	death:
-		TNT1 A 0 nodelay{if(tracer)puff();}
+		TNT1 A 0 {if(tracer)puff();}
 		goto super::death;
 	}
 }
