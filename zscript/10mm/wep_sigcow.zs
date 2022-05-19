@@ -81,7 +81,7 @@ double strength;
 		}
 	}
 
-	action void HDStab(double dmg){
+	action void HD_SigCowStab(double dmg){
 		let punchrange=80.;//64 plu 16
 		if(hdplayerpawn(self))punchrange*=hdplayerpawn(self).heightmult;
 
@@ -345,7 +345,7 @@ if(!punchee.countinv("HDArmourWorn")){
    RBAY B 1 A_JumpIf(pressingaltfire(),"altfire");//adds a windup bedore stabbing
 		RBAY C 3 {A_StrengthTics(0,2); A_Recoil(-1);}// adds a short charge before stabbing
 		RBAY D 0 A_Recoil(min(0,1.-invoker.strength));
-		RBAY D 0 HDStab(20);
+		RBAY D 0 HD_SigCowStab(20);
 		RBAY D 4 A_StrengthTics(3,10);
 		RBAY C 2 A_StrengthTics(1,5);
 		//#### B 0 A_DontFreedoomFrameB();
