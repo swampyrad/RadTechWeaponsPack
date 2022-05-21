@@ -12,7 +12,12 @@ class MetalFireBlooper: FireBlooper
 		tag "Metal Flare Gun";
 		hdweapon.refid "fgm";
 	}
-		
+
+  //this code checks for which sprite index to use for each hand
+action void A_CheckMetalFlareGunHand(){
+		if(invoker.wronghand)player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBM1A0");//just use the same sprites lol
+	}//uses metal flare gun sprites
+
 	override double gunmass()
 	{
 		double result = 7;
@@ -372,6 +377,7 @@ class MetalFireBlooper: FireBlooper
 	
 	firemode:
 	altfire:
+/*
 	swappistols:
 		---- A 0 A_SwapFlareguns();
 		---- A 0{
@@ -405,6 +411,78 @@ class MetalFireBlooper: FireBlooper
 		#### B 1 offset(0,60);
 		#### B 1 offset(0,48);
 		goto nope;
+	*/
+
+swappistols:
+		---- A 0 A_SwapFlareguns();
+		---- A 0{
+			bool id=(Wads.CheckNumForName("id",0)!=-1);
+			bool offhand=invoker.wronghand;
+			bool lefthanded=(id!=offhand);
+			if(lefthanded){
+				A_Overlay(1025,"raiseleft");
+				A_Overlay(1026,"lowerright");
+			}else{
+				A_Overlay(1025,"raiseright");
+				A_Overlay(1026,"lowerleft");
+			}
+		}
+		TNT1 A 5;
+		FBM1 A 0 A_CheckMetalFlareGunHand();
+		goto nope;
+	lowerleft:
+   FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
+		FBM2 A 0;
+		#### B 1 offset(-6,38);
+		#### B 1 offset(-12,48);
+		#### B 1 offset(-20,60);
+		#### B 1 offset(-34,76);
+		#### B 1 offset(-50,86);
+		stop;
+	lowerright:
+   FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
+		FBM2 A 0;
+		#### B 1 offset(6,38);
+		#### B 1 offset(12,48);
+		#### B 1 offset(20,60);
+		#### B 1 offset(34,76);
+		#### B 1 offset(50,86);
+		stop;
+	raiseleft:
+   FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
+		FBM2 A 0;
+		#### A 1 offset(-50,86);
+		#### A 1 offset(-34,76);
+		#### A 1 offset(-20,60);
+		#### A 1 offset(-12,48);
+		#### A 1 offset(-6,38);
+		stop;
+	raiseright:
+   FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
+		FBM2 A 0;
+		#### A 1 offset(50,86);
+		#### A 1 offset(34,76);
+		#### A 1 offset(20,60);
+		#### A 1 offset(12,48);
+		#### A 1 offset(6,38);
+		stop;
+	whyareyousmiling:
+		#### B 1 offset(0,48);
+		#### B 1 offset(0,60);
+		#### B 1 offset(0,76);
+		TNT1 A 7;
+		FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
+   FBM2 A 0;
+   #### A 0{
+			invoker.wronghand=!invoker.wronghand;
+			A_CheckFlareGunHand();
+		}
+		#### B 1 offset(0,76);
+		#### B 1 offset(0,60);
+		#### B 1 offset(0,48);
+		goto nope;
+	
+	
 	
 	
 	spawn:

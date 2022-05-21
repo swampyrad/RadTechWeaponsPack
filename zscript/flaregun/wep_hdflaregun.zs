@@ -12,7 +12,7 @@ enum flaregunstatus
 };
 
 
-class FireBlooper : HDWeapon
+class FireBlooper : HDHandgun
 {
 	bool destroyed;
 	default
@@ -37,6 +37,7 @@ class FireBlooper : HDWeapon
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
 
+//this code triggers the hand swap mechanic
 action void A_SwapFlareguns(){
 		let mwt=SpareWeapons(findinventory("SpareWeapons"));
 		if(!mwt){
@@ -60,7 +61,12 @@ action void A_SwapFlareguns(){
 		}
 		mwt.weaponstatus[fgunindex]=wepstat2;
 
-		//invoker.wronghand=!invoker.wronghand;
+		invoker.wronghand=!invoker.wronghand;
+	}
+
+//this code checks for which sprite index to use for each hand
+action void A_CheckFlareGunHand(){
+		if(invoker.wronghand)player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBL1A0");//just use the same sprites lol
 	}
 
 	action int A_GetFrameIndex()
@@ -463,26 +469,57 @@ action void A_Backfire()
 		FBL1 A 1 offset(2,34);
 		goto ready;
 
+
  firemode:
 	altfire:
-	swappistols:
+
+swappistols:
 		---- A 0 A_SwapFlareguns();
 		---- A 0{
-				A_Overlay(1025,"raiseright");
+			bool id=(Wads.CheckNumForName("id",0)!=-1);
+			bool offhand=invoker.wronghand;
+			bool lefthanded=(id!=offhand);
+			if(lefthanded){
+				A_Overlay(1025,"raiseleft");
 				A_Overlay(1026,"lowerright");
+			}else{
+				A_Overlay(1025,"raiseright");
+				A_Overlay(1026,"lowerleft");
+			}
 		}
 		TNT1 A 5;
+		FBL1 A 0 A_CheckFlareGunHand();
 		goto nope;
+	lowerleft:
+   FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
+		FBL2 A 0;
+		#### B 1 offset(-6,38);
+		#### B 1 offset(-12,48);
+		#### B 1 offset(-20,60);
+		#### B 1 offset(-34,76);
+		#### B 1 offset(-50,86);
+		stop;
 	lowerright:
-		FBL1 A 0;
+   FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
+		FBL2 A 0;
 		#### B 1 offset(6,38);
 		#### B 1 offset(12,48);
 		#### B 1 offset(20,60);
 		#### B 1 offset(34,76);
 		#### B 1 offset(50,86);
 		stop;
+	raiseleft:
+   FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
+		FBL2 A 0;
+		#### A 1 offset(-50,86);
+		#### A 1 offset(-34,76);
+		#### A 1 offset(-20,60);
+		#### A 1 offset(-12,48);
+		#### A 1 offset(-6,38);
+		stop;
 	raiseright:
-		FBL1 A 0;
+   FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
+		FBL2 A 0;
 		#### A 1 offset(50,86);
 		#### A 1 offset(34,76);
 		#### A 1 offset(20,60);
@@ -494,11 +531,16 @@ action void A_Backfire()
 		#### B 1 offset(0,60);
 		#### B 1 offset(0,76);
 		TNT1 A 7;
+		FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
+   FBL2 A 0;
+   #### A 0{
+			invoker.wronghand=!invoker.wronghand;
+			A_CheckFlareGunHand();
+		}
 		#### B 1 offset(0,76);
 		#### B 1 offset(0,60);
 		#### B 1 offset(0,48);
 		goto nope;
-	
 	
 	
 	diediedie:
