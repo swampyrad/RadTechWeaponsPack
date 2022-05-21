@@ -244,7 +244,8 @@ class HD10mmPistol:HDHandgun{
 				setweaponstate("nope");
 			}
 		}
-  #### B 1;//extra tic for longer cycle 
+  //#### B 1;//extra tic for longer cycle 
+  //removing delay, it sucks, actually
 		#### B 1{
 			A_WeaponReady(WRF_NOFIRE);
 			invoker.weaponstatus[PISS_CHAMBER]=2;
@@ -401,8 +402,7 @@ class HD10mmPistol:HDHandgun{
 		P10M A 0 A_CheckPistolHand();
 		goto nope;
 	lowerleft:
-		P10M A 0 A_JumpIf(Wads.CheckNumForName("id",0)!=-1,2);
-		PI2G A 0;
+		P10M A 0;
 		#### B 1 offset(-6,38);
 		#### B 1 offset(-12,48);
 		#### B 1 offset(-20,60);
@@ -410,8 +410,7 @@ class HD10mmPistol:HDHandgun{
 		#### B 1 offset(-50,86);
 		stop;
 	lowerright:
-		PI2G A 0 A_JumpIf(Wads.CheckNumForName("id",0)!=-1,2);
-		P10M A 0;
+		P10M A 0 ;
 		#### B 1 offset(6,38);
 		#### B 1 offset(12,48);
 		#### B 1 offset(20,60);
@@ -419,8 +418,7 @@ class HD10mmPistol:HDHandgun{
 		#### B 1 offset(50,86);
 		stop;
 	raiseleft:
-		P10M A 0 A_JumpIf(Wads.CheckNumForName("id",0)!=-1,2);
-		PI2G A 0;
+		P10M A 0 ;
 		#### A 1 offset(-50,86);
 		#### A 1 offset(-34,76);
 		#### A 1 offset(-20,60);
@@ -428,7 +426,6 @@ class HD10mmPistol:HDHandgun{
 		#### A 1 offset(-6,38);
 		stop;
 	raiseright:
-		PI2G A 0 A_JumpIf(Wads.CheckNumForName("id",0)!=-1,2);
 		P10M A 0;
 		#### A 1 offset(50,86);
 		#### A 1 offset(34,76);
