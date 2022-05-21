@@ -37,7 +37,8 @@ class MinervaChaingun:ZM66ScopeHaver{
 		//$Title "Minerva"
 		//$Sprite "VULCA0"
 
-		+hdweapon.hinderlegs
+		//+hdweapon.hinderlegs
+   //its ergonomic design design makes it easier to walk around with
 		scale 0.8;
 		inventory.pickupmessage "You got the Minerva!";
 		weapon.selectionorder 40;
@@ -87,7 +88,8 @@ override void postbeginplay(){
 	}
 
 	override double gunmass(){
-		double amt=12+weaponstatus[MNVS_BATTERY]<0?0:1;
+		double amt=10+weaponstatus[MNVS_BATTERY]<0?0:1;
+          //2 less points of mass than Vulcanette, easier to aim
 		for(int i=MNVS_MAG1;i<=MNVS_MAG5;i++){
 			if(weaponstatus[i]>=0)amt+=3.6;
 		}
@@ -223,9 +225,9 @@ override void postbeginplay(){
 	}
 	states{
 	select0:
+   TNT1 A 1 ;//wait tic to avoid droop crash bug
 		MNVG A 0 A_CheckDefaultReflexReticle(MNVS_DOT);
-		// Goodbye vfx, we hardly knew ye. 
-		//MNVG A 0 A_Overlay(2,"droop");
+		MNVG A 0 A_Overlay(2,"droop");
 		goto select0bfg;
 	deselect0:
 		MNVG A 0;
@@ -236,8 +238,8 @@ override void postbeginplay(){
 			if(pitch<frandom(5,8)&&(!gunbraced())){
 				A_MuzzleClimb(frandom(-0.06,0.06),
 					frandom(0.1,clamp(1-pitch,
-						hdplayerpawn(self)?0.06/hdplayerpawn(self).strength:0.06
-					,0.12))
+						hdplayerpawn(self)?0.06/hdplayerpawn(self).strength:0.2
+					,0.25))//decreases aim droop
 				);
 			}
 		}loop;
