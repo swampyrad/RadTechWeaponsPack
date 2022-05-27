@@ -110,10 +110,13 @@ class HDSnubNoseRevolver:HDHandgun{
 		..WEPHELP_UNLOAD.."/"..WEPHELP_RELOAD.." Open cylinder\n"
 		;
 	}
+
 	override void DrawSightPicture(
 		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
 		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
 	){
+		if(HDSnubNoseRevolver(hdw).cylinderopen)return;
+
 		int cx,cy,cw,ch;
 		[cx,cy,cw,ch]=screen.GetClipRect();
 		vector2 scc;

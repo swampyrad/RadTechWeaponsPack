@@ -108,6 +108,8 @@ if(ninemil>0){
 		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
 		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
 	){
+		if(HDSingleActionRevolver(hdw).cylinderopen)return;
+
 		int cx,cy,cw,ch;
 		[cx,cy,cw,ch]=screen.GetClipRect();
 		vector2 scc;
