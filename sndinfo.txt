@@ -1,0 +1,82 @@
+//10mm Weapons
+weapons/sigcow     SCWFIRE
+weapons/delta10mm  DELTAGUN
+
+
+//Single Action Revolver
+// firing
+weapons/rsa_shoot   rsablast
+// hammercock
+weapons/rsa_click  rsaclick
+
+
+
+//Golden Gun
+// firing
+weapons/goldengun    goldngun
+
+
+
+//Detective Special
+// firing
+weapons/snubnose  snubfire
+
+
+
+//Flare Gun
+// plastic breaking.
+weapons/fgnclk dsrifclk
+$limit weapons/fgnclk 0
+
+// reloading.
+weapons/fgnrel1 dsrifck2
+$limit weapons/fgnrel1 0
+
+// reloading. 
+weapons/fgnrel2 dsgopen
+$limit weapons/fgnrel2 0
+
+// reloading.
+weapons/fgnrel3 dsdbload
+$limit weapons/fgnrel3 0
+
+// shell firing.
+weapons/fgnshell dsshotg
+$limit weapons/fgnshell 0
+
+// flare firing.
+weapons/fgnblast FGNBLAST
+$limit weapons/fgnblast 0
+
+// For flare projectiles.
+flaregun/flareburn FLARBURN
+$limit flaregun/flareburn 0
+
+
+
+//Minerva [sound defs by FDA]
+
+// For custom resounds. 
+// Format taken from hd's sndinfo lump. 
+weapons/minerva    dsrifle
+$limit weapons/minerva  0
+
+weapons/mnvabelt      dsbelt
+weapons/mnvamag       dsriflod
+weapons/mnvaumag      dsrifclk
+weapons/mnvachamber   dsrifck2
+weapons/mnvaanup      dsmnvaup
+weapons/mnvaandown    dsmnvadn
+weapons/mnvaanon      dsbelt
+weapons/mnvashunt     dsgopen
+weapons/mnvaopen1     dsdbload
+weapons/mnvaopen2     dsfclk
+weapons/mnvaextract   dsdrpcrl
+weapons/mnvaforcemag  dsrifclk
+$random weapons/mnvafix     {weapons/mnvashunt weapons/mnvaforcemag weapons/mnvaumag weapons/mnvabelt}
+$random weapons/mnvatryfix  {weapons/mnvashunt weapons/mnvaforcemag}
+$random weapons/mnvatryfix2 {weapons/mnvashunt weapons/mnvaopen1 weapons/mnvaumag weapons/mnvaforcemag weapons/mnvaextract weapons/bigcrack weapons/pocket}
+
+// Worldfar for shooting.
+world/mnvafar     dsriffar    $limit world/mnvafar 0
+
