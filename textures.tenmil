@@ -143,16 +143,12 @@ Sprite "SCWFA0", 84, 72
 
 Sprite "SC15A0", 7, 15
 {
-	XScale 3.000
-	YScale 3.000
 	Offset 4, 15
 	Patch "SC15A0", 0, 0
 }
 
 Sprite "SC15B0", 7, 15
 {
-	XScale 3.000
-	YScale 3.000
 	Offset 4, 15
 	Patch "SC15B0", 0, 0
 }
