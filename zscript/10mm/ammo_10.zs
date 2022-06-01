@@ -6,7 +6,7 @@ const enc_10MAG=9;
 const enc_10MAG_EMPTY=enc_10MAG*0.3;
 const enc_10_LOADED=(enc_10MAG*0.7)/8.;
 
-const enc_10=enc_10_LOADED*1.4;
+const enc_10=enc_10_LOADED*1.3;
 const enc_10MAG_LOADED=enc_10MAG_EMPTY*0.1;
 
 const enc_10MAG25_EMPTY=enc_10MAG_EMPTY*2.5;
