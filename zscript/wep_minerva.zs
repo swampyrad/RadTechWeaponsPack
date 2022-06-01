@@ -914,8 +914,8 @@ class Minerva_Spawner : EventHandler
 override void CheckReplacement(ReplaceEvent e) {
 	switch (e.Replacee.GetClassName()) {
 	
-		case 'ZM66Random' 			: if (!random(0, 5)) {e.Replacement = "MinervaRandom";} break;
-case 'HDSMGRandom' 			: if (!random(0, 3)) {e.Replacement = "MinervaRandom";} break;
+		case 'ChaingunReplaces' 			: if (!random(0, 3)) {e.Replacement = "MinervaRandom";} break;
+case 'HDSMGRandom' 			: if (!random(0, 5)) {e.Replacement = "MinervaRandom";} break;
 		}
 	e.IsFinal = false;
 	}
