@@ -50,7 +50,7 @@ class HD10mAmmo:HDRoundAmmo{//10mm ammo pickup
 
 
 
-class HD10mMag8:HDMagAmmo{//these actually have 8 rounds lol
+class HD10mMag8:HDMagAmmo{
 	default{
 		//$Category "Ammo/Hideous Destructor/"
 		//$Title "Pistol Magazine"
@@ -58,7 +58,8 @@ class HD10mMag8:HDMagAmmo{//these actually have 8 rounds lol
 		hdmagammo.maxperunit 8;
 		hdmagammo.roundtype "HD10mAmmo";
 		hdmagammo.roundbulk enc_10_LOADED;
-		hdmagammo.magbulk enc_10MAG_EMPTY;
+		hdmagammo.magbulk enc_10MAG_EMPTY; 
+		scale 0.45;
 		tag "10mm pistol magazine";
 		inventory.pickupmessage "Picked up a 10mm pistol magazine.";
 		hdpickup.refid "SC8";
