@@ -27,8 +27,8 @@ class LLHunter:HDLLShotgun{
 		let hhh=LLHunter(caller.findinventory("LLHunter"));
 		if(hhh)choke=hhh.weaponstatus[LL_HUNTS_CHOKE];
 
-		choke=clamp(choke,0,7);
-		spread=6.5-0.5*choke;
+		choke=1;
+		spread=9.5-0.5*choke;//1.5x the spread, better for knocking down crowds
 		speedfactor=1.+0.02857*choke;
 
 		double shotpower=getshotpower();
@@ -83,7 +83,7 @@ class LLHunter:HDLLShotgun{
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRE.."  Shoot (choke: "..weaponstatus[LL_HUNTS_CHOKE]..")\n"
+		WEPHELP_FIRE.."  Shoot\n"
 		..WEPHELP_ALTFIRE.."  Pump\n"
 		..WEPHELP_RELOAD.."  Reload (side saddles first)\n"
 		..WEPHELP_ALTRELOAD.."  Reload (pockets only)\n"
@@ -670,9 +670,11 @@ class LLHunter:HDLLShotgun{
 		if(type<0||type>2)type=0;
 		int firemode=getloadoutvar(input,"firemode",0);
 		if(firemode>=0)weaponstatus[LL_HUNTS_FIREMODE]=clamp(firemode,0,type);
-		int choke=min(getloadoutvar(input,"choke",1),7);
+		
+   /*  disabling choke, it's not meant for sniping lmao
+   int choke=min(getloadoutvar(input,"choke",1),7);
 		if(choke>=0)weaponstatus[LL_HUNTS_CHOKE]=choke;
-
+    */
 		int tubesize=((weaponstatus[0]&LL_HUNTF_EXPORT)?5:5);
 		if(weaponstatus[LL_HUNTS_TUBE]>tubesize)weaponstatus[LL_HUNTS_TUBE]=tubesize;
 		weaponstatus[LL_HUNTS_TUBESIZE]=tubesize;
@@ -704,8 +706,8 @@ class LLHunterRandom:IdleDummy{
 			let ggg=LLHunter(spawn("LLHunter",pos,ALLOW_REPLACE));
 			if(!ggg)return;
 			HDF.TransferSpecials(self,ggg,HDF.TS_ALL);
-
-			if(!random(0,7))ggg.weaponstatus[LL_HUNTS_CHOKE]=random(0,7);
+/*
+	if(!random(0,7))ggg.weaponstatus[LL_HUNTS_CHOKE]=random(0,7);
 			if(!random(0,32)){
 				ggg.weaponstatus[0]&=~LL_HUNTF_EXPORT;
 				ggg.weaponstatus[0]|=LL_HUNTF_CANFULLAUTO;
@@ -713,6 +715,7 @@ class LLHunterRandom:IdleDummy{
 				ggg.weaponstatus[0]|=LL_HUNTF_EXPORT;
 				ggg.weaponstatus[0]&=~LL_HUNTF_CANFULLAUTO;
 			}
+*/
 			int tubesize=((ggg.weaponstatus[0]&LL_HUNTF_EXPORT)?5:5);
 			if(ggg.weaponstatus[LL_HUNTS_TUBE]>tubesize)ggg.weaponstatus[LL_HUNTS_TUBE]=tubesize;
 			ggg.weaponstatus[LL_HUNTS_TUBESIZE]=tubesize;
