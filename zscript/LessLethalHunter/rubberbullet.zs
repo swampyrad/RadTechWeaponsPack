@@ -191,6 +191,7 @@ class HDB_00Rubber:HDBulletActor{
 			!HDMobBase(hitactor)
 			&&!HDPlayerPawn(hitactor)
 		)shockbash>>=3;
+    
 
 
     //trigger incap on hit
@@ -204,6 +205,7 @@ class HDB_00Rubber:HDBulletActor{
           hitactor.ResolveState("falldown"))
   ){
 			hitactor.SetStateLabel("falldown");
+    HDMobBase(hitactor).stunned=+(shockbash>>9);	
     }
 
 
