@@ -443,6 +443,8 @@ if(ninemil>0){
 		#### A 0;
 		---- A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWUSER3|WRF_ALLOWUSER4);
 		goto readyend;
+  fanfire:
+  #### A 1 A_JumpIf(!pressingfire(),"nope");
 	fire:
 		#### A 1 A_JumpIf(invoker.weaponstatus[0]&BUGF_COCKED,"hammertime");
   #### A 1 A_JumpIf(pressingaltfire(),"altfire");
@@ -472,7 +474,7 @@ if(ninemil>0){
 	cocked:
 		#### C 0 {A_CockHammer(); A_StartSound("weapons/rsa_click",8,CHANF_OVERLAP);}
 		---- A 0 A_JumpIf(pressingaltfire(),"nope");
-		goto readyend;
+		goto fanfire;
 	uncock:
 		#### C 1 offset(0,38);
 		#### B 1 offset(0,34);
