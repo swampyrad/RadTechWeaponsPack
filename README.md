@@ -4,7 +4,7 @@ A collection of weapons for the GZDoom mod Hideous Destructor
 List of weapons and loadout codes:
 
  Bernoulli M1053 Less-Lethal Shotgun [llh] (LL shells - [lls])
- - A modified Hunter designed for riot control and crowd dispersion.
+ - A polymer-based shotgun designed for riot control and crowd dispersion.
      Chambered only for the use of less-lethal shells, which contain
      a load of rubberized buckshot pellets. Useful for situations where 
      maintaining a low fatality count is crucial.
