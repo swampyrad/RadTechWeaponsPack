@@ -326,9 +326,9 @@ class HDHorseshoePistol:HDHandgun{
 			int psch=invoker.weaponstatus[HPISS_CHAMBER];
 			invoker.weaponstatus[HPISS_CHAMBER]=0;
 			if(psch==2){
-				A_EjectCasing("HDPistolAmmo",12,-frandom(89,92),frandom(2,3),frandom(0,0.5));
+				A_EjectCasing("HDPistolAmmo",-frandom(89,92),(frandom(2,3),0,0),(13,0,0));
 			}else if(psch==1){
-				A_EjectCasing("HDSpent9mm",12,-frandom(89,92),frandom(6,7),frandom(0,1));
+				A_EjectCasing("HDSpent9mm",-frandom(89,92),(frandom(6,7),0,0),(13,0,0));
 			}
 			if(invoker.weaponstatus[HPISS_MAG]>0){
 				invoker.weaponstatus[HPISS_CHAMBER]=2;
@@ -360,7 +360,7 @@ class HDHorseshoePistol:HDHandgun{
 			);
 		}
 		#### C 0{
-			A_EjectCasing("HDSpent9mm",12,-frandom(89,92),frandom(6,7),frandom(0,1));
+			A_EjectCasing("HDSpent9mm",-frandom(89,92),(frandom(6,7),0,0),(13,0,0));
 			invoker.weaponstatus[HPISS_CHAMBER]=0;
 			if(invoker.weaponstatus[HPISS_MAG]<1){
 				A_StartSound("weapons/pistoldry",8,CHANF_OVERLAP,0.9);
