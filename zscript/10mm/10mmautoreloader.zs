@@ -105,7 +105,7 @@ class TenMilAutoReloadingThingy:HDWeapon{
 	states{
 	chug:
 		---- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 4{invoker.A_Chug();}
-  ---- AAA 0 A_EjectCasing("HDSpent9mm",12,-frandom(89,92),frandom(2,3),frandom(0,0.5));
+  ---- AAA 0 A_EjectCasing("HDSpent9mm",-frandom(89,92),(frandom(2,3),0,0),(13,0,0));
 		---- A 10{invoker.A_MakeRound();}
 		---- A 0 A_Jump(256,"spawn");
 	}
@@ -133,7 +133,7 @@ class TenMilAutoReloader:TenMilAutoReloadingThingy{
 	}//make it blue
 	override string,double getpickupsprite(){return "RLD1A0",1.;}
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
-		vector2 bob=hpl.hudbob*0.3;
+		vector2 bob=hpl.wepbob*0.3;
 		int brass=hpl.countinv("TenMilBrass");
 		int fourm=hpl.countinv("HDPistolAmmo");
 		double lph=(brass&&fourm>=4)?1.:0.6;

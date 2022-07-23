@@ -320,7 +320,7 @@ override void DrawSightPicture(
 		//the actual call
 		PlasmaBuster.PlasmaZap(
 			self,
-			HDWeapon.GetShootOffset(self,invoker.barrellength,invoker.barrellength-HDCONST_SHOULDERTORADIUS),
+			gunheight(),
 			invoker.weaponstatus[0]&TBF_ALT,
 			battery
 		);

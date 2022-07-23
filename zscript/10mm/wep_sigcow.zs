@@ -416,7 +416,7 @@ if(!punchee.countinv("HDArmourWorn")){
 
 		#### A 0{
 			if(invoker.weaponstatus[SMGS_CHAMBER]==1){
-				A_EjectCasing("HDSpent10mm",11,-frandom(79,81),frandom(7,7.5));
+				A_EjectCasing("HDSpent10mm",-frandom(79,81),(frandom(7,7.5),0,0),(13,0,0));
   //if a round has been fired, eject a spent casing
 				invoker.weaponstatus[SMGS_CHAMBER]=0;
 			}
