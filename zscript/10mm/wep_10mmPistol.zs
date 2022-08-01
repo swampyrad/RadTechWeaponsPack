@@ -132,7 +132,7 @@ class HD10mmPistol:HDHandgun{
 		ForceOneBasicAmmo("HD10mMag8");
 	}
 	action void A_CheckPistolHand(){
-		if(invoker.wronghand)player.getpsprite(PSP_WEAPON).sprite=getspriteindex("P10MA0");//just use the same sprites lol
+		if(invoker.wronghand)player.getpsprite(PSP_WEAPON).sprite=getspriteindex("P10RA0");
 	}
 	states{
 	select0:
@@ -410,7 +410,7 @@ class HD10mmPistol:HDHandgun{
 		#### B 1 offset(-50,86);
 		stop;
 	lowerright:
-		P10M A 0 ;
+		P10R A 0 ;
 		#### B 1 offset(6,38);
 		#### B 1 offset(12,48);
 		#### B 1 offset(20,60);
@@ -426,7 +426,7 @@ class HD10mmPistol:HDHandgun{
 		#### A 1 offset(-6,38);
 		stop;
 	raiseright:
-		P10M A 0;
+		P10R A 0;
 		#### A 1 offset(50,86);
 		#### A 1 offset(34,76);
 		#### A 1 offset(20,60);
