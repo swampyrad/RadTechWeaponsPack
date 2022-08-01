@@ -251,27 +251,26 @@ yscale 1
 patch P10MC0,0,0{}
 }
 
-/* unused currently, meant for wronghand sprites
-sprite P1MSA0,79,84{
-offset -135, -55
+//10mm pistol wronghand sprites
+sprite P10RA0,79,84{
+offset -104, -95
 xscale 1
 yscale 1
-patch P1MSA0,0,0{}
+patch P10RA0,0,0{}
 }
 
-sprite P1MSB0,80,84{
-offset -135, -49
+sprite P10RB0,80,84{
+offset -104, -89
 xscale 1
 yscale 1
-patch P1MSB0,0,0{}
+patch P10RB0,0,0{}
 }
 
-sprite P1MSC0,79,83{
-offset -135, -45
+sprite P10RC0,79,83{
+offset -104, -85
 xscale 1
 yscale 1
-patch P1MSC0,0,0{}
+patch P10RC0,0,0{}
 }
-*/
 
 
