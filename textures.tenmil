@@ -231,21 +231,21 @@ patch P10FA0,0,0{}
 
 //10mm pistol hud sprites
 sprite P10MA0,79,84{
-offset -135, -95
+offset -104, -95
 xscale 1
 yscale 1
 patch P10MA0,0,0{}
 }
 
 sprite P10MB0,80,84{
-offset -135, -89
+offset -104, -89
 xscale 1
 yscale 1
 patch P10MB0,0,0{}
 }
 
 sprite P10MC0,79,83{
-offset -135, -85
+offset -104, -85
 xscale 1
 yscale 1
 patch P10MC0,0,0{}
@@ -253,21 +253,21 @@ patch P10MC0,0,0{}
 
 //10mm pistol wronghand sprites
 sprite P10RA0,79,84{
-offset -104, -95
+offset -135, -95
 xscale 1
 yscale 1
 patch P10RA0,0,0{}
 }
 
 sprite P10RB0,80,84{
-offset -104, -89
+offset -135, -89
 xscale 1
 yscale 1
 patch P10RB0,0,0{}
 }
 
 sprite P10RC0,79,83{
-offset -104, -85
+offset -135, -85
 xscale 1
 yscale 1
 patch P10RC0,0,0{}
