@@ -1,9 +1,6 @@
-
-
 //------------------------------------------------------------
 // 10mm Pistol
 // ------------------------------------------------------------
-
 
 class HD10mmPistol:HDHandgun{
 	default{
@@ -505,3 +502,18 @@ class HD10mmAutoPistol:HDWeaponGiver{
 	}
 }
 
+class HDTenMilRandomDrop:RandomSpawner{
+	default{
+		dropitem "HDPistol",16,5;
+		dropitem "HD10mmPistol",16,1;
+	}
+}
+
+
+class HD10mmMagPickup:HDInvRandomSpawner{
+	default{
+		dropitem "HD10mMag8",256,8;
+		dropitem "HD10mMag25",256,4;
+		dropitem "HD10mBoxPickup",256,1;
+	}
+}

@@ -1,5 +1,7 @@
 alias dHunt_reset_cvars "resetcvar dHunt_shotgun_spawn_bias; resetcvar dHunt_persistent_spawning;"
 alias pBuster_reset_cvars "resetcvar pbuster_cpack_spawn_Bias; resetcvar pbuster_persistent_spawning"
 alias cshotgun_reset_cvars "resetcvar cshotgun_shotgun_spawn_bias; resetcvar cshotgun_persistent_spawning"
+alias sigcow_reset_cvars "resetcvar sigcow_cbox_spawn_bias; resetcvar sigcow_persistent_spawning"
+alias 10pis_reset_cvars "resetcvar tenpis_handgun_spawn_bias; resetcvar tenpismag_cmag_spawn_bias; resetcvar tenpis_persistent_spawning; resetcvar tenpismag_persistent_spawning"
 
-alias RTWP_Reset_Cvars "dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars"
+alias RTWP_Reset_Cvars "dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars;"

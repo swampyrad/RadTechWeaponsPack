@@ -156,7 +156,7 @@ override void worldthingspawned(worldevent e)
 	}
 }
 
-// Plasma Buster
+// Handles the Plasma Buster's spawns and controls its usage of HDBattery.
 class PlasmaBusterHandler : EventHandler
 {
 	private bool cvarsAvailable;
@@ -212,15 +212,15 @@ override void worldthingspawned(worldevent e)
 		return;
 	}
 	
-	let dHuntAmmo = HDAmmo(e.Thing);
-	if (!dHuntAmmo)
+	let pBustAmmo = HDAmmo(e.Thing);
+	if (!pBustAmmo)
 	{
 		return;
 	}
-	switch (dHuntAmmo.GetClassName())
+	switch (pBustAmmo.GetClassName())
 	{
 		case 'HDBattery':
-			dHuntAmmo.ItemsThatUseThis.Push("PlasmaBuster");
+			pBustAmmo.ItemsThatUseThis.Push("PlasmaBuster");
 			break;
 	}
 	if (!(level.maptime > 1) || isPersistent)
@@ -229,6 +229,165 @@ override void worldthingspawned(worldevent e)
 		{
 			case 'CellPackReplacer':
 				trycreatepbuster(e, spawnBiasCellPack);
+				break;
+		}
+	}
+	}
+}
+
+// Handles the Sigcow's spawns.
+class SigcowHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasCBox;
+	private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasCBox = sigcow_cbox_spawn_bias;
+		isPersistent = sigcow_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatesigcow(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = SigCowRandomSpawn(e.thing.Spawn("SigCowRandomSpawn", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ClipBoxPickup':
+				trycreatesigcow(e, spawnBiasCBox);
+				break;
+		}
+	}
+	}
+}
+
+class TenMilPistolHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasHandgun;
+    private int spawnBiasClipmag;
+    private bool isPersistent1;
+	private bool isPersistent2;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasHandgun = tenpis_handgun_spawn_bias;
+        spawnBiasClipmag = tenpismag_cmag_spawn_bias;
+		isPersistent1 = tenpis_persistent_spawning;
+        isPersistent2 = tenpismag_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatetenmag(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HD10mmMagPickup(e.thing.Spawn("HD10mmMagPickup", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+	void trycreate10pistol(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDTenMilRandomDrop(e.thing.Spawn("HDTenMilRandomDrop", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	if (!(level.maptime > 1) || isPersistent1)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'HDHandgunRandomDrop':
+				trycreate10pistol(e, spawnBiasHandgun);
+				break;
+		}
+	}
+	if (!(level.maptime > 1) || isPersistent2)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ClipMagPickup':
+				trycreatetenmag(e, spawnBiasClipmag);
 				break;
 		}
 	}

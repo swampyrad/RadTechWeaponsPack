@@ -129,6 +129,52 @@ OptionMenu CombatShotgun
 	SafeCommand "Reset all options", "cshotgun_reset_cvars"
 }
 
+OptionMenu Sigcow
+{
+    Title "------ Sigcow Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Sigcow on Clip Boxes", "white"
+	Option "Sigcow Spawn Rate: ", "sigcow_cbox_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Sigcow options", "resetcvar sigcow_cbox_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "sigcow_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar sigcow_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "sigcow_reset_cvars"
+}
+
+OptionMenu 10pis
+{
+    Title "------ 10mm Pistol Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the 10mm Pistol on Handguns", "white"
+	Option "10mm Pistol Spawn Rate: ", "tenpis_handgun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset 10mm Pistol options", "resetcvar tenpis_handgun_spawn_bias"
+    StaticText ""
+    StaticText  "Control the spawn rate of the 10mm Pistol's magazines on Clip Magazines.", "white"
+	Option "Magazine Spawn Rate: ", "tenpismag_cmag_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Magazine options", "resetcvar tenpismag_cmag_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload for the 10mm Pistol.", "white"
+	Option "Persistent Spawns: ", "tenpis_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar tenpis_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "10pis_reset_cvars"
+}
+
 // Adds the other menus to the main Radtech Weapons menu.
 AddOptionMenu "RadTechWeaponry"
 {
@@ -142,6 +188,10 @@ AddOptionMenu "RadTechWeaponry"
     Submenu "Plasma Buster", "PlasmaBuster"
     StaticText ""
     Submenu "Combat Shotgun", "CombatShotgun"
+    StaticText ""
+    Submenu "Sigcow", "Sigcow"
+    StaticText ""
+    Submenu "10mm Pistol", "10pis"
 }
 
 // Spawn Bias (for items that do replace)

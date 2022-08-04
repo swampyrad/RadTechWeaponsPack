@@ -2,7 +2,10 @@
 // Every weapon has a comment before it's cvars based on it's name in-game for organization.
 // Hopefully this will be readable on mobile, I have no idea and no real way to test it. - [Ted]
 
-// NOTE: Values need to either be -1, 0, 2, 4, 9, 14, 19, 24, 49, 99, 149 or 199 to work for the spawners! Anything else would require remaking the option values in the menus. - [Ted]
+// NOTE: Values need to either be -1, 0, 2, 4, 9, 14, 19, 24, 49, 99, 149 or 199 to work for the spawners!
+/// Anything else would require remaking the option values in the menus.
+// They'll still function in-game correctly, but the menus won't properly display them.
+// Stick to it please and have less bug reports to explain for pls. - [Ted]
 
 // --------------------
 // Weapons
@@ -32,3 +35,13 @@ server bool pbuster_persistent_spawning = false;
 // Combat Shotgun
 server int cshotgun_shotgun_spawn_bias = 24;
 server bool cshotgun_persistent_spawning = false;
+
+// Sigcow
+server int sigcow_cbox_spawn_bias = 9;
+server bool sigcow_persistent_spawning = false;
+
+// 10mm Pistol
+server int tenpis_handgun_spawn_bias = 19;
+server int tenpismag_cmag_spawn_bias = 19;
+server bool tenpis_persistent_spawning = false;
+server bool tenpismag_persistent_spawning = false;

@@ -9,9 +9,7 @@ version "4.8"
 
 // 10mm Pistol & Sigcow
 #include "zscript/10mm Weaponry/wep_sigcow.zs"
-#include "zscript/10mm Weaponry/Sigcow_Spawner.zs"
 #include "zscript/10mm Weaponry/wep_10mmPistol.zs"
-#include "zscript/10mm Weaponry/10mmPistol_Spawner.zs"
 
 // Snubnose Revolver
 #include "zscript/Snubnose Revolver/wep_snubnose.zs"
