@@ -7,8 +7,8 @@ class CombatShotgunHandler : EventHandler
 	void init()
 	{
 		cvarsAvailable = true;
-		spawnBiasActualsg = dHunt_shotgun_spawn_bias;
-		isPersistent = dHunt_persistent_spawning;
+		spawnBiasActualsg = cshotgun_shotgun_spawn_bias;
+		isPersistent = cshotgun_persistent_spawning;
 	}
 
 	override void WorldLoaded(WorldEvent e)

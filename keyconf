@@ -1,4 +1,5 @@
 alias dHunt_reset_cvars "resetcvar dHunt_shotgun_spawn_bias; resetcvar dHunt_persistent_spawning;"
 alias pBuster_reset_cvars "resetcvar pbuster_cpack_spawn_Bias; resetcvar pbuster_persistent_spawning"
+alias cshotgun_reset_cvars "resetcvar cshotgun_shotgun_spawn_bias; resetcvar cshotgun_persistent_spawning"
 
-alias RTWP_Reset_Cvars "dHunt reset cvars;"
+alias RTWP_Reset_Cvars "dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars"

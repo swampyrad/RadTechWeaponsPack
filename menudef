@@ -95,9 +95,9 @@ OptionMenu PlasmaBuster
     StaticText  "shotgun spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", 1
-    StaticText  "Control the spawn rate of the Doomed Hunter on Shotguns", "white"
+    StaticText  "Control the spawn rate of the Plasma Buster on Cell Packs", "white"
 	Option "Plasma Buster Spawn Rate: ", "pbuster_cpack_spawn_bias", "SpawnBias"
-	SafeCommand "Reset Doomed Hunter Shotgun options", "resetcvar pbuster_cpack_spawn_bias"
+	SafeCommand "Reset Plasma Buster options", "resetcvar pbuster_cpack_spawn_bias"
  	StaticText ""
     StaticText  "Control whether replacements happen after a mapload.", "white"
 	Option "Persistent Spawns: ", "pbuster_persistent_spawning", "OnOff"
@@ -108,15 +108,40 @@ OptionMenu PlasmaBuster
 	SafeCommand "Reset all options", "pbuster_reset_cvars"
 }
 
+OptionMenu CombatShotgun
+{
+    Title "------ Combat Shotgun Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Combat Shotgun on Shotguns", "white"
+	Option "Combat Shotgun Spawn Rate: ", "pbuster_cpack_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Combat Shotgun options", "resetcvar pbuster_cpack_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "pbuster_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar pbuster_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "cshotgun_reset_cvars"
+}
+
 // Adds the other menus to the main Radtech Weapons menu.
 AddOptionMenu "RadTechWeaponry"
 {
     StaticText ""
     Submenu "Flare Guns", "flareguns"
     StaticText ""
-    Submenu "Juan Pistol", "Juan9mm"
+    Submenu "Juan 9mm Pistol", "Juan9mm"
     StaticText ""
     Submenu "Doomed Hunter", "DoomedHunter"
+    StaticText ""
+    Submenu "Plasma Buster", "PlasmaBuster"
+    StaticText ""
+    Submenu "Combat Shotgun", "CombatShotgun"
 }
 
 // Spawn Bias (for items that do replace)
