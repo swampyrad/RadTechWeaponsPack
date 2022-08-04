@@ -1,8 +1,4 @@
 //HAAAAAAAAAAAAAAAAAAAAAAAAACKS
-
-#include "zscript/hackedzm66/HackedZM_Spawner.zs"
-
-
 const HDCONST_HACKEDZM66COOKOFF=21;
 class HackedZM66AssaultRifle:ZM66AssaultRifle{
 default{

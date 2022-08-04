@@ -17,7 +17,6 @@ version "4.6"
 // Single-action Revolver
 #include "zscript/Single Action Revolver/wep_SArevolver.zs"
 #include "zscript/Single Action Revolver/SingleAction_Spawner.zs"
-#include "zscript/Single Action Revolver/bullet_45lc.zs"
 
 // Minerva
 #include "zscript/Minerva/wep_minerva.zs"
@@ -49,6 +48,7 @@ version "4.6"
 
 // Hacked ZM66
 #include "zscript/Hacked ZM66/zscript.hackedzm66.zs"
+#include "zscript/Hacked ZM66/HackedZM_Spawner.zs"
 
 // Plasma Buster
 #include "zscript/Plasma Buster/wep_plasmabuster.zs"
@@ -57,7 +57,6 @@ version "4.6"
 // Golden Gun
 #include "zscript/Golden Gun/wep_GoldSArevolver.zs"
 #include "zscript/Golden Gun/GoldSingleAction_Spawner.zs"
-#include "zscript/Golden Gun/Goldbullet_45lc.zs"
 
 // --------------------
 // Ammunitions
@@ -79,3 +78,9 @@ version "4.6"
 
 // Flare Shells
 #include "zscript/Ammunition/ammo_flares.zs"
+
+// Golden Bullet
+#include "zscript/Ammunition/Goldbullet_45lc.zs"
+
+// .45 LC
+#include "zscript/Ammunition/bullet_45lc.zs"
