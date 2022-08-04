@@ -1,0 +1,20 @@
+// Most of these are server variables so in a multiplayer session they can be synced to other players.
+// Every weapon has a comment before it's cvars based on it's name in-game for organization.
+// - [Ted]
+
+// --------------------
+// Weapons
+// --------------------
+
+// Flare Gun
+server int fl_weapon_spawn_bias       = 19;
+server int fl_metal_chance_bias       = 49;
+server int fl_flare_spawn_bias        = 9;
+server int fl_box_spawn_bias          = 9;
+server int fl_weapon_drop_chance_bias = 49;
+
+// Juan
+server int ja_weapon_spawn_bias       = 19;
+server int ja_mag_spawn_bias          = 9;
+server int ja_firemode_chance_bias    = 49;
+server int ja_weapon_drop_chance_bias = 49;
