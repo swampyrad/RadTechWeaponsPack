@@ -1,31 +1,5 @@
-GameInfo { 	AddEventHandlers = "Sigcow_Spawner" } 
-GameInfo { 	AddEventHandlers = "HD10mmPistol_Spawner" } 
-GameInfo { 	AddEventHandlers = "Reloader10mmInjector" } 
-
-
-GameInfo { 	AddEventHandlers = "DoomShotgun_Spawner" } 
-GameInfo { 	AddEventHandlers = "DoomedShellInjector" } 
-
-GameInfo { 	AddEventHandlers = "ExShotgun_Spawner" } 
-
-GameInfo { 	AddEventHandlers = "LLShotgun_Spawner" } 
-
-GameInfo { 	AddEventHandlers = "GoldSingleAction_Spawner" } 
-
-GameInfo { 	AddEventHandlers = "SingleAction_Spawner" } 
-
-GameInfo { 	AddEventHandlers = "PlasmaBuster_Spawner" } 
-GameInfo { 	AddEventHandlers = "PlasmaBusterInjector" } 
-
-GameInfo { 	AddEventHandlers = "Minerva_Spawner" } 
-GameInfo { 	AddEventHandlers = "MinervaInjector" } 
-
-GameInfo { 	AddEventHandlers = "HackedZM_Spawner" } 
-GameInfo { 	AddEventHandlers = "Hacked4mMagInjector" } 
-
-GameInfo { 	AddEventHandlers = "SnubNose_Spawner" } 
-GameInfo { 	AddEventHandlers = "SnubNoseInjector" } 
-
-GameInfo { 	AddEventHandlers = "JuanEvent" }
-
-GameInfo { AddEventHandlers = "FlareEvent" }
+// Clean this up later, it doesn't need to be like this.
+GameInfo
+{
+    AddEventHandlers = "SigcowSpawner", "HD10mmPistol_Spawner", "Reloader10mmInjector", "DoomShotgun_Spawner", "DoomedShellInjector", "ExShotgun_Spawner", "LLShotgun_Spawner", "GoldSingleAction_Spawner", "SingleAction_Spawner", "PlasmaBuster_Spawner", "PlasmaBusterInjector", "Minerva_Spawner", "MinervaInjector", "HackedZM_Spawner", "Hacked4mMagInjector", "SnubNoseInjector", "SnubNose_Spawner", "JuanEvent", "FlareEvent"
+}
