@@ -11,6 +11,13 @@ List of weapons and loadout codes:
      a load of rubberized buckshot pellets. Useful for situations where
      maintaining a low fatality count is crucial.
 
+Ithaca M37 Combat Shotgun [csg]
+
+- A compact shotgun often seen in the hands of space marines throughout the galaxy.
+     Despite having no side saddles, or a butt stock to attach them to, in the right
+     hands, it's still just as deadly as any other shotgun. Toss one in your pack the
+     next time you roll out, it just might come in handy.
+
 Delta Elite 10mm Pistol [p1m] (mags - [sc8])
 
 - A handgun released in the late 80s, adopted by the FBI following
