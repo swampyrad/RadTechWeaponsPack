@@ -58,6 +58,9 @@ version "4.6"
 #include "zscript/Golden Gun/wep_GoldSArevolver.zs"
 #include "zscript/Golden Gun/GoldSingleAction_Spawner.zs"
 
+// Combat Shotgun
+#include "zscript/Combat Shotgun/wep_combatshotgun.zs"
+
 // --------------------
 // Ammunitions
 // --------------------
