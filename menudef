@@ -41,7 +41,7 @@ OptionMenu FlareGuns
 
 OptionMenu Juan9mm
 {
-	Title "------ Juan Pistol Options ------"
+	Title "------ Juan 9mm Horseshoe Pistol Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'weapon spawn rate' to Replace All will     ", "white"
     StaticText  "supress vanilla pistol spawns. Setting 'weapon drop-", "white"
@@ -89,7 +89,7 @@ OptionMenu DoomedHunter
 
 OptionMenu PlasmaBuster
 {
-    Title "------ Plasma Buster Options ------"
+    Title "------ DM-93 Plasma Buster Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
     StaticText  "shotgun spawns of that given type.", "white"
@@ -110,7 +110,7 @@ OptionMenu PlasmaBuster
 
 OptionMenu CombatShotgun
 {
-    Title "------ Combat Shotgun Options ------"
+    Title "------ Ithaca M37 Combat Shotgun Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
     StaticText  "shotgun spawns of that given type.", "white"
@@ -131,7 +131,7 @@ OptionMenu CombatShotgun
 
 OptionMenu Sigcow
 {
-    Title "------ Sigcow Options ------"
+    Title "------ M-211 Sigcow Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
     StaticText  "shotgun spawns of that given type.", "white"
@@ -152,7 +152,7 @@ OptionMenu Sigcow
 
 OptionMenu 10pis
 {
-    Title "------ 10mm Pistol Options ------"
+    Title "------ Delta Elite 10mm Pistol Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
     StaticText  "shotgun spawns of that given type.", "white"
@@ -181,17 +181,17 @@ AddOptionMenu "RadTechWeaponry"
     StaticText ""
     Submenu "Flare Guns", "flareguns"
     StaticText ""
-    Submenu "Juan 9mm Pistol", "Juan9mm"
+    Submenu "Juan 9mm Horseshoe Pistol", "Juan9mm"
     StaticText ""
     Submenu "Doomed Hunter", "DoomedHunter"
     StaticText ""
-    Submenu "Plasma Buster", "PlasmaBuster"
+    Submenu "DM-93 Plasma Buster", "PlasmaBuster"
     StaticText ""
-    Submenu "Combat Shotgun", "CombatShotgun"
+    Submenu "Ithaca M37 Combat Shotgun", "CombatShotgun"
     StaticText ""
-    Submenu "Sigcow", "Sigcow"
+    Submenu "M-211 Sigcow", "Sigcow"
     StaticText ""
-    Submenu "10mm Pistol", "10pis"
+    Submenu "Delta Elite 10mm Pistol", "10pis"
 }
 
 // Spawn Bias (for items that do replace)
