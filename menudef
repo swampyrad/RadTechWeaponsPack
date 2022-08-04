@@ -12,36 +12,36 @@ AddOptionMenu "OptionsMenu"
 
 OptionMenu FlareGuns
 {
-	Title "Flare Gun Options"
+	Title "------ Flare Gun Options ------"
    	StaticText "Notice:", 1
-    StaticText  "Setting 'weapon drop rate' to 'Replace All' forces  ", "white"
-    StaticText  "every enemy to drop a flare gun and nothing else.   ", "white"
+    StaticText  "Setting 'weapon drop rate' to 'Replace All' forces", "white"
+    StaticText  "every enemy to drop a flare gun and nothing else.", "white"
    	StaticText ""
 	StaticText "Spawn Options", 1
-    StaticText  "Control the natural spawn rate of Flare Guns.       ", "white"
-	Option "Weapon Spawn Rate:     ", "fl_weapon_spawn_bias", "DropBias"
+    StaticText  "Control the natural spawn rate of Flare Guns.", "white"
+	Option "Weapon Spawn Rate:", "fl_weapon_spawn_bias", "DropBias"
 	SafeCommand "Reset wep.  options", "resetcvar fl_weapon_spawn_bias"
 	StaticText ""
-	StaticText  "Control chance that Flare Guns drop from enemies.   ", "white"
-	Option "Weapon Drop Rate:      ", "fl_weapon_drop_chance_bias", "SpawnBias"
+	StaticText  "Control chance that Flare Guns drop from enemies.", "white"
+	Option "Weapon Drop Rate:", "fl_weapon_drop_chance_bias", "SpawnBias"
 	SafeCommand "Reset drop. options", "resetcvar fl_weapon_drop_chance_bias"
 	StaticText ""
-    StaticText  "Control the rarity of metal frame Flare Guns.       ", "white"
-	Option "Metal Conversion Rate: ", "fl_metal_chance_bias", "SpawnBias"
+    StaticText  "Control the rarity of metal frame Flare Guns.", "white"
+	Option "Metal Conversion Rate:", "fl_metal_chance_bias", "SpawnBias"
 	SafeCommand "Reset conv. options", "resetcvar fl_metal_chance_bias"
 	StaticText ""
-    StaticText  "Control the spawn rate of flare shells.             ", "white"
-	Option "Ammo Spawn Rate:       ", "fl_flare_spawn_bias", "DropBias"
+    StaticText  "Control the spawn rate of flare shells.", "white"
+	Option "Ammo Spawn Rate:", "fl_flare_spawn_bias", "DropBias"
 	SafeCommand "Reset ammo. options", "resetcvar fl_flare_spawn_bias"
 	StaticText ""
-    StaticText  "Control the spawn rate of flare boxes.             ", "white"
-	Option "Box Spawn Rate:        ", "fl_box_spawn_bias", "DropBias"
-	SafeCommand "Reset box.  options", "resetcvar fl_box_spawn_bias"
+    StaticText  "Control the spawn rate of flare boxes.", "white"
+	Option "Box Spawn Rate:", "fl_box_spawn_bias", "DropBias"
+	SafeCommand "Reset box. options", "resetcvar fl_box_spawn_bias"
 }
 
 OptionMenu Juan9mm
 {
-	Title "Juan Pistol Options"
+	Title "------ Juan Pistol Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'weapon spawn rate' to Replace All will     ", "white"
     StaticText  "supress vanilla pistol spawns. Setting 'weapon drop-", "white"
@@ -49,21 +49,32 @@ OptionMenu Juan9mm
     StaticText  "'Juan' pistol, and nothing else.                    ", "white"
    	StaticText ""
 	StaticText "Spawn Options", 1
-    StaticText  "Control the spawn rate of 'Juan' pistols.           ", "white"
-	Option "Weapon Spawn Rate:         ", "ja_weapon_spawn_bias", "SpawnBias"
+    StaticText  "Control the spawn rate of 'Juan' pistols.", "white"
+	Option "Weapon Spawn Rate:", "ja_weapon_spawn_bias", "SpawnBias"
 	SafeCommand "Reset wep.  options", "resetcvar ja_weapon_spawn_bias"
 	StaticText ""
-	StaticText  "Control chance 'Juan' pistols drop from enemies.    ", "white"
-	Option "Weapon Drop Rate:        ", "ja_weapon_drop_chance_bias", "SpawnBias"
+	StaticText  "Control chance 'Juan' pistols drop from enemies.", "white"
+	Option "Weapon Drop Rate:", "ja_weapon_drop_chance_bias", "SpawnBias"
 	SafeCommand "Reset drop. options", "resetcvar ja_weapon_drop_chance_bias"
 	StaticText ""
-    StaticText  "Control the rarity of selectfire 'Juan' pistols.    ", "white"
-	Option "Selectfire Conversion Rate: ", "ja_firemode_chance_bias", "SpawnBias"
+    StaticText  "Control the rarity of selectfire 'Juan' pistols.", "white"
+	Option "Selectfire Conversion Rate:", "ja_firemode_chance_bias", "SpawnBias"
 	SafeCommand "Reset conv. options", "resetcvar ja_firemode_chance_bias"
 	StaticText ""
-    StaticText  "Control the spawn rate of 'Juan' magazines.         ", "white"
-	Option "Mag Spawn Rate:             ", "ja_mag_spawn_bias", "SpawnBias"
-	SafeCommand "Reset mag.  options", "resetcvar ja_mag_spawn_bias"
+    StaticText  "Control the spawn rate of 'Juan' magazines.", "white"
+	Option "Mag Spawn Rate:", "ja_mag_spawn_bias", "SpawnBias"
+	SafeCommand "Reset mag. options", "resetcvar ja_mag_spawn_bias"
+}
+
+// Adds the other menus to the main Radtech Weapons menu.
+AddOptionMenu "RadTechWeaponry"
+{
+    StaticText ""
+    Submenu "Flare Guns", "flareguns"
+    StaticText ""
+    Submenu "Juan Pistol", "Juan9mm"
+    StaticText ""
+    Submenu ""
 }
 
 // Spawn Bias (for items that do replace)

@@ -1,6 +1,6 @@
 // Most of these are server variables so in a multiplayer session they can be synced to other players.
 // Every weapon has a comment before it's cvars based on it's name in-game for organization.
-// - [Ted]
+// Hopefully this will be readable on mobile, I have no idea and no real way to test it. - [Ted]
 
 // --------------------
 // Weapons
