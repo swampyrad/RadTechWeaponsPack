@@ -561,28 +561,3 @@ class HDCombatShotgunRandom:IdleDummy{
 		}stop;
 	}
 }
-
-class HDCombatShotgun_Spawner : EventHandler
-{
-override void CheckReplacement(ReplaceEvent e) {
-	switch (e.Replacee.GetClassName()) {
-
-  case 'HunterRandom' 			: if (!random(0,5)) {e.Replacement = "HDCombatShotgun";} break;
-
-		}
-	e.IsFinal = false;
-	}
-}
-
-class HDCombatShotgunInjector:StaticEventHandler{
-override void WorldThingSpawned(WorldEvent e) { 
-		let ShellAmmo = HDAmmo(e.Thing); 	
-	 if (ShellAmmo){ 			
-  switch (ShellAmmo.GetClassName()){
-  case 'HDShellAmmo': ShellAmmo.ItemsThatUseThis.Push("HDCombatShotgun"); 					break;		 		
-        }
-    	}
- 		} 	
-} 
-
-

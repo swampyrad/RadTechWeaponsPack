@@ -1,4 +1,7 @@
-version "4.6"
+version "4.8"
+
+// THE ALL MIGHTY EVENT HANDLER FILE - [Ted]
+#include "zscript/Event-Handlers.zsc"
 
 // --------------------
 // Weapons
@@ -44,7 +47,6 @@ version "4.6"
 
 // Doomed Hunter
 #include "zscript/Doomed Hunter/wep_doomhunter.zs"
-#include "zscript/Doomed Hunter/DoomShotgunSpawnHandler.zs"
 
 // Hacked ZM66
 #include "zscript/Hacked ZM66/zscript.hackedzm66.zs"
@@ -52,7 +54,6 @@ version "4.6"
 
 // Plasma Buster
 #include "zscript/Plasma Buster/wep_plasmabuster.zs"
-#include "zscript/Plasma Buster/PlasmaBusterSpawnHandler.zs"
 
 // Golden Gun
 #include "zscript/Golden Gun/wep_GoldSArevolver.zs"

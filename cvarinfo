@@ -22,3 +22,7 @@ server int ja_weapon_drop_chance_bias = 49;
 // Doomed Hunter
 server int dHunt_shotgun_spawn_bias = 19;
 server bool dHunt_persistent_spawning = false;
+
+// Plasma Buster
+server int pbuster_cpack_spawn_bias = 19;
+server bool pbuster_persistent_spawning = false;

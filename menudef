@@ -84,7 +84,28 @@ OptionMenu DoomedHunter
  	StaticText ""
    	StaticText ""
 	StaticText "Reset Options", "Green"
-	SafeCommand "Reset all options", "stryk_reset_cvars"
+	SafeCommand "Reset all options", "dHunt_reset_cvars"
+}
+
+OptionMenu PlasmaBuster
+{
+    Title "------ Plasma Buster Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Doomed Hunter on Shotguns", "white"
+	Option "Plasma Buster Spawn Rate: ", "pbuster_cpack_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Doomed Hunter Shotgun options", "resetcvar pbuster_cpack_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "pbuster_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar pbuster_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "pbuster_reset_cvars"
 }
 
 // Adds the other menus to the main Radtech Weapons menu.

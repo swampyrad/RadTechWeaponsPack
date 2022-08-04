@@ -1,0 +1,236 @@
+// Handles the Combat Shotgun's spawns and controls its usage of HDShellAmmo.
+class CombatShotgunHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasActualsg;
+	private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasActualsg = dHunt_shotgun_spawn_bias;
+		isPersistent = dHunt_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatecshotgun(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDCombatShotgunRandom(e.thing.Spawn("HDCombatShotgunRandom", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	
+	let cShotgunAmmo = HDAmmo(e.Thing);
+	if (!cShotgunAmmo)
+	{
+		return;
+	}
+	switch (cShotgunAmmo.GetClassName())
+	{
+		case 'HDShellAmmo':
+			cShotgunAmmo.ItemsThatUseThis.Push("HDCombatShotgun");
+			break;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ShotgunReplaces':
+				trycreatecshotgun(e, spawnBiasActualsg);
+				break;
+		}
+	}
+	}
+}
+
+// Handles the Doomed Shotgun's spawns and controls its usage of HDShellAmmo.
+class DoomedShotgunHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasActualsg;
+	private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasActualsg = dHunt_shotgun_spawn_bias;
+		isPersistent = dHunt_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatedhunt(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = DoomHunterRandom(e.thing.Spawn("DoomHunterRandom", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	
+	let dHuntAmmo = HDAmmo(e.Thing);
+	if (!dHuntAmmo)
+	{
+		return;
+	}
+	switch (dHuntAmmo.GetClassName())
+	{
+		case 'HDShellAmmo':
+			dHuntAmmo.ItemsThatUseThis.Push("DoomHunter");
+			break;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ShotgunReplaces':
+				trycreatedhunt(e, spawnBiasActualsg);
+				break;
+		}
+	}
+	}
+}
+
+// Plasma Buster
+class PlasmaBusterHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasCellPack;
+	private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasCellPack = pbuster_cpack_spawn_bias;
+		isPersistent = pbuster_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatepbuster(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = PlasmaBuster(e.thing.Spawn("PlasmaBuster", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	
+	let dHuntAmmo = HDAmmo(e.Thing);
+	if (!dHuntAmmo)
+	{
+		return;
+	}
+	switch (dHuntAmmo.GetClassName())
+	{
+		case 'HDBattery':
+			dHuntAmmo.ItemsThatUseThis.Push("PlasmaBuster");
+			break;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'CellPackReplacer':
+				trycreatepbuster(e, spawnBiasCellPack);
+				break;
+		}
+	}
+	}
+}
