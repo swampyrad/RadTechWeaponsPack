@@ -19,14 +19,6 @@ class ExplosiveHunter:HDShotgunExplosive{
 		tag "explosive shotgun";
 		obituary "$OB_MPSHOTGUN";
 
-/* remove commenting if playing 4.7.1c
-		
-  hdweapon.loadoutcodes "
-			\cutype - 0-2, export/regular/hacked
-			\cufiremode - 0-2, pump/semi/auto, subject to the above
-			\cuchoke - 0-7, 0 skeet, 7 full";
-*/
-
 	}
 
 	//returns the power of the load just fired
@@ -36,7 +28,7 @@ class ExplosiveHunter:HDShotgunExplosive{
 		let hhh=ExplosiveHunter(caller.findinventory("ExplosiveHunter"));
 		if(hhh)choke=hhh.weaponstatus[EXHUNTS_CHOKE];
 
-		choke=clamp(choke,0,7);
+		choke=7;
 		spread=6.5-0.5*choke;
 		speedfactor=1.+0.02857*choke;
 
@@ -44,7 +36,7 @@ class ExplosiveHunter:HDShotgunExplosive{
 		spread*=shotpower;
 		speedfactor*=shotpower;
 		HDBulletActor.FireBullet(caller,"HDB_wad");
-		let p=HDBulletActor.FireBullet(caller,"HDB_12GuageSlugExplosive",
+		let p=HDBulletActor.FireBullet(caller,"HDB_12GuageSlugMissile",
 			spread:spread,speedfactor:speedfactor,amount:1
 		);
 		distantnoise.make(p,"world/shotgunfar");
@@ -113,7 +105,7 @@ override void failedpickupunload(){
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRE.."  Shoot (choke: "..weaponstatus[EXHUNTS_CHOKE]..")\n"
+		WEPHELP_FIRE.."  Shoot\n"
 		..WEPHELP_ALTFIRE.."  Pump\n"
 		..WEPHELP_RELOAD.."  Reload (side saddles first)\n"
 		..WEPHELP_ALTRELOAD.."  Reload (pockets only)\n"
@@ -677,7 +669,7 @@ override void failedpickupunload(){
 		weaponstatus[EXHUNTS_CHAMBER]=2;
 		if(!idfa){
 			weaponstatus[EXHUNTS_TUBESIZE]=7;
-			weaponstatus[EXHUNTS_CHOKE]=1;
+			weaponstatus[EXHUNTS_CHOKE]=7;
 		}
 		weaponstatus[EXHUNTS_TUBE]=weaponstatus[EXHUNTS_TUBESIZE];
 		weaponstatus[EXSHOTS_SIDESADDLE]=12;
@@ -741,7 +733,7 @@ class ExplosiveHunterRandom:IdleDummy{
 			if(!ggg)return;
 			HDF.TransferSpecials(self,ggg,HDF.TS_ALL);
 
-			if(!random(0,7))ggg.weaponstatus[EXHUNTS_CHOKE]=random(0,7);
+			ggg.weaponstatus[EXHUNTS_CHOKE]=7;
 			if(!random(0,32)){
 				ggg.weaponstatus[0]&=~EXHUNTF_EXPORT;
 				ggg.weaponstatus[0]|=EXHUNTF_CANFULLAUTO;
