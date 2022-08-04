@@ -66,6 +66,27 @@ OptionMenu Juan9mm
 	SafeCommand "Reset mag. options", "resetcvar ja_mag_spawn_bias"
 }
 
+OptionMenu DoomedHunter
+{
+    Title "------ Doomed Hunter Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Doomed Hunter on Shotguns", "white"
+	Option "Doomed Hunter Spawn Rate: ", "dHunt_shotgun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Doomed Hunter Shotgun options", "resetcvar dHunt_shotgun_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "dHunt_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar dHunt_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "stryk_reset_cvars"
+}
+
 // Adds the other menus to the main Radtech Weapons menu.
 AddOptionMenu "RadTechWeaponry"
 {
@@ -74,7 +95,7 @@ AddOptionMenu "RadTechWeaponry"
     StaticText ""
     Submenu "Juan Pistol", "Juan9mm"
     StaticText ""
-    Submenu ""
+    Submenu "Doomed Hunter", "DoomedHunter"
 }
 
 // Spawn Bias (for items that do replace)

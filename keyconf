@@ -1,0 +1,3 @@
+alias dHunt_reset_cvars "resetcvar dHunt_shotgun_spawn_bias; resetcvar dHunt_persistent_spawning;"
+
+alias RTWP_Reset_Cvars "dHunt reset cvars;"
