@@ -1,4 +1,4 @@
-version "4.6"
+version "4.8"
 
 #include "zscript/zscript.snubnose.zs"
 #include "zscript/zscript.rsa.zs"
@@ -13,3 +13,4 @@ version "4.6"
 #include "zscript/zscript.explosiveshotgun.zs"
 #include "zscript/plasmabuster/wep_plasmabuster.zs"
 #include "zscript/plasmabuster/PlasmaBusterSpawnHandler.zs"
+#include "zscript/zscript.combatshotgun.zs"
