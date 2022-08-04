@@ -29,3 +29,6 @@ GameInfo { 	AddEventHandlers = "SnubNoseInjector" }
 GameInfo { 	AddEventHandlers = "JuanEvent" }
 
 GameInfo { AddEventHandlers = "FlareEvent" }
+
+GameInfo { AddEventHandlers = "HDCombatShotgun_Spawner" }
+GameInfo { AddEventHandlers = "HDCombatShotgunInjector" }
