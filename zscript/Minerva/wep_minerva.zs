@@ -896,31 +896,6 @@ override void postbeginplay(){
 	}
 }
 
-class MinervaInjector:StaticEventHandler{
-override void WorldThingSpawned(WorldEvent e) { 
-		let Minerva = HDAmmo(e.Thing); 	
-	 if (Minerva){ 			
-  switch (Minerva.GetClassName()){
-case 'HD9mMag30': Minerva.ItemsThatUseThis.Push("MinervaChaingun"); 				break;		 
-case 'HDBattery': Minerva.ItemsThatUseThis.Push("MinervaChaingun"); 				break;
-case 'HDPistolAmmo': Minerva.ItemsThatUseThis.Push("MinervaChaingun"); 				break;
-        }
-    	}
- 		} 	
-} 
-
-class Minerva_Spawner : EventHandler
-{
-override void CheckReplacement(ReplaceEvent e) {
-	switch (e.Replacee.GetClassName()) {
-	
-		case 'ChaingunReplaces' 			: if (!random(0, 3)) {e.Replacement = "MinervaRandom";} break;
-case 'HDSMGRandom' 			: if (!random(0, 5)) {e.Replacement = "MinervaRandom";} break;
-		}
-	e.IsFinal = false;
-	}
-}
-
 class MinervaRandom:actor{
 	override void postbeginplay(){
 		super.postbeginplay();

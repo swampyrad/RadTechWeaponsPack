@@ -71,7 +71,7 @@ OptionMenu DoomedHunter
     Title "------ Doomed Hunter Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
-    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", 1
     StaticText  "Control the spawn rate of the Doomed Hunter on Shotguns", "white"
@@ -92,7 +92,7 @@ OptionMenu PlasmaBuster
     Title "------ DM-93 Plasma Buster Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
-    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", 1
     StaticText  "Control the spawn rate of the Plasma Buster on Cell Packs", "white"
@@ -113,7 +113,7 @@ OptionMenu CombatShotgun
     Title "------ Ithaca M37 Combat Shotgun Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
-    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", 1
     StaticText  "Control the spawn rate of the Combat Shotgun on Shotguns", "white"
@@ -134,7 +134,7 @@ OptionMenu Sigcow
     Title "------ M-211 Sigcow Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
-    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", 1
     StaticText  "Control the spawn rate of the Sigcow on Clip Boxes", "white"
@@ -155,7 +155,7 @@ OptionMenu 10pis
     Title "------ Delta Elite 10mm Pistol Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
-    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", 1
     StaticText  "Control the spawn rate of the 10mm Pistol on Handguns", "white"
@@ -180,7 +180,7 @@ OptionMenu Snose
     Title "------ Detective Special Snubnose Revolver Options ------"
    	StaticText "Notice:", 1
     StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
-    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", 1
     StaticText  "Control the spawn rate of the Snubnose Revolver on handguns", "white"
@@ -194,6 +194,31 @@ OptionMenu Snose
    	StaticText ""
 	StaticText "Reset Options", "Green"
 	SafeCommand "Reset all options", "snose_reset_cvars"
+}
+
+OptionMenu Minerva
+{
+    Title "------ Minerva 9mm Chaingun Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Minerva on Chainguns", "white"
+	Option "Minerva Spawn Rate: ", "minerva_chaingun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Minerva options", "resetcvar minerva_chaingun_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control the spawn rate of the Minerva on SMGs", "white"
+	Option "Minerva Spawn Rate: ", "minerva_smg_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Minerva options", "resetcvar minerva_smg_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "minerva_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar minerva_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "minerva_reset_cvars"
 }
 
 // Adds the other menus to the main Radtech Weapons menu.
@@ -213,6 +238,10 @@ AddOptionMenu "RadTechWeaponry"
     Submenu "M-211 Sigcow", "Sigcow"
     StaticText ""
     Submenu "Delta Elite 10mm Pistol", "10pis"
+	StaticText ""
+	Submenu "Detective Special Snubnose Revolver", "snose"
+	StaticText ""
+	Submenu "Minerva 9mm Chaingun", "Minerva"
 }
 
 // Spawn Bias (for items that do replace)

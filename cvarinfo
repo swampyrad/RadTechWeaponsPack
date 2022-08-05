@@ -49,3 +49,8 @@ server bool tenpismag_persistent_spawning = false;
 // Snubnose
 server int snose_pistol_spawn_bias = 19;
 server bool snose_persistent_spawning = false;
+
+// Minerva
+server int minerva_chaingun_spawn_bias = 24;
+server int minerva_smg_spawn_bias = 19;
+server bool minerva_persistent_spawning = false;

@@ -1,13 +1,13 @@
 // Clean this up later, it doesn't need to be like this.
 GameInfo
 {
-    AddEventHandlers = "Reloader10mmInjector", "ExShotgun_Spawner", "LLShotgun_Spawner", "GoldSingleAction_Spawner", "SingleAction_Spawner", "Minerva_Spawner", "MinervaInjector", "HackedZM_Spawner", "Hacked4mMagInjector"
+    AddEventHandlers = "Reloader10mmInjector", "ExShotgun_Spawner", "LLShotgun_Spawner", "GoldSingleAction_Spawner", "HackedZM_Spawner", "Hacked4mMagInjector"
 // Shotguns
     AddEventHandlers = "DoomedShotgunHandler", "CombatShotgunHandler"
 // Energy Weapons
     AddEventHandlers = "PlasmaBusterHandler"
 // Rifle & PCC
-    AddEventHandlers = "SigcowHandler"
+    AddEventHandlers = "SigcowHandler", "MinervaHandler"
 // Pistols
     AddEventHandlers = "TenMilPistolHandler", "JuanEvent", "SnubnoseHandler"
 // Misc
