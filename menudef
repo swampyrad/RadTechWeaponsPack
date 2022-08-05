@@ -321,6 +321,27 @@ OptionMenu SingleActionRevolver
 	SafeCommand "Reset all options", "sa_reset_cvars"
 }
 
+OptionMenu GoldSingleActionRevolver
+{
+    Title "------ Gold Single-Action Revolver Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Single-Action on Pistols", "white"
+	Option "Gold Single-Action Spawn Rate: ", "gsa_pistol_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Gold Single-Action options", "resetcvar gsa_pistol_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "gsa_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar gsa_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "gsa_reset_cvars"
+}
+
 // Adds the other menus to the main Radtech Weapons menu.
 AddOptionMenu "RadTechWeaponry"
 {
@@ -350,6 +371,8 @@ AddOptionMenu "RadTechWeaponry"
 	Submenu "Explosive Shotgun", "ExplosiveHunter"
 	StaticText ""
 	Submenu "Single-Action Revolver", "SingleActionRevolver"
+	StaticText ""
+	Submenu "Golden Single-Action Revolver", "GoldSingleActionRevolver"
 }
 
 // Spawn Bias (for items that do replace)

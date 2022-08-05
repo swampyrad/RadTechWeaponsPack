@@ -74,3 +74,7 @@ server bool esg_persistent_spawning = false;
 // Single-Action Revolver
 server int sa_pistol_spawn_bias = 24;
 server bool sa_persistent_spawning = false;
+
+// Gold Single-Action Revolver
+server int gsa_pistol_spawn_bias = 99;
+server bool gsa_persistent_spawning = false;

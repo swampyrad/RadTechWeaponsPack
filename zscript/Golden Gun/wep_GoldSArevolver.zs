@@ -649,3 +649,10 @@ class GoldSADeinoSpawn:actor{
 		self.Destroy();
 	}
 }
+
+class HDGoldenGunRandomDrop:RandomSpawner{
+	default{
+		dropitem "HDPistol",16,5;
+		dropitem "HDGoldSingleActionRevolver",4,1;
+	}
+}
