@@ -1,7 +1,6 @@
 // Clean this up later, it doesn't need to be like this.
 GameInfo
 {
-    AddEventHandlers = "Reloader10mmInjector"
 // Shotguns
     AddEventHandlers = "DoomedShotgunHandler", "CombatShotgunHandler", "LLHHandler", "ExplosiveSGHandler"
 // Energy Weapons
@@ -11,5 +10,5 @@ GameInfo
 // Pistols
     AddEventHandlers = "TenMilPistolHandler", "JuanEvent", "SnubnoseHandler", "SingleActionHandler", "GoldSingleActionHandler"
 // Misc
-    AddEventHandlers = "FlareEvent"
+    AddEventHandlers = "FlareEvent", "Reloader10mmInjector"
 }
