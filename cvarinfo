@@ -60,3 +60,7 @@ server int llh_shotgun_spawn_bias = 49;
 server int llhs_shell_spawn_bias = 49;
 server int llhs_box_spawn_bias = 49;
 server bool llh_persistent_spawning = false;
+
+// Hacked ZM66
+server int hacked_zm66_spawn_bias = 24;
+server bool hacked_persistent_spawning = false;

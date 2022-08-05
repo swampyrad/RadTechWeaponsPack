@@ -45,7 +45,6 @@ version "4.8"
 
 // Hacked ZM66
 #include "zscript/Hacked ZM66/zscript.hackedzm66.zs"
-#include "zscript/Hacked ZM66/HackedZM_Spawner.zs"
 
 // Plasma Buster
 #include "zscript/Plasma Buster/wep_plasmabuster.zs"

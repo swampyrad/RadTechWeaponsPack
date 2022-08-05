@@ -738,17 +738,6 @@ class HackedZM66Irregular:HackedZM66Semi{
 		inventory.icon "RIGSA0";
 	}
 }
-class Hacked4mMagInjector:StaticEventHandler{
-override void WorldThingSpawned(WorldEvent e) { 
-		let HackedZMAmmo = HDAmmo(e.Thing); 	
-	 if (HackedZMAmmo){ 			
-  switch (HackedZMAmmo.GetClassName()){
-  case 'HD4mMag': HackedZMAmmo.ItemsThatUseThis.Push("HackedZM66AssaultRifle"); 					break;		 		
- case 'HDRocketAmmo': HackedZMAmmo.ItemsThatUseThis.Push("HackedZM66AssaultRifle"); 					break;		 		
-        }
-    	}
- 		} 	
-} 
 
 class HackedZM66Random:IdleDummy{
 	states{

@@ -250,6 +250,27 @@ OptionMenu LessLethalHunter
 	SafeCommand "Reset all options", "llh_reset_cvars"
 }
 
+OptionMenu HackedZM66
+{
+    Title "------ Hacked ZM66 Assault Rifle Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Hacked ZM66 on ZM66s", "white"
+	Option "Hacked ZM Spawn Rate: ", "hacked_zm66_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Hacked ZM options", "resetcvar hacked_zm66_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "hacked_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar hacked_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "hzm_reset_cvars"
+}
+
 // Adds the other menus to the main Radtech Weapons menu.
 AddOptionMenu "RadTechWeaponry"
 {
@@ -273,6 +294,8 @@ AddOptionMenu "RadTechWeaponry"
 	Submenu "Minerva 9mm Chaingun", "Minerva"
 	StaticText ""
 	Submenu "Bernoulli M1053 Less-Lethal Shotgun", "LessLethalHunter"
+	StaticText ""
+	Submenu "Hacked ZM66 Assault Rifle", "HackedZM66"
 }
 
 // Spawn Bias (for items that do replace)

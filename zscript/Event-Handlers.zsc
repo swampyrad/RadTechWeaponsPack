@@ -590,22 +590,6 @@ override void worldthingspawned(worldevent e)
 	}
 }
 
-class LLShotgun_Spawner : EventHandler
-{
-override void CheckReplacement(ReplaceEvent e) {
-	switch (e.Replacee.GetClassName()) {
-	
-	//Ammo Pickups
-	
-	//Shotgun shells
-		case 'ShellRandom' 				: if (!random(0, 3)) {e.Replacement = "HDLLShellAmmo";} 	break;
-		case 'ShellBoxRandom' 			: if (!random(0, 4)) {e.Replacement = "LLShellBoxPickup";} break; 
-		case 'ShotgunReplaces' 			: if (!random(0, 3)) {e.Replacement = "LLHunter";} break;
-		}
-	e.IsFinal = false;
-	}
-}
-
 class LLHHandler : EventHandler
 {
 	private bool cvarsAvailable;
@@ -702,6 +686,85 @@ override void worldthingspawned(worldevent e)
 				break;
 			case 'ShellRandom':
 				trycreatellhshell(e, spawnBiasShell);
+				break;
+		}
+	}
+	}
+}
+
+class HackedZMHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasZM;
+    private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasZM = hacked_zm66_spawn_bias;
+		isPersistent = hacked_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}	
+		return result;
+	}
+	void trycreatehackedzm(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HackedZM66Random(e.thing.Spawn("HackedZM66Random", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{		
+				e.thing.destroy();
+			}
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	let hZMAmmo = HDAmmo(e.Thing);
+	if (!hZMAmmo)
+	{
+		return;
+	}
+	switch (hZMAmmo.GetClassName())
+	{
+		case 'HD4mMag':
+			hZMAmmo.ItemsThatUseThis.Push("HackedZM66AssaultRifle");
+			break;
+		case 'HDRocketAmmo':
+			hZMAmmo.ItemsThatUseThis.Push("HackedZM66AssaultRifle");
+			break;
+		case 'FourMilAmmo':
+			hZMAmmo.ItemsThatUseThis.Push("HackedZM66AssaultRifle");
+			break;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ZM66Random':
+				trycreatehackedzm(e, spawnBiasZM);
 				break;
 		}
 	}
