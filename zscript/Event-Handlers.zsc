@@ -393,3 +393,118 @@ override void worldthingspawned(worldevent e)
 	}
 	}
 }
+
+class SnubNose_Spawner : EventHandler
+{
+override void CheckReplacement(ReplaceEvent e) {
+	switch (e.Replacee.GetClassName()) {
+	
+  case 'HDHandgunRandomDrop' 			: if (!random(0,9)) {e.Replacement = "HDSnubNoseRandomDrop";} break;
+
+		case 'DeinoSpawn' 			: if (!random(0, 1)) {e.Replacement = "SnubNoseSpawn";} break;
+		}
+	e.IsFinal = false;
+	}
+}
+
+class SnubnoseHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasSnubnose;
+    private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasSnubnose = snose_pistol_spawn_bias;
+		isPersistent = snose_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatealtsnose(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = SnubNoseSpawn(e.thing.Spawn("SnubNoseSpawn", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+	void trycreatesnose(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDSnubNoseRandomDrop(e.thing.Spawn("HDSnubNoseRandomDrop", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	let snoseAmmo = HDAmmo(e.Thing);
+	if (!snoseAmmo)
+	{
+		return;
+	}
+	switch (snoseAmmo.GetClassName())
+	{
+		case 'HDPistolAmmo':
+			snoseAmmo.ItemsThatUseThis.Push("HDSnubNoseRevolver");
+			break;
+		case 'HDRevolverAmmo':
+			snoseAmmo.ItemsThatUseThis.Push("HDSnubNoseRevolver");
+			break;
+	}
+	if (!(level.maptime > 1) || isPersistent1)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'HDHandgunRandomDrop':
+				trycreatealtsnose(e, spawnBiasSnubnose);
+				break;
+		}
+	}
+	if (!(level.maptime > 1) || isPersistent2)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ClipMagPickup':
+				trycreatealtsnose(e, spawnBiasSnubnose);
+				break;
+		}
+	}
+	}
+}

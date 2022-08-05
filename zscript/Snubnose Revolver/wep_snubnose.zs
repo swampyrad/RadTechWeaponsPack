@@ -656,18 +656,6 @@ enum DeinovolverStats{
 	BUGF_COCKED=2,
 }
 
-class SnubNoseInjector:StaticEventHandler{
-override void WorldThingSpawned(WorldEvent e) { 
-		let SnubNose = HDAmmo(e.Thing); 	
-	 if (SnubNose){ 			
-  switch (SnubNose.GetClassName()){
-  case 'HDPistolAmmo': SnubNose.ItemsThatUseThis.Push("HDSnubNoseRevolver"); 					break;		 		
- case 'HDRevolverAmmo': SnubNose.ItemsThatUseThis.Push("HDSnubNoseRevolver"); 					break;		 		
-        }
-    	}
- 		} 	
-} 
-
 class SnubNoseSpawn:actor{
 	override void postbeginplay(){
 		super.postbeginplay();
@@ -675,5 +663,12 @@ class SnubNoseSpawn:actor{
 		if(box)HDF.TransferSpecials(self,box);
 		spawn("HDSnubNoseRevolver",pos,ALLOW_REPLACE);
 		self.Destroy();
+	}
+}
+
+class HDSnubNoseRandomDrop:RandomSpawner{
+	default{
+		dropitem "HDPistol",16,5;
+		dropitem "HDSnubNoseRevolver",16,1;
 	}
 }
