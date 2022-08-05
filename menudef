@@ -271,6 +271,35 @@ OptionMenu HackedZM66
 	SafeCommand "Reset all options", "hzm_reset_cvars"
 }
 
+OptionMenu ExplosiveHunter
+{
+    Title "------ Explosive Shotgun Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Explosive Shotgun on Shotguns", "white"
+	Option "Explosive Shotgun Spawn Rate: ", "esg_shotgun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Explosive Shotgun options", "resetcvar esg_shotgun_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control the spawn rate of Explosive Slugs on Shell Boxes", "white"
+	Option "Explosive SLug Spawn Rate: ", "esgs_box_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Explosive Slug options", "resetcvar esgs_box_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control the spawn rate of Explosive Slugs on Shells", "white"
+	Option "Explosive Slug Spawn Rate: ", "esgs_shell_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Explosive Slug options", "resetcvar esgs_shell_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "esg_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar esg_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "esg_reset_cvars"
+}
+
 // Adds the other menus to the main Radtech Weapons menu.
 AddOptionMenu "RadTechWeaponry"
 {
@@ -296,6 +325,8 @@ AddOptionMenu "RadTechWeaponry"
 	Submenu "Bernoulli M1053 Less-Lethal Shotgun", "LessLethalHunter"
 	StaticText ""
 	Submenu "Hacked ZM66 Assault Rifle", "HackedZM66"
+	StaticText ""
+	Submenu "Explosive Shotgun", "ExplosiveHunter"
 }
 
 // Spawn Bias (for items that do replace)

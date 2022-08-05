@@ -38,7 +38,6 @@ version "4.8"
 // Explosive Hunter
 #include "zscript/Explosive Shotgun/wep_explosiveHunter.zs"
 #include "zscript/Explosive Shotgun/wep_explosiveshotguns.zs"
-#include "zscript/Explosive Shotgun/ExShotgunSpawnHandler.zs"
 
 // Doomed Hunter
 #include "zscript/Doomed Hunter/wep_doomhunter.zs"

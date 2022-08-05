@@ -770,3 +770,105 @@ override void worldthingspawned(worldevent e)
 	}
 	}
 }
+
+class ExplosiveSGHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasESG;
+	private int spawnBiasShellbox;
+	private int spawnBiasShell;
+    private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasESG = esg_shotgun_spawn_bias;
+		spawnBiasShell = esgs_shell_spawn_bias;
+		spawnBiasShellbox = esgs_box_spawn_bias;
+		isPersistent = esg_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreateesg(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = ExplosiveHunter(e.thing.Spawn("ExplosiveHunter", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+	void trycreateesgshell(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDExplosiveShellAmmo(e.thing.Spawn("HDExplosiveShellAmmo", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+	void trycreateesgshellbox(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = ExplosiveShellBoxPickup(e.thing.Spawn("ExplosiveShellBoxPickup", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ShotgunReplaces':
+				trycreateesg(e, spawnBiasESG);
+				break;
+			case 'ShellboxRandom':
+				trycreateesgshellbox(e, spawnBiasShellbox);
+				break;
+			case 'ShellRandom':
+				trycreateesgshell(e, spawnBiasShell);
+				break;
+		}
+	}
+	}
+}

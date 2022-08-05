@@ -1,9 +1,9 @@
 // Clean this up later, it doesn't need to be like this.
 GameInfo
 {
-    AddEventHandlers = "Reloader10mmInjector", "ExShotgun_Spawner", "GoldSingleAction_Spawner"
+    AddEventHandlers = "Reloader10mmInjector", "GoldSingleAction_Spawner"
 // Shotguns
-    AddEventHandlers = "DoomedShotgunHandler", "CombatShotgunHandler", "LLHHandler"
+    AddEventHandlers = "DoomedShotgunHandler", "CombatShotgunHandler", "LLHHandler", "ExplosiveSGHandler"
 // Energy Weapons
     AddEventHandlers = "PlasmaBusterHandler"
 // Rifle & PCC
