@@ -1,0 +1,505 @@
+// This is the main option menu that'll have all of the other menus for the weaponry.
+OptionMenu RadTechWeaponry
+{
+    Title "RadTech Weapons Pack"
+}
+
+// This adds it to options so we don't have multiple option menus in the main options menu.
+AddOptionMenu "OptionsMenu"
+{
+    Submenu "RadTech Weapons Pack", "RadTechWeaponry"
+}
+
+OptionMenu FlareGuns
+{
+	Title "------ Flare Gun Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'weapon drop rate' to 'Replace All' forces", "white"
+    StaticText  "every enemy to drop a flare gun and nothing else.", "white"
+   	StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the natural spawn rate of Flare Guns.", "white"
+	Option "Weapon Spawn Rate:", "fl_weapon_spawn_bias", "DropBias"
+	SafeCommand "Reset wep.  options", "resetcvar fl_weapon_spawn_bias"
+	StaticText ""
+	StaticText  "Control chance that Flare Guns drop from enemies.", "white"
+	Option "Weapon Drop Rate:", "fl_weapon_drop_chance_bias", "SpawnBias"
+	SafeCommand "Reset drop. options", "resetcvar fl_weapon_drop_chance_bias"
+	StaticText ""
+    StaticText  "Control the rarity of metal frame Flare Guns.", "white"
+	Option "Metal Conversion Rate:", "fl_metal_chance_bias", "SpawnBias"
+	SafeCommand "Reset conv. options", "resetcvar fl_metal_chance_bias"
+	StaticText ""
+    StaticText  "Control the spawn rate of flare shells.", "white"
+	Option "Ammo Spawn Rate:", "fl_flare_spawn_bias", "DropBias"
+	SafeCommand "Reset ammo. options", "resetcvar fl_flare_spawn_bias"
+	StaticText ""
+    StaticText  "Control the spawn rate of flare boxes.", "white"
+	Option "Box Spawn Rate:", "fl_box_spawn_bias", "DropBias"
+	SafeCommand "Reset box. options", "resetcvar fl_box_spawn_bias"
+	StaticText ""
+	StaticText "--- Lore ---", "yellow"
+	StaticText ""
+	StaticText "A common survival tool, useful for lighting up dark areas, or the occasional zombie or two.", "white"
+	StaticText "It can also fire buckshot shells, but at a price.", "white"
+	StaticText "Metallic versions exist to aide with this issue, though are much heavier.", "white"
+}
+
+OptionMenu Juan9mm
+{
+	Title "------ Juan 9mm Horseshoe Pistol Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'weapon spawn rate' to Replace All will     ", "white"
+    StaticText  "supress vanilla pistol spawns. Setting 'weapon drop-", "white"
+    StaticText  "-rate' to Replace All forces every enemy to drop a  ", "white"
+    StaticText  "'Juan' pistol, and nothing else.                    ", "white"
+   	StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of 'Juan' pistols.", "white"
+	Option "Weapon Spawn Rate:", "ja_weapon_spawn_bias", "SpawnBias"
+	SafeCommand "Reset wep.  options", "resetcvar ja_weapon_spawn_bias"
+	StaticText ""
+	StaticText  "Control chance 'Juan' pistols drop from enemies.", "white"
+	Option "Weapon Drop Rate:", "ja_weapon_drop_chance_bias", "SpawnBias"
+	SafeCommand "Reset drop. options", "resetcvar ja_weapon_drop_chance_bias"
+	StaticText ""
+    StaticText  "Control the rarity of selectfire 'Juan' pistols.", "white"
+	Option "Selectfire Conversion Rate:", "ja_firemode_chance_bias", "SpawnBias"
+	SafeCommand "Reset conv. options", "resetcvar ja_firemode_chance_bias"
+	StaticText ""
+    StaticText  "Control the spawn rate of 'Juan' magazines.", "white"
+	Option "Mag Spawn Rate:", "ja_mag_spawn_bias", "SpawnBias"
+	SafeCommand "Reset mag. options", "resetcvar ja_mag_spawn_bias"
+	StaticText ""
+	StaticText "--- Lore ---", "green"
+	StaticText ""
+	StaticText "A variant of the standard-issue pistol, albeit with a non-standard 'horseshoe' magazine.", "white"
+	StaticText "As the name suggests, it uses a unique 'horseshoe' magazine that holds 30 9x22 Parumpudicum rounds, similarly to the SMG.", "white"
+	StaticText "However, it's small size makes it incredibly difficult to control in full-auto, instead leaving users to use a 'galloping' shooting pattern to stay on target.", "white"
+}
+
+OptionMenu DoomedHunter
+{
+    Title "------ Doomed Hunter Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Doomed Hunter on Shotguns", "white"
+	Option "Doomed Hunter Spawn Rate: ", "dHunt_shotgun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Doomed Hunter Shotgun options", "resetcvar dHunt_shotgun_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "dHunt_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar dHunt_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Red"
+	SafeCommand "Reset all options", "dHunt_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Red"
+	StaticText ""
+	StaticText "An older modelled and decrepit Hunter that's lost it's ease of pumping over the years.", "white"
+	StaticText "These older Hunters came with Duckbill Chokes to control their spread to a 'V' shape.", "white"
+}
+
+OptionMenu PlasmaBuster
+{
+    Title "------ DM-93 Plasma Buster Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Plasma Buster on Cell Packs", "white"
+	Option "Plasma Buster Spawn Rate: ", "pbuster_cpack_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Plasma Buster options", "resetcvar pbuster_cpack_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "pbuster_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar pbuster_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Cyan"
+	SafeCommand "Reset all options", "pbuster_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Cyan"
+	StaticText ""
+	StaticText "A revised version of the 'Thunder Buster' particle beam gun.", "white"
+	StaticText "After receiving a disturbing number of incident reports involing self-detonations caused by careless use,", "white"
+	StaticText "The UAC tasked a junior researcher to find an issue to this problem and invented the DM-93.", "white"
+	StaticText "He tweaked the Ion Emitter so the plasma particles are contained in an electromagnetic field which holds the blast together until impact with a target.", "white"
+	StaticText "This plasma has a much smaller, albeit safer, blast radius, so direct contact is required to cause maximum damage.", "white"
+	StaticText "Automatic Fire emits an accurate stream of these projectiles, while the newly added Burst mode shoots out a spread of many shots, similar to a shotgun.", "white"
+}
+
+OptionMenu CombatShotgun
+{
+    Title "------ Ithaca M37 Combat Shotgun Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Combat Shotgun on Shotguns", "white"
+	Option "Combat Shotgun Spawn Rate: ", "pbuster_cpack_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Combat Shotgun options", "resetcvar pbuster_cpack_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "pbuster_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar pbuster_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "cshotgun_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "A compact shotgun often seen in the hands of space marines throughout the galaxy.", "white"
+	StaticText "Despite having no side saddles, or a butt stock to attach them to, in the right hands it's still as deadly as any other shotgun.", "white"
+	StaticText "toss one in your pack the next time you leave HQ, it may become very handy.", "white"
+}
+
+OptionMenu Sigcow
+{
+    Title "------ M-211 Sigcow Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Sigcow on Clip Boxes", "white"
+	Option "Sigcow Spawn Rate: ", "sigcow_cbox_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Sigcow options", "resetcvar sigcow_cbox_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "sigcow_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar sigcow_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Orange"
+	SafeCommand "Reset all options", "sigcow_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Orange"
+	StaticText ""
+	StaticText "A pistol-caliber carbine chambered in 10mm Auto and the trusted weapon of the UAC's Light Drop Infantry division.", "white"
+	StaticText "Includes a bayonet attachment for ease of use in close-quarters combat.", "white"
+}
+
+OptionMenu 10pis
+{
+    Title "------ Delta Elite 10mm Pistol Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the 10mm Pistol on Handguns", "white"
+	Option "10mm Pistol Spawn Rate: ", "tenpis_handgun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset 10mm Pistol options", "resetcvar tenpis_handgun_spawn_bias"
+    StaticText ""
+    StaticText  "Control the spawn rate of the 10mm Pistol's magazines on Clip Magazines.", "white"
+	Option "Magazine Spawn Rate: ", "tenpismag_cmag_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Magazine options", "resetcvar tenpismag_cmag_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload for the 10mm Pistol.", "white"
+	Option "Persistent Spawns: ", "tenpis_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar tenpis_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "10pis_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "A handgun release in the late 80s, adopted by the FBI following the aftermath of a tragic shooting incident.", "white"
+	StaticText "This pistol offers much better penetration and higher muzzle velocity than either 9x22mm Parumpudicum or .355 firearms, but is much more difficult to control.", "white"
+}
+
+OptionMenu Snose
+{
+    Title "------ Detective Special Snubnose Revolver Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Snubnose Revolver on handguns", "white"
+	Option "Snubnose Spawn Rate: ", "snose_pistol_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Snubnose options", "resetcvar snose_pistol_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "snose_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar snose_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "snose_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "A sidearm once popular with police nad private investigators of the past.", "white"
+	StaticText "This revolver's smaller stature fits much better in your pocket,", "white"
+	StaticText "Though the smaller barrel cuts down your accuracy and firepower.", "white"
+}
+
+OptionMenu Minerva
+{
+    Title "------ Minerva 9mm Chaingun Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Minerva on Chainguns", "white"
+	Option "Minerva Spawn Rate: ", "minerva_chaingun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Minerva options", "resetcvar minerva_chaingun_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control the spawn rate of the Minerva on SMGs", "white"
+	Option "Minerva Spawn Rate: ", "minerva_smg_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Minerva options", "resetcvar minerva_smg_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "minerva_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar minerva_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Orange"
+	SafeCommand "Reset all options", "minerva_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Orange"
+	StaticText ""
+	StaticText "A support weapon chambered in 9x22 Parumpudicum,", "white"
+	StaticText "And later modified to use UAC standard SMG Magazines.", "white"
+	StaticText "It can hold a maximum of 150+5 rounds at a time.", "white"
+	StaticText "Just remember to keep your empty mags.", "white"
+}
+
+OptionMenu LessLethalHunter
+{
+    Title "------ Bernoulli M1053 Less-Lethal Shotgun Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Less-Lethal Hunter on Shotguns", "white"
+	Option "Less-Lethal Hunter Spawn Rate: ", "llh_shotgun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Less-Lethal Hunter options", "resetcvar llh_shotgun_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control the spawn rate of Less-Lethal Shells on Shell Boxes", "white"
+	Option "Less-Lethal Shell Spawn Rate: ", "llhs_box_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Less-Lethal Shell options", "resetcvar llhs_box_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control the spawn rate of Less-Lethal Shells on Shells", "white"
+	Option "Less-Lethal Shell Spawn Rate: ", "llhs_shell_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Less-Lethal Shell options", "resetcvar llhs_shell_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "llh_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar llh_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Red"
+	SafeCommand "Reset all options", "llh_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Red"
+	StaticText ""
+	StaticText "A polymer-based shotgun designed for riot control and crowd dispersion.", "white"
+	StaticText "Chambered only for the use of less-lethal shells, which contain a load of rubberized buckshot pellets.", "white"
+	StaticText "Useful for situations where maintaining a low fatality count is crucial.", "white"
+}
+
+OptionMenu HackedZM66
+{
+    Title "------ Hacked ZM66 Assault Rifle Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Hacked ZM66 on ZM66s", "white"
+	Option "Hacked ZM Spawn Rate: ", "hacked_zm66_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Hacked ZM options", "resetcvar hacked_zm66_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "hacked_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar hacked_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Orange"
+	SafeCommand "Reset all options", "hzm_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Orange"
+	StaticText ""
+	StaticText "A 'jailbroken' model of the Volt Zm66 Assault Rifle, this weapon has been stripped of most of it's less desireable features.", "white"
+	StaticText "This is mostly relating to it's magazine DRM system, though at the cost of a reduce firerate and non-functional ammo counter.", "white"
+	StaticText "Mainly of these models come with a 4 round 'Quad Burst' firemode.", "white"
+}
+
+OptionMenu ExplosiveHunter
+{
+    Title "------ Explosive Shotgun Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Explosive Shotgun on Shotguns", "white"
+	Option "Explosive Shotgun Spawn Rate: ", "esg_shotgun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Explosive Shotgun options", "resetcvar esg_shotgun_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control the spawn rate of Explosive Slugs on Shell Boxes", "white"
+	Option "Explosive SLug Spawn Rate: ", "esgs_box_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Explosive Slug options", "resetcvar esgs_box_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control the spawn rate of Explosive Slugs on Shells", "white"
+	Option "Explosive Slug Spawn Rate: ", "esgs_shell_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Explosive Slug options", "resetcvar esgs_shell_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "esg_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar esg_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Red"
+	SafeCommand "Reset all options", "esg_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Red"
+	StaticText ""
+	StaticText "The antithesis of the Bernoulli M1053, this modified hunter fires slugs loaded with miniature HE grenades.", "white"
+	StaticText "These slugs cause immense injuries and burns on impact.", "white"
+	StaticText "Use of this weapon in close-quarters is ill-advised if you care about your limbs.", "white"
+}
+
+OptionMenu SingleActionRevolver
+{
+    Title "------ Single-Action Revolver Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Single-Action on Pistols", "white"
+	Option "Single-Action Spawn Rate: ", "sa_pistol_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Single-Action options", "resetcvar sa_pistol_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "sa_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar sa_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "sa_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "An ancient firearm better suited for a gunslinger than a space marine.", "white"
+	StaticText "Chambered in .45 Long Colt, this revolver will definitely punch a hole into whatever it hits.", "white"
+	StaticText "With how old these rounds are, they have a good chancen to richochet off walls to perform trickshots.", "white"
+}
+
+OptionMenu GoldSingleActionRevolver
+{
+    Title "------ Gold Single-Action Revolver Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Single-Action on Pistols", "white"
+	Option "Gold Single-Action Spawn Rate: ", "gsa_pistol_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Gold Single-Action options", "resetcvar gsa_pistol_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "gsa_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar gsa_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "gsa_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "A special golden version of the Single-Action Revolver.", "white"
+	StaticText "Not much is known about it due to their immense rarity.", "White"
+	StaticText "...Though those who have found one talk highly about it's power.", "white"
+}
+
+// Adds the other menus to the main Radtech Weapons menu.
+AddOptionMenu "RadTechWeaponry"
+{
+    StaticText ""
+	StaticText "--- Rifles & PCCs ---", "orange"
+	StaticText ""
+    Submenu "M-211 Sigcow", "Sigcow"
+	StaticText ""
+	Submenu "Hacked ZM66 Assault Rifle", "HackedZM66"
+	StaticText ""
+	Submenu "Minerva 9mm Chaingun", "Minerva"
+	StaticText ""
+	StaticText "--- Shotguns --", "red"
+    StaticText ""
+    Submenu "Doomed Hunter", "DoomedHunter"
+    StaticText ""
+    Submenu "Ithaca M37 Combat Shotgun", "CombatShotgun"
+	StaticText ""
+	Submenu "Explosive Shotgun", "ExplosiveHunter"
+	StaticText ""
+	Submenu "Bernoulli M1053 Less-Lethal Shotgun", "LessLethalHunter"
+	StaticText ""
+	StaticText "--- Pistols ---", "green"
+	StaticText ""
+	Submenu "Single-Action Revolver", "SingleActionRevolver"
+	StaticText ""
+	Submenu "Golden Single-Action Revolver", "GoldSingleActionRevolver"
+    StaticText ""
+    Submenu "Juan 9mm Horseshoe Pistol", "Juan9mm"
+    StaticText ""
+    Submenu "Delta Elite 10mm Pistol", "10pis"
+	StaticText ""
+	Submenu "Detective Special Snubnose Revolver", "snose"
+    StaticText ""
+	StaticText "--- Energy Weapons ---", "cyan"
+	StaticText ""
+    Submenu "DM-93 Plasma Buster", "PlasmaBuster"
+	StaticText ""
+	StaticText "--- Utility ---", "yellow"
+	StaticText ""
+    Submenu "Flare Guns", "flareguns"
+}
+
+// Spawn Bias (for items that do replace)
+OptionValue "SpawnBias"
+{
+	-1,    "Disabled"
+	 0,    "Replace All"
+	 2,    "1 in 3"
+	 4,    "1 in 5"
+	 9,    "1 in 10"
+	 14,   "1 in 15"
+	 19,   "1 in 20"
+	 24,   "1 in 25"
+	 49,   "1 in 50"
+	 99,   "1 in 100"
+	 149,  "1 in 150"
+	 199,  "1 in 200"
+}
+
+// Drop Bias (for items that don't replace). 
+OptionValue "DropBias"
+{
+	-1,    "Disabled"
+	 0,    "With All"
+	 2,    "1 in 3"
+	 4,    "1 in 5"
+	 9,    "1 in 10"
+	 14,   "1 in 15"
+	 19,   "1 in 20"
+	 24,   "1 in 25"
+	 49,   "1 in 50"
+	 99,   "1 in 100"
+	 149,  "1 in 150"
+	 199,  "1 in 200"
+}

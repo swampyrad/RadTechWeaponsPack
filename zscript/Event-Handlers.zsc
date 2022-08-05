@@ -1,0 +1,1026 @@
+// Handles the Combat Shotgun's spawns and controls its usage of HDShellAmmo.
+class CombatShotgunHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasActualsg;
+	private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasActualsg = cshotgun_shotgun_spawn_bias;
+		isPersistent = cshotgun_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatecshotgun(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDCombatShotgunRandom(e.thing.Spawn("HDCombatShotgunRandom", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	
+	let cShotgunAmmo = HDAmmo(e.Thing);
+	if (!cShotgunAmmo)
+	{
+		return;
+	}
+	switch (cShotgunAmmo.GetClassName())
+	{
+		case 'HDShellAmmo':
+			cShotgunAmmo.ItemsThatUseThis.Push("HDCombatShotgun");
+			break;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ShotgunReplaces':
+				trycreatecshotgun(e, spawnBiasActualsg);
+				break;
+		}
+	}
+	}
+}
+
+// Handles the Doomed Shotgun's spawns and controls its usage of HDShellAmmo.
+class DoomedShotgunHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasActualsg;
+	private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasActualsg = dHunt_shotgun_spawn_bias;
+		isPersistent = dHunt_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatedhunt(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = DoomHunterRandom(e.thing.Spawn("DoomHunterRandom", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	
+	let dHuntAmmo = HDAmmo(e.Thing);
+	if (!dHuntAmmo)
+	{
+		return;
+	}
+	switch (dHuntAmmo.GetClassName())
+	{
+		case 'HDShellAmmo':
+			dHuntAmmo.ItemsThatUseThis.Push("DoomHunter");
+			break;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ShotgunReplaces':
+				trycreatedhunt(e, spawnBiasActualsg);
+				break;
+		}
+	}
+	}
+}
+
+// Handles the Plasma Buster's spawns and controls its usage of HDBattery.
+class PlasmaBusterHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasCellPack;
+	private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasCellPack = pbuster_cpack_spawn_bias;
+		isPersistent = pbuster_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatepbuster(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = PlasmaBuster(e.thing.Spawn("PlasmaBuster", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	
+	let pBustAmmo = HDAmmo(e.Thing);
+	if (!pBustAmmo)
+	{
+		return;
+	}
+	switch (pBustAmmo.GetClassName())
+	{
+		case 'HDBattery':
+			pBustAmmo.ItemsThatUseThis.Push("PlasmaBuster");
+			break;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'CellPackReplacer':
+				trycreatepbuster(e, spawnBiasCellPack);
+				break;
+		}
+	}
+	}
+}
+
+// Handles the Sigcow's spawns.
+class SigcowHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasCBox;
+	private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasCBox = sigcow_cbox_spawn_bias;
+		isPersistent = sigcow_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatesigcow(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = SigCowRandomSpawn(e.thing.Spawn("SigCowRandomSpawn", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ClipBoxPickup':
+				trycreatesigcow(e, spawnBiasCBox);
+				break;
+		}
+	}
+	}
+}
+
+class TenMilPistolHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasHandgun;
+    private int spawnBiasClipmag;
+    private bool isPersistent1;
+	private bool isPersistent2;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasHandgun = tenpis_handgun_spawn_bias;
+        spawnBiasClipmag = tenpismag_cmag_spawn_bias;
+		isPersistent1 = tenpis_persistent_spawning;
+        isPersistent2 = tenpismag_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatetenmag(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HD10mmMagPickup(e.thing.Spawn("HD10mmMagPickup", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+	void trycreate10pistol(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDTenMilRandomDrop(e.thing.Spawn("HDTenMilRandomDrop", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	if (!(level.maptime > 1) || isPersistent1)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'HDHandgunRandomDrop':
+				trycreate10pistol(e, spawnBiasHandgun);
+				break;
+		}
+	}
+	if (!(level.maptime > 1) || isPersistent2)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ClipMagPickup':
+				trycreatetenmag(e, spawnBiasClipmag);
+				break;
+		}
+	}
+	}
+}
+
+class SnubnoseHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasSnubnose;
+    private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasSnubnose = snose_pistol_spawn_bias;
+		isPersistent = snose_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatealtsnose(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = SnubNoseSpawn(e.thing.Spawn("SnubNoseSpawn", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+	void trycreatesnose(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDSnubNoseRandomDrop(e.thing.Spawn("HDSnubNoseRandomDrop", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	let snoseAmmo = HDAmmo(e.Thing);
+	if (!snoseAmmo)
+	{
+		return;
+	}
+	switch (snoseAmmo.GetClassName())
+	{
+		case 'HDPistolAmmo':
+			snoseAmmo.ItemsThatUseThis.Push("HDSnubNoseRevolver");
+			break;
+		case 'HDRevolverAmmo':
+			snoseAmmo.ItemsThatUseThis.Push("HDSnubNoseRevolver");
+			break;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'HDHandgunRandomDrop':
+				trycreatealtsnose(e, spawnBiasSnubnose);
+				break;
+		}
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ClipMagPickup':
+				trycreatealtsnose(e, spawnBiasSnubnose);
+				break;
+		}
+	}
+	}
+}
+
+class MinervaHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasChaingun;
+	private int spawnBiasSMG;
+    private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasChaingun = minerva_chaingun_spawn_bias;
+		spawnBiasSMG = minerva_smg_spawn_bias;
+		isPersistent = minerva_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreateminerva(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = MinervaRandom(e.thing.Spawn("MinervaRandom", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	let minervaAmmo = HDAmmo(e.Thing);
+	if (!minervaAmmo)
+	{
+		return;
+	}
+	switch (minervaAmmo.GetClassName())
+	{
+		case 'HDPistolAmmo':
+			minervaAmmo.ItemsThatUseThis.Push("MinervaChaingun");
+			break;
+		case 'HD9mMag30':
+			minervaAmmo.ItemsThatUseThis.Push("MinervaChaingun");
+			break;
+		case 'HDBattery':
+			minervaAmmo.ItemsThatUseThis.Push("MinervaChaingun");
+			break;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ChaingunReplaces':
+				trycreateminerva(e, spawnBiasChaingun);
+				break;
+		}
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'HDSMGRandom':
+				trycreateminerva(e, spawnBiasSMG);
+				break;
+		}
+	}
+	}
+}
+
+class LLHHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasLLH;
+	private int spawnBiasShellbox;
+	private int spawnBiasShell;
+    private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasLLH = llh_shotgun_spawn_bias;
+		spawnBiasShell = llhs_shell_spawn_bias;
+		spawnBiasShellbox = llhs_box_spawn_bias;
+		isPersistent = llh_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreatellh(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = LLHunter(e.thing.Spawn("LLHunter", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+	void trycreatellhshell(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDLLShellAmmo(e.thing.Spawn("HDLLShellAmmo", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+	void trycreatellhshellbox(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = LLShellBoxPickup(e.thing.Spawn("LLShellBoxPickup", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ShotgunReplaces':
+				trycreatellh(e, spawnBiasLLH);
+				break;
+			case 'ShellboxRandom':
+				trycreatellhshellbox(e, spawnBiasShellbox);
+				break;
+			case 'ShellRandom':
+				trycreatellhshell(e, spawnBiasShell);
+				break;
+		}
+	}
+	}
+}
+
+class HackedZMHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasZM;
+    private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasZM = hacked_zm66_spawn_bias;
+		isPersistent = hacked_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}	
+		return result;
+	}
+	void trycreatehackedzm(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HackedZM66Random(e.thing.Spawn("HackedZM66Random", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{		
+				e.thing.destroy();
+			}
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	let hZMAmmo = HDAmmo(e.Thing);
+	if (!hZMAmmo)
+	{
+		return;
+	}
+	switch (hZMAmmo.GetClassName())
+	{
+		case 'HD4mMag':
+			hZMAmmo.ItemsThatUseThis.Push("HackedZM66AssaultRifle");
+			break;
+		case 'HDRocketAmmo':
+			hZMAmmo.ItemsThatUseThis.Push("HackedZM66AssaultRifle");
+			break;
+		case 'FourMilAmmo':
+			hZMAmmo.ItemsThatUseThis.Push("HackedZM66AssaultRifle");
+			break;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ZM66Random':
+				trycreatehackedzm(e, spawnBiasZM);
+				break;
+		}
+	}
+	}
+}
+
+class ExplosiveSGHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasESG;
+	private int spawnBiasShellbox;
+	private int spawnBiasShell;
+    private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasESG = esg_shotgun_spawn_bias;
+		spawnBiasShell = esgs_shell_spawn_bias;
+		spawnBiasShellbox = esgs_box_spawn_bias;
+		isPersistent = esg_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}
+		
+		return result;
+	}
+
+	void trycreateesg(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = ExplosiveHunter(e.thing.Spawn("ExplosiveHunter", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+	void trycreateesgshell(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDExplosiveShellAmmo(e.thing.Spawn("HDExplosiveShellAmmo", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+	void trycreateesgshellbox(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = ExplosiveShellBoxPickup(e.thing.Spawn("ExplosiveShellBoxPickup", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{
+				
+				e.thing.destroy();
+			}
+
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'ShotgunReplaces':
+				trycreateesg(e, spawnBiasESG);
+				break;
+			case 'ShellboxRandom':
+				trycreateesgshellbox(e, spawnBiasShellbox);
+				break;
+			case 'ShellRandom':
+				trycreateesgshell(e, spawnBiasShell);
+				break;
+		}
+	}
+	}
+}
+
+class SingleActionHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasSA;
+    private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasSA = sa_pistol_spawn_bias;
+		isPersistent = sa_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}	
+		return result;
+	}
+	void trycreatesarev(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDSingleActionRandomDrop(e.thing.Spawn("HDSingleActionRandomDrop", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{		
+				e.thing.destroy();
+			}
+		}
+	}
+	void trycreatesa(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = SADeinoSpawn(e.thing.Spawn("SADeinoSpawn", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{		
+				e.thing.destroy();
+			}
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'DeinoSpawn':
+				trycreatesa(e, spawnBiasSA);
+				break;
+			case 'HDHandgunRandomDrop':
+				trycreatesarev(e, spawnBiasSA);
+				break;
+		}
+	}
+	}
+}
+
+class GoldSingleActionHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasSA;
+    private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasSA = gsa_pistol_spawn_bias;
+		isPersistent = gsa_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}	
+		return result;
+	}
+	void trycreatesarev(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDGoldenGunRandomDrop(e.thing.Spawn("HDGoldenGunRandomDrop", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{		
+				e.thing.destroy();
+			}
+		}
+	}
+	void trycreatesa(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = GoldSADeinoSpawn(e.thing.Spawn("GoldSADeinoSpawn", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{		
+				e.thing.destroy();
+			}
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'DeinoSpawn':
+				trycreatesa(e, spawnBiasSA);
+				break;
+			case 'HDHandgunRandomDrop':
+				trycreatesarev(e, spawnBiasSA);
+				break;
+		}
+	}
+	}
+}

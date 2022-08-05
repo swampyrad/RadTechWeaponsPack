@@ -1,6 +1,0 @@
-// Ja, mine weapon svawn biases!
-server int ja_weapon_spawn_bias       = 19;
-server int ja_mag_spawn_bias          = 9;
-server int ja_firemode_chance_bias    = 49;
-server int ja_weapon_drop_chance_bias = 49;
-// These are server scope so multiplayer games run properly. 

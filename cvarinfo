@@ -1,0 +1,80 @@
+// Most of these are server variables so in a multiplayer session they can be synced to other players.
+// Every weapon has a comment before it's cvars based on it's name in-game for organization.
+// Hopefully this will be readable on mobile, I have no idea and no real way to test it. - [Ted]
+
+// NOTE: Values need to either be -1, 0, 2, 4, 9, 14, 19, 24, 49, 99, 149 or 199 to work for the spawners!
+/// Anything else would require remaking the option values in the menus.
+// They'll still function in-game correctly, but the menus won't properly display them.
+// Stick to it please and have less bug reports to explain for pls. - [Ted]
+
+// --------------------
+// Weapons
+// --------------------
+
+// Flare Gun
+server int fl_weapon_spawn_bias       = 19;
+server int fl_metal_chance_bias       = 49;
+server int fl_flare_spawn_bias        = 9;
+server int fl_box_spawn_bias          = 9;
+server int fl_weapon_drop_chance_bias = 49;
+
+// Juan
+server int ja_weapon_spawn_bias       = 19;
+server int ja_mag_spawn_bias          = 9;
+server int ja_firemode_chance_bias    = 49;
+server int ja_weapon_drop_chance_bias = 49;
+
+// Doomed Hunter
+server int dHunt_shotgun_spawn_bias = 19;
+server bool dHunt_persistent_spawning = false;
+
+// Plasma Buster
+server int pbuster_cpack_spawn_bias = 19;
+server bool pbuster_persistent_spawning = false;
+
+// Combat Shotgun
+server int cshotgun_shotgun_spawn_bias = 24;
+server bool cshotgun_persistent_spawning = false;
+
+// Sigcow
+server int sigcow_cbox_spawn_bias = 9;
+server bool sigcow_persistent_spawning = false;
+
+// 10mm Pistol
+server int tenpis_handgun_spawn_bias = 19;
+server int tenpismag_cmag_spawn_bias = 19;
+server bool tenpis_persistent_spawning = false;
+server bool tenpismag_persistent_spawning = false;
+
+// Snubnose
+server int snose_pistol_spawn_bias = 19;
+server bool snose_persistent_spawning = false;
+
+// Minerva
+server int minerva_chaingun_spawn_bias = 24;
+server int minerva_smg_spawn_bias = 19;
+server bool minerva_persistent_spawning = false;
+
+// Less Lethal Hunter
+server int llh_shotgun_spawn_bias = 49;
+server int llhs_shell_spawn_bias = 49;
+server int llhs_box_spawn_bias = 49;
+server bool llh_persistent_spawning = false;
+
+// Hacked ZM66
+server int hacked_zm66_spawn_bias = 24;
+server bool hacked_persistent_spawning = false;
+
+// Explosive Shotgun
+server int esg_shotgun_spawn_bias = 49;
+server int esgs_shell_spawn_bias = 49;
+server int esgs_box_spawn_bias = 49;
+server bool esg_persistent_spawning = false;
+
+// Single-Action Revolver
+server int sa_pistol_spawn_bias = 24;
+server bool sa_persistent_spawning = false;
+
+// Gold Single-Action Revolver
+server int gsa_pistol_spawn_bias = 99;
+server bool gsa_persistent_spawning = false;
