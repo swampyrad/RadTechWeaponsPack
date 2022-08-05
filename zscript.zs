@@ -23,7 +23,6 @@ version "4.8"
 // Less-lethal Shotgun
 #include "zscript/Less Lethal Hunter/wep_LLshotgun.zs"
 #include "zscript/Less Lethal Hunter/wep_LLhunter.zs"
-#include "zscript/Less Lethal Hunter/LLShotgunSpawnHandler.zs"
 
 // Juan Pistol
 #include "zscript/Juan Pistol/juan_handler.zs"

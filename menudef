@@ -221,6 +221,35 @@ OptionMenu Minerva
 	SafeCommand "Reset all options", "minerva_reset_cvars"
 }
 
+OptionMenu LessLethalHunter
+{
+    Title "------ Bernoulli M1053 Less-Lethal Shotgun Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Less-Lethal Hunter on Shotguns", "white"
+	Option "Less-Lethal Hunter Spawn Rate: ", "llh_shotgun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Less-Lethal Hunter options", "resetcvar llh_shotgun_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control the spawn rate of Less-Lethal Shells on Shell Boxes", "white"
+	Option "Less-Lethal Shell Spawn Rate: ", "llhs_box_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Less-Lethal Shell options", "resetcvar llhs_box_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control the spawn rate of Less-Lethal Shells on Shells", "white"
+	Option "Less-Lethal Shell Spawn Rate: ", "llhs_shell_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Less-Lethal Shell options", "resetcvar llhs_shell_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "llh_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar llh_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "llh_reset_cvars"
+}
+
 // Adds the other menus to the main Radtech Weapons menu.
 AddOptionMenu "RadTechWeaponry"
 {
@@ -242,6 +271,8 @@ AddOptionMenu "RadTechWeaponry"
 	Submenu "Detective Special Snubnose Revolver", "snose"
 	StaticText ""
 	Submenu "Minerva 9mm Chaingun", "Minerva"
+	StaticText ""
+	Submenu "Bernoulli M1053 Less-Lethal Shotgun", "LessLethalHunter"
 }
 
 // Spawn Bias (for items that do replace)

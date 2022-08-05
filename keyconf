@@ -5,5 +5,6 @@ alias sigcow_reset_cvars "resetcvar sigcow_cbox_spawn_bias; resetcvar sigcow_per
 alias 10pis_reset_cvars "resetcvar tenpis_handgun_spawn_bias; resetcvar tenpismag_cmag_spawn_bias; resetcvar tenpis_persistent_spawning; resetcvar tenpismag_persistent_spawning"
 alias snose_reset_cvars "resetcvar snose_pistol_spawn_bias; resetcvar snose_persistent_spawning"
 alias minerva_reset_cvars "resetcvar minerva_chaingun_spawn_bias; resetcvar minerva_smg_spawn_bias; resetcvar minerva_persistent_spawning"
+alias llh_reset_cvars "resetcvar llh_shotgun_spawn_bias; resetcvar llhs_shell_spawn_bias; resetcvar llhs_box_spawn_bias; llh_persistent_spawning"
 
-alias RTWP_Reset_Cvars "dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars"
+alias RTWP_Reset_Cvars "dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars; llh_reset_cvars"

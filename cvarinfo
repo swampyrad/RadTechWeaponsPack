@@ -54,3 +54,9 @@ server bool snose_persistent_spawning = false;
 server int minerva_chaingun_spawn_bias = 24;
 server int minerva_smg_spawn_bias = 19;
 server bool minerva_persistent_spawning = false;
+
+// Less Lethal Hunter
+server int llh_shotgun_spawn_bias = 49;
+server int llhs_shell_spawn_bias = 49;
+server int llhs_box_spawn_bias = 49;
+server bool llh_persistent_spawning = false;
