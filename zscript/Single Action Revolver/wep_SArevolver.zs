@@ -654,3 +654,10 @@ class SADeinoSpawn:actor{
 		self.Destroy();
 	}
 }
+
+class HDSingleActionRandomDrop:RandomSpawner{
+	default{
+		dropitem "HDPistol",16,5;
+		dropitem "HDSingleActionRevolver",16,1;
+	}
+}

@@ -13,11 +13,9 @@ version "4.8"
 
 // Snubnose Revolver
 #include "zscript/Snubnose Revolver/wep_snubnose.zs"
-#include "zscript/Snubnose Revolver/SnubNose_Spawner.zs"
 
 // Single-action Revolver
 #include "zscript/Single Action Revolver/wep_SArevolver.zs"
-#include "zscript/Single Action Revolver/SingleAction_Spawner.zs"
 
 // Minerva
 #include "zscript/Minerva/wep_minerva.zs"

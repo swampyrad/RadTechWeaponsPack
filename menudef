@@ -175,6 +175,27 @@ OptionMenu 10pis
 	SafeCommand "Reset all options", "10pis_reset_cvars"
 }
 
+OptionMenu Snose
+{
+    Title "------ Detective Special Snubnose Revolver Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "shotgun spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Snubnose Revolver on handguns", "white"
+	Option "Snubnose Spawn Rate: ", "snose_pistol_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Snubnose options", "resetcvar snose_pistol_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "snose_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar snose_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "snose_reset_cvars"
+}
+
 // Adds the other menus to the main Radtech Weapons menu.
 AddOptionMenu "RadTechWeaponry"
 {

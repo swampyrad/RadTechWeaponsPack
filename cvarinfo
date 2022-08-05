@@ -45,3 +45,7 @@ server int tenpis_handgun_spawn_bias = 19;
 server int tenpismag_cmag_spawn_bias = 19;
 server bool tenpis_persistent_spawning = false;
 server bool tenpismag_persistent_spawning = false;
+
+// Snubnose
+server int snose_pistol_spawn_bias = 19;
+server bool snose_persistent_spawning = false;
