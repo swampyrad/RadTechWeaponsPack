@@ -1,7 +1,7 @@
 // This is the main option menu that'll have all of the other menus for the weaponry.
 OptionMenu RadTechWeaponry
 {
-    Title "------ RadTech Weapons Pack ------"
+    Title "RadTech Weapons Pack"
 }
 
 // This adds it to options so we don't have multiple option menus in the main options menu.
@@ -37,6 +37,12 @@ OptionMenu FlareGuns
     StaticText  "Control the spawn rate of flare boxes.", "white"
 	Option "Box Spawn Rate:", "fl_box_spawn_bias", "DropBias"
 	SafeCommand "Reset box. options", "resetcvar fl_box_spawn_bias"
+	StaticText ""
+	StaticText "--- Lore ---", "yellow"
+	StaticText ""
+	StaticText "A common survival tool, useful for lighting up dark areas, or the occasional zombie or two.", "white"
+	StaticText "It can also fire buckshot shells, but at a price.", "white"
+	StaticText "Metallic versions exist to aide with this issue, though are much heavier.", "white"
 }
 
 OptionMenu Juan9mm
@@ -64,6 +70,12 @@ OptionMenu Juan9mm
     StaticText  "Control the spawn rate of 'Juan' magazines.", "white"
 	Option "Mag Spawn Rate:", "ja_mag_spawn_bias", "SpawnBias"
 	SafeCommand "Reset mag. options", "resetcvar ja_mag_spawn_bias"
+	StaticText ""
+	StaticText "--- Lore ---", "green"
+	StaticText ""
+	StaticText "A variant of the standard-issue pistol, albeit with a non-standard 'horseshoe' magazine.", "white"
+	StaticText "As the name suggests, it uses a unique 'horseshoe' magazine that holds 30 9x22 Parumpudicum rounds, similarly to the SMG.", "white"
+	StaticText "However, it's small size makes it incredibly difficult to control in full-auto, instead leaving users to use a 'galloping' shooting pattern to stay on target.", "white"
 }
 
 OptionMenu DoomedHunter
@@ -83,8 +95,13 @@ OptionMenu DoomedHunter
 	SafeCommand "Reset persistence options", "resetcvar dHunt_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Green"
+	StaticText "Reset Options", "Red"
 	SafeCommand "Reset all options", "dHunt_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Red"
+	StaticText ""
+	StaticText "An older modelled and decrepit Hunter that's lost it's ease of pumping over the years.", "white"
+	StaticText "These older Hunters came with Duckbill Chokes to control their spread to a 'V' shape.", "white"
 }
 
 OptionMenu PlasmaBuster
@@ -104,8 +121,17 @@ OptionMenu PlasmaBuster
 	SafeCommand "Reset persistence options", "resetcvar pbuster_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Green"
+	StaticText "Reset Options", "Cyan"
 	SafeCommand "Reset all options", "pbuster_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Cyan"
+	StaticText ""
+	StaticText "A revised version of the 'Thunder Buster' particle beam gun.", "white"
+	StaticText "After receiving a disturbing number of incident reports involing self-detonations caused by careless use,", "white"
+	StaticText "The UAC tasked a junior researcher to find an issue to this problem and invented the DM-93.", "white"
+	StaticText "He tweaked the Ion Emitter so the plasma particles are contained in an electromagnetic field which holds the blast together until impact with a target.", "white"
+	StaticText "This plasma has a much smaller, albeit safer, blast radius, so direct contact is required to cause maximum damage.", "white"
+	StaticText "Automatic Fire emits an accurate stream of these projectiles, while the newly added Burst mode shoots out a spread of many shots, similar to a shotgun.", "white"
 }
 
 OptionMenu CombatShotgun
@@ -127,6 +153,12 @@ OptionMenu CombatShotgun
    	StaticText ""
 	StaticText "Reset Options", "Green"
 	SafeCommand "Reset all options", "cshotgun_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "A compact shotgun often seen in the hands of space marines throughout the galaxy.", "white"
+	StaticText "Despite having no side saddles, or a butt stock to attach them to, in the right hands it's still as deadly as any other shotgun.", "white"
+	StaticText "toss one in your pack the next time you leave HQ, it may become very handy.", "white"
 }
 
 OptionMenu Sigcow
@@ -146,8 +178,13 @@ OptionMenu Sigcow
 	SafeCommand "Reset persistence options", "resetcvar sigcow_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Green"
+	StaticText "Reset Options", "Orange"
 	SafeCommand "Reset all options", "sigcow_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Orange"
+	StaticText ""
+	StaticText "A pistol-caliber carbine chambered in 10mm Auto and the trusted weapon of the UAC's Light Drop Infantry division.", "white"
+	StaticText "Includes a bayonet attachment for ease of use in close-quarters combat.", "white"
 }
 
 OptionMenu 10pis
@@ -173,6 +210,11 @@ OptionMenu 10pis
    	StaticText ""
 	StaticText "Reset Options", "Green"
 	SafeCommand "Reset all options", "10pis_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "A handgun release in the late 80s, adopted by the FBI following the aftermath of a tragic shooting incident.", "white"
+	StaticText "This pistol offers much better penetration and higher muzzle velocity than either 9x22mm Parumpudicum or .355 firearms, but is much more difficult to control.", "white"
 }
 
 OptionMenu Snose
@@ -194,6 +236,12 @@ OptionMenu Snose
    	StaticText ""
 	StaticText "Reset Options", "Green"
 	SafeCommand "Reset all options", "snose_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "A sidearm once popular with police nad private investigators of the past.", "white"
+	StaticText "This revolver's smaller stature fits much better in your pocket,", "white"
+	StaticText "Though the smaller barrel cuts down your accuracy and firepower.", "white"
 }
 
 OptionMenu Minerva
@@ -217,8 +265,15 @@ OptionMenu Minerva
 	SafeCommand "Reset persistence options", "resetcvar minerva_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Green"
+	StaticText "Reset Options", "Orange"
 	SafeCommand "Reset all options", "minerva_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Orange"
+	StaticText ""
+	StaticText "A support weapon chambered in 9x22 Parumpudicum,", "white"
+	StaticText "And later modified to use UAC standard SMG Magazines.", "white"
+	StaticText "It can hold a maximum of 150+5 rounds at a time.", "white"
+	StaticText "Just remember to keep your empty mags.", "white"
 }
 
 OptionMenu LessLethalHunter
@@ -246,8 +301,14 @@ OptionMenu LessLethalHunter
 	SafeCommand "Reset persistence options", "resetcvar llh_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Green"
+	StaticText "Reset Options", "Red"
 	SafeCommand "Reset all options", "llh_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Red"
+	StaticText ""
+	StaticText "A polymer-based shotgun designed for riot control and crowd dispersion.", "white"
+	StaticText "Chambered only for the use of less-lethal shells, which contain a load of rubberized buckshot pellets.", "white"
+	StaticText "Useful for situations where maintaining a low fatality count is crucial.", "white"
 }
 
 OptionMenu HackedZM66
@@ -267,8 +328,14 @@ OptionMenu HackedZM66
 	SafeCommand "Reset persistence options", "resetcvar hacked_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Green"
+	StaticText "Reset Options", "Orange"
 	SafeCommand "Reset all options", "hzm_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Orange"
+	StaticText ""
+	StaticText "A 'jailbroken' model of the Volt Zm66 Assault Rifle, this weapon has been stripped of most of it's less desireable features.", "white"
+	StaticText "This is mostly relating to it's magazine DRM system, though at the cost of a reduce firerate and non-functional ammo counter.", "white"
+	StaticText "Mainly of these models come with a 4 round 'Quad Burst' firemode.", "white"
 }
 
 OptionMenu ExplosiveHunter
@@ -296,8 +363,14 @@ OptionMenu ExplosiveHunter
 	SafeCommand "Reset persistence options", "resetcvar esg_persistent_spawning"
  	StaticText ""
    	StaticText ""
-	StaticText "Reset Options", "Green"
+	StaticText "Reset Options", "Red"
 	SafeCommand "Reset all options", "esg_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Red"
+	StaticText ""
+	StaticText "The antithesis of the Bernoulli M1053, this modified hunter fires slugs loaded with miniature HE grenades.", "white"
+	StaticText "These slugs cause immense injuries and burns on impact.", "white"
+	StaticText "Use of this weapon in close-quarters is ill-advised if you care about your limbs.", "white"
 }
 
 OptionMenu SingleActionRevolver
@@ -319,6 +392,12 @@ OptionMenu SingleActionRevolver
    	StaticText ""
 	StaticText "Reset Options", "Green"
 	SafeCommand "Reset all options", "sa_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "An ancient firearm better suited for a gunslinger than a space marine.", "white"
+	StaticText "Chambered in .45 Long Colt, this revolver will definitely punch a hole into whatever it hits.", "white"
+	StaticText "With how old these rounds are, they have a good chancen to richochet off walls to perform trickshots.", "white"
 }
 
 OptionMenu GoldSingleActionRevolver
@@ -340,39 +419,55 @@ OptionMenu GoldSingleActionRevolver
    	StaticText ""
 	StaticText "Reset Options", "Green"
 	SafeCommand "Reset all options", "gsa_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "A special golden version of the Single-Action Revolver.", "white"
+	StaticText "Not much is known about it due to their immense rarity.", "White"
+	StaticText "...Though those who have found one talk highly about it's power.", "white"
 }
 
 // Adds the other menus to the main Radtech Weapons menu.
 AddOptionMenu "RadTechWeaponry"
 {
     StaticText ""
-    Submenu "Flare Guns", "flareguns"
-    StaticText ""
-    Submenu "Juan 9mm Horseshoe Pistol", "Juan9mm"
-    StaticText ""
-    Submenu "Doomed Hunter", "DoomedHunter"
-    StaticText ""
-    Submenu "DM-93 Plasma Buster", "PlasmaBuster"
-    StaticText ""
-    Submenu "Ithaca M37 Combat Shotgun", "CombatShotgun"
-    StaticText ""
+	StaticText "--- Rifles & PCCs ---", "orange"
+	StaticText ""
     Submenu "M-211 Sigcow", "Sigcow"
-    StaticText ""
-    Submenu "Delta Elite 10mm Pistol", "10pis"
-	StaticText ""
-	Submenu "Detective Special Snubnose Revolver", "snose"
-	StaticText ""
-	Submenu "Minerva 9mm Chaingun", "Minerva"
-	StaticText ""
-	Submenu "Bernoulli M1053 Less-Lethal Shotgun", "LessLethalHunter"
 	StaticText ""
 	Submenu "Hacked ZM66 Assault Rifle", "HackedZM66"
 	StaticText ""
+	Submenu "Minerva 9mm Chaingun", "Minerva"
+	StaticText ""
+	StaticText "--- Shotguns --", "red"
+    StaticText ""
+    Submenu "Doomed Hunter", "DoomedHunter"
+    StaticText ""
+    Submenu "Ithaca M37 Combat Shotgun", "CombatShotgun"
+	StaticText ""
 	Submenu "Explosive Shotgun", "ExplosiveHunter"
+	StaticText ""
+	Submenu "Bernoulli M1053 Less-Lethal Shotgun", "LessLethalHunter"
+	StaticText ""
+	StaticText "--- Pistols ---", "green"
 	StaticText ""
 	Submenu "Single-Action Revolver", "SingleActionRevolver"
 	StaticText ""
 	Submenu "Golden Single-Action Revolver", "GoldSingleActionRevolver"
+    StaticText ""
+    Submenu "Juan 9mm Horseshoe Pistol", "Juan9mm"
+    StaticText ""
+    Submenu "Delta Elite 10mm Pistol", "10pis"
+	StaticText ""
+	Submenu "Detective Special Snubnose Revolver", "snose"
+    StaticText ""
+	StaticText "--- Energy Weapons ---", "cyan"
+	StaticText ""
+    Submenu "DM-93 Plasma Buster", "PlasmaBuster"
+	StaticText ""
+	StaticText "--- Utility ---", "yellow"
+	StaticText ""
+    Submenu "Flare Guns", "flareguns"
 }
 
 // Spawn Bias (for items that do replace)

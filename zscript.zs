@@ -25,9 +25,9 @@ version "4.8"
 #include "zscript/Less Lethal Hunter/wep_LLhunter.zs"
 
 // Juan Pistol
-#include "zscript/Juan Pistol/juan_handler.zs"
-#include "zscript/Juan Pistol/mag_9mmhorseshoe.zs"
-#include "zscript/Juan Pistol/wep_juan.zs"
+#include "zscript/Juan 9mm Pistol/juan_handler.zs"
+#include "zscript/Juan 9mm Pistol/mag_9mmhorseshoe.zs"
+#include "zscript/Juan 9mm Pistol/wep_juan.zs"
 
 // Flare guns
 #include "zscript/Flare guns/proj_hdflareball.zs"
