@@ -872,3 +872,79 @@ override void worldthingspawned(worldevent e)
 	}
 	}
 }
+
+class SingleActionHandler : EventHandler
+{
+	private bool cvarsAvailable;
+	private int spawnBiasSA;
+    private bool isPersistent;
+	void init()
+	{
+		cvarsAvailable = true;
+		spawnBiasSA = sa_pistol_spawn_bias;
+		isPersistent = sa_persistent_spawning;
+	}
+
+	override void WorldLoaded(WorldEvent e)
+	{
+		init();
+		super.WorldLoaded(e);
+	}
+
+	bool giverandom(int chance)
+	{
+		bool result = false;
+		int iii = random(0, chance);
+		if(iii < 0)
+			iii = 0;
+		if (iii == 0)
+		{
+			if(chance > -1)
+				result = true;
+		}	
+		return result;
+	}
+	void trycreatesarev(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = HDSingleActionRandomDrop(e.thing.Spawn("HDSingleActionRandomDrop", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{		
+				e.thing.destroy();
+			}
+		}
+	}
+	void trycreatesa(worldevent e, int chance)
+	{
+		if(giverandom(chance))
+		{
+			let sss = SADeinoSpawn(e.thing.Spawn("SADeinoSpawn", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(sss)
+			{		
+				e.thing.destroy();
+			}
+		}
+	}
+override void worldthingspawned(worldevent e)
+  {
+	if(!cvarsAvailable)
+		init();
+	if(!e.Thing)
+	{
+		return;
+	}
+	if (!(level.maptime > 1) || isPersistent)
+	{
+		switch(e.Thing.GetClassName())
+		{
+			case 'DeinoSpawn':
+				trycreatesa(e, spawnBiasSA);
+				break;
+			case 'HDHandgunRandomDrop':
+				trycreatesarev(e, spawnBiasSA);
+				break;
+		}
+	}
+	}
+}

@@ -300,6 +300,27 @@ OptionMenu ExplosiveHunter
 	SafeCommand "Reset all options", "esg_reset_cvars"
 }
 
+OptionMenu SingleActionRevolver
+{
+    Title "------ Single-Action Revolver Options ------"
+   	StaticText "Notice:", 1
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", 1
+    StaticText  "Control the spawn rate of the Single-Action on Pistols", "white"
+	Option "Single-Action Spawn Rate: ", "sa_pistol_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Single-Action options", "resetcvar sa_pistol_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "sa_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar sa_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "sa_reset_cvars"
+}
+
 // Adds the other menus to the main Radtech Weapons menu.
 AddOptionMenu "RadTechWeaponry"
 {
@@ -327,6 +348,8 @@ AddOptionMenu "RadTechWeaponry"
 	Submenu "Hacked ZM66 Assault Rifle", "HackedZM66"
 	StaticText ""
 	Submenu "Explosive Shotgun", "ExplosiveHunter"
+	StaticText ""
+	Submenu "Single-Action Revolver", "SingleActionRevolver"
 }
 
 // Spawn Bias (for items that do replace)

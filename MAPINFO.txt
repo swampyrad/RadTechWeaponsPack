@@ -9,7 +9,7 @@ GameInfo
 // Rifle & PCC
     AddEventHandlers = "SigcowHandler", "MinervaHandler", "HackedZMHandler"
 // Pistols
-    AddEventHandlers = "TenMilPistolHandler", "JuanEvent", "SnubnoseHandler"
+    AddEventHandlers = "TenMilPistolHandler", "JuanEvent", "SnubnoseHandler", "SingleActionHandler"
 // Misc
     AddEventHandlers = "FlareEvent"
 }

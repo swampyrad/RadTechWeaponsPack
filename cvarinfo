@@ -70,3 +70,7 @@ server int esg_shotgun_spawn_bias = 49;
 server int esgs_shell_spawn_bias = 49;
 server int esgs_box_spawn_bias = 49;
 server bool esg_persistent_spawning = false;
+
+// Single-Action Revolver
+server int sa_pistol_spawn_bias = 24;
+server bool sa_persistent_spawning = false;
