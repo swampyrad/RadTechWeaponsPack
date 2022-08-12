@@ -123,32 +123,10 @@ class PlasmaBuster:HDCellWeapon{
 		return 145+(weaponstatus[1]>=0?ENC_BATTERY_LOADED:0);
 	}
 
-	override string,double getpickupsprite(){return "PLASA0",1.;}
+  override string,double getpickupsprite(){return "PLASA0",1.;}
 
-/*
-	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
-		if(sb.hudlevel==1){
-			sb.drawbattery(-54,-4,sb.DI_SCREEN_CENTER_BOTTOM,reloadorder:true);
-			sb.drawnum(hpl.countinv("HDBattery"),-46,-8,sb.DI_SCREEN_CENTER_BOTTOM);
-		}
-		if(hdw.weaponstatus[0]&TBF_ALT){
-			sb.drawimage(
-				"STBURAUT",(-28,-10),
-				sb.DI_SCREEN_CENTER_BOTTOM|sb.DI_TRANSLATABLE|sb.DI_ITEM_RIGHT
-			);
-			sb.drawnum(int(2000/HDCONST_ONEMETRE),-16,-17,sb.DI_SCREEN_CENTER_BOTTOM,font.CR_GRAY);
-		}else sb.drawnum(hdw.weaponstatus[TBS_MAXRANGEDISPLAY],-16,-17,sb.DI_SCREEN_CENTER_BOTTOM,font.CR_GRAY);
-		int bat=hdw.weaponstatus[TBS_BATTERY];
-		if(bat>0)sb.drawwepnum(bat,20);
-		else if(!bat)sb.drawstring(
-			sb.mamountfont,"00000",
-			(-16,-9),sb.DI_TEXT_ALIGN_RIGHT|sb.DI_TRANSLATABLE|sb.DI_SCREEN_CENTER_BOTTOM,
-			Font.CR_DARKGRAY
-		);
-	}
-*/
 
-override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
+  override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
 			sb.drawbattery(-54,-4,sb.DI_SCREEN_CENTER_BOTTOM,reloadorder:true);
 			sb.drawnum(hpl.countinv("HDBattery"),-46,-8,sb.DI_SCREEN_CENTER_BOTTOM);
@@ -162,8 +140,8 @@ override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 
 	override string gethelptext(){
 		return
-		WEPHELP_FIRE.."  Auto-fire\n"
-  ..WEPHELP_ALTFIRE.."  Burst-fire\n"
+		  WEPHELP_FIRE.."  Auto-fire\n"
+   ..WEPHELP_ALTFIRE.."  Burst-fire\n"
 		..WEPHELP_RELOADRELOAD
 		..WEPHELP_UNLOADUNLOAD
 		;
@@ -193,11 +171,6 @@ override void DrawSightPicture(
 	}
 
 
-
-	
-
-
-
 	override void failedpickupunload(){
 		failedpickupunloadmag(TBS_BATTERY,"HDBattery");
 	}
@@ -207,152 +180,37 @@ override void DrawSightPicture(
 	}
 
 
-	static void PlasmaZap(
-		actor caller,
-		double zoffset=32,
-		bool alt=false,
-		int battery=20
-	){
-		//determine angle
-		double shootangle=caller.angle;
-		double shootpitch=caller.pitch;
-		let hdp=hdplayerpawn(caller);
-		if(hdp&&hdp.scopecamera){
-			shootangle=hdp.scopecamera.angle;
-			shootpitch=hdp.scopecamera.pitch;
-		}
-		if(alt){
-			shootangle+=frandom(-1.2,1.2);
-			shootpitch+=frandom(-1.3,1.1);
-		}
 
-		//create the line
-		flinetracedata tlt;
-		caller.linetrace(
-			shootangle,
-			8000+200*battery,
-			shootpitch,
-			flags:TRF_NOSKY,
-			offsetz:zoffset,
-			data:tlt
-		);
-		if(
-			tlt.hittype==Trace_HitNone
-			||(
-				tlt.hitline&&(
-					tlt.hitline.special==Line_Horizon
-					||(
-						tlt.linepart==2
-						&&tlt.hitsector.gettexture(0)==skyflatnum
-					)||(
-						tlt.linepart==1
-						&&tlt.hitline.sidedef[1]
-						&&hdmath.oppositesector(tlt.hitline,tlt.hitsector).gettexture(0)==skyflatnum
-					)
-				)
-			)
-		)return;
-
-		//alt does a totally different thing
-		if(alt){
-			if(tlt.hittype==Trace_HitNone||tlt.distance>2000)return;
-			actor bbb=spawn("BeamSpotFlash",tlt.hitlocation-tlt.hitdir,ALLOW_REPLACE);
-			if(!random(0,3))(lingeringthunder.zap(bbb,bbb,caller,40,true));
-			beamspotflash(bbb).impactdistance=tlt.distance-16*battery;
-			bbb.angle=caller.angle;
-			bbb.A_SprayDecal("Scorch",12);
-			bbb.pitch=caller.pitch;
-			bbb.target=caller;
-			bbb.tracer=tlt.hitactor; //damage inflicted on the puff's end
-			return;
-		}
-
-		int basedmg=int(max(0,20-tlt.distance*(1./50.)));
-		int dmgflags=caller&&caller.player?DMG_PLAYERATTACK:0; //don't know why the player damagemobj doesn't work
-
-		//wet actor
-		if(tlt.hitactor){
-			actor hitactor=tlt.hitactor;
-			if(hitactor.bloodtype=="ShieldNotBlood"){
-				hitactor.damagemobj(null,caller,random(1,(battery<<2)),"Balefire",dmgflags);
-			}else if(
-				hitactor.bnodamage
-				||(hitactor.bnoblood&&!random(0,3))
-				||hitactor.bloodtype=="NotQuiteBloodSplat"
-				||hitactor.countinv("ImmunityToFire")
-				||!random(0,7)
-				||HDWoundFixer.CheckCovered(hitactor,true)
-			){
-				//dry actor - ping damage and continue
-				if(!random(0,5))(lingeringthunder.zap(hitactor,hitactor,caller,40,true));
-				hdf.give(hitactor,"Heat",(basedmg>>1));
-				hitactor.damagemobj(null,caller,1,"electrical",dmgflags);
-			}else{
-				//wet actor
-				if(!random(0,7))(lingeringthunder.zap(hitactor,hitactor,caller,(basedmg<<1),true));
-				hdf.give(hitactor,"Heat",(basedmg<<1));
-				hitactor.damagemobj(null,caller,basedmg,"electrical",dmgflags);
-				actor sss=spawn("HDGunsmoke",tlt.hitlocation,ALLOW_REPLACE);
-				sss.vel=(0,0,1)-tlt.hitdir;
-				return;
-			}
-		}
-		//where where the magic happens happens
-		actor bbb=spawn("BeamSpot",tlt.hitlocation-tlt.hitdir,ALLOW_REPLACE);
-		bbb.target=caller;
-		bbb.stamina=basedmg;
-		bbb.angle=caller.angle;
-		bbb.pitch=caller.pitch;
-	}
-	action void A_PlasmaZap(){
-		if(invoker.weaponstatus[TBS_HEAT]>20)return;
-		int battery=invoker.weaponstatus[TBS_BATTERY];
-		if(battery<1){
-			setweaponstate("nope");
-			return;
-		}
-
-		//preliminary effects
-		A_ZoomRecoil(0.99);
-		A_StartSound("weapons/plasidle");
-		if(countinv("IsMoving")>9)A_MuzzleClimb(frandom(-0.8,0.8),frandom(-0.8,0.8));
-
-		//the actual call
-		PlasmaBuster.PlasmaZap(
-			self,
-			gunheight(),
-			invoker.weaponstatus[0]&TBF_ALT,
-			battery
-		);
-
-		//aftereffects
-		if(invoker.weaponstatus[0]&TBF_ALT){
-			if(!random(0,4))invoker.weaponstatus[TBS_BATTERY]--;
-			A_MuzzleClimb(
-				frandom(0.05,0.2),frandom(-0.2,-0.4),
-				frandom(0.1,0.3),frandom(-0.2,-0.6),
-				frandom(0.04,0.12),frandom(-0.1,-0.3),
-				frandom(0.01,0.03),frandom(-0.1,-0.2)
-			);
-			invoker.weaponstatus[TBS_HEAT]+=6;
-		}else if(!random(0,6))invoker.weaponstatus[TBS_BATTERY]--;
-		invoker.weaponstatus[TBS_HEAT]+=random(0,3);
-
-		//update range thingy
-		invoker.weaponstatus[TBS_MAXRANGEDISPLAY]=int(
-			(battery>0?battery*200+8000:0)/HDCONST_ONEMETRE
-		);
-	}
-
+	
 action void FirePlasmaBall(){
-  A_SpawnProjectile("PlasmaFoof",(11+hdplayerpawn(self).height/2)*hdplayerpawn(self).heightmult,0, frandom(-1,1), CMF_AIMDIRECTION, pitch+frandom(-2,1.8));
+
+
+  A_SpawnProjectile(
+    "PlasmaFoof",    // projectile type
+    gunheight(),     // spawn height
+    0,               // ???
+    frandom(0.5,0.5),           // spawn angle 
+    CMF_AIMDIRECTION,// spawn origin ?
+    pitch+frandom(-0.5,0.5)    // spawn pitch
+  );
+
   A_AlertMonsters(400);
   }
 
 action void FirePlasmaBallBurst(){
-  A_SpawnProjectile("PlasmaFoof",(11+hdplayerpawn(self).height/2)*hdplayerpawn(self).heightmult,0, frandom(-5,5), CMF_AIMDIRECTION, pitch+frandom(-3,3));
+
+  A_SpawnProjectile(
+    "PlasmaFoof",
+    gunheight(),
+    0, 
+    frandom(-1,1), 
+    CMF_AIMDIRECTION, 
+    pitch+frandom(-3,3)
+  );
+
   A_AlertMonsters(400);
   }
+
 
 	states{
 	ready:
@@ -373,16 +231,13 @@ action void FirePlasmaBallBurst(){
 		goto nope;
 	shoot:
   #### A 0 {A_GunFlash();
-            A_StartSound("weapons/plasmaf");}//zappy noises
+            A_StartSound("weapons/plasmaf");}
+            //zappy noises
   #### A 1 bright FirePlasmaBall();
                     //this makes zappy balls fly out
   #### A 0 {
 		//aftereffects
-		if(invoker.weaponstatus[0]&TBF_ALT){
-			if(!random(0,5))invoker.weaponstatus[TBS_BATTERY]--;
-			invoker.weaponstatus[TBS_HEAT]+=6;
-		}else if(!random(0,9))invoker.weaponstatus[TBS_BATTERY]--;
-		invoker.weaponstatus[TBS_HEAT]+=random(0,3);
+	 if(!random(0,9))invoker.weaponstatus[TBS_BATTERY]--;
 }
 //this uses up battery charge
 
@@ -420,11 +275,6 @@ action void FirePlasmaBallBurst(){
 		goto nope;
 	altshoot:
 
-/*
-
-		#### A 1 offset(1,33) A_ThunderZap();//haha, teebee goes zap zap .')
-
-*/
   #### A 0 A_GunFlash();
   #### AAAAA 1 bright {
     FirePlasmaBallBurst(); 
@@ -433,13 +283,9 @@ action void FirePlasmaBallBurst(){
     }
   #### A 0 {
 		//aftereffects
-		if(invoker.weaponstatus[0]&TBF_ALT){
-			if(!random(0,2))invoker.weaponstatus[TBS_BATTERY]--;
-			invoker.weaponstatus[TBS_HEAT]+=30;
-		}else if(!random(0,4))invoker.weaponstatus[TBS_BATTERY]--;
-		invoker.weaponstatus[TBS_HEAT]+=random(24,30);
-}
-//this uses up more battery charge
+			if(!random(0,3))invoker.weaponstatus[TBS_BATTERY]--;
+  }
+  //burst fire uses up battery charge faster
 
 		#### A 1 offset(0,34) A_WeaponReady(WRF_NONE);
 		#### A 1 offset(-1,33) A_WeaponReady(WRF_NONE);
