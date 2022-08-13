@@ -39,15 +39,15 @@ class PlasmaFoof:HDFireball{
 				){
 					A_Face(zit,0,0,flags:FAF_MIDDLE);
 					ZapArc(self,zit,ARC2_RANDOMDEST);
-      zit.damagemobj(self,tb,random(0,2),"thermal");
-					zit.damagemobj(self,tb,random(0,5),"electrical");//less spark damage
+      zit.damagemobj(self,tb,random(0,1),"thermal");
+					zit.damagemobj(self,tb,random(0,1),"electrical");//less spark damage
 					didzap=true;
 					break;
 				}
 			}
 		}
 		if(!zit||zit==tb){pitch=frandom(-90,90);angle=frandom(0,360);}
-		if(!didzap)ZapArc(self,null,ARC2_SILENT,radius:32,height:32,pvel:vel);
+		if(!didzap)ZapArc(self,null,ARC2_SILENT,radius:16,height:16,pvel:vel);
 
 		A_FaceTracer(4,4);
 
@@ -67,6 +67,7 @@ class PlasmaFoof:HDFireball{
 	}
 	states{
 	spawn:
+  PLSS A 0 A_AlertMonsters(400);
   PLSS AB 2;
   zap:
 		PLSS A 0 ZapPlasma();
@@ -75,6 +76,7 @@ class PlasmaFoof:HDFireball{
 	death:
 		PLSS A 0 A_SprayDecal("CacoScorch",radius*1.5);
 		PLSS A 0 A_StartSound("weapons/plasmax",5);
+   PLSS A 0 A_AlertMonsters(400);
    PLSS A 0 A_HDBlast(
 			immolateradius:32,
     immolateamount:random(8,15),
@@ -88,6 +90,8 @@ class PlasmaFoof:HDFireball{
 		loop;
 	}
 }
+
+
 
 class PlasmaBuster:HDCellWeapon{
 	default{
@@ -180,38 +184,6 @@ override void DrawSightPicture(
 	}
 
 
-
-	
-action void FirePlasmaBall(){
-
-
-  A_SpawnProjectile(
-    "PlasmaFoof",    // projectile type
-    gunheight(),     // spawn height
-    0,               // ???
-    frandom(0.5,0.5),           // spawn angle 
-    CMF_AIMDIRECTION,// spawn origin ?
-    pitch+frandom(-0.5,0.5)    // spawn pitch
-  );
-
-  A_AlertMonsters(400);
-  }
-
-action void FirePlasmaBallBurst(){
-
-  A_SpawnProjectile(
-    "PlasmaFoof",
-    gunheight(),
-    0, 
-    frandom(-1,1), 
-    CMF_AIMDIRECTION, 
-    pitch+frandom(-3,3)
-  );
-
-  A_AlertMonsters(400);
-  }
-
-
 	states{
 	ready:
 		PLSG A 1{
@@ -233,10 +205,11 @@ action void FirePlasmaBallBurst(){
   #### A 0 {A_GunFlash();
             A_StartSound("weapons/plasmaf");}
             //zappy noises
-  #### A 1 bright FirePlasmaBall();
+  #### A 1 bright A_EjectCasing("PlasmaFoof",frandom(-1,1),(30,0,0),(20,0,-5));
                     //this makes zappy balls fly out
   #### A 0 {
 		//aftereffects
+    A_MuzzleClimb(-frandom(0.4,0.8),-frandom(0.4,0.8));
 	 if(!random(0,9))invoker.weaponstatus[TBS_BATTERY]--;
 }
 //this uses up battery charge
@@ -277,9 +250,9 @@ action void FirePlasmaBallBurst(){
 
   #### A 0 A_GunFlash();
   #### AAAAA 1 bright {
-    FirePlasmaBallBurst(); 
+    A_EjectCasing("PlasmaFoof",frandom(-3,3),(30,0,0),(20,0,-5));
     A_StartSound("weapons/plasmaf");//zappy noises
-    
+    A_MuzzleClimb(-frandom(0.8,1.6),-frandom(0.8,1.6));
     }
   #### A 0 {
 		//aftereffects
@@ -305,23 +278,7 @@ action void FirePlasmaBallBurst(){
 
 	firemode:
   goto nope;
-  /*
-		#### B 1 offset(1,32) A_WeaponBusy();
-		#### B 2 offset(2,32);
-		#### B 1 offset(1,33) A_StartSound("weapons/plasswitch",8);
-		#### B 2 offset(0,34);
-		#### B 3 offset(-1,35);
-		#### B 4 offset(-1,36);
-		#### B 3 offset(-1,35);
-		#### B 2 offset(0,34){
-			invoker.weaponstatus[0]^=TBF_ALT;
-			A_SetHelpText();
-		}
-		#### A 1;
-		#### A 1 offset(0,34);
-		#### A 1 offset(1,33);
-		goto nope;
-*/
+  
 	select0:
 		PLSG A 0{
 			invoker.weaponstatus[TBS_MAXRANGEDISPLAY]=int(
