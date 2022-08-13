@@ -9,21 +9,21 @@ class PlasmaFoof:HDFireball{
 		gravity 0;
 		decal "BulletScratch";
   damagetype "cold";
-		damagefunction(random(20,40));
+		damagefunction(random(10,20));
 		//hdfireball.firefatigue int(HDCONST_MAXFIREFATIGUE*0.25);
 	}
 	void ZapPlasma(){
 		roll=frandom(0,360);
 		A_StartSound("misc/arczap",CHAN_BODY);
   HDMobAI.Frighten(self,512);//oh no, a ball of sparkly hot death, run away !!!
-		blockthingsiterator it=blockthingsiterator.create(self,72);
+		blockthingsiterator it=blockthingsiterator.create(self,32);
 		actor tb=target;
 		actor zit=null;
 		bool didzap=false;
 		while(it.next()){
 			if(
 				it.thing.bshootable
-				&&abs(it.thing.pos.z-pos.z)<72
+				&&abs(it.thing.pos.z-pos.z)<32
 			){
 				zit=it.thing;
 				if(
@@ -39,7 +39,7 @@ class PlasmaFoof:HDFireball{
 				){
 					A_Face(zit,0,0,flags:FAF_MIDDLE);
 					ZapArc(self,zit,ARC2_RANDOMDEST);
-      zit.damagemobj(self,tb,random(0,1),"thermal");
+      //zit.damagemobj(self,tb,random(0,1),"thermal");
 					zit.damagemobj(self,tb,random(0,1),"electrical");//less spark damage
 					didzap=true;
 					break;
@@ -47,7 +47,7 @@ class PlasmaFoof:HDFireball{
 			}
 		}
 		if(!zit||zit==tb){pitch=frandom(-90,90);angle=frandom(0,360);}
-		if(!didzap)ZapArc(self,null,ARC2_SILENT,radius:16,height:16,pvel:vel);
+		if(!didzap)ZapArc(self,null,ARC2_SILENT,radius:8,height:8,pvel:vel);
 
 		A_FaceTracer(4,4);
 
@@ -86,7 +86,7 @@ class PlasmaFoof:HDFireball{
 		PLSE ABCDE 3 light("BAKAPOST1") ZapPlasma();
 	death2:
 		PLSE E 0 ZapPlasma();
-		PLSE E 3 light("PLAZMABX2") A_FadeOut(0.3);
+		PLSE E 2 light("PLAZMABX2") A_FadeOut(0.3);
 		loop;
 	}
 }
