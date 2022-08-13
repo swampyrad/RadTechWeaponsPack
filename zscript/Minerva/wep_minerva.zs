@@ -293,7 +293,7 @@ override void postbeginplay(){
 			}
 
 			if(invoker.weaponstatus[MNVS_CHAMBER1])
-				A_EjectCasing("HDSpent9mm",-frandom(89,92),(frandom(6,7),0,0),(13,0,0));
+				A_EjectCasing("HDSpent9mm",-frandom(89,92),(frandom(7,9),0,0),(13,0,-10));
 			VulcShoot();
 			VulcNextRound();
 		}
