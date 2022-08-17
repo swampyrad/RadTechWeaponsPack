@@ -55,7 +55,7 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 		invoker.shotpower=shotpower;
 	}
 
-	override string,double getpickupsprite(bool usespare){return "CTSGA0";}
+	override string,double getpickupsprite(bool usespare){return "CTSG"..getpickupframe(usespare).."0",1.;}
 
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
@@ -208,6 +208,12 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 		}
 		return true;
 	}
+
+
+clearscope string getpickupframe(bool usespare){
+		return "A";
+	}
+
 	states{
 	select0:
 		IM37 A 0;
@@ -532,6 +538,7 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 	spawn:
 	 CTSG A -1;
 	}
+
 	override void InitializeWepStats(bool idfa){
 		weaponstatus[HUNTS_CHAMBER]=2;
 		if(!idfa){
