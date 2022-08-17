@@ -10,6 +10,14 @@ offset 23,12
 patch CTSGA0,0,0{}
 }
 
+//"empty sidesaddle" pickup sprite 
+  //bandaid fix to account for 
+  //buggy pickupsprite logic
+  //i dunno how to fix :P
+
+sprite CTSGG0, 46,12{
+offset 23,12
+patch CTSGA0,0,0{}
 
 //weapon sprites
 
