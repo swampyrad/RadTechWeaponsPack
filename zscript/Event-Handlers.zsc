@@ -1,22 +1,29 @@
 // Handles the Combat Shotgun's spawns and controls its usage of HDShellAmmo.
 class CombatShotgunHandler : EventHandler
 {
+	// The cvars.
 	private bool cvarsAvailable;
-	private int spawnBiasActualsg;
+	private int spawnBias;
 	private bool isPersistent;
+
+	// Puts cvars where cvars... probably shouldn't be! It works so I don't care. At least I think it works... :) - [Ted]
 	void init()
 	{
 		cvarsAvailable = true;
-		spawnBiasActualsg = cshotgun_shotgun_spawn_bias;
+		spawnBias = cshotgun_shotgun_spawn_bias;
 		isPersistent = cshotgun_persistent_spawning;
 	}
 
+	// "Initializes" the event handler.
+	// Called after events are fired.
 	override void WorldLoaded(WorldEvent e)
 	{
+		// Always call init.
 		init();
 		super.WorldLoaded(e);
 	}
 
+	// Random stuff, stores it and forces negative values just to be 0.
 	bool giverandom(int chance)
 	{
 		bool result = false;
@@ -32,28 +39,35 @@ class CombatShotgunHandler : EventHandler
 		return result;
 	}
 
+	// Tries to create the shotgun via replacing it. 
 	void trycreatecshotgun(worldevent e, int chance)
 	{
 		if(giverandom(chance))
 		{
-			let sss = HDCombatShotgunRandom(e.thing.Spawn("HDCombatShotgunRandom", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
-			if(sss)
+			let csg = HDCombatShotgunRandom(e.thing.Spawn("HDCombatShotgunRandom", e.thing.pos, SXF_TRANSFERSPECIAL | SXF_NOCHECKPOSITION));
+			if(csg)
 			{
-				
+				// Destroys the original item.	
 				e.thing.destroy();
 			}
 
 		}
 	}
+
+// Spawn thing guy
 override void worldthingspawned(worldevent e)
   {
+	// Makes sure the values are always loaded before taking in events.
 	if(!cvarsAvailable)
 		init();
+
+	// In case it's not real, return.
 	if(!e.Thing)
 	{
 		return;
 	}
-	
+
+	// Making the Combat Shotgun use HDShellAmmo as it's ammo type so you can't drop it with purge.
 	let cShotgunAmmo = HDAmmo(e.Thing);
 	if (!cShotgunAmmo)
 	{
@@ -65,12 +79,15 @@ override void worldthingspawned(worldevent e)
 			cShotgunAmmo.ItemsThatUseThis.Push("HDCombatShotgun");
 			break;
 	}
+
+	// Checks if the level has been loaded more than 1 tic
 	if (!(level.maptime > 1) || isPersistent)
 	{
+		// Replace the thing. Case is what it's replacing.
 		switch(e.Thing.GetClassName())
 		{
 			case 'ShotgunReplaces':
-				trycreatecshotgun(e, spawnBiasActualsg);
+				trycreatecshotgun(e, spawnBias);
 				break;
 		}
 	}
