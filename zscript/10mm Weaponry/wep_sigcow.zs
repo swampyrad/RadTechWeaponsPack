@@ -82,7 +82,7 @@ double strength;
 	}
 
 	action void HD_SigCowStab(double dmg){
-		let punchrange=80.;//64 plu 16
+		let punchrange=96;// 1.5x etra range compared to fist attack
 		if(hdplayerpawn(self))punchrange*=hdplayerpawn(self).heightmult;
 
 		flinetracedata punchline;
@@ -186,8 +186,13 @@ double strength;
  //bleed code borrowed from PBWeappns knife zscript
  //bonus points to BenitezClanceIV for suggesting it
 if(!punchee.countinv("HDArmourWorn")){
-	    HDBleedingWound.inflict(punchee,dmg*frandom(0.3,0.8));
-    }
+	    HDBleedingWound.inflict(punchee,dmg*frandom(1.3,1.8));
+	    HDBleedingWound.inflict(punchee,dmg*frandom(1.3,1.8));
+	    //increasing bleed chance, the medical rework nerfed bleed out
+	    //since the wounds close up too fast now
+	    //also, it should roll twice for each tip of the bayonet
+	    //now that i think about it
+    }		
 
 			aaa.destroy();
 		}
