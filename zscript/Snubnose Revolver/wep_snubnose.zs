@@ -402,12 +402,12 @@ if(masterball){
 	spawn:
 		DTTS A -1;
 		stop;
-	round1:RVR1 A 1 A_RoundReady(BUGS_CYL1);wait;
-	round2:RVR2 A 1 A_RoundReady(BUGS_CYL2);wait;
-	round3:RVR3 A 1 A_RoundReady(BUGS_CYL3);wait;
-	round4:RVR4 A 1 A_RoundReady(BUGS_CYL4);wait;
-	round5:RVR5 A 1 A_RoundReady(BUGS_CYL5);wait;
-	round6:RVR6 A 1 A_RoundReady(BUGS_CYL6);wait;
+	round1:RSR1 A 1 A_RoundReady(BUGS_CYL1);wait;
+	round2:RSR2 A 1 A_RoundReady(BUGS_CYL2);wait;
+	round3:RSR3 A 1 A_RoundReady(BUGS_CYL3);wait;
+	round4:RSR4 A 1 A_RoundReady(BUGS_CYL4);wait;
+	round5:RSR5 A 1 A_RoundReady(BUGS_CYL5);wait;
+	round6:RSR6 A 1 A_RoundReady(BUGS_CYL6);wait;
 	select0:
 		SNUB A 0{
 			if(!countinv("NulledWeapon"))invoker.wronghand=true;
