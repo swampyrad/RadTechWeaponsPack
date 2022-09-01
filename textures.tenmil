@@ -82,7 +82,7 @@ Sprite "C10MB0", 9, 20
 
 
 //10mm magazine hud sprite
-sprite C10MNORM,9,20{
+sprite C10MA0,9,20{
 offset 4, 20
 xscale 1
 yscale 1
@@ -90,20 +90,21 @@ patch C10MA0,0,0{}
 }
 
 //10mm magazine hud sprite, empty
-sprite C10MMPTY,20,9{
+sprite C10MD0,20,9{
 offset 10,9
 xscale 2.5
-yscale 3.2
-patch C10MMPTY,0,0{}
+yscale 2.5
+patch C10MD0,0,0{}
 }
 
 
 //10mm magazine hud sprite, grey
-sprite C10MGREY,9,20{
-offset 4, 20
-xscale 1
-yscale 1
-patch C10MGREY,0,0{}
+sprite "C10MC0", 9, 20
+{
+	offset 4, 20
+	xscale 1
+	yscale 1
+	patch "C10MC0", 0, 0
 }
 
 
@@ -155,7 +156,7 @@ Sprite "SC15B0", 7, 15
 
 
 //10mm pistol magazine hud sprite
-sprite SC15NORM,7,15{
+sprite SC15E0,7,15{
 offset 4, 15
 xscale 1
 yscale 1
@@ -163,20 +164,20 @@ patch SC15A0,0,0{}
 }
 
 //10mm pistol magazine hud sprite, empty
-sprite SC15MPTY,15,7{
+sprite SC15D0,15,7{
 offset 7,7
 xscale 0.9
 yscale 1.3
-patch SC15MPTY,0,0{}
+patch SC15D0,0,0{}
 }
 
 
 //10mm pistol magazine hud sprite, grey
-sprite SC15GREY,7,15{
+sprite SC15C0,7,15{
 offset 4, 15
 xscale 1
 yscale 1
-patch SC15GREY,0,0{}
+patch SC15C0,0,0{}
 }
 
 

@@ -260,9 +260,9 @@ if(!punchee.countinv("HDArmourWorn")){
 			if(nextmagloaded>=25){
 				sb.drawimage("C10MA0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(3,3));
 			}else if(nextmagloaded<1){
-				sb.drawimage("C10MMPTY",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextmagloaded?0.6:1.,scale:(3,3));
+				sb.drawimage("C10MD0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextmagloaded?0.6:1.,scale:(3,3));
 			}else sb.drawbar(
-				"C10MNORM","C10MGREY",
+				"C10MA0","C10MC0",
 				nextmagloaded,25,
 				(-46,-3),-1,
 				sb.SHADER_VERT,sb.DI_SCREEN_CENTER_BOTTOM
