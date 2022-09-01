@@ -1,0 +1,4 @@
+sprite fbmsite, 5,13
+{
+	patch fgunfrnt, 0, 0{}
+}
