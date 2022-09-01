@@ -1,6 +1,6 @@
 # RadTechWeaponsPack
 
-A collection of weapons for the GZDoom mod Hideous Destructor
+A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyrad and more.
 
 List of weapons and loadout codes:
 
@@ -103,9 +103,25 @@ Explosive Shotgun [xsg] (explosive shells - [xsh])
  the intended target.
 
 Credits:
-1911 sprites provided courtesy of ChopBlock223 from the HD Discord :D
+1911 sprites provided courtesy of ChopBlock223 from the HD Discord
+Flaregun sprites by FDA and Swampyrad
+Flare Ammo sprites by Swampyrad
+Flare Projectiles from Half-Life 1.
+Metal Flaregun's front sight by FDA.
+Name and Obituary suggestions by BenitezClance4
+Various Bugtesting from FDA,
+Matt for the original code from Hideous Destructor for the Minerva, Single-Action Revolver and Snubnose.
+Matt for the original sprites for the Single-Action revolver and the 10mm Auto-Reloader.
+Minerva Sprites by Id Software, Skulltag, Ghastly and FDA for various edits. (<https://www.realm667.com/index.php/en/armory-mainmenu-157-97317/doom-style-mainmenu-158-94349/641-minigun>)
+Red/Toxitiy for the Single-Action firing sounds.
+Sig-cow sprites from El Doofer, based off the Doom Alpha Rifle by Id Software. Pickup was based off the Super Shotgun sprite, inspired by the Bayonet Rifle pickup from the Doom prototype.
+10mm Bullet Casing sprites taken from the Doom Prototype spriterip by Superdave938.
+Various TEXTURES, ZScript code and sprite edits by a1337spy.
+10mm 'Delta Elite' pistol sprites by ChopBlock223, based off the FreeDoom pistol sprites.
 
 Extra thanks go to:
 
 - Scuba Steve (for drawing the FreeDoom pistol it's based off of)
 - 3D Realms (for the muzzle flash based on one from Shadow Warrior)
+- PB-Weapon-Addon (reused alternate drop bind code)
+- War Trophies (reused CVAR Code)
