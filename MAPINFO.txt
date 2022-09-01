@@ -2,6 +2,6 @@
 GameInfo
 {
 
-    AddEventHandlers = "RadTechHandler", "FlareEvent", "JuanEvent"
+    AddEventHandlers = "Reloader10mmInjector", "RadTechHandler", "FlareEvent", "JuanEvent"
 
 }
