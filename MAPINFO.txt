@@ -1,14 +1,7 @@
-// Clean this up later, it doesn't need to be like this.
+
 GameInfo
 {
-// Shotguns
-    AddEventHandlers = "DoomedShotgunHandler", "CombatShotgunHandler", "LLHHandler", "ExplosiveSGHandler"
-// Energy Weapons
-    AddEventHandlers = "PlasmaBusterHandler"
-// Rifle & PCC
-    AddEventHandlers = "SigcowHandler", "MinervaHandler", "HackedZMHandler"
-// Pistols
-    AddEventHandlers = "TenMilPistolHandler", "JuanEvent", "SnubnoseHandler", "SingleActionHandler", "GoldSingleActionHandler"
-// Misc
-    AddEventHandlers = "FlareEvent", "Reloader10mmInjector"
+
+    AddEventHandlers = "RadTechHandler", "FlareEvent", "JuanEvent"
+
 }
