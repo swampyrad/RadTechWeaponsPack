@@ -74,8 +74,10 @@ OptionMenu Juan9mm
 	StaticText "--- Lore ---", "green"
 	StaticText ""
 	StaticText "A variant of the standard-issue pistol, albeit with a non-standard 'horseshoe' magazine.", "white"
-	StaticText "As the name suggests, it uses a unique 'horseshoe' magazine that holds 30 9x22 Parumpudicum rounds, similarly to the SMG.", "white"
-	StaticText "However, it's small size makes it incredibly difficult to control in full-auto, instead leaving users to use a 'galloping' shooting pattern to stay on target.", "white"
+	StaticText "As the name suggests, it uses a unique 'horseshoe' magazine", "white"
+	StaticText " that holds 30 9x22 Parumpudicum rounds, similarly to the SMG.", "white"
+	StaticText "However, it's small size makes it incredibly difficult to control in full-auto,", "white"
+	StaticText "instead leaving users to use a 'galloping' shooting pattern to stay on target.", "white"
 }
 
 OptionMenu DoomedHunter
@@ -129,9 +131,11 @@ OptionMenu PlasmaBuster
 	StaticText "A revised version of the 'Thunder Buster' particle beam gun.", "white"
 	StaticText "After receiving a disturbing number of incident reports involing self-detonations caused by careless use,", "white"
 	StaticText "The UAC tasked a junior researcher to find an issue to this problem and invented the DM-93.", "white"
-	StaticText "He tweaked the Ion Emitter so the plasma particles are contained in an electromagnetic field which holds the blast together until impact with a target.", "white"
+	StaticText "He tweaked the Ion Emitter so the plasma particles are contained in an electromagnetic field", "white"
+	StaticText " which holds the blast together until impact with a target.", "white"
 	StaticText "This plasma has a much smaller, albeit safer, blast radius, so direct contact is required to cause maximum damage.", "white"
-	StaticText "Automatic Fire emits an accurate stream of these projectiles, while the newly added Burst mode shoots out a spread of many shots, similar to a shotgun.", "white"
+	StaticText "Automatic Fire emits an accurate stream of these projectiles, while the newly added Burst mode", "white"
+	StaticText "shoots out a spread of many shots, similar to a shotgun.", "white"
 }
 
 OptionMenu CombatShotgun
@@ -214,7 +218,8 @@ OptionMenu 10pis
 	StaticText "--- Lore ---", "Green"
 	StaticText ""
 	StaticText "A handgun release in the late 80s, adopted by the FBI following the aftermath of a tragic shooting incident.", "white"
-	StaticText "This pistol offers much better penetration and higher muzzle velocity than either 9x22mm Parumpudicum or .355 firearms, but is much more difficult to control.", "white"
+	StaticText "This pistol offers much better penetration and higher muzzle velocity", "White"
+	StaticText "than either 9x22mm Parumpudicum or .355 firearms, but is much more difficult to control.", "white"
 }
 
 OptionMenu Snose
@@ -468,6 +473,10 @@ AddOptionMenu "RadTechWeaponry"
 	StaticText "--- Utility ---", "yellow"
 	StaticText ""
     Submenu "Flare Guns", "flareguns"
+	StaticText ""
+	StaticText "--- Reset Options ---", "red"
+	StaticText ""
+	SafeCommand "Reset all options for Rad-Tech Weapons", "RTWP_Reset_Cvars"
 }
 
 // Spawn Bias (for items that do replace)
