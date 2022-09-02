@@ -84,8 +84,8 @@ Sprite "C10MB0", 9, 20
 //10mm magazine hud sprite
 sprite C10MA0,9,20{
 offset 4, 20
-xscale 1
-yscale 1
+xscale 2.5
+yscale 2.5
 patch C10MA0,0,0{}
 }
 
@@ -102,8 +102,8 @@ patch C10MD0,0,0{}
 sprite "C10MC0", 9, 20
 {
 	offset 4, 20
-	xscale 1
-	yscale 1
+	xscale 2.5
+	yscale 2.5
 	patch "C10MC0", 0, 0
 }
 
