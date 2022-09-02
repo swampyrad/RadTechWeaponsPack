@@ -29,6 +29,12 @@ int targettimer;
 		hdweapon.refid "SCW";
 		tag "M-211 Sig-Cow";
 		inventory.icon "RF10A0";
+		
+		hdweapon.loadoutcodes "
+			\cufiremode - 0-2, semi/burst/auto
+			\cufireswitch - 0-4, default/semi/auto/full/all
+			\cureflexsight - 0-1, no/yes
+			\cudot - 0-5";
 	}
   
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
