@@ -19,6 +19,8 @@ class ExplosiveHunter:HDShotgunExplosive{
 		tag "explosive shotgun";
 		obituary "$OB_MPSHOTGUN";
 
+		hdweapon.loadoutcodes "
+			\cufiremode - 0-1, pump/semi, subject to the above";
 	}
 
 	//returns the power of the load just fired

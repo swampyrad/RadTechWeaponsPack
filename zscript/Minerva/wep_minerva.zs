@@ -38,7 +38,7 @@ class MinervaChaingun:ZM66ScopeHaver{
 		//$Sprite "VULCA0"
 
 		//+hdweapon.hinderlegs
-   //its ergonomic design design makes it easier to walk around with
+   		//its ergonomic design design makes it easier to walk around with
 		scale 0.8;
 		inventory.pickupmessage "You got the Minerva!";
 		weapon.selectionorder 40;
@@ -53,6 +53,11 @@ class MinervaChaingun:ZM66ScopeHaver{
 		hdweapon.barrelsize 30,3,4;
 		hdweapon.refid MNV_REFID;
 		tag "Minerva 9mm Chaingun";
+
+		hdweapon.loadoutcodes"
+			\cufast - 0/1, whether to start in \"fuller auto\" mode
+			\cuzoom - 16-70, 10x the resulting FOV in degrees
+			\cudot - 0-5";
 	}
 override void postbeginplay(){
 		super.postbeginplay();
