@@ -407,11 +407,16 @@ class RadTechHandler : EventHandler
 			}
 		}
 		
+		
+
+				
 		// Iterates through the list of item candidates for e.thing.
 		for(i = 0; i < itemspawnlistsize; i++)
 		{
-			// Checks if the item in question is owned. 
+			// Tries to cast the item as an inventory. 
 			let thing_inv_ptr = Inventory(e.thing);
+		
+			// Checks if the item in question is owned.
 			bool owned    = thing_inv_ptr && (thing_inv_ptr.owner);
 
 			// Checks if the level has been loaded more than 1 tic.
@@ -420,11 +425,11 @@ class RadTechHandler : EventHandler
 			// Checks if persistent spawning is on.
 			bool persist  = (itemspawnlist[i].isPersistent);
 			
-			bool validammo = prespawn && ammo_ptr;
+			
 			
 			// if an item is owned or is an ammo (doesn't retain owner ptr), 
 			// do not replace it. 
-			if ((prespawn || persist) && (!owned || validammo))
+			if ((prespawn || persist) && (!owned && (!ammo_ptr || prespawn))
 			{
 				int original_i = i;
 				for(j = 0; j < itemspawnlist[original_i].spawnreplacessize; j++)
