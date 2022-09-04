@@ -170,18 +170,6 @@ action void A_CheckMetalFlareGunHand(bool filled)
 
 	States
 	{
-
-	select0:
-		FBM1 A 0;
-		#### A 0
-		{
-			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
-		}
-		FBM2 A 0;
-		#### A 1;
-		#### A 1;
-		goto select0small;
-
 	deselect0:
 	select0:
 		FML1 A 0;
@@ -197,7 +185,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		{
 			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 		}
-		FBM2 A 0;
+		#### A 0;
 		#### A 1;
 		goto deselect0small;
 
@@ -403,15 +391,15 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		#### A 1 offset(10,90) A_StartSound("weapons/fgnrel2",8);
 		#### A 1 offset(10,94);
 		TNT1 A 2;
-		FBM1 A 0
+		FML1 A 0
 		{
 			A_StartSound("weapons/fgnrel1",8,CHANF_OVERLAP);
 		}
-		FBM1 A 1 offset(8,78);
-		FBM1 A 1 offset(8,66);
-		FBM1 A 1 offset(8,52);
-		FBM1 A 1 offset(4,40);
-		FBM1 A 1 offset(2,34);
+		#### A 1 offset(8,78);
+		#### A 1 offset(8,66);
+		#### A 1 offset(8,52);
+		#### A 1 offset(4,40);
+		#### A 1 offset(2,34);
 		goto ready;
 	
 	firemode:
@@ -431,10 +419,13 @@ swappistols:
 			}
 		}
 		TNT1 A 5;
-		FBM1 A 0 A_CheckMetalFlareGunHand(invoker.A_IsFilled());
+		FML1 A 0
+		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
+		}
 		goto nope;
 	lowerleft:
-		FBM2 A 0;
+		#### A 0;
 		#### A 0
 		{
 			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
