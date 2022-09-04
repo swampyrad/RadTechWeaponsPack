@@ -124,9 +124,11 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	{
 		return
 		WEPHELP_FIRESHOOT
+		..WEPHELP_ALTFIRE..", "..WEPHELP_FIREMODE.." Quick-Swap (if available)\n"
 		..WEPHELP_RELOADRELOAD
 		..WEPHELP_ALTRELOAD.." Load a shotgun shell\n"
 		..WEPHELP_UNLOADUNLOAD
+
 		;
 	}
 	
