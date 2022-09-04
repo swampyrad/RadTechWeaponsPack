@@ -60,7 +60,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 
 	override string,double getpickupsprite(bool usespare)
 	{
-		string result = "FLMN";
+		string result = "FLGM";
 		string index  = "B0";
 		if((GetSpareWeaponValue(0, usespare)&FLARE_LOADED))
 			index  = "A0";
