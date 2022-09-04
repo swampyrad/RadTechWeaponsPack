@@ -10,15 +10,18 @@ Sprite Credits
 --------------------------------------------------------------------------------
 	Flare Gun
 --------------------------------------------------------------------------------
-	FBL1 A: FDA, Swampyrad,
-	FBL2 A: FDA, Swampyrad,
-	FLGN A...B: FDA, Swampyrad.
+	FBL1...FBR2 A...B:
+	FLGN...FLGN A...B:
+		- Yummers (flaregun sprite), Joblez (hands), FDA (offsets)
+		- https://cdn.discordapp.com/attachments/462331550768431104/1015282338692870184/Untitled546_20220902232551.png
 --------------------------------------------------------------------------------
 	Metal Flare Gun
 --------------------------------------------------------------------------------
-	FBM1 A: FDA, Swampyrad,
-	FBM2 A: FDA, Swampyrad,
-	FLGM A...B: FDA, Swampyrad.
+	FML1...FMR2 A...B:
+	FLMN...FLMN A...B:
+		- Yummers (flaregun sprite), Joblez (hands), FDA (offsets, tint)
+		- https://cdn.discordapp.com/attachments/462331550768431104/1015282338692870184/Untitled546_20220902232551.png
+
 --------------------------------------------------------------------------------
 	Flare Ammo
 --------------------------------------------------------------------------------

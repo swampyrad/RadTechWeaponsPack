@@ -21,111 +21,14 @@ patch FLBXA0,0,0{}
 }
 
 
-
-//fire blooper pickup sprite
-sprite FLGNA0,31,21{
-offset 15,20
-patch FLGNA0,0,0{}
-}
-
-sprite FLGNB0,31,21{
-offset 15,20
-patch FLGNB0,0,0{}
-}
-
-// Regular First-person sprites
-
-// Hasn't fired.
-sprite FBL1A0,57,64{
-offset -128,-106
-patch FBL1A0 ,0,0{}
-}
-sprite FBL1B0,57,64{
-offset -128,-106
-patch FBL1A0 ,0,0{}
-}
-sprite FBL1C0,57,64{
-offset -128,-106
-patch FBL1A0 ,0,0{}
-}
-sprite FBL1D0,57,64{
-offset -128,-106
-patch FBL1A0 ,0,0{}
-}
-
-
-// Fired. 
-sprite FBL2A0,57,64{
-offset -128,-112
-patch FBL2A0 ,0,0{}
-}
-sprite FBL2B0,57,64{
-offset -128,-106
-patch FBL2A0 ,0,0{}
-}
-sprite FBL2C0,57,64{
-offset -128,-112
-patch FBL2A0 ,0,0{}
-}
-sprite FBL2D0,57,64{
-offset -128,-106
-patch FBL2A0 ,0,0{}
-}
-
-
-
-//metal fire blooper pickup sprite
-sprite FLGMA0,31,21{
-offset 15,20
-patch FLGMA0,0,0{}
-}
-
-sprite FLGMB0,31,21{
-offset 15,20
-patch FLGMB0,0,0{}
-}
-
-
-
-// Metal First-person sprites
-// Hasn't fired.
-sprite FBM1A0,57,64{
-offset -128,-106
-patch FBM1A0 ,0,0{}
-}
-sprite FBM1B0,57,64{
-offset -128,-106
-patch FBM1A0 ,0,0{}
-}
-sprite FBM1C0,57,64{
-offset -128,-106
-patch FBM1A0 ,0,0{}
-}
-sprite FBM1D0,57,64{
-offset -128,-106
-patch FBM1A0 ,0,0{}
-}
-
-
-// Fired. 
-sprite FBM2A0,57,64{
-offset -128,-112
-patch FBM2A0 ,0,0{}
-}
-sprite FBM2B0,57,64{
-offset -128,-106
-patch FBM2A0 ,0,0{}
-}
-sprite FBM2C0,57,64{
-offset -128,-112
-patch FBM2A0 ,0,0{}
-}
-sprite FBM2D0,57,64{
-offset -128,-106
-patch FBM2A0 ,0,0{}
-}
 // metal sights
 sprite fbmsite, 5,13
+{
+	patch fgunfrnt, 0, 0{}
+}
+
+// plastic sights
+sprite fbpsite, 5,13
 {
 	patch fgunfrnt, 0, 0{}
 }
