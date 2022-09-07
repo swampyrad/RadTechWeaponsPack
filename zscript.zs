@@ -10,6 +10,7 @@ version "4.8"
 // 10mm Pistol & Sigcow
 #include "zscript/10mm Weaponry/wep_sigcow.zs"
 #include "zscript/10mm Weaponry/wep_10mmPistol.zs"
+#include "zscript/10mm Weaponry/10mmautoreloader.zs"
 
 // Snubnose Revolver
 #include "zscript/Snubnose Revolver/wep_snubnose.zs"
@@ -30,7 +31,6 @@ version "4.8"
 #include "zscript/Juan 9mm Pistol/wep_juan.zs"
 
 // Flare guns
-#include "zscript/Flare guns/proj_hdflareball.zs"
 #include "zscript/Flare guns/wep_hdflaregun.zs"
 #include "zscript/Flare guns/wep_hdmetalflaregun.zs"
 #include "zscript/Flare guns/evnt_flareguns.zs"
@@ -53,30 +53,3 @@ version "4.8"
 
 // Combat Shotgun
 #include "zscript/Combat Shotgun/wep_combatshotgun.zs"
-
-// --------------------
-// Ammunitions
-// --------------------
-
-// 10mm
-#include "zscript/Ammunition/bullet_10mm.zs"
-#include "zscript/Ammunition/ammo_10.zs"
-#include "zscript/Ammunition/ammo_10mmbrass.zs"
-#include "zscript/Ammunition/10mmautoreloader.zs"
-
-// Less Lethal Shells
-#include "zscript/Ammunition/rubberbullet.zs"
-#include "zscript/Ammunition/ammo_LL.zs"
-
-// Explosive Slugs
-#include "zscript/Ammunition/ammo_12Explosive.zs"
-#include "zscript/Ammunition/hdb_SlugExplosive.zs"
-
-// Flare Shells
-#include "zscript/Ammunition/ammo_flares.zs"
-
-// Golden Bullet
-#include "zscript/Ammunition/Goldbullet_45lc.zs"
-
-// .45 LC
-#include "zscript/Ammunition/bullet_45lc.zs"
