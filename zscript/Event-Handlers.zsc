@@ -170,9 +170,9 @@ class RadTechHandler : EventHandler
   //Random pistol drops
 
 		Array<RTSpawnItemEntry> spawns_10mm_pistol;
-		spawns_10mm_pistol.push(additementry('HDHandgunRandomDrop', tenpis_handgun_spawn_bias));
+		spawns_10mm_pistol.push(additementry('HDPistol', tenpis_handgun_spawn_bias));
 
-		additem('HDTenMilRandomDrop', spawns_10mm_pistol, tenpis_persistent_spawning);
+		additem('HD10mmPistol', spawns_10mm_pistol, tenpis_persistent_spawning);
 
 		Array<string> wep_deltaelite;  
 		wep_deltaelite.push("HD10mmPistol"); 
@@ -308,7 +308,7 @@ class RadTechHandler : EventHandler
   //Random pistol drops
     Array<RTSpawnItemEntry> spawns_snose_pistol;
 
-		spawns_snose_pistol.push(additementry('HDHandgunRandomDrop', snose_pistol_spawn_bias));
+		spawns_snose_pistol.push(additementry('HDPistol', snose_pistol_spawn_bias));
 
 		Array<string> wep_snose_pistol;
 		wep_snose_pistol.push("HDSnubNoseRevolver");
@@ -332,7 +332,7 @@ class RadTechHandler : EventHandler
 
   //Random pistol drops
     Array<RTSpawnItemEntry> spawns_sixgun;
-		spawns_sixgun.push(additementry('HDHandgunRandomDrop', sa_pistol_spawn_bias));
+		spawns_sixgun.push(additementry('HDPistol', sa_pistol_spawn_bias));
 
 		additem('HDSingleActionRevolver', spawns_sixgun, sa_persistent_spawning);
 
@@ -353,7 +353,7 @@ class RadTechHandler : EventHandler
 
   //Random pistol drops
     Array<RTSpawnItemEntry> spawns_goldengun;
-		spawns_goldengun.push(additementry('HDHandgunRandomDrop', gsa_pistol_spawn_bias));
+		spawns_goldengun.push(additementry('HDPistol', gsa_pistol_spawn_bias));
 
 		additem('HDGoldenSingleActionRevolver', spawns_goldengun, gsa_persistent_spawning);
 

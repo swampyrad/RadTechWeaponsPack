@@ -506,14 +506,6 @@ class HD10mmAutoPistol:HDWeaponGiver{
 	}
 }
 
-class HDTenMilRandomDrop:RandomSpawner{
-	default{
-		dropitem "HDPistol",16,5;
-		dropitem "HD10mmPistol",16,1;
-	}
-}
-
-
 class HD10mmMagPickup:HDInvRandomSpawner{
 	default{
 		dropitem "HD10mMag8",256,8;
