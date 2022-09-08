@@ -42,21 +42,7 @@ Sprite "T10MA0", 54, 24
 	Patch "T10MA0", 0, 0
 }
 
-Sprite "CS10A0", 11, 17
-{
-	XScale 5.000
-	YScale 5.000
-	Offset 5, 17
-	Patch "CS10A0", 0, 0
-}
 
-Sprite "CS10B0", 16, 15
-{
-	XScale 5.000
-	YScale 5.000
-	Offset 8, 15
-	Patch "CS10B0", 0, 0
-}
 
 Sprite "BX10A0", 30, 14
 {
@@ -66,16 +52,16 @@ Sprite "BX10A0", 30, 14
 
 Sprite "C10MA0", 9, 20
 {
-	XScale 3.000
-	YScale 3.000
+	XScale 1.000
+	YScale 1.000
 	Offset 4, 20
 	Patch "C10MA0", 0, 0
 }
 
 Sprite "C10MB0", 9, 20
 {
-	XScale 3.000
-	YScale 3.000
+	XScale 1.000
+	YScale 1.000
 	Offset 4, 20
 	Patch "C10MB0", 0, 0
 }
@@ -273,5 +259,3 @@ xscale 1
 yscale 1
 patch P10RC0,0,0{}
 }
-
-
