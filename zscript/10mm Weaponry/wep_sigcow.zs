@@ -782,7 +782,7 @@ class HD10mMag8:HDMagAmmo{
 		hdpickup.refid "SC8";
 	}
 	override string,string,name,double getmagsprite(int thismagamt){
-		string magsprite=(thismagamt>0)?"SC15NORM":"SC15MPTY";
+		string magsprite=(thismagamt>0)?"SC15A0":"SC15C0";
 		return magsprite,"PR10A0","HD10mAmmo",0.6;
 	}
 	override void GetItemsThatUseThis(){
