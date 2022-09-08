@@ -664,45 +664,6 @@ RIFG B 1;
 		}
 		if(idfa)weaponstatus[0]&=~ZM66F_CHAMBERBROKEN;
 	}
-	override void loadoutconfigure(string input){
-		int nogl=getloadoutvar(input,"nogl",1);
-		//disable launchers if rocket grenades blacklisted
-		string blacklist=hd_blacklist;
-		if(blacklist.IndexOf(HDLD_BLOOPER)>=0)nogl=1;
-		if(!nogl){
-			weaponstatus[0]&=~ZM66F_NOLAUNCHER;
-		}else if(nogl>0){
-			weaponstatus[0]|=ZM66F_NOLAUNCHER;
-			weaponstatus[0]&=~ZM66F_GRENADELOADED;
-		}
-		if(!(weaponstatus[0]&ZM66F_NOLAUNCHER))weaponstatus[0]|=ZM66F_GRENADELOADED;
-
-		int zoom=getloadoutvar(input,"zoom",3);
-		if(zoom>=0)weaponstatus[ZM66S_ZOOM]=clamp(zoom,16,70);
-
-		int xhdot=getloadoutvar(input,"dot",3);
-		if(xhdot>=0)weaponstatus[ZM66S_DOT]=xhdot;
-
-		int semi=getloadoutvar(input,"semi",1);
-		if(semi>0){
-			weaponstatus[ZM66S_AUTO]=-1;
-			weaponstatus[0]|=ZM66F_NOFIRESELECT;
-		}else{
-			int firemode=getloadoutvar(input,"firemode",1);
-			if(firemode>=0){
-				weaponstatus[0]&=~ZM66F_NOFIRESELECT;
-				weaponstatus[ZM66S_AUTO]=clamp(firemode,0,2);
-			}
-		}
-		if(
-			!(weaponstatus[0]&ZM66F_CHAMBER)
-			&&weaponstatus[ZM66S_MAG]>0
-		){
-			weaponstatus[0]|=ZM66F_CHAMBER;
-			if(weaponstatus[ZM66S_MAG]==51)weaponstatus[ZM66S_MAG]=49;
-			else weaponstatus[ZM66S_MAG]--;
-		}
-	}
 }
 
 class HackedZM66Semi:HDWeaponGiver{
