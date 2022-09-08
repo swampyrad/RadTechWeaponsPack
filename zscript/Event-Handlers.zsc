@@ -154,13 +154,15 @@ class RadTechHandler : EventHandler
 
 		additem('SigCowRandomSpawn', spawns_sigcow, sigcow_persistent_spawning);
 		
+		Array<string> wep_sigcow;  
+		wep_sigcow.push("HDSigCow");  //name of weapon being added
+
   //Random mag spawns
     Array<RTSpawnItemEntry> spawns_sigcow_mags;
 		spawns_sigcow_mags.push(additementry('Clip', sigcow_cbox_spawn_bias));
 
 		additem('HD10mMag25', spawns_sigcow_mags, sigcow_persistent_spawning);
-		
-
+		addammo('HD10mAmmo', wep_sigcow);
 
 //  Delta Elite 10mm Pistol
 
@@ -171,6 +173,10 @@ class RadTechHandler : EventHandler
 		spawns_10mm_pistol.push(additementry('HDHandgunRandomDrop', tenpis_handgun_spawn_bias));
 
 		additem('HDTenMilRandomDrop', spawns_10mm_pistol, tenpis_persistent_spawning);
+
+		Array<string> wep_deltaelite;  
+		wep_deltaelite.push("HD10mmPistol"); 
+		addammo ('HD10mAmmo', wep_deltaelite);
 		
   //Random mag spawns
 
@@ -255,6 +261,7 @@ class RadTechHandler : EventHandler
 		wep_llshotgun.push("LLHunter");
 
 		additem('LLHunter', spawns_llshotgun, llh_persistent_spawning);
+		addammo('HDLLShellAmmo', wep_llshotgun);
 
   //Random shellbox spawns
   Array<RTSpawnItemEntry> spawns_llshotgun_shellbox;
@@ -280,6 +287,7 @@ class RadTechHandler : EventHandler
 		wep_exshotgun.push("ExplosiveHunter");
 
 		additem('ExplosiveHunter', spawns_exshotgun, esg_persistent_spawning);
+		addammo('HDExplosiveShellAmmo', wep_exshotgun);
 
   //Random shellbox spawns
   Array<RTSpawnItemEntry> spawns_exshotgun_shellbox;
@@ -328,6 +336,11 @@ class RadTechHandler : EventHandler
 
 		additem('HDSingleActionRevolver', spawns_sixgun, sa_persistent_spawning);
 
+		Array<string> wep_singleactionrevolver;
+		wep_singleactionrevolver.push("HDSingleActionRevolver");
+
+		addammo ('HD45LCAmmo', wep_singleactionrevolver);
+
   //Random map spawns
     Array<RTSpawnItemEntry> spawns_sixgun_map;
 		spawns_sixgun_map.push(additementry('ClipBoxPickup', sa_pistol_spawn_bias));
@@ -344,14 +357,16 @@ class RadTechHandler : EventHandler
 
 		additem('HDGoldenSingleActionRevolver', spawns_goldengun, gsa_persistent_spawning);
 
+		Array<string> wep_goldsingleactionrevolver;
+		wep_goldsingleactionrevolver.push("HDGoldenSingleActionRevolver");
+
+		addammo ('HDGold45LCAmmo', wep_goldsingleactionrevolver);
+
   //Random map spawns
     Array<RTSpawnItemEntry> spawns_goldengun_map;
 		spawns_goldengun_map.push(additementry('ClipBoxPickup', gsa_pistol_spawn_bias));
 
 		additem('GoldSASpawn', spawns_goldengun_map, gsa_persistent_spawning);
-
-
-
 	}
 	
 //fill above with entries for each weapon

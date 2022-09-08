@@ -1,8 +1,15 @@
 // ------------------------------------------------------------
 // SMG
 // ------------------------------------------------------------
-class HDSigCow:HDWeapon{
 
+const enc_10MAG=9;
+const enc_10MAG_EMPTY=enc_10MAG*0.3;
+const enc_10MAG_LOADED=enc_10MAG_EMPTY*0.1;
+const enc_10MAG25_EMPTY=enc_10MAG_EMPTY*2.5;
+const enc_10MAG25=enc_10MAG25_EMPTY+enc_10_LOADED*25;
+const enc_10MAG25_LOADED=enc_10MAG25*0.8;
+
+class HDSigCow:HDWeapon{
 int targettimer;
 	int targethealth;
 	int targetspawnhealth;
@@ -756,6 +763,87 @@ class SigCowRandomSpawn:IdleDummy{
 			A_SpawnItemEx("HD10mMag25",3,3,flags:SXF_NOCHECKPOSITION);
 			A_SpawnItemEx("HDSigCowSemiBurst",1,1,flags:SXF_NOCHECKPOSITION);
 		}else A_SpawnItemEx("HDSigCowSemi",1,1,flags:SXF_NOCHECKPOSITION);
+		destroy();
+	}
+}
+
+class HD10mMag8:HDMagAmmo{
+	default{
+		//$Category "Ammo/Hideous Destructor/"
+		//$Title "Pistol Magazine"
+		//$Sprite "SC15A0"
+		hdmagammo.maxperunit 8;
+		hdmagammo.roundtype "HD10mAmmo";
+		hdmagammo.roundbulk enc_10_LOADED;
+		hdmagammo.magbulk enc_10MAG_EMPTY; 
+		scale 0.45;
+		tag "10mm pistol magazine";
+		inventory.pickupmessage "Picked up a 10mm pistol magazine.";
+		hdpickup.refid "SC8";
+	}
+	override string,string,name,double getmagsprite(int thismagamt){
+		string magsprite=(thismagamt>0)?"SC15NORM":"SC15MPTY";
+		return magsprite,"PR10A0","HD10mAmmo",0.6;
+	}
+	override void GetItemsThatUseThis(){
+		itemsthatusethis.push("HD10mmPistol");
+	}
+	states{
+	spawn:
+		SC15 A -1;
+		stop;
+	spawnempty:
+		SC15 B -1{
+			brollsprite=true;brollcenter=true;
+			roll=randompick(0,0,0,0,2,2,2,2,1,3)*90;
+		}stop;
+	}
+}
+
+class HD10mMag25:HD10mMag8{
+	default{
+		//$Category "Ammo/Hideous Destructor/"
+		//$Title "SigCow Magazine"
+		//$Sprite "CLP3A0"
+                scale 1;
+		hdmagammo.maxperunit 25;
+		hdmagammo.magbulk enc_10mag25_EMPTY;
+		tag "Sig-Cow magazine";
+		inventory.pickupmessage "Picked up an Sig-Cow magazine.";
+		hdpickup.refid "S25";
+	}
+
+	override string,string,name,double getmagsprite(int thismagamt){
+		string magsprite=(thismagamt>0)?"C10MA0":"C10MB0";
+		return magsprite,"PR10A0","HD10mAmmo",2.;
+	}
+	override void GetItemsThatUseThis(){
+		itemsthatusethis.push("HDSigCow");
+	}
+	states{
+	spawn:
+		C10M A -1;//clip, 10mm
+		stop;
+	spawnempty:
+		C10M B -1{
+			brollsprite=true;brollcenter=true;
+			roll=randompick(0,0,0,0,2,2,2,2,1,3)*90;
+		}stop;
+	}
+}
+
+class HD10mPistolEmptyMag:IdleDummy{
+//useless atm, no 10mm pistol yet
+	override void postbeginplay(){
+		super.postbeginplay();
+		HDMagAmmo.SpawnMag(self,"HD10mMag8",0);
+		destroy();
+	}
+}
+class HDSigCowEmptyMag:IdleDummy{
+	override void postbeginplay(){
+		super.postbeginplay();
+		HDMagAmmo.SpawnMag(self,"HD10mMag25",0);
 		destroy();
 	}
 }
