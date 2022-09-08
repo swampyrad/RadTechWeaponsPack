@@ -120,6 +120,8 @@ class RadTechHandler : EventHandler
 	
 	bool cvarsAvailable;
 	
+	
+	
 	// Populates the replacement and association arrays. 
 	void init()
 	{

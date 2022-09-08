@@ -13,10 +13,28 @@ class MetalFireBlooper: FireBlooper
 		hdweapon.refid "fgm";
 	}
 
-  //this code checks for which sprite index to use for each hand
-action void A_CheckMetalFlareGunHand(){
-		if(invoker.wronghand)player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBM1A0");//just use the same sprites lol
-	}//uses metal flare gun sprites
+
+//this code checks for which sprite index to use for each hand
+action void A_CheckMetalFlareGunHand(bool filled)
+{
+		if(invoker.wronghand && filled)
+		{
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FMR1A0");//just use the same sprites lol
+		}
+		else if(invoker.wronghand && !filled)
+		{
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FMR2A0");//just use the same sprites lol
+		}
+		else if(!(invoker.wronghand) && filled)
+		{
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FML1A0");//just use the same sprites lol
+		}
+		else if(!(invoker.wronghand) && !filled)
+		{
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FML2A0");//just use the same sprites lol
+		}
+}
+
 
 	override double gunmass()
 	{
@@ -42,7 +60,7 @@ action void A_CheckMetalFlareGunHand(){
 
 	override string,double getpickupsprite(bool usespare)
 	{
-		string result = "FLGM";
+		string result = "FLMN";
 		string index  = "B0";
 		if((GetSpareWeaponValue(0, usespare)&FLARE_LOADED))
 			index  = "A0";
@@ -106,9 +124,11 @@ action void A_CheckMetalFlareGunHand(){
 	{
 		return
 		WEPHELP_FIRESHOOT
+		..WEPHELP_ALTFIRE..", "..WEPHELP_FIREMODE.."  Quick-Swap (if available)\n"
 		..WEPHELP_RELOADRELOAD
-		..WEPHELP_ALTRELOAD.." Load a shotgun shell\n"
+		..WEPHELP_ALTRELOAD.."  Load a shotgun shell\n"
 		..WEPHELP_UNLOADUNLOAD
+
 		;
 	}
 	
@@ -152,27 +172,32 @@ action void A_CheckMetalFlareGunHand(){
 
 	States
 	{
-
-	select0:
-		FBM1 A 0;
-		FBM1 A 0 A_JumpIf(invoker.A_IsFilled(), 2);
-		FBM2 A 0;
-		#### A 1;
-		#### A 1;
-		goto select0small;
-
 	deselect0:
-	deselect0real:
-		FBM1 A 0;
-		FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBM2 A 0;
+	select0:
+		FML1 A 0;
+		FML1 B 0;
+		FML2 A 0;
+		FML2 B 0;
+		FMR1 A 0;
+		FMR1 B 0;
+		FMR2 A 0;
+		FMR2 B 0;
+		FML1 A 0;
+		#### A 0
+		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
+		}
+		#### A 0;
 		#### A 1;
 		goto deselect0small;
 
 	ready:
-		FBM1 A 0;
-		FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBM2 A 0;
+		#### A 0;
+		#### A 0
+		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
+		}
+		#### A 0;
 	ReadyReal:
 		#### A 0 A_SetCrosshair(21);
 		#### A 1
@@ -209,6 +234,7 @@ action void A_CheckMetalFlareGunHand(){
 		#### A 2 offset(0,37)
 		{
 			A_FireFlare();
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 		}
 		#### A 1;
 		#### A 0;
@@ -230,13 +256,14 @@ action void A_CheckMetalFlareGunHand(){
 		#### A 1 offset(14,74);
 		#### A 1 offset(11,76)A_StartSound("weapons/fgnrel3",9);
 		#### A 3 offset(10,72);
-		#### A 0
+		FML1 B 0
 		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 			if(health<40)A_SetTics(3);
 			else if(health<60)A_SetTics(2);
 		}
-		#### A 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
-		#### A 1 offset(10,72)
+		#### B 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
+		#### B 1 offset(10,72)
 		{
 			A_TakeInventory("HDShellAmmo",1,TIF_NOTAKEINFINITE);
 			invoker.weaponstatus[0]|=FLARE_LOADEDSHELL;
@@ -271,13 +298,14 @@ action void A_CheckMetalFlareGunHand(){
 		#### A 1 offset(14,74);
 		#### A 1 offset(11,76)A_StartSound("weapons/fgnrel3",9);
 		#### A 3 offset(10,72);
-		#### A 0
+		#### B 0
 		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 			if(health<40)A_SetTics(3);
 			else if(health<60)A_SetTics(2);
 		}
-		#### A 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
-		#### A 1 offset(10,72)
+		#### B 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
+		#### B 1 offset(10,72)
 		{
 			if(invoker.weaponstatus[1]&FLARE_JUSTUNLOAD)
 			{
@@ -323,7 +351,7 @@ action void A_CheckMetalFlareGunHand(){
 			}
 		
 		}
-		#### A 0;
+		#### B 0;
 		goto reloadend;
 
 
@@ -342,13 +370,14 @@ action void A_CheckMetalFlareGunHand(){
 		#### A 1 offset(14,74);
 		#### A 1 offset(11,76)A_StartSound("weapons/fgnrel3",9);
 		#### A 3 offset(10,72);
-		#### A 0
+		#### B 0
 		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 			if(health<40)A_SetTics(3);
 			else if(health<60)A_SetTics(2);
 		}
-		#### A 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
-		#### A 1 offset(10,72)
+		#### B 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
+		#### B 1 offset(10,72)
 		{
 			A_TakeInventory("HDFlareAmmo",1,TIF_NOTAKEINFINITE);
 			invoker.weaponstatus[0]|=FLARE_LOADED;
@@ -364,55 +393,19 @@ action void A_CheckMetalFlareGunHand(){
 		#### A 1 offset(10,90) A_StartSound("weapons/fgnrel2",8);
 		#### A 1 offset(10,94);
 		TNT1 A 2;
-		FBM1 A 0
+		FML1 A 0
 		{
 			A_StartSound("weapons/fgnrel1",8,CHANF_OVERLAP);
 		}
-		FBM1 A 1 offset(8,78);
-		FBM1 A 1 offset(8,66);
-		FBM1 A 1 offset(8,52);
-		FBM1 A 1 offset(4,40);
-		FBM1 A 1 offset(2,34);
+		#### A 1 offset(8,78);
+		#### A 1 offset(8,66);
+		#### A 1 offset(8,52);
+		#### A 1 offset(4,40);
+		#### A 1 offset(2,34);
 		goto ready;
 	
 	firemode:
 	altfire:
-/*
-	swappistols:
-		---- A 0 A_SwapFlareguns();
-		---- A 0{
-				A_Overlay(1025,"raiseright");
-				A_Overlay(1026,"lowerright");
-		}
-		TNT1 A 5;
-		goto nope;
-	lowerright:
-		FBM1 A 0;
-		#### B 1 offset(6,38);
-		#### B 1 offset(12,48);
-		#### B 1 offset(20,60);
-		#### B 1 offset(34,76);
-		#### B 1 offset(50,86);
-		stop;
-	raiseright:
-		FBM1 A 0;
-		#### A 1 offset(50,86);
-		#### A 1 offset(34,76);
-		#### A 1 offset(20,60);
-		#### A 1 offset(12,48);
-		#### A 1 offset(6,38);
-		stop;
-	whyareyousmiling:
-		#### B 1 offset(0,48);
-		#### B 1 offset(0,60);
-		#### B 1 offset(0,76);
-		TNT1 A 7;
-		#### B 1 offset(0,76);
-		#### B 1 offset(0,60);
-		#### B 1 offset(0,48);
-		goto nope;
-	*/
-
 swappistols:
 		---- A 0 A_SwapFlareguns();
 		---- A 0{
@@ -428,29 +421,39 @@ swappistols:
 			}
 		}
 		TNT1 A 5;
-		FBM1 A 0 A_CheckMetalFlareGunHand();
+		FML1 A 0
+		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
+		}
 		goto nope;
 	lowerleft:
-   FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBM2 A 0;
-		#### B 1 offset(-6,38);
-		#### B 1 offset(-12,48);
-		#### B 1 offset(-20,60);
-		#### B 1 offset(-34,76);
-		#### B 1 offset(-50,86);
+		#### A 0;
+		#### A 0
+		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
+		}
+		#### A 1 offset(-6,38);
+		#### A 1 offset(-12,48);
+		#### A 1 offset(-20,60);
+		#### A 1 offset(-34,76);
+		#### A 1 offset(-50,86);
 		stop;
 	lowerright:
-   FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBM2 A 0;
-		#### B 1 offset(6,38);
-		#### B 1 offset(12,48);
-		#### B 1 offset(20,60);
-		#### B 1 offset(34,76);
-		#### B 1 offset(50,86);
+		#### A 0
+		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
+		}
+		#### A 1 offset(6,38);
+		#### A 1 offset(12,48);
+		#### A 1 offset(20,60);
+		#### A 1 offset(34,76);
+		#### A 1 offset(50,86);
 		stop;
 	raiseleft:
-   FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBM2 A 0;
+		#### A 0
+		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
+		}
 		#### A 1 offset(-50,86);
 		#### A 1 offset(-34,76);
 		#### A 1 offset(-20,60);
@@ -458,8 +461,10 @@ swappistols:
 		#### A 1 offset(-6,38);
 		stop;
 	raiseright:
-   FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBM2 A 0;
+		#### A 0
+		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
+		}
 		#### A 1 offset(50,86);
 		#### A 1 offset(34,76);
 		#### A 1 offset(20,60);
@@ -467,26 +472,25 @@ swappistols:
 		#### A 1 offset(6,38);
 		stop;
 	whyareyousmiling:
-		#### B 1 offset(0,48);
-		#### B 1 offset(0,60);
-		#### B 1 offset(0,76);
+		#### A 1 offset(0,48);
+		#### A 1 offset(0,60);
+		#### A 1 offset(0,76);
 		TNT1 A 7;
-		FBM1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-   FBM2 A 0;
-   #### A 0{
+		#### A 0
+		{
 			invoker.wronghand=!invoker.wronghand;
-			A_CheckFlareGunHand();
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 		}
-		#### B 1 offset(0,76);
-		#### B 1 offset(0,60);
-		#### B 1 offset(0,48);
+		#### A 1 offset(0,76);
+		#### A 1 offset(0,60);
+		#### A 1 offset(0,48);
 		goto nope;
 	
 	
 	
 	
 	spawn:
-		FLGM A -1 nodelay
+		FLMN A -1 nodelay
 		{
 			frame = invoker.A_GetFrameIndex();
 		}

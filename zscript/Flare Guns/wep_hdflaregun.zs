@@ -65,9 +65,25 @@ action void A_SwapFlareguns(){
 	}
 
 //this code checks for which sprite index to use for each hand
-action void A_CheckFlareGunHand(){
-		if(invoker.wronghand)player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBL1A0");//just use the same sprites lol
-	}
+action void A_CheckFlareGunHand(bool filled)
+{
+		if(invoker.wronghand && filled)
+		{
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBR1A0");//just use the same sprites lol
+		}
+		else if(invoker.wronghand && !filled)
+		{
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBR2A0");//just use the same sprites lol
+		}
+		else if(!(invoker.wronghand) && filled)
+		{
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBL1A0");//just use the same sprites lol
+		}
+		else if(!(invoker.wronghand) && !filled)
+		{
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBL2A0");//just use the same sprites lol
+		}
+}
 
 	action int A_GetFrameIndex()
 	{
@@ -156,14 +172,20 @@ action void A_CheckFlareGunHand(){
 		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
 		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
 	)
-	{}
+	{
+	sb.drawimage(
+				"fbpsite",(0,+4)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_CENTER,
+				scale:(1.2, 1.2)
+	);
+	}
 	
 	override string gethelptext()
 	{
 		return
 		WEPHELP_FIRESHOOT
+		..WEPHELP_ALTFIRE..", "..WEPHELP_FIREMODE.."  Quick-Swap (if available)\n"
 		..WEPHELP_RELOADRELOAD
-		..WEPHELP_ALTRELOAD.." Load a shotgun shell\n"
+		..WEPHELP_ALTRELOAD.."  Load a shotgun shell\n"
 		..WEPHELP_UNLOADUNLOAD
 		;
 	}
@@ -249,8 +271,18 @@ action void A_Backfire()
 
 	select0:
 		FBL1 A 0;
-		FBL1 A 0 A_JumpIf(invoker.A_IsFilled(), 2);
+		FBL1 B 0;
 		FBL2 A 0;
+		FBL2 B 0;
+		FBR1 A 0;
+		FBR1 B 0;
+		FBR2 A 0;
+		FBR2 B 0;
+		FBL1 A 0;
+		#### A 0
+		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
+		}
 		#### A 1;
 		#### A 1;
 		goto select0small;
@@ -258,15 +290,19 @@ action void A_Backfire()
 	deselect0:
 	deselect0real:
 		FBL1 A 0;
-		FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBL2 A 0;
+		#### A 0
+		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
+		}
 		#### A 1;
 		goto deselect0small;
 
 	ready:
 		FBL1 A 0;
-		FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBL2 A 0;
+		#### A 0
+		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
+		}
 	ReadyReal:
 		#### A 0 A_SetCrosshair(21);
 		#### A 1
@@ -290,6 +326,7 @@ action void A_Backfire()
 		#### A 2 offset(0,37)
 		{
 			A_FireShellPlastic();
+			A_CheckFlareGunHand(invoker.A_IsFilled());
 		}
 		#### A 1;
 		#### A 0;
@@ -303,6 +340,7 @@ action void A_Backfire()
 		#### A 2 offset(0,37)
 		{
 			A_FireFlare();
+			A_CheckFlareGunHand(invoker.A_IsFilled());
 		}
 		#### A 1;
 		#### A 0;
@@ -324,13 +362,14 @@ action void A_Backfire()
 		#### A 1 offset(14,74);
 		#### A 1 offset(11,76)A_StartSound("weapons/fgnrel3",9);
 		#### A 3 offset(10,72);
-		#### A 0
+		FBL1 B 0
 		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
 			if(health<40)A_SetTics(7);
 			else if(health<60)A_SetTics(6);
 		}
-		#### A 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
-		#### A 1 offset(10,72)
+		#### B 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
+		#### B 1 offset(10,72)
 		{
 			A_TakeInventory("HDShellAmmo",1,TIF_NOTAKEINFINITE);
 			invoker.weaponstatus[0]|=FLARE_LOADEDSHELL;
@@ -365,13 +404,14 @@ action void A_Backfire()
 		#### A 1 offset(14,74);
 		#### A 1 offset(11,76)A_StartSound("weapons/fgnrel3",9);
 		#### A 3 offset(10,72);
-		#### A 0
+		FBL2 A 0
 		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
 			if(health<40)A_SetTics(3);
 			else if(health<60)A_SetTics(2);
 		}
-		#### A 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
-		#### A 1 offset(10,72)
+		#### B 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
+		#### B 1 offset(10,72)
 		{
 			if(invoker.weaponstatus[1]&FLARE_JUSTUNLOAD)
 			{
@@ -436,13 +476,14 @@ action void A_Backfire()
 		#### A 1 offset(14,74);
 		#### A 1 offset(11,76)A_StartSound("weapons/fgnrel3",9);
 		#### A 3 offset(10,72);
-		#### A 0
+		FBL1 A 0
 		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
 			if(health<40)A_SetTics(3);
 			else if(health<60)A_SetTics(2);
 		}
-		#### A 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
-		#### A 1 offset(10,72)
+		#### B 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
+		#### B 1 offset(10,72)
 		{
 			A_TakeInventory("HDFlareAmmo",1,TIF_NOTAKEINFINITE);
 			invoker.weaponstatus[0]|=FLARE_LOADED;
@@ -460,19 +501,19 @@ action void A_Backfire()
 		TNT1 A 2;
 		FBL1 A 0
 		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
 			A_StartSound("weapons/fgnrel1",8,CHANF_OVERLAP);
 		}
-		FBL1 A 1 offset(8,78);
-		FBL1 A 1 offset(8,66);
-		FBL1 A 1 offset(8,52);
-		FBL1 A 1 offset(4,40);
-		FBL1 A 1 offset(2,34);
+		#### A 1 offset(8,78);
+		#### A 1 offset(8,66);
+		#### A 1 offset(8,52);
+		#### A 1 offset(4,40);
+		#### A 1 offset(2,34);
 		goto ready;
 
 
- firemode:
-	altfire:
-
+firemode:
+altfire:
 swappistols:
 		---- A 0 A_SwapFlareguns();
 		---- A 0{
@@ -488,29 +529,41 @@ swappistols:
 			}
 		}
 		TNT1 A 5;
-		FBL1 A 0 A_CheckFlareGunHand();
+		FBL1 A 0
+		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
+		}
 		goto nope;
 	lowerleft:
-   FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBL2 A 0;
-		#### B 1 offset(-6,38);
-		#### B 1 offset(-12,48);
-		#### B 1 offset(-20,60);
-		#### B 1 offset(-34,76);
-		#### B 1 offset(-50,86);
+		FBL1 A 0;
+		#### A 0
+		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
+		}
+		#### A 1 offset(-6,38);
+		#### A 1 offset(-12,48);
+		#### A 1 offset(-20,60);
+		#### A 1 offset(-34,76);
+		#### A 1 offset(-50,86);
 		stop;
 	lowerright:
-   FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBL2 A 0;
-		#### B 1 offset(6,38);
-		#### B 1 offset(12,48);
-		#### B 1 offset(20,60);
-		#### B 1 offset(34,76);
-		#### B 1 offset(50,86);
+		FBL1 A 0;
+		#### A 0
+		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
+		}
+		#### A 1 offset(6,38);
+		#### A 1 offset(12,48);
+		#### A 1 offset(20,60);
+		#### A 1 offset(34,76);
+		#### A 1 offset(50,86);
 		stop;
 	raiseleft:
-   FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBL2 A 0;
+		FBL1 A 0;
+		#### A 0
+		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
+		}
 		#### A 1 offset(-50,86);
 		#### A 1 offset(-34,76);
 		#### A 1 offset(-20,60);
@@ -518,8 +571,11 @@ swappistols:
 		#### A 1 offset(-6,38);
 		stop;
 	raiseright:
-   FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-		FBL2 A 0;
+		FBL1 A 0;
+		#### A 0
+		{
+			A_CheckFlareGunHand(invoker.A_IsFilled());
+		}
 		#### A 1 offset(50,86);
 		#### A 1 offset(34,76);
 		#### A 1 offset(20,60);
@@ -527,19 +583,18 @@ swappistols:
 		#### A 1 offset(6,38);
 		stop;
 	whyareyousmiling:
-		#### B 1 offset(0,48);
-		#### B 1 offset(0,60);
-		#### B 1 offset(0,76);
+		#### A 1 offset(0,48);
+		#### A 1 offset(0,60);
+		#### A 1 offset(0,76);
 		TNT1 A 7;
-		FBL1 A 0 A_JumpIf(invoker.A_IsFilled(),2);
-   FBL2 A 0;
-   #### A 0{
-			invoker.wronghand=!invoker.wronghand;
-			A_CheckFlareGunHand();
+		#### A 0
+		{
+			invoker.wronghand=!(invoker.wronghand);
+			A_CheckFlareGunHand(invoker.A_IsFilled());
 		}
-		#### B 1 offset(0,76);
-		#### B 1 offset(0,60);
-		#### B 1 offset(0,48);
+		#### A 1 offset(0,76);
+		#### A 1 offset(0,60);
+		#### A 1 offset(0,48);
 		goto nope;
 	
 	
