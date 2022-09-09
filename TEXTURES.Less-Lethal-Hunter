@@ -1,8 +1,0 @@
-sprite LLSGE0,79,60{
-	offset -118,-118
-	patch LLSGA0,0,0{}
-}
-sprite LLSGF0,79,60{
-	offset -118,-122
-	patch LLSGA0,0,0{}
-}
