@@ -3,7 +3,6 @@ sprite HSMGA0,20,16
 {
 	xscale 2
 	yscale 2
-	offset 10,16
 	patch HSMGA0,0,0{}
 }
 
@@ -12,7 +11,6 @@ sprite HSMGB0,20,16
 {
 	xscale 2
 	yscale 2
-	offset 10,16
 	patch HSMGB0,0,0{}
 }
 
@@ -21,7 +19,6 @@ sprite HSMGC0,20,16
 {
 	xscale 2
 	yscale 2
-	offset 10,16
 	patch HSMGC0,0,0{}
 }
 
@@ -37,8 +34,6 @@ sprite HPISA0,29,22
 	patch HPISA0,0,0{}
 }
 
-
-
 //unloaded pistol w/ magazine.
 sprite HPISB0,29,22
 {
@@ -47,8 +42,6 @@ sprite HPISB0,29,22
 	offset 15,16
 	patch HPISB0,0,0{}
 }
-
-
 
 //loaded pistol wo/ magazine.
 sprite HPISC0,29,22
@@ -59,8 +52,6 @@ sprite HPISC0,29,22
 	patch HPISC0,0,0{}
 }
 
-
-
 //unloaded pistol wo/ magazine.
 sprite HPISD0,29,22
 {
@@ -69,9 +60,6 @@ sprite HPISD0,29,22
 	offset 15,16
 	patch HPISD0,0,0{}
 }
-
-
-
 
 //horseshoe pistol sprites (selectfire)
 
@@ -84,8 +72,6 @@ sprite HPISE0,29,22
 	patch HPISA0,0,0{}
 patch FIRESEL,11,4{}
 }
-
-
 
 //unloaded pistol w/ magazine.
 sprite HPISF0,29,22
@@ -106,8 +92,6 @@ sprite HPISG0,29,22
 	patch HPISC0,0,0{}
   patch FIRESEL,11,4{}
 }
-
-
 
 //unloaded pistol wo/ magazine.
 sprite HPISH0,29,22
