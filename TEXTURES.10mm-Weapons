@@ -9,28 +9,35 @@ patch scbksite,0,0{}
 }
 
 //10mm magazine hud sprite
-sprite C10MA0,9,20{
-offset 4, 20
-xscale 2.5
-yscale 2.5
-patch C10MA0,0,0{}
+sprite "C10MA0", 9, 20
+{
+	xscale 2.5
+	yscale 2.5
+	patch "C10MA0", 0, 0
 }
 
-//10mm magazine hud sprite, empty
-sprite C10MD0,20,9{
-offset 10,9
-xscale 2.5
-yscale 2.5
-patch C10MD0,0,0{}
+//10mm magazine hud sprite, grey
+sprite "C10MB0", 9, 20
+{
+	xscale 2.5
+	yscale 2.5
+	patch "C10MB0", 0, 0
 }
 
 //10mm magazine hud sprite, grey
 sprite "C10MC0", 9, 20
 {
-	offset 4, 20
 	xscale 2.5
 	yscale 2.5
 	patch "C10MC0", 0, 0
+}
+
+//10mm magazine hud sprite, empty
+sprite "C10MD0", 20, 9
+{
+	xscale 2.5
+	yscale 2.5
+	patch "C10MD0", 0, 0
 }
 
 Sprite "RBAYA0", 123, 107

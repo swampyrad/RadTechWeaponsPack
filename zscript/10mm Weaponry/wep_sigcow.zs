@@ -805,7 +805,7 @@ class HD10mMag25:HD10mMag8{
 		//$Category "Ammo/Hideous Destructor/"
 		//$Title "SigCow Magazine"
 		//$Sprite "CLP3A0"
-                scale 0.5;
+        scale 0.5;
 		hdmagammo.maxperunit 25;
 		hdmagammo.magbulk enc_10mag25_EMPTY;
 		tag "Sig-Cow magazine";
