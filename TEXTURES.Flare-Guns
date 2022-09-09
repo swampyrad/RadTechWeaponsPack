@@ -14,13 +14,6 @@ offset 7,10
 patch FLA4A0,0,0{}
 }
 
-//flare shellbox
-sprite FLBXA0,32,12{
-offset 16,12
-patch FLBXA0,0,0{}
-}
-
-
 // metal sights
 sprite fbmsite, 5,13
 {
