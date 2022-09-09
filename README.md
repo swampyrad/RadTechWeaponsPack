@@ -118,6 +118,10 @@ Sig-cow sprites from El Doofer, based off the Doom Alpha Rifle by Id Software. P
 10mm Bullet Casing sprites taken from the Doom Prototype spriterip by Superdave938.
 Various TEXTURES, ZScript code and sprite edits by a1337spy.
 10mm 'Delta Elite' pistol sprites by ChopBlock223, based off the FreeDoom pistol sprites.
+Pickup sprite and SHOTA0 sprite edits by Swampyrad
+Original Shotgun sprite by iD Software
+Hand sprite on IM37A0 is taken from a sprite by Neoworm
+Ithaca 37 weapon sprites by LossForWords
 
 Extra thanks go to:
 
