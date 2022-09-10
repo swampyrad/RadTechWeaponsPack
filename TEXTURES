@@ -40,18 +40,6 @@ sprite "C10MD0", 20, 9
 	patch "C10MD0", 0, 0
 }
 
-Sprite "RBAYA0", 123, 107
-{
-	XScale 1.100
-	Patch "RBAYA0", 0, 0
-}
-
-Sprite "RBAYB0", 123, 107
-{
-	YScale 0.950
-	Patch "RBAYB0", 0, 0
-}
-
 //10mm pistol magazine hud sprite, empty
 sprite SC15D0,15,7{
 offset 7,7
