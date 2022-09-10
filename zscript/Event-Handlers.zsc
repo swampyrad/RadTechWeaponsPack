@@ -13,6 +13,7 @@ class RTSpawnItem play
 	Array<RTSpawnItemEntry>    spawnreplaces;        // ID by string for spawnees
 	int 	                   spawnreplacessize;    // Cached size of the above array
 	bool                       isPersistent;         // Whether or not to persistently spawn.
+	bool					   replaceitem;
 }
 
 class RTSpawnItemEntry play
@@ -51,7 +52,8 @@ class RadTechHandler : EventHandler
 		"HDFlameRed",
 		"HDMasterBlood",
 		"PlantBit",
-		"HDBulletActor"
+		"HDBulletActor",
+		"HDLadderSection"
 	};
 
 	// List of weapon-ammo associations.
@@ -66,7 +68,7 @@ class RadTechHandler : EventHandler
 	
 	
 	// appends an entry to itemspawnlist;
-	void additem(string name, Array<RTSpawnItemEntry> replacees, bool persists)
+	void additem(string name, Array<RTSpawnItemEntry> replacees, bool persists, bool rep=true)
 	{
 		// Creates a new struct;
 		RTSpawnItem spawnee = RTSpawnItem(new('RTSpawnItem'));
@@ -74,6 +76,7 @@ class RadTechHandler : EventHandler
 		// Populates the struct with relevant information,
 		spawnee.spawnname = name;
 		spawnee.isPersistent = persists;
+		spawnee.replaceitem = rep;
 		for(int i = 0; i < replacees.size(); i++)
 		{
 			spawnee.spawnreplaces.push(replacees[i]);
@@ -90,7 +93,7 @@ class RadTechHandler : EventHandler
 	{
 		// Creates a new struct;
 		RTSpawnItemEntry spawnee = RTSpawnItemEntry(new('RTSpawnItemEntry'));
-		spawnee.name = name;
+		spawnee.name = name.makelower();
 		spawnee.chance = chance;
 		return spawnee;
 		
@@ -108,7 +111,7 @@ class RadTechHandler : EventHandler
 		// Populates the struct with relevant information,
 		for(int i = 0; i < weapons.size(); i++)
 		{
-			spawnee.weaponnames.push(weapons[i]);
+			spawnee.weaponnames.push(weapons[i].makelower());
 			spawnee.weaponnamessize++;
 		}
 		
@@ -143,6 +146,43 @@ class RadTechHandler : EventHandler
 		// Actual add commands.
 		additem('PlasmaBuster', spawns_plasmabuster, pbuster_persistent_spawning);      //weapon replacer
 		addammo('HDBattery', wep_pbuster);  //adds to ammo whitelist
+
+
+// Flare Guns
+
+		// Ammo lists.
+		
+		Array<string> wep_fguns;  
+		wep_fguns.push("FireBlooper");  //name of weapon being added
+		wep_fguns.push("MetalFireBlooper");  //name of weapon being added
+		
+		// Actual add commands.
+		addammo('HDShellAmmo', wep_fguns);  //adds to ammo whitelist
+
+		// Plastic Flaregun
+		Array<RTSpawnItemEntry> spawns_flaregun_plastic;  //name of weapon spawner
+		spawns_flaregun_plastic.push(additementry("Hunter",              fl_weapon_spawn_bias));  //name of replacee
+		spawns_flaregun_plastic.push(additementry("Slayer",              fl_weapon_spawn_bias));  //name of replacee
+		spawns_flaregun_plastic.push(additementry('HDHandgunRandomDrop', fl_weapon_drop_chance_bias));
+		additem("WildFlareGun", spawns_flaregun_plastic, fl_weapon_persistent_spawning, false);      //weapon replacer
+
+		// Metal Flaregun
+		Array<RTSpawnItemEntry> spawns_flaregun_metal;  //name of weapon spawner
+		spawns_flaregun_metal.push(additementry("Hunter",              fl_metal_spawn_bias));  //name of replacee
+		spawns_flaregun_metal.push(additementry("Slayer",            fl_metal_spawn_bias));  //name of replacee
+		spawns_flaregun_metal.push(additementry('HDHandgunRandomDrop', fl_metal_drop_chance_bias));
+		additem("WildMetalFlareGun", spawns_flaregun_metal, fl_metal_persistent_spawning, false);      //weapon replacer
+
+
+		// Flaregun ammo (boxed)
+		Array<RTSpawnItemEntry> spawns_flaregun_ammob;  //name of weapon spawner
+		spawns_flaregun_ammob.push(additementry("ShellBoxPickup", fl_box_spawn_bias));  //name of replacee
+		additem("FlareShellBoxPickup", spawns_flaregun_ammob, false, false);
+
+		// Flaregun ammo (loose)
+		Array<RTSpawnItemEntry> spawns_flaregun_ammoa;  //name of weapon spawner
+		spawns_flaregun_ammoa.push(additementry("ShellPickup", fl_flare_spawn_bias));  //name of replacee
+		additem('HDFlareAmmoRandom', spawns_flaregun_ammoa, false, false);
 
 
 
@@ -376,7 +416,7 @@ class RadTechHandler : EventHandler
 
 
 	// Tries to create the item via random spawning.
-	bool trycreateitem(worldevent e, RTSpawnItem f, int g)
+	bool trycreateitem(worldevent e, RTSpawnItem f, int g, bool rep)
 	{
 		bool result = false;
 		if(giverandom(f.spawnreplaces[g].chance))
@@ -385,8 +425,11 @@ class RadTechHandler : EventHandler
 			let spawnitem = Actor.Spawn(f.spawnname, (spawnpos.x, spawnpos.y, spawnpos.z));
 			if(spawnitem)
 			{
-				e.thing.destroy();
-				result = true;
+				if(rep)
+				{
+					e.thing.destroy();
+					result = true;
+				}
 			}
 
 		}
@@ -420,6 +463,7 @@ class RadTechHandler : EventHandler
 		}
 
 		candidatename  = e.Thing.GetClassName();
+		candidatename = candidatename.makelower();
 		let ammo_ptr   = HDAmmo(e.Thing);
 		
 		if(ammo_ptr)
@@ -465,7 +509,7 @@ class RadTechHandler : EventHandler
 				{
 					if(itemspawnlist[i].spawnreplaces[j].name == candidatename)
 					{
-						if(trycreateitem(e, itemspawnlist[i], j))
+						if(trycreateitem(e, itemspawnlist[i], j, itemspawnlist[i].replaceitem))
 						{
 							j = itemspawnlist[i].spawnreplacessize;
 							i = itemspawnlistsize;
