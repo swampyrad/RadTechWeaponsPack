@@ -466,7 +466,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		#### A 1 offset(2,34);
 		goto ready;
 	
-	firemode:
+	//firemode:
 	altfire:
 swappistols:
 		---- A 0 A_SwapFlareguns();

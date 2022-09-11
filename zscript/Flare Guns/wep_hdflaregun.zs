@@ -527,7 +527,7 @@ action void A_Backfire()
 		goto ready;
 
 
-firemode:
+//firemode:
 altfire:
 swappistols:
 		---- A 0 A_SwapFlareguns();
