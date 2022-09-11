@@ -9,6 +9,7 @@ enum flaregunstatus
 	FLARE_LOADEDSHELL=2,
 	FLARE_SPENTSHELL=4,
 	FLARE_LOADEDSHELLEXP=45,
+	FLARE_SPENTSHELLEXP=44,
 	FLARE_METAL=26,
 };
 
@@ -194,8 +195,8 @@ action void A_CheckFlareGunHand(bool filled)
 	
 	bool A_IsFilled()
 	{
-		return self.weaponstatus[0]&FLARE_LOADED || 
-		self.weaponstatus[0]&FLARE_LOADEDSHELL;
+		return self.weaponstatus[0]==FLARE_LOADED || 
+		self.weaponstatus[0]==FLARE_LOADEDSHELL || self.weaponstatus[0]==FLARE_LOADEDSHELLEXP;
 	}
 	
 	
@@ -215,14 +216,13 @@ action void A_CheckFlareGunHand(bool filled)
 	
 	action void A_FireHell()
 	{
-			invoker.weaponstatus[0]&=~FLARE_LOADEDSHELLEXP;
+			invoker.weaponstatus[0]=FLARE_SPENTSHELLEXP;
 			HDBulletActor.FireBullet(self,"HDB_wad");
 			let sss=HDBulletActor.FireBullet(self,"HDB_12GuageSlugMissile",
 			spread:3,speedfactor:1,amount:1
 			);
 			distantnoise.make(sss,"world/shotgunfar");
 			self.A_StartSound("weapons/hunter",CHAN_WEAPON);
-			invoker.weaponstatus[0]=FLARE_SPENTSHELL;
 			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
 	}
 	
@@ -330,8 +330,8 @@ action void A_Backfire()
 	hold:
 
 	fire:
-		#### A 0 A_JumpIf(invoker.weaponstatus[0]&FLARE_LOADEDSHELL,"reallyshootshell");
-		#### A 0 A_JumpIf(invoker.weaponstatus[0]&FLARE_LOADED,"reallyshoot");
+		#### A 0 A_JumpIf(invoker.weaponstatus[0]==FLARE_LOADEDSHELL,"reallyshootshell");
+		#### A 0 A_JumpIf(invoker.weaponstatus[0]==FLARE_LOADED,"reallyshoot");
 		goto nope;
 
 

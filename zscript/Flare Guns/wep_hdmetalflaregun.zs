@@ -96,18 +96,13 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		{
 			sb.drawrect(-24,-13,7,3);
 		}
-		else if(hdw.weaponstatus[0]&FLARE_LOADEDSHELL)
+		else if(hdw.weaponstatus[0]==FLARE_LOADEDSHELL || hdw.weaponstatus[0]==FLARE_LOADEDSHELLEXP)
 		{
 			sb.drawrect(-24,-13,5,3);
 			sb.drawrect(-18,-13,2,3);
 		}
-		else if(hdw.weaponstatus[0]&FLARE_SPENTSHELL)
+		else if(hdw.weaponstatus[0]==FLARE_SPENTSHELL || hdw.weaponstatus[0]==FLARE_SPENTSHELLEXP)
 		{
-			sb.drawrect(-18,-13,2,3);
-		}
-		else if(hdw.weaponstatus[0]&FLARE_LOADEDSHELLEXP)
-		{
-			sb.drawrect(-24,-13,5,3);
 			sb.drawrect(-18,-13,2,3);
 		}
 		//sb.drawwepnum(hpl.countinv("HDFlareAmmo"),(HDCONST_MAXPOCKETSPACE/ENC_ROCKET));
@@ -217,9 +212,9 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		goto ready;
 
 	fire:
-		#### A 0 A_JumpIf(invoker.weaponstatus[0]&FLARE_LOADEDSHELLEXP,"reallyshoothell");
-		#### A 0 A_JumpIf(invoker.weaponstatus[0]&FLARE_LOADEDSHELL,"reallyshootshell");
-		#### A 0 A_JumpIf(invoker.weaponstatus[0]&FLARE_LOADED,"reallyshoot");
+		#### A 0 A_JumpIf(invoker.weaponstatus[0]==FLARE_LOADEDSHELL,"reallyshootshell");
+		#### A 0 A_JumpIf(invoker.weaponstatus[0]==FLARE_LOADED,"reallyshoot");
+		#### A 0 A_JumpIf(invoker.weaponstatus[0]==FLARE_LOADEDSHELLEXP,"reallyshoothell");
 		goto nope;
 
 	reallyshoothell:
@@ -227,6 +222,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		#### A 2 offset(0,37)
 		{
 			A_FireHell();
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 		}
 		#### A 1;
 		#### A 0;
@@ -238,6 +234,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		#### A 2 offset(0,37)
 		{
 			A_FireShell();
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 		}
 		#### A 1;
 		#### A 0;
@@ -290,7 +287,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	
 	altreload:
 		#### A 0;
-		#### A 3 A_JumpIf(player.cmd.buttons&BT_FIREMODE, "mark");
+		#### A 3 A_JumpIf(pressingfiremode(), "mark");
 		#### A 0 A_JumpIf(
 		invoker.weaponstatus[0]&FLARE_LOADED         ||
 		invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
@@ -331,6 +328,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 			invoker.weaponstatus[0]&FLARE_LOADED         ||
 			invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
 			invoker.weaponstatus[0]&FLARE_LOADEDSHELLEXP ||
+			invoker.weaponstatus[0]&FLARE_SPENTSHELLEXP  ||
 			invoker.weaponstatus[0]&FLARE_SPENTSHELL
 			)
 			{
@@ -369,16 +367,19 @@ action void A_CheckMetalFlareGunHand(bool filled)
 					A_JumpIfInventory("HDFlareAmmo",0,"null")          ||
 					A_JumpIfInventory("HDShellAmmo",0,"null")          ||
 					A_JumpIfInventory("HDExplosiveShellAmmo",0,"null") ||
-					invoker.weaponstatus[0]&FLARE_SPENTSHELL
+					invoker.weaponstatus[0]==FLARE_SPENTSHELL          ||
+					invoker.weaponstatus[0]==FLARE_SPENTSHELLEXP
 				)
 				{
-					if(!(invoker.weaponstatus[0]&~FLARE_SPENTSHELL))
+					if(invoker.weaponstatus[0]==FLARE_SPENTSHELLEXP)
+						A_SpawnItemEx("HDSpentExplosiveShell",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
+					else if(invoker.weaponstatus[0]==FLARE_SPENTSHELL)
 						A_SpawnItemEx("HDSpentShell",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
-					else if(!(invoker.weaponstatus[0]&~FLARE_LOADED))
+					else if(invoker.weaponstatus[0]==FLARE_LOADED)
 						A_SpawnItemEx("HDFlareAmmo",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
-					else if(!(invoker.weaponstatus[0]&~FLARE_LOADEDSHELL))
+					else if(invoker.weaponstatus[0]==FLARE_LOADEDSHELL)
 						A_SpawnItemEx("HDShellAmmo",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
-					else if(!(invoker.weaponstatus[0]&~FLARE_LOADEDSHELLEXP))
+					else if(invoker.weaponstatus[0]==FLARE_LOADEDSHELLEXP)
 						A_SpawnItemEx("HDExplosiveShellAmmo",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
 				
 					

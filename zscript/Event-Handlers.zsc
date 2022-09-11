@@ -106,7 +106,7 @@ class RadTechHandler : EventHandler
 	
 		// Creates a new struct;
 		RTSpawnAmmo spawnee = RTSpawnAmmo(new('RTSpawnAmmo'));
-		spawnee.ammoname = name;
+		spawnee.ammoname = name.makelower();
 		
 		// Populates the struct with relevant information,
 		for(int i = 0; i < weapons.size(); i++)
@@ -165,6 +165,7 @@ class RadTechHandler : EventHandler
 		// 12 gauge (explosive) ammo.
 		Array<string> wep_12gaex;
 		wep_12gaex.push("ExplosiveHunter");
+		wep_12gaex.push("MetalFireBlooper");
 		addammo("HDExplosiveShellAmmo", wep_12gaex);
 		
 		
@@ -464,10 +465,9 @@ class RadTechHandler : EventHandler
 		
 		// Pointers for specific classes.
 		let ammo_ptr   = HDAmmo(e.Thing);
-		let mag_ptr    = HDMagAmmo(e.thing);
 		
 		// Whether or not an item can use this.
-		if(ammo_ptr || mag_ptr)
+		if(ammo_ptr)
 		{
 			// Goes through the entire ammospawn array.
 			for(i = 0; i < ammospawnlistsize; i++)
@@ -480,8 +480,6 @@ class RadTechHandler : EventHandler
 						// Actual pushing to itemsthatusethis().
 						if(ammo_ptr)
 							ammo_ptr.ItemsThatUseThis.Push(ammospawnlist[i].weaponnames[j]);
-						else if(mag_ptr)
-							mag_ptr.ItemsThatUseThis.Push(ammospawnlist[i].weaponnames[j]);
 					}
 				}
 			}
