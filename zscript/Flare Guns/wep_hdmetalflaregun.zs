@@ -105,6 +105,11 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		{
 			sb.drawrect(-18,-13,2,3);
 		}
+		else if(hdw.weaponstatus[0]&FLARE_LOADEDSHELLEXP)
+		{
+			sb.drawrect(-24,-13,5,3);
+			sb.drawrect(-18,-13,2,3);
+		}
 		//sb.drawwepnum(hpl.countinv("HDFlareAmmo"),(HDCONST_MAXPOCKETSPACE/ENC_ROCKET));
 	}
 	
@@ -136,7 +141,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	bool A_IsFilled()
 	{
 		return self.weaponstatus[0]&FLARE_LOADED || 
-		self.weaponstatus[0]&FLARE_LOADEDSHELL;
+		self.weaponstatus[0]&FLARE_LOADEDSHELL || self.weaponstatus[0]&FLARE_LOADEDSHELLEXP;
 	}
 	
 
@@ -212,10 +217,20 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		goto ready;
 
 	fire:
+		#### A 0 A_JumpIf(invoker.weaponstatus[0]&FLARE_LOADEDSHELLEXP,"reallyshoothell");
 		#### A 0 A_JumpIf(invoker.weaponstatus[0]&FLARE_LOADEDSHELL,"reallyshootshell");
 		#### A 0 A_JumpIf(invoker.weaponstatus[0]&FLARE_LOADED,"reallyshoot");
 		goto nope;
 
+	reallyshoothell:
+		//shoot a REAL fireball
+		#### A 2 offset(0,37)
+		{
+			A_FireHell();
+		}
+		#### A 1;
+		#### A 0;
+		goto nope;
 
 
 	reallyshootshell:
@@ -241,13 +256,13 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		goto nope;
 
 
-	
-	altreload:
+	mark:
 		#### A 0 A_JumpIf(
-		invoker.weaponstatus[0]&FLARE_LOADED      ||
-		invoker.weaponstatus[0]&FLARE_LOADEDSHELL ||
-		invoker.weaponstatus[0]&FLARE_SPENTSHELL  ||
-		!countinv("HDShellAmmo"), "nope");
+		invoker.weaponstatus[0]&FLARE_LOADED         ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
+		invoker.weaponstatus[0]&FLARE_SPENTSHELL     ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSHELLEXP ||
+		!countinv("HDExplosiveShellAmmo"), "nope");
 		#### A 1 offset(2,36)A_StartSound("weapons/fgnrel1",8);
 		#### A 1 offset(4,42)A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
 		#### A 1 offset(10,50);
@@ -265,6 +280,41 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		#### B 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
 		#### B 1 offset(10,72)
 		{
+			A_TakeInventory("HDExplosiveShellAmmo",1,TIF_NOTAKEINFINITE);
+			invoker.weaponstatus[0]|=FLARE_LOADEDSHELLEXP;
+			A_SetTics(5);
+		}
+		goto reloadend;
+	
+	
+	
+	altreload:
+		#### A 0;
+		#### A 1 A_JumpIf(player.cmd.buttons&BT_FIREMODE, "mark");
+		#### A 0 A_JumpIf(
+		invoker.weaponstatus[0]&FLARE_LOADED         ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
+		invoker.weaponstatus[0]&FLARE_SPENTSHELL     ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSHELLEXP ||
+		!countinv("HDShellAmmo"), "nope");
+		#### A 0 offset(2,36)A_StartSound("weapons/fgnrel1",8);
+		#### A 1 offset(4,42)A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
+		#### A 1 offset(10,50);
+		#### A 2 offset(12,60)A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
+		#### A 1 offset(13,72) A_StartSound("weapons/fgnrel2",8,CHANF_OVERLAP);
+		#### A 1 offset(14,74);
+		#### A 1 offset(11,76)A_StartSound("weapons/fgnrel3",9);
+		#### A 3 offset(10,72);
+		FML1 B 0
+		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
+			if(health<40)A_SetTics(3);
+			else if(health<60)A_SetTics(2);
+		}
+		#### B 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
+		#### B 1 offset(10,72)
+		{
+
 			A_TakeInventory("HDShellAmmo",1,TIF_NOTAKEINFINITE);
 			invoker.weaponstatus[0]|=FLARE_LOADEDSHELL;
 			A_SetTics(5);
@@ -278,8 +328,9 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		{
 			if
 			(
-			invoker.weaponstatus[0]&FLARE_LOADED      ||
-			invoker.weaponstatus[0]&FLARE_LOADEDSHELL ||
+			invoker.weaponstatus[0]&FLARE_LOADED         ||
+			invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
+			invoker.weaponstatus[0]&FLARE_LOADEDSHELLEXP ||
 			invoker.weaponstatus[0]&FLARE_SPENTSHELL
 			)
 			{
@@ -314,9 +365,10 @@ action void A_CheckMetalFlareGunHand(bool filled)
 					
 				// Toss ammo if not pressing anything. 
 				if(
-					(!PressingUnload()&&!PressingReload())    ||
-					A_JumpIfInventory("HDFlareAmmo",0,"null") ||
-					A_JumpIfInventory("HDShellAmmo",0,"null") ||
+					(!PressingUnload()&&!PressingReload())             ||
+					A_JumpIfInventory("HDFlareAmmo",0,"null")          ||
+					A_JumpIfInventory("HDShellAmmo",0,"null")          ||
+					A_JumpIfInventory("HDExplosiveShellAmmo",0,"null") ||
 					invoker.weaponstatus[0]&FLARE_SPENTSHELL
 				)
 				{
@@ -326,6 +378,9 @@ action void A_CheckMetalFlareGunHand(bool filled)
 						A_SpawnItemEx("HDFlareAmmo",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
 					else if(!(invoker.weaponstatus[0]&~FLARE_LOADEDSHELL))
 						A_SpawnItemEx("HDShellAmmo",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
+					else if(!(invoker.weaponstatus[0]&~FLARE_LOADEDSHELLEXP))
+						A_SpawnItemEx("HDExplosiveShellAmmo",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
+				
 					
 					// Unset current ammo type. 
 					invoker.weaponstatus[0]&=~invoker.weaponstatus[0];
@@ -345,6 +400,12 @@ action void A_CheckMetalFlareGunHand(bool filled)
 						A_StartSound("weapons/pocket",9);
 						A_SetTics(4);
 					}
+					else if(!(invoker.weaponstatus[0]&~FLARE_LOADEDSHELLEXP))
+					{
+						A_GiveInventory("HDExplosiveShellAmmo",1);
+						A_StartSound("weapons/pocket",9);
+						A_SetTics(4);
+					}
 					// Unset current ammo type. 
 					invoker.weaponstatus[0]&=~invoker.weaponstatus[0];
 				}
@@ -358,9 +419,10 @@ action void A_CheckMetalFlareGunHand(bool filled)
 
 	reload:
 		#### A 0 A_JumpIf(
-		invoker.weaponstatus[0]&FLARE_LOADED      ||
-		invoker.weaponstatus[0]&FLARE_LOADEDSHELL ||
-		invoker.weaponstatus[0]&FLARE_SPENTSHELL  ||
+		invoker.weaponstatus[0]&FLARE_LOADED         ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSHELLEXP ||
+		invoker.weaponstatus[0]&FLARE_SPENTSHELL     ||
 		!countinv("HDFlareAmmo"), "nope");
 		#### A 1 offset(2,36)A_StartSound("weapons/fgnrel1",8);
 		#### A 1 offset(4,42)A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));

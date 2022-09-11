@@ -8,6 +8,7 @@ enum flaregunstatus
 	FLARE_STATUS=0,
 	FLARE_LOADEDSHELL=2,
 	FLARE_SPENTSHELL=4,
+	FLARE_LOADEDSHELLEXP=45,
 	FLARE_METAL=26,
 };
 
@@ -209,6 +210,20 @@ action void A_CheckFlareGunHand(bool filled)
 			for(int i=0;i<5;i++)A_SpawnItemEx("FourMilChunk",0,0,invoker.owner.height * 0.80,
 				random(4,7),random(-2,2),random(-2,1),0,SXF_NOCHECKPOSITION
 			);
+	}
+	
+	
+	action void A_FireHell()
+	{
+			invoker.weaponstatus[0]&=~FLARE_LOADEDSHELLEXP;
+			HDBulletActor.FireBullet(self,"HDB_wad");
+			let sss=HDBulletActor.FireBullet(self,"HDB_12GuageSlugMissile",
+			spread:3,speedfactor:1,amount:1
+			);
+			distantnoise.make(sss,"world/shotgunfar");
+			self.A_StartSound("weapons/hunter",CHAN_WEAPON);
+			invoker.weaponstatus[0]=FLARE_SPENTSHELL;
+			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
 	}
 	
 	
