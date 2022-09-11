@@ -221,6 +221,22 @@ action void A_CheckFlareGunHand(bool filled)
 			let sss=HDBulletActor.FireBullet(self,"HDB_12GuageSlugMissile",
 			spread:3,speedfactor:1,amount:1
 			);
+			
+			//flinching code borrowed from Brontornis
+			IsMoving.Give(self,gunbraced()?2:7);
+					if(
+					  !binvulnerable
+					  &&(
+						floorz<pos.z
+						||IsMoving.Count(self)>6
+					  )
+					){
+						givebody(max(0,5-health));
+						damagemobj(invoker,self,5,"bashing");
+						IsMoving.Give(self,3);
+					}
+
+			
 			distantnoise.make(sss,"world/shotgunfar");
 			self.A_StartSound("weapons/hunter",CHAN_WEAPON);
 			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
