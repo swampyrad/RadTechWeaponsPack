@@ -489,20 +489,8 @@ sprite HPISH0,29,22
   patch FIRESEL,12,4{}
 }
 
-// Minerva 9mm Chaingun
-
-sprite fbmsite, 5,13
-{
-	patch fgunfrnt, 0, 0{}
-}
 
 // Single-Action Revolver
-
-sprite 45LBA0, 24,13{
-  offset 12,13
-  patch 45LBA0,0,0{}
-}
-
 
 sprite RSALA0, 44,15{
   offset 22,15
