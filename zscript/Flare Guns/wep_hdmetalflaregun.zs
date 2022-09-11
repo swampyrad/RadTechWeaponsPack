@@ -290,7 +290,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	
 	altreload:
 		#### A 0;
-		#### A 1 A_JumpIf(player.cmd.buttons&BT_FIREMODE, "mark");
+		#### A 3 A_JumpIf(player.cmd.buttons&BT_FIREMODE, "mark");
 		#### A 0 A_JumpIf(
 		invoker.weaponstatus[0]&FLARE_LOADED         ||
 		invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
