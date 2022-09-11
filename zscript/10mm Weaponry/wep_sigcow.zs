@@ -271,9 +271,9 @@ if(!punchee.countinv("HDArmourWorn")){
 		if(sb.hudlevel==1){
 			int nextmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory("HD10mMag25")));
 			if(nextmagloaded>=25){
-				sb.drawimage("C10MA0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(3,3));
+				sb.drawimage("C10MA0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1,1));
 			}else if(nextmagloaded<1){
-				sb.drawimage("C10MD0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextmagloaded?0.6:1.,scale:(3,3));
+				sb.drawimage("C10MD0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextmagloaded?0.6:1.,scale:(1,1));
 			}else sb.drawbar(
 				"C10MA0","C10MC0",
 				nextmagloaded,25,
@@ -776,7 +776,7 @@ class HD10mMag8:HDMagAmmo{
 		hdmagammo.roundtype "HD10mAmmo";
 		hdmagammo.roundbulk enc_10_LOADED;
 		hdmagammo.magbulk enc_10MAG_EMPTY; 
-		scale 0.45;
+		scale 0.35;
 		tag "10mm pistol magazine";
 		inventory.pickupmessage "Picked up a 10mm pistol magazine.";
 		hdpickup.refid "SC8";
@@ -805,7 +805,7 @@ class HD10mMag25:HD10mMag8{
 		//$Category "Ammo/Hideous Destructor/"
 		//$Title "SigCow Magazine"
 		//$Sprite "CLP3A0"
-        scale 0.5;
+        scale 0.35;
 		hdmagammo.maxperunit 25;
 		hdmagammo.magbulk enc_10mag25_EMPTY;
 		tag "Sig-Cow magazine";
@@ -815,7 +815,7 @@ class HD10mMag25:HD10mMag8{
 
 	override string,string,name,double getmagsprite(int thismagamt){
 		string magsprite=(thismagamt>0)?"C10MA0":"C10MB0";
-		return magsprite,"PR10A0","HD10mAmmo",2.;
+		return magsprite,"PR10A0","HD10mAmmo",0.6;
 	}
 	override void GetItemsThatUseThis(){
 		itemsthatusethis.push("HDSigCow");
@@ -833,7 +833,6 @@ class HD10mMag25:HD10mMag8{
 }
 
 class HD10mPistolEmptyMag:IdleDummy{
-//useless atm, no 10mm pistol yet
 	override void postbeginplay(){
 		super.postbeginplay();
 		HDMagAmmo.SpawnMag(self,"HD10mMag8",0);
