@@ -666,9 +666,9 @@ RIFG B 1;
 	}
 	override void loadoutconfigure(string input){
 		int nogl=getloadoutvar(input,"nogl",1);
-		//disable launchers if rocket grenades blacklisted
-		string blacklist=hd_blacklist;
-		if(blacklist.IndexOf(HDLD_BLOOPER)>=0)nogl=1;
+		//disable launchers if rocket grenades denylisted
+		string denylist=hd_noloadout;
+		if(denylist.IndexOf(HDLD_BLOOPER)>=0)nogl=1;
 		if(!nogl){
 			weaponstatus[0]&=~ZM66F_NOLAUNCHER;
 		}else if(nogl>0){
