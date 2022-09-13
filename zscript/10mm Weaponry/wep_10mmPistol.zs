@@ -58,9 +58,9 @@ class HD10mmPistol:HDHandgun{
 		if(sb.hudlevel==1){
 			int nextmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory("HD10mMag8")));
 			if(nextmagloaded>=25){
-				sb.drawimage("SC15A0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(3,3));
+				sb.drawimage("SC15A0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1,1));
 			}else if(nextmagloaded<1){
-				sb.drawimage("SC15D0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextmagloaded?0.6:1.,scale:(3,3));
+				sb.drawimage("SC15D0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextmagloaded?0.6:1.,scale:(1,1));
 			}else sb.drawbar(
 				"SC15A0","SC15C0",
 				nextmagloaded,8,
