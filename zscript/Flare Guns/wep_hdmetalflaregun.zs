@@ -460,6 +460,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		TNT1 A 2;
 		FML1 A 0
 		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 			A_StartSound("weapons/fgnrel1",8,CHANF_OVERLAP);
 		}
 		#### A 1 offset(8,78);
