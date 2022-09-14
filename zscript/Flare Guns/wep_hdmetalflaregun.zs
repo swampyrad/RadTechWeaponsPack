@@ -486,7 +486,7 @@ swappistols:
 		TNT1 A 5;
 		FML1 A 0
 		{
-			A_CheckFlareGunHand(invoker.A_IsFilled());
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 		}
 		goto nope;
 	lowerleft:
