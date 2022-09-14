@@ -143,8 +143,10 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	override void loadoutconfigure(string input){
 
 		int shellround=getloadoutvar(input,"shell",1);
-		if(shellround>0)
+		if(shellround==1)
 			weaponstatus[0]=FLARE_LOADEDSHELL;
+		else if(shellround==2)
+					weaponstatus[0]=FLARE_LOADEDSHELLEXP;// ;)
 		else
 			weaponstatus[0]=FLARE_LOADED;
 	}
@@ -490,8 +492,7 @@ swappistols:
 		}
 		goto nope;
 	lowerleft:
-		#### A 0;
-		#### A 0
+		FMR2 A 0
 		{
 			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 		}
@@ -502,7 +503,7 @@ swappistols:
 		#### A 1 offset(-50,86);
 		stop;
 	lowerright:
-		#### A 0
+		FML2 A 0
 		{
 			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 		}
@@ -513,7 +514,7 @@ swappistols:
 		#### A 1 offset(50,86);
 		stop;
 	raiseleft:
-		#### A 0
+		FMR2 A 0
 		{
 			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 		}
@@ -524,7 +525,7 @@ swappistols:
 		#### A 1 offset(-6,38);
 		stop;
 	raiseright:
-		#### A 0
+		FML2 A 0
 		{
 			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 		}
