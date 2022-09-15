@@ -152,6 +152,7 @@ action void A_CheckRifleHand(){	if(invoker.wronghand)player.getpsprite(PSP_WEAPO
 	override string gethelptext(){
 		return
 		WEPHELP_FIRESHOOT
+                ..WEPHELP_FIREMODE.."  Quick-swap(if available)\n"
 		..WEPHELP_ALTFIRE.."  Work bolt\n"
 		..WEPHELP_RELOAD.."  Reload rounds/clip\n"
 		..WEPHELP_ZOOM.."+"..WEPHELP_FIREMODE.."  Zoom\n"
@@ -162,45 +163,6 @@ action void A_CheckRifleHand(){	if(invoker.wronghand)player.getpsprite(PSP_WEAPO
 		..WEPHELP_UNLOADUNLOAD
 		;
 	}
-
-/*  revolver DrawSightPicture code for reference
-
-	override void DrawSightPicture(
-		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
-		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
-	){
-		if(HDRevolver(hdw).cylinderopen)return;
-
-		int cx,cy,cw,ch;
-		[cx,cy,cw,ch]=screen.GetClipRect();
-		vector2 scc;
-		vector2 bobb=bob*1.3;
-
-
-    //this didn't do it
-		sb.SetClipRect(
-			-8+bob.x,-9+bob.y,16,15,
-			sb.DI_SCREEN_CENTER
-		);
-
-
-
-		scc=(0.9,0.9);
-
-   //this draws the front sight sprite and controls how much it bobs
-		sb.drawimage(
-			"revfst",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
-			alpha:0.9,scale:scc
-		);
-
-		sb.SetClipRect(cx,cy,cw,ch);
-		sb.drawimage(
-			"revbkst",(0,0)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
-			scale:scc
-		);
-	}
-
-*/
 
 
 	override void DrawSightPicture(
