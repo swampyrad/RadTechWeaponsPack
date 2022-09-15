@@ -27,7 +27,7 @@ class FireBlooper : HDHandgun
 		+hdweapon.fitsinbackpack
 		weapon.selectionorder 93;
 		weapon.slotnumber 3;//flare pistol
-		weapon.slotpriority 9;
+		weapon.slotpriority 0.3; // It's mostly a backup weapon, it shouldn't have a 9 for slot priority. - [Ted]
 		scale 0.6;
 		inventory.pickupmessage "You got the flare gun! It's like christmas morning...";
 		obituary "%o was set ablaze by %k.";

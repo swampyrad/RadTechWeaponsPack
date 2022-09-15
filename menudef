@@ -7,7 +7,7 @@ OptionMenu RadTechWeaponry
 // This adds it to options so we don't have multiple option menus in the main options menu.
 AddOptionMenu "OptionsMenu"
 {
-    Submenu "RadTech Weapons Pack", "RadTechWeaponry"
+    Submenu "$RADTECH_MENU", "RadTechWeaponry"
 }
 
 
@@ -60,7 +60,7 @@ OptionMenu Juan9mm
 	Title "------ Juan 9mm Horseshoe Pistol Options ------"
    	StaticText "Notice:", "Green"
     StaticText  "Setting 'weapon spawn rate' to Replace All will", "white"
-    StaticText  "supress vanilla pistol spawns. Setting 'weapon drop--rate'", "white"
+    StaticText  "suppress vanilla pistol spawns. Setting 'weapon drop--rate'", "white"
 	StaticText  "to Replace All forces every enemy to drop a 'Juan' pistol, and nothing else.", "white"
    	StaticText ""
 	StaticText "Spawn Options", "Green"
@@ -93,7 +93,7 @@ OptionMenu DoomedHunter
 {
     Title "------ Doomed Hunter Options ------"
    	StaticText "Notice:", "Red"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Red"
@@ -119,7 +119,7 @@ OptionMenu PlasmaBuster
 {
     Title "------ DM-93 Plasma Buster Options ------"
    	StaticText "Notice:", "Cyan"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Cyan"
@@ -149,9 +149,9 @@ OptionMenu PlasmaBuster
 
 OptionMenu ObrozzPistol
 {
-    Title "------ Obrozz Sawn-off Rifle Pistol Options ------"
+    Title "------ Obrozz Sawn-off Boss Rifle Options ------"
    	StaticText "Notice:", "Red"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Red"
@@ -169,19 +169,17 @@ OptionMenu ObrozzPistol
 	StaticText ""
 	StaticText "--- Lore ---", "Red"
 	StaticText ""
-	StaticText "A Boss rifle that has been chopped down to the bare essentials.", "white"
-	StaticText "Its size makes it easier to conceal, allowing for quick", "white"
-	StaticText "doubleshots by keeping a backup Obrozz handy. However, the", "white"
-	StaticText "lack of a front sight makes accurate shooting difficult.", "white"
-
-
+	StaticText "A Boss rifle that has been reduced down to the bare essentials.", "white"
+	StaticText "Its decreased size makes it easier to conceal, allowing for easy", "white"
+	StaticText "use of two by keeping a backup Obrozz handy. However, the", "white"
+	StaticText "lack of any proper sighting system makes accurate shooting difficult.", "white"
 }
 
 OptionMenu CombatShotgun
 {
     Title "------ Ithaca M37 Combat Shotgun Options ------"
    	StaticText "Notice:", "Red"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Red"
@@ -209,7 +207,7 @@ OptionMenu Sigcow
 {
     Title "------ M-211 Sigcow Options ------"
    	StaticText "Notice:", "Orange"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Orange"
@@ -236,7 +234,7 @@ OptionMenu 10pis
 {
     Title "------ Delta Elite 10mm Pistol Options ------"
    	StaticText "Notice:", "Green"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Green"
@@ -267,7 +265,7 @@ OptionMenu Snose
 {
     Title "------ Detective Special Snubnose Revolver Options ------"
    	StaticText "Notice:", "Green"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Green"
@@ -294,7 +292,7 @@ OptionMenu Minerva
 {
     Title "------ Minerva 9mm Chaingun Options ------"
    	StaticText "Notice:", "Orange"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Orange"
@@ -326,7 +324,7 @@ OptionMenu LessLethalHunter
 {
     Title "------ Bernoulli M1053 Less-Lethal Shotgun Options ------"
    	StaticText "Notice:", "Red"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Red"
@@ -361,7 +359,7 @@ OptionMenu HackedZM66
 {
     Title "------ Hacked ZM66 Assault Rifle Options ------"
    	StaticText "Notice:", "Orange"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Orange"
@@ -390,7 +388,7 @@ OptionMenu ExplosiveHunter
 {
     Title "------ Explosive Shotgun Options ------"
    	StaticText "Notice:", "Red"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Red"
@@ -425,7 +423,7 @@ OptionMenu SingleActionRevolver
 {
     Title "------ Single-Action Revolver Options ------"
    	StaticText "Notice:", "Green"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Green"
@@ -452,7 +450,7 @@ OptionMenu GoldSingleActionRevolver
 {
     Title "------ Gold Single-Action Revolver Options ------"
    	StaticText "Notice:", "Green"
-    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Green"
@@ -479,49 +477,49 @@ OptionMenu GoldSingleActionRevolver
 AddOptionMenu "RadTechWeaponry"
 {
     StaticText ""
-	StaticText "--- Rifles & PCCs ---", "orange"
+	StaticText "--- Rifles ---", "orange"
 	StaticText ""
-    Submenu "M-211 Sigcow", "Sigcow"
+    Submenu "M-211 Sigcow", "Sigcow", 0, 1
 	StaticText ""
-    Submenu "Obrozz Sawn-Off Rifle Pistol", "ObrozzPistol"
+    Submenu "Obrozz Sawn-Off Boss Rifle", "ObrozzPistol", 0, 1
 	StaticText ""
-	Submenu "Hacked ZM66 Assault Rifle", "HackedZM66"
+	Submenu "Hacked ZM66 Assault Rifle", "HackedZM66", 0, 1
 	StaticText ""
-	Submenu "Minerva 9mm Chaingun", "Minerva"
+	Submenu "Minerva 9mm Chaingun", "Minerva", 0, 1
 	StaticText ""
-	StaticText "--- Shotguns --", "red"
+	StaticText "--- Shotguns ---", "red"
     StaticText ""
-    Submenu "Doomed Hunter", "DoomedHunter"
+    Submenu "Doomed Hunter", "DoomedHunter", 0, 1
     StaticText ""
-    Submenu "Ithaca M37 Combat Shotgun", "CombatShotgun"
+    Submenu "Ithaca M37 Combat Shotgun", "CombatShotgun", 0, 1
 	StaticText ""
-	Submenu "Explosive Shotgun", "ExplosiveHunter"
+	Submenu "Explosive Shotgun", "ExplosiveHunter", 0, 1
 	StaticText ""
-	Submenu "Bernoulli M1053 Less-Lethal Shotgun", "LessLethalHunter"
+	Submenu "Bernoulli M1053 Less-Lethal Shotgun", "LessLethalHunter", 0, 1
 	StaticText ""
 	StaticText "--- Pistols ---", "green"
 	StaticText ""
-	Submenu "Single-Action Revolver", "SingleActionRevolver"
+	Submenu "Single-Action Revolver", "SingleActionRevolver", 0, 1
 	StaticText ""
-	Submenu "Golden Single-Action Revolver", "GoldSingleActionRevolver"
+	Submenu "Golden Single-Action Revolver", "GoldSingleActionRevolver", 0, 1
     StaticText ""
-    Submenu "Juan 9mm Horseshoe Pistol", "Juan9mm"
+    Submenu "Juan 9mm Horseshoe Pistol", "Juan9mm", 0, 1
     StaticText ""
-    Submenu "Delta Elite 10mm Pistol", "10pis"
+    Submenu "Delta Elite 10mm Pistol", "10pis", 0, 1
 	StaticText ""
-	Submenu "Detective Special Snubnose Revolver", "snose"
+	Submenu "Detective Special Snubnose Revolver", "snose", 0, 1
     StaticText ""
 	StaticText "--- Energy Weapons ---", "cyan"
 	StaticText ""
-    Submenu "DM-93 Plasma Buster", "PlasmaBuster"
+    Submenu "DM-93 Plasma Buster", "PlasmaBuster", 0, 1
 	StaticText ""
 	StaticText "--- Utility ---", "yellow"
 	StaticText ""
-    Submenu "Flare Guns", "flareguns"
+    Submenu "Flare Guns", "flareguns", 0, 1
 	StaticText ""
 	StaticText "--- Reset Options ---", "red"
 	StaticText ""
-	SafeCommand "Reset all options for Rad-Tech Weapons", "RTWP_Reset_Cvars"
+	SafeCommand "Reset all options for Radtech Weapons", "RTWP_Reset_Cvars"
 }
 
 // Spawn Bias (for items that do replace)
