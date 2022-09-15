@@ -208,7 +208,6 @@ class RadTechHandler : EventHandler
 		wep_9mm.push("TenMilAutoReloadingThingy");
 		addammo('HDPistolAmmo', wep_9mm);
 		
-		
 		// 9mm smg magazines
 		Array<string> wep_9mm30;
 		wep_9mm30.push("MinervaChaingun");
@@ -232,6 +231,22 @@ class RadTechHandler : EventHandler
 		wep_45lcgold.push("HDGoldenSingleActionRevolver");
 		addammo('HDGold45LCAmmo', wep_45lcgold);
 
+		// 7mm Clips
+			Array<string> wep_7mmClip;
+			wep_7mmClip.push("ObrozzPistol");
+			addammo('HD7mClip', wep_7mmClip);
+
+			// 7mm
+			   Array<string> wep_7mm;
+			   wep_7mm.push("ObrozzPistol");
+			   addammo('SevenMil', wep_7mm);
+		
+
+			// 7mm Recast
+			Array<string> wep_7mmR;
+			wep_7mmR.push("ObrozzPistol");
+			addammo('SevenMilAmmoRecast', wep_7mmR);
+		
 
 
 //
@@ -355,6 +370,7 @@ class RadTechHandler : EventHandler
 		//Random pistol drops
 		Array<RTSpawnItemEntry> spawns_snose_pistol;
 		spawns_snose_pistol.push(additementry('HDHandgunRandomDrop', snose_pistol_spawn_bias));
+
 		additem('HDSnubNoseRevolver', spawns_snose_pistol, snose_persistent_spawning);
   
 		//Random map spawns
@@ -390,6 +406,16 @@ class RadTechHandler : EventHandler
 		Array<RTSpawnItemEntry> spawns_goldengun_map;
 		spawns_goldengun_map.push(additementry('ClipBoxPickup', gsa_pistol_spawn_bias));
 		additem('GoldSASpawn', spawns_goldengun_map, gsa_persistent_spawning);
+
+//
+// Obrezz Pistol  
+//
+
+		Array<RTSpawnItemEntry> spawns_obrozz;
+		spawns_obrozz.push(additementry('HunterRandom', obrozz_spawn_bias));
+		spawns_obrozz.push(additementry('ClipBoxPickup', obrozz_spawn_bias));
+		additem('ObrozzSpawner', spawns_obrozz, obrozz_persistent_spawning);
+
 }
 	
 
