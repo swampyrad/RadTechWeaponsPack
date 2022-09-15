@@ -53,3 +53,6 @@ version "4.8"
 
 // Combat Shotgun
 #include "zscript/Combat Shotgun/wep_combatshotgun.zs"
+
+// Obrozz Pistol
+#include "zscript/Obrozz Pistol/wep_obrozzpistol.zs"

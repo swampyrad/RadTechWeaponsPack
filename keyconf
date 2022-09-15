@@ -11,7 +11,8 @@ alias esg_reset_cvars "resetcvar esg_shotgun_spawn_bias; resetcvar esgs_shell_sp
 alias sa_reset_cvars "resetcvar sa_pistol_spawn_bias; resetcvar sa_persistent_spawning"
 alias gsa_reset_cvars "resetcvar gsa_pistol_spawn_bias; resetcvar gsa_persistent_spawning"
 alias flreset_cvars "resetcvar fl_weapon_spawn_bias; resetcvar fl_weapon_drop_chance_bias; resetcvar fl_weapon_persistent_spawning; resetcvar fl_metal_spawn_bias; resetcvar fl_metal_drop_chance_bias; resetcvar fl_metal_persistent_spawning"
+alias obrozz_reset_cvars "resetcvar obrozz_spawn_bias; resetcvar obrozz_persistent_spawning"
 
 
 
-alias RTWP_Reset_Cvars "flreset_cvars; dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars; llh_reset_cvars; hzm_reset_cvars; esg_reset_cvars; sa_reset_cvars; gsa_reset_cvars"
+alias RTWP_Reset_Cvars "flreset_cvars; dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars; llh_reset_cvars; hzm_reset_cvars; esg_reset_cvars; sa_reset_cvars; gsa_reset_cvars; obrozz_reset_cvars"

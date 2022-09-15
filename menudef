@@ -147,6 +147,36 @@ OptionMenu PlasmaBuster
 	StaticText "shoots out a spread of many shots in rapid succession.", "white"
 }
 
+OptionMenu ObrozzPistol
+{
+    Title "------ Obrozz Sawn-off Rifle Pistol Options ------"
+   	StaticText "Notice:", "Red"
+    StaticText  "Setting 'spawn rate' to Replace All will supress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", "Red"
+    StaticText  "Control the spawn rate of the Obrozz Pistol on Shotguns and Ammo Boxes", "white"
+	Option "Obrozz Pistol Spawn Rate: ", "obrozz_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Obrozz Pistol options", "resetcvar obrozz_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "obrozz_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar cshotgun_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Red"
+	SafeCommand "Reset all options", "obrozz_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Red"
+	StaticText ""
+	StaticText "A Boss rifle that has been chopped down to the bare essentials.", "white"
+	StaticText "Its size makes it easier to conceal, allowing for quick", "white"
+	StaticText "doubleshots by keeping a backup Obrozz handy. However, the", "white"
+	StaticText "lack of a front sight makes accurate shooting difficult.", "white"
+
+
+}
+
 OptionMenu CombatShotgun
 {
     Title "------ Ithaca M37 Combat Shotgun Options ------"
@@ -173,6 +203,7 @@ OptionMenu CombatShotgun
 	StaticText "Despite having no side saddles or a butt stock to attach them to, in the right hands it's still as deadly as any other shotgun.", "white"
 	StaticText "Toss one in your pack the next time you leave HQ, it may become very handy.", "white"
 }
+
 
 OptionMenu Sigcow
 {
@@ -451,6 +482,8 @@ AddOptionMenu "RadTechWeaponry"
 	StaticText "--- Rifles & PCCs ---", "orange"
 	StaticText ""
     Submenu "M-211 Sigcow", "Sigcow"
+	StaticText ""
+    Submenu "Obrozz Sawn-Off Rifle Pistol", "ObrozzPistol"
 	StaticText ""
 	Submenu "Hacked ZM66 Assault Rifle", "HackedZM66"
 	StaticText ""

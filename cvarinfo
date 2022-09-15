@@ -72,6 +72,10 @@ server bool llh_persistent_spawning = false;
 server int hacked_zm66_spawn_bias = 24;
 server bool hacked_persistent_spawning = false;
 
+// Obrozz Pistol
+server int obrozz_spawn_bias = 24;
+server bool obrozz_persistent_spawning = false;
+
 // Explosive Shotgun
 server int esg_shotgun_spawn_bias = 49;
 server int esgs_shell_spawn_bias = 49;
