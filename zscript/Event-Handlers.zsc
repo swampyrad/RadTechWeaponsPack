@@ -232,20 +232,20 @@ class RadTechHandler : EventHandler
 		addammo('HDGold45LCAmmo', wep_45lcgold);
 
 		// 7mm Clips
-			Array<string> wep_7mmClip;
-			wep_7mmClip.push("ObrozzPistol");
-			addammo('HD7mClip', wep_7mmClip);
+		Array<string> wep_7mmClip;
+		wep_7mmClip.push("ObrozzPistol");
+		addammo('HD7mClip', wep_7mmClip);
 
 			// 7mm
-			   Array<string> wep_7mm;
-			   wep_7mm.push("ObrozzPistol");
-			   addammo('SevenMil', wep_7mm);
+		Array<string> wep_7mm;
+		wep_7mm.push("ObrozzPistol");
+		addammo('SevenMil', wep_7mm);
 		
 
 			// 7mm Recast
-			Array<string> wep_7mmR;
-			wep_7mmR.push("ObrozzPistol");
-			addammo('SevenMilAmmoRecast', wep_7mmR);
+		Array<string> wep_7mmR;
+		wep_7mmR.push("ObrozzPistol");
+		addammo('SevenMilAmmoRecast', wep_7mmR);
 		
 
 

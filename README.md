@@ -11,12 +11,16 @@ List of weapons and loadout codes:
      a load of rubberized buckshot pellets. Useful for situations where
      maintaining a low fatality count is crucial.
 
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/lesslethalhunter.png)
+
 Ithaca M37 Combat Shotgun [csg]
 
 - A compact shotgun often seen in the hands of space marines throughout the galaxy.
      Despite having no side saddles, or a butt stock to attach them to, in the right
      hands, it's still just as deadly as any other shotgun. Toss one in your pack the
      next time you roll out, it just might come in handy.
+
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/combatshotgun.png)
 
 Delta Elite 10mm Pistol [p1m] (mags - [sc8])
 
@@ -26,17 +30,23 @@ Delta Elite 10mm Pistol [p1m] (mags - [sc8])
      and higher muzzle velocity than either 9mm or .355 firearms, but
      is much harder to control due to increased recoil.
 
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/deltaelite.png)
+
 Detective Special Snubnose Revolver [snb]
 
 - A sidearm once popular with police and private investigators of
      the past, this revolver fits better in your pocket, at a cost to
      accuracy and firepower.
 
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/snubnoserevolver.png)
+
 Doomed Shotgun [dsg]
 
 - A modified Hunter designed to mimic the behavior of the vanilla
      Doom shotgun, fitted with a duckbill choke for V-pattern spread
      and the old-school pump-action animation.
+
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/doomedhunter.png)
 
 DM-93 Plasma Rifle [d93]
 
@@ -51,12 +61,16 @@ DM-93 Plasma Rifle [d93]
     emits an accurate stream of projectiles, while Burst-fire shoots out a
     spread of multiple shots, useful for close encounters of the demon kind.
 
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/dm93.png)
+
 Flare Gun [fgn; fgm, for metal variant] (flare shells - [fsh])
 
 - A common survival tool, useful for lighting up dark areas,
      or the occasional zombie or two. Can also fire buckshot shells,
      but only once before disintegrating. The metal version is less
      fragile, but much heavier.
+
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/flareguns.png)
 
 Juan Horseshoe Pistol [jua] (horseshoe mags - [j30])
 
@@ -67,6 +81,8 @@ However, its small size makes it hard to control in full-auto mode,
 which experienced users remedy by using a "galloping" shooting pattern,
 firing in short, controlled bursts to stay on target.
 
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/juanpistol.png)
+
 Hacked ZM66 Assault Rifle [hzm]
 
 - A 'jailbroken' model of the Volt ZM66 rifle, this weapon has been
@@ -75,11 +91,15 @@ Hacked ZM66 Assault Rifle [hzm]
      non-functioning, side effects of the jailbreaking process, but as
      a trade off, features a unique 4-round "Quad-Burst" firemode.
 
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/hackedzm66.png)
+
 M-211 Semi-Automatic Gas-Operated Combat Weapon [scw] (mags -[s25])
 
 - A pistol-caliber rifle chambered in 10mm Auto, the trusted weapon
      of UAC's Light Drop Infantry division. Includes a bayonet attachment
      for close-quarters combat.
+
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/m211sigcow.png)
 
 Minerva 9mm Chaingun [mnv]
 
@@ -87,9 +107,13 @@ Minerva 9mm Chaingun [mnv]
      hold a total of 150+5 rounds. Remember to hold onto those empties,
      you'll need them.
 
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/minerva9mmchaingun.png)
+
 Obrozz Swan-Off Rifle Pistol [obz]
 
 - An Obrez'd version of the Boss sniper rifle. A crude but deadly weapon, "Obrez" pistols were used by resistance members of the past for assasinations and self defense. The stock and barrel have been cut down to make one-handed firing possible, and its small size makes it easier to conceal than a full-length rifle.
+
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/obrozzsawedoffboss.png)
 
 Single Action Revolver [rsa] (.45 LC ammo - [45l])
 
@@ -98,6 +122,8 @@ Single Action Revolver [rsa] (.45 LC ammo - [45l])
      in whatever it hits. Has a greater ricochet chance, handy for bouncing
      rounds off walls and performing trickshots.
 
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/singleactionrevolver.png)
+
 Explosive Shotgun [xsg] (explosive shells - [xsh])
 
 - The antithesis of the Less-Lethal Shotgun, this modified Hunter fires
@@ -105,6 +131,8 @@ Explosive Shotgun [xsg] (explosive shells - [xsh])
  and burns on impact. Use of this weapon is tight quarters is ill-advised,
  as the slug's propellant may 'splash' back, burning the user as well as
  the intended target.
+
+![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/explosiveshotgun.png)
 
 Credits:
 1911 sprites provided courtesy of ChopBlock223 from the HD Discord

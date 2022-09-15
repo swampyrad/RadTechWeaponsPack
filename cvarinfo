@@ -21,9 +21,6 @@ server bool fl_weapon_persistent_spawning = false;
 server int  fl_metal_spawn_bias = 49;
 server int  fl_metal_drop_chance_bias = 49;
 server bool fl_metal_persistent_spawning = false;
-// Ammo? Flare drops might be handled by bulletlib instead. 
-//server int  fl_flare_spawn_bias        = 9;
-//server int  fl_box_spawn_bias          = 9;
 
 // Juan
 server int ja_weapon_spawn_bias       = 19;
