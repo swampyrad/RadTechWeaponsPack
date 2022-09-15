@@ -87,9 +87,9 @@ Minerva 9mm Chaingun [mnv]
      hold a total of 150+5 rounds. Remember to hold onto those empties,
      you'll need them.
 
-Obrezz Swan-Off Rifle Pistol [orz]
+Obrozz Swan-Off Rifle Pistol [orz]
 
-- A crude but deadly weapon, used by resistance members of the past for assasinations and self defense. The stock and barrel have been cut down to make one-handed firing possible, and its small size makes it easier to conceal than a full-length rifle.
+- An Obrez'd version of the Boss sniper rifle. A crude but deadly weapon, "Obrez" pistols were used by resistance members of the past for assasinations and self defense. The stock and barrel have been cut down to make one-handed firing possible, and its small size makes it easier to conceal than a full-length rifle.
 
 Single Action Revolver [rsa] (.45 LC ammo - [45l])
 
