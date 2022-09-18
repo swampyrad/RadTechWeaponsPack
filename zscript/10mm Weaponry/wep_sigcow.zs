@@ -1,5 +1,5 @@
 // ------------------------------------------------------------
-// SMG
+// M-211 Semi-Automatic Gas-Operated Combat Weapon (aka Sig-Cow)
 // ------------------------------------------------------------
 
 const enc_10MAG=9;
@@ -18,8 +18,8 @@ int targettimer;
 
 	default{
 		//$Category "Weapons/Hideous Destructor"
-		//$Title "SigCow"
-		//$Sprite "SMGNA0"
+		//$Title "Sig-Cow"
+		//$Sprite "RF10A0"
 
 		+hdweapon.fitsinbackpack
 		obituary "%o stepped in %k's cow pie.";
@@ -121,6 +121,11 @@ double strength;
 
 		if(!punchline.hitactor){
 			HDF.Give(self,"WallChunkAmmo",1);
+			if(punchline.hitline)doordestroyer.CheckDirtyWindowBreak(punchline.hitline,0.06+0.01*invoker.strength,punchline.hitlocation);
+			//this is the part that does window damage, 
+			//gave it 2x window damage because sharp points 
+			//break glass more easily
+			
 			return;
 		}
 		actor punchee=punchline.hitactor;
