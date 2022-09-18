@@ -365,7 +365,7 @@ if(!punchee.countinv("HDArmourWorn")){
     //you can now stab enemies with the rifle :D
 	altfire:
 		RBAY B 1;// A_DontFreedoomFrameB();
-   RBAY B 1 A_JumpIf(pressingaltfire(),"altfire");//adds a windup bedore stabbing
+   		RBAY B 1 A_JumpIf(pressingaltfire(),"altfire");//adds a windup bedore stabbing
 		RBAY C 3 {A_StrengthTics(0,2); A_Recoil(-1);}// adds a short charge before stabbing
 		RBAY D 0 A_Recoil(min(0,1.-invoker.strength));
 		RBAY D 0 HD_SigCowStab(20);
@@ -453,7 +453,8 @@ if(!punchee.countinv("HDArmourWorn")){
 			}
 			if(invoker.weaponstatus[SMGS_AUTO]==2)A_SetTics(1);
 		}
-  #### A 2; //going back to 2 tics, three is too slow :(
+  #### A 2 {if(invoker.weaponstatus[SMGS_AUTO]==1)A_SetTics(1);}
+  //gives burst fire a faster firerate than auto, for better grouping
 		#### A 0 A_ReFire();
   //fire another round if selectfire is set to Auto
 		goto ready;
