@@ -350,33 +350,33 @@ if(!punchee.countinv("HDArmourWorn")){
 		SMSG AB 0;
 
 	ready:
-		RBAY A 0 A_CheckReflexSight();
-		#### A 1{
-			A_SetCrosshair(21);
-			invoker.weaponstatus[SMGS_RATCHET]=0;
-			A_WeaponReady(WRF_ALL);
-		}
-		goto readyend;
-
+	RBAY A 0 A_CheckReflexSight();
+	#### A 1{
+		A_ChangeFlag("HDWEAPON.dontnull",false); 
+		A_SetCrosshair(21);
+		invoker.weaponstatus[SMGS_RATCHET]=0;
+		A_WeaponReady(WRF_ALL);
+	}
+	goto readyend;
+	
 	user3:
-		---- A 0 A_MagManager("HD10mMag25");
-		goto ready;
-
-    //you can now stab enemies with the rifle :D
+	---- A 0 A_MagManager("HD10mMag25");
+	goto ready;
+	
+	//you can now run while stabbing enemies with the rifle :D
 	altfire:
-		RBAY B 1;// A_DontFreedoomFrameB();
-   		RBAY B 1 A_JumpIf(pressingaltfire(),"altfire");//adds a windup bedore stabbing
-		RBAY C 3 {A_StrengthTics(0,2); A_Recoil(-1);}// adds a short charge before stabbing
-		RBAY D 0 A_Recoil(min(0,1.-invoker.strength));
-		RBAY D 0 HD_SigCowStab(20);
-		RBAY D 4 A_StrengthTics(3,10);
-		RBAY C 2 A_StrengthTics(1,5);
-		//#### B 0 A_DontFreedoomFrameB();
-		RBAY A 3 A_StrengthTics(0,5);
-		RBAY A 0 A_JumpIf(pressingaltfire(),"altfire");
-		RBAY A 1 A_ReFire();
-		goto ready;
-
+	RBAY B 1 A_ChangeFlag("HDWEAPON.dontnull", true); //this should keep the rifle out while you're charging for a stab
+	RBAY B 1 A_JumpIf(pressingaltfire(),"altfire");//adds a windup before stabbing
+	RBAY C 3 {A_StrengthTics(0,2); A_Recoil(-1);}// adds a short charge before stabbing
+	RBAY D 0 A_Recoil(min(0,1.-invoker.strength));
+	RBAY D 0 HD_SigCowStab(20);
+	RBAY D 4 A_StrengthTics(3,10);
+	RBAY C 2 A_StrengthTics(1,5);
+	RBAY A 3 A_StrengthTics(0,5);
+	RBAY A 0 A_JumpIf(pressingaltfire(),"altfire");
+	RBAY A 1 A_ReFire();
+	goto ready;
+	
 	althold:
 	//	goto altfire;
 	hold:
