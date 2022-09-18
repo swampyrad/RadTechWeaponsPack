@@ -22,6 +22,8 @@ int targettimer;
 		//$Sprite "RF10A0"
 
 		+hdweapon.fitsinbackpack
+		+hdweapon.dontnull
+		
 		obituary "%o stepped in %k's cow pie.";
 		weapon.selectionorder 24;
 		weapon.slotnumber 4;
@@ -352,7 +354,6 @@ if(!punchee.countinv("HDArmourWorn")){
 	ready:
 	RBAY A 0 A_CheckReflexSight();
 	#### A 1{
-		A_ChangeFlag("HDWEAPON.dontnull",false); 
 		A_SetCrosshair(21);
 		invoker.weaponstatus[SMGS_RATCHET]=0;
 		A_WeaponReady(WRF_ALL);
