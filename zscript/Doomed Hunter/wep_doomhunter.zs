@@ -41,16 +41,16 @@ override void postbeginplay(){
 		speedfactor*=shotpower;
 		HDBulletActor.FireBullet(caller,"HDB_wad");
 
-  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-1,1),speedfactor:speedfactor,amount:1);//1
-  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-1,1),speedfactor:speedfactor,amount:1);//2
-  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-2,2),speedfactor:speedfactor,amount:1);//3
-  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-3,3),speedfactor:speedfactor,amount:1);//4
-  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-4,4),speedfactor:speedfactor,amount:1);//5
-  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-5,5),speedfactor:speedfactor,amount:1);//6
-  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-6,6),speedfactor:speedfactor,amount:1);//7
-  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-7,7),speedfactor:speedfactor,amount:1);//8
-  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-8,8),speedfactor:speedfactor,amount:1);//9
-  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-8,8),speedfactor:speedfactor,amount:1);//10
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-1, 1),speedfactor:speedfactor,amount:1);//1
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-2, 0),speedfactor:speedfactor,amount:1);//2
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random( 0, 2),speedfactor:speedfactor,amount:1);//3
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-3,-1),speedfactor:speedfactor,amount:1);//4
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random( 1, 3),speedfactor:speedfactor,amount:1);//5
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-4,-2),speedfactor:speedfactor,amount:1);//6
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random( 2, 4),speedfactor:speedfactor,amount:1);//7
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-5,-3),speedfactor:speedfactor,amount:1);//8
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random( 3, 5),speedfactor:speedfactor,amount:1);//9
+  HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-1, 1),speedfactor:speedfactor,amount:1);//10
 		let p=HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,speedfactor:speedfactor,amount:0);//this one's just so the script works
 		distantnoise.make(p,"world/shotgunfar");
 		caller.A_StartSound("weapons/hunter",CHAN_WEAPON);
