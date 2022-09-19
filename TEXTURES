@@ -16,12 +16,12 @@ sprite BROZA0,115,138{
 	patch BROZA0,0,0
 }
 sprite BROZB0,149,115{
-	offset -102,-52
-	patch BROZA0,0,0{}
+	offset -72,-72
+	patch BROZB0,0,0{}
 }
 sprite BROZC0,123,115{
 	offset -103,-53
-	patch BROZA0,0,0
+	patch BROZC0,0,0
 }
 sprite BROZD0,130,115{
 	offset -104,-54
@@ -35,11 +35,11 @@ sprite BROZE0,126,115{
 // wronghand
 
 sprite BRZ2A0,115,138{
-	offset -103,-51
+	offset -103,-52
 	patch BRZ2A0,0,0
 }
 sprite BRZ2B0,153,115{
-	offset -103,-51
+	offset -72,-72
 	patch BRZ2B0,0,0{}
 }
 sprite BRZ2C0,123,115{
