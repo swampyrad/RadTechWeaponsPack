@@ -9,6 +9,52 @@ offset 18,6
 patch scbksite,0,0{}
 }
 
+//Obrozz Pistol sprites
+
+sprite BROZA0,115,138{
+	offset -103,-52
+	patch BROZA0,0,0
+}
+sprite BROZB0,149,115{
+	offset -102,-52
+	patch BROZA0,0,0{}
+}
+sprite BROZC0,123,115{
+	offset -103,-53
+	patch BROZA0,0,0
+}
+sprite BROZD0,130,115{
+	offset -104,-54
+	patch BROZD0,0,0
+}
+sprite BROZE0,126,115{ 
+	offset -104,-54
+	patch BROZE0,0,0
+}
+
+// wronghand
+
+sprite BRZ2A0,115,138{
+	offset -103,-51
+	patch BRZ2A0,0,0
+}
+sprite BRZ2B0,153,115{
+	offset -103,-51
+	patch BRZ2B0,0,0{}
+}
+sprite BRZ2C0,123,115{
+	offset -103,-53
+	patch BRZ2C0,0,0
+}
+sprite BRZ2D0,130,115{
+	offset -104,-54
+	patch BRZ2D0,0,0
+}
+sprite BRZ2E0,126,115{ 
+	offset -105,-54
+	patch BRZ2E0,0,0
+}
+
 //10mm pistol pickup sprite
 sprite DLTAA0,69,44{
 xscale 3.5
@@ -145,13 +191,13 @@ sprite LLSGF0,79,60{
 // metal sights
 sprite fbmsite, 5,13
 {
-	patch fgunfrnt, 0, 0{}
+	patch fbmsite, 0, 0{}
 }
 
 // plastic sights
 sprite fbpsite, 5,13
 {
-	patch fgunfrnt, 0, 0{}
+	patch fbpsite, 0, 0{}
 }
 
 // Golden Single-Action Revolver
