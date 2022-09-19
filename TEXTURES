@@ -31,6 +31,13 @@ sprite BROZE0,126,115{
 	offset -104,-54
 	patch BROZE0,0,0
 }
+sprite BROZF0,115,138{
+	offset -86,-42 
+	xscale 0.9
+	yscale 0.94
+	patch BROZA0,0,0{}
+}
+
 
 // wronghand
 
@@ -54,6 +61,14 @@ sprite BRZ2E0,126,115{
 	offset -105,-54
 	patch BRZ2E0,0,0
 }
+sprite BRZ2F0,115,138{
+	offset -86,-42
+	xscale 0.9
+	yscale 0.94
+	patch BRZ2A0,0,0{}
+}
+
+
 
 //10mm pistol pickup sprite
 sprite DLTAA0,69,44{
