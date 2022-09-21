@@ -568,6 +568,7 @@ class HDDynamiteRoller:HDActor{
 		TNT1 A 1{
 			bsolid=false;bpushable=false;bmissile=false;bnointeraction=true;bshootable=false;
 			HDDynamite.Kaboom(self);
+			HDDynamite.DynamiteShot(self,64);
 			actor xpl=spawn("WallChunker",self.pos-(0,0,1),ALLOW_REPLACE);
 				xpl.target=target;xpl.master=master;xpl.stamina=stamina;
 			xpl=spawn("HDExplosion",self.pos-(0,0,1),ALLOW_REPLACE);
@@ -614,12 +615,88 @@ class HDDynamite:SlowProjectile{
 		caller.A_StartSound("world/explode",CHAN_BODY,CHANF_OVERLAP);
 		caller.A_AlertMonsters();
 		//caller.A_SpawnChunksFrags();
+
 		caller.A_HDBlast(
 			pushradius:256,pushamount:256,fullpushradius:64,
 			fragradius:HDCONST_ONEMETRE*16
 		);
 		caller.A_Explode(50,16);
 		caller.A_Blast(5,16);
+	}
+	    //a copy of HDHEAT.HEATShot
+		static void DynamiteShot(actor caller,double squirtamt){
+		vector3 originalpos=caller.pos;
+
+		//do a series of linetracers to drill through everything
+		caller.A_SprayDecal("BigScorch",squirtamt);
+		array<actor>hitactors;hitactors.clear();
+		flinetracedata sqtrace;
+		do{
+			caller.linetrace(
+				caller.angle,
+				squirtamt,
+				caller.pitch,
+				data:sqtrace
+			);
+
+			caller.setorigin(sqtrace.hitlocation-sqtrace.hitdir,false);
+			if(sqtrace.hitactor){
+				int dmgg=int(frandom(70,240+squirtamt));
+				int dangle=int(absangle(caller.angle,caller.angleto(sqtrace.hitactor)));
+				bool crapshot=dangle>40;
+				if(dangle<20){
+					dmgg+=int((90-dangle)*squirtamt*frandom(0.4,0.45));
+					if(hd_debug)console.printf("CRIT!");
+				}else if(!crapshot)dmgg+=int(frandom(100,400-dangle+squirtamt*2));
+				int originalhealth=sqtrace.hitactor.health;
+				sqtrace.hitactor.damagemobj(
+					caller,caller.target,dmgg,crapshot?"Slashing":"Piercing",
+					crapshot?0:DMG_NO_ARMOR
+				);
+				int fdmg=0;
+				if(sqtrace.hitactor){
+					fdmg=originalhealth-sqtrace.hitactor.health;
+					if(
+						sqtrace.hitactor.health>0
+						&&(fdmg<<3)<sqtrace.hitactor.spawnhealth()
+					)break;
+					else{
+						hitactors.push(sqtrace.hitactor);
+						sqtrace.hitactor.bnonshootable=true;
+					}
+				}
+				squirtamt-=max(8,fdmg>>6);
+			}else{
+				doordestroyer.destroydoor(caller,maxwidth:squirtamt*frandom(1.3,1.6),dedicated:true);
+				squirtamt-=max(16,sqtrace.distance);
+			}
+		}while(squirtamt>0);
+		for(int i=0;i<hitactors.size();i++){
+			if(hitactors[i])hitactors[i].bnonshootable=false;
+		}
+		vector3 finalpos=caller.pos;
+		caller.setorigin(originalpos,false);
+
+		if(finalpos!=originalpos){
+			int iii=int((finalpos-originalpos).length());
+			vector3 trailpos=(0,0,0);
+			vector3 vu=caller.vel.unit();
+			vector3 vu2=vu*4;
+			for(int i=0;i<iii;i++){
+				trailpos+=vu;
+				caller.A_SpawnParticle(
+					"white",
+					SPF_FULLBRIGHT,
+					5,
+					frandom(0.04,0.07)*(iii-i*0.5),
+					caller.angle,
+					trailpos.x+frandom(-12,12),trailpos.y+frandom(-12,12),trailpos.z+frandom(-12,12),
+					vu2.x,vu2.y,vu2.z,
+					0,0,0.6,
+					sizestep:4
+				);
+			}
+		}
 	}
 	override void tick(){
 		ClearInterpolation();
