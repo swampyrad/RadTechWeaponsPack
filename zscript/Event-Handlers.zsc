@@ -265,7 +265,7 @@ class RadTechHandler : EventHandler
         
 		// Single bundles
 		Array<RTSpawnItemEntry> spawns_dynamite;  
-		spawns_dynamite.push(additementry('Rocket', dynamite_spawn_bias)); 
+		spawns_dynamite.push(additementry('RocketAmmo', dynamite_spawn_bias)); 
 		spawns_dynamite.push(additementry('HDFragGrenades', dynamite_spawn_bias)); 
 		// Actual add command.
 		additem('HDDynamiteAmmo', spawns_dynamite, dynamite_persistent_spawning);
@@ -274,7 +274,7 @@ class RadTechHandler : EventHandler
 	    //Item spawn lists.
 		Array<RTSpawnItemEntry> spawns_dynamitebundle;  
 		spawns_dynamitebundle.push(additementry('RocketBox', dynamite_spawn_bias)); 
-        spawns_dynamitebundle.push(additementry('HDFragGrenadeP', dynamite_spawn_bias)); 
+       		spawns_dynamitebundle.push(additementry('HDFragGrenadeP', dynamite_spawn_bias)); 
 		// Actual add command.
 		additem('HDDynamitePickup', spawns_dynamitebundle, dynamite_persistent_spawning);
 //
