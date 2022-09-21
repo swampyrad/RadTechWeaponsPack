@@ -259,7 +259,24 @@ class RadTechHandler : EventHandler
 		// Actual add command.
 		additem('PlasmaBuster', spawns_plasmabuster, pbuster_persistent_spawning);
 	
-	
+//
+//  Dynamite
+//      
+        
+		// Single bundles
+		Array<RTSpawnItemEntry> spawns_dynamite;  
+		spawns_dynamite.push(additementry('Rocket', dynamite_spawn_bias)); 
+		spawns_dynamite.push(additementry('HDFragGrenades', dynamite_spawn_bias)); 
+		// Actual add command.
+		additem('HDDynamiteAmmo', spawns_dynamite, dynamite_persistent_spawning);
+	    
+	    // Multi-bundles
+	    //Item spawn lists.
+		Array<RTSpawnItemEntry> spawns_dynamitebundle;  
+		spawns_dynamitebundle.push(additementry('RocketBox', dynamite_spawn_bias)); 
+        spawns_dynamitebundle.push(additementry('HDFragGrenadeP', dynamite_spawn_bias)); 
+		// Actual add command.
+		additem('HDDynamitePickup', spawns_dynamitebundle, dynamite_persistent_spawning);
 //
 // Flare Guns
 //
