@@ -22,6 +22,11 @@ server int  fl_metal_spawn_bias = 49;
 server int  fl_metal_drop_chance_bias = 49;
 server bool fl_metal_persistent_spawning = false;
 
+// Dynamite
+server int dynamite_spawn_bias = 19;
+server bool dynamite_persistent_spawning = false;
+
+
 // Juan
 server int ja_weapon_spawn_bias       = 19;
 server int ja_mag_spawn_bias          = 9;

@@ -10,11 +10,16 @@ weapons/rsa_shoot   rsablast
 weapons/rsa_click  rsaclick
 
 
-
 //Golden Gun
 // firing
 weapons/goldengun    goldngun
 
+//Dynamite
+
+weapons/dyna_pinin    zipclose
+weapons/dyna_pinout   ziplight
+weapons/dyna_spoonoff tntfuse
+weapons/dyna_throw    tnttoss
 
 
 //Detective Special

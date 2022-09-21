@@ -18,6 +18,9 @@ version "4.8"
 // Single-action Revolver
 #include "zscript/Single Action Revolver/wep_SArevolver.zs"
 
+// Dynamite
+#include "zscript/Dynamite/wep_dynamite.zs"
+
 // Minerva
 #include "zscript/Minerva/wep_minerva.zs"
 
