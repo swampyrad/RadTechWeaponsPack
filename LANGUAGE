@@ -1,0 +1,23 @@
+[enu default]
+
+// Controls the color of the menu icon. Mostly got curious about this, looks cool so kept it. - [Ted]
+RADTECH_MENU = "\c[Red]Ⓡ\c- Radtech Weapons Pack";
+
+// Weapon Tags, this allows external mods to change the tag names of these weapons. Very handy for resprites. - [Ted]
+TAG_SNUBNOSE = "Detective Special";
+TAG_SINGLEACTREV = "Single-Action Revolver";
+TAG_DM93PLASMA = "DM-93 Plasma Rifle";
+TAG_OBROZZ = "Obrozz Sawn-Off Boss";
+TAG_MINERVA = "Minerva 9mm Chaingun";
+TAG_LESSLETHALHUNTER = "Bernoulli M1053 Less-Lethal Shotgun";
+TAG_JUANPIS = "9mm 'Juan' Horseshoe Pistol";
+TAG_HACKEDZM = "Modified Volt ZM66 Assault Rifle";
+TAG_GOLDSINGLEACTION = "Golden Single-Action Revolver";
+TAG_FLAREGUN = "Flare Gun";
+TAG_METALFLAREGUN = "Metallic Flare Gun";
+TAG_EXPLOSIVESHOTGUN = "Bernoulli Explosive Hunter";
+TAG_DYNAMITE = "Dynamite";
+TAG_DOOMHUNT = "Doomed Hunter Shotgun";
+TAG_COMBATSHOTGUN = "Combat Shotgun";
+TAG_10PIS = "10mm Combat Pistol";
+TAG_SIGCOW = "M-211 Sig-Cow";

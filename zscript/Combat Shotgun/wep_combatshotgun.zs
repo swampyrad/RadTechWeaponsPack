@@ -17,7 +17,7 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 		inventory.pickupmessage "You got the combat shotgun!";
 		hdweapon.barrelsize 25,0.5,2;//30-5=25, shorter because there's no stock
 		hdweapon.refid "CSG";
-		tag "combat shotgun";
+		tag "$TAG_COMBATSHOTGUN";
 		obituary "$OB_MPSHOTGUN";
 
 	}

@@ -29,14 +29,12 @@ version "4.8"
 #include "zscript/Less Lethal Hunter/wep_LLhunter.zs"
 
 // Juan Pistol
-#include "zscript/Juan 9mm Pistol/juan_handler.zs"
 #include "zscript/Juan 9mm Pistol/mag_9mmhorseshoe.zs"
 #include "zscript/Juan 9mm Pistol/wep_juan.zs"
 
 // Flare guns
 #include "zscript/Flare guns/wep_hdflaregun.zs"
 #include "zscript/Flare guns/wep_hdmetalflaregun.zs"
-#include "zscript/Flare guns/evnt_flareguns.zs"
 
 // Explosive Hunter
 #include "zscript/Explosive Shotgun/wep_explosiveHunter.zs"

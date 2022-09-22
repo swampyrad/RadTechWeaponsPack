@@ -17,7 +17,7 @@ class HD10mmPistol:HDHandgun{
 		weapon.bobstyle "normal";
 		obituary "%o was dealt a fatal blow by %k's 10mm pistol.";
 		inventory.pickupmessage "You got the 10mm pistol! It really packs a punch!";
-		tag "10mm pistol";
+		tag "$TAG_10PIS";
 		hdweapon.refid "p1m";//Pistol, 10 millimeter.
 		hdweapon.barrelsize 10,0.3,0.5;
 

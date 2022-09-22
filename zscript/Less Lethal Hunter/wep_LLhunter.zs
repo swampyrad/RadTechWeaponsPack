@@ -17,7 +17,7 @@ class LLHunter:HDLLShotgun{
 		inventory.pickupmessage "You got the less-lethal shotgun!";
 		hdweapon.barrelsize 30,0.5,2;
 		hdweapon.refid "LLH";
-		tag "Bernoulli M1053";
+		tag "$TAG_LESSLETHALHUNTER";
 		obituary "$OB_MPSHOTGUN";
 	}
 	//returns the power of the load just fired

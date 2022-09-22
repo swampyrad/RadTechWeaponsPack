@@ -16,7 +16,7 @@ class ExplosiveHunter:HDShotgunExplosive{
 		inventory.pickupmessage "You got the explosive shotgun! Yeah, eat this!";
 		hdweapon.barrelsize 30,0.5,2;
 		hdweapon.refid "XSG";
-		tag "explosive shotgun";
+		tag "$TAG_EXPLOSIVESHOTGUN";
 		obituary "$OB_MPSHOTGUN";
 
 		hdweapon.loadoutcodes "

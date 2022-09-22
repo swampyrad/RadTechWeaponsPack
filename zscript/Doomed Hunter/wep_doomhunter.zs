@@ -16,7 +16,7 @@ class DoomHunter:HDShotgun{
 		inventory.pickupmessage "You got the doomed shotgun!";
 		hdweapon.barrelsize 30,0.5,2;
 		hdweapon.refid "dsg";
-		tag "doomed shotgun";
+		tag "$TAG_DOOMHUNT";
 		obituary "$OB_MPSHOTGUN";
 	}
 

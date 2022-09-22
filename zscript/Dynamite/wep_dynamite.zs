@@ -508,7 +508,7 @@ class HDDynamites:HDDynamiteThrower{//the actual weapon
 		weapon.selectionorder 1020;
 		weapon.slotnumber 0;
 		weapon.slotpriority 0.1;
-		tag "dynamite";
+		tag "$TAG_DYNAMITE";
 		hddynamitethrower.ammotype "HDDynamiteAmmo";
 		hddynamitethrower.throwtype "HDDynamite";
 		hddynamitethrower.spoontype "HDDynaFuse";

@@ -30,7 +30,7 @@ class ObrozzPistol:HDHandgun{
 		Obituary "%o sure showed %k who was the 'brozz!";
 		hdweapon.barrelsize 20,1,2;//rifle's been cut in half, basically
 		hdweapon.refid "obz";
-		tag "Obrozz Pistol";
+		tag "$TAG_OBROZZ";
 
 		hdweapon.loadoutcodes "
 			\cucustomchamber - 0/1, whether to reduce jam for less power

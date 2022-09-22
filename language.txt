@@ -1,6 +1,0 @@
-[enu default]
-
-// Controls the color of the menu icon. Mostly got curious about this, looks cool so kept it.
-// Eventually we can convert all of the tags from weapons to use language lumps to allow renaming them externally.
-// That's for another time though. - [Ted]
-RADTECH_MENU = "\c[Red]Ⓡ\c- Radtech Weapons Pack";
