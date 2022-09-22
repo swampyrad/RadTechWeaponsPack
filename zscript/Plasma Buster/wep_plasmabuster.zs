@@ -9,13 +9,13 @@ class PlasmaFoof:HDFireball{
 		gravity 0;
 		decal "BulletScratch";
 		damagetype "cold";
-		damagefunction(random(10,20));
+		damagefunction(random(20,30));//does an average of 25 damage
 		//hdfireball.firefatigue int(HDCONST_MAXFIREFATIGUE*0.25);
 	}
 	void ZapPlasma(){
 		roll=frandom(0,360);
 		A_StartSound("misc/arczap",CHAN_BODY);
-  HDMobAI.Frighten(self,512);//oh no, a ball of sparkly hot death, run away !!!
+                HDMobAI.Frighten(self,512);//oh no, a ball of sparkly hot death, run away !!!
 		blockthingsiterator it=blockthingsiterator.create(self,32);
 		actor tb=target;
 		actor zit=null;
@@ -23,7 +23,7 @@ class PlasmaFoof:HDFireball{
 		while(it.next()){
 			if(
 				it.thing.bshootable
-				&&abs(it.thing.pos.z-pos.z)<32
+				&&abs(it.thing.pos.z-pos.z)<16//decreased zap range
 			){
 				zit=it.thing;
 				if(
@@ -47,7 +47,7 @@ class PlasmaFoof:HDFireball{
 			}
 		}
 		if(!zit||zit==tb){pitch=frandom(-90,90);angle=frandom(0,360);}
-		if(!didzap)ZapArc(self,null,ARC2_SILENT,radius:8,height:8,pvel:vel);
+		if(!didzap)ZapArc(self,null,ARC2_SILENT,radius:4,height:4,pvel:vel);//smaller arcs
 
 		A_FaceTracer(4,4);
 
