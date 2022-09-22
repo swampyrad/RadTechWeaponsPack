@@ -1,12 +1,11 @@
 # RadTechWeaponsPack
 
 A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyrad and more.
-
-RadTech Weapons Pack now requires HDBulletLib Recasted in order to run. Load it before RadTech Weapons Pack.
+**Requires [HDBulletLib-Recasted](https://github.com/Gay-Snake-Squad/HDBulletLib-Recasted)!**
 
 List of weapons and loadout codes:
 
- Bernoulli M1053 Less-Lethal Shotgun [llh] (LL shells - [lls])
+ Bernoulli M1053 Less-Lethal Shotgun [llh] (Less-Lethal shells - [lls])
 
 - A polymer-based shotgun designed for riot control and crowd dispersion.
      Chambered only for the use of less-lethal shells, which contain
@@ -15,7 +14,7 @@ List of weapons and loadout codes:
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/lesslethalhunter.png)
 
-Ithaca M37 Combat Shotgun [csg]
+Ithaca M37 Combat Shotgun [csg] - (Shells [shl])
 
 - A compact shotgun often seen in the hands of space marines throughout the galaxy.
      Despite having no side saddles, or a butt stock to attach them to, in the right
@@ -24,7 +23,7 @@ Ithaca M37 Combat Shotgun [csg]
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/combatshotgun.png)
 
-Delta Elite 10mm Pistol [p1m] (mags - [sc8])
+Delta Elite 10mm Pistol [p1m] (Magazines - [sc8])
 
 - A handgun released in the late 80s, adopted by the FBI following
      the aftermath of a tragic shooting incident that resulted in the
@@ -34,7 +33,7 @@ Delta Elite 10mm Pistol [p1m] (mags - [sc8])
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/deltaelite.png)
 
-Detective Special Snubnose Revolver [snb]
+Detective Special Snubnose Revolver - [snb] (.355 - [355])
 
 - A sidearm once popular with police and private investigators of
      the past, this revolver fits better in your pocket, at a cost to
@@ -42,7 +41,7 @@ Detective Special Snubnose Revolver [snb]
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/snubnoserevolver.png)
 
-Doomed Shotgun [dsg]
+Doomed Shotgun - [dsg] (Shells - [shl])
 
 - A modified Hunter designed to mimic the behavior of the vanilla
      Doom shotgun, fitted with a duckbill choke for V-pattern spread
@@ -50,7 +49,7 @@ Doomed Shotgun [dsg]
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/doomedhunter.png)
 
-DM-93 Plasma Rifle [d93]
+DM-93 Plasma Rifle [d93] (Batteries - [bat])
 
 - An revised version of the "Thunder Buster" particle beam gun. After
     receiving a disturbing number of incident reports involving self-
@@ -65,7 +64,7 @@ DM-93 Plasma Rifle [d93]
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/dm93.png)
 
-Flare Gun [fgn; fgm, for metal variant] (flare shells - [fsh])
+Flare Guns [FGN] [FGM] (Flare shells - [fsh])
 
 - A common survival tool, useful for lighting up dark areas,
      or the occasional zombie or two. Can also fire buckshot shells,
@@ -74,7 +73,7 @@ Flare Gun [fgn; fgm, for metal variant] (flare shells - [fsh])
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/flareguns.png)
 
-Juan Horseshoe Pistol [jua] (horseshoe mags - [j30])
+Juan 9mm 'Horseshoe' Pistol - [jua] (Horseshoe mags - [j30])
 
 - *j u a n .* A variant of the standard-issue pistol, albeit with a
 non-standard issue magazine. As the name suggests, it uses a unique
@@ -85,7 +84,7 @@ firing in short, controlled bursts to stay on target.
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/juanpistol.png)
 
-Hacked ZM66 Assault Rifle [hzm]
+Hacked ZM66 Assault Rifle - [hzm] (Magazines - [450])
 
 - A 'jailbroken' model of the Volt ZM66 rifle, this weapon has been
      stripped of most of its less desirable features, mainly its
@@ -95,15 +94,15 @@ Hacked ZM66 Assault Rifle [hzm]
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/hackedzm66.png)
 
-M-211 Semi-Automatic Gas-Operated Combat Weapon [scw] (mags -[s25])
+M-211 Semi-Automatic Gas-Operated Combat Weapon - [scw] (Magazines - [s25])
 
-- A pistol-caliber rifle chambered in 10mm Auto, the trusted weapon
+- A pistol-caliber carbine chambered in 10mm Auto, the trusted weapon
      of UAC's Light Drop Infantry division. Includes a bayonet attachment
      for close-quarters combat.
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/m211sigcow.png)
 
-Minerva 9mm Chaingun [mnv]
+Minerva 9mm Chaingun - [mnv] (Magazines - [930])
 
 - A support weapon chambered in 9mm, takes UAC SMG magazines and can
      hold a total of 150+5 rounds. Remember to hold onto those empties,
@@ -111,13 +110,13 @@ Minerva 9mm Chaingun [mnv]
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/minerva9mmchaingun.png)
 
-Obrozz Swan-Off Rifle Pistol [obz]
+Obrozz Swan-Off Rifle Pistol - [obz] - (7.76mm - [7mm] [7mr] [710])
 
-- An Obrez'd version of the Boss sniper rifle. A crude but deadly weapon, "Obrez" pistols were used by resistance members of the past for assasinations and self defense. The stock and barrel have been cut down to make one-handed firing possible, and its small size makes it easier to conceal than a full-length rifle.
+- An Obrez'd version of the Mk. IV Boss bolt-action rifle. A crude but deadly weapon, "Obrez" pistols were used by resistance members of the past for assasinations and self defense. The stock and barrel have been cut down to make one-handed firing possible, and its small size makes it easier to conceal than a full-length rifle.
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/obrozzsawedoffboss.png)
 
-Single Action Revolver [rsa] (.45 LC ammo - [45l])
+Single Action Revolver - [rsa] (.45 LC ammo - [45l])
 
 - An ancient firearm better suited for a gunslinger than a space marine.
      Chambered in .45 Long Colt, this revolver will definitely punch a hole
@@ -126,7 +125,7 @@ Single Action Revolver [rsa] (.45 LC ammo - [45l])
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/singleactionrevolver.png)
 
-Explosive Shotgun [xsg] (explosive shells - [xsh])
+Explosive Shotgun - [xsg] (Explosive shells - [xsh])
 
 - The antithesis of the Less-Lethal Shotgun, this modified Hunter fires
  shells loaded with miniature HE grenade slugs, causing serious injuries
@@ -136,36 +135,43 @@ Explosive Shotgun [xsg] (explosive shells - [xsh])
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/explosiveshotgun.png)
 
-Colt 1911 .45 Pistol [c19]( Colt 1911 mags - [cm7])
-- (info will be added later)
+Colt 1911 .45 Pistol - [c19] (Magazines - [cm7])
 
-Credits:
-1911 sprites provided courtesy of ChopBlock223 from the HD Discord
-Flaregun sprites by FDA and Swampyrad
-Flare Ammo sprites by Swampyrad
-Flare Projectiles from Half-Life 1.
-Metal Flaregun's front sight by FDA.
-Name and Obituary suggestions by BenitezClance4
-Various Bugtesting from FDA,
-Matt for the original code from Hideous Destructor for the Minerva, Single-Action Revolver and Snubnose.
-Matt for the original sprites for the Single-Action revolver and the 10mm Auto-Reloader.
-Minerva Sprites by Id Software, Skulltag, Ghastly and FDA for various edits. (<https://www.realm667.com/index.php/en/armory-mainmenu-157-97317/doom-style-mainmenu-158-94349/641-minigun>)
-Red/Toxitiy for the Single-Action firing sounds.
-Sig-cow sprites from El Doofer, based off the Doom Alpha Rifle by Id Software. Pickup was based off the Super Shotgun sprite, inspired by the Bayonet Rifle pickup from the Doom prototype.
-10mm Bullet Casing sprites taken from the Doom Prototype spriterip by Superdave938.
-Various TEXTURES, ZScript code and sprite edits by a1337spy.
-10mm 'Delta Elite' pistol sprites by ChopBlock223, based off the FreeDoom pistol sprites.
-Pickup sprite and SHOTA0 sprite edits by Swampyrad
-Original Shotgun sprite by iD Software
-Hand sprite on IM37A0 is taken from a sprite by Neoworm
-Ithaca 37 weapon sprites by LossForWords
-Dynamite sprites and sounds are from
-nadeto's Blood Dynamite grenade reskin
-which they got from the BLOOM game mod
+- An old service pistol made many centuries ago, using .45 ACP rounds as it's ammunition. Still packs quite a punch, getting relatively close to the 10mm Delta Elites used by police forces until recently. Just make sure to take good care of it.
 
-Dynamite code based off Frag Grenade code by mc776
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/Coltm1911.png)
 
-Extra thanks go to:
+Dynamite - [DYN]
+
+- Apparently mostly re-surfacing after a large cult was found and dispatched by an unknown force, dynamite originally was known as a 'wild west' sort of thing usually used for mining out large areas. Currently though, it serves its job perfectly well by blowing up your foes.
+
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/Dynamite.png)
+
+## Credits
+
+- 1911 sprites provided courtesy of ChopBlock223 from the HD Discord
+- Flaregun sprites by FDA and Swampyrad
+- Flare Ammo sprites by Swampyrad
+- Flare Projectiles from Half-Life 1.
+- Metal Flaregun's front sight by FDA.
+- Name and Obituary suggestions by BenitezClance4
+- Various Bugtesting from FDA,
+- Matt for the original code from Hideous Destructor for the Minerva, Single-Action Revolver and Snubnose.
+- Matt for the original sprites for the Single-Action revolver and the 10mm Auto-Reloader.
+- Minerva Sprites by Id Software, Skulltag, Ghastly and FDA for various edits. (<https://www.realm667.com/index.php/en/armory-mainmenu-157-97317/doom-style-mainmenu-158-94349/641-minigun>)
+- Red/Toxitiy for the Single-Action firing sounds.
+- Sig-cow sprites from El Doofer, based off the Doom Alpha Rifle by Id Software. Pickup was based off the Super Shotgun sprite, inspired by the Bayonet Rifle pickup from the Doom prototype.
+- 10mm Bullet Casing sprites taken from the Doom Prototype spriterip by Superdave938.
+- Various TEXTURES, ZScript code and sprite edits by a1337spy.
+- 10mm 'Delta Elite' pistol sprites by ChopBlock223, based off the FreeDoom pistol sprites.
+- Pickup sprite and SHOTA0 sprite edits by Swampyrad
+- Original Shotgun sprite by iD Software
+- Hand sprite on IM37A0 is taken from a sprite by Neoworm
+- Ithaca 37 weapon sprites by LossForWords
+- Dynamite sprites and sounds are from nadeto's Blood Dynamite grenade reskin which they got from the BLOOM game mod
+- Dynamite code based off Frag Grenade code by mc776
+
+## Extra thanks to
 
 - Scuba Steve (for drawing the FreeDoom pistol it's based off of)
 - 3D Realms (for the muzzle flash based on one from Shadow Warrior)
