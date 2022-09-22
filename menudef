@@ -1,7 +1,54 @@
 // This is the main option menu that'll have all of the other menus for the weaponry.
 OptionMenu RadTechWeaponry
 {
-    Title "RadTech Weapons Pack"
+    Title "------ Radtech Weapons Pack ------"
+	StaticText "--- Rifles ---", "orange"
+	StaticText ""
+    Submenu "M-211 Sigcow", "Sigcow", 0, 1
+	StaticText ""
+    Submenu "Obrozz Sawn-Off Boss Rifle", "ObrozzPistol", 0, 1
+	StaticText ""
+	Submenu "Hacked ZM66 Assault Rifle", "HackedZM66", 0, 1
+	StaticText ""
+	Submenu "Minerva 9mm Chaingun", "Minerva", 0, 1
+	StaticText ""
+	StaticText "--- Shotguns ---", "red"
+    StaticText ""
+    Submenu "Doomed Hunter", "DoomedHunter", 0, 1
+    StaticText ""
+    Submenu "Ithaca M37 Combat Shotgun", "CombatShotgun", 0, 1
+	StaticText ""
+	Submenu "Explosive Shotgun", "ExplosiveHunter", 0, 1
+	StaticText ""
+	Submenu "Bernoulli M1053 Less-Lethal Shotgun", "LessLethalHunter", 0, 1
+	StaticText ""
+	StaticText "--- Pistols ---", "green"
+	StaticText ""
+	Submenu "Single-Action Revolver", "SingleActionRevolver", 0, 1
+	StaticText ""
+	Submenu "Golden Single-Action Revolver", "GoldSingleActionRevolver", 0, 1
+    StaticText ""
+    Submenu "Juan 9mm Horseshoe Pistol", "Juan9mm", 0, 1
+    StaticText ""
+    Submenu "Colt 1911 .45 Pistol", "Colt1911", 0, 1
+	StaticText ""
+    Submenu "Delta Elite 10mm Pistol", "10pis", 0, 1
+	StaticText ""
+	Submenu "Detective Special Snubnose Revolver", "snose", 0, 1
+    StaticText ""
+	StaticText "--- Energy Weapons ---", "cyan"
+	StaticText ""
+    Submenu "DM-93 Plasma Buster", "PlasmaBuster", 0, 1
+	StaticText ""
+	StaticText "--- Utility ---", "yellow"
+	StaticText ""
+	Submenu "Dynamite", "Dynamite", 0, 1
+	StaticText ""
+    Submenu "Flare Guns", "flareguns", 0, 1
+	StaticText ""
+	StaticText "--- Reset Options ---", "red"
+	StaticText ""
+	SafeCommand "Reset all options for Radtech Weapons", "RTWP_Reset_Cvars"
 }
 
 // This adds it to options so we don't have multiple option menus in the main options menu.
@@ -532,59 +579,6 @@ OptionMenu GoldSingleActionRevolver
 	StaticText "A special golden version of the Single-Action Revolver.", "white"
 	StaticText "Not much is known about it due to their immense rarity.", "White"
 	StaticText "...Though those who have found one talk highly about its power.", "white"
-}
-
-// Adds the other menus to the main Radtech Weapons menu.
-AddOptionMenu "RadTechWeaponry"
-{
-    StaticText ""
-	StaticText "--- Rifles ---", "orange"
-	StaticText ""
-    Submenu "M-211 Sigcow", "Sigcow", 0, 1
-	StaticText ""
-    Submenu "Obrozz Sawn-Off Boss Rifle", "ObrozzPistol", 0, 1
-	StaticText ""
-	Submenu "Hacked ZM66 Assault Rifle", "HackedZM66", 0, 1
-	StaticText ""
-	Submenu "Minerva 9mm Chaingun", "Minerva", 0, 1
-	StaticText ""
-	StaticText "--- Shotguns ---", "red"
-    StaticText ""
-    Submenu "Doomed Hunter", "DoomedHunter", 0, 1
-    StaticText ""
-    Submenu "Ithaca M37 Combat Shotgun", "CombatShotgun", 0, 1
-	StaticText ""
-	Submenu "Explosive Shotgun", "ExplosiveHunter", 0, 1
-	StaticText ""
-	Submenu "Bernoulli M1053 Less-Lethal Shotgun", "LessLethalHunter", 0, 1
-	StaticText ""
-	StaticText "--- Pistols ---", "green"
-	StaticText ""
-	Submenu "Single-Action Revolver", "SingleActionRevolver", 0, 1
-	StaticText ""
-	Submenu "Golden Single-Action Revolver", "GoldSingleActionRevolver", 0, 1
-    StaticText ""
-    Submenu "Juan 9mm Horseshoe Pistol", "Juan9mm", 0, 1
-    StaticText ""
-    Submenu "Colt 1911 .45 Pistol", "Colt1911", 0, 1
-	StaticText ""
-    Submenu "Delta Elite 10mm Pistol", "10pis", 0, 1
-	StaticText ""
-	Submenu "Detective Special Snubnose Revolver", "snose", 0, 1
-    StaticText ""
-	StaticText "--- Energy Weapons ---", "cyan"
-	StaticText ""
-    Submenu "DM-93 Plasma Buster", "PlasmaBuster", 0, 1
-	StaticText ""
-	StaticText "--- Utility ---", "yellow"
-	StaticText ""
-	Submenu "Dynamite", "Dynamite", 0, 1
-	StaticText ""
-    Submenu "Flare Guns", "flareguns", 0, 1
-	StaticText ""
-	StaticText "--- Reset Options ---", "red"
-	StaticText ""
-	SafeCommand "Reset all options for Radtech Weapons", "RTWP_Reset_Cvars"
 }
 
 // Spawn Bias (for items that do replace)
