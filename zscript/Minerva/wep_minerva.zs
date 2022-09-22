@@ -52,7 +52,7 @@ class MinervaChaingun:ZM66ScopeHaver{
 		obituary "%o got turned into swiss cheese by %k's Minnie-gun.";
 		hdweapon.barrelsize 30,3,4;
 		hdweapon.refid MNV_REFID;
-		tag "Minerva 9mm Chaingun";
+		tag "$TAG_MINERVA";
 
 		hdweapon.loadoutcodes"
 			\cufast - 0/1, whether to start in \"fuller auto\" mode

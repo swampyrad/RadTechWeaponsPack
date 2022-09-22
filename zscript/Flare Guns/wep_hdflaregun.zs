@@ -23,7 +23,6 @@ class FireBlooper : HDHandgun
 		//$Title "Flare Launcher"
 		//$Sprite "FLGNA0"
 
-
 		+hdweapon.fitsinbackpack
 		weapon.selectionorder 93;
 		weapon.slotnumber 3;//flare pistol
@@ -32,7 +31,7 @@ class FireBlooper : HDHandgun
 		inventory.pickupmessage "You got the flare gun! It's like christmas morning...";
 		obituary "%o was set ablaze by %k.";
 		hdweapon.barrelsize 24,1.6,3;
-		tag "Flare Gun";
+		tag "$TAG_FLAREGUN";
 		hdweapon.refid "fgn";
 	}
 

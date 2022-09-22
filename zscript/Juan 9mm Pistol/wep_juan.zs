@@ -3,12 +3,7 @@
 //------------------------------------------------------------------------------
 //credit for weapon name goes to .BenitezClance4 from the HD Discord
 
-
-
 class HDHorseshoePistol:HDHandgun{
-	
-	
-	
 	default{
 		+hdweapon.fitsinbackpack
 		+hdweapon.reverseguninertia
@@ -23,7 +18,7 @@ class HDHorseshoePistol:HDHandgun{
 		weapon.bobstyle "normal";
 		obituary "%o \c-got trampled over by %k's \c-juan.\c-.";
 		inventory.pickupmessage "You got the Juan! Ah, Juan, it kicks like a mule!";
-		tag "9mm 'Juan' Pistol";
+		tag "$TAG_JUANPIS";
 		hdweapon.refid "jua";
 		hdweapon.barrelsize 10,0.3,0.5;
 
@@ -31,8 +26,6 @@ class HDHorseshoePistol:HDHandgun{
 			\cuselectfire - 0/1, whether it has a fire selector
 			\cufiremode - 0/1, semi/auto, subject to the above";
 	}
-
-
 
 	override void postbeginplay(){
 		super.postbeginplay();
@@ -58,9 +51,6 @@ class HDHorseshoePistol:HDHandgun{
 		failedpickupunloadmag(HPISS_MAG,"hdhorseshoe9m");
 	}
 	
-	
-	
-
 	override string,double getpickupsprite(bool usespare)
     {
         string sprind;
@@ -104,8 +94,6 @@ class HDHorseshoePistol:HDHandgun{
 		}
         return sprname..sprind.."0",1.;
     }
-
-
 	
 	/*	
 	override string,double getpickupsprite()
@@ -180,7 +168,6 @@ class HDHorseshoePistol:HDHandgun{
 		return frind;
 	}
 
-	
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
 			int nextmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory("hdhorseshoe9m")));
@@ -623,8 +610,6 @@ class HDHorseshoePistol:HDHandgun{
 	}
 }
 
-
-
 // Workaround for Merchants compat and random drops. Not a real variant. 
 // A dirty fix, but this is the best I could come up with. 
 class HDHorseshoePistolAuto : HDMobBase
@@ -643,8 +628,6 @@ class HDHorseshoePistolAuto : HDMobBase
 	}
 }
 
-
-
 enum juan_pistolstatus
 {
 	HPISF_SELECTFIRE=1,
@@ -655,8 +638,6 @@ enum juan_pistolstatus
 	HPISS_MAG=1,
 	HPISS_CHAMBER=2, //0 empty, 1 spent, 2 loaded
 };
-
-
 
 //use this to give an autopistol in a custom loadout
 class HDHorseshoeAutoPistol:HDWeaponGiver

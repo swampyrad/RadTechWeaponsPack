@@ -17,18 +17,15 @@ class HDSnubNoseRevolver:HDHandgun{
 		weapon.bobstyle "normal";
 		obituary "%o found out %k was not just happy to see them.";
 		inventory.pickupmessage "You got the Detective Special!";
-		tag "Detective Special";
+		tag "$TAG_SNUBNOSE";
 		hdweapon.refid "snb";
 		hdweapon.barrelsize 2,0.3,0.5; //very short barrel, duh
 	}
-
 
 	override void postbeginplay(){
 		super.postbeginplay();
 		weaponspecial=1337;
 	}
-
-
 
 	override double gunmass(){
 		double blk=0;

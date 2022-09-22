@@ -17,7 +17,7 @@ class HDSingleActionRevolver:HDHandgun{
 		weapon.bobstyle "normal";
 		obituary "%o met his death by %k's big iron.";
 		inventory.pickupmessage "You got the single action revolver!";
-		tag "single action revolver";
+		tag "$TAG_SINGLEACTREV";
 		hdweapon.refid "rsa";//revolver, single action
 		hdweapon.barrelsize 12,0.3,0.5; //twice the barrel length
 	}

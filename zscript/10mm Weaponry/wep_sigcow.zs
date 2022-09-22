@@ -36,7 +36,7 @@ int targettimer;
 		inventory.pickupmessage "You got the M-211 Sig-Cow!"; 
 		hdweapon.barrelsize 26,0.5,1;
 		hdweapon.refid "SCW";
-		tag "M-211 Sig-Cow";
+		tag "$TAG_SIGCOW";
 		inventory.icon "RF10A0";
 		
 		hdweapon.loadoutcodes "

@@ -17,7 +17,7 @@ class HackedZM66AssaultRifle:ZM66ScopeHaver{
 		weapon.bobrangey 0.8;
 		obituary "%o was hacked to bits by %k.";
 		hdweapon.refid "HZM";
-		tag "ZM66 assault rifle [HACKED]";
+		tag "$TAG_HACKEDZM";
 		inventory.icon "RIGLA0";
 
 		hdweapon.loadoutcodes "

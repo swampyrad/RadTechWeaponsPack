@@ -17,7 +17,7 @@ class HDGoldSingleActionRevolver:HDHandgun{
 		weapon.bobstyle "normal";
 		obituary "%o was Scaramangled by %k's golden gun.";
 		inventory.pickupmessage "You got the Golden Gun!";
-		tag "golden gun";
+		tag "$TAG_GOLDSINGLEACTION";
 		hdweapon.refid "gsa";//golden single action
 		hdweapon.barrelsize 6,0.3,0.5;
 	}

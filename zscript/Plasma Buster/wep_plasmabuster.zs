@@ -4,11 +4,11 @@
 class PlasmaFoof:HDFireball{
 	default{
 		height 6;//-6
-  radius 6;//-6, to fit through smaller gaps
-  speed 32;
+		radius 6;//-6, to fit through smaller gaps
+		speed 32;
 		gravity 0;
 		decal "BulletScratch";
-  damagetype "cold";
+		damagetype "cold";
 		damagefunction(random(10,20));
 		//hdfireball.firefatigue int(HDCONST_MAXFIREFATIGUE*0.25);
 	}
@@ -91,8 +91,6 @@ class PlasmaFoof:HDFireball{
 	}
 }
 
-
-
 class PlasmaBuster:HDCellWeapon{
 	default{
 		//$Category "Weapons/Hideous Destructor"
@@ -109,7 +107,7 @@ class PlasmaBuster:HDCellWeapon{
 		obituary "%o was vaporized by %k's plasma rifle.";
 		hdweapon.barrelsize 35,1.6,3;
 		hdweapon.refid "d93";
-		tag "DM-93 plasma rifle";
+		tag "$TAG_DM93PLASMA";
 	}
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}

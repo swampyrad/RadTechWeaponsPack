@@ -9,7 +9,7 @@ class MetalFireBlooper: FireBlooper
 	{
 		inventory.pickupmessage "You got the flare gun! Feels pretty heavy...";
 		obituary "%o is S.O.L. thanks to %k's S.0.S.";
-		tag "Metal Flare Gun";
+		tag "$TAG_METALFLAREGUN";
 		hdweapon.refid "fgm";
 	}
 
