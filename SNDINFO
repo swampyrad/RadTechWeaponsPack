@@ -26,7 +26,8 @@ weapons/dyna_throw    tnttoss
 // firing
 weapons/snubnose  snubfire
 
-
+//Colt 1911
+weapons/colt1911  COLT1911
 
 //Flare Gun
 // plastic breaking.

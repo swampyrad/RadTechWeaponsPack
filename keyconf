@@ -1,3 +1,7 @@
+//note to self: keep everything in an alias on one single line.
+//              adding unnecessary linebreaks just screws things up.
+//              - swampie
+
 alias dHunt_reset_cvars "resetcvar dHunt_shotgun_spawn_bias; resetcvar dHunt_persistent_spawning;"
 alias pBuster_reset_cvars "resetcvar pbuster_cpack_spawn_Bias; resetcvar pbuster_persistent_spawning"
 alias cshotgun_reset_cvars "resetcvar cshotgun_shotgun_spawn_bias; resetcvar cshotgun_persistent_spawning"
@@ -13,6 +17,7 @@ alias gsa_reset_cvars "resetcvar gsa_pistol_spawn_bias; resetcvar gsa_persistent
 alias flreset_cvars "resetcvar fl_weapon_spawn_bias; resetcvar fl_weapon_drop_chance_bias; resetcvar fl_weapon_persistent_spawning; resetcvar fl_metal_spawn_bias; resetcvar fl_metal_drop_chance_bias; resetcvar fl_metal_persistent_spawning"
 alias obrozz_reset_cvars "resetcvar obrozz_spawn_bias; resetcvar obrozz_persistent_spawning"
 alias dynamite_reset_cvars "resetcvar dynamite_spawn_bias; resetcvar dynamite_persistent_spawning"
+alias colt1911_reset_cvars "resetcvar colt1911_spawn_bias; resetcvar colt1911_ammobox_spawn_bias; resetcvar colt1911_mags_spawn_bias; resetcvar colt1911_persistent_spawning; "
 
 
-alias RTWP_Reset_Cvars "flreset_cvars; dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars; llh_reset_cvars; hzm_reset_cvars; esg_reset_cvars; sa_reset_cvars; gsa_reset_cvars; obrozz_reset_cvars; dynamite_reset_cvars"
+alias RTWP_Reset_Cvars "flreset_cvars; dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars; llh_reset_cvars; hzm_reset_cvars; esg_reset_cvars; sa_reset_cvars; gsa_reset_cvars; obrozz_reset_cvars; dynamite_reset_cvars; colt1911_reset_cvars"

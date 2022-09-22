@@ -287,6 +287,41 @@ OptionMenu 10pis
 	StaticText "than either 9x22mm Parumpudicum or .355 firearms, but is much more difficult to control.", "white"
 }
 
+OptionMenu Colt1911
+{
+    Title "------ Colt 1911 .45 Pistol Options ------"
+   	StaticText "Notice:", "Green"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", "Green"
+    StaticText  "Control the spawn rate of the Colt 1911 on Handguns", "white"
+	Option "10mm Pistol Spawn Rate: ", "colt1911_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Colt 1911 options", "resetcvar colt1911_spawn_bias"
+    StaticText ""
+    StaticText  "Control the spawn rate of Colt 1911 bundles on Ammoboxes", "white"
+	Option "Colt 1911 Bundle Spawn Rate: ", "colt1911_ammobox_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Colt 1911 Bundle options", "resetcvar colt1911_ammobox_spawn_bias"
+    StaticText ""
+    StaticText  "Control the spawn rate of the Colt 1911's magazines on Clip Magazines.", "white"
+	Option "Magazine Spawn Rate: ", "colt1911_mags_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Magazine options", "resetcvar colt1911_mags_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload for the Colt 1911.", "white"
+	Option "Persistent Spawns: ", "colt1911_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar colt1911_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "colt1911_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "The Colt 1911 is chambered in .45 ACP, delivering a", "white"
+	StaticText "powerful blow that can bring down most humanoids", "White"
+	StaticText "in a couple of well-placed shots.", "white"
+}
+
 OptionMenu Snose
 {
     Title "------ Detective Special Snubnose Revolver Options ------"
@@ -531,6 +566,8 @@ AddOptionMenu "RadTechWeaponry"
     StaticText ""
     Submenu "Juan 9mm Horseshoe Pistol", "Juan9mm", 0, 1
     StaticText ""
+    Submenu "Colt 1911 .45 Pistol", "Colt1911", 0, 1
+	StaticText ""
     Submenu "Delta Elite 10mm Pistol", "10pis", 0, 1
 	StaticText ""
 	Submenu "Detective Special Snubnose Revolver", "snose", 0, 1

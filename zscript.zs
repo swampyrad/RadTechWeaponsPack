@@ -12,6 +12,9 @@ version "4.8"
 #include "zscript/10mm Weaponry/wep_10mmPistol.zs"
 #include "zscript/10mm Weaponry/10mmautoreloader.zs"
 
+// Colt 1911
+#include "zscript/Colt 1911/wep_colt1911.zs"
+
 // Snubnose Revolver
 #include "zscript/Snubnose Revolver/wep_snubnose.zs"
 

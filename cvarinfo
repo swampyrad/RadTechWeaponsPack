@@ -26,6 +26,11 @@ server bool fl_metal_persistent_spawning = false;
 server int dynamite_spawn_bias = 19;
 server bool dynamite_persistent_spawning = false;
 
+// Colt 1911
+server int colt1911_spawn_bias = 19;
+server int colt1911_ammobox_spawn_bias = 19;
+server int colt1911_mags_spawn_bias = 19;
+server bool colt1911_persistent_spawning = false;
 
 // Juan
 server int ja_weapon_spawn_bias       = 19;
