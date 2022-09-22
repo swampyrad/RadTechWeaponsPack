@@ -139,9 +139,13 @@ Colt 1911 .45 Pistol - [c19] (Magazines - [cm7])
 
 - An old service pistol made many centuries ago, using .45 ACP rounds as it's ammunition. Still packs quite a punch, getting relatively close to the 10mm Delta Elites used by police forces until recently. Just make sure to take good care of it.
 
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/coltm1911.png)
+
 Dynamite - [DYN]
 
 - Apparently mostly re-surfacing after a large cult was found and dispatched by an unknown force, dynamite originally was known as a 'wild west' sort of thing usually used for mining out large areas. Currently though, it serves its job perfectly well by blowing up your foes.
+
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/dynamite.png)
 
 ## Credits
 
@@ -167,7 +171,7 @@ Dynamite - [DYN]
 - Dynamite sprites and sounds are from nadeto's Blood Dynamite grenade reskin which they got from the BLOOM game mod
 - Dynamite code based off Frag Grenade code by mc776
 
-Extra thanks go to:
+## Extra thanks to
 
 - Scuba Steve (for drawing the FreeDoom pistol it's based off of)
 - 3D Realms (for the muzzle flash based on one from Shadow Warrior)
