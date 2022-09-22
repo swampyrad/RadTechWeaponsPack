@@ -11,7 +11,7 @@ List of weapons and loadout codes:
      a load of rubberized buckshot pellets. Useful for situations where
      maintaining a low fatality count is crucial.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/lesslethalhunter.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/lesslethalhunter.png)
 
 Ithaca M37 Combat Shotgun [csg]
 
@@ -20,7 +20,7 @@ Ithaca M37 Combat Shotgun [csg]
      hands, it's still just as deadly as any other shotgun. Toss one in your pack the
      next time you roll out, it just might come in handy.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/combatshotgun.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/combatshotgun.png)
 
 Delta Elite 10mm Pistol [p1m] (mags - [sc8])
 
@@ -30,7 +30,7 @@ Delta Elite 10mm Pistol [p1m] (mags - [sc8])
      and higher muzzle velocity than either 9mm or .355 firearms, but
      is much harder to control due to increased recoil.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/deltaelite.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/deltaelite.png)
 
 Detective Special Snubnose Revolver [snb]
 
@@ -38,7 +38,7 @@ Detective Special Snubnose Revolver [snb]
      the past, this revolver fits better in your pocket, at a cost to
      accuracy and firepower.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/snubnoserevolver.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/snubnoserevolver.png)
 
 Doomed Shotgun [dsg]
 
@@ -46,7 +46,7 @@ Doomed Shotgun [dsg]
      Doom shotgun, fitted with a duckbill choke for V-pattern spread
      and the old-school pump-action animation.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/doomedhunter.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/doomedhunter.png)
 
 DM-93 Plasma Rifle [d93]
 
@@ -61,7 +61,7 @@ DM-93 Plasma Rifle [d93]
     emits an accurate stream of projectiles, while Burst-fire shoots out a
     spread of multiple shots, useful for close encounters of the demon kind.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/dm93.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/dm93.png)
 
 Flare Gun [fgn; fgm, for metal variant] (flare shells - [fsh])
 
@@ -70,7 +70,7 @@ Flare Gun [fgn; fgm, for metal variant] (flare shells - [fsh])
      but only once before disintegrating. The metal version is less
      fragile, but much heavier.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/flareguns.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/flareguns.png)
 
 Juan Horseshoe Pistol [jua] (horseshoe mags - [j30])
 
@@ -81,7 +81,7 @@ However, its small size makes it hard to control in full-auto mode,
 which experienced users remedy by using a "galloping" shooting pattern,
 firing in short, controlled bursts to stay on target.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/juanpistol.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/juanpistol.png)
 
 Hacked ZM66 Assault Rifle [hzm]
 
@@ -91,7 +91,7 @@ Hacked ZM66 Assault Rifle [hzm]
      non-functioning, side effects of the jailbreaking process, but as
      a trade off, features a unique 4-round "Quad-Burst" firemode.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/hackedzm66.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/hackedzm66.png)
 
 M-211 Semi-Automatic Gas-Operated Combat Weapon [scw] (mags -[s25])
 
@@ -99,7 +99,7 @@ M-211 Semi-Automatic Gas-Operated Combat Weapon [scw] (mags -[s25])
      of UAC's Light Drop Infantry division. Includes a bayonet attachment
      for close-quarters combat.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/m211sigcow.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/m211sigcow.png)
 
 Minerva 9mm Chaingun [mnv]
 
@@ -107,13 +107,13 @@ Minerva 9mm Chaingun [mnv]
      hold a total of 150+5 rounds. Remember to hold onto those empties,
      you'll need them.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/minerva9mmchaingun.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/minerva9mmchaingun.png)
 
 Obrozz Swan-Off Rifle Pistol [obz]
 
 - An Obrez'd version of the Boss sniper rifle. A crude but deadly weapon, "Obrez" pistols were used by resistance members of the past for assasinations and self defense. The stock and barrel have been cut down to make one-handed firing possible, and its small size makes it easier to conceal than a full-length rifle.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/obrozzsawedoffboss.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/obrozzsawedoffboss.png)
 
 Single Action Revolver [rsa] (.45 LC ammo - [45l])
 
@@ -122,7 +122,7 @@ Single Action Revolver [rsa] (.45 LC ammo - [45l])
      in whatever it hits. Has a greater ricochet chance, handy for bouncing
      rounds off walls and performing trickshots.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/singleactionrevolver.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/singleactionrevolver.png)
 
 Explosive Shotgun [xsg] (explosive shells - [xsh])
 
@@ -132,7 +132,7 @@ Explosive Shotgun [xsg] (explosive shells - [xsh])
  as the slug's propellant may 'splash' back, burning the user as well as
  the intended target.
 
-![Thumbnail](https://github.com/swampyrad/RadtechWeaponsPack/blob/main/credits/explosiveshotgun.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/explosiveshotgun.png)
 
 Credits:
 1911 sprites provided courtesy of ChopBlock223 from the HD Discord
@@ -154,6 +154,11 @@ Pickup sprite and SHOTA0 sprite edits by Swampyrad
 Original Shotgun sprite by iD Software
 Hand sprite on IM37A0 is taken from a sprite by Neoworm
 Ithaca 37 weapon sprites by LossForWords
+Dynamite sprites and sounds are from
+nadeto's Blood Dynamite grenade reskin
+which they got from the BLOOM game mod
+
+Dynamite code based off Frag Grenade code by mc776
 
 Extra thanks go to:
 

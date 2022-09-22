@@ -1,5 +1,0 @@
-Dynamite sprites and sounds are from 
-nadeto's Blood Dynamite grenade reskin
-which they got from the BLOOM game mod
-
-Dynamite code based off Frag Grenade code by mc776
