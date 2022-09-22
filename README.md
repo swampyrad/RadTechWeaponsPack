@@ -2,6 +2,8 @@
 
 A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyrad and more.
 
+RadTech Weapons Pack now requires HDBulletLib Recasted in order to run. Load it before RadTech Weapons Pack.
+
 List of weapons and loadout codes:
 
  Bernoulli M1053 Less-Lethal Shotgun [llh] (LL shells - [lls])
