@@ -219,6 +219,10 @@ class RadTechHandler : EventHandler
 		wep_355.push("HDSnubNoseRevolver");
 		addammo('HDRevolverAmmo', wep_355);
 
+		// 45 ACP
+		Array<string> wep_45acp;
+		wep_45acp.push("HDColt1911");
+		addammo('HD45ACPAmmo', wep_45acp);
 
 		// 45 Long Colt
 		Array<string> wep_45lc;
@@ -259,6 +263,28 @@ class RadTechHandler : EventHandler
 		// Actual add command.
 		additem('PlasmaBuster', spawns_plasmabuster, pbuster_persistent_spawning);
 	
+//
+//  Colt 1911 .45 Pistol
+//
+		// Pistol spawns
+		Array<RTSpawnItemEntry> spawns_colt1911;  
+		spawns_colt1911.push(additementry('HDHandgunRandomDrop', colt1911_spawn_bias)); 
+		// Actual add command.
+		additem('HDColt1911', spawns_colt1911,  colt1911_persistent_spawning);
+		
+	    
+		//Random mag spawns
+		Array<RTSpawnItemEntry> spawns_colt1911_mags;
+		spawns_colt1911_mags.push(additementry('Clip', colt1911_mags_spawn_bias));
+		additem('HDColtMag7', spawns_colt1911_mags, colt1911_persistent_spawning);
+		
+			    
+		//Random ammobox spawns
+		Array<RTSpawnItemEntry> spawns_colt1911_ammobox;
+		spawns_colt1911_ammobox.push(additementry('ClipBox', colt1911_ammobox_spawn_bias));
+		additem('HDColt1911Spawn', spawns_colt1911_ammobox, colt1911_persistent_spawning);
+		
+
 //
 //  Dynamite
 //      
