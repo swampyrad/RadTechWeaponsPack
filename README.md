@@ -136,6 +136,9 @@ Explosive Shotgun [xsg] (explosive shells - [xsh])
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/explosiveshotgun.png)
 
+Colt 1911 .45 Pistol [c19]( Colt 1911 mags - [cm7])
+- (info will be added later)
+
 Credits:
 1911 sprites provided courtesy of ChopBlock223 from the HD Discord
 Flaregun sprites by FDA and Swampyrad
