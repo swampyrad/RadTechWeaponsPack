@@ -255,11 +255,6 @@ class HD10mmPistol:HDHandgun{
 				(invoker.weaponstatus[0]&(PISF_FIREMODE|PISF_SELECTFIRE))
 				==(PISF_FIREMODE|PISF_SELECTFIRE)
 			){
-				let pnr=HDPlayerPawn(self);
-				if(
-					pnr&&countinv("IsMoving")
-					&&pnr.fatigue<12
-				)pnr.fatigue++;
 				A_GiveInventory("IsMoving",5);
 				A_Refire("fire");
 			}else A_Refire();
