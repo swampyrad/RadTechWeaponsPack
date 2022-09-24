@@ -366,11 +366,7 @@ class HDHorseshoePistol:HDHandgun{
 				(invoker.weaponstatus[0]&(HPISF_FIREMODE|HPISF_SELECTFIRE))
 				==(HPISF_FIREMODE|HPISF_SELECTFIRE)
 			){
-				let pnr=HDPlayerPawn(self);
-				if(
-					pnr&&countinv("IsMoving")
-					&&pnr.fatigue<12
-				)pnr.fatigue++;
+				
 				A_GiveInventory("IsMoving",5);
 				A_Refire("fire");
 			}else A_Refire();
