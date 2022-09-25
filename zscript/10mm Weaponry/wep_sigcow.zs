@@ -22,7 +22,6 @@ int targettimer;
 		//$Sprite "RF10A0"
 
 		+hdweapon.fitsinbackpack
-		+hdweapon.dontnull
 		
 		obituary "%o stepped in %k's cow pie.";
 		weapon.selectionorder 24;
@@ -41,9 +40,7 @@ int targettimer;
 		
 		hdweapon.loadoutcodes "
 			\cufiremode - 0-2, semi/burst/auto
-			\cufireswitch - 0-4, default/semi/auto/full/all
-			\cureflexsight - 0-1, no/yes
-			\cudot - 0-5";
+			\cufireswitch - 0-4, default/semi/auto/full/all";
 	}
   
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
@@ -270,7 +267,7 @@ if(!punchee.countinv("HDArmourWorn")){
 	}
 	override string,double getpickupsprite(bool usespare){
 		int wep0=GetSpareWeaponValue(0,usespare);
-		return ((wep0&SMGF_REFLEXSIGHT)?"RF10":"RF10")
+		return ("RF10")
 			..((GetSpareWeaponValue(SMGS_MAG,usespare)<0)?"B":"A").."0",1.;
 	}
 
@@ -313,13 +310,14 @@ if(!punchee.countinv("HDArmourWorn")){
 		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
 		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
 	){
+		vector2 bobb=bob*1.18;
+		{
 			int cx,cy,cw,ch;
 			[cx,cy,cw,ch]=screen.GetClipRect();
 			sb.SetClipRect(
 				-16+bob.x,-4+bob.y,32,16,
 				sb.DI_SCREEN_CENTER
 			);
-			vector2 bobb=bob*3;
 			bobb.y=clamp(bobb.y,-8,8);
 			sb.drawimage(
 				"smgfrntsit",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP
@@ -330,29 +328,20 @@ if(!punchee.countinv("HDArmourWorn")){
 				alpha:0.9
 			);
 		}
-
-
-	override void SetReflexReticle(int which){weaponstatus[SMGS_DOT]=which;}
-	action void A_CheckReflexSight(){
-		if(
-			invoker.weaponstatus[0]&SMGF_REFLEXSIGHT
-		)Player.GetPSprite(PSP_WEAPON).sprite=getspriteindex("RBAYA0");
-		else Player.GetPSprite(PSP_WEAPON).sprite=getspriteindex("RBAYA0");
 	}
 
 	states{
 	select0:
-		RBAY A 0 A_CheckDefaultReflexReticle(SMGS_DOT);
-		RBAY A 0 A_CheckReflexSight();
+		RBAY A 0;
 		goto select0small;
 	deselect0:
-		RBAY A 0 A_CheckReflexSight();
+		RBAY A 0;
 		goto deselect0small;
 		RBAY AB 0;
 		SMSG AB 0;
 
 	ready:
-	RBAY A 0 A_CheckReflexSight();
+	RBAY A 0;
 	#### A 1{
 		A_SetCrosshair(21);
 		invoker.weaponstatus[SMGS_RATCHET]=0;
@@ -662,9 +651,7 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 		TNT1 A 1;
 		RF10 A -1{
 			if(invoker.weaponstatus[SMGS_MAG]<0)frame=1;
-			if(
-				invoker.weaponstatus[0]&SMGF_REFLEXSIGHT
-			)invoker.sprite=getspriteindex("RF10A0");
+			invoker.sprite=getspriteindex("RF10A0");
 		}
 		RF10 # -1;
 		stop;
@@ -677,17 +664,6 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 		int firemode=getloadoutvar(input,"firemode",1);
 		if(firemode>=0)weaponstatus[SMGS_AUTO]=clamp(firemode,0,2);
 
-		int xhdot=getloadoutvar(input,"dot",3);
-		int reflexsight=getloadoutvar(input,"reflexsight",1);
-		if(
-			!reflexsight
-			&&xhdot<0
-		)weaponstatus[0]&=~SMGF_REFLEXSIGHT;
-		else{
-			weaponstatus[0]|=SMGF_REFLEXSIGHT;
-			if(xhdot>=0)weaponstatus[SMGS_DOT]=xhdot;
-		}
-
 		int fireswitch=getloadoutvar(input,"fireswitch",1);
 
   if(fireswitch<0)weaponstatus[SMGS_SWITCHTYPE]=1;
@@ -698,7 +674,6 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 }
 enum smgstatus{
 	SMGF_JUSTUNLOAD=1,
-	SMGF_REFLEXSIGHT=2,
 
 	SMGN_SEMIONLY=1,
 	SMGN_BURSTONLY=2,
