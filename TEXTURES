@@ -10,65 +10,6 @@ patch scbksite,0,0{}
 }
 
 //Colt 1911 sprites
-//weapon sprites
-sprite CT45A0,98,111{
-offset -111,-58
-patch CT45A0,0,0{}
-}
-
-sprite CT45B0,98,111{
-offset -111,-58
-patch CT45B0,0,0{}
-}
-
-sprite CT45C0,98,111{
-offset -111,-58
-patch CT45A0,0,0{}
-}
-
-sprite CT45D0,98,111{
-offset -111,-58
-patch CT45D0,0,0{}
-}
-
-//wronghand weapon sprites
-sprite C245A0,98,111{
-offset -111,-58
-patch C245A0,0,0{}
-}
-
-sprite C245B0,98,111{
-offset -111,-58
-patch C245B0,0,0{}
-}
-
-sprite C245C0,98,111{
-offset -111,-58
-patch C245C0,0,0{}
-}
-
-sprite C245D0,98,111{
-offset -111,-58
-patch C245D0,0,0{}
-}
-
-//muzzleflash sprite
-sprite C45FA0,35,37{
-offset -143,-67
-patch C45FA0,0,0{}
-}
-
-//pickup sprites 
-sprite M191A0,26,14{
-offset 13,14
-patch M191A0,0,0{}
-}
-
-sprite M191B0,26,14{
-offset 13,14
-patch M191B0,0,0{}
-}
-
 //selectfire sprites
 sprite M191C0,26,14{
 offset 13,14
@@ -82,18 +23,7 @@ patch M191B0,0,0{}
 patch FIRESEL,7,5{}
 }
 
-
 //magazine sprites
-sprite CMG7A0,7,15{
-offset 3,15
-patch CMG7A0,0,0{}
-}
-
-sprite CMG7B0,7,15{
-offset 3,15
-patch CMG7B0,0,0{}
-}
-
 sprite CMG7NORM,7,15{
 offset 3,15
 patch CMG7A0,0,0{}
@@ -109,29 +39,7 @@ offset 7,7
 patch CMG7MPTY,0,0{}
 }
 
-
 //Obrozz Pistol sprites
-
-sprite BROZA0,115,138{
-	offset -103,-52
-	patch BROZA0,0,0
-}
-sprite BROZB0,149,115{
-	offset -72,-72
-	patch BROZB0,0,0{}
-}
-sprite BROZC0,123,115{
-	offset -103,-53
-	patch BROZC0,0,0
-}
-sprite BROZD0,130,115{
-	offset -104,-54
-	patch BROZD0,0,0
-}
-sprite BROZE0,126,115{ 
-	offset -104,-54
-	patch BROZE0,0,0
-}
 sprite BROZF0,115,138{
 	offset -86,-42 
 	xscale 0.9
@@ -139,37 +47,12 @@ sprite BROZF0,115,138{
 	patch BROZA0,0,0{}
 }
 
-
-// wronghand
-
-sprite BRZ2A0,115,138{
-	offset -103,-52
-	patch BRZ2A0,0,0
-}
-sprite BRZ2B0,153,115{
-	offset -72,-72
-	patch BRZ2B0,0,0{}
-}
-sprite BRZ2C0,123,115{
-	offset -103,-53
-	patch BRZ2C0,0,0
-}
-sprite BRZ2D0,130,115{
-	offset -104,-54
-	patch BRZ2D0,0,0
-}
-sprite BRZ2E0,126,115{ 
-	offset -105,-54
-	patch BRZ2E0,0,0
-}
 sprite BRZ2F0,115,138{
 	offset -86,-42
 	xscale 0.9
 	yscale 0.94
 	patch BRZ2A0,0,0{}
 }
-
-
 
 //10mm pistol pickup sprite
 sprite DLTAA0,69,44{
@@ -202,7 +85,6 @@ yscale 3.5
 offset 36,50
 patch DLTAB0,0,0{}
 }
-
 
 //snubnose sprites
 
