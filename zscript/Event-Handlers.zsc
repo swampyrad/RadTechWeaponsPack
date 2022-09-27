@@ -206,11 +206,13 @@ class RadTechHandler : EventHandler
 		wep_9mm.push("MinervaChaingun");
 		wep_9mm.push("HDSnubNoseRevolver");
 		wep_9mm.push("TenMilAutoReloadingThingy");
+		wep_9mm.push("HDStenMk2");
 		addammo('HDPistolAmmo', wep_9mm);
 		
 		// 9mm smg magazines
 		Array<string> wep_9mm30;
 		wep_9mm30.push("MinervaChaingun");
+		wep_9mm30.push("HDStenMk2");
 		addammo('HD9mMag30', wep_9mm30);
 
 
@@ -284,6 +286,23 @@ class RadTechHandler : EventHandler
 		spawns_colt1911_ammobox.push(additementry('ClipBox', colt1911_ammobox_spawn_bias));
 		additem('HDColt1911Spawn', spawns_colt1911_ammobox, colt1911_persistent_spawning);
 		
+//
+//  STEN Mk. 2(S)
+//
+		// STEN spawns
+		Array<RTSpawnItemEntry> spawns_sten;  
+		spawns_sten.push(additementry('HDSMGRandom', sten_spawn_bias)); 
+		// Actual add command.
+		additem('HDSTENRandom', spawns_sten,  sten_persistent_spawning);
+		
+	    
+			    
+		//Random ammobox spawns
+		Array<RTSpawnItemEntry> spawns_sten_ammobox;
+		spawns_sten_ammobox.push(additementry('ClipBox', sten_ammobox_spawn_bias));
+		additem('HDSTENRandom', spawns_sten_ammobox, sten_persistent_spawning);
+		
+
 
 //
 //  Dynamite
