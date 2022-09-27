@@ -15,6 +15,9 @@ version "4.8"
 // Colt 1911
 #include "zscript/Colt 1911/wep_colt1911.zs"
 
+// STEN Mk. 2(S)
+#include "zscript/STEN/wep_stenmk2s.zs"
+
 // Snubnose Revolver
 #include "zscript/Snubnose Revolver/wep_snubnose.zs"
 

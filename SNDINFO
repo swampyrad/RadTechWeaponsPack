@@ -21,6 +21,11 @@ weapons/dyna_pinout   ziplight
 weapons/dyna_spoonoff tntfuse
 weapons/dyna_throw    tnttoss
 
+//STEN Mk. 2(S)
+weapons/sten            stenfire
+weapons/sten_chamber    stenchbr
+weapons/sten_overheat   stenheat
+
 
 //Detective Special
 // firing

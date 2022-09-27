@@ -4,11 +4,14 @@ OptionMenu RadTechWeaponry
     Title "------ Radtech Weapons Pack ------"
 	StaticText "--- Rifles ---", "orange"
 	StaticText ""
+	StaticText ""
     Submenu "M-211 Sigcow", "Sigcow", 0, 1
 	StaticText ""
     Submenu "Obrozz Sawn-Off Boss Rifle", "ObrozzPistol", 0, 1
 	StaticText ""
 	Submenu "Hacked ZM66 Assault Rifle", "HackedZM66", 0, 1
+	StaticText ""
+	SubMenu "STEN Mk.2(S) Suppressed SMG", "STEN", 0, 1
 	StaticText ""
 	Submenu "Minerva 9mm Chaingun", "Minerva", 0, 1
 	StaticText ""
@@ -343,7 +346,7 @@ OptionMenu Colt1911
     StaticText ""
 	StaticText "Spawn Options", "Green"
     StaticText  "Control the spawn rate of the Colt 1911 on Handguns", "white"
-	Option "10mm Pistol Spawn Rate: ", "colt1911_spawn_bias", "SpawnBias"
+	Option "Colt 1911 Spawn Rate: ", "colt1911_spawn_bias", "SpawnBias"
 	SafeCommand "Reset Colt 1911 options", "resetcvar colt1911_spawn_bias"
     StaticText ""
     StaticText  "Control the spawn rate of Colt 1911 bundles on Ammoboxes", "white"
@@ -367,6 +370,38 @@ OptionMenu Colt1911
 	StaticText "The Colt 1911 is chambered in .45 ACP, delivering a", "white"
 	StaticText "powerful blow that can bring down most humanoids", "White"
 	StaticText "in a couple of well-placed shots.", "white"
+}
+
+OptionMenu STEN
+{
+    Title "------ STEN Mk. 2(S) Suppressed SMG Options ------"
+   	StaticText "Notice:", "Green"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", "Green"
+    StaticText  "Control the spawn rate of the STEN on SMG spawns", "white"
+	Option "STEN Spawn Rate: ", "sten_spawn_bias", "SpawnBias"
+	SafeCommand "Reset STEN options", "resetcvar sten_spawn_bias"
+    StaticText ""
+    StaticText  "Control the spawn rate of STENs on Ammoboxes", "white"
+	Option "STEN Ammobox Spawn Rate: ", "sten_ammobox_spawn_bias", "SpawnBias"
+	SafeCommand "Reset STEN Ammobox options", "resetcvar sten_ammobox_spawn_bias"
+    StaticText ""
+    StaticText  "Control whether replacements happen after a mapload for the STEN.", "white"
+	Option "Persistent Spawns: ", "sten_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar sten_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Green"
+	SafeCommand "Reset all options", "sten_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Green"
+	StaticText ""
+	StaticText "A sub-machine gun designed by the British during WWII,", "white"
+	StaticText "known for being problematic due to jamming and overheating.", "White"
+	StaticText "This version has been modified with a suppressor barrel,", "white"
+    StaticText "silencing gunfire to the level of a handclap.", "white"
 }
 
 OptionMenu Snose

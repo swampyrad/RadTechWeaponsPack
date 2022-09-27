@@ -32,6 +32,11 @@ server int colt1911_ammobox_spawn_bias = 19;
 server int colt1911_mags_spawn_bias = 19;
 server bool colt1911_persistent_spawning = false;
 
+// STEN Mk. 2(S)
+server int sten_spawn_bias = 19;
+server int sten_ammobox_spawn_bias = 19;
+server bool sten_persistent_spawning = false;
+
 // Juan
 server int ja_weapon_spawn_bias       = 19;
 server int ja_mag_spawn_bias          = 9;
