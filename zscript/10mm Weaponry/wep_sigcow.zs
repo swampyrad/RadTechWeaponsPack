@@ -47,16 +47,16 @@ int targettimer;
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
 
 	override double gunmass(){
-		return 5+(weaponstatus[SMGS_MAG]<0)?-0.5:(weaponstatus[SMGS_MAG]*0.02);
+		return 5+(weaponstatus[SCWS_MAG]<0)?-0.5:(weaponstatus[SCWS_MAG]*0.02);
 	}
 
 	override double weaponbulk(){
-		int mg=weaponstatus[SMGS_MAG];
+		int mg=weaponstatus[SCWS_MAG];
 		if(mg<0)return 80;//-10 bulk less than the SMG
 		else return (80+ENC_10MAG25_LOADED)+mg*(ENC_10_LOADED);
 	}
 	override void failedpickupunload(){
-		failedpickupunloadmag(SMGS_MAG,"HD10mMag25");
+		failedpickupunloadmag(SCWS_MAG,"HD10mMag25");
 	}
 
 	override void DropOneAmmo(int amt){
@@ -245,16 +245,16 @@ if(!punchee.countinv("HDArmourWorn")){
 	override void postbeginplay(){
 		super.postbeginplay();
     weaponspecial=1337;
-		if(weaponstatus[SMGS_AUTO]>0){
-		switch(weaponstatus[SMGS_SWITCHTYPE]){
+		if(weaponstatus[SCWS_AUTO]>0){
+		switch(weaponstatus[SCWS_SWITCHTYPE]){
 		case 1:
-			weaponstatus[SMGS_AUTO]=0;
+			weaponstatus[SCWS_AUTO]=0;
 			break;
 		case 2:
-			weaponstatus[SMGS_AUTO]=1;
+			weaponstatus[SCWS_AUTO]=1;
 			break;
 		case 3:
-			weaponstatus[SMGS_AUTO]=2;
+			weaponstatus[SCWS_AUTO]=2;
 			break;
 		default:
 			break;
@@ -268,7 +268,7 @@ if(!punchee.countinv("HDArmourWorn")){
 	override string,double getpickupsprite(bool usespare){
 		int wep0=GetSpareWeaponValue(0,usespare);
 		return ("RF10")
-			..((GetSpareWeaponValue(SMGS_MAG,usespare)<0)?"B":"A").."0",1.;
+			..((GetSpareWeaponValue(SCWS_MAG,usespare)<0)?"B":"A").."0",1.;
 	}
 
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
@@ -287,11 +287,11 @@ if(!punchee.countinv("HDArmourWorn")){
 			sb.drawnum(hpl.countinv("HD10mMag25"),-43,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		}
 
-		if(weaponstatus[SMGS_SWITCHTYPE]!=1)sb.drawwepcounter(hdw.weaponstatus[SMGS_AUTO],
+		if(weaponstatus[SCWS_SWITCHTYPE]!=1)sb.drawwepcounter(hdw.weaponstatus[SCWS_AUTO],
 			-22,-10,"RBRSA3A7","STBURAUT","STFULAUT"
 		);
-		sb.drawwepnum(hdw.weaponstatus[SMGS_MAG],25);
-		if(hdw.weaponstatus[SMGS_CHAMBER]==2)sb.drawrect(-19,-11,3,1);
+		sb.drawwepnum(hdw.weaponstatus[SCWS_MAG],25);
+		if(hdw.weaponstatus[SCWS_CHAMBER]==2)sb.drawrect(-19,-11,3,1);
 	}
 
 
@@ -344,7 +344,7 @@ if(!punchee.countinv("HDArmourWorn")){
 	RBAY A 0;
 	#### A 1{
 		A_SetCrosshair(21);
-		invoker.weaponstatus[SMGS_RATCHET]=0;
+		invoker.weaponstatus[SCWS_RATCHET]=0;
 		A_WeaponReady(WRF_ALL);
 	}
 	goto readyend;
@@ -372,15 +372,15 @@ if(!punchee.countinv("HDArmourWorn")){
 	hold:
 		#### A 0{
 			if(
-				invoker.weaponstatus[SMGS_CHAMBER]==2  
+				invoker.weaponstatus[SCWS_CHAMBER]==2  
       //live round chambered
 				&&(
-					invoker.weaponstatus[SMGS_AUTO]==2  
+					invoker.weaponstatus[SCWS_AUTO]==2  
       //full auto
 					||(
-						invoker.weaponstatus[SMGS_AUTO]==1  
+						invoker.weaponstatus[SCWS_AUTO]==1  
       //burst
-						&&invoker.weaponstatus[SMGS_RATCHET]<=2
+						&&invoker.weaponstatus[SCWS_RATCHET]<=2
 					)
 				)
 			)setweaponstate("fire2");
@@ -390,25 +390,25 @@ if(!punchee.countinv("HDArmourWorn")){
 	firemode:
     //do this when firemode is triggered
 		---- A 1{
-			int canaut=invoker.weaponstatus[SMGS_SWITCHTYPE];
+			int canaut=invoker.weaponstatus[SCWS_SWITCHTYPE];
     //canaut checks if selectfire set to Auto
 			if(canaut==1){
-				invoker.weaponstatus[SMGS_AUTO]=0;
+				invoker.weaponstatus[SCWS_AUTO]=0;
     //if it is, set selectfire to Semi-Auto
 				return;
 			}
 			int maxmode=(canaut>0)?(canaut-1):2;
   //maxmode checks that canaut doesn't go higher than 2
-			int aut=invoker.weaponstatus[SMGS_AUTO];
+			int aut=invoker.weaponstatus[SCWS_AUTO];
   //aut checks the current selectfire mode
-			if(aut>=maxmode)invoker.weaponstatus[SMGS_AUTO]=0;
+			if(aut>=maxmode)invoker.weaponstatus[SCWS_AUTO]=0;
   //if aut is greater than canaut, force Semi-Auto
-			else if(aut<0)invoker.weaponstatus[SMGS_AUTO]=0;
+			else if(aut<0)invoker.weaponstatus[SCWS_AUTO]=0;
   //but, if aut is somehow less than 0, also force Semi-Auto
-			else if(canaut>0)invoker.weaponstatus[SMGS_AUTO]=maxmode;
+			else if(canaut>0)invoker.weaponstatus[SCWS_AUTO]=maxmode;
   //but, if aut is greater than 0, 
   //aut equals maxmode, force Auto
-			else invoker.weaponstatus[SMGS_AUTO]++;
+			else invoker.weaponstatus[SCWS_AUTO]++;
   //finally set selectfire to Burst 
   //once all of these checks failed
 		}goto nope;
@@ -419,7 +419,7 @@ if(!punchee.countinv("HDArmourWorn")){
 
 	fire2:
 		#### B 0{
-			if(invoker.weaponstatus[SMGS_CHAMBER]==2)A_GunFlash();
+			if(invoker.weaponstatus[SCWS_CHAMBER]==2)A_GunFlash();
    //check if a round is chambered, then jump to state "flash"
 			else setweaponstate("chamber_manual");
 		}
@@ -428,22 +428,22 @@ if(!punchee.countinv("HDArmourWorn")){
 		#### A 1;
 
 		#### A 0{
-			if(invoker.weaponstatus[SMGS_CHAMBER]==1){
+			if(invoker.weaponstatus[SCWS_CHAMBER]==1){
 				A_EjectCasing("HDSpent10mm",-frandom(79,81),(frandom(7,7.5),0,0),(13,0,0));
   //if a round has been fired, eject a spent casing
-				invoker.weaponstatus[SMGS_CHAMBER]=0;
+				invoker.weaponstatus[SCWS_CHAMBER]=0;
 			}
   //chamber is empty
-			if(invoker.weaponstatus[SMGS_MAG]>0){
+			if(invoker.weaponstatus[SCWS_MAG]>0){
   //do this if chamber is empty
-				invoker.weaponstatus[SMGS_MAG]--;
+				invoker.weaponstatus[SCWS_MAG]--;
   //remove one round from the magazine
-				invoker.weaponstatus[SMGS_CHAMBER]=2;
+				invoker.weaponstatus[SCWS_CHAMBER]=2;
   //chamber the round
 			}
-			if(invoker.weaponstatus[SMGS_AUTO]==2)A_SetTics(1);
+			if(invoker.weaponstatus[SCWS_AUTO]==2)A_SetTics(1);
 		}
-  #### A 2 {if(invoker.weaponstatus[SMGS_AUTO]==1)A_SetTics(1);}
+  #### A 2 {if(invoker.weaponstatus[SCWS_AUTO]==1)A_SetTics(1);}
   //gives burst fire a faster firerate than auto, for better grouping
 		#### A 0 A_ReFire();
   //fire another round if selectfire is set to Auto
@@ -464,8 +464,8 @@ if(!punchee.countinv("HDArmourWorn")){
   //do the weird zoomin effect to simulate recoil
 			A_StartSound("weapons/sigcow",CHAN_WEAPON,volume:1);
   //play gunshot sfx
-			invoker.weaponstatus[SMGS_RATCHET]++;
-			invoker.weaponstatus[SMGS_CHAMBER]=1;
+			invoker.weaponstatus[SCWS_RATCHET]++;
+			invoker.weaponstatus[SCWS_CHAMBER]=1;
   //empty casing in the chamber
 		}
 		SCWF A 1 bright{
@@ -500,12 +500,12 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 
 
 	unloadchamber:
-		#### B 4 A_JumpIf(invoker.weaponstatus[SMGS_CHAMBER]<1,"nope");
+		#### B 4 A_JumpIf(invoker.weaponstatus[SCWS_CHAMBER]<1,"nope");
   //checks if there's even a round to eject
   //if not, do nothing
 		#### B 10{
-			class<actor>which=invoker.weaponstatus[SMGS_CHAMBER]>1?"HD10mAmmo":"HDSpent10mm";
-			invoker.weaponstatus[SMGS_CHAMBER]=0;
+			class<actor>which=invoker.weaponstatus[SCWS_CHAMBER]>1?"HD10mAmmo":"HDSpent10mm";
+			invoker.weaponstatus[SCWS_CHAMBER]=0;
 			A_SpawnItemEx(which,
 				cos(pitch)*10,0,height*0.82-sin(pitch)*10,
 				vel.x,vel.y,vel.z,
@@ -516,7 +516,7 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 		}goto readyend;
 
 	loadchamber:
-		---- A 0 A_JumpIf(invoker.weaponstatus[SMGS_CHAMBER]>0,"nope");
+		---- A 0 A_JumpIf(invoker.weaponstatus[SCWS_CHAMBER]>0,"nope");
 		---- A 0 A_JumpIf(!countinv("HD10mAmmo"),"nope");
 		---- A 1 offset(0,34) A_StartSound("weapons/pocket",9);
 		---- A 1 offset(2,36);
@@ -527,7 +527,7 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 		#### A 10 offset(8,87){
 			if(countinv("HD10mAmmo")){
 				A_TakeInventory("HD10mAmmo",1,TIF_NOTAKEINFINITE);
-				invoker.weaponstatus[SMGS_CHAMBER]=2;
+				invoker.weaponstatus[SCWS_CHAMBER]=2;
 				A_StartSound("weapons/smgchamber",8);
 			}else A_SetTics(4);
 		}
@@ -544,19 +544,19 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 
 	unload:
 		#### A 0{
-			invoker.weaponstatus[0]|=SMGF_JUSTUNLOAD;
+			invoker.weaponstatus[0]|=SCWF_JUSTUNLOAD;
 			if(
-				invoker.weaponstatus[SMGS_MAG]>=0
+				invoker.weaponstatus[SCWS_MAG]>=0
 			)setweaponstate("unmag");
-			else if(invoker.weaponstatus[SMGS_CHAMBER]>0)setweaponstate("unloadchamber");
+			else if(invoker.weaponstatus[SCWS_CHAMBER]>0)setweaponstate("unloadchamber");
 		}goto nope;
 	reload:
 		#### A 0{
-			invoker.weaponstatus[0]&=~SMGF_JUSTUNLOAD;
+			invoker.weaponstatus[0]&=~SCWF_JUSTUNLOAD;
 			bool nomags=HDMagAmmo.NothingLoaded(self,"HD10mMag25");
-			if(invoker.weaponstatus[SMGS_MAG]>=25)setweaponstate("nope");
+			if(invoker.weaponstatus[SCWS_MAG]>=25)setweaponstate("nope");
 			else if(
-				invoker.weaponstatus[SMGS_MAG]<1
+				invoker.weaponstatus[SCWS_MAG]<1
 				&&(
 					pressinguse()
 					||nomags
@@ -579,12 +579,12 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 			A_StartSound("weapons/smgmagmove",8,CHANF_OVERLAP);
 		}
 		#### B 0{
-			int magamt=invoker.weaponstatus[SMGS_MAG];
+			int magamt=invoker.weaponstatus[SCWS_MAG];
 			if(magamt<0){
 				setweaponstate("magout");
 				return;
 			}
-			invoker.weaponstatus[SMGS_MAG]=-1;
+			invoker.weaponstatus[SCWS_MAG]=-1;
 			if(
 				(!PressingUnload()&&!PressingReload())
 				||A_JumpIfInventory("HD10mMag25",0,"null")
@@ -601,7 +601,7 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 		#### BB 7 offset(34,54) A_MuzzleClimb(frandom(0.2,-0.8),frandom(-0.2,0.4));
 	magout:
 		#### B 0{
-			if(invoker.weaponstatus[0]&SMGF_JUSTUNLOAD)setweaponstate("reloadend");
+			if(invoker.weaponstatus[0]&SCWF_JUSTUNLOAD)setweaponstate("reloadend");
 			else setweaponstate("loadmag");
 		}
 
@@ -613,12 +613,12 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 		#### B 3 offset(32,49){
 			let mmm=hdmagammo(findinventory("HD10mMag25"));
 			if(mmm){
-				invoker.weaponstatus[SMGS_MAG]=mmm.TakeMag(true);
+				invoker.weaponstatus[SCWS_MAG]=mmm.TakeMag(true);
 				A_StartSound("weapons/smgmagclick",8,CHANF_OVERLAP);
 			}
 			if(
-				invoker.weaponstatus[SMGS_MAG]<1
-				||invoker.weaponstatus[SMGS_CHAMBER]>0
+				invoker.weaponstatus[SCWS_MAG]<1
+				||invoker.weaponstatus[SCWS_CHAMBER]>0
 			)setweaponstate("reloadend");
 		}
 		goto reloadend;
@@ -633,13 +633,13 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 
 	chamber_manual:
 		#### A 0 A_JumpIf(
-			invoker.weaponstatus[SMGS_MAG]<1
-			||invoker.weaponstatus[SMGS_CHAMBER]==2
+			invoker.weaponstatus[SCWS_MAG]<1
+			||invoker.weaponstatus[SCWS_CHAMBER]==2
 		,"nope");
 		#### B 2 offset(3,32){
 			A_WeaponBusy();
-			invoker.weaponstatus[SMGS_MAG]--;
-			invoker.weaponstatus[SMGS_CHAMBER]=2;
+			invoker.weaponstatus[SCWS_MAG]--;
+			invoker.weaponstatus[SCWS_CHAMBER]=2;
 		}
 		#### B 3 offset(5,35) A_StartSound("weapons/smgchamber",8,CHANF_OVERLAP);
 		#### A 1 offset(3,32);
@@ -650,42 +650,42 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 	spawn:
 		TNT1 A 1;
 		RF10 A -1{
-			if(invoker.weaponstatus[SMGS_MAG]<0)frame=1;
+			if(invoker.weaponstatus[SCWS_MAG]<0)frame=1;
 			invoker.sprite=getspriteindex("RF10A0");
 		}
 		RF10 # -1;
 		stop;
 	}
 	override void initializewepstats(bool idfa){
-		weaponstatus[SMGS_MAG]=25;
-		weaponstatus[SMGS_CHAMBER]=2;
+		weaponstatus[SCWS_MAG]=25;
+		weaponstatus[SCWS_CHAMBER]=2;
 	}
 	override void loadoutconfigure(string input){
 		int firemode=getloadoutvar(input,"firemode",1);
-		if(firemode>=0)weaponstatus[SMGS_AUTO]=clamp(firemode,0,2);
+		if(firemode>=0)weaponstatus[SCWS_AUTO]=clamp(firemode,0,2);
 
 		int fireswitch=getloadoutvar(input,"fireswitch",1);
 
-  if(fireswitch<0)weaponstatus[SMGS_SWITCHTYPE]=1;
+  if(fireswitch<0)weaponstatus[SCWS_SWITCHTYPE]=1;
     //standard issue is semi-only, just like in the books
-		if(fireswitch>3)weaponstatus[SMGS_SWITCHTYPE]=0;
-		else if(fireswitch>0)weaponstatus[SMGS_SWITCHTYPE]=clamp(fireswitch,0,3);
+		if(fireswitch>3)weaponstatus[SCWS_SWITCHTYPE]=0;
+		else if(fireswitch>0)weaponstatus[SCWS_SWITCHTYPE]=clamp(fireswitch,0,3);
 	}
 }
-enum smgstatus{
-	SMGF_JUSTUNLOAD=1,
+enum sigcowstatus{
+	SCWF_JUSTUNLOAD=1,
 
-	SMGN_SEMIONLY=1,
-	SMGN_BURSTONLY=2,
-	SMGN_FULLONLY=3,
+	SCWN_SEMIONLY=1,
+	SCWN_BURSTONLY=2,
+	SCWN_FULLONLY=3,
 
-	SMGS_FLAGS=0,
-	SMGS_MAG=1,
-	SMGS_CHAMBER=2, //0 empty, 1 spent, 2 loaded
-	SMGS_AUTO=3, //0 semi, 1 burst, 2 auto
-	SMGS_RATCHET=4,
-	SMGS_SWITCHTYPE=5,
-	SMGS_DOT=6,
+	SCWS_FLAGS=0,
+	SCWS_MAG=1,
+	SCWS_CHAMBER=2, //0 empty, 1 spent, 2 loaded
+	SCWS_AUTO=3, //0 semi, 1 burst, 2 auto
+	SCWS_RATCHET=4,
+	SCWS_SWITCHTYPE=5,
+	SCWS_DOT=6,
 };
 
 class HDSigCowSelectfire:IdleDummy{
@@ -712,7 +712,7 @@ class HDSigCowSemi:IdleDummy{
 			semi.vel=vel;
 			for(int i=0;i<5;i++)semi.args[i]=args[i];
 			
-			semi.weaponstatus[SMGS_SWITCHTYPE]=1;
+			semi.weaponstatus[SCWS_SWITCHTYPE]=1;
 		}stop;
 	}
 }
@@ -727,7 +727,7 @@ class HDSigCowSemiBurst:IdleDummy{
 			semiburst.vel=vel;
 			for(int i=0;i<5;i++)semiburst.args[i]=args[i];
 			
-			semiburst.weaponstatus[SMGS_SWITCHTYPE]=2;
+			semiburst.weaponstatus[SCWS_SWITCHTYPE]=2;
 		}stop;
 	}
 }

@@ -30,7 +30,7 @@ override void postbeginplay(){
 		double spread=6.;
 		double speedfactor=1.;
 		let hhh=DoomHunter(caller.findinventory("DoomHunter"));
-		if(hhh)choke=hhh.weaponstatus[HUNTS_CHOKE];
+		if(hhh)choke=hhh.weaponstatus[DHUNS_CHOKE];
 
 		choke=clamp(choke,0,7);
 		spread=15-0.5*choke;
@@ -61,17 +61,17 @@ override void postbeginplay(){
 		double shotpower=invoker.Fire(self);
 		A_GunFlash();
 		vector2 shotrecoil=(randompick(-1,1),-2.6);
-		if(invoker.weaponstatus[HUNTS_FIREMODE]>0)shotrecoil=(randompick(-1,1)*1.4,-3.4);
+		if(invoker.weaponstatus[DHUNS_FIREMODE]>0)shotrecoil=(randompick(-1,1)*1.4,-3.4);
 		shotrecoil*=shotpower;
 		A_MuzzleClimb(0,0,shotrecoil.x,shotrecoil.y,randompick(-1,1)*shotpower,-0.3*shotpower);
-		invoker.weaponstatus[HUNTS_CHAMBER]=1;
+		invoker.weaponstatus[DHUNS_CHAMBER]=1;
 		invoker.shotpower=shotpower;
 	}
 
 	override string pickupmessage(){
-		if(weaponstatus[0]&HUNTF_CANFULLAUTO)return string.format("%s You notice some tool marks near the fire selector...",super.pickupmessage());
-		else if(weaponstatus[0]&HUNTF_EXPORT)return string.format("%s Where is the fire selector on this thing!?",super.pickupmessage());
-  else if(weaponstatus[0]&HUNTF_SCOUT)return string.format("%s What force of nature created this cursed thing?",super.pickupmessage());
+		if(weaponstatus[0]&DHUNF_CANFULLAUTO)return string.format("%s You notice some tool marks near the fire selector...",super.pickupmessage());
+		else if(weaponstatus[0]&DHUNF_EXPORT)return string.format("%s Where is the fire selector on this thing!?",super.pickupmessage());
+  else if(weaponstatus[0]&DHUNF_SCOUT)return string.format("%s What force of nature created this cursed thing?",super.pickupmessage());
 		return super.pickupmessage();
 	}
 
@@ -83,28 +83,28 @@ override void postbeginplay(){
 				basestatusbar.DI_SCREEN_CENTER_BOTTOM
 			);
 		}
-		if(hdw.weaponstatus[HUNTS_CHAMBER]>1){
+		if(hdw.weaponstatus[DHUNS_CHAMBER]>1){
 			sb.drawrect(-24,-14,5,3);
 			sb.drawrect(-18,-14,2,3);
 		}
-		else if(hdw.weaponstatus[HUNTS_CHAMBER]>0){
+		else if(hdw.weaponstatus[DHUNS_CHAMBER]>0){
 			sb.drawrect(-18,-14,2,3);
 		}
-		if(!(hdw.weaponstatus[0]&HUNTF_EXPORT))sb.drawwepcounter(hdw.weaponstatus[HUNTS_FIREMODE],
+		if(!(hdw.weaponstatus[0]&DHUNF_EXPORT))sb.drawwepcounter(hdw.weaponstatus[DHUNS_FIREMODE],
 			-26,-12,"blank","RBRSA3A7","STFULAUT"
 		);
-		sb.drawwepnum(hdw.weaponstatus[HUNTS_TUBE],hdw.weaponstatus[HUNTS_TUBESIZE],posy:-7);
+		sb.drawwepnum(hdw.weaponstatus[DHUNS_TUBE],hdw.weaponstatus[DHUNS_TUBESIZE],posy:-7);
 		for(int i=hdw.weaponstatus[SHOTS_SIDESADDLE];i>0;i--){
 			sb.drawrect(-16-i*2,-5,1,3);
 		}
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRE.."  Shoot (choke: "..weaponstatus[HUNTS_CHOKE]..")\n"
+		WEPHELP_FIRE.."  Shoot (choke: "..weaponstatus[DHUNS_CHOKE]..")\n"
 		..WEPHELP_ALTFIRE.."  Pump\n"
 		..WEPHELP_RELOAD.."  Reload (side saddles first)\n"
 		..WEPHELP_ALTRELOAD.."  Reload (pockets only)\n"
-		..(weaponstatus[0]&HUNTF_EXPORT?"":(WEPHELP_FIREMODE.."  Pump/Semi"..(weaponstatus[0]&HUNTF_CANFULLAUTO?"/Auto":"").."\n"))
+		..(weaponstatus[0]&DHUNF_EXPORT?"":(WEPHELP_FIREMODE.."  Pump/Semi"..(weaponstatus[0]&DHUNF_CANFULLAUTO?"/Auto":"").."\n"))
 		..WEPHELP_FIREMODE.."+"..WEPHELP_RELOAD.."  Load side saddles\n"
 		..WEPHELP_USE.."+"..WEPHELP_UNLOAD.."  Steal ammo from Slayer\n"
 		..WEPHELP_UNLOADUNLOAD
@@ -132,35 +132,35 @@ override void postbeginplay(){
 		);
 	}
 	override double gunmass(){
-		int tube=weaponstatus[HUNTS_TUBE];
+		int tube=weaponstatus[DHUNS_TUBE];
 		if(tube>4)tube+=(tube-4)*2;
 		return 8+tube*0.3+weaponstatus[SHOTS_SIDESADDLE]*0.08;
 	}
 	override double weaponbulk(){
-		return 125+(weaponstatus[SHOTS_SIDESADDLE]+weaponstatus[HUNTS_TUBE])*ENC_SHELLLOADED;
+		return 125+(weaponstatus[SHOTS_SIDESADDLE]+weaponstatus[DHUNS_TUBE])*ENC_SHELLLOADED;
 	}
 
 	action void A_SwitchFireMode(bool forwards=true){
-		if(invoker.weaponstatus[0]&HUNTF_EXPORT){
-			invoker.weaponstatus[HUNTS_FIREMODE]=0;
+		if(invoker.weaponstatus[0]&DHUNF_EXPORT){
+			invoker.weaponstatus[DHUNS_FIREMODE]=0;
 			return;
 		}
-		int newfm=invoker.weaponstatus[HUNTS_FIREMODE]+(forwards?1:-1);
-		int newmax=(invoker.weaponstatus[0]&HUNTF_CANFULLAUTO)?2:1;
+		int newfm=invoker.weaponstatus[DHUNS_FIREMODE]+(forwards?1:-1);
+		int newmax=(invoker.weaponstatus[0]&DHUNF_CANFULLAUTO)?2:1;
 		if(newfm>newmax)newfm=0;
 		else if(newfm<0)newfm=newmax;
-		invoker.weaponstatus[HUNTS_FIREMODE]=newfm;
+		invoker.weaponstatus[DHUNS_FIREMODE]=newfm;
 	}
 	action void A_SetAltHold(bool which){
-		if(which)invoker.weaponstatus[0]|=HUNTF_ALTHOLDING;
-		else invoker.weaponstatus[0]&=~HUNTF_ALTHOLDING;
+		if(which)invoker.weaponstatus[0]|=DHUNF_ALTHOLDING;
+		else invoker.weaponstatus[0]&=~DHUNF_ALTHOLDING;
 	}
 	action void A_Chamber(bool careful=false){
-		int chm=invoker.weaponstatus[HUNTS_CHAMBER];
-		invoker.weaponstatus[HUNTS_CHAMBER]=0;
-		if(invoker.weaponstatus[HUNTS_TUBE]>0){
-			invoker.weaponstatus[HUNTS_CHAMBER]=2;
-			invoker.weaponstatus[HUNTS_TUBE]--;
+		int chm=invoker.weaponstatus[DHUNS_CHAMBER];
+		invoker.weaponstatus[DHUNS_CHAMBER]=0;
+		if(invoker.weaponstatus[DHUNS_TUBE]>0){
+			invoker.weaponstatus[DHUNS_CHAMBER]=2;
+			invoker.weaponstatus[DHUNS_TUBE]--;
 		}
 		vector3 cockdir;double cp=cos(pitch);
 		if(careful)cockdir=(-cp,cp,-5);
@@ -187,32 +187,32 @@ override void postbeginplay(){
 		}
 	}
 	action void A_CheckPocketSaddles(){
-		if(invoker.weaponstatus[SHOTS_SIDESADDLE]<1)invoker.weaponstatus[0]|=HUNTF_FROMPOCKETS;
-		if(!countinv("HDShellAmmo"))invoker.weaponstatus[0]&=~HUNTF_FROMPOCKETS;
+		if(invoker.weaponstatus[SHOTS_SIDESADDLE]<1)invoker.weaponstatus[0]|=DHUNF_FROMPOCKETS;
+		if(!countinv("HDShellAmmo"))invoker.weaponstatus[0]&=~DHUNF_FROMPOCKETS;
 	}
 	action bool A_LoadTubeFromHand(){
 		int hand=invoker.handshells;
 		if(
 			!hand
 			||(
-				invoker.weaponstatus[HUNTS_CHAMBER]>0
-				&&invoker.weaponstatus[HUNTS_TUBE]>=invoker.weaponstatus[HUNTS_TUBESIZE]
+				invoker.weaponstatus[DHUNS_CHAMBER]>0
+				&&invoker.weaponstatus[DHUNS_TUBE]>=invoker.weaponstatus[DHUNS_TUBESIZE]
 			)
 		){
 			EmptyHand();
 			return false;
 		}
-		invoker.weaponstatus[HUNTS_TUBE]++;
+		invoker.weaponstatus[DHUNS_TUBE]++;
 		invoker.handshells--;
 		A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
 		return true;
 	}
 	action bool A_GrabShells(int maxhand=3,bool settics=false,bool alwaysone=false){
 		if(maxhand>0)EmptyHand();else maxhand=abs(maxhand);
-		bool fromsidesaddles=!(invoker.weaponstatus[0]&HUNTF_FROMPOCKETS);
+		bool fromsidesaddles=!(invoker.weaponstatus[0]&DHUNF_FROMPOCKETS);
 		int toload=min(
 			fromsidesaddles?invoker.weaponstatus[SHOTS_SIDESADDLE]:countinv("HDShellAmmo"),
-			alwaysone?1:(invoker.weaponstatus[HUNTS_TUBESIZE]-invoker.weaponstatus[HUNTS_TUBE]),
+			alwaysone?1:(invoker.weaponstatus[DHUNS_TUBESIZE]-invoker.weaponstatus[DHUNS_TUBE]),
 			max(1,health/22),
 			maxhand
 		);
@@ -307,15 +307,15 @@ override void postbeginplay(){
 		SHTG A 0{
 			bool paf=pressingaltfire();
 			if(
-				paf&&!(invoker.weaponstatus[0]&HUNTF_ALTHOLDING)
+				paf&&!(invoker.weaponstatus[0]&DHUNF_ALTHOLDING)
 			)setweaponstate("chamber");
-			else if(!paf)invoker.weaponstatus[0]&=~HUNTF_ALTHOLDING;
+			else if(!paf)invoker.weaponstatus[0]&=~DHUNF_ALTHOLDING;
 		}
 		SHTG A 1 A_WeaponReady(WRF_NONE);
 		SHTG A 0 A_Refire();
 		goto ready;
 	fire:
-		SHTG A 0 A_JumpIf(invoker.weaponstatus[HUNTS_CHAMBER]==2,"shoot");
+		SHTG A 0 A_JumpIf(invoker.weaponstatus[DHUNS_CHAMBER]==2,"shoot");
 		SHTG A 1 A_WeaponReady(WRF_NONE);
 		SHTG A 0 A_Refire();
 		goto ready;
@@ -325,13 +325,13 @@ override void postbeginplay(){
 		SHTG E 1;
 		SHTG E 0{
 			if(
-				invoker.weaponstatus[HUNTS_FIREMODE]>0
+				invoker.weaponstatus[DHUNS_FIREMODE]>0
 				&&invoker.shotpower>HUNTER_MINSHOTPOWER
 			)setweaponstate("chamberauto");
 		}goto ready;
 	altfire:  //this is the important part
 	chamber:
-		SHTG A 0 A_JumpIf(invoker.weaponstatus[0]&HUNTF_ALTHOLDING,"nope");
+		SHTG A 0 A_JumpIf(invoker.weaponstatus[0]&DHUNF_ALTHOLDING,"nope");
 		SHTG A 0 A_SetAltHold(true);
 		SHTG A 1 A_Overlay(120,"playsgco");
 		SHTG AB 3 A_MuzzleClimb(0,frandom(0.6,1.));
@@ -350,20 +350,20 @@ override void postbeginplay(){
 		SHTG D 1 A_WeaponReady(WRF_NOFIRE);
 		SHTG D 0 A_JumpIf(!pressingaltfire(),"unrack");
 		SHTG D 0 A_JumpIf(pressingunload(),"rackunload");
-		SHTG D 0 A_JumpIf(invoker.weaponstatus[HUNTS_CHAMBER],"racked");
+		SHTG D 0 A_JumpIf(invoker.weaponstatus[DHUNS_CHAMBER],"racked");
 		SHTG D 0{
 			int rld=0;
 			if(pressingreload()){
 				rld=1;
 				if(invoker.weaponstatus[SHOTS_SIDESADDLE]>0)
-				invoker.weaponstatus[0]&=~HUNTF_FROMPOCKETS;
+				invoker.weaponstatus[0]&=~DHUNF_FROMPOCKETS;
 				else{
-					invoker.weaponstatus[0]|=HUNTF_FROMPOCKETS;
+					invoker.weaponstatus[0]|=DHUNF_FROMPOCKETS;
 					rld=2;
 				}
 			}else if(pressingaltreload()){
 				rld=2;
-				invoker.weaponstatus[0]|=HUNTF_FROMPOCKETS;
+				invoker.weaponstatus[0]|=DHUNF_FROMPOCKETS;
 			}
 			if(
 				(rld==2&&countinv("HDShellAmmo"))
@@ -376,7 +376,7 @@ override void postbeginplay(){
 		SHTG D 2 offset(-2,37);
 		SHTG D 4 offset(-3,40);
 		SHTG D 1 offset(-4,42) A_GrabShells(1,true,true);
-		SHTG D 0 A_JumpIf(!(invoker.weaponstatus[0]&HUNTF_FROMPOCKETS),"rackloadone");
+		SHTG D 0 A_JumpIf(!(invoker.weaponstatus[0]&DHUNF_FROMPOCKETS),"rackloadone");
 		SHTG D 6 offset(-5,43);
 		SHTG D 6 offset(-4,41) A_StartSound("weapons/pocket",9);
 	rackloadone:
@@ -384,7 +384,7 @@ override void postbeginplay(){
 		SHTG D 2 offset(-4,41);
 		SHTG D 3 offset(-4,40){
 			A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
-			invoker.weaponstatus[HUNTS_CHAMBER]=2;
+			invoker.weaponstatus[DHUNS_CHAMBER]=2;
 			invoker.handshells--;
 			EmptyHand(careful:true);
 		}
@@ -405,8 +405,8 @@ override void postbeginplay(){
 		SHTG D 1 offset(-4,42);
 		SHTG D 2 offset(-4,41);
 		SHTG D 3 offset(-4,40){
-			int chm=invoker.weaponstatus[HUNTS_CHAMBER];
-			invoker.weaponstatus[HUNTS_CHAMBER]=0;
+			int chm=invoker.weaponstatus[DHUNS_CHAMBER];
+			invoker.weaponstatus[DHUNS_CHAMBER]=0;
 			if(chm==2){
 				invoker.handshells++;
 				EmptyHand(careful:true);
@@ -442,7 +442,7 @@ override void postbeginplay(){
 		stop;
 	chamberauto:
 		SHTG A 1 A_Chamber();
-		SHTG A 1 A_JumpIf(invoker.weaponstatus[0]&HUNTF_CANFULLAUTO&&invoker.weaponstatus[HUNTS_FIREMODE]==2,"ready");
+		SHTG A 1 A_JumpIf(invoker.weaponstatus[0]&DHUNF_CANFULLAUTO&&invoker.weaponstatus[DHUNS_FIREMODE]==2,"ready");
 		SHTG A 0 A_Refire();
 		goto ready;
 	flash:
@@ -458,7 +458,7 @@ override void postbeginplay(){
 	reloadfrompockets:
 		SHTG A 0{
 			if(!countinv("HDShellAmmo"))setweaponstate("nope");
-			else invoker.weaponstatus[0]|=HUNTF_FROMPOCKETS;
+			else invoker.weaponstatus[0]|=DHUNF_FROMPOCKETS;
 		}goto startreload;
 	reload:
 	reloadfromsidesaddles:
@@ -467,13 +467,13 @@ override void postbeginplay(){
 			int ppp=countinv("HDShellAmmo");
 			if(ppp<1&&sss<1)setweaponstate("nope");
 				else if(sss<1)
-					invoker.weaponstatus[0]|=HUNTF_FROMPOCKETS;
-				else invoker.weaponstatus[0]&=~HUNTF_FROMPOCKETS;
+					invoker.weaponstatus[0]|=DHUNF_FROMPOCKETS;
+				else invoker.weaponstatus[0]&=~DHUNF_FROMPOCKETS;
 		}goto startreload;
 	startreload:
 		SHTG A 1{
 			if(
-				invoker.weaponstatus[HUNTS_TUBE]>=invoker.weaponstatus[HUNTS_TUBESIZE]
+				invoker.weaponstatus[DHUNS_TUBE]>=invoker.weaponstatus[DHUNS_TUBESIZE]
 			){
 				if(
 					invoker.weaponstatus[SHOTS_SIDESADDLE]<12
@@ -490,7 +490,7 @@ override void postbeginplay(){
 		SHTG C 2 offset(0,34);
 		SHTG C 3 offset(0,36);
 		SHTG C 3 offset(0,40) A_CheckPocketSaddles();
-		SHTG C 0 A_JumpIf(invoker.weaponstatus[0]&HUNTF_FROMPOCKETS,"reloadpocket");
+		SHTG C 0 A_JumpIf(invoker.weaponstatus[0]&DHUNF_FROMPOCKETS,"reloadpocket");
 	reloadfast:
 		SHTG C 4 offset(0,40) A_GrabShells(3,false);
 		SHTG C 3 offset(0,42) A_StartSound("weapons/pocket",9,volume:0.4);
@@ -516,14 +516,14 @@ override void postbeginplay(){
 				||PressingAltfire()
 				||PressingZoom()
 				||PressingFiremode()
-			)invoker.weaponstatus[0]|=HUNTF_HOLDING;
-			else invoker.weaponstatus[0]&=~HUNTF_HOLDING;
+			)invoker.weaponstatus[0]|=DHUNF_HOLDING;
+			else invoker.weaponstatus[0]&=~DHUNF_HOLDING;
 
 			if(
-				invoker.weaponstatus[HUNTS_TUBE]>=invoker.weaponstatus[HUNTS_TUBESIZE]
+				invoker.weaponstatus[DHUNS_TUBE]>=invoker.weaponstatus[DHUNS_TUBESIZE]
 				||(
 					invoker.handshells<1&&(
-						invoker.weaponstatus[0]&HUNTF_FROMPOCKETS
+						invoker.weaponstatus[0]&DHUNF_FROMPOCKETS
 						||invoker.weaponstatus[SHOTS_SIDESADDLE]<1
 					)&&
 					!countinv("HDShellAmmo")
@@ -540,7 +540,7 @@ override void postbeginplay(){
 		SHTG C 1 offset(0,36) EmptyHand(careful:true);
 		SHTG C 1 offset(0,34);
 		SHTG CBA 3;
-		SHTG A 0 A_JumpIf(invoker.weaponstatus[0]&HUNTF_HOLDING,"nope");
+		SHTG A 0 A_JumpIf(invoker.weaponstatus[0]&DHUNF_HOLDING,"nope");
 		goto ready;
 
 	cannibalize:
@@ -580,8 +580,8 @@ override void postbeginplay(){
 				&&!(player.cmd.buttons&BT_USE)
 			)setweaponstate("unloadSS");
 			else if(
-				invoker.weaponstatus[HUNTS_CHAMBER]<1
-				&&invoker.weaponstatus[HUNTS_TUBE]<1
+				invoker.weaponstatus[DHUNS_CHAMBER]<1
+				&&invoker.weaponstatus[DHUNS_TUBE]<1
 			)setweaponstate("nope");
 		}
 		SHTG BC 4 A_MuzzleClimb(frandom(1.2,2.4),-frandom(1.2,2.4));
@@ -590,14 +590,14 @@ override void postbeginplay(){
 		SHTG C 1 offset(0,38);
 		SHTG C 4 offset(0,36){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
-			if(invoker.weaponstatus[HUNTS_CHAMBER]<1){
+			if(invoker.weaponstatus[DHUNS_CHAMBER]<1){
 				setweaponstate("unloadtube");
 			}else A_StartSound("weapons/huntrack",8,CHANF_OVERLAP);
 		}
 		SHTG D 8 offset(0,34){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
-			int chm=invoker.weaponstatus[HUNTS_CHAMBER];
-			invoker.weaponstatus[HUNTS_CHAMBER]=0;
+			int chm=invoker.weaponstatus[DHUNS_CHAMBER];
+			invoker.weaponstatus[DHUNS_CHAMBER]=0;
 			if(chm>1){
 				A_StartSound("weapons/huntreload",8);
 				if(A_JumpIfInventory("HDShellAmmo",0,"null"))A_SpawnItemEx("HDFumblingShell",
@@ -625,11 +625,11 @@ override void postbeginplay(){
 		SHTG C 6 offset(0,40) EmptyHand(careful:true);
 	unloadloop:
 		SHTG C 8 offset(1,41){
-			if(invoker.weaponstatus[HUNTS_TUBE]<1)setweaponstate("reloadend");
+			if(invoker.weaponstatus[DHUNS_TUBE]<1)setweaponstate("reloadend");
 			else if(invoker.handshells>=3)setweaponstate("unloadloopend");
 			else{
 				invoker.handshells++;
-				invoker.weaponstatus[HUNTS_TUBE]--;
+				invoker.weaponstatus[DHUNS_TUBE]--;
 			}
 		}
 		SHTG C 4 offset(0,40) A_StartSound("weapons/huntreload",8);
@@ -661,17 +661,17 @@ override void postbeginplay(){
 		}
 	}
 	override void InitializeWepStats(bool idfa){
-		weaponstatus[HUNTS_CHAMBER]=2;
+		weaponstatus[DHUNS_CHAMBER]=2;
 		if(!idfa){
-			  weaponstatus[HUNTS_TUBESIZE]=7;
-			  weaponstatus[HUNTS_CHOKE]=1;
+			  weaponstatus[DHUNS_TUBESIZE]=7;
+			  weaponstatus[DHUNS_CHOKE]=1;
 		}
 
-  if(weaponstatus[0]&HUNTF_SCOUT){
-      weaponstatus[HUNTS_TUBESIZE]=5;
+  if(weaponstatus[0]&DHUNF_SCOUT){
+      weaponstatus[DHUNS_TUBESIZE]=5;
     }
 
-		weaponstatus[HUNTS_TUBE]=weaponstatus[HUNTS_TUBESIZE];
+		weaponstatus[DHUNS_TUBE]=weaponstatus[DHUNS_TUBESIZE];
 		weaponstatus[SHOTS_SIDESADDLE]=12;
 		handshells=0;
 	}
@@ -680,24 +680,24 @@ override void postbeginplay(){
 		if(type>=0){
 			switch(type){
 			case 0:
-				weaponstatus[0]|=HUNTF_EXPORT;
-				weaponstatus[0]&=~HUNTF_CANFULLAUTO;
+				weaponstatus[0]|=DHUNF_EXPORT;
+				weaponstatus[0]&=~DHUNF_CANFULLAUTO;
 				break;
 			case 1:
-				weaponstatus[0]&=~HUNTF_EXPORT;
-				weaponstatus[0]&=~HUNTF_CANFULLAUTO;
+				weaponstatus[0]&=~DHUNF_EXPORT;
+				weaponstatus[0]&=~DHUNF_CANFULLAUTO;
 				break;
 			case 2:
-				weaponstatus[0]&=~HUNTF_EXPORT;
-				weaponstatus[0]|=HUNTF_CANFULLAUTO;
+				weaponstatus[0]&=~DHUNF_EXPORT;
+				weaponstatus[0]|=DHUNF_CANFULLAUTO;
 				break;
     case 3:
-				weaponstatus[0]|=HUNTF_SCOUT;
-				weaponstatus[0]&=~HUNTF_CANFULLAUTO;
+				weaponstatus[0]|=DHUNF_SCOUT;
+				weaponstatus[0]&=~DHUNF_CANFULLAUTO;
 				break;
     case 4:
-				weaponstatus[0]|=HUNTF_SCOUT;
-				weaponstatus[0]|=HUNTF_CANFULLAUTO;
+				weaponstatus[0]|=DHUNF_SCOUT;
+				weaponstatus[0]|=DHUNF_CANFULLAUTO;
 				break;
 			default:
 				break;
@@ -705,51 +705,51 @@ override void postbeginplay(){
 		}
 		if(type<0||type>4)type=1;
 		int firemode=getloadoutvar(input,"firemode",1);
-		if(firemode>=0)weaponstatus[HUNTS_FIREMODE]=clamp(firemode,0,type);
+		if(firemode>=0)weaponstatus[DHUNS_FIREMODE]=clamp(firemode,0,type);
 		int choke=min(getloadoutvar(input,"choke",1),7);
-		if(choke>=0)weaponstatus[HUNTS_CHOKE]=choke;
+		if(choke>=0)weaponstatus[DHUNS_CHOKE]=choke;
 
-		int tubesize=((weaponstatus[0]&HUNTF_EXPORT)?5:7);
-  int tubesizescout=((weaponstatus[0]&HUNTF_SCOUT)?5:7);
+		int tubesize=((weaponstatus[0]&DHUNF_EXPORT)?5:7);
+  int tubesizescout=((weaponstatus[0]&DHUNF_SCOUT)?5:7);
 
 //god this is so confusing Dx
- if(weaponstatus[HUNTS_TUBE]>tubesize)weaponstatus[HUNTS_TUBE]=tubesize;
-		weaponstatus[HUNTS_TUBESIZE]=tubesize;  
+ if(weaponstatus[DHUNS_TUBE]>tubesize)weaponstatus[DHUNS_TUBE]=tubesize;
+		weaponstatus[DHUNS_TUBESIZE]=tubesize;  
 
-if (weaponstatus[0]&HUNTF_SCOUT){
-   if(weaponstatus[HUNTS_TUBE]>tubesizescout){
-    weaponstatus[HUNTS_TUBE]=tubesizescout;
+if (weaponstatus[0]&DHUNF_SCOUT){
+   if(weaponstatus[DHUNS_TUBE]>tubesizescout){
+    weaponstatus[DHUNS_TUBE]=tubesizescout;
     }
-		weaponstatus[HUNTS_TUBESIZE]=tubesizescout;  
+		weaponstatus[DHUNS_TUBESIZE]=tubesizescout;  
   }
 /*  original code for reference
 
-int tubesize=((weaponstatus[0]&HUNTF_EXPORT)?5:7);
-		if(weaponstatus[HUNTS_TUBE]>tubesize)weaponstatus[HUNTS_TUBE]=tubesize;
-		weaponstatus[HUNTS_TUBESIZE]=tubesize;
+int tubesize=((weaponstatus[0]&DHUNF_EXPORT)?5:7);
+		if(weaponstatus[DHUNS_TUBE]>tubesize)weaponstatus[DHUNS_TUBE]=tubesize;
+		weaponstatus[DHUNS_TUBESIZE]=tubesize;
 
 */
 
   
 	}
 }
-enum hunterstatus{
-	HUNTF_CANFULLAUTO=1,
-	HUNTF_JAMMED=2,
-	HUNTF_UNLOADONLY=4,
-	HUNTF_FROMPOCKETS=8,
-	HUNTF_ALTHOLDING=16,
-	HUNTF_HOLDING=32,
-	HUNTF_EXPORT=64,
- HUNTF_SCOUT=128,
+enum doomedhunterstatus{
+	DHUNF_CANFULLAUTO=1,
+	DHUNF_JAMMED=2,
+	DHUNF_UNLOADONLY=4,
+	DHUNF_FROMPOCKETS=8,
+	DHUNF_ALTHOLDING=16,
+	DHUNF_HOLDING=32,
+	DHUNF_EXPORT=64,
+ 	DHUNF_SCOUT=128,
 
-	HUNTS_FIREMODE=1,
-	HUNTS_CHAMBER=2,
+	DHUNS_FIREMODE=1,
+	DHUNS_CHAMBER=2,
 	//3 is for side saddles
-	HUNTS_TUBE=4,
-	HUNTS_TUBESIZE=5,
-	HUNTS_HAND=6,
-	HUNTS_CHOKE=7,
+	DHUNS_TUBE=4,
+	DHUNS_TUBESIZE=5,
+	DHUNS_HAND=6,
+	DHUNS_CHOKE=7,
 };
 
 
@@ -761,34 +761,34 @@ class DoomHunterRandom:IdleDummy{
 			if(!ggg)return;
 			HDF.TransferSpecials(self,ggg,HDF.TS_ALL);
 
-			if(!random(0,7))ggg.weaponstatus[HUNTS_CHOKE]=random(0,7);
+			if(!random(0,7))ggg.weaponstatus[DHUNS_CHOKE]=random(0,7);
 			if(!random(0,32)){
-				ggg.weaponstatus[0]&=~HUNTF_EXPORT;
-				ggg.weaponstatus[0]|=HUNTF_CANFULLAUTO;
+				ggg.weaponstatus[0]&=~DHUNF_EXPORT;
+				ggg.weaponstatus[0]|=DHUNF_CANFULLAUTO;
 			}else if(!random(0,7)){
-				ggg.weaponstatus[0]|=HUNTF_EXPORT;
-				ggg.weaponstatus[0]&=~HUNTF_CANFULLAUTO;
+				ggg.weaponstatus[0]|=DHUNF_EXPORT;
+				ggg.weaponstatus[0]&=~DHUNF_CANFULLAUTO;
 			}
   else if(!random(0,7)){
-				ggg.weaponstatus[0]|=HUNTF_SCOUT;
-				ggg.weaponstatus[0]&=~HUNTF_CANFULLAUTO;
+				ggg.weaponstatus[0]|=DHUNF_SCOUT;
+				ggg.weaponstatus[0]&=~DHUNF_CANFULLAUTO;
 			}
   else if(!random(0,7)){
-				ggg.weaponstatus[0]|=HUNTF_SCOUT;
-				ggg.weaponstatus[0]|=HUNTF_CANFULLAUTO;
+				ggg.weaponstatus[0]|=DHUNF_SCOUT;
+				ggg.weaponstatus[0]|=DHUNF_CANFULLAUTO;
 			}
-			int tubesize=((ggg.weaponstatus[0]&HUNTF_EXPORT)?5:7);
-    int tubesizescout=((ggg.weaponstatus[0]&HUNTF_SCOUT)?5:7);
+			int tubesize=((ggg.weaponstatus[0]&DHUNF_EXPORT)?5:7);
+    int tubesizescout=((ggg.weaponstatus[0]&DHUNF_SCOUT)?5:7);
 
 
-if(ggg.weaponstatus[HUNTS_TUBE]>tubesize)ggg.weaponstatus[HUNTS_TUBE]=tubesize;
-		ggg.weaponstatus[HUNTS_TUBESIZE]=tubesize;  
+if(ggg.weaponstatus[DHUNS_TUBE]>tubesize)ggg.weaponstatus[DHUNS_TUBE]=tubesize;
+		ggg.weaponstatus[DHUNS_TUBESIZE]=tubesize;  
 
-if (ggg.weaponstatus[0]&HUNTF_SCOUT){
-   if(ggg.weaponstatus[HUNTS_TUBE]>tubesizescout){
-    ggg.weaponstatus[HUNTS_TUBE]=tubesizescout;
+if (ggg.weaponstatus[0]&DHUNF_SCOUT){
+   if(ggg.weaponstatus[DHUNS_TUBE]>tubesizescout){
+    ggg.weaponstatus[DHUNS_TUBE]=tubesizescout;
     }
-		ggg.weaponstatus[HUNTS_TUBESIZE]=tubesizescout;  
+		ggg.weaponstatus[DHUNS_TUBESIZE]=tubesizescout;  
   }
 
 		}stop;

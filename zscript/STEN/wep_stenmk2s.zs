@@ -24,15 +24,9 @@ class HDStenMk2:HDWeapon{
 		inventory.pickupmessage "You got the STEN Mk. 2(S)!";
 		hdweapon.barrelsize 21,0.5,1;
 		hdweapon.refid HDLD_STEN;
-		tag "STEN Mk.2(S)";
+		tag "$TAG_STEN";
 		inventory.icon "STNPA0";
-
-		hdweapon.loadoutcodes "
-		//	\cufiremode - 0-2, semi/burst/auto
-		//	\cufireswitch - 0-4, default/semi/auto/full/all
-		//	\cureflexsight - 0-1, no/yes
-		//	\cudot - 0-5
-			";//no configs, WYSIWYG
+		//no configs, WYSIWYG
 	}
 	override void tick(){
 		super.tick();
@@ -454,4 +448,3 @@ class HDSTENRandom:IdleDummy{
 		}stop;
 	}
 }
-

@@ -147,6 +147,12 @@ Dynamite - [DYN]
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/Dynamite.png)
 
+Sten Mk. 2(S) - [MK2] (Magazines - [930])
+
+- An old sub-machine gun designed and used by the British during WWII, known mostly for being problematic due to its jamming and overheating issues. This version has been modified with an integrally suppressed barrel, making its overall sound signature comparable to a handclap at best. Many compare it to the MP-46 SMG of today's time, though very few use it over that due to its many issues.
+
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/Sten.png)
+
 ## Credits
 
 - 1911 sprites provided courtesy of ChopBlock223 from the HD Discord
