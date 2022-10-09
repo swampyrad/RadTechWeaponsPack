@@ -55,11 +55,11 @@ class HDColt1911:HDHandgun{
 		if(sb.hudlevel==1){
 			int nextmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory("HDColtMag7")));
 			if(nextmagloaded>=7){
-				sb.drawimage("CMG7NORM",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1,1));
+				sb.drawimage("CMG7A0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1,1));
 			}else if(nextmagloaded<1){
-				sb.drawimage("CMG7MPTY",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextmagloaded?0.6:1.,scale:(1,1));
+				sb.drawimage("CMG7D0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextmagloaded?0.6:1.,scale:(1,1));
 			}else sb.drawbar(
-				"CMG7NORM","CMG7GREY",
+				"CMG7A0","CMG7C0",
 				nextmagloaded,7,
 				(-46,-3),-1,
 				sb.SHADER_VERT,sb.DI_SCREEN_CENTER_BOTTOM
@@ -511,7 +511,7 @@ class HDColtMag7:HDMagAmmo{
    scale 0.45;
 	}
 	override string,string,name,double getmagsprite(int thismagamt){
-		string magsprite=(thismagamt>0)?"CMG7NORM":"CMG7MPTY";
+		string magsprite=(thismagamt>0)?"CMG7A0":"CMG7D0";
 		return magsprite,"45RNA0","HD45ACPAmmo",0.6;
 	}
 	override void GetItemsThatUseThis(){

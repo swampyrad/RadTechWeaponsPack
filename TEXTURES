@@ -23,22 +23,6 @@ patch M191B0,0,0{}
 patch FIRESEL,7,5{}
 }
 
-//magazine sprites
-sprite CMG7NORM,7,15{
-offset 3,15
-patch CMG7A0,0,0{}
-}
-
-sprite CMG7GREY,7,15{
-offset 3,15
-patch CMG7GREY,0,0{}
-}
-
-sprite CMG7MPTY,15,7{
-offset 7,7
-patch CMG7MPTY,0,0{}
-}
-
 //Obrozz Pistol sprites
 sprite BROZF0,115,138{
 	offset -86,-42 
