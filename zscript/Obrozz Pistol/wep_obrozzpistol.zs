@@ -918,5 +918,3 @@ enum obrozzstatus{
 	OBROZZS_GRIME=6,
 	OBROZZS_RECASTS=7,
 }
-
-

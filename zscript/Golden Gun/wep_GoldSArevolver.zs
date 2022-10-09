@@ -23,19 +23,19 @@ class HDGoldSingleActionRevolver:HDHandgun{
 	}
 	override double gunmass(){
 		double blk=0;
-		for(int i=BUGS_CYL1;i<=BUGS_CYL6;i++){
+		for(int i=GSAS_CYL1;i<=GSAS_CYL6;i++){
 			int wi=weaponstatus[i];
-			if(wi==BUGS_MASTERBALL)blk+=1.3;
-			else if(wi==BUGS_NINEMIL)blk+=1.3;
+			if(wi==GSAS_MASTERBALL)blk+=1.3;
+			else if(wi==GSAS_NINEMIL)blk+=1.3;
 		}
 		return blk+15;
 	}
 	override double weaponbulk(){
 		double blk=0;
-		for(int i=BUGS_CYL1;i<=BUGS_CYL6;i++){
+		for(int i=GSAS_CYL1;i<=GSAS_CYL6;i++){
 			int wi=weaponstatus[i];
-			if(wi==BUGS_MASTERBALL)blk+=ENC_355_LOADED*2;
-			else if(wi==BUGS_NINEMIL)blk+=ENC_355_LOADED*2;
+			if(wi==GSAS_MASTERBALL)blk+=ENC_355_LOADED*2;
+			else if(wi==GSAS_NINEMIL)blk+=ENC_355_LOADED*2;
 		}
 		return blk+55;//more bulk due to being made of fucking gold
 	}
@@ -56,7 +56,7 @@ if(ninemil>0){
 */
 		}
 		int plf=hpl.player.getpsprite(PSP_WEAPON).frame;
-		for(int i=BUGS_CYL1;i<=BUGS_CYL6;i++){
+		for(int i=GSAS_CYL1;i<=GSAS_CYL6;i++){
 			double drawangle=i*(360./6.)-150;
 			vector2 cylpos;
 			if(plf==4){
@@ -142,12 +142,12 @@ if(ninemil>0){
 		owner.A_SetInventory("HDGold45LCAmmo",6);
 	}
 	override void initializewepstats(bool idfa){
-		weaponstatus[BUGS_CYL1]=BUGS_MASTERBALL;
-		weaponstatus[BUGS_CYL2]=BUGS_MASTERBALL;
-		weaponstatus[BUGS_CYL3]=BUGS_MASTERBALL;
-		weaponstatus[BUGS_CYL4]=BUGS_MASTERBALL;
-		weaponstatus[BUGS_CYL5]=BUGS_MASTERBALL;
-		weaponstatus[BUGS_CYL6]=BUGS_MASTERBALL;
+		weaponstatus[GSAS_CYL1]=GSAS_MASTERBALL;
+		weaponstatus[GSAS_CYL2]=GSAS_MASTERBALL;
+		weaponstatus[GSAS_CYL3]=GSAS_MASTERBALL;
+		weaponstatus[GSAS_CYL4]=GSAS_MASTERBALL;
+		weaponstatus[GSAS_CYL5]=GSAS_MASTERBALL;
+		weaponstatus[GSAS_CYL6]=GSAS_MASTERBALL;
 	}
 
 	action bool HoldingRightHanded(){
@@ -173,25 +173,25 @@ if(ninemil>0){
 	}
 	void RotateCylinder(bool clockwise=true){
 		if(clockwise){
-			int cylbak=weaponstatus[BUGS_CYL1];
-			weaponstatus[BUGS_CYL1]=weaponstatus[BUGS_CYL6];
-			weaponstatus[BUGS_CYL6]=weaponstatus[BUGS_CYL5];
-			weaponstatus[BUGS_CYL5]=weaponstatus[BUGS_CYL4];
-			weaponstatus[BUGS_CYL4]=weaponstatus[BUGS_CYL3];
-			weaponstatus[BUGS_CYL3]=weaponstatus[BUGS_CYL2];
-			weaponstatus[BUGS_CYL2]=cylbak;
+			int cylbak=weaponstatus[GSAS_CYL1];
+			weaponstatus[GSAS_CYL1]=weaponstatus[GSAS_CYL6];
+			weaponstatus[GSAS_CYL6]=weaponstatus[GSAS_CYL5];
+			weaponstatus[GSAS_CYL5]=weaponstatus[GSAS_CYL4];
+			weaponstatus[GSAS_CYL4]=weaponstatus[GSAS_CYL3];
+			weaponstatus[GSAS_CYL3]=weaponstatus[GSAS_CYL2];
+			weaponstatus[GSAS_CYL2]=cylbak;
 		}else{
-			int cylbak=weaponstatus[BUGS_CYL1];
-			weaponstatus[BUGS_CYL1]=weaponstatus[BUGS_CYL2];
-			weaponstatus[BUGS_CYL2]=weaponstatus[BUGS_CYL3];
-			weaponstatus[BUGS_CYL3]=weaponstatus[BUGS_CYL4];
-			weaponstatus[BUGS_CYL4]=weaponstatus[BUGS_CYL5];
-			weaponstatus[BUGS_CYL5]=weaponstatus[BUGS_CYL6];
-			weaponstatus[BUGS_CYL6]=cylbak;
+			int cylbak=weaponstatus[GSAS_CYL1];
+			weaponstatus[GSAS_CYL1]=weaponstatus[GSAS_CYL2];
+			weaponstatus[GSAS_CYL2]=weaponstatus[GSAS_CYL3];
+			weaponstatus[GSAS_CYL3]=weaponstatus[GSAS_CYL4];
+			weaponstatus[GSAS_CYL4]=weaponstatus[GSAS_CYL5];
+			weaponstatus[GSAS_CYL5]=weaponstatus[GSAS_CYL6];
+			weaponstatus[GSAS_CYL6]=cylbak;
 		}
 	}
 	action void A_LoadRound(){
-		if(invoker.weaponstatus[BUGS_CYL1]>0)return;
+		if(invoker.weaponstatus[GSAS_CYL1]>0)return;
 		bool useninemil=(
 			player.cmd.buttons&BT_FIREMODE
 			||!countinv("HDGold45LCAmmo")
@@ -199,12 +199,12 @@ if(ninemil>0){
 		//if(useninemil&&!countinv("HDPistolAmmo"))return;
 		class<inventory>ammotype=useninemil?"HDGold45LCAmmo":"HDGold45LCAmmo";
 		A_TakeInventory(ammotype,1,TIF_NOTAKEINFINITE);
-		invoker.weaponstatus[BUGS_CYL1]=useninemil?BUGS_NINEMIL:BUGS_MASTERBALL;
+		invoker.weaponstatus[GSAS_CYL1]=useninemil?GSAS_NINEMIL:GSAS_MASTERBALL;
 		A_StartSound("weapons/deinoload",8,CHANF_OVERLAP);
 	}
 	action void A_OpenCylinder(){
 		A_StartSound("weapons/deinoopen",8);
-		invoker.weaponstatus[0]&=~BUGF_COCKED;
+		invoker.weaponstatus[0]&=~GSAF_COCKED;
 		invoker.cylinderopen=true;
 		A_SetHelpText();
 	}
@@ -215,19 +215,19 @@ if(ninemil>0){
 	}
 	action void A_HitExtractor(){
 		double cosp=cos(pitch);
-		for(int i=BUGS_CYL1;i<=BUGS_CYL1;i++){
+		for(int i=GSAS_CYL1;i<=GSAS_CYL1;i++){
 			int thischamber=invoker.weaponstatus[i];
 			if(thischamber==1)continue;
 			if(
-				thischamber==BUGS_NINEMILSPENT
-				||thischamber==BUGS_NINEMIL
-     ||thischamber==BUGS_MASTERBALL
-				||thischamber==BUGS_MASTERBALLSPENT
+				thischamber==GSAS_NINEMILSPENT
+				||thischamber==GSAS_NINEMIL
+     ||thischamber==GSAS_MASTERBALL
+				||thischamber==GSAS_MASTERBALLSPENT
 			){
 				actor aaa=spawn(
-					thischamber==BUGS_NINEMIL?"HDGold45LCAmmo"
-        :thischamber==BUGS_MASTERBALL?"HDGold45LCAmmo"
-						:thischamber==BUGS_MASTERBALLSPENT?"HDSpentGold45LC"
+					thischamber==GSAS_NINEMIL?"HDGold45LCAmmo"
+        :thischamber==GSAS_MASTERBALL?"HDGold45LCAmmo"
+						:thischamber==GSAS_MASTERBALLSPENT?"HDSpentGold45LC"
 						:"HDGoldSpent45LC",
 					(pos.xy,pos.z+height-10)
 					+(cosp*cos(angle),cosp*sin(angle),sin(pitch))*7,
@@ -243,12 +243,12 @@ if(ninemil>0){
 	action void A_ExtractAll(){
 		double cosp=cos(pitch);
 		bool gotany=false;
-		for(int i=BUGS_CYL1;i<=BUGS_CYL6;i++){
+		for(int i=GSAS_CYL1;i<=GSAS_CYL6;i++){
 			int thischamber=invoker.weaponstatus[i];
 			if(thischamber<1)continue;
 			if(
-				thischamber==BUGS_NINEMILSPENT
-				||thischamber==BUGS_MASTERBALLSPENT
+				thischamber==GSAS_NINEMILSPENT
+				||thischamber==GSAS_MASTERBALLSPENT
 			){
 				actor aaa=spawn("HDSpent9mm",
 					(pos.xy,pos.z+height-14)
@@ -256,12 +256,12 @@ if(ninemil>0){
 					ALLOW_REPLACE
 				);
 				aaa.vel=vel+(frandom(-0.3,0.3),frandom(-0.3,0.3),-1);
-				if(thischamber==BUGS_MASTERBALLSPENT)aaa.scale.y=0.85;
+				if(thischamber==GSAS_MASTERBALLSPENT)aaa.scale.y=0.85;
 				invoker.weaponstatus[i]=0;
 			}else{
 				//give or spawn either 9mm or 355
 				class<inventory>ammotype=
-					thischamber==BUGS_MASTERBALL?
+					thischamber==GSAS_MASTERBALL?
 					"HDGold45LCAmmo":"HDGold45LCAmmo";
 				if(A_JumpIfInventory(ammotype,0,"null")){
 					actor aaa=spawn(ammotype,
@@ -280,17 +280,17 @@ if(ninemil>0){
 		if(gotany)A_StartSound("weapons/pocket",9);
 	}
 	action void A_FireRevolver(){
-		invoker.weaponstatus[0]&=~BUGF_COCKED;
-		int cyl=invoker.weaponstatus[BUGS_CYL1];
+		invoker.weaponstatus[0]&=~GSAF_COCKED;
+		int cyl=invoker.weaponstatus[GSAS_CYL1];
 		if(
-			cyl!=BUGS_MASTERBALL
-			&&cyl!=BUGS_NINEMIL
+			cyl!=GSAS_MASTERBALL
+			&&cyl!=GSAS_NINEMIL
 		){
 			A_StartSound("weapons/rsa_click",8,CHANF_OVERLAP);
 			return;
 		}
-		invoker.weaponstatus[BUGS_CYL1]--;
-		bool masterball=cyl==BUGS_MASTERBALL;
+		invoker.weaponstatus[GSAS_CYL1]--;
+		bool masterball=cyl==GSAS_MASTERBALL;
 
 		let bbb=HDBulletActor.FireBullet(self,masterball?"HDB_Gold45lc":"HDB_Gold45lc", spread:1., speedfactor:frandom(1.49,1.51));
                            //it's golden, it's better
@@ -318,12 +318,12 @@ if(ninemil>0){
 		else if(justpressed(BT_RELOAD)){
 			if(
 				(
-					invoker.weaponstatus[BUGS_CYL1]>0
-					&&invoker.weaponstatus[BUGS_CYL2]>0
-					&&invoker.weaponstatus[BUGS_CYL3]>0
-					&&invoker.weaponstatus[BUGS_CYL4]>0
-					&&invoker.weaponstatus[BUGS_CYL5]>0
-					&&invoker.weaponstatus[BUGS_CYL6]>0
+					invoker.weaponstatus[GSAS_CYL1]>0
+					&&invoker.weaponstatus[GSAS_CYL2]>0
+					&&invoker.weaponstatus[GSAS_CYL3]>0
+					&&invoker.weaponstatus[GSAS_CYL4]>0
+					&&invoker.weaponstatus[GSAS_CYL5]>0
+					&&invoker.weaponstatus[GSAS_CYL6]>0
 				)||(
 					!countinv("HDGold45LCAmmo")
 					&&!countinv("HDGold45LCAmmo")
@@ -342,7 +342,7 @@ if(ninemil>0){
 	action void A_RoundReady(int rndnm){
 		int gunframe=-1;
 		if(invoker.weaponstatus[rndnm]>0)gunframe=player.getpsprite(PSP_WEAPON).frame;
-		let thissprite=player.getpsprite(BUGS_OVRCYL+rndnm);
+		let thissprite=player.getpsprite(GSAS_OVRCYL+rndnm);
 		switch(gunframe){
 		case 4: //E
 			thissprite.frame=0;
@@ -360,8 +360,8 @@ if(ninemil>0){
 		}
 	}
 	action void A_CockHammer(bool yes=true){
-		if(yes)invoker.weaponstatus[0]|=BUGF_COCKED;
-		else invoker.weaponstatus[0]&=~BUGF_COCKED;
+		if(yes)invoker.weaponstatus[0]|=GSAF_COCKED;
+		else invoker.weaponstatus[0]&=~GSAF_COCKED;
 	}
 
 
@@ -378,12 +378,12 @@ if(ninemil>0){
 	spawn:
 		GSAL A -1;
 		stop;//chambered round sprites go here
-	round1:GSR1 A 1 A_RoundReady(BUGS_CYL1);wait;
-	round2:GSR2 A 1 A_RoundReady(BUGS_CYL2);wait;
-	round3:GSR3 A 1 A_RoundReady(BUGS_CYL3);wait;
-	round4:GSR4 A 1 A_RoundReady(BUGS_CYL4);wait;
-	round5:GSR5 A 1 A_RoundReady(BUGS_CYL5);wait;
-	round6:GSR6 A 1 A_RoundReady(BUGS_CYL6);wait;
+	round1:GSR1 A 1 A_RoundReady(GSAS_CYL1);wait;
+	round2:GSR2 A 1 A_RoundReady(GSAS_CYL2);wait;
+	round3:GSR3 A 1 A_RoundReady(GSAS_CYL3);wait;
+	round4:GSR4 A 1 A_RoundReady(GSAS_CYL4);wait;
+	round5:GSR5 A 1 A_RoundReady(GSAS_CYL5);wait;
+	round6:GSR6 A 1 A_RoundReady(GSAS_CYL6);wait;
 	select0:
 		GSAG A 0{
 			if(!countinv("NulledWeapon"))invoker.wronghand=true;//ready in right hand instead of left
@@ -407,12 +407,12 @@ if(ninemil>0){
 				}
 			}
 
-			A_Overlay(BUGS_OVRCYL+BUGS_CYL1,"round1");
-			A_Overlay(BUGS_OVRCYL+BUGS_CYL2,"round2");
-			A_Overlay(BUGS_OVRCYL+BUGS_CYL3,"round3");
-			A_Overlay(BUGS_OVRCYL+BUGS_CYL4,"round4");
-			A_Overlay(BUGS_OVRCYL+BUGS_CYL5,"round5");
-			A_Overlay(BUGS_OVRCYL+BUGS_CYL6,"round6");
+			A_Overlay(GSAS_OVRCYL+GSAS_CYL1,"round1");
+			A_Overlay(GSAS_OVRCYL+GSAS_CYL2,"round2");
+			A_Overlay(GSAS_OVRCYL+GSAS_CYL3,"round3");
+			A_Overlay(GSAS_OVRCYL+GSAS_CYL4,"round4");
+			A_Overlay(GSAS_OVRCYL+GSAS_CYL5,"round5");
+			A_Overlay(GSAS_OVRCYL+GSAS_CYL6,"round6");
 		}
 		---- A 1 A_Raise();
 		---- A 1 A_Raise(40);
@@ -436,12 +436,12 @@ if(ninemil>0){
 	ready:
 		GSAG A 0 A_CheckRevolverHand();
 		---- A 0 A_JumpIf(invoker.cylinderopen,"readyopen");
-		#### C 0 A_JumpIf(invoker.weaponstatus[0]&BUGF_COCKED,2);
+		#### C 0 A_JumpIf(invoker.weaponstatus[0]&GSAF_COCKED,2);
 		#### A 0;
 		---- A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWUSER3|WRF_ALLOWUSER4);
 		goto readyend;
 	fire:
-		#### A 1 A_JumpIf(invoker.weaponstatus[0]&BUGF_COCKED,"hammertime");
+		#### A 1 A_JumpIf(invoker.weaponstatus[0]&GSAF_COCKED,"hammertime");
   #### A 1 A_JumpIf(pressingaltfire(),"altfire");
   #### A 1 A_JumpIf(!pressingfire(),"nope");
 		//#### A 1 offset(0,34);
@@ -463,7 +463,7 @@ if(ninemil>0){
 		GRVG ABCD 0;
 		stop;
 	altfire:
-		---- A 0 A_JumpIf(invoker.weaponstatus[0]&BUGF_COCKED,"uncock");
+		---- A 0 A_JumpIf(invoker.weaponstatus[0]&GSAF_COCKED,"uncock");
 		#### B 1 offset(0,34) A_ClearRefire();
 		#### B 2 offset(0,36) A_RotateCylinder();
 	cocked:
@@ -478,7 +478,7 @@ if(ninemil>0){
 		goto nope;
 	reload:
 	unload:
-		#### C 0 A_JumpIf(!(invoker.weaponstatus[0]&BUGF_COCKED),3);
+		#### C 0 A_JumpIf(!(invoker.weaponstatus[0]&GSAF_COCKED),3);
 		#### B 1 offset(0,35)A_CockHammer(false);
 		#### A 1 offset(0,33);
 		#### A 1 A_JumpIf(player.getpsprite(PSP_WEAPON).sprite!=getspriteindex("GRVGA0"),"openslow");
@@ -556,18 +556,18 @@ if(ninemil>0){
 		TNT1 A 0 A_Overlay(1025,"raiseright");
 		TNT1 A 0 A_Overlay(1026,"lowerleft");
 		TNT1 A 5;
-		GRVG C 0 A_JumpIf(invoker.weaponstatus[0]&BUGF_COCKED,"nope");
+		GRVG C 0 A_JumpIf(invoker.weaponstatus[0]&GSAF_COCKED,"nope");
 		GRVG A 0;
 		goto nope;
 	swappistols2:
 		TNT1 A 0 A_Overlay(1025,"raiseleft");
 		TNT1 A 0 A_Overlay(1026,"lowerright");
 		TNT1 A 5;
-		GSAG C 0 A_JumpIf(invoker.weaponstatus[0]&BUGF_COCKED,"nope");
+		GSAG C 0 A_JumpIf(invoker.weaponstatus[0]&GSAF_COCKED,"nope");
 		GSAG A 0;
 		goto nope;
 	lowerleft:
-		GSAG C 0 A_JumpIf(invoker.weaponstatus[0]&BUGF_COCKED,2);
+		GSAG C 0 A_JumpIf(invoker.weaponstatus[0]&GSAF_COCKED,2);
 		GSAG A 0;
 		---- A 1 offset(-6,38);
 		---- A 1 offset(-12,48);
@@ -576,7 +576,7 @@ if(ninemil>0){
 		GSAG D 1 offset(-50,86);
 		stop;
 	lowerright:
-		GRVG C 0 A_JumpIf(invoker.weaponstatus[0]&BUGF_COCKED,2);
+		GRVG C 0 A_JumpIf(invoker.weaponstatus[0]&GSAF_COCKED,2);
 		GRVG A 0;
 		---- A 1 offset(6,38);
 		---- A 1 offset(12,48);
@@ -587,7 +587,7 @@ if(ninemil>0){
 	raiseleft:
 		GSAG D 1 offset(-50,86);
 		GSAG D 1 offset(-34,76);
-		GSAG C 0 A_JumpIf(invoker.weaponstatus[0]&BUGF_COCKED,2);
+		GSAG C 0 A_JumpIf(invoker.weaponstatus[0]&GSAF_COCKED,2);
 		GSAG A 0;
 		---- A 1 offset(-20,60);
 		---- A 1 offset(-12,48);
@@ -596,7 +596,7 @@ if(ninemil>0){
 	raiseright:
 		GRVG D 1 offset(50,86);
 		GRVG D 1 offset(34,76);
-		GRVG C 0 A_JumpIf(invoker.weaponstatus[0]&BUGF_COCKED,2);
+		GRVG C 0 A_JumpIf(invoker.weaponstatus[0]&GSAF_COCKED,2);
 		GRVG A 0;
 		---- A 1 offset(20,60);
 		---- A 1 offset(12,48);
@@ -618,27 +618,27 @@ if(ninemil>0){
 	}
 }
 
-/*
-enum DeinovolverStats{
+
+enum GoldSingleActionStats{
 	//chamber 1 is the shooty one
-	BUGS_CYL1=1,
-	BUGS_CYL2=2,
-	BUGS_CYL3=3,
-	BUGS_CYL4=4,
-	BUGS_CYL5=5,
-	BUGS_CYL6=6,
-	BUGS_OVRCYL=355,
+	GSAS_CYL1=1,
+	GSAS_CYL2=2,
+	GSAS_CYL3=3,
+	GSAS_CYL4=4,
+	GSAS_CYL5=5,
+	GSAS_CYL6=6,
+	GSAS_OVRCYL=355,
 
 	//odd means spent
-	BUGS_NINEMILSPENT=1,
-	BUGS_NINEMIL=2,
-	BUGS_MASTERBALLSPENT=3,
-	BUGS_MASTERBALL=4,
+	GSAS_NINEMILSPENT=1,
+	GSAS_NINEMIL=2,
+	GSAS_MASTERBALLSPENT=3,
+	GSAS_MASTERBALL=4,
 
-	BUGF_RIGHTHANDED=1,
-	BUGF_COCKED=2,
+	GSAF_RIGHTHANDED=1,
+	GSAF_COCKED=2,
 }
-*/
+
 
 class GoldSADeinoSpawn:actor{
 	override void postbeginplay(){

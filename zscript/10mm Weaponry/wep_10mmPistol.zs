@@ -26,24 +26,24 @@ class HD10mmPistol:HDHandgun{
 			\cufiremode - 0/1, semi/auto, subject to the above";
 	}
 	override double weaponbulk(){
-		int mgg=weaponstatus[PISS_MAG];
+		int mgg=weaponstatus[10PS_MAG];
 		return 40+(mgg<0?0:(ENC_10MAG_LOADED+mgg*ENC_10_LOADED));
 	}
 	override double gunmass(){
-		int mgg=weaponstatus[PISS_MAG];
+		int mgg=weaponstatus[10PS_MAG];
 		return 8+(mgg<0?0:0.25*(mgg+1));
 	}
 	override void failedpickupunload(){
-		failedpickupunloadmag(PISS_MAG,"HD10mMag8");
+		failedpickupunloadmag(10PS_MAG,"HD10mMag8");
 	}
 	override string,double getpickupsprite(bool usespare){
 		string spr;
 		int wep0=GetSpareWeaponValue(0,usespare);
-		if(GetSpareWeaponValue(PISS_CHAMBER,usespare)<1){
-			if(wep0&PISF_SELECTFIRE)spr="D";
+		if(GetSpareWeaponValue(10PS_CHAMBER,usespare)<1){
+			if(wep0&10PF_SELECTFIRE)spr="D";
 			else spr="B";
 		}else{
-			if(wep0&PISF_SELECTFIRE)spr="C";
+			if(wep0&10PF_SELECTFIRE)spr="C";
 			else spr="A";
 		}
 		return "DLTA"..spr.."0",1.;
@@ -69,16 +69,16 @@ class HD10mmPistol:HDHandgun{
 			);
 			sb.drawnum(hpl.countinv("HD10mMag8"),-43,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		}
-		if(hdw.weaponstatus[0]&PISF_SELECTFIRE)sb.drawwepcounter(hdw.weaponstatus[0]&PISF_FIREMODE,
+		if(hdw.weaponstatus[0]&10PF_SELECTFIRE)sb.drawwepcounter(hdw.weaponstatus[0]&10PF_FIREMODE,
 			-22,-10,"RBRSA3A7","STFULAUT"
 		);
-		sb.drawwepnum(hdw.weaponstatus[PISS_MAG],8);
-		if(hdw.weaponstatus[PISS_CHAMBER]==2)sb.drawrect(-19,-11,3,1);
+		sb.drawwepnum(hdw.weaponstatus[10PS_MAG],8);
+		if(hdw.weaponstatus[10PS_CHAMBER]==2)sb.drawrect(-19,-11,3,1);
 	}
 	override string gethelptext(){
 		return
 		WEPHELP_FIRESHOOT
-		..((weaponstatus[0]&PISF_SELECTFIRE)?(WEPHELP_FIREMODE.."  Semi/Auto\n"):"")
+		..((weaponstatus[0]&10PF_SELECTFIRE)?(WEPHELP_FIREMODE.."  Semi/Auto\n"):"")
 		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
 		..WEPHELP_RELOAD.."  Reload mag\n"
 		..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
@@ -142,7 +142,7 @@ class HD10mmPistol:HDHandgun{
 			A_TakeInventory("NulledWeapon");
 			A_CheckPistolHand();
 		}
-		#### A 0 A_JumpIf(invoker.weaponstatus[PISS_CHAMBER]>0,2);
+		#### A 0 A_JumpIf(invoker.weaponstatus[10PS_CHAMBER]>0,2);
 		#### C 0;
 		---- A 1 A_Raise();
 		---- A 1 A_Raise(30);
@@ -152,7 +152,7 @@ class HD10mmPistol:HDHandgun{
 		wait;
 	deselect0:
 		P10M A 0 A_CheckPistolHand();
-		#### A 0 A_JumpIf(invoker.weaponstatus[PISS_CHAMBER]>0,2);
+		#### A 0 A_JumpIf(invoker.weaponstatus[10PS_CHAMBER]>0,2);
 		#### C 0;
 		---- AAA 1 A_Lower();
 		---- A 1 A_Lower(18);
@@ -162,7 +162,7 @@ class HD10mmPistol:HDHandgun{
 
 	ready:
 		P10M A 0 A_CheckPistolHand();
-		#### A 0 A_JumpIf(invoker.weaponstatus[PISS_CHAMBER]>0,2);
+		#### A 0 A_JumpIf(invoker.weaponstatus[10PS_CHAMBER]>0,2);
 		#### C 0;
 		#### # 0 A_SetCrosshair(21);
 		#### # 1 A_WeaponReady(WRF_ALL);
@@ -173,24 +173,24 @@ class HD10mmPistol:HDHandgun{
 	user2:
 	firemode:
 		---- A 0{
-			if(invoker.weaponstatus[0]&PISF_SELECTFIRE)
-			invoker.weaponstatus[0]^=PISF_FIREMODE;
-			else invoker.weaponstatus[0]&=~PISF_FIREMODE;
+			if(invoker.weaponstatus[0]&10PF_SELECTFIRE)
+			invoker.weaponstatus[0]^=10PF_FIREMODE;
+			else invoker.weaponstatus[0]&=~10PF_FIREMODE;
 		}goto nope;
 	altfire:
 		---- A 0{
-			invoker.weaponstatus[0]&=~PISF_JUSTUNLOAD;
+			invoker.weaponstatus[0]&=~10PF_JUSTUNLOAD;
 			if(
-				invoker.weaponstatus[PISS_CHAMBER]!=2
-				&&invoker.weaponstatus[PISS_MAG]>0
+				invoker.weaponstatus[10PS_CHAMBER]!=2
+				&&invoker.weaponstatus[10PS_MAG]>0
 			)setweaponstate("chamber_manual");
 		}goto nope;
 	chamber_manual:
 		---- A 0 A_JumpIf(
-			!(invoker.weaponstatus[0]&PISF_JUSTUNLOAD)
+			!(invoker.weaponstatus[0]&10PF_JUSTUNLOAD)
 			&&(
-				invoker.weaponstatus[PISS_CHAMBER]==2
-				||invoker.weaponstatus[PISS_MAG]<1
+				invoker.weaponstatus[10PS_CHAMBER]==2
+				||invoker.weaponstatus[10PS_MAG]<1
 			)
 			,"nope"
 		);
@@ -198,16 +198,16 @@ class HD10mmPistol:HDHandgun{
 		#### C 4 offset(0,37){
 			A_MuzzleClimb(frandom(0.4,0.5),-frandom(0.6,0.8));
 			A_StartSound("weapons/pischamber2",8);
-			int psch=invoker.weaponstatus[PISS_CHAMBER];
-			invoker.weaponstatus[PISS_CHAMBER]=0;
+			int psch=invoker.weaponstatus[10PS_CHAMBER];
+			invoker.weaponstatus[10PS_CHAMBER]=0;
 			if(psch==2){
 				A_EjectCasing("HD10mAmmo",-frandom(89,92),(frandom(2,3),0,0),(13,0,0));
 			}else if(psch==1){
 				A_EjectCasing("HDSpent10mm",-frandom(89,92),(frandom(6,7),0,0),(13,0,0));
 			}
-			if(invoker.weaponstatus[PISS_MAG]>0){
-				invoker.weaponstatus[PISS_CHAMBER]=2;
-				invoker.weaponstatus[PISS_MAG]--;
+			if(invoker.weaponstatus[10PS_MAG]>0){
+				invoker.weaponstatus[10PS_CHAMBER]=2;
+				invoker.weaponstatus[10PS_MAG]--;
 			}
 		}
 		#### B 3 offset(0,35);
@@ -217,14 +217,14 @@ class HD10mmPistol:HDHandgun{
 		goto nope;
 	fire:
 		---- A 0{
-			invoker.weaponstatus[0]&=~PISF_JUSTUNLOAD;
-			if(invoker.weaponstatus[PISS_CHAMBER]==2)setweaponstate("shoot");
-			else if(invoker.weaponstatus[PISS_MAG]>0)setweaponstate("chamber_manual");
+			invoker.weaponstatus[0]&=~10PF_JUSTUNLOAD;
+			if(invoker.weaponstatus[10PS_CHAMBER]==2)setweaponstate("shoot");
+			else if(invoker.weaponstatus[10PS_MAG]>0)setweaponstate("chamber_manual");
 		}goto nope;
 	shoot:
   #### B 1;//extra tic to increase trigger pull
 		#### B 1{
-			if(invoker.weaponstatus[PISS_CHAMBER]==2)A_GunFlash();
+			if(invoker.weaponstatus[10PS_CHAMBER]==2)A_GunFlash();
 		}
   #### C 1;//extra tic here to hold slide back for a bit longer
 		#### C 1{
@@ -239,8 +239,8 @@ class HD10mmPistol:HDHandgun{
     // fat off of the SigCow, and more sideclimb added
 		#### C 0{
 			A_EjectCasing("HDSpent10mm",-frandom(89,92),(frandom(6,7),0,0),(13,0,0));
-			invoker.weaponstatus[PISS_CHAMBER]=0;
-			if(invoker.weaponstatus[PISS_MAG]<1){
+			invoker.weaponstatus[10PS_CHAMBER]=0;
+			if(invoker.weaponstatus[10PS_MAG]<1){
 				A_StartSound("weapons/pistoldry",8,CHANF_OVERLAP,0.9);
 				setweaponstate("nope");
 			}
@@ -249,11 +249,11 @@ class HD10mmPistol:HDHandgun{
   //removing delay, it sucks, actually
 		#### B 1{
 			A_WeaponReady(WRF_NOFIRE);
-			invoker.weaponstatus[PISS_CHAMBER]=2;
-			invoker.weaponstatus[PISS_MAG]--;
+			invoker.weaponstatus[10PS_CHAMBER]=2;
+			invoker.weaponstatus[10PS_MAG]--;
 			if(
-				(invoker.weaponstatus[0]&(PISF_FIREMODE|PISF_SELECTFIRE))
-				==(PISF_FIREMODE|PISF_SELECTFIRE)
+				(invoker.weaponstatus[0]&(10PF_FIREMODE|10PF_SELECTFIRE))
+				==(10PF_FIREMODE|10PF_SELECTFIRE)
 			){
 				A_GiveInventory("IsMoving",5);
 				A_Refire("fire");
@@ -270,7 +270,7 @@ class HD10mmPistol:HDHandgun{
 				frandom(0,ceilingz-floorz)<bbb.speed*0.3
 			)A_AlertMonsters(256);
 
-			invoker.weaponstatus[PISS_CHAMBER]=1;
+			invoker.weaponstatus[10PS_CHAMBER]=1;
 			A_ZoomRecoil(0.995);
 			A_MuzzleClimb(-frandom(0.8,2.7),-frandom(0.8,3.3));
                     //extra recoil (+0.5,+1.5)
@@ -280,11 +280,11 @@ class HD10mmPistol:HDHandgun{
 		stop;
 	unload:
 		---- A 0{
-			invoker.weaponstatus[0]|=PISF_JUSTUNLOAD;
-			if(invoker.weaponstatus[PISS_MAG]>=0)setweaponstate("unmag");
+			invoker.weaponstatus[0]|=10PF_JUSTUNLOAD;
+			if(invoker.weaponstatus[10PS_MAG]>=0)setweaponstate("unmag");
 		}goto chamber_manual;
 	loadchamber:
-		---- A 0 A_JumpIf(invoker.weaponstatus[PISS_CHAMBER]>0,"nope");
+		---- A 0 A_JumpIf(invoker.weaponstatus[10PS_CHAMBER]>0,"nope");
 		---- A 1 offset(0,36) A_StartSound("weapons/pocket",9);
 		---- A 1 offset(2,40);
 		---- A 1 offset(2,50);
@@ -296,7 +296,7 @@ class HD10mmPistol:HDHandgun{
 		#### C 3 offset(6,88){
 			if(countinv("HD10mAmmo")){
 				A_TakeInventory("HD10mAmmo",1,TIF_NOTAKEINFINITE);
-				invoker.weaponstatus[PISS_CHAMBER]=2;
+				invoker.weaponstatus[10PS_CHAMBER]=2;
 				A_StartSound("weapons/pischamber1",8);
 			}
 		}
@@ -309,11 +309,11 @@ class HD10mmPistol:HDHandgun{
 		goto readyend;
 	reload:
 		---- A 0{
-			invoker.weaponstatus[0]&=~PISF_JUSTUNLOAD;
+			invoker.weaponstatus[0]&=~10PF_JUSTUNLOAD;
 			bool nomags=HDMagAmmo.NothingLoaded(self,"HD10mMag8");
-			if(invoker.weaponstatus[PISS_MAG]>=8)setweaponstate("nope");
+			if(invoker.weaponstatus[10PS_MAG]>=8)setweaponstate("nope");
 			else if(
-				invoker.weaponstatus[PISS_MAG]<1
+				invoker.weaponstatus[10PS_MAG]<1
 				&&(
 					pressinguse()
 					||nomags
@@ -331,8 +331,8 @@ class HD10mmPistol:HDHandgun{
 		---- A 2 offset(2,42);
 		---- A 3 offset(3,46) A_StartSound("weapons/pismagclick",8,CHANF_OVERLAP);
 		---- A 0{
-			int pmg=invoker.weaponstatus[PISS_MAG];
-			invoker.weaponstatus[PISS_MAG]=-1;
+			int pmg=invoker.weaponstatus[10PS_MAG];
+			invoker.weaponstatus[10PS_MAG]=-1;
 			if(pmg<0)setweaponstate("magout");
 			else if(
 				(!PressingUnload()&&!PressingReload())
@@ -352,7 +352,7 @@ class HD10mmPistol:HDHandgun{
 		goto magout;
 	magout:
 		---- A 0{
-			if(invoker.weaponstatus[0]&PISF_JUSTUNLOAD)setweaponstate("reloadend");
+			if(invoker.weaponstatus[0]&10PF_JUSTUNLOAD)setweaponstate("reloadend");
 			else setweaponstate("loadmag");
 		}
 
@@ -364,7 +364,7 @@ class HD10mmPistol:HDHandgun{
 		---- A 0{
 			let mmm=hdmagammo(findinventory("HD10mMag8"));
 			if(mmm){
-				invoker.weaponstatus[PISS_MAG]=mmm.TakeMag(true);
+				invoker.weaponstatus[10PS_MAG]=mmm.TakeMag(true);
 				A_StartSound("weapons/pismagclick",8);
 			}
 		}
@@ -375,7 +375,7 @@ class HD10mmPistol:HDHandgun{
 		---- A 1 offset(2,42);
 		---- A 1 offset(2,38);
 		---- A 1 offset(1,34);
-		---- A 0 A_JumpIf(!(invoker.weaponstatus[0]&PISF_JUSTUNLOAD),"chamber_manual");
+		---- A 0 A_JumpIf(!(invoker.weaponstatus[0]&10PF_JUSTUNLOAD),"chamber_manual");
 		goto nope;
 
 	user1:
@@ -446,45 +446,43 @@ class HD10mmPistol:HDHandgun{
 
 	spawn:
 		DLTA ABCD -1 nodelay{
-			if(invoker.weaponstatus[PISS_CHAMBER]<1){
-				if(invoker.weaponstatus[0]&PISF_SELECTFIRE)frame=3;
+			if(invoker.weaponstatus[10PS_CHAMBER]<1){
+				if(invoker.weaponstatus[0]&10PF_SELECTFIRE)frame=3;
 				else frame=1;
 			}else{
-				if(invoker.weaponstatus[0]&PISF_SELECTFIRE)frame=2;
+				if(invoker.weaponstatus[0]&10PF_SELECTFIRE)frame=2;
 				else frame=0;
 			}
 		}stop;
 	}
 	override void initializewepstats(bool idfa){
-		weaponstatus[PISS_MAG]=8;
-		weaponstatus[PISS_CHAMBER]=2;
+		weaponstatus[10PS_MAG]=8;
+		weaponstatus[10PS_CHAMBER]=2;
 	}
 	override void loadoutconfigure(string input){
 		int selectfire=getloadoutvar(input,"selectfire",1);
 		if(!selectfire){
-			weaponstatus[0]&=~PISF_SELECTFIRE;
-			weaponstatus[0]&=~PISF_FIREMODE;
+			weaponstatus[0]&=~10PF_SELECTFIRE;
+			weaponstatus[0]&=~10PF_FIREMODE;
 		}else if(selectfire>0){
-			weaponstatus[0]|=PISF_SELECTFIRE;
+			weaponstatus[0]|=10PF_SELECTFIRE;
 		}
-		if(weaponstatus[0]&PISF_SELECTFIRE){
+		if(weaponstatus[0]&10PF_SELECTFIRE){
 			int firemode=getloadoutvar(input,"firemode",1);
-			if(!firemode)weaponstatus[0]&=~PISF_FIREMODE;
-			else if(firemode>0)weaponstatus[0]|=PISF_FIREMODE;
+			if(!firemode)weaponstatus[0]&=~10PF_FIREMODE;
+			else if(firemode>0)weaponstatus[0]|=10PF_FIREMODE;
 		}
 	}
 }
-enum pistolstatus{
-	PISF_SELECTFIRE=1,
-	PISF_FIREMODE=2,
-	PISF_JUSTUNLOAD=4,
+enum 10mmpistolstatus{
+	10PF_SELECTFIRE=1,
+	10PF_FIREMODE=2,
+	10PF_JUSTUNLOAD=4,
 
-	PISS_FLAGS=0,
-	PISS_MAG=1,
-	PISS_CHAMBER=2, //0 empty, 1 spent, 2 loaded
+	10PS_FLAGS=0,
+	10PS_MAG=1,
+	10PS_CHAMBER=2, //0 empty, 1 spent, 2 loaded
 };
-
-
 
 //use this to give an autopistol in a custom loadout
 class HD10mmAutoPistol:HDWeaponGiver{

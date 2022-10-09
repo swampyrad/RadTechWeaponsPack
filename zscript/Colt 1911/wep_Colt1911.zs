@@ -549,11 +549,8 @@ class HDColt1911Spawn:actor{
 	override void postbeginplay(){
 		super.postbeginplay();
 		spawn("HDColt1911",pos,ALLOW_REPLACE);
-  spawn("HDColtMag7",pos,ALLOW_REPLACE);
-  spawn("HDColtMag7",pos,ALLOW_REPLACE);
-
+  		spawn("HDColtMag7",pos,ALLOW_REPLACE);
+  		spawn("HDColtMag7",pos,ALLOW_REPLACE);
 		self.Destroy();
 	}
 }
-
-
