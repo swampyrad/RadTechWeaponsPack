@@ -280,25 +280,10 @@ clearscope string getpickupframe(bool usespare){
 	racked:
 		IM37 D 1 A_WeaponReady(WRF_NOFIRE);
 		IM37 D 0 A_JumpIf(!pressingaltfire(),"unrack");
-		IM37 D 0 A_JumpIf(pressingunload(),"rackunload");
+		IM37 D 0 A_JumpIf(pressingunload(),"racked");
 		IM37 D 0 A_JumpIf(invoker.weaponstatus[HUNTS_CHAMBER],"racked");
-		IM37 D 0{
-			int rld=0;
-			if(pressingreload()){
-      rld=2;
-				invoker.weaponstatus[0]|=HUNTF_FROMPOCKETS;
-			}else if(pressingaltreload()){
-      rld=2;
-				invoker.weaponstatus[0]|=HUNTF_FROMPOCKETS;
-			}
-
-			if(
-				(rld==2&&countinv("HDShellAmmo"))
-				||(rld==1&&invoker.weaponstatus[SHOTS_SIDESADDLE]>0)
-			)setweaponstate("rackreload");
-		}
-
 		loop;
+
 	rackreload:
 		IM37 D 1 offset(-1,35) A_WeaponBusy(true);
 		IM37 D 2 offset(-2,37);
@@ -308,16 +293,6 @@ clearscope string getpickupframe(bool usespare){
 		IM37 D 6 offset(-5,43);
 		IM37 D 6 offset(-4,41) A_StartSound("weapons/pocket",9);
 	rackloadone:
-		IM37 D 1 offset(-4,42);
-		IM37 D 2 offset(-4,41);
-		IM37 D 3 offset(-4,40){
-			A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
-			invoker.weaponstatus[HUNTS_CHAMBER]=2;
-			invoker.handshells--;
-			EmptyHand(careful:true);
-		}
-		IM37 D 5 offset(-4,41);
-		IM37 D 4 offset(-4,40) A_JumpIf(invoker.handshells>0,"rackloadone");
 		goto rackreloadend;
 	rackreloadend:
 		IM37 D 1 offset(-3,39);
@@ -326,30 +301,6 @@ clearscope string getpickupframe(bool usespare){
 		IM37 D 0 A_WeaponBusy(false);
 		goto racked;
 
-	rackunload:
-		IM37 D 1 offset(-1,35) A_WeaponBusy(true);
-		IM37 D 2 offset(-2,37);
-		IM37 D 4 offset(-3,40);
-		IM37 D 1 offset(-4,42);
-		IM37 D 2 offset(-4,41);
-		IM37 D 3 offset(-4,40){
-			int chm=invoker.weaponstatus[HUNTS_CHAMBER];
-			invoker.weaponstatus[HUNTS_CHAMBER]=0;
-			if(chm==2){
-				invoker.handshells++;
-				EmptyHand(careful:true);
-			}else if(chm==1)A_SpawnItemEx("HDSpentShell",
-				cos(pitch)*8,0,height-7-sin(pitch)*8,
-				vel.x+cos(pitch)*cos(angle-random(86,90))*5,
-				vel.y+cos(pitch)*sin(angle-random(86,90))*5,
-				vel.z+sin(pitch)*random(4,6),
-				0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
-			);
-			if(chm)A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
-		}
-		IM37 D 5 offset(-4,41);
-		IM37 D 4 offset(-4,40) A_JumpIf(invoker.handshells>0,"rackloadone");
-		goto rackreloadend;
 
 	unrack: 
 		IM37 D 0 A_Overlay(120,"playsgco2");
@@ -477,9 +428,11 @@ clearscope string getpickupframe(bool usespare){
 		IM37 C 1 offset(0,38);
 		IM37 C 4 offset(0,36){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
-			if(invoker.weaponstatus[HUNTS_CHAMBER]<1){
+			//if(invoker.weaponstatus[HUNTS_CHAMBER]<1){
 				setweaponstate("unloadtube");
-			}else A_StartSound("weapons/huntrack",8,CHANF_OVERLAP);
+				}
+			/*
+}else A_StartSound("weapons/huntrack",8,CHANF_OVERLAP);
 		}
 		IM37 D 8 offset(0,34){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
@@ -506,6 +459,7 @@ clearscope string getpickupframe(bool usespare){
 				0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
 			);
 		}
+	*/
 		IM37 C 0 A_JumpIf(!pressingunload(),"reloadend");
 		IM37 C 4 offset(0,40);
 	unloadtube:
@@ -568,3 +522,4 @@ class HDCombatShotgunRandom:IdleDummy{
 		}stop;
 	}
 }
+
