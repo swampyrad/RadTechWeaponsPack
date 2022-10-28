@@ -153,6 +153,10 @@ Sten Mk. 2(S) - [MK2] (Magazines - [930])
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/Sten.png)
 
+Taser - [TSR]
+
+- A common device used for personal protection. Delivers high voltage into your foes, rendering them a smouldering pile of flesh.
+
 ## Credits
 
 - 1911 sprites provided courtesy of ChopBlock223 from the HD Discord
