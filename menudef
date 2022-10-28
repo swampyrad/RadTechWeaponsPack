@@ -43,6 +43,8 @@ OptionMenu RadTechWeaponry
 	StaticText ""
     Submenu "DM-93 Plasma Buster", "PlasmaBuster", 0, 1
 	StaticText ""
+    Submenu "Taser", "Taser", 0, 1
+	StaticText ""
 	StaticText "--- Utility ---", "yellow"
 	StaticText ""
 	Submenu "Dynamite", "Dynamite", 0, 1
@@ -103,6 +105,36 @@ OptionMenu FlareGuns
 	StaticText "It can also fire buckshot shells, but at a price.", "white"
 	StaticText "Metallic versions exist to aide with this issue, though are much heavier.", "white"
 }
+
+OptionMenu Taser
+{
+    Title "------ Taser Options ------"
+   	StaticText "Notice:", "Red"
+    StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
+    StaticText  "spawns of that given type.", "white"
+    StaticText ""
+	StaticText "Spawn Options", "Red"
+    StaticText  "Control the spawn rate of Tasers on Chainsaw spawns. ", "white"
+	Option "Taser Spawn Rate: ", "Taser_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Taser options", "resetcvar taser_spawn_bias"
+ 	StaticText ""
+    StaticText  "Control whether replacements happen after a mapload.", "white"
+	Option "Persistent Spawns: ", "taser_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar taser_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "Reset Options", "Red"
+	SafeCommand "Reset all options", "taser_reset_cvars"
+	StaticText ""
+	StaticText "--- Lore ---", "Red"
+	StaticText ""
+	StaticText "A common device used for personal protection by civilians and", "white"
+	StaticText "law enforcement agencies. Delivers a million volts into the victim's", "white"
+	StaticText "body, causing momentary seizures and loss of muscle control.", "white"
+	StaticText "Prolonged contact may cause burns and accidental fires.", "white"
+	
+}
+
 
 OptionMenu Dynamite
 {

@@ -9,6 +9,31 @@ offset 18,6
 patch scbksite,0,0{}
 }
 
+//Taser pickup sprite
+sprite TASRA0, 13, 29{
+    offset 7, 29
+    patch TASRA0,0,0{}
+}
+
+//Taser weapon sprites
+sprite STNGA0, 78, 91{
+    offset -150,-80
+    patch STNGA0,0,0{}
+}
+sprite STNGB0, 78, 91{
+    offset -150,-80
+    patch STNGB0,0,0{}
+}
+sprite STNGC0, 91, 88{
+    offset -120,-80
+    patch STNGC0,0,0{}
+}
+sprite STNGD0, 78, 91{
+    offset -150,-80
+    patch STNGD0,0,0{}
+}
+
+
 //Colt 1911 sprites
 //selectfire sprites
 sprite M191C0,26,14{
