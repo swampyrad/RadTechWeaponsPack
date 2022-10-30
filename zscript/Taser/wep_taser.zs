@@ -4,7 +4,7 @@
 // ------------------------------------------------------------
 
 const HDLD_TASER="TSR";
-const TASERDRAIN=2047;//was 1023
+const TASERDRAIN=500;//was 1023; lower values mean faster drain
 
 
 class HDTaser:HDCellWeapon{
