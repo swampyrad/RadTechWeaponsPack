@@ -68,29 +68,29 @@ class HDTaser:HDCellWeapon{
 		A_WeaponReady(WRF_NONE);
 		int battery=invoker.weaponstatus[TASERS_BATTERY];
 		int inertia=invoker.weaponstatus[TASERS_INERTIA];
-		if(inertia<12)invoker.weaponstatus[TASERS_INERTIA]++;
+
+		//if(inertia<12)invoker.weaponstatus[TASERS_INERTIA]++;
 
 		int drainprob=TASERDRAIN;
 		int dmg=0;
 		
-		name sawpuff="HDSawPuff";//remove puffs
+		name sawpuff="HDGunSmoke";//remove puffs
 		
 		A_StartSound("weapons/taser",CHAN_WEAPON);
 		
-		if((inertia>11)&&(battery>random(5,8))){
-			dmg=random(3,4);
-			
-			
-		}else if((inertia>6)&&(battery>random(2,4))){
-			dmg=random(2,3);
-			A_SetTics(2);
-
-			
-		}else if((inertia>1)&&(battery>random(1,4))){
-			drainprob*=3/2;
-			dmg=random(1,2);
-			A_SetTics(random(2,4));
+	//more charge means more current means more damage
+		if((battery>15)){
+			dmg=battery/5;
+		}else if(battery>10){
+			dmg=battery/6;
+		}else if (battery>6){
+			dmg=battery/7;
+		}else if (battery>3){
+			dmg=battery/8;
+		}else if (battery>1){
+			dmg=battery/9;
 		}
+			
 		if(battery>0&&!random(0,drainprob))invoker.weaponstatus[TASERS_BATTERY]--;
 
 		actor victim=null;
@@ -177,6 +177,7 @@ class HDTaser:HDCellWeapon{
 				if(HDMobBase(victim) 
                 && !HDMobBase(victim).bNOINCAP 
                 && victim.health>0
+				&& battery>5 //a weak battery will not be strong enough to incap
                 && victim.ResolveState("falldown")
                 && !victim.InStateSequence
                 (victim.CurState,victim.ResolveState("falldown")))
