@@ -43,7 +43,7 @@ OptionMenu RadTechWeaponry
 	StaticText ""
     Submenu "DM-93 Plasma Buster", "PlasmaBuster", 0, 1
 	StaticText ""
-    Submenu "Taser", "Taser", 0, 1
+    Submenu "Stun Gun", "StunGun", 0, 1
 	StaticText ""
 	StaticText "--- Utility ---", "yellow"
 	StaticText ""
@@ -106,7 +106,7 @@ OptionMenu FlareGuns
 	StaticText "Metallic versions exist to aide with this issue, though are much heavier.", "white"
 }
 
-OptionMenu Taser
+OptionMenu StunGun
 {
     Title "------ Taser Options ------"
    	StaticText "Notice:", "Red"
@@ -114,17 +114,17 @@ OptionMenu Taser
     StaticText  "spawns of that given type.", "white"
     StaticText ""
 	StaticText "Spawn Options", "Red"
-    StaticText  "Control the spawn rate of Tasers on Chainsaw spawns. ", "white"
-	Option "Taser Spawn Rate: ", "Taser_spawn_bias", "SpawnBias"
-	SafeCommand "Reset Taser options", "resetcvar taser_spawn_bias"
+    StaticText  "Control the spawn rate of Stun Guns on Chainsaw spawns. ", "white"
+	Option "Taser Spawn Rate: ", "stungun_spawn_bias", "SpawnBias"
+	SafeCommand "Reset Taser options", "resetcvar stungun_spawn_bias"
  	StaticText ""
     StaticText  "Control whether replacements happen after a mapload.", "white"
-	Option "Persistent Spawns: ", "taser_persistent_spawning", "OnOff"
-	SafeCommand "Reset persistence options", "resetcvar taser_persistent_spawning"
+	Option "Persistent Spawns: ", "stungun_persistent_spawning", "OnOff"
+	SafeCommand "Reset persistence options", "resetcvar stungun_persistent_spawning"
  	StaticText ""
    	StaticText ""
 	StaticText "Reset Options", "Red"
-	SafeCommand "Reset all options", "taser_reset_cvars"
+	SafeCommand "Reset all options", "stungun_reset_cvars"
 	StaticText ""
 	StaticText "--- Lore ---", "Red"
 	StaticText ""

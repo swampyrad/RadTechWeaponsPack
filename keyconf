@@ -19,7 +19,7 @@ alias obrozz_reset_cvars "resetcvar obrozz_spawn_bias; resetcvar obrozz_persiste
 alias dynamite_reset_cvars "resetcvar dynamite_spawn_bias; resetcvar dynamite_persistent_spawning"
 alias colt1911_reset_cvars "resetcvar colt1911_spawn_bias; resetcvar colt1911_ammobox_spawn_bias; resetcvar colt1911_mags_spawn_bias; resetcvar colt1911_persistent_spawning; "
 alias sten_reset_cvars "resetcvar sten_spawn_bias; resetcvar sten_ammobox_spawn_bias; resetcvar sten_persistent_spawning; "
-alias taser_reset_cvars "resetcvar taser_spawn_bias; resetcvar taser_persistent_spawning"
+alias stungun_reset_cvars "resetcvar stungun_spawn_bias; resetcvar stungun_persistent_spawning"
 
 
-alias RTWP_Reset_Cvars "flreset_cvars; dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars; llh_reset_cvars; hzm_reset_cvars; esg_reset_cvars; sa_reset_cvars; gsa_reset_cvars; obrozz_reset_cvars; dynamite_reset_cvars; colt1911_reset_cvars; sten_reset_cvars; taser_reset_cvars"
+alias RTWP_Reset_Cvars "flreset_cvars; dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars; llh_reset_cvars; hzm_reset_cvars; esg_reset_cvars; sa_reset_cvars; gsa_reset_cvars; obrozz_reset_cvars; dynamite_reset_cvars; colt1911_reset_cvars; sten_reset_cvars; stungun_reset_cvars"
