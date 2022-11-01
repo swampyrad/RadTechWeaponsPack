@@ -138,7 +138,7 @@ class RadTechHandler : EventHandler
 		Array<string> wep_battery;  
 		wep_battery.push("PlasmaBuster");
 		wep_battery.push("MinervaChaingun");
-		wep_battery.push("HDTaser");
+		wep_battery.push("HDStunGun");
 		addammo('HDBattery', wep_battery);
 		
 		// 12ga Flare Ammo. 
@@ -256,13 +256,13 @@ class RadTechHandler : EventHandler
 		
 
 //
-//  Taser
+//  Stun Gun
 //
 		// Item spawn lists.
-		Array<RTSpawnItemEntry> spawns_taser;  
-		spawns_taser.push(additementry('Lumberjack', taser_spawn_bias)); 
+		Array<RTSpawnItemEntry> spawns_stungun;  
+		spawns_stungun.push(additementry('Lumberjack', stungun_spawn_bias)); 
 		// Actual add command.
-		additem('HDTaser', spawns_taser, taser_persistent_spawning);
+		additem('HDStunGun', spawns_stungun, stungun_persistent_spawning);
 
 
 //
