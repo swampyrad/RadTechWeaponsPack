@@ -177,9 +177,182 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
     
 			}
 		}
-		
-
 	}
+	
+	//prod attack borrowed frm HDFist
+		
+    int targettimer;
+	int targethealth;
+	int targetspawnhealth;
+	bool flicked;
+	bool washolding;
+	
+    double strength;
+    
+	action void A_StrengthTics(int mintics,int maxtics=-1){
+		if(invoker.strength==1.)return;
+		if(maxtics<0)maxtics=tics;
+		int ttt=min(maxtics,int(tics/invoker.strength));
+		A_SetTics(max(mintics,int(ttt)));
+	}
+
+	override void DoEffect(){
+		super.DoEffect();
+		if(targettimer<70)targettimer++;else{
+			tracer=null;
+			targettimer=0;
+			targethealth=0;
+		}
+		let hdp=hdplayerpawn(owner);
+		strength=hdp?hdp.strength:1.;
+		if(owner.countinv("HDZerk")>HDZerk.HDZERK_COOLOFF){
+			strength*=1.2;
+			if(!random[zrkbs](0,70)){
+				static const string zrkbs[]={"kill","k i l l","k I L L","K\n   I\n       L\n          L","Kill.","KILL","k i l l","Kill!","K  I  L  L","kill...","Kill...","k i l l . . .","      kill","  ... kill ...","kill,","kiiiilllll!!!","kill~","kill <3","kill uwu"};
+				hdp.usegametip("\cr"..zrkbs[random(0,zrkbs.size()-1)]);
+			}
+		}
+	}
+
+	action void HD_StunProd(double dmg){
+		let punchrange=96;// 1.5x etra range compared to fist attack
+		if(hdplayerpawn(self))punchrange*=hdplayerpawn(self).heightmult;
+
+		flinetracedata punchline;
+		bool punchy=linetrace(
+			angle,punchrange,pitch,
+			TRF_NOSKY,
+			offsetz:height*0.77,
+			data:punchline
+		);
+		if(!punchy)return;
+
+		//actual puff effect if the shot connects
+		LineAttack(
+			angle,
+			punchrange,
+			pitch,
+			punchline.hitline?(int(frandom(5,15)*invoker.strength)):0,
+			"none",
+			(invoker.strength>1.5)?"BulletPuffMedium":"BulletPuffSmall",
+			flags:LAF_NORANDOMPUFFZ|LAF_OVERRIDEZ,
+			offsetz:height*0.78
+		);
+
+		if(!punchline.hitactor){
+			HDF.Give(self,"WallChunkAmmo",1);
+			if(punchline.hitline)doordestroyer.CheckDirtyWindowBreak(punchline.hitline,0.06+0.01*invoker.strength,punchline.hitlocation);
+			//this is the part that does window damage, 
+			//gave it 2x window damage because sharp points 
+			//break glass more easily
+			
+			return;
+		}
+		actor punchee=punchline.hitactor;
+
+
+		//charge!
+		dmg*=1.5;
+		dmg += 1;
+		//else dmg+=HDMath.TowardsEachOther(self,punchee)*3;
+
+		//come in swinging
+		let onr=hdplayerpawn(self);
+		double ptch=0.;
+		double pyaw=0.;
+		if(onr){
+			ptch=deltaangle(onr.lastpitch,onr.pitch);
+			pyaw=deltaangle(onr.lastangle,onr.angle);
+			double iy=max(abs(ptch),abs(pyaw));
+			if(pyaw<0)iy*=1.6;
+			if(player.onground)dmg+=min(abs(iy)*5,dmg*3);
+		}
+
+		//shit happens
+		dmg*=invoker.strength*frandom(1.,1.2);
+
+
+		//other effects
+		if(
+			onr
+			&&!punchee.bdontthrust
+			&&(
+				punchee.mass<200
+				||(
+					punchee.radius*2<punchee.height
+					&& punchline.hitlocation.z>punchee.pos.z+punchee.height*0.6
+				)
+			)
+		){
+			if(abs(pyaw)>(0.5)){
+				punchee.A_SetAngle(clamp(normalize180(punchee.angle-pyaw*100),-50,50),SPF_INTERPOLATE);
+			}
+			if(abs(ptch)>(0.5*65535/360)){
+				punchee.A_SetPitch(clamp((punchee.angle+ptch*100)%90,-30,30),SPF_INTERPOLATE);
+			}
+		}
+
+		let hdmp=hdmobbase(punchee);
+
+		//headshot lol
+		if(
+			!punchee.bnopain
+			&&punchee.health>0
+			&&(
+				!hdmp
+				||!hdmp.bheadless
+			)
+			&&punchline.hitlocation.z>punchee.pos.z+punchee.height*0.75
+		){
+			if(hd_debug)A_Log("HEAD SHOT");
+			hdmobbase.forcepain(punchee);
+			dmg*=frandom(1.1,1.8);
+			if(hdmp)hdmp.stunned+=(int(dmg)>>2);
+		}
+
+		if(hd_debug)A_Log("Prodded "..punchee.getclassname().." for "..int(dmg).." damage!");
+
+		bool puncheewasalive=!punchee.bcorpse&&punchee.health>0;
+
+		if(dmg*2>punchee.health)punchee.A_StartSound("misc/bulletflesh",CHAN_AUTO);
+		
+		let aaa = HDFistPuncher(invoker.spawn("HDFistPuncher", invoker.pos));
+		if(aaa)
+		{
+			aaa.master = invoker;
+			punchee.damagemobj(aaa,self,int(dmg),"melee");
+
+
+			aaa.destroy();
+		}
+		if(!punchee)invoker.targethealth=0;else{
+			invoker.targethealth=punchee.health;
+			invoker.targetspawnhealth=punchee.spawnhealth();
+			invoker.targettimer=0;
+			if(
+				(
+					punchee.bismonster
+					||!!punchee.player
+				)
+				&&countinv("HDZerk")>HDZerk.HDZERK_COOLOFF
+			){
+				if(
+					punchee.bcorpse
+					&&puncheewasalive
+				){
+					A_StartSound("weapons/zerkding2",CHAN_WEAPON,CHANF_OVERLAP|CHANF_LOCAL);
+					givebody(10);
+					if(onr){
+						onr.fatigue-=onr.fatigue>>2;
+						onr.usegametip("\cfK I L L !");
+					}
+				}else{
+					A_StartSound("weapons/zerkding",CHAN_WEAPON,CHANF_OVERLAP|CHANF_LOCAL);
+				}
+			}
+		}
+	}
+
 	states{
 	ready:
 		STNG C 1{
@@ -198,18 +371,21 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 		STNG C 1 A_JumpIf(invoker.weaponstatus[STUNGUNS_BATTERY]>0,"tase");
 		goto nope;
 	altfire://super zap punch!
-		STNG C 2 Offset(-5,-10);
-		#### C 2 Offset(10,10);
-		#### D 2 Offset(-30,15) A_JumpIf(invoker.weaponstatus[STUNGUNS_BATTERY]>0,"zappunch");
-		#### D 2 Offset(-18,6);
-		#### D 2 Offset(-8,3);
+		STNG C 2 Offset(-30,-25);
+		#### C 2 Offset(-10, -5);
+		#### C 0 Offset(30,15) HD_StunProd(10);//hits a bit weaker than a regular punch
+		#### D 8 Offset(30,15) A_JumpIf(invoker.weaponstatus[STUNGUNS_BATTERY]>0,"zappunch");
+		#### D 2 Offset(25,10);
+		#### D 2 Offset(15,5);
+		#### D 2 Offset(5, 2);
 		#### D 2 Offset(0,0);
 		goto readyend;
 	zappunch:
-		#### ABA 1 Offset(-30,15) A_HDTase();
-		#### BAB 1 Offset(-18, 6) A_HDTase();
-		#### D 2 Offset(-8,3);
-		#### D 2 Offset(0,0);
+		#### ABAB 2 Offset(30,15) A_HDTase();
+		#### D 2 Offset(25, 10);
+		#### D 2 Offset(15, 5);
+		#### D 2 Offset(5, 2);
+		#### D 2 Offset(0, 0);
 		goto readyend;
 	tase:
 		STNG AB 2 A_HDTase();
