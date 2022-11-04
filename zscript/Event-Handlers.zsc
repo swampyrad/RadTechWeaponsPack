@@ -281,18 +281,21 @@ class RadTechHandler : EventHandler
 		// Pistol spawns
 		Array<RTSpawnItemEntry> spawns_colt1911;  
 		spawns_colt1911.push(additementry('HDHandgunRandomDrop', colt1911_spawn_bias)); 
+		spawns_colt1911.push(additementry('HDPistol', colt1911_spawn_bias)); 
 		// Actual add command.
 		additem('HDColt1911', spawns_colt1911,  colt1911_persistent_spawning);
 		
 	    
 		//Random mag spawns
 		Array<RTSpawnItemEntry> spawns_colt1911_mags;
+		spawns_colt1911_mags.push(additementry('HD9mMag15', colt1911_mags_spawn_bias));
 		spawns_colt1911_mags.push(additementry('ClipMagPickup', colt1911_mags_spawn_bias));
 		additem('HDColtMag7', spawns_colt1911_mags, colt1911_persistent_spawning);
 		
 			    
 		//Random ammobox spawns
 		Array<RTSpawnItemEntry> spawns_colt1911_ammobox;
+		spawns_colt1911_ammobox.push(additementry('ClipBox', colt1911_ammobox_spawn_bias));
 		spawns_colt1911_ammobox.push(additementry('ClipBoxPickup', colt1911_ammobox_spawn_bias));
 		additem('HDColt1911Spawn', spawns_colt1911_ammobox, colt1911_persistent_spawning);
 		
@@ -304,16 +307,13 @@ class RadTechHandler : EventHandler
 		spawns_sten.push(additementry('HDSMGRandom', sten_spawn_bias)); 
 		// Actual add command.
 		additem('HDSTENRandom', spawns_sten,  sten_persistent_spawning);
-		
-	    
 			    
 		//Random ammobox spawns
 		Array<RTSpawnItemEntry> spawns_sten_ammobox;
+		spawns_sten_ammobox.push(additementry('ClipBox', sten_ammobox_spawn_bias));
 		spawns_sten_ammobox.push(additementry('ClipBoxPickup', sten_ammobox_spawn_bias));
 		additem('HDSTENRandom', spawns_sten_ammobox, sten_persistent_spawning);
 		
-
-
 //
 //  Dynamite
 //      
@@ -355,11 +355,13 @@ class RadTechHandler : EventHandler
 //
 		// Weapon spawns
 		Array<RTSpawnItemEntry> spawns_sigcow;
+		spawns_sigcow.push(additementry('ClipBox', sigcow_cbox_spawn_bias));
 		spawns_sigcow.push(additementry('ClipBoxPickup', sigcow_cbox_spawn_bias));
 		additem('SigCowRandomSpawn', spawns_sigcow, sigcow_persistent_spawning);
 		
 		//Random mag spawns
 		Array<RTSpawnItemEntry> spawns_sigcow_mags;
+		spawns_sigcow_mags.push(additementry('HD4mMag', sigcow_cbox_spawn_bias));
 		spawns_sigcow_mags.push(additementry('ClipMagPickup', sigcow_cbox_spawn_bias));
 		additem('HD10mMag25', spawns_sigcow_mags, sigcow_persistent_spawning);
 	
@@ -374,7 +376,8 @@ class RadTechHandler : EventHandler
 		
 		//Random mag spawns
 		Array<RTSpawnItemEntry> spawns_10mm_pistol_mags;
-		spawns_10mm_pistol_mags.push(additementry('ClipMagPickup', tenpismag_cmag_spawn_bias));
+		spawns_sigcow_mags.push(additementry('HD9mMag15', sigcow_cbox_spawn_bias));
+		spawns_sigcow_mags.push(additementry('ClipMagPickup', sigcow_cbox_spawn_bias));
 		additem('HD10mMag8', spawns_10mm_pistol_mags, tenpismag_persistent_spawning);
 		
 
@@ -462,6 +465,7 @@ class RadTechHandler : EventHandler
 
 		//Random map spawns
 		Array<RTSpawnItemEntry> spawns_sixgun_map;
+		spawns_sixgun_map.push(additementry('ClipBox', sa_pistol_spawn_bias));
 		spawns_sixgun_map.push(additementry('ClipBoxPickup', sa_pistol_spawn_bias));
 		additem('SASpawn', spawns_sixgun_map, sa_persistent_spawning);
 
@@ -476,6 +480,7 @@ class RadTechHandler : EventHandler
 
 		//Random map spawns
 		Array<RTSpawnItemEntry> spawns_goldengun_map;
+		spawns_goldengun_map.push(additementry('ClipBox', gsa_pistol_spawn_bias));
 		spawns_goldengun_map.push(additementry('ClipBoxPickup', gsa_pistol_spawn_bias));
 		additem('GoldSASpawn', spawns_goldengun_map, gsa_persistent_spawning);
 
@@ -485,6 +490,7 @@ class RadTechHandler : EventHandler
 
 		Array<RTSpawnItemEntry> spawns_obrozz;
 		spawns_obrozz.push(additementry('HunterRandom', obrozz_spawn_bias));
+		spawns_obrozz.push(additementry('ClipBox', obrozz_spawn_bias));
 		spawns_obrozz.push(additementry('ClipBoxPickup', obrozz_spawn_bias));
 		additem('ObrozzSpawner', spawns_obrozz, obrozz_persistent_spawning);
 
