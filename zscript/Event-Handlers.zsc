@@ -287,13 +287,13 @@ class RadTechHandler : EventHandler
 	    
 		//Random mag spawns
 		Array<RTSpawnItemEntry> spawns_colt1911_mags;
-		spawns_colt1911_mags.push(additementry('Clip', colt1911_mags_spawn_bias));
+		spawns_colt1911_mags.push(additementry('ClipMagPickup', colt1911_mags_spawn_bias));
 		additem('HDColtMag7', spawns_colt1911_mags, colt1911_persistent_spawning);
 		
 			    
 		//Random ammobox spawns
 		Array<RTSpawnItemEntry> spawns_colt1911_ammobox;
-		spawns_colt1911_ammobox.push(additementry('ClipBox', colt1911_ammobox_spawn_bias));
+		spawns_colt1911_ammobox.push(additementry('ClipBoxPickup', colt1911_ammobox_spawn_bias));
 		additem('HDColt1911Spawn', spawns_colt1911_ammobox, colt1911_persistent_spawning);
 		
 //
@@ -309,7 +309,7 @@ class RadTechHandler : EventHandler
 			    
 		//Random ammobox spawns
 		Array<RTSpawnItemEntry> spawns_sten_ammobox;
-		spawns_sten_ammobox.push(additementry('ClipBox', sten_ammobox_spawn_bias));
+		spawns_sten_ammobox.push(additementry('ClipBoxPickup', sten_ammobox_spawn_bias));
 		additem('HDSTENRandom', spawns_sten_ammobox, sten_persistent_spawning);
 		
 
@@ -320,7 +320,7 @@ class RadTechHandler : EventHandler
         
 		// Single bundles
 		Array<RTSpawnItemEntry> spawns_dynamite;  
-		spawns_dynamite.push(additementry('RocketAmmo', dynamite_spawn_bias)); 
+		spawns_dynamite.push(additementry('HDRocketAmmo', dynamite_spawn_bias)); 
 		spawns_dynamite.push(additementry('HDFragGrenades', dynamite_spawn_bias)); 
 		// Actual add command.
 		additem('HDDynamiteAmmo', spawns_dynamite, dynamite_persistent_spawning);
@@ -360,7 +360,7 @@ class RadTechHandler : EventHandler
 		
 		//Random mag spawns
 		Array<RTSpawnItemEntry> spawns_sigcow_mags;
-		spawns_sigcow_mags.push(additementry('Clip', sigcow_cbox_spawn_bias));
+		spawns_sigcow_mags.push(additementry('ClipMagPickup', sigcow_cbox_spawn_bias));
 		additem('HD10mMag25', spawns_sigcow_mags, sigcow_persistent_spawning);
 	
 	
@@ -374,7 +374,7 @@ class RadTechHandler : EventHandler
 		
 		//Random mag spawns
 		Array<RTSpawnItemEntry> spawns_10mm_pistol_mags;
-		spawns_10mm_pistol_mags.push(additementry('Clip', tenpismag_cmag_spawn_bias));
+		spawns_10mm_pistol_mags.push(additementry('ClipMagPickup', tenpismag_cmag_spawn_bias));
 		additem('HD10mMag8', spawns_10mm_pistol_mags, tenpismag_persistent_spawning);
 		
 
@@ -392,7 +392,7 @@ class RadTechHandler : EventHandler
 //
 
 		Array<RTSpawnItemEntry> spawns_minerva;
-		spawns_minerva.push(additementry('ChaingunReplaces', minerva_chaingun_spawn_bias));
+		spawns_minerva.push(additementry('Vulcanette', minerva_chaingun_spawn_bias));
 		spawns_minerva.push(additementry('HDSMGRandom', minerva_smg_spawn_bias));
 		additem('MinervaRandom', spawns_minerva, minerva_persistent_spawning);
 
