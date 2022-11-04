@@ -1,11 +1,12 @@
 # RadTechWeaponsPack
 
 A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyrad and more.
-**Requires [HDBulletLib-Recasted](https://github.com/Gay-Snake-Squad/HDBulletLib-Recasted)!**
+
+## **Requires [HDBulletLib-Recasted](https://github.com/Gay-Snake-Squad/HDBulletLib-Recasted)!**
 
 List of weapons and loadout codes:
 
- Bernoulli M1053 Less-Lethal Shotgun [llh] (Less-Lethal shells - [lls])
+Bernoulli M1053 Less-Lethal Shotgun [llh] (Less-Lethal shells - [lls])
 
 - A polymer-based shotgun designed for riot control and crowd dispersion.
      Chambered only for the use of less-lethal shells, which contain
@@ -156,6 +157,8 @@ Sten Mk. 2(S) - [MK2] (Magazines - [930])
 Stun Gun - [STU]
 
 - A common device used for personal protection. Delivers high voltage into your foes, rendering them a smouldering pile of flesh.
+
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/Stun.png)
 
 ## Credits
 

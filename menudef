@@ -4,7 +4,6 @@ OptionMenu RadTechWeaponry
     Title "------ Radtech Weapons Pack ------"
 	StaticText "--- Rifles ---", "orange"
 	StaticText ""
-	StaticText ""
     Submenu "M-211 Sigcow", "Sigcow", 0, 1
 	StaticText ""
     Submenu "Obrozz Sawn-Off Boss Rifle", "ObrozzPistol", 0, 1
@@ -61,7 +60,6 @@ AddOptionMenu "OptionsMenu"
 {
     Submenu "$RADTECH_MENU", "RadTechWeaponry"
 }
-
 
 OptionMenu FlareGuns
 {
