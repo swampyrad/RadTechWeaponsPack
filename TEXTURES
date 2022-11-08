@@ -9,13 +9,88 @@ offset 18,6
 patch scbksite,0,0{}
 }
 
-//Taser pickup sprite
+//Hush Puppy
+
+//Pistol sprite base by iD Software/Bethesda
+//Silencer edits by Swampyrad
+
+//pickup sprite
+sprite HUSHA0, 39, 15{
+ offset 20, 15
+ xscale 1.5
+ yscale 1.5
+ patch HUSHA0, 0, 0
+}
+
+//muzzle flash
+sprite PUPFA0, 41, 36{
+ offset -141,-76 
+ patch PUPFA0, 0, 0
+} 
+sprite PP2FA0, 41, 36{
+ offset -141,-76
+ patch PUPFA0, 0, 0
+} 
+
+//main hand
+sprite PUPGA0, 79, 91{
+ offset -104, -97
+ patch PUPGA0, 0, 0 
+}
+
+sprite PUPGB0, 79, 93{
+ offset -104, -95
+ patch PUPGB0, 0, 0 
+}
+
+sprite PUPGC0, 79, 107{
+ offset -106, -81
+ patch PUPGC0, 0, 0 
+}
+
+sprite PUPGD0, 79, 133{
+ offset -104, -55
+ patch PUPGD0, 0, 0 
+}
+
+sprite PUPGE0, 79, 91{
+ offset -104, -97
+ patch PUPGE0, 0, 0 
+}
+
+sprite PUP2A0, 79, 91{
+ offset -136, -97
+ patch PUPGA0, 0, 0{flipx} 
+}
+
+sprite PUP2B0, 79, 93{
+ offset -136, -95
+ patch PUPGB0, 0, 0{flipx} 
+}
+
+sprite PUP2C0, 79, 107{
+ offset -135, -81
+ patch PUPGC0, 0, 0{flipx}
+}
+
+sprite PUP2D0, 79, 133{
+ offset -140, -55
+ patch PUPGD0, 0, 0{flipx}
+}
+
+sprite PUP2E0, 79, 91{
+ offset -136, -97
+ patch PUPGE0, 0, 0{flipx}
+}
+
+
+//Stun Gun pickup sprite
 sprite TASRA0, 13, 29{
     offset 7, 29
     patch TASRA0,0,0{}
 }
 
-//Taser weapon sprites
+//Stun Gun weapon sprites
 sprite STNGA0, 78, 91{
     offset -150,-80
     patch STNGA0,0,0{}
