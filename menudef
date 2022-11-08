@@ -106,7 +106,7 @@ OptionMenu FlareGuns
 
 OptionMenu StunGun
 {
-    Title "------ Taser Options ------"
+    Title "------ Stun Gun Options ------"
    	StaticText "Notice:", "Red"
     StaticText  "Setting 'spawn rate' to Replace All will suppress", "white"
     StaticText  "spawns of that given type.", "white"
