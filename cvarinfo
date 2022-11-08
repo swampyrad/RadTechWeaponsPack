@@ -22,6 +22,10 @@ server int  fl_metal_spawn_bias = 49;
 server int  fl_metal_drop_chance_bias = 49;
 server bool fl_metal_persistent_spawning = false;
 
+//Hush Puppy Silenced Pistol
+server int hushpuppy_spawn_bias = 19;
+server bool hushpuppy_persistent_spawning = false;
+
 //Stun Gun
 server int stungun_spawn_bias = 19;
 server bool stungun_persistent_spawning = false;
