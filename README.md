@@ -160,6 +160,10 @@ Stun Gun - [STU]
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/Stun.png)
 
+"Hush Puppy" Silenced Pistol - [PUP]
+
+- A modified 99FX with a suppressor attachment. Single-action only.
+
 ## Credits
 
 - 1911 sprites provided courtesy of ChopBlock223 from the HD Discord
