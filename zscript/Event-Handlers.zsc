@@ -361,7 +361,7 @@ class RadTechHandler : EventHandler
 		
 		//Random mag spawns
 		Array<RTSpawnItemEntry> spawns_sigcow_mags;
-		spawns_sigcow_mags.push(additementry('HD4mMag', sigcow_cbox_spawn_bias));
+		//spawns_sigcow_mags.push(additementry('HD4mMag', sigcow_cbox_spawn_bias));
 		spawns_sigcow_mags.push(additementry('ClipMagPickup', sigcow_cbox_spawn_bias));
 		additem('HD10mMag25', spawns_sigcow_mags, sigcow_persistent_spawning);
 	
@@ -376,8 +376,8 @@ class RadTechHandler : EventHandler
 		
 		//Random mag spawns
 		Array<RTSpawnItemEntry> spawns_10mm_pistol_mags;
-		spawns_sigcow_mags.push(additementry('HD9mMag15', sigcow_cbox_spawn_bias));
-		spawns_sigcow_mags.push(additementry('ClipMagPickup', sigcow_cbox_spawn_bias));
+		spawns_sigcow_mags.push(additementry('HD9mMag15', tenpismag_cmag_spawn_bias);
+		spawns_sigcow_mags.push(additementry('ClipMagPickup', tenpismag_cmag_spawn_bias);
 		additem('HD10mMag8', spawns_10mm_pistol_mags, tenpismag_persistent_spawning);
 		
 
