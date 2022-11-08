@@ -208,7 +208,13 @@ class RadTechHandler : EventHandler
 		wep_9mm.push("HDSnubNoseRevolver");
 		wep_9mm.push("TenMilAutoReloadingThingy");
 		wep_9mm.push("HDStenMk2");
+		wep_9mm.push("HushPuppyPistol");
 		addammo('HDPistolAmmo', wep_9mm);
+		
+		// 9mm pistol magazines
+		Array<string> wep_9mm15;
+		wep_9mm15.push("HushPuppyPistol");
+		addammo('HD9mMag15', wep_9mm15);
 		
 		// 9mm smg magazines
 		Array<string> wep_9mm30;
@@ -274,6 +280,18 @@ class RadTechHandler : EventHandler
 		spawns_plasmabuster.push(additementry('ThunderBuster', pbuster_cpack_spawn_bias)); 
 		// Actual add command.
 		additem('PlasmaBuster', spawns_plasmabuster, pbuster_persistent_spawning);
+	
+//
+//  Hush Puppy Silenced 9mm Pistol
+//
+
+        		// Pistol spawns
+		Array<RTSpawnItemEntry> spawns_hushpuppy;  
+		spawns_HushPuppy.push(additementry('HDHandgunRandomDrop', hushpuppy_spawn_bias)); 
+		spawns_hushpuppy.push(additementry('HDPistol', hushpuppy_spawn_bias)); 
+		// Actual add command.
+		additem('HushPuppyPistol', spawns_hushpuppy,  hushpuppy_persistent_spawning);
+
 	
 //
 //  Colt 1911 .45 Pistol
