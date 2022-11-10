@@ -125,7 +125,7 @@ class TenMilAutoReloader:TenMilAutoReloadingThingy{
 		inventory.pickupmessage "You got the 10mm reloading machine!";
 		scale 0.5;
 		hdweapon.refid "RD1";
-		tag "10mm reloading device";
+		tag "$TAG_10RELOADER";
 	}
 	override double gunmass(){return 0;}
 	override double weaponbulk(){

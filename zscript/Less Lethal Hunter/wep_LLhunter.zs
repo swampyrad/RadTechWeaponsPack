@@ -14,11 +14,10 @@ class LLHunter:HDLLShotgun{
 		weapon.bobrangex 0.21;
 		weapon.bobrangey 0.86;
 		scale 0.6;
-		inventory.pickupmessage "You got the less-lethal shotgun!";
 		hdweapon.barrelsize 30,0.5,2;
 		hdweapon.refid "LLH";
 		tag "$TAG_LESSLETHALHUNTER";
-		obituary "$OB_MPSHOTGUN";
+		obituary "$OB_LLSHOTGUN";
 	}
 	//returns the power of the load just fired
 	static double Fire(actor caller,int choke=1){
@@ -54,9 +53,9 @@ class LLHunter:HDLLShotgun{
 		invoker.shotpower=shotpower;
 	}
 	override string pickupmessage(){
-		if(weaponstatus[0]&LL_HUNTF_CANFULLAUTO)return string.format("%s You notice some tool marks near the fire selector...",super.pickupmessage());
-		else if(weaponstatus[0]&LL_HUNTF_EXPORT)return string.format("%s Where is the fire selector on this thing!?",super.pickupmessage());
-		return super.pickupmessage();
+		if(weaponstatus[0]&LL_HUNTF_CANFULLAUTO)return string.format("You got the "..gettag().."! You notice some tool marks near the fire selector...",super.pickupmessage());
+		else if(weaponstatus[0]&LL_HUNTF_EXPORT)return string.format("You got the "..gettag().."! Where is the fire selector on this thing!?",super.pickupmessage());
+		return "You got the "..gettag().."!";
 	}
 	override string,double getpickupsprite(bool usespare){return "LLSP"..getpickupframe(usespare).."0",1.;}
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){

@@ -103,8 +103,7 @@ class PlasmaBuster:HDCellWeapon{
 		weapon.slotpriority 3;
 		weapon.ammouse 1;
 		scale 0.6;
-		inventory.pickupmessage "You got the DM-93 plasma rifle!";
-		obituary "%o was vaporized by %k's plasma rifle.";
+		obituary "$OB_DM93";
 		hdweapon.barrelsize 35,1.6,3;
 		hdweapon.refid "d93";
 		tag "$TAG_DM93PLASMA";
@@ -115,6 +114,10 @@ class PlasmaBuster:HDCellWeapon{
 	override void tick(){
 		super.tick();
 		drainheat(TBS_HEAT,12);
+	}
+
+	override string pickupmessage(){
+		return "You got the "..gettag().."!";
 	}
 
 	override double gunmass(){

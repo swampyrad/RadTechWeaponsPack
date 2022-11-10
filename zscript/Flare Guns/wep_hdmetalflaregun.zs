@@ -7,10 +7,12 @@ class MetalFireBlooper: FireBlooper
 {
 	default
 	{
-		inventory.pickupmessage "You got the flare gun! Feels pretty heavy...";
-		obituary "%o is S.O.L. thanks to %k's S.0.S.";
+		obituary "$OB_METALFLAREGUN";
 		tag "$TAG_METALFLAREGUN";
 		hdweapon.refid "fgm";
+	}
+	override string pickupmessage(){
+		return "You got the "..gettag().."! Feels pretty hefty...";
 	}
 
 

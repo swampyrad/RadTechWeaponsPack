@@ -24,7 +24,7 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 		scale 0.4;
 		hdweapon.barrelsize 36,3,2;
 		hdweapon.refid HDLD_STUNGUN;
-		tag "Stun Gun";
+		tag "$TAG_STUNGUN";
 		obituary "%o got fried by %k's stun gun.";
 	}
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}

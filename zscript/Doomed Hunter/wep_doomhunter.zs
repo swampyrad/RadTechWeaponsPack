@@ -13,11 +13,10 @@ class DoomHunter:HDShotgun{
 		weapon.bobrangex 0.21;
 		weapon.bobrangey 0.86;
 		scale 0.6;
-		inventory.pickupmessage "You got the doomed shotgun!";
 		hdweapon.barrelsize 30,0.5,2;
 		hdweapon.refid "dsg";
 		tag "$TAG_DOOMHUNT";
-		obituary "$OB_MPSHOTGUN";
+		obituary "$OB_DOOMSHOTGUN";
 	}
 
 override void postbeginplay(){
@@ -69,10 +68,10 @@ override void postbeginplay(){
 	}
 
 	override string pickupmessage(){
-		if(weaponstatus[0]&DHUNF_CANFULLAUTO)return string.format("%s You notice some tool marks near the fire selector...",super.pickupmessage());
-		else if(weaponstatus[0]&DHUNF_EXPORT)return string.format("%s Where is the fire selector on this thing!?",super.pickupmessage());
-  else if(weaponstatus[0]&DHUNF_SCOUT)return string.format("%s What force of nature created this cursed thing?",super.pickupmessage());
-		return super.pickupmessage();
+		if(weaponstatus[0]&DHUNF_CANFULLAUTO)return string.format("You got the "..gettag().."! You notice some tool marks near the fire selector...",super.pickupmessage());
+		else if(weaponstatus[0]&DHUNF_EXPORT)return string.format("You got the "..gettag().."! Where is the fire selector on this thing!?",super.pickupmessage());
+		else if(weaponstatus[0]&DHUNF_SCOUT)return string.format("You got the "..gettag().."! What force of nature created this cursed thing?",super.pickupmessage());
+		return "You got the "..gettag().."!";
 	}
 
 	override string,double getpickupsprite(bool usespare){return "HUNT"..getpickupframe(usespare).."0",1.;}

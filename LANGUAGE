@@ -11,7 +11,11 @@ TAG_OBROZZ = "Obrozz Sawn-Off Boss";
 TAG_MINERVA = "Minerva 9mm Chaingun";
 TAG_LESSLETHALHUNTER = "Bernoulli M1053 Less-Lethal Shotgun";
 TAG_JUANPIS = "9mm 'Juan' Horseshoe Pistol";
+TAG_JUANAUTO = "9mm 'Juan' Pistol (select-fire)";
 TAG_HACKEDZM = "Modified Volt ZM66 Assault Rifle";
+TAG_HZMSEMI = "Modified Volt ZM66 Assault Rifle (Semi)";
+TAG_HZMREGULAR = "Modified Volt ZM66 assault rifle (no GL)";
+TAG_HZMIRREGULAR = "Modified Volt ZM66 assault rifle (semi with GL)";
 TAG_GOLDSINGLEACTION = "Golden Single-Action Revolver";
 TAG_FLAREGUN = "Flare Gun";
 TAG_METALFLAREGUN = "Metallic Flare Gun";
@@ -20,5 +24,35 @@ TAG_DYNAMITE = "Dynamite";
 TAG_DOOMHUNT = "Doomed Hunter Shotgun";
 TAG_COMBATSHOTGUN = "Combat Shotgun";
 TAG_10PIS = "10mm Combat Pistol";
+TAG_10PSLECT = "10mm Combat Pistol (Select Fire";
 TAG_SIGCOW = "M-211 Sig-Cow";
 TAG_STEN = "STEN Mk.2(S)";
+TAG_C19 = "Colt 1911";
+TAG_HPUPPY = "Hush Puppy Silenced Pistol";
+TAG_STUNGUN = "Stun Gun";
+
+// Item Tags, same as weapons but these are just for the items. - [Ted]
+TAG_10RELOADER = "10mm Auto Reloader";
+TAG_10PISMAG = "10mm pistol magazine";
+TAG_SCWMAG = "Sig-Cow magazine";
+TAG_CM7 = "Colt 1911 magazine";
+TAG_DYNAMITEBUNDLE = "Bundle of Dynamite";
+TAG_JUANMAG = "9mm pistol magazine (horseshoe)";
+
+// Obituaries, useful for other mod developers. Like myself. - [Ted]
+OB_STUNGUN = "%o got fried by %k's stun gun.";
+OB_SNUBNOSE = "%o found out %k was not just happy to see them";
+OB_RSA = "%o met his death by %k's big iron.";
+OB_DM93 = "%o was vaporized by %k's plasma rifle.";
+OB_OBROZZ = "%o sure showed %k who was the 'brozz!";
+OB_MINERVA = "%o got turned into swiss cheese by %k's Minnie-gun.";
+OB_LLSHOTGUN = "%o got bagged by %k.";
+OB_JUAN = "%o \c-got trampled over by %k's \c-juan.\c-.";
+OB_HACKEDZM = "%o was hacked to bits by %k.";
+OB_PUP = "%o got put down by %k's Hush Puppy. :3";
+OB_GOLDENGUN = "%o was Scaramangled by %k's golden gun.";
+OB_FLAREGUN = "%o was set ablaze by %k.";
+OB_METALFLAREGUN = "%o is S.O.L. thanks to %k's S.0.S.";
+OB_EXPLSHOTGUN = "%o was shot to high heavens by %k's shotgun.";
+OB_DOOMSHOTGUN = "%o met their Doom by %k's shotgun.";
+OB_COMBATSHOTGUN = "%o got sent home early by %k's shotgun.";

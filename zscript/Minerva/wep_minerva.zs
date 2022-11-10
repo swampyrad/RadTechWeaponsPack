@@ -40,7 +40,6 @@ class MinervaChaingun:ZM66ScopeHaver{
 		//+hdweapon.hinderlegs
    		//its ergonomic design design makes it easier to walk around with
 		scale 0.8;
-		inventory.pickupmessage "You got the Minerva!";
 		weapon.selectionorder 40;
 		weapon.slotnumber 4;
 		weapon.slotpriority 1;
@@ -49,7 +48,7 @@ class MinervaChaingun:ZM66ScopeHaver{
 		weapon.bobrangey 3.5;
 		weapon.bobspeed 2.1;
 		weapon.bobstyle "normal";
-		obituary "%o got turned into swiss cheese by %k's Minnie-gun.";
+		obituary "$OB_MINERVA";
 		hdweapon.barrelsize 30,3,4;
 		hdweapon.refid MNV_REFID;
 		tag "$TAG_MINERVA";
@@ -67,7 +66,7 @@ override void postbeginplay(){
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
 	override string pickupmessage(){
-		string msg=super.pickupmessage();
+		string msg="You got the "..gettag().."!";
 		int bc=weaponstatus[MNVS_BREAKCHANCE];
 		
                 if(bc>100){
@@ -81,6 +80,7 @@ override void postbeginplay(){
 		else if(bc>100)msg=msg.." She looks alright.";
 		return msg;
 	}
+
 	override void tick(){
 		super.tick();
 		drainheat(MNVS_HEAT,18);

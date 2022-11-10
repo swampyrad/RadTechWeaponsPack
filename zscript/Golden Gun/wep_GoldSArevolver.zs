@@ -15,11 +15,13 @@ class HDGoldSingleActionRevolver:HDHandgun{
 		weapon.bobrangey 0.6;
 		weapon.bobspeed 2.5;
 		weapon.bobstyle "normal";
-		obituary "%o was Scaramangled by %k's golden gun.";
-		inventory.pickupmessage "You got the Golden Gun!";
+		obituary "$OB_GOLDENGUN";
 		tag "$TAG_GOLDSINGLEACTION";
 		hdweapon.refid "gsa";//golden single action
 		hdweapon.barrelsize 6,0.3,0.5;
+	}
+	override string pickupmessage(){
+		return "You got the "..gettag().."!";
 	}
 	override double gunmass(){
 		double blk=0;

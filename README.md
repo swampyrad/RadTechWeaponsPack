@@ -164,6 +164,8 @@ Stun Gun - [STU]
 
 - A modified 99FX with a suppressor attachment. Single-action only.
 
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/Puppy.png)
+
 ## Credits
 
 - 1911 sprites provided courtesy of ChopBlock223 from the HD Discord

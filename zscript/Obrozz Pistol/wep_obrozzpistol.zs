@@ -23,11 +23,10 @@ class ObrozzPistol:HDHandgun{
 		weapon.kickback 15;
 		weapon.selectionorder 80;
 		inventory.pickupSound "misc/w_pkup";
-		inventory.pickupMessage "You got the Obrozz Pistol!";
 		weapon.bobrangex 0.98;
 		weapon.bobrangey 1.1;
 		scale 0.75;
-		Obituary "%o sure showed %k who was the 'brozz!";
+		Obituary "$OB_OBROZZ";
 		hdweapon.barrelsize 20,1,2;//rifle's been cut in half, basically
 		hdweapon.refid "obz";
 		tag "$TAG_OBROZZ";
@@ -48,6 +47,10 @@ class ObrozzPistol:HDHandgun{
 		else if(!random(0,4))ibg++;
 		invoker.weaponstatus[OBROZZS_GRIME]=clamp(ibg,0,100);
 		//if(hd_debug)A_Log(string.format("Boss grit level: %i",invoker.weaponstatus[OBROZZS_GRIME]));
+	}
+
+	override string pickupmessage(){
+		return "You got the "..gettag().."!";
 	}
 
 

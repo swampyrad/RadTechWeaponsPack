@@ -18,7 +18,7 @@ class HDColt1911:HDHandgun{
 		weapon.bobstyle "normal";
 		obituary "%o got a taste of %k's Colt .45.";
 		inventory.pickupmessage "You got the Colt 1911! Semper Fi!";
-		tag "Colt 1911";
+		tag "$TAG_C19";
 		hdweapon.refid "c19";
 		hdweapon.barrelsize 10,0.3,0.5;
 	}
@@ -505,7 +505,7 @@ class HDColtMag7:HDMagAmmo{
 		hdmagammo.roundtype "HD45ACPAmmo";
 		hdmagammo.roundbulk HD45ACPAmmo.EncRoundLoaded;
 		hdmagammo.magbulk enc_1911MAG_EMPTY;
-		tag "Colt 1911 magazine";
+		tag "$TAG_CM7";
 		inventory.pickupmessage "Picked up a Colt 1911 magazine.";
 		hdpickup.refid "CM7";
    scale 0.45;

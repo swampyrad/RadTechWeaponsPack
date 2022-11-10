@@ -16,8 +16,7 @@ class HDHorseshoePistol:HDHandgun{
 		weapon.bobrangey 0.6;
 		weapon.bobspeed 2.5;
 		weapon.bobstyle "normal";
-		obituary "%o \c-got trampled over by %k's \c-juan.\c-.";
-		inventory.pickupmessage "You got the Juan! Ah, Juan, it kicks like a mule!";
+		obituary "$OB_JUAN";
 		tag "$TAG_JUANPIS";
 		hdweapon.refid "jua";
 		hdweapon.barrelsize 10,0.3,0.5;
@@ -30,6 +29,10 @@ class HDHorseshoePistol:HDHandgun{
 	override void postbeginplay(){
 		super.postbeginplay();
 		weaponspecial=1337;
+	}
+
+	override string pickupmessage(){
+		return "You got the "..gettag().."! Ah, Juan, it kicks like a mule!";
 	}
 
 	override double weaponbulk(){
@@ -639,7 +642,7 @@ enum juan_pistolstatus
 class HDHorseshoeAutoPistol:HDWeaponGiver
 {
 	default{
-		tag "9mm 'Juan' Pistol (select-fire)";
+		tag "$TAG_JUANAUTO";
 		hdweapongiver.bulk 34;
 		hdweapongiver.weapontogive "HDHorseshoePistol";
 		hdweapongiver.config "selectfire";
