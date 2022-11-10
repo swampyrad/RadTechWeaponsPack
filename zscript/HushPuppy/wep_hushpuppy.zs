@@ -17,14 +17,16 @@ class HushpuppyPistol:HDHandgun{
 		weapon.bobrangey 0.6;
 		weapon.bobspeed 2.5;
 		weapon.bobstyle "normal";
-		obituary "%o got put down by %k's Hush Puppy. :3";
-		inventory.pickupmessage "You got the Hush Puppy! Shhh...";
-		tag "Hush Puppy Silenced Pistol";
+		obituary "$OB_PUP";
+		tag "$TAG_HPUPPY";
 		hdweapon.refid "pup";
 		hdweapon.barrelsize 29,0.3,0.5;//was 19
 		//extended barrel length to account for silencer
 
         //no loadout codes
+	}
+	override string pickupmessage(){
+		return "You got the "..gettag().."! Shhh...";
 	}
 	override double weaponbulk(){
 		int mgg=weaponstatus[PUPPY_MAG];

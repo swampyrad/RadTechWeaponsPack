@@ -28,11 +28,13 @@ class FireBlooper : HDHandgun
 		weapon.slotnumber 3;//flare pistol
 		weapon.slotpriority 0.3; // It's mostly a backup weapon, it shouldn't have a 9 for slot priority. - [Ted]
 		scale 0.6;
-		inventory.pickupmessage "You got the flare gun! It's like christmas morning...";
-		obituary "%o was set ablaze by %k.";
+		obituary "$OB_FLAREGUN";
 		hdweapon.barrelsize 24,1.6,3;
 		tag "$TAG_FLAREGUN";
 		hdweapon.refid "fgn";
+	}
+	override string pickupmessage(){
+		return "You got the "..gettag().."! It's like christmas morning...";
 	}
 
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}

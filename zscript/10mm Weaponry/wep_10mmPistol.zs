@@ -492,7 +492,7 @@ class HD10mmAutoPistol:HDWeaponGiver{
 		//$Category "Weapons/Hideous Destructor"
 		//$Title "Pistol (select-fire)"
 		//$Sprite "PISTA0"
-		tag "10mm pistol (select-fire)";
+		tag "$TAG_10PSLECT";
 		hdweapongiver.bulk 34;
 		hdweapongiver.weapontogive "HD10mmPistol";
 		hdweapongiver.config "selectfire";

@@ -13,14 +13,13 @@ class ExplosiveHunter:HDShotgunExplosive{
 		weapon.bobrangex 0.21;
 		weapon.bobrangey 0.86;
 		scale 0.6;
-		inventory.pickupmessage "You got the explosive shotgun! Yeah, eat this!";
 		hdweapon.barrelsize 30,0.5,2;
 		hdweapon.refid "XSG";
 		tag "$TAG_EXPLOSIVESHOTGUN";
-		obituary "$OB_MPSHOTGUN";
+		obituary "$OB_EXPLSHOTGUN";
 
 		hdweapon.loadoutcodes "
-			\cufiremode - 0-1, pump/semi, subject to the above";
+			\cufiremode - 0-1, pump/semi";
 	}
 
 	//returns the power of the load just fired
@@ -58,9 +57,9 @@ class ExplosiveHunter:HDShotgunExplosive{
 		invoker.shotpower=shotpower;
 	}
 	override string pickupmessage(){
-		if(weaponstatus[0]&EXHUNTF_CANFULLAUTO)return string.format("%s You notice some tool marks near the fire selector...",super.pickupmessage());
-		else if(weaponstatus[0]&EXHUNTF_EXPORT)return string.format("%s Where is the fire selector on this thing!?",super.pickupmessage());
-		return super.pickupmessage();
+		if(weaponstatus[0]&EXHUNTF_CANFULLAUTO)return string.format("You got the "..gettag().."! You notice some tool marks near the fire selector...",super.pickupmessage());
+		else if(weaponstatus[0]&EXHUNTF_EXPORT)return string.format("You got the "..gettag().."! Where is the fire selector on this thing!?",super.pickupmessage());
+		return "You got the "..gettag().."! Yeah, eat this!";
 	}
 
 override void failedpickupunload(){

@@ -15,8 +15,7 @@ class HDSnubNoseRevolver:HDHandgun{
 		weapon.bobrangey 0.6;
 		weapon.bobspeed 2.0;//lower because it's smaller
 		weapon.bobstyle "normal";
-		obituary "%o found out %k was not just happy to see them.";
-		inventory.pickupmessage "You got the Detective Special!";
+		obituary "$OB_SNUBNOSE";
 		tag "$TAG_SNUBNOSE";
 		hdweapon.refid "snb";
 		hdweapon.barrelsize 2,0.3,0.5; //very short barrel, duh
@@ -36,6 +35,11 @@ class HDSnubNoseRevolver:HDHandgun{
 		}
 		return blk+7;
 	}
+
+	override string pickupmessage(){
+		return "You got the "..gettag().."! Pretty small, don't ya say?";
+	}
+
 	override double weaponbulk(){
 		double blk=0;
 		for(int i=SNBN_CYL1;i<=SNBN_CYL6;i++){

@@ -773,7 +773,7 @@ class HDDynamiteAmmo:HDAmmo{
 		inventory.maxamount 50;
 		inventory.pickupmessage "Picked up a bundle of dynamite.";
 		inventory.pickupsound "weapons/pocket";
-		tag "bundle of dynamite";
+		tag "$TAG_DYNAMITEBUNDLE";
 		hdpickup.refid "DYN";
 		hdpickup.bulk ENC_DYNAMITE;
 	}

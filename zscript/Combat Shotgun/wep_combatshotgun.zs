@@ -14,13 +14,17 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 		weapon.bobrangex 0.21;
 		weapon.bobrangey 0.9;
 		scale 0.6;
-		inventory.pickupmessage "You got the combat shotgun!";
 		hdweapon.barrelsize 25,0.5,2;//30-5=25, shorter because there's no stock
 		hdweapon.refid "CSG";
 		tag "$TAG_COMBATSHOTGUN";
-		obituary "$OB_MPSHOTGUN";
+		obituary "$OB_COMBATSHOTGUN";
 
 	}
+
+	override string pickupmessage(){
+		return "You got the "..gettag().."!";
+	}
+
 	//returns the power of the load just fired
 	static double Fire(actor caller,int choke=1){
 		double spread=6.;

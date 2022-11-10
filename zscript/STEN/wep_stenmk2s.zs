@@ -21,7 +21,6 @@ class HDStenMk2:HDWeapon{
 		weapon.bobrangey 0.8;
 		weapon.bobspeed 2.5;
 		scale 0.35;
-		inventory.pickupmessage "You got the STEN Mk. 2(S)!";
 		hdweapon.barrelsize 21,0.5,1;
 		hdweapon.refid HDLD_STEN;
 		tag "$TAG_STEN";
@@ -37,6 +36,9 @@ class HDStenMk2:HDWeapon{
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
 	override double gunmass(){
 		return 5+((weaponstatus[STENS_MAG]<0)?-0.5:(weaponstatus[STENS_MAG]*0.05));
+	}
+	override string pickupmessage(){
+		return "You got the "..gettag().."!";
 	}
 	override double weaponbulk(){
 		int mg=weaponstatus[STENS_MAG];

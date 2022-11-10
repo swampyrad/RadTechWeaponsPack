@@ -11,11 +11,10 @@ class HackedZM66AssaultRifle:ZM66ScopeHaver{
 		weapon.slotnumber 4;
 		weapon.slotpriority 2;
 		inventory.pickupsound "misc/w_pkup";
-		inventory.pickupmessage "You got the assault rifle! Something feels a bit off about it...";
 		scale 0.7;
 		weapon.bobrangex 0.2;
 		weapon.bobrangey 0.8;
-		obituary "%o was hacked to bits by %k.";
+		obituary "$OB_HACKEDZM";
 		hdweapon.refid "HZM";
 		tag "$TAG_HACKEDZM";
 		inventory.icon "RIGLA0";
@@ -65,7 +64,7 @@ class HackedZM66AssaultRifle:ZM66ScopeHaver{
 	}
 	override string pickupmessage(){
 		if(weaponstatus[0]&ZM66HACKEDF_NOFIRESELECT)return "Picked up a semi-automatic weapon. Time for some carnage!";
-		return super.pickupmessage();
+		return "You got the "..gettag().."! Something feels a bit off about it...";
 	}
 	override string,double getpickupsprite(bool usespare){
 		string spr;
@@ -863,7 +862,7 @@ class HackedZM66Semi:HDWeaponGiver{
 		//$Category "Weapons/Hideous Destructor"
 		//$Title "Hacked ZM66 Rifle (Semi)"
 		//$Sprite "RIFSA0"
-		tag "Hacked ZM66 assault rifle (semi only)";
+		tag "$TAG_HZMSEMI";
 		hdweapongiver.bulk (90.+(ENC_426MAG_LOADED+50.*ENC_426_LOADED));
 		hdweapongiver.weapontogive "HackedZM66AssaultRifle";
 		hdweapongiver.weprefid "hzm";
@@ -876,7 +875,7 @@ class HackedZM66Regular:HackedZM66Semi{
 		//$Category "Weapons/Hideous Destructor"
 		//$Title "Hacked ZM66 Rifle (No GL)"
 		//$Sprite "RIFLA0"
-		tag "Hacked ZM66 assault rifle (no GL)";
+		tag "$TAG_HZMREGULAR";
 		hdweapongiver.config "noglsemi0";
 		inventory.icon "RIFLA0";
 	}
@@ -886,7 +885,7 @@ class HackedZM66Irregular:HackedZM66Semi{
 		//$Category "Weapons/Hideous Destructor"
 		//$Title "Hacked ZM66 Rifle (Semi GL)"
 		//$Sprite "RIGSA0"
-		tag "Hacked ZM66 assault rifle (semi with GL)";
+		tag "$TAG_HZMIRREGULAR";
 		hdweapongiver.config "nogl0semi";
 		inventory.icon "RIGSA0";
 	}

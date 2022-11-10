@@ -12,7 +12,7 @@ class HDHorseshoe9m:HDMagAmmo{
 		hdmagammo.roundtype "HDPistolAmmo";
 		hdmagammo.roundbulk ENC_9_LOADED;
 		hdmagammo.magbulk ENC_9MAG_EMPTY*4;
-		tag "9mm pistol magazine (horseshoe)";
+		tag "$TAG_JUANMAG";
 		inventory.pickupmessage "Picked up a horseshoe pistol magazine.";
 		hdpickup.refid "j30";
 	}

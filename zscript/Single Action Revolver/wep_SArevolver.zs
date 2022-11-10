@@ -15,8 +15,7 @@ class HDSingleActionRevolver:HDHandgun{
 		weapon.bobrangey 0.6;
 		weapon.bobspeed 2.5;
 		weapon.bobstyle "normal";
-		obituary "%o met his death by %k's big iron.";
-		inventory.pickupmessage "You got the single action revolver!";
+		obituary "$OB_RSA";
 		tag "$TAG_SINGLEACTREV";
 		hdweapon.refid "rsa";//revolver, single action
 		hdweapon.barrelsize 12,0.3,0.5; //twice the barrel length
@@ -30,6 +29,11 @@ class HDSingleActionRevolver:HDHandgun{
 		}
 		return blk+7;
 	}
+
+	override string pickupmessage(){
+		return "You got the "..gettag().."!";
+	}
+
 	override double weaponbulk(){
 		double blk=0;
 		for(int i=SING_CYL1;i<=SING_CYL6;i++){

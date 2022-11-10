@@ -759,7 +759,7 @@ class HD10mMag8:HDMagAmmo{
 		hdmagammo.roundbulk enc_10_LOADED;
 		hdmagammo.magbulk enc_10MAG_EMPTY; 
 		scale 0.35;
-		tag "10mm pistol magazine";
+		tag "$TAG_10PISMAG";
 		inventory.pickupmessage "Picked up a 10mm pistol magazine.";
 		hdpickup.refid "SC8";
 	}
@@ -790,7 +790,7 @@ class HD10mMag25:HD10mMag8{
         scale 0.35;
 		hdmagammo.maxperunit 25;
 		hdmagammo.magbulk enc_10mag25_EMPTY;
-		tag "Sig-Cow magazine";
+		tag "$TAG_SCWMAG";
 		inventory.pickupmessage "Picked up an Sig-Cow magazine.";
 		hdpickup.refid "S25";
 	}
