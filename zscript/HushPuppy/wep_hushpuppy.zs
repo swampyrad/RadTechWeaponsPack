@@ -83,30 +83,24 @@ class HushpuppyPistol:HDHandgun{
 		vector2 scc;
 		vector2 bobb=bob*1.3;
 
-		//if slide is pushed back, throw sights off line
-		if(hpl.player.getpsprite(PSP_WEAPON).frame>=2){
-			sb.SetClipRect(
-				-10+bob.x,-10+bob.y,20,19,
-				sb.DI_SCREEN_CENTER
-			);
-			bobb.y-=2;
-			scc=(0.7,0.8);
-		}else{
-			sb.SetClipRect(
-				-8+bob.x,-9+bob.y,16,15,
-				sb.DI_SCREEN_CENTER
-			);
-			scc=(0.5,0.5);//was 0.6, smaller sight picture
-		}
+		//never throw sights off line
+		//slide always stays locked
+
+		sb.SetClipRect(
+			-8+bob.x,-9+bob.y,16,15,
+			sb.DI_SCREEN_CENTER
+		);
+		scc=(0.5,0.5);//was 0.6, smaller sight picture
+		
 		
 		//slight offset to match suppressor sights
 		sb.drawimage(
-			"frntsite",(0,2)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
+			"frntsite",(0,-2)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
 			scale:scc
 		);
 		sb.SetClipRect(cx,cy,cw,ch);
 		sb.drawimage(
-			"backsite",(0,2)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
+			"backsite",(0,-2)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
 			alpha:0.9,
 			scale:scc
 		);
