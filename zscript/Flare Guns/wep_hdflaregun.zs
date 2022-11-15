@@ -34,7 +34,7 @@ class FireBlooper : HDHandgun
 		hdweapon.refid "fgn";
 	}
 	override string pickupmessage(){
-		return "You got the "..gettag().."! It's like christmas morning...";
+		return Stringtable.Localize("$PICKUP_PLASTICFLAREGUN");
 	}
 
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}

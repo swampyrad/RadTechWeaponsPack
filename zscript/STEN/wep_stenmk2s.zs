@@ -38,7 +38,7 @@ class HDStenMk2:HDWeapon{
 		return 5+((weaponstatus[STENS_MAG]<0)?-0.5:(weaponstatus[STENS_MAG]*0.05));
 	}
 	override string pickupmessage(){
-		return "You got the "..gettag().."!";
+		return Stringtable.Localize("$PICKUP_STENMK2");
 	}
 	override double weaponbulk(){
 		int mg=weaponstatus[STENS_MAG];

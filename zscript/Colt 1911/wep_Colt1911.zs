@@ -16,12 +16,17 @@ class HDColt1911:HDHandgun{
 		weapon.bobrangey 0.6;
 		weapon.bobspeed 2.5;
 		weapon.bobstyle "normal";
-		obituary "%o got a taste of %k's Colt .45.";
-		inventory.pickupmessage "You got the Colt 1911! Semper Fi!";
+		obituary "$OB_COLT1911";
+//		inventory.pickupmessage "You got the Colt 1911! Semper Fi!";
 		tag "$TAG_C19";
 		hdweapon.refid "c19";
 		hdweapon.barrelsize 10,0.3,0.5;
 	}
+
+	override string pickupmessage(){
+		return Stringtable.Localize("$PICKUP_COLT1911");
+	}
+
 	override double weaponbulk(){
 		int mgg=weaponstatus[PISS_MAG];
 		return 40+(mgg<0?0:(ENC_1911MAG_LOADED+mgg*HD45ACPAmmo.EncRoundLoaded));

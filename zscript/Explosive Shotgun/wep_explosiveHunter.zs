@@ -56,10 +56,12 @@ class ExplosiveHunter:HDShotgunExplosive{
 		invoker.weaponstatus[EXHUNTS_CHAMBER]=1;
 		invoker.shotpower=shotpower;
 	}
+
+	// I don't think any of these are used but the last one but oh well might as well do it. - [Ted]
 	override string pickupmessage(){
-		if(weaponstatus[0]&EXHUNTF_CANFULLAUTO)return string.format("You got the "..gettag().."! You notice some tool marks near the fire selector...",super.pickupmessage());
-		else if(weaponstatus[0]&EXHUNTF_EXPORT)return string.format("You got the "..gettag().."! Where is the fire selector on this thing!?",super.pickupmessage());
-		return "You got the "..gettag().."! Yeah, eat this!";
+		if(weaponstatus[0]&EXHUNTF_CANFULLAUTO)return Stringtable.Localize("$PICKUP_EXPLOSIVEHUNTER3");
+		else if(weaponstatus[0]&EXHUNTF_EXPORT)return Stringtable.Localize("$PICKUP_EXPLOSIVEHUNTER2");
+		return Stringtable.Localize("$PICKUP_EXPLOSIVEHUNTER1");
 	}
 
 override void failedpickupunload(){

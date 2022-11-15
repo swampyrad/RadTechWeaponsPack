@@ -26,7 +26,7 @@ class HushpuppyPistol:HDHandgun{
         //no loadout codes
 	}
 	override string pickupmessage(){
-		return "You got the "..gettag().."! Shhh...";
+		return Stringtable.Localize("$PICKUP_HUSHPUPPY");
 	}
 	override double weaponbulk(){
 		int mgg=weaponstatus[PUPPY_MAG];

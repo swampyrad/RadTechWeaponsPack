@@ -66,7 +66,7 @@ override void postbeginplay(){
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
 	override string pickupmessage(){
-		string msg="You got the "..gettag().."!";
+		string msg=Stringtable.Localize("$PICKUP_MINERVA");
 		int bc=weaponstatus[MNVS_BREAKCHANCE];
 		
                 if(bc>100){
@@ -74,10 +74,10 @@ override void postbeginplay(){
 			msg.replace("the","the");
 		}
         
-		if(!bc)msg=msg.." She's beautiful!";
-		else if(bc>500)msg=msg.." She's barely hanging on.";
-		else if(bc>200)msg=msg.." She ain't looking so hot.";
-		else if(bc>100)msg=msg.." She looks alright.";
+		if(!bc)msg=msg..Stringtable.Localize("$PICKUP_MINERVADAMAGE0");
+		else if(bc>500)msg=msg..Stringtable.Localize("$PICKUP_MINERVADAMAGE500");
+		else if(bc>200)msg=msg..Stringtable.Localize("$PICKUP_MINERVADAMAGE200");
+		else if(bc>100)msg=msg..Stringtable.Localize("$PICKUP_MINERVADAMAGE100");
 		return msg;
 	}
 

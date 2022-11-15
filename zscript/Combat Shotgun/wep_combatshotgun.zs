@@ -18,11 +18,10 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 		hdweapon.refid "CSG";
 		tag "$TAG_COMBATSHOTGUN";
 		obituary "$OB_COMBATSHOTGUN";
-
 	}
 
 	override string pickupmessage(){
-		return "You got the "..gettag().."!";
+		return Stringtable.Localize("$PICKUP_COMBATSHOTGUN");
 	}
 
 	//returns the power of the load just fired

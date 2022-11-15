@@ -63,8 +63,8 @@ class HackedZM66AssaultRifle:ZM66ScopeHaver{
 		if(owner&&weaponstatus[ZM66HACKEDS_HEAT]>HDCONST_ZM66COOKOFF)owner.dropinventory(self);
 	}
 	override string pickupmessage(){
-		if(weaponstatus[0]&ZM66HACKEDF_NOFIRESELECT)return "Picked up a semi-automatic weapon. Time for some carnage!";
-		return "You got the "..gettag().."! Something feels a bit off about it...";
+		if(weaponstatus[0]&ZM66HACKEDF_NOFIRESELECT)return Stringtable.Localize("$PICKUP_HACKEDZM66SEMI");
+		return Stringtable.Localize("$PICKUP_HACKEDZM66NORMAL");
 	}
 	override string,double getpickupsprite(bool usespare){
 		string spr;

@@ -122,11 +122,16 @@ class TenMilAutoReloader:TenMilAutoReloadingThingy{
 		+inventory.invbar
 		+hdweapon.fitsinbackpack
 		inventory.pickupsound "misc/w_pkup";
-		inventory.pickupmessage "You got the 10mm reloading machine!";
+//		inventory.pickupmessage "You got the 10mm reloading machine!";
 		scale 0.5;
 		hdweapon.refid "RD1";
 		tag "$TAG_10RELOADER";
 	}
+
+	override string pickupmessage(){
+		return Stringtable.Localize("$PICKUP_10MRELOADER");
+	}
+
 	override double gunmass(){return 0;}
 	override double weaponbulk(){
 		return 25*amount;

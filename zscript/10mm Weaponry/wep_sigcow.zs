@@ -32,7 +32,7 @@ int targettimer;
 		weapon.bobrangey 0.6;
 		weapon.bobspeed 2.5;
 		scale 0.55;
-		inventory.pickupmessage "You got the M-211 Sig-Cow!"; 
+//		inventory.pickupmessage "You got the M-211 Sig-Cow!"; 
 		hdweapon.barrelsize 26,0.5,1;
 		hdweapon.refid "SCW";
 		tag "$TAG_SIGCOW";
@@ -42,7 +42,11 @@ int targettimer;
 			\cufiremode - 0-2, semi/burst/auto
 			\cufireswitch - 0-4, default/semi/auto/full/all";
 	}
-  
+
+	override string pickupmessage(){
+		return Stringtable.Localize("$PICKUP_SIGCOW");
+	}
+
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
 
@@ -760,9 +764,14 @@ class HD10mMag8:HDMagAmmo{
 		hdmagammo.magbulk enc_10MAG_EMPTY; 
 		scale 0.35;
 		tag "$TAG_10PISMAG";
-		inventory.pickupmessage "Picked up a 10mm pistol magazine.";
+//		inventory.pickupmessage "Picked up a 10mm pistol magazine.";
 		hdpickup.refid "SC8";
 	}
+
+	override string pickupmessage(){
+		return Stringtable.Localize("$PICKUP_10MAG8");
+	}
+
 	override string,string,name,double getmagsprite(int thismagamt){
 		string magsprite=(thismagamt>0)?"SC15A0":"SC15C0";
 		return magsprite,"PR10A0","HD10mAmmo",0.6;
@@ -791,8 +800,12 @@ class HD10mMag25:HD10mMag8{
 		hdmagammo.maxperunit 25;
 		hdmagammo.magbulk enc_10mag25_EMPTY;
 		tag "$TAG_SCWMAG";
-		inventory.pickupmessage "Picked up an Sig-Cow magazine.";
+//		inventory.pickupmessage "Picked up an Sig-Cow magazine.";
 		hdpickup.refid "S25";
+	}
+
+	override string pickupmessage(){
+		return Stringtable.Localize("$PICKUP_10MAG25");
 	}
 
 	override string,string,name,double getmagsprite(int thismagamt){

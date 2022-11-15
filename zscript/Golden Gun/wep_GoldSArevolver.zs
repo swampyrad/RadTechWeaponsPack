@@ -21,7 +21,7 @@ class HDGoldSingleActionRevolver:HDHandgun{
 		hdweapon.barrelsize 6,0.3,0.5;
 	}
 	override string pickupmessage(){
-		return "You got the "..gettag().."!";
+		return Stringtable.Localize("$PICKUP_GOLDENSINGLEACTION");
 	}
 	override double gunmass(){
 		double blk=0;

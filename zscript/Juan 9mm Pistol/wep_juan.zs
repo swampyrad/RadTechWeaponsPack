@@ -32,7 +32,7 @@ class HDHorseshoePistol:HDHandgun{
 	}
 
 	override string pickupmessage(){
-		return "You got the "..gettag().."! Ah, Juan, it kicks like a mule!";
+		return Stringtable.Localize("$PICKUP_JUANPISTOL");
 	}
 
 	override double weaponbulk(){

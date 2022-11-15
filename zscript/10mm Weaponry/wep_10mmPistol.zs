@@ -15,8 +15,8 @@ class HD10mmPistol:HDHandgun{
 		weapon.bobrangey 0.6;
 		weapon.bobspeed 2.5;
 		weapon.bobstyle "normal";
-		obituary "%o was dealt a fatal blow by %k's 10mm pistol.";
-		inventory.pickupmessage "You got the 10mm pistol! It really packs a punch!";
+		obituary "$OB_10MMPISTOL";
+//		inventory.pickupmessage "You got the 10mm pistol! It really packs a punch!";
 		tag "$TAG_10PIS";
 		hdweapon.refid "p1m";//Pistol, 10 millimeter.
 		hdweapon.barrelsize 10,0.3,0.5;
@@ -25,6 +25,11 @@ class HD10mmPistol:HDHandgun{
 			\cuselectfire - 0/1, whether it has a fire selector
 			\cufiremode - 0/1, semi/auto, subject to the above";
 	}
+
+	override string pickupmessage(){
+		return Stringtable.Localize("$PICKUP_10MMPISTOL");
+	}
+
 	override double weaponbulk(){
 		int mgg=weaponstatus[PISS_MAG];
 		return 40+(mgg<0?0:(ENC_10MAG_LOADED+mgg*ENC_10_LOADED));
@@ -51,7 +56,7 @@ class HD10mmPistol:HDHandgun{
 
   override void postbeginplay(){
 		super.postbeginplay();
-  weaponspecial=1337;
+  		weaponspecial=1337;
 	}
   
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
