@@ -56,3 +56,215 @@ OB_METALFLAREGUN = "%o is S.O.L. thanks to %k's S.0.S.";
 OB_EXPLSHOTGUN = "%o was shot to high heavens by %k's shotgun.";
 OB_DOOMSHOTGUN = "%o met their Doom by %k's shotgun.";
 OB_COMBATSHOTGUN = "%o got sent home early by %k's shotgun.";
+
+// EVERYTHING below this is Menu stuff. Feast upon the horror. - [Ted]
+
+// Persistence
+MENU_REPLACEAFTERMAPLOAD = "Control whether replacements happen after a mapload.";
+MENU_PERSISTENCY = "Persistent Spawns: ";
+MENU_RESETPERSISTENCY = "Reset persistence options";
+
+// General Menu Stuff, shared with other mods.
+MENU_SPAWNOPTIONS = "Spawn Options";
+MENU_RESETOPTIONS = "Reset Options";
+MENU_RESETALLOPTIONS = "Reset all Options";
+MENU_LORETAG = "--- Lore ---";
+MENU_NOTICE = "Notice: ";
+MENU_SUPPRESS1 = "Setting 'spawn rate' to Replace All will suppress";
+MENU_SUPPRESS2 = "spawns of that given type.";
+MENU_SFIRECONVRATE = "Selectfire Conversion Rate: ";
+MENU_WEPSPAWNRATE = "Weapon Spawn Rate: ";
+MENU_WEPDROPRATE = "Weapon Drop Rate: ";
+MENU_MAGSPAWNRATE = "Mag Spawn Rate: ";
+MENU_RESETCONV = "Reset conv. options";
+MENU_RESETDROP = "Reset drop. options";
+MENU_RESETWEP = "Reset wep. options";
+MENU_RESETMAG = "Reset mag options";
+
+// Flare Guns
+MENU_FGUNTITLE = "------ Flare Gun Options ------";
+MENU_FGUNPLASTSPAWNTEXT = "Control the natural spawn rate of Plastic Flare Guns.";
+MENU_PFGUNDROPENEMY = "Control the chance that Plastic Flare Guns drop from enemies.";
+MENU_PFGUNPERSISTENCY = "Control whether Plastic Flare Gun spawns happen after a mapload.";
+MENU_MFGUNPERSISTENCY = "Control whether Metal Flare Gun spawns happen after a mapload.";
+MENU_MFGNCONVERCONTROL = "Control the natural spawn rate of Metal Flare Guns.";
+MENU_MFGUNDROP = "Control the chance that Metal Flare Guns drop from enemies.";
+MENU_METALCONVRATE = "Metal Conversion Rate: ";
+
+MENU_FGUNLORE1 = "A common survival tool, useful for lighting up dark areas, or the occasional zombie or two.";
+MENU_FGUNLORE2 = "It can also fire buckshot shells, but at a price.";
+MENU_FGUNLORE3 = "Metallic versions exist to aide with this issue, though are much heavier.";
+
+// Hush Puppy
+MENU_PUPTITLE = "------ Hush Puppy Silenced Pistol Options ------";
+MENU_HPUPPYHANDGUNTEXT = "Control the spawn rate of Hush Puppys on handgun spawns.";
+
+MENU_HPUPLORE1 = "A modified version of the 99FX pistol with a suppressor attachment.";
+MENU_HPUPLORE2 = "Has a slide lock installed to stop another round from being chambered";
+MENU_HPUPLORE3 = "automatically, which reduces gunshot volume greatly. The downside is";
+MENU_HPUPLORE4 = "the user has to chamber rounds manually after each and every shot.";
+
+// Stun Gun
+MENU_STUNGUNTITLE = "------ Stun Gun Options ------";
+MENU_STGCHAINTEXT = "Control the spawn rate of Stun Guns on Chainsaw spawns.";
+
+MENU_STUNLORE1 = "A common device used for personal protection by civilians and";
+MENU_STUNLORE2 = "law enforcement agencies. Delivers a million volts into the victim's";
+MENU_STUNLORE3 = "body, causing momentary seizures and loss of muscle control.";
+MENU_STUNLORE4 = "Prolonged contact may cause burns and accidental fires.";
+
+// Dynamite
+MENU_DYNAMITETITLE = "------ Dynamite Options ------";
+MENU_DYNAMITESPAWNTEXT = "Control the spawn rate of Dynamite on Rocket Ammo and Grenade spawns.";
+MENU_DYNAMITESPAWNRATE = "Dynamite Spawn Rate: ";
+MENU_RESETDYNAMITEOPTIONS = "Reset Dynamite options";
+
+MENU_DYNAMITELORE1 = "An explosive famously known for its use during the Wild West.";
+MENU_DYNAMITELORE2 = "Can also be used to bust through thin walls.";
+
+// Juan Options
+MENU_JUANTITLE = "------ Juan 9mm Horseshoe Pistol Options ------";
+MENU_JUANTEXT1 = "Control the spawn rate of 'Juan' pistols.";
+MENU_JUANTEXT2 = "Control chance 'Juan' pistols drop from enemies.";
+MENU_JUANTEXT3 = "Control the rarity of selectfire 'Juan' pistols.";
+MENU_JUANTEXT4 = "Control the spawn rate of 'Juan' magazines.";
+
+MENU_JUANLORE1 = "A variant of the standard-issue pistol, albeit with a non-standard 'horseshoe' magazine.";
+MENU_JUANLORE2 = "As the name suggests, it uses a unique 'horseshoe' magazine";
+MENU_JUANLORE3 = "that holds 30 9x22mm Parumpudicum rounds, similarly to the SMG.";
+MENU_JUANLORE4 = "However, its small size makes it incredibly difficult to control in full-auto,";
+MENU_JUANLORE5 = "instead leaving users to use a 'galloping' shooting pattern to stay on target.";
+
+// Doomed Hunter
+MENU_DHUNTITLE = "------ Doomed Hunter Options ------";
+MENU_DHUNTTEXT1 = "Control the spawn rate of the Doomed Hunter on Shotguns";
+
+MENU_DHUNTLORE1 = "An older modelled and decrepit Hunter that's lost it's ease of pumping over the years.";
+MENU_DHUNTLORE2 = "These older Hunters came with Duckbill Chokes to control their spread to a 'V' shape.";
+
+// DM-93
+MENU_PBUSTITLE = "------ DM-93 Plasma Buster Options ------";
+MENU_PBUSTTEXT1 = "Control the spawn rate of the Plasma Buster on Cell Packs";
+
+MENU_PBUSTLORE1 = "A revised version of the 'Thunder Buster' particle beam gun.";
+MENU_PBUSTLORE2 = "After receiving a disturbing number of incident reports involving self-detonations caused by mismanagement,";
+MENU_PBUSTLORE3 = "The UAC tasked a junior researcher to find a solution to this problem and thus invented the DM-93.";
+MENU_PBUSTLORE4 = "He tweaked the Ion Emitter so the plasma particles are contained in an electromagnetic field";
+MENU_PBUSTLORE5 = " which holds the blast together until impact with a target.";
+MENU_PBUSTLORE6 = "This plasma has a smaller blast radius, so direct contact is preferred to cause maximum damage to your target.";
+MENU_PBUSTLORE7 = "Automatic Fire emits an accurate stream of these projectiles, while the newly added Burst mode";
+MENU_PBUSTLORE8 = "shoots out a spread of many shots in rapid succession.";
+
+// Obrozz
+MENU_OBROZZTITLE = "------ Obrozz Sawn-off Boss Rifle Options ------";
+MENU_OBROZZTEXT = "Control the spawn rate of the Obrozz Pistol on Shotguns and Ammo Boxes";
+
+MENU_OBROZZLORE1 = "A Boss rifle that has been reduced down to the bare essentials.";
+MENU_OBROZZLORE2 = "Its decreased size makes it easier to conceal, allowing for easy";
+MENU_OBROZZLORE3 = "use of two by keeping a backup Obrozz handy. However, the";
+MENU_OBROZZLORE4 = "lack of any proper sighting system makes accurate shooting difficult."
+
+// Combat Shotgun
+MENU_CSHOTTITLE = "------ Ithaca M37 Combat Shotgun Options ------";
+MENU_CSHOTTEXT = "Control the spawn rate of the Combat Shotgun on Shotguns";
+
+MENU_CSHOTLORE1 = "A compact shotgun often seen in the hands of space marines throughout the galaxy.";
+MENU_CSHOTLORE2 = "Despite having no side saddles or a butt stock to attach them to, in the right hands it's still as deadly as any other shotgun.";
+MENU_CSHOTLORE3 = "Toss one in your pack the next time you leave HQ, it may become very handy.";
+
+// Sigcow
+MENU_SIGCOWTITLE = "------ M-211 Sigcow Options ------";
+MENU_SIGCOWTEXT1 = "Control the spawn rate of the Sigcow on Clip Boxes";
+
+MENU_SIGCOWLORE1 = "A pistol-caliber carbine chambered in 10mm Auto";
+MENU_SIGCOWLORE2 = "and the trusted weapon of the UAC's Light Drop Infantry division.";
+MENU_SIGCOWLORE3 = "Includes a bayonet attachment for ease of use in close-quarters combat.";
+
+// 10 Piss
+MENU_10PTITLE = "------ Delta Elite 10mm Pistol Options ------";
+MENU_10PTEXT1 = "Control the spawn rate of the 10mm Pistol on Handguns";
+MENU_10PTEXT2 = "Control the spawn rate of the 10mm Pistol's magazines on Clip Magazines.";
+
+MENU_10PLORE1 = "A handgun released in the late 80s, adopted by the FBI following the aftermath of a tragic shooting incident.";
+MENU_10PLORE2 = "This pistol offers better penetration and a much higher muzzle velocity";
+MENU_10PLORE3 = "than either 9x22mm Parumpudicum or .355 firearms, but is much more difficult to control.";
+
+// Colt 1911
+MENU_COLTTITLE = "------ Colt 1911 .45 Pistol Options ------";
+MENU_COLTTEXT1 = "Control the spawn rate of the Colt 1911 on Handguns";
+MENU_COLTTEXT2 = "Control the spawn rate of Colt 1911 bundles on Ammoboxes";
+MENU_COLTTEXT3 = "Control the spawn rate of the Colt 1911's magazines on Clip Magazines.";
+
+MENU_C19LORE1 = "The Colt 1911 is chambered in .45 ACP, delivering a";
+MENU_C19LORE2 = "powerful blow that can bring down most humanoids";
+MENU_C19LORE3 = "in a couple of well-placed shots.";
+
+// sten
+MENU_STENTITLE = "------ STEN Mk. 2(S) Suppressed SMG Options ------";
+MENU_STENTEXT1 = "Control the spawn rate of the STEN on SMG spawns";
+MENU_STENTEXT2 = "Control the spawn rate of STENs on Ammoboxes";
+
+MENU_STENLORE1 = "A sub-machine gun designed by the British during WWII,";
+MENU_STENLORE2 = "known for being problematic due to jamming and overheating.";
+MENU_STENLORE3 = "This version has been modified with a suppressor barrel,";
+MENU_STENLORE4 = "silencing gunfire to the level of a handclap.";
+
+// snose :)
+MENU_SNOSETITLE = "------ Detective Special Snubnose Revolver Options ------";
+MENU_SNOSETEXT1 = "Control the spawn rate of the Snubnose Revolver on handguns";
+
+MENU_SNOSELORE1 = "A sidearm once popular with police and private investigators of the past.";
+MENU_SNOSELORE2 = "This revolver's smaller stature fits much better in your pocket,";
+MENU_SNOSELORE3 = "Though the smaller barrel cuts down your accuracy and firepower.";
+
+// Minerva
+MENU_MINERVATITLE = "------ Minerva 9mm Chaingun Options ------";
+MENU_MINERVATEXT1 = "Control the spawn rate of the Minerva on Chainguns";
+MENU_MINERVATEXT2 = "Control the spawn rate of the Minerva on SMGs";
+
+MENU_MINERVALORE1 = "A support weapon chambered in 9x22mm Parumpudicum,";
+MENU_MINERVALORE2 = "And later modified to use UAC standard SMG Magazines.";
+MENU_MINERVALORE3 = "It can hold a maximum of 150+5 rounds at a time.";
+MENU_MINERVALORE4 = "Just remember to keep your empty mags.";
+
+// LLH
+MENU_TITLELLH = "------ Bernoulli M1053 Less-Lethal Shotgun Options ------";
+MENU_LLHTEXT1 = "Control the spawn rate of the Less-Lethal Hunter on Shotguns";
+
+MENU_LLHLORE1 = "A polymer-based shotgun designed for riot control and crowd dispersion.";
+MENU_LLHLORE2 = "Chambered only for the use of less-lethal shells, which contain a load of rubberized buckshot pellets.";
+MENU_LLHLORE3 = "Useful for situations where maintaining a low fatality count is crucial.";
+
+// Hecked zm66
+MENU_HZMTITLE = "------ Hacked ZM66 Assault Rifle Options ------";
+MENU_HZMTEXT1 = "Control the spawn rate of the Hacked ZM66 on ZM66s";
+
+MENU_HZMLORE1 = "A 'jailbroken' model of the Volt ZM66 Assault Rifle,";
+MENU_HZMLORE2 = "this weapon has been stripped of most of it's less desireable features.";
+MENU_HZMLORE3 = "This is mostly relating to it's magazine DRM system,";
+MENU_HZMLORE4 = "though at the cost of a reduced firerate and non-functional ammo counter.";
+MENU_HZMLORE5 = "Mainly of these models come with a 4 round 'Quad Burst' firemode.";
+
+// Explosive Hunter
+MENU_EHUNTERTITLE = "------ Explosive Shotgun Options ------";
+MENU_EHUNTERTEXT1 = "Control the spawn rate of the Explosive Shotgun on Shotguns";
+
+MENU_EHUNTERLORE1 = "The antithesis of the Bernoulli M1053, this modified hunter fires slugs loaded with miniature HE grenades.";
+MENU_EHUNTERLORE2 = "These slugs cause immense injuries and burns on impact.";
+MENU_EHUNTERLORE3 = "Use of this weapon in close-quarters is ill-advised if you care about your limbs.";
+
+// Single Action
+MENU_SINGACTTITLE = "------ Single-Action Revolver Options ------";
+MENU_SINGACTTEXT1 = "Control the spawn rate of the Single-Action on Pistols";
+
+MENU_SINGACTLORE1 = "An ancient firearm better suited for a gunslinger than a space marine.";
+MENU_SINGACTLORE2 = "Chambered in .45 Long Colt, this revolver will definitely punch a hole into whatever it hits.";
+MENU_SINGACTLORE3 = "With how old these rounds are, they have a good chance to richochet off walls to perform trickshots.";
+
+// Single Action but pis- gold
+MENU_GREVVYTITLE = "------ Gold Single-Action Revolver Options ------";
+MENU_GREVVYTEXT1 = "Control the spawn rate of the Golden Single-Action on Pistols";
+
+MENU_GREVVYLORE1 = "A special golden version of the Single-Action Revolver.";
+MENU_GREVVYLORE2 = "Not much is known about it due to their immense rarity.";
+MENU_GREVVYLORE3 = "...Though those who have found one talk highly about its power.";
