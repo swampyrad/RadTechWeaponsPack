@@ -19,10 +19,6 @@ class DoomHunter:HDShotgun{
 		obituary "$OB_DOOMSHOTGUN";
 	}
 
-	override string pickupmessage(){
-		return Stringtable.Localize("$PICKUP_DOOMEDHUNTER");
-	}
-
 override void postbeginplay(){
 		super.postbeginplay();
   weaponspecial=1337;
@@ -72,10 +68,10 @@ override void postbeginplay(){
 	}
 
 	override string pickupmessage(){
-		if(weaponstatus[0]&DHUNF_CANFULLAUTO)return string.format("You got the "..gettag().."! You notice some tool marks near the fire selector...",super.pickupmessage());
-		else if(weaponstatus[0]&DHUNF_EXPORT)return string.format("You got the "..gettag().."! Where is the fire selector on this thing!?",super.pickupmessage());
-		else if(weaponstatus[0]&DHUNF_SCOUT)return string.format("You got the "..gettag().."! What force of nature created this cursed thing?",super.pickupmessage());
-		return "You got the "..gettag().."!";
+		if(weaponstatus[0]&DHUNF_CANFULLAUTO)return Stringtable.Localize("$PICKUP_DOOMEDHUNTER2");
+		else if(weaponstatus[0]&DHUNF_EXPORT)return Stringtable.Localize("$PICKUP_DOOMEDHUNTER3");
+		else if(weaponstatus[0]&DHUNF_SCOUT)return Stringtable.Localize("$PICKUP_DOOMEDHUNTER4");
+		return Stringtable.Localize("$PICKUP_DOOMEDHUNTER1");
 	}
 
 	override string,double getpickupsprite(bool usespare){return "HUNT"..getpickupframe(usespare).."0",1.;}
