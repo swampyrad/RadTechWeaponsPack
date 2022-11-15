@@ -12,7 +12,7 @@ class MetalFireBlooper: FireBlooper
 		hdweapon.refid "fgm";
 	}
 	override string pickupmessage(){
-		return "You got the "..gettag().."! Feels pretty hefty...";
+		return Stringtable.Localize("$PICKUP_METALFLAREGUN");
 	}
 
 

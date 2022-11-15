@@ -117,7 +117,7 @@ class PlasmaBuster:HDCellWeapon{
 	}
 
 	override string pickupmessage(){
-		return "You got the "..gettag().."!";
+		return Stringtable.Localize("$PICKUP_PLASMABUSTER");
 	}
 
 	override double gunmass(){

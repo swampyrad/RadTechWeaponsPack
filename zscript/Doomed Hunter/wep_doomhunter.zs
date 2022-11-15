@@ -19,6 +19,10 @@ class DoomHunter:HDShotgun{
 		obituary "$OB_DOOMSHOTGUN";
 	}
 
+	override string pickupmessage(){
+		return Stringtable.Localize("$PICKUP_DOOMEDHUNTER");
+	}
+
 override void postbeginplay(){
 		super.postbeginplay();
   weaponspecial=1337;

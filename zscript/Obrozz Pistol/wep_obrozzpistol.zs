@@ -26,7 +26,7 @@ class ObrozzPistol:HDHandgun{
 		weapon.bobrangex 0.98;
 		weapon.bobrangey 1.1;
 		scale 0.75;
-		Obituary "$OB_OBROZZ";
+		obituary "$OB_OBROZZ";
 		hdweapon.barrelsize 20,1,2;//rifle's been cut in half, basically
 		hdweapon.refid "obz";
 		tag "$TAG_OBROZZ";
@@ -50,7 +50,7 @@ class ObrozzPistol:HDHandgun{
 	}
 
 	override string pickupmessage(){
-		return "You got the "..gettag().."!";
+		return Stringtable.Localize("$PICKUP_OBROZZ");
 	}
 
 

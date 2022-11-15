@@ -37,7 +37,7 @@ class HDSnubNoseRevolver:HDHandgun{
 	}
 
 	override string pickupmessage(){
-		return "You got the "..gettag().."! Pretty small, don't ya say?";
+		return Stringtable.Localize("$PICKUP_DETECTIVESPECIAL");
 	}
 
 	override double weaponbulk(){

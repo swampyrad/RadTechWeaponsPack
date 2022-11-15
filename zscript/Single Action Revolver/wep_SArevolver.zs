@@ -31,7 +31,7 @@ class HDSingleActionRevolver:HDHandgun{
 	}
 
 	override string pickupmessage(){
-		return "You got the "..gettag().."!";
+		return Stringtable.Localize("$PICKUP_SINGLEACTIONREVOLVER");
 	}
 
 	override double weaponbulk(){

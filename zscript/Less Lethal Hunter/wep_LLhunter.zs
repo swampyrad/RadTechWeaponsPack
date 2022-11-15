@@ -52,10 +52,12 @@ class LLHunter:HDLLShotgun{
 		invoker.weaponstatus[LL_HUNTS_CHAMBER]=1;
 		invoker.shotpower=shotpower;
 	}
+
+	// Don't think these are used but might as well make them incase for some reason I want to add an auto-llh to the field assembly kit. - [Ted]
 	override string pickupmessage(){
-		if(weaponstatus[0]&LL_HUNTF_CANFULLAUTO)return string.format("You got the "..gettag().."! You notice some tool marks near the fire selector...",super.pickupmessage());
-		else if(weaponstatus[0]&LL_HUNTF_EXPORT)return string.format("You got the "..gettag().."! Where is the fire selector on this thing!?",super.pickupmessage());
-		return "You got the "..gettag().."!";
+		if(weaponstatus[0]&LL_HUNTF_CANFULLAUTO)return Stringtable.Localize("$PICKUP_LESSLETHALHUNTER3");
+		else if(weaponstatus[0]&LL_HUNTF_EXPORT)return Stringtable.Localize("$PICKUP_LESSLETHALHUNTER2");
+		return Stringtable.Localize("$PICKUP_LESSLETHALHUNTER1");
 	}
 	override string,double getpickupsprite(bool usespare){return "LLSP"..getpickupframe(usespare).."0",1.;}
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){

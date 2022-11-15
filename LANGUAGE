@@ -1,5 +1,7 @@
 [enu default]
 
+// Someday I need to organize this better but as it's in the hundreds of lines of length I don't think I have the brain power for that currently. - [Ted]
+
 // Controls the color of the menu icon. Mostly got curious about this, looks cool so kept it. - [Ted]
 RADTECH_MENU = "\c[Red]Ⓡ\c- Radtech Weapons Pack";
 
@@ -31,6 +33,38 @@ TAG_C19 = "Colt 1911";
 TAG_HPUPPY = "Hush Puppy Silenced Pistol";
 TAG_STUNGUN = "Stun Gun";
 
+// Weapon Pickup messages. Like tags, but when you get your grubby hands on it. - [Ted]
+PICKUP_10MMPISTOL = "You got the 10mm pistol! It really packs a punch!";
+PICKUP_SIGCOW = "You got the M-211 Sig-Cow!";
+PICKUP_COLT1911 = "You got the Colt 1911! Semper Fi!";
+PICKUP_COMBATSHOTGUN = "You got the Combat Shotgun!";
+PICKUP_DOOMEDHUNTER = "You got the Doomed Shotgun!";
+PICKUP_DYNAMITE = "Picked up a bundle of dynamite.";
+PICKUP_EXPLOSIVEHUNTER1 = "You got the Bernoulli Explosive Hunter! Yeah, eat this!";
+PICKUP_EXPLOSIVEHUNTER2 = "You got the Bernoulli Explosive Hunter! Where is the fire selector on this thing!?";
+PICKUP_EXPLOSIVEHUNTER3 = "You got the Bernoulli Explosive Hunter! There's some weird tool marks near the fire selector...";
+PICKUP_PLASTICFLAREGUN = "You got the Flare Gun! It's like christmas morning...";
+PICKUP_METALFLAREGUN = "You got the Metal Flare Gun! Feels pretty hefty...";
+PICKUP_GOLDENSINGLEACTION = "You got the Godlen Single-Action Revolver! Makes my fingers feel tingly...";
+PICKUP_HACKEDZM66SEMI = "Picked up a semi-automatic weapon, time for some carnage!";
+PICKUP_HACKEDZM66NORMAL = "You got the Assault Rifle! Something feels a bit off about it...";
+PICKUP_HUSHPUPPY = "You got the Hush Puppy Silenced Pistol! Shhh...";
+PICKUP_JUANPISTOL = "You got the Juan Pistol! It truly kicks like a mule!";
+PICKUP_LESSLETHALHUNTER1 = "You got the Bernoulli Less-Lethal Shotgun!";
+PICKUP_LESSLETHALHUNTER2 = "You got the Bernoulli Less-Lethal Shotgun! Where is the fire selector on this thing!?";
+PICKUP_LESSLETHALHUNTER3 = "You got the Bernoulli Less-Lethal Shotgun! There's some weird tool marks near the fire selector...";
+PICKUP_MINERVA = "You got the Minerva 9mm Chaingun!";
+PICKUP_MINERVADAMAGE0 = " She's beautiful!";
+PICKUP_MINERVADAMAGE100 = " She looks alright.";
+PICKUP_MINERVADAMAGE200 = " She ain't looking so hot.";
+PICKUP_MINERVADAMAGE500 = " She's barely hanging on...";
+PICKUP_OBROZZ = "You got the Obrozz rifle! Pretty light!";
+PICKUP_PLASMABUSTER = "You got the DM-93 Plasma Rifle! Sparkly!";
+PICKUP_SINGLEACTIONREVOLVER = "You got the Single-Action Revolver! Feels pretty sturdy.";
+PICKUP_DETECTIVESPECIAL = "You got the Detective Special! Feels pretty small, ey?";
+PICKUP_STENMK2 = "You got the Sten Mk.2(S)! Warm to the touch!";
+PICKUP_STUNGUN = "You got the Stun Gun! Zap, zap!";
+
 // Item Tags, same as weapons but these are just for the items. - [Ted]
 TAG_10RELOADER = "10mm Auto Reloader";
 TAG_10PISMAG = "10mm pistol magazine";
@@ -38,6 +72,12 @@ TAG_SCWMAG = "Sig-Cow magazine";
 TAG_CM7 = "Colt 1911 magazine";
 TAG_DYNAMITEBUNDLE = "Bundle of Dynamite";
 TAG_JUANMAG = "9mm pistol magazine (horseshoe)";
+
+// Item Pickups, same as Weapon Pickups but this time it's not a weapon. - [Ted]
+PICKUP_10MAG25 = "Picked up a Sig-Cow magazine.";
+PICKUP_10MAG8 = "Picked up a 10mm pistol magazine.";
+PICKUP_10MRELOADER = "Picked up a 10mm reloading device!";
+PICKUP_JUANMAG = "Picked up a horseshoe-shaped pistol magazine..?";
 
 // Obituaries, useful for other mod developers. Like myself. - [Ted]
 OB_STUNGUN = "%o got fried by %k's stun gun.";
@@ -56,6 +96,9 @@ OB_METALFLAREGUN = "%o is S.O.L. thanks to %k's S.0.S.";
 OB_EXPLSHOTGUN = "%o was shot to high heavens by %k's shotgun.";
 OB_DOOMSHOTGUN = "%o met their Doom by %k's shotgun.";
 OB_COMBATSHOTGUN = "%o got sent home early by %k's shotgun.";
+OB_10MMPISTOL = "%o was dealt a fatal blow by %k's 10mm pistol.";
+OB_COLT1911 = "%o got a taste of %k's Colt .45.";
+OB_STUNGUN = "%o got fried by %k's stun gun.";
 
 // EVERYTHING below this is Menu stuff. Feast upon the horror. - [Ted]
 
