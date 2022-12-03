@@ -1,11 +1,34 @@
 // ------------------------------------------------------------
 // Vanilla Thunder Buster
 // ------------------------------------------------------------
+
+//dummy bullet, used to transfer weapon pitch to plasma
+class HDB_Plasma:HDBulletActor{
+    default{
+        speed 32;
+    }
+	states{
+	spawn:
+		TNT1 A 0;
+	death:
+	    TNT1 A 0 A_SpawnItemEx(
+	                "PlasmaFoof",
+	                0, 0, 0,
+                    invoker.velx,
+                    invoker.vely,
+                    invoker.velz,
+                    invoker.angle,
+	                SXF_TRANSFERPOINTERS);
+		stop;
+	}
+}
+
+
 class PlasmaFoof:HDFireball{
 	default{
 		height 6;//-6
 		radius 6;//-6, to fit through smaller gaps
-		speed 32;
+	//	speed 32;
 		gravity 0;
 		decal "BulletScratch";
 		damagetype "cold";
@@ -206,7 +229,7 @@ override void DrawSightPicture(
   #### A 0 {A_GunFlash();
             A_StartSound("weapons/plasmaf");}
             //zappy noises
-  #### A 1 bright A_EjectCasing("PlasmaFoof",frandom(-1,1),(30,0,0),(20,0,-5));
+  #### A 1 bright {HDBulletActor.FireBullet(self,"HDB_Plasma");}
                     //this makes zappy balls fly out
   #### A 0 {
 		//aftereffects
@@ -251,7 +274,7 @@ override void DrawSightPicture(
 
   #### A 0 A_GunFlash();
   #### AAAAA 1 bright {
-    A_EjectCasing("PlasmaFoof",frandom(-3,3),(30,0,0),(20,0,-5));
+    HDBulletActor.FireBullet(self,"HDB_Plasma");
     A_StartSound("weapons/plasmaf");//zappy noises
     A_MuzzleClimb(-frandom(0.8,1.6),-frandom(0.8,1.6));
     }
