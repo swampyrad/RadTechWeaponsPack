@@ -270,6 +270,25 @@ class RadTechHandler : EventHandler
 		// Actual add command.
 		additem('HDStunGun', spawns_stungun, stungun_persistent_spawning);
 
+//
+//  Phazer
+//
+		// Item spawn lists.
+		Array<RTSpawnItemEntry> spawns_phazer;  
+		spawns_phazer.push(additementry('ClipBox', phazer_spawn_bias));
+		// Actual add command.
+		additem('PhazerPistol', spawns_phazer, phazer_persistent_spawning);
+
+//
+//  Micro-Cell Battery
+//
+		// Item spawn lists.
+		Array<RTSpawnItemEntry> spawns_microcell;  
+		spawns_microcell.push(additementry('Clip', microcell_spawn_bias));
+		spawns_microcell.push(additementry('ClipMagPickup', microcell_spawn_bias));
+		// Actual add command.
+		additem('HDMicroCell', spawns_microcell, microcell_persistent_spawning);
+
 
 //
 //  Plasma Buster
