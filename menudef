@@ -221,33 +221,6 @@ OptionMenu MicroCell
 	StaticText "$MENU_MICROLORE2", "white"
 }
 
-
-OptionMenu Dynamite
-{
-    Title "$MENU_DYNAMITETITLE"
-   	StaticText "$MENU_NOTICE", "Red"
-    StaticText  "$MENU_SUPPRESS1", "white"
-    StaticText  "$MENU_SUPPRESS2", "white"
-    StaticText ""
-	StaticText "$MENU_SPAWNOPTIONS", "Red"
-    StaticText  "$MENU_DYNAMITESPAWNTEXT ", "white"
-	Option "$MENU_DYNAMITESPAWNRATE", "dynamite_spawn_bias", "SpawnBias"
-	SafeCommand "$MENU_RESETDYNAMITEOPTIONS", "resetcvar dynamite_spawn_bias"
- 	StaticText ""
-    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
-	Option "$MENU_PERSISTENCY", "dynamite_persistent_spawning", "OnOff"
-	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar dynamite_persistent_spawning"
- 	StaticText ""
-   	StaticText ""
-	StaticText "$MENU_RESETOPTIONS", "Red"
-	SafeCommand "$MENU_RESETALLOPTIONS", "dynamite_reset_cvars"
-	StaticText ""
-	StaticText "$MENU_LORETAG", "Red"
-	StaticText ""
-	StaticText "$MENU_DYNAMITELORE1", "white"
-	StaticText "$MENU_DYNAMITELORE2", "white"
-}
-
 OptionMenu Juan9mm
 {
 	Title "$MENU_JUANTITLE"
@@ -579,33 +552,6 @@ OptionMenu Minerva
 	StaticText "$MENU_MINERVALORE4", "white"
 }
 
-OptionMenu LessLethalHunter
-{
-    Title "$MENU_TITLELLH"
-   	StaticText "$MENU_NOTICE", "Red"
-    StaticText  "$MENU_SUPPRESS1", "white"
-    StaticText  "$MENU_SUPPRESS2", "white"
-    StaticText ""
-	StaticText "$MENU_SPAWNOPTIONS", "Red"
-    StaticText  "$MENU_LLHTEXT1", "white"
-	Option "$MENU_WEPSPAWNRATE", "llh_shotgun_spawn_bias", "SpawnBias"
-	SafeCommand "$WEP_RESETWEP", "resetcvar llh_shotgun_spawn_bias"
- 	StaticText ""
-    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
-	Option "$MENU_PERSISTENCY", "llh_persistent_spawning", "OnOff"
-	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar llh_persistent_spawning"
- 	StaticText ""
-   	StaticText ""
-	StaticText "$MENU_RESETOPTIONS", "Red"
-	SafeCommand "$MENU_RESETALLOPTIONS", "llh_reset_cvars"
-	StaticText ""
-	StaticText "$MENU_LORETAG", "Red"
-	StaticText ""
-	StaticText "$MENU_LLHLORE1", "white"
-	StaticText "$MENU_LLHLORE2", "white"
-	StaticText "$MENU_LLHLORE3", "white"
-}
-
 OptionMenu HackedZM66
 {
     Title "$MENU_HZMTITLE"
@@ -714,6 +660,59 @@ OptionMenu GoldSingleActionRevolver
 	StaticText "$MENU_GREVVYLORE1", "white"
 	StaticText "$MENU_GREVVYLORE2", "White"
 	StaticText "$MENU_GREVVYLORE3", "white"
+}
+
+OptionMenu Dynamite
+{
+    Title "$MENU_DYNAMITETITLE"
+   	StaticText "$MENU_NOTICE", "Red"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Red"
+    StaticText  "$MENU_DYNAMITESPAWNTEXT", "white"
+	Option "$MENU_DYNAMITESPAWNRATE", "dynamite_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETDYNAMITEOPTIONS", "resetcvar dynamite_spawn_bias"
+ 	StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "dynamite_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar dynamite_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "dynamite_reset_cvars"
+	StaticText ""
+	StaticText "$MENU_LORETAG", "Red"
+	StaticText ""
+	StaticText "$MENU_DYNAMITELORE1", "white"
+	StaticText "$MENU_DYNAMITELORE2", "white"
+}
+
+OptionMenu LessLethalHunter
+{
+    Title "$MENU_TITLELLH"
+   	StaticText "$MENU_NOTICE", "Red"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Red"
+    StaticText  "$MENU_LLHTEXT1", "white"
+	Option "$MENU_WEPSPAWNRATE", "llh_shotgun_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar llh_shotgun_spawn_bias"
+ 	StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "llh_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar llh_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "llh_reset_cvars"
+	StaticText ""
+	StaticText "$MENU_LORETAG", "Red"
+	StaticText ""
+	StaticText "$MENU_LLHLORE1", "white"
+	StaticText "$MENU_LLHLORE2", "white"
+	StaticText "$MENU_LLHLORE3", "white"
 }
 
 // Spawn Bias (for items that do replace)
