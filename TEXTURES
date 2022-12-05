@@ -9,6 +9,69 @@ offset 18,6
 patch scbksite,0,0{}
 }
 
+// Space Pistol sprite credits:
+// Mike12, JAM Software, PaulNWN
+
+// Phazer and Micro-Cell sprites by Swampyrad
+
+// Phazer
+sprite phzra0, 68, 74 {
+    offset -125, -95
+    patch phzra0, 0, 0
+}
+sprite phzrb0, 68, 74 {
+    offset -125, -95
+    patch phzrb0, 0, 0
+}
+sprite phzrc0, 68, 74 {
+    offset -125, -95
+    patch phzrc0, 0, 0
+}
+sprite phzrd0, 68, 74 {
+    offset -125, -95
+    patch phzrd0, 0, 0
+}
+sprite phz2a0, 68, 74 {
+    offset -125, -95
+    patch phzra0, 0, 0{flipx}
+}
+sprite phz2b0, 68, 74 {
+    offset -125, -95
+    patch phzrb0, 0, 0{flipx}
+}
+sprite phz2c0, 68, 74 {
+    offset -125, -95
+    patch phzrc0, 0, 0{flipx}
+}
+sprite phz2d0, 68, 74 {
+    offset -125, -95
+    patch phzrd0, 0, 0{flipx}
+}
+sprite phzpa0, 22, 13{
+    offset 11, 13
+    patch phzpa0, 0, 0
+}
+
+//Micro-Cell Battery
+
+sprite mclla0, 5, 11{
+    offset 2, 11
+    patch mclla0, 0, 0
+}
+sprite mcllb0, 5, 11{
+	offset 5, 11
+	patch mclla0, 0, 0 {translation "112:120=160:167"}
+}
+sprite mcllc0, 5, 11{
+	offset 5, 11
+	patch mclla0, 0, 0 {translation "112:120=32:47"}
+}
+sprite mclld0, 5, 11{
+	offset 5, 11
+	patch mclla0, 0, 0 {translation "112:120=96:111"}
+}
+
+
 //Hush Puppy
 
 //Pistol sprite base by iD Software/Bethesda

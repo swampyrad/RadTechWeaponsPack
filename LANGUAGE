@@ -32,6 +32,7 @@ TAG_STEN = "STEN Mk.2(S)";
 TAG_C19 = "Colt 1911";
 TAG_HPUPPY = "Hush Puppy Silenced Pistol";
 TAG_STUNGUN = "Stun Gun";
+TAG_PHAZER = "Phazer";
 
 // Weapon Pickup messages. Like tags, but when you get your grubby hands on it. - [Ted]
 PICKUP_10MMPISTOL = "You got the 10mm pistol! It really packs a punch!";
@@ -67,6 +68,7 @@ PICKUP_SINGLEACTIONREVOLVER = "You got the Single-Action Revolver! Feels pretty 
 PICKUP_DETECTIVESPECIAL = "You got the Detective Special! Feels pretty small, ey?";
 PICKUP_STENMK2 = "You got the Sten Mk.2(S)! Warm to the touch!";
 PICKUP_STUNGUN = "You got the Stun Gun! Zap, zap!";
+PICKUP_PHAZER = "You got the Phazer! It's set to 'KILL'!";
 
 // Item Tags, same as weapons but these are just for the items. - [Ted]
 TAG_10RELOADER = "10mm Auto Reloader";
@@ -75,12 +77,15 @@ TAG_SCWMAG = "Sig-Cow magazine";
 TAG_CM7 = "Colt 1911 magazine";
 TAG_DYNAMITEBUNDLE = "Bundle of Dynamite";
 TAG_JUANMAG = "9mm pistol magazine (horseshoe)";
+TAG_MICROCELL = "Micro-Cell";
 
 // Item Pickups, same as Weapon Pickups but this time it's not a weapon. - [Ted]
 PICKUP_10MAG25 = "Picked up a Sig-Cow magazine.";
 PICKUP_10MAG8 = "Picked up a 10mm pistol magazine.";
 PICKUP_10MRELOADER = "Picked up a 10mm reloading device!";
 PICKUP_JUANMAG = "Picked up a horseshoe-shaped pistol magazine..?";
+PICKUP_MICROCELL = "You picked up a micro-cell.";
+
 
 // Obituaries, useful for other mod developers. Like myself. - [Ted]
 OB_STUNGUN = "%o got fried by %k's stun gun.";
@@ -102,6 +107,8 @@ OB_COMBATSHOTGUN = "%o got sent home early by %k's shotgun.";
 OB_10MMPISTOL = "%o was dealt a fatal blow by %k's 10mm pistol.";
 OB_COLT1911 = "%o got a taste of %k's Colt .45.";
 OB_STUNGUN = "%o got fried by %k's stun gun.";
+OB_PHAZER = "%o got vaporized out by %k's Phazer.";
+
 
 // EVERYTHING below this is Menu stuff. Feast upon the horror. - [Ted]
 
@@ -149,6 +156,22 @@ MENU_HPUPLORE1 = "A modified version of the 99FX pistol with a suppressor attach
 MENU_HPUPLORE2 = "Has a slide lock installed to stop another round from being chambered";
 MENU_HPUPLORE3 = "automatically, which reduces gunshot volume greatly. The downside is";
 MENU_HPUPLORE4 = "the user has to chamber rounds manually after each and every shot.";
+
+
+//Phazer
+MENU_PHAZERTITLE = "------ Phazer Options ------";
+MENU_PHAZERBOXTEXT = "Control the spawn rate of Phazers on Ammo Box spawns.";
+
+MENU_PHAZERLORE1 = "An energy pistol featuring a miniaturized version of the DM-93's";
+MENU_PHAZERLORE2 = "particle beam emitter system. Because of its size, the Phazer is";
+MENU_PHAZERLORE3 = "only powerful enough to fire single shots at a time.";
+
+//Micro-Cell
+MENU_MCELLTITLE = "------ Micro-Cell Options ------";
+MENU_MCELLCLIPTEXT = "Control the spawn rate of Micro-Cells on Clip spawns.";
+
+MENU_MICROLORE1 = "A smaller, compact version of the Cell Battery, designed";
+MENU_MICROLORE2 = "for use in the Phazer and other such low-power devices.";
 
 // Stun Gun
 MENU_STUNGUNTITLE = "------ Stun Gun Options ------";

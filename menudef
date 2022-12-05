@@ -45,11 +45,15 @@ OptionMenu RadTechWeaponry
 	StaticText ""
     Submenu "$TAG_DM93PLASMA", "PlasmaBuster", 0, 1
 	StaticText ""
+	Submenu "$TAG_PHAZER", "Phazer", 0, 1
+	StaticText ""
     Submenu "$TAG_STUNGUN", "StunGun", 0, 1
 	StaticText ""
 	StaticText "--- Utility ---", "yellow"
 	StaticText ""
 	Submenu "$TAG_DYNAMITE", "Dynamite", 0, 1
+	StaticText ""
+	Submenu "$TAG_MICROCELL", "MicroCell", 0, 1
 	StaticText ""
     Submenu "$TAG_FLAREGUN", "flareguns", 0, 1
 	StaticText ""
@@ -162,8 +166,61 @@ OptionMenu StunGun
 	StaticText "$MENU_STUNLORE2", "white"
 	StaticText "$MENU_STUNLORE3", "white"
 	StaticText "$MENU_STUNLORE4", "white"
-	
 }
+
+OptionMenu Phazer
+{
+    Title "$MENU_PHAZERTITLE"
+   	StaticText "$MENU_NOTICE", "Red"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Red"
+    StaticText  "$MENU_PHAZERBOXTEXT", "white"
+	Option "$MENU_WEPSPAWNRATE", "phazer_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar phazer_spawn_bias"
+ 	StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "phazer_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar phazer_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "phazer_reset_cvars"
+	StaticText ""
+	StaticText "$MENU_LORETAG", "Red"
+	StaticText ""
+	StaticText "$MENU_PHAZERLORE1", "white"
+	StaticText "$MENU_PHAZERLORE2", "white"
+	StaticText "$MENU_PHAZERLORE3", "white"
+}
+
+OptionMenu MicroCell
+{
+    Title "$MENU_MICROCELLTITLE"
+   	StaticText "$MENU_NOTICE", "Red"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Red"
+    StaticText  "$MENU_MCELLCLIPTEXT", "white"
+	Option "$MENU_WEPSPAWNRATE", "microcell_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar microcell_spawn_bias"
+ 	StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "microcell_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar microcell_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "microcell_reset_cvars"
+	StaticText ""
+	StaticText "$MENU_LORETAG", "Red"
+	StaticText ""
+	StaticText "$MENU_MICROLORE1", "white"
+	StaticText "$MENU_MICROLORE2", "white"
+}
+
 
 OptionMenu Dynamite
 {

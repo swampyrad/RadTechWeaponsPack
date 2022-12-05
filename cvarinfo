@@ -30,6 +30,14 @@ server bool hushpuppy_persistent_spawning = false;
 server int stungun_spawn_bias = 19;
 server bool stungun_persistent_spawning = false;
 
+//Phazer Pistol
+server int phazer_spawn_bias = 19;
+server bool phazer_persistent_spawning = false;
+
+//Micro-Cell Ammo
+server int microcell_spawn_bias = 19;
+server bool microcell_persistent_spawning = false;
+
 // Dynamite
 server int dynamite_spawn_bias = 19;
 server bool dynamite_persistent_spawning = false;

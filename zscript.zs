@@ -24,6 +24,12 @@ version "4.8"
 // Single-action Revolver
 #include "zscript/Single Action Revolver/wep_SArevolver.zs"
 
+//Phazer Pistol
+#include "zscript/Phazer/wep_phazerpistol.zs"
+
+//Micro-Cell Ammo
+#include "zscript/MicroCell/ammo_microcell.zs"
+
 // Hush Puppy Silenced Pistol
 #include "zscript/HushPuppy/wep_hushpuppy.zs"
 // Stun Gun
