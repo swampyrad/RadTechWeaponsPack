@@ -197,7 +197,7 @@ OptionMenu Phazer
 
 OptionMenu MicroCell
 {
-    Title "$MENU_MICROCELLTITLE"
+    Title "$MENU_MCELLTITLE"
    	StaticText "$MENU_NOTICE", "Red"
     StaticText  "$MENU_SUPPRESS1", "white"
     StaticText  "$MENU_SUPPRESS2", "white"
