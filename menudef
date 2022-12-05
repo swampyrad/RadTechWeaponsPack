@@ -231,7 +231,7 @@ OptionMenu Dynamite
     StaticText ""
 	StaticText "$MENU_SPAWNOPTIONS", "Red"
     StaticText  "$MENU_DYNAMITESPAWNTEXT ", "white"
-	Option "MENU_DYNAMITESPAWNRATE", "dynamite_spawn_bias", "SpawnBias"
+	Option "$MENU_DYNAMITESPAWNRATE", "dynamite_spawn_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETDYNAMITEOPTIONS", "resetcvar dynamite_spawn_bias"
  	StaticText ""
     StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
