@@ -166,6 +166,12 @@ Stun Gun - [STU]
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/Puppy.png)
 
+Phazer Energy Pistol - [PHZ]
+- A "sidearm" version of the Plasma Rifle. Fires in semi-auto only to compensate for its reduced power output, Uses Micro-Cell Batteries.
+
+Micro-Cell Battery - [MCL]
+- A compact version of the cell battery. Has half the charge and bulk of a full-sized cell. Designed for low-power devices and light energy weapons, such as the Phazer
+
 ## Credits
 
 - 1911 sprites provided courtesy of ChopBlock223 from the HD Discord
@@ -189,7 +195,10 @@ Stun Gun - [STU]
 - Ithaca 37 weapon sprites by LossForWords
 - Dynamite sprites and sounds are from nadeto's Blood Dynamite grenade reskin which they got from the BLOOM game mod
 - Dynamite code based off Frag Grenade code by mc776
-
+-DM-93 Plasma Rifle and Phazer code based off Thunderbuster code by mc776
+- Phazer weapon sprites by Mike12, JAM Software, and PaulNWN
+- Micro-Cell code based off HDBattery code by mc76
+- Phazer and Micro-Cell pickup sprites by Swampyrad
 ## Extra thanks to
 
 - Scuba Steve (for drawing the FreeDoom pistol it's based off of)
