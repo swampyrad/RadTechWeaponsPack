@@ -4,6 +4,9 @@
 //credit for weapon name goes to .BenitezClance4 from the HD Discord
 
 class HDHorseshoePistol:HDHandgun{
+    bool MAG_15;
+    bool MAG_30;
+    
 	default{
 		+hdweapon.fitsinbackpack
 		+hdweapon.reverseguninertia
@@ -51,7 +54,8 @@ class HDHorseshoePistol:HDHandgun{
 		return 6+(mgg<0?0:0.25*(mgg+1));
 	}
 	override void failedpickupunload(){
-		failedpickupunloadmag(HPISS_MAG,"hdhorseshoe9m");
+	if(MAG_15)failedpickupunloadmag(HPISS_MAG,"hd9mmag15");
+	else failedpickupunloadmag(HPISS_MAG,"hdhorseshoe9m");
 	}
 	
 	override string,double getpickupsprite(bool usespare)
@@ -173,6 +177,8 @@ class HDHorseshoePistol:HDHandgun{
 
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
+		
+		//horseshoe mags
 			int nextmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory("hdhorseshoe9m")));
 			if(nextmagloaded>=30){
 				sb.drawimage("HSMGA0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(2,2));
@@ -183,8 +189,23 @@ class HDHorseshoePistol:HDHandgun{
 				// Rescaling doesn't seem to work with sb.drawbar, so this'll have to do. 
 				sb.drawimage("HSMGA0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextmagloaded?0.6:1.,scale:(2,2));
 			}
+			
+		//standard pistol mags
+			int nextpmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory("HD9mMag15")));
+			if(nextpmagloaded>=15){
+				sb.drawimage("CLP2NORM",(-56,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1,1));
+			}else if(nextpmagloaded<1){
+				sb.drawimage("CLP2EMPTY",(-56,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextpmagloaded?0.6:1.,scale:(1,1));
+			}else sb.drawbar(
+				"CLP2NORM","CLP2GREY",
+				nextpmagloaded,15,
+				(-56,-3),-1,
+				sb.SHADER_VERT,sb.DI_SCREEN_CENTER_BOTTOM
+			);
 
 			sb.drawnum(hpl.countinv("hdhorseshoe9m"),-43,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+	        sb.drawnum(hpl.countinv("hd9mmag15"),-53,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+	
 		}
 		if(hdw.weaponstatus[0]&HPISF_SELECTFIRE)sb.drawwepcounter(hdw.weaponstatus[0]&HPISF_FIREMODE,
 			-22,-10,"RBRSA3A7","STFULAUT"
@@ -197,7 +218,7 @@ class HDHorseshoePistol:HDHandgun{
 		WEPHELP_FIRESHOOT
 		..((weaponstatus[0]&HPISF_SELECTFIRE)?(WEPHELP_FIREMODE.."  Semi/Auto\n"):"")
 		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
-		..WEPHELP_RELOAD.."  Reload mag\n"
+		..WEPHELP_RELOAD.."  Reload mag (horseshoe mags first)\n"
 		..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
 		..WEPHELP_MAGMANAGER
 		..WEPHELP_UNLOADUNLOAD
@@ -295,7 +316,8 @@ class HDHorseshoePistol:HDHandgun{
 			if(invoker.weaponstatus[0]&HPISF_SELECTFIRE)
 			invoker.weaponstatus[0]^=HPISF_FIREMODE;
 			else invoker.weaponstatus[0]&=~HPISF_FIREMODE;
-		}goto nope;
+		}
+		goto nope;
 	altfire:
 		---- A 0{
 			invoker.weaponstatus[0]&=~HPISF_JUSTUNLOAD;
@@ -412,7 +434,8 @@ class HDHorseshoePistol:HDHandgun{
 	unload:
 		---- A 0{
 			invoker.weaponstatus[0]|=HPISF_JUSTUNLOAD;
-			if(invoker.weaponstatus[HPISS_MAG]>=0)setweaponstate("unmag");
+			if(invoker.weaponstatus[HPISS_MAG]>=0&&invoker.MAG_30)setweaponstate("unmag");
+			if(invoker.weaponstatus[HPISS_MAG]>=0&&invoker.MAG_15)setweaponstate("unmag2");
 		}goto chamber_manual;
 	loadchamber:
 		---- A 0 A_JumpIf(invoker.weaponstatus[HPISS_CHAMBER]>0,"nope");
@@ -438,9 +461,11 @@ class HDHorseshoePistol:HDHandgun{
 		#### B 2 offset(1,38);
 		#### B 3 offset(0,34);
 		goto readyend;
-	reload:
+
+	 reload:
+	    ---- A 0 A_JumpIf(invoker.MAG_15,"reload2");
 		---- A 0
-			{				
+			{
 			invoker.weaponstatus[0]&=~HPISF_JUSTUNLOAD;
 			bool nomags=HDMagAmmo.NothingLoaded(self,"hdhorseshoe9m");
 			if(invoker.weaponstatus[HPISS_MAG]>=30)setweaponstate("nope");
@@ -454,9 +479,10 @@ class HDHorseshoePistol:HDHandgun{
 				if(
 					countinv("HDPistolAmmo")
 				)setweaponstate("loadchamber");
-				else setweaponstate("nope");
 			}else if(nomags)setweaponstate("nope");
-		}goto unmag;
+		}
+		goto unmag;
+	
 	unmag:
 		---- A 1 offset(0,34) A_SetCrosshair(21);
 		---- A 1 offset(1,38);
@@ -469,22 +495,27 @@ class HDHorseshoePistol:HDHandgun{
 			int pmg=invoker.weaponstatus[HPISS_MAG];
 			invoker.weaponstatus[HPISS_MAG]=-1;
 			if(pmg<0)setweaponstate("magout");
-			else if(
+			else if(    //horseshoe mags
 				(!PressingUnload()&&!PressingReload())
 				||A_JumpIfInventory("hdhorseshoe9m",0,"null")
 			){
 				HDMagAmmo.SpawnMag(self,"hdhorseshoe9m",pmg);
+				invoker.MAG_30 = false;
 				setweaponstate("magout");
 			}
 			else{
 				HDMagAmmo.GiveMag(self,"hdhorseshoe9m",pmg);
 				A_StartSound("weapons/pocket",9);
+				invoker.MAG_30 = false;
 				setweaponstate("pocketmag");
 			}
+			
 		}
+		
 	pocketmag:
 		---- AAA 5 offset(0,46) A_MuzzleClimb(frandom(-0.2,0.8),frandom(-0.2,0.4));
 		goto magout;
+	
 	magout:
 		---- A 0{
 			if(invoker.weaponstatus[0]&HPISF_JUSTUNLOAD)setweaponstate("reloadend");
@@ -492,6 +523,7 @@ class HDHorseshoePistol:HDHandgun{
 		}
 
 	loadmag:
+	    ---- A 0 A_JumpIf(!countinv("hdhorseshoe9m"),"loadmag2");
 		---- A 4 offset(0,46) A_MuzzleClimb(frandom(-0.2,0.8),frandom(-0.2,0.4));
 		---- A 0 A_StartSound("weapons/pocket",9);
 		---- A 5 offset(0,46) A_MuzzleClimb(frandom(-0.2,0.8),frandom(-0.2,0.4));
@@ -501,6 +533,86 @@ class HDHorseshoePistol:HDHandgun{
 			if(mmm){
 				invoker.weaponstatus[HPISS_MAG]=mmm.TakeMag(true);
 				A_StartSound("weapons/pismagclick",8);
+				invoker.MAG_30 = true;
+				invoker.MAG_15 = false;
+				setweaponstate("reloadend");
+			}
+		}
+		goto reloadend;
+	
+	reload2:
+		---- A 0
+			{				
+			invoker.weaponstatus[0]&=~HPISF_JUSTUNLOAD;
+			bool nomags=HDMagAmmo.NothingLoaded(self,"hd9mmag15");
+			if(invoker.weaponstatus[HPISS_MAG]>=15)setweaponstate("nope");
+			else if(
+				invoker.weaponstatus[HPISS_MAG]<1
+				&&(
+					pressinguse()
+					||nomags
+				)
+			){
+				if(
+					countinv("HDPistolAmmo")
+				)setweaponstate("loadchamber");
+			}else if(nomags)setweaponstate("nope");
+		}
+		---- A 0 A_Jumpif(invoker.MAG_15,"unmag2");
+		goto unmag;
+	
+	unmag2:
+		---- A 1 offset(0,34) A_SetCrosshair(21);
+		---- A 1 offset(1,38);
+		---- A 2 offset(2,42);
+		---- A 3 offset(3,46)
+		{
+			A_StartSound("weapons/pismagclick",8,CHANF_OVERLAP);
+		}
+		---- A 0{
+			int pmg=invoker.weaponstatus[HPISS_MAG];
+			invoker.weaponstatus[HPISS_MAG]=-1;
+			
+			if(pmg<0)setweaponstate("magout2");
+			else if(   //standard mags
+				(!PressingUnload()&&!PressingReload())
+				||A_JumpIfInventory("hd9mmag15",0,"null")
+			){
+				HDMagAmmo.SpawnMag(self,"hd9mmag15",pmg);
+				invoker.MAG_15 = false;
+				setweaponstate("magout2");
+			}
+			else{
+				HDMagAmmo.GiveMag(self,"hd9mmag15",pmg);
+				A_StartSound("weapons/pocket",9);
+				invoker.MAG_15 = false;
+				setweaponstate("pocketmag2");
+			}
+		}
+	
+	pocketmag2:
+		---- AAA 5 offset(0,46) A_MuzzleClimb(frandom(-0.2,0.8),frandom(-0.2,0.4));
+		goto magout2;
+		
+	magout2:
+		---- A 0{
+			if(invoker.weaponstatus[0]&HPISF_JUSTUNLOAD)setweaponstate("reloadend");
+			else setweaponstate("loadmag2");
+		}
+		
+    loadmag2:
+		---- A 4 offset(0,46) A_MuzzleClimb(frandom(-0.2,0.8),frandom(-0.2,0.4));
+		---- A 0 A_StartSound("weapons/pocket",9);
+		---- A 5 offset(0,46) A_MuzzleClimb(frandom(-0.2,0.8),frandom(-0.2,0.4));
+		---- A 3 ;
+		---- A 0{
+			let mmm=hdmagammo(findinventory("hd9mmag15"));
+			if(mmm){
+				invoker.weaponstatus[HPISS_MAG]=mmm.TakeMag(true);
+				A_StartSound("weapons/pismagclick",8);
+				invoker.MAG_15 = true;
+				invoker.MAG_30 = false;
+				setweaponstate("reloadend");
 			}
 		}
 		goto reloadend;
@@ -592,6 +704,8 @@ class HDHorseshoePistol:HDHandgun{
 	override void initializewepstats(bool idfa){
 		weaponstatus[HPISS_MAG]=30;
 		weaponstatus[HPISS_CHAMBER]=2;
+		MAG_30 = true;
+		MAG_15 = false;
 	}
 	override void loadoutconfigure(string input){
 		int selectfire=getloadoutvar(input,"selectfire",1);
