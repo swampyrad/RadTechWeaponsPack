@@ -38,14 +38,23 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 	
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
-			sb.drawbattery(-54,-4,sb.DI_SCREEN_CENTER_BOTTOM,reloadorder:true);
-			sb.drawnum(hpl.countinv("HDBattery"),-46,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+			//sb.drawbattery(-54,-4,sb.DI_SCREEN_CENTER_BOTTOM,reloadorder:true);
+			int nextcellloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory("HDMicroCell")));
+			if(nextcellloaded>6){
+				sb.drawimage("mclla0",(-46, -10),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1,1));
+			}else if(nextcellloaded>3){
+				sb.drawimage("mcllb0",(-46, -10),sb.DI_SCREEN_CENTER_BOTTOM,alpha:1.,scale:(1,1));
+			}else if(nextcellloaded>0){
+				sb.drawimage("mcllc0",(-46, -10),sb.DI_SCREEN_CENTER_BOTTOM,alpha:1.,scale:(1,1));
+			}else sb.drawimage("mclld0",(-46, -10),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextcellloaded?0.6:1.,scale:(1,1));
+
+			sb.drawnum(hpl.countinv("HDMicroCell"),-46,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		}
 		if(!hdw.weaponstatus[1])sb.drawstring(
 			sb.mamountfont,"00000",(-16,-9),sb.DI_TEXT_ALIGN_RIGHT|
 			sb.DI_TRANSLATABLE|sb.DI_SCREEN_CENTER_BOTTOM,
 			Font.CR_DARKGRAY
-		);else if(hdw.weaponstatus[1]>0)sb.drawwepnum(hdw.weaponstatus[1],20);
+		);else if(hdw.weaponstatus[1]>0)sb.drawwepnum(hdw.weaponstatus[1],10);
 	}
 	override string gethelptext(){
 		return
@@ -59,7 +68,7 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 		return 2+(weaponstatus[STUNGUNS_BATTERY]<0?0:1);
 	}
 	override double weaponbulk(){
-		return 30+(weaponstatus[STUNGUNS_BATTERY]>=0?ENC_BATTERY_LOADED:0);
+		return 30+(weaponstatus[STUNGUNS_BATTERY]>=0?ENC_BATTERY_LOADED/2:0);
 	}
 	override void consolidate(){
 		CheckBFGCharge(STUNGUNS_BATTERY);
@@ -159,7 +168,7 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 					hdmobbase(victim).stunned+=(dmg<<2);
 					
 					//heat buildup, sets enemies on fire if tased for too long
-					hdmobbase(victim).A_GiveInventory("Heat",dmg*1.2);
+					hdmobbase(victim).A_GiveInventory("Heat",dmg*2);
 			        hdmobbase(victim).damagemobj(self,target,max(1,dmg>>2),"hot");
 		
 				}
@@ -169,7 +178,7 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
                 && !HDMobBase(victim).bNOINCAP 
                 && victim.health>0
                 && victim.health<=80
-				&& battery>5 //a weak battery will not be strong enough to incap
+				&& battery>3 //a weak battery will not be strong enough to incap
                 && victim.ResolveState("falldown")
                 && !victim.InStateSequence
                 (victim.CurState,victim.ResolveState("falldown")))
@@ -396,7 +405,7 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 		STNG C 0{
 			if(
 				invoker.weaponstatus[STUNGUNS_BATTERY]>=20
-				||!countinv("HDBattery")
+				||!countinv("HDMicroCell")
 			){return resolvestate("nope");}
 			invoker.weaponstatus[0]&=~STUNGUNF_JUSTUNLOAD;
 			return resolvestate("unmag");
@@ -430,14 +439,14 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 	dropmag:
 		STNG D 0{
 			if(invoker.weaponstatus[STUNGUNS_BATTERY]>=0){
-				HDMagAmmo.SpawnMag(self,"HDBattery",invoker.weaponstatus[STUNGUNS_BATTERY]);
+				HDMagAmmo.SpawnMag(self,"HDMicroCell",invoker.weaponstatus[STUNGUNS_BATTERY]);
 			}
 			invoker.weaponstatus[STUNGUNS_BATTERY]=-1;
 		}goto magout;
 	pocketmag:
 		STNG D 6 offset(7,80){
 			if(invoker.weaponstatus[STUNGUNS_BATTERY]>=0){
-				HDMagAmmo.GiveMag(self,"HDBattery",invoker.weaponstatus[STUNGUNS_BATTERY]);
+				HDMagAmmo.GiveMag(self,"HDMicroCell",invoker.weaponstatus[STUNGUNS_BATTERY]);
 				A_StartSound("weapons/pocket",9);
 				A_MuzzleClimb(
 					randompick(-1,1)*frandom(-0.3,-1.2),
@@ -462,7 +471,7 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 			randompick(-1,1)*frandom(0.3,0.8)
 		);
 		STNG D 0{
-			let mmm=HDMagAmmo(findinventory("HDBattery"));
+			let mmm=HDMagAmmo(findinventory("HDMicroCell"));
 			if(mmm)invoker.weaponstatus[STUNGUNS_BATTERY]=mmm.TakeMag(true);
 		}
 	reloadend:
@@ -477,14 +486,14 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 		goto ready;
 
 	user3:
-		STNG D 0 A_MagManager("HDBattery");
+		STNG D 0 A_MagManager("HDMicroCell");
 		goto ready;
 
 	spawn:
 		TASR A -1;
 	}
 	override void initializewepstats(bool idfa){
-		weaponstatus[STUNGUNS_BATTERY]=20;
+		weaponstatus[STUNGUNS_BATTERY]=10;
 	}
 }
 enum taserstatus{
