@@ -1,5 +1,9 @@
-class PhazerPistol:HDHandgun{
+enum PhazerNums{
+PHAZER_CAP=5,
+PHAZER_MAXCAP=30}
 
+class PhazerPistol:HDHandgun{
+    
 	default{
 		//$Category "Weapons/Hideous Destructor"
 		//$Title "Phazer"
@@ -23,7 +27,13 @@ class PhazerPistol:HDHandgun{
 
 	override void tick(){
 		super.tick();
-		drainheat(TBS_HEAT,12);
+		let capcharge = weaponstatus[PHAZER_CAP];
+		let cellcharge = weaponstatus[TBS_BATTERY];
+		
+		if(capcharge<PHAZER_MAXCAP&&cellcharge>0){
+		    weaponstatus[PHAZER_CAP]++;
+		    if (!random(0,99))weaponstatus[TBS_BATTERY]--;
+		    }
 	}
 
 	override string pickupmessage(){
@@ -56,12 +66,15 @@ class PhazerPistol:HDHandgun{
 
 			sb.drawnum(hpl.countinv("HDMicroCell"),-46,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		}
+		
+		sb.drawwepnum(hdw.weaponstatus[PHAZER_CAP],PHAZER_MAXCAP,-16,-10);//capacitor charge indicator
+		
 		if(!hdw.weaponstatus[1])sb.drawstring(
 			sb.mamountfont,"00000",(-16,-9),sb.DI_TEXT_ALIGN_RIGHT|
 			sb.DI_TRANSLATABLE|sb.DI_SCREEN_CENTER_BOTTOM,
 			Font.CR_DARKGRAY
 		);else if(hdw.weaponstatus[1]>0)sb.drawwepnum(hdw.weaponstatus[1],10);
-	}
+		}
 
 	override string gethelptext(){
 		return
@@ -142,7 +155,7 @@ class PhazerPistol:HDHandgun{
 		}goto readyend;
 	fire:
 	hold:
-		#### A 0 A_JumpIf(invoker.weaponstatus[TBS_BATTERY]>0,"shoot");
+		#### A 0 A_JumpIf(invoker.weaponstatus[PHAZER_CAP]>10,"shoot");
 		goto nope;
 	shoot:
   #### A 0 {A_GunFlash();
@@ -151,14 +164,14 @@ class PhazerPistol:HDHandgun{
   #### C 1 {
 		//aftereffects
     A_MuzzleClimb(-frandom(0.5,1),-frandom(0.5,1));
-	 if(!random(0,9))invoker.weaponstatus[TBS_BATTERY]--;
+	invoker.weaponstatus[PHAZER_CAP]-=10;
 }
 		#### D 1 A_WeaponReady(WRF_NONE);
-		#### A 1{
+		#### A 0{
 			A_WeaponReady(WRF_NOFIRE);
 		}goto nope;
 	flash:
-		#### A 1 bright{
+		#### B 1 bright{
 			HDFlashAlpha(64);
 			A_Light2();
 		}
@@ -330,6 +343,7 @@ class PhazerPistol:HDHandgun{
 	}
 	override void initializewepstats(bool idfa){
 		weaponstatus[TBS_BATTERY]=10;
+		weaponstatus[PHAZER_CAP]=PHAZER_MAXCAP;
 	}
 	override void loadoutconfigure(string input){
 	}
