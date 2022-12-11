@@ -95,6 +95,7 @@ class PlasmaFoof:HDFireball{
   zap:
 		PLSS A 0 ZapPlasma();
 		PLSS AB 2 light("PLAZMABX1");//no corkscrews
+		PLSS A 0 A_JumpIf(vel.x < 1 || vel.y < 1, "death");//plasma sometimes gets stuck in walls if fired too close
 		loop;
 	death:
 		PLSS A 0 A_SprayDecal("CacoScorch",radius*1.5);
