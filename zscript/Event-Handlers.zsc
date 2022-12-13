@@ -138,7 +138,6 @@ class RadTechHandler : EventHandler
 		Array<string> wep_battery;  
 		wep_battery.push("PlasmaBuster");
 		wep_battery.push("MinervaChaingun");
-		wep_battery.push("HDStunGun");
 		addammo('HDBattery', wep_battery);
 		
 		// 12ga Flare Ammo. 
@@ -286,6 +285,8 @@ class RadTechHandler : EventHandler
 		Array<RTSpawnItemEntry> spawns_microcell;  
 		spawns_microcell.push(additementry('Clip', microcell_spawn_bias));
 		spawns_microcell.push(additementry('ClipMagPickup', microcell_spawn_bias));
+		spawns_microcell.push(additementry('HD9mMag15', microcell_spawn_bias));
+		spawns_microcell.push(additementry('HDBattery', microcell_spawn_bias));
 		// Actual add command.
 		additem('HDMicroCell', spawns_microcell, microcell_persistent_spawning);
 
