@@ -37,6 +37,12 @@ class HDMicroCell:HDBattery{
 		super.doeffect();
 	}
 	
+	override void Consolidate(){
+	    //not compatible with BFG auto-charge
+		ChargeMicroCell(usetop:true);
+		ChargeMicroCell();
+	}
+	
 	void ChargeMicroCell(int chargestodo=-1,bool usetop=false){
 		SyncAmount();
 		if(amount<1)return;
@@ -124,6 +130,7 @@ class HDMicroCell:HDBattery{
 	
 	override void GetItemsThatUseThis(){
 		itemsthatusethis.push("PhazerPistol");
+		itemsthatusethis.push("HDStunGun");
 	}
 	
 	states(actor){
