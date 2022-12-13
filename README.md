@@ -1,78 +1,132 @@
 # RadTechWeaponsPack
 
 A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyrad and more.
+**Requires [HDBulletLib-Recasted](https://github.com/Gay-Snake-Squad/HDBulletLib-Recasted)!**
 
-## **Requires [HDBulletLib-Recasted](https://github.com/Gay-Snake-Squad/HDBulletLib-Recasted)!**
+## List of weapons and loadout codes
 
-List of weapons and loadout codes:
+## Bernoulli M1053 Less-Lethal Shotgun
 
-Bernoulli M1053 Less-Lethal Shotgun [llh] (Less-Lethal shells - [lls])
-
-- A polymer-based shotgun designed for riot control and crowd dispersion.
-     Chambered only for the use of less-lethal shells, which contain
-     a load of rubberized buckshot pellets. Useful for situations where
-     maintaining a low fatality count is crucial.
+* **Actor Class**: `LLHunter`
+* **Loadout Code**: `llh`
+* **Ammunition Code**: `lls`
+  * A polymer-based shotgun designed for riot control and crowd dispersion. It's chambered for Less-Lethal shotgun shells, which contain a load of rubberized buckshot pellets. Useful for situations where a low fatality count is crucial.
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/lesslethalhunter.png)
 
-Ithaca M37 Combat Shotgun [csg] - (Shells [shl])
+### Controls
 
-- A compact shotgun often seen in the hands of space marines throughout the galaxy.
-     Despite having no side saddles, or a butt stock to attach them to, in the right
-     hands, it's still just as deadly as any other shotgun. Toss one in your pack the
-     next time you roll out, it just might come in handy.
+* **Fire**: Shoot
+* **Alt-Fire**: Pump
+* **Reload**: Reload (side saddles first)
+* **Alt-Reload**: Reload (pockets first)
+* **Firemode + Reload**: Load side saddles only
+* **Unload**: Unload
+
+## Ithaca M37 Combat Shotgun
+
+* **Actor Class**: `HDCombatShotgun`
+* **Loadout Code**: `csg`
+* **Ammunition Code**: `shl`
+  * A compact shotgun often seen in the hands of space marines throughout the galaxy. Despite having no side saddles, or a butt stock to attach them to, in the right hands it's just as deadly as any other shotgun. Toss one in your pack the next time you leave base, it might become incredibly handy.
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/combatshotgun.png)
 
-Delta Elite 10mm Pistol [p1m] (Magazines - [sc8])
+### Controls
 
-- A handgun released in the late 80s, adopted by the FBI following
-     the aftermath of a tragic shooting incident that resulted in the
-     deaths of 2 special agents. This pistol offers better penetration
-     and higher muzzle velocity than either 9mm or .355 firearms, but
-     is much harder to control due to increased recoil.
+* **Fire**: Shoot
+* **Alt-Fire**: Pump
+* **Reload**: Reload
+* **Unload**: Unload
+
+## Delta Elite 10mm Pistol
+
+* **Actor Class**: `HD10mmPistol`
+* **Loadout Code**: `p1m`
+* **Ammunition Code**: `sc8`
+  * A handgun released in the late 80s, adopted by the FBI following the aftermath of a tragic shooting incident that resulted in the deaths of two special angents. This pistol offers better penetration and higher muzzle velocity than either 9mm or .355 firearms, but is much harder to control due to the increased recoil.
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/deltaelite.png)
 
-Detective Special Snubnose Revolver - [snb] (.355 - [355])
+### Controls
 
-- A sidearm once popular with police and private investigators of
-     the past, this revolver fits better in your pocket, at a cost to
-     accuracy and firepower.
+* **Fire**: Shoot
+* **Alt-Reload**: Quick-Swap
+* **Reload**: Reload mag
+* **Use + Reload** Reload chamber
+* **User3** Magazine Manager
+* **Unload**: Unload
+
+## Detective Special Snubnose Revolver
+
+* **Actor Class**: `HDSnubNoseRevolver`
+* **Loadout Code**: `snb`
+* **Ammunition Code**: `355`
+  * A sidearm once popular with police and private investigators of the past, this revolver fits better in your pocket, at the cost of accuracy and firepower.
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/snubnoserevolver.png)
 
-Doomed Shotgun - [dsg] (Shells - [shl])
+### Controls
 
-- A modified Hunter designed to mimic the behavior of the vanilla
-     Doom shotgun, fitted with a duckbill choke for V-pattern spread
-     and the old-school pump-action animation.
+* **Fire**: Shoot | Close cylinder
+* **Alt-Fire**: Pull back hammer | Cycle Cylinder
+* **Alt. Reload or Firemode**: Quick-Swap
+* **Reload**: Open Cylinder | Load round (Hold Firemode to force using 9mm)
+* **Unload**: Open Cylinder | Hit extractor (Double tap to dump live rounds)
+* **Zoom**: Reverse cylinder cycle
+
+## Doomed Hunter
+
+* **Actor Class**: `DoomHunter`
+* **Loadout Code**: `dsg`
+* **Ammunition Code**: `shl`
+  * A modified hunter designed to mimic the behavior of the vanilla Doom shotgun, fitted with a duckbill choke for a V-shaped spread pattern and an old-school pumping animation
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/doomedhunter.png)
 
-DM-93 Plasma Rifle [d93] (Batteries - [bat])
+### Controls
 
-- An revised version of the "Thunder Buster" particle beam gun. After
-    receiving a disturbing number of incident reports involving self-
-    detonations caused by careless use of the Thunder Buster, UAC tasked
-    a junior reseacher with finding a solution to this problem. The answer
-    was found when they tweaked the ion emitter so that the plasma particles
-    are contained in a electromagnetic field which holds it together until
-    it impacts a target. This plasma has a smaller, but much safer blast
-    radius, so direct contact is required to cause maximum damage. Auto-fire
-    emits an accurate stream of projectiles, while Burst-fire shoots out a
-    spread of multiple shots, useful for close encounters of the demon kind.
+* **Fire**: Shoot
+* **Alt-Fire**: Pump
+* **Reload**: Reload (side saddles first)
+* **Alt-Reload**: Reload (pockets first)
+* **Firemode**: Pump/Semi
+* **Firemode + Reload**: Load side saddles only
+* **Unload**: Unload
+* **Use + Unload** Steal ammo from Slayer
+
+## DM-93 Plasma Rifle
+
+* **Actor Class**: `PlasmaBuster`
+* **Loadout Code**: `d93`
+* **Ammunition Code**: `bat`
+  * A revised version of the "Thunder Buster" particle beam gun. After receiving a disturbing number of incident reports involving self-detonations caused by careless use of the Thunder Buster, UAC tasked a junior researcher with finding a solution to this problem. The answer was found when they tweaked the ion emitter so that the plasma particles are contained an electromagnetic field which holds it together until it impacts a target. This plasma has a smaller, but safer blast radius so direct contact is required to cause maximum damage. Automatic fire emits an accurate stream of projectiles, while burst-fire shoots out a spread of multiple shots intended for close-quarters encounters.
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/dm93.png)
 
-Flare Guns [FGN] [FGM] (Flare shells - [fsh])
+### Controls
 
-- A common survival tool, useful for lighting up dark areas,
-     or the occasional zombie or two. Can also fire buckshot shells,
-     but only once before disintegrating. The metal version is less
-     fragile, but much heavier.
+* **Fire**: Automatic fire
+* **Alt-Fire**: Burst fire
+* **Reload**: Reload battery
+* **Unload**: Unload battery
+
+## Flare Guns
+
+* **Actor Class**: `FireBlooper | MetalFireBlooper`
+* **Loadout Codes**: `fgn | fgm`
+* **Ammunition Code**: `fsh`
+  * A common survival tool, useful for lighting up dark areas, or the occasional foe. Both are also capable of firing 12-gauge buckshot shells, but the plastic variant can't take as much abuse.
 
 ![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/flareguns.png)
+
+### Controls
+
+* **Fire**: Shoot
+* **Alt-Fire or Firemode**: Quick-Swap (if available)
+* **Reload**: Reload flare shell
+* **Alt. Reload**: Load a shotgun shell
+* **Unload**: Unload
 
 Juan 9mm 'Horseshoe' Pistol - [jua] (Horseshoe mags - [j30])
 
