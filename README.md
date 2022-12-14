@@ -549,7 +549,7 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 * **Ammunition Code**: `mcl`
   * A "sidearm" version of the Plasma Rifle. Fires in semi-auto only to compensate for its reduced power output, Uses Micro-Cell Batteries. It uses a compact version of the cell battery, which has half the charge and bulk of a full-sized cell.
 
-![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/Stun.png)
+![Thumbnail](https://github.com/Gay-Snake-Squad/RTWP-ImageHosting/blob/main/Screenshots/Phazer.png)
 
 ### Phazer Pistol Settings
 
