@@ -14,9 +14,9 @@ class HDB_Plasma:HDBulletActor{
 	    TNT1 A 0 A_SpawnItemEx(
 	                "PlasmaFoof",
 	                0, 0, 0,
-                    invoker.velx,
-                    invoker.vely,
-                    invoker.velz,
+                    invoker.vel.x,
+                    invoker.vel.y,
+                    invoker.vel.z,
                     invoker.angle,
 	                SXF_TRANSFERPOINTERS);
 		stop;
