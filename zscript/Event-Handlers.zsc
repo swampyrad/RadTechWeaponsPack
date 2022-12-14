@@ -127,7 +127,9 @@ class RadTechHandler : EventHandler
 	{
 		cvarsAvailable = true;
 
+		// --------------------
 		// Ammo and Magazine Association
+		// --------------------
 	
 		// HDBattery. 
 		Array<string> wep_battery;  
@@ -242,7 +244,11 @@ class RadTechHandler : EventHandler
 		// 7mm Recast
 		Array<string> wep_7mmR;
 		wep_7mmR.push("ObrozzPistol");
-		addammo('SevenMilAmmoRecast', wep_7mmR)	
+		addammo('SevenMilAmmoRecast', wep_7mmR);
+
+		// --------------------
+		// Weapon/Item Spawns
+		// --------------------
 
 		// Stun Gun
 		Array<RTSpawnItemEntry> spawns_stungun;
