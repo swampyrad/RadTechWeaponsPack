@@ -593,6 +593,7 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 * Phazer weapon sprites by Mike12, JAM Software, and PaulNWN
 * Micro-Cell code based off HDBattery code by mc76
 * Phazer and Micro-Cell pickup sprites by Swampyrad
+* Ted the Dragon for various code, organization and documentation improvements.
 
 ## Extra thanks to
 
