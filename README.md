@@ -66,9 +66,9 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 
 ### Delta Elite Settings
 
-* **Spawn Bias**: `tenpis_handgun_spawn_bias` - How common the Ithaca M37 spawns on Hunters. Lower is more common.
+* **Spawn Bias**: `tenpis_handgun_spawn_bias` - How common the Delta Elite spawns on Handguns. Lower is more common.
   * `19` = Default Spawn Chance
-* **Persistent Spawning**: `cshotgun_persistent_spawning` - If the Ithaca M37 can spawn after mapload.
+* **Persistent Spawning**: `tenpis_persistent_spawning` - If the Delta Elite can spawn after mapload.
   * `False` = Default Value
   * `True` = Enables persistency for spawning
 
@@ -92,9 +92,9 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 
 ### Detective Special Settings
 
-* **Spawn Bias**: `snose_pistol_spawn_bias` - How common the Detective Special spawns on Pistols. Lower is more common.
+* **Spawn Bias**: `snose_pistol_spawn_bias` - How common the Detective Special spawns on Handguns. Lower is more common.
   * `19` = Default Spawn Chance
-* **Persistent Spawning**: `snose_persistent_spawning` - If the Ithaca M37 can spawn after mapload.
+* **Persistent Spawning**: `snose_persistent_spawning` - If the Detective Special can spawn after mapload.
   * `False` = Default Value
   * `True` = Enables persistency for spawning
 
@@ -120,7 +120,7 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 
 * **Spawn Bias**: `dHunt_shotgun_spawn_bias` - How common the Doomed Hunter spawns on Shotguns. Lower is more common.
   * `19` = Default Spawn Chance
-* **Persistent Spawning**: `dHunt_persistent_spawning` - If the Ithaca M37 can spawn after mapload.
+* **Persistent Spawning**: `dHunt_persistent_spawning` - If the Doomed Hunter can spawn after mapload.
   * `False` = Default Value
   * `True` = Enables persistency for spawning
 
@@ -170,19 +170,19 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 
 ### Flare Gun Settings
 
-* **Spawn Bias**: `fl_weapon_spawn_bias` - How common the Flare Gun spawns on various weapons. Lower is more common.
+* **Spawn Bias**: `fl_weapon_spawn_bias` - How common the Plastic Flare Gun spawns on various weapons. Lower is more common.
   * `19` = Default Spawn Chance
-* **Drop Bias**: `fl_weapon_drop_chance_bias` - How common the Flare Gun drops from enemies. Lower is more common.
+* **Drop Bias**: `fl_weapon_drop_chance_bias` - How common the Plastic Flare Gun drops from enemies. Lower is more common.
   * `19` = Default Spawn Chance
-* **Persistent Spawning**: `fl_weapon_persistent_spawning` - If the DM-93 Plasma Rifle can spawn after mapload.
+* **Persistent Spawning**: `fl_weapon_persistent_spawning` - If the Plastic Flare Gun can spawn after mapload.
   * `False` = Default Value
   * `True` = Enables persistency for spawning
 
-* **Spawn Bias**: `fl_metal_spawn_bias` - How common the Flare Gun spawns on various weapons. Lower is more common.
+* **Spawn Bias**: `fl_metal_spawn_bias` - How common the Metal Flare Gun spawns on various weapons. Lower is more common.
   * `49` = Default Spawn Chance
-* **Drop Bias**: `fl_metal_drop_chance_bias` - How common the Flare Gun drops from enemies. Lower is more common.
+* **Drop Bias**: `fl_metal_drop_chance_bias` - How common the Metal Flare Gun drops from enemies. Lower is more common.
   * `49` = Default Spawn Chance
-* **Persistent Spawning**: `fl_metal_persistent_spawning` - If the DM-93 Plasma Rifle can spawn after mapload.
+* **Persistent Spawning**: `fl_metal_persistent_spawning` - If the Metal Flare Gun can spawn after mapload.
   * `False` = Default Value
   * `True` = Enables persistency for spawning
 
@@ -272,9 +272,9 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 
 ### M-211 Sigcow Settings
 
-* **Spawn Bias**: `sigcow_cbox_spawn_bias` - How common the Hacked ZM66 spawns on Clip Boxes. Lower is more common.
+* **Spawn Bias**: `sigcow_cbox_spawn_bias` - How common the M-211 Sigcow spawns on Clip Boxes. Lower is more common.
   * `19` = Default Spawn Chance
-* **Persistent Spawning**: `sigcow_persistent_spawning` - If the Hacked ZM66 can spawn after mapload.
+* **Persistent Spawning**: `sigcow_persistent_spawning` - If the M-211 Sigcow can spawn after mapload.
   * `False` = Default Value
   * `True` = Enables persistency for spawning
 
@@ -306,7 +306,7 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
   * `24` = Default Spawn Chance
 * **Spawn Bias**: `minerva_smg_spawn_bias` - How common the Minerva spawns on SMGs. Lower is more common.
   * `19` = Default Spawn Chance
-* **Persistent Spawning**: `minerva_persistent_spawning` - If the Hacked ZM66 can spawn after mapload.
+* **Persistent Spawning**: `minerva_persistent_spawning` - If the Minerva can spawn after mapload.
   * `False` = Default Value
   * `True` = Enables persistency for spawning
 
@@ -394,9 +394,9 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 
 ### Explosive Shotgun Settings
 
-* **Spawn Bias**: `esg_shotgun_spawn_bias` - How common the Single-Action spawns on Handguns. Lower is more common.
+* **Spawn Bias**: `esg_shotgun_spawn_bias` - How common the Explosive Shotgun spawns on Hunters. Lower is more common.
   * `49` = Default Spawn Chance
-* **Persistent Spawning**: `esg_persistent_spawning` - If the Single-Action can spawn after mapload.
+* **Persistent Spawning**: `esg_persistent_spawning` - If the Explosive Shotgun can spawn after mapload.
   * `False` = Default Value
   * `True` = Enables persistency for spawning
 
@@ -421,13 +421,13 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 
 ### Colt 1911 Settings
 
-* **Spawn Bias**: `colt1911_spawn_bias` - How common the Single-Action spawns on Handguns. Lower is more common.
+* **Spawn Bias**: `colt1911_spawn_bias` - How common the Colt 1911 spawns on Handguns. Lower is more common.
   * `19` = Default Spawn Chance
 * **Spawn Bias**: `colt1911_ammobox_spawn_bias` - How common the Colt 1911 spawns on ammo boxes. Lower is more common.
   * `19` = Default Spawn Chance
 * **Spawn Bias**: `colt1911_mags_spawn_bias` - How common the Colt 1911's mags spawn on magazines. Lower is more common.
   * `19` = Default Spawn Chance
-* **Persistent Spawning**: `colt1911_persistent_spawning` - If the Single-Action can spawn after mapload.
+* **Persistent Spawning**: `colt1911_persistent_spawning` - If the Colt 1911 can spawn after mapload.
   * `False` = Default Value
   * `True` = Enables persistency for spawning
 
@@ -555,7 +555,7 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 
 * **Spawn Bias**: `phazer_spawn_bias` - How often the Phazer spawns on Clip Boxes. Lower is more common.
   * `19` = Default Spawn Chance
-* **Persistent Spawning**: `phazer_persistent_spawning` - If the Hush Puppy can spawn after mapload.
+* **Persistent Spawning**: `phazer_persistent_spawning` - If the Phazer can spawn after mapload.
   * `False` = Default Value
   * `True` = Enables persistency for spawning
 
