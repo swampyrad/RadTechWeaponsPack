@@ -54,9 +54,9 @@ server int sten_ammobox_spawn_bias = 19;
 server bool sten_persistent_spawning = false;
 
 // Juan
-server int ja_weapon_spawn_bias       = 19;
-server int ja_mag_spawn_bias          = 9;
-server int ja_firemode_chance_bias    = 49;
+server int ja_weapon_spawn_bias = 19;
+server int ja_mag_spawn_bias = 9;
+server int ja_firemode_chance_bias = 49;
 server int ja_weapon_drop_chance_bias = 49;
 
 // Doomed Hunter
