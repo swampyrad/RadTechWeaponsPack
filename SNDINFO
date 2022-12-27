@@ -66,15 +66,68 @@ $limit weapons/fgnblast 0
 flaregun/flareburn  FLARBURN
 $limit flaregun/flareburn 0
 
+// All this stuff below is made by Ted the Dragon and FDA, to be organized more later.
+// All of this is aliases of what the original sound was so it's still compatible with sound packs intended before this or for vanilla,
+// Though this still allows specifically replacing these sounds. - [Ted]
 
+// Taser
+$alias weapons/taseropen weapons/csawopen
+$alias weapons/taserload weapons/csawload
+$alias weapons/taserclose weapons/csawclose
 
-//Minerva [sound defs by FDA]
+// Sten
+$alias weapons/stenjam weapons/riflejam
+$alias weapons/stenmagclick weapons/smgmagclick
+$alias weapons/stenmagmove weapons/smgmagmove
 
-// For custom resounds. 
-// Format taken from hd's sndinfo lump. 
+// Snubnose
+$alias weapons/snubcyl weapons/deinocyl
+$alias weapons/snubload weapons/deinoload
+$alias weapons/snubopen weapons/deinoopen
+$alias weapons/snubclose weapons/deinoclose
+$alias weapons/snubeject weapons/deinoeject
+$alias weapons/snubclick weapons/deinoclick
+
+// Single-Action
+$alias weapons/singleactcyl weapons/deinocyl
+$alias weapons/singleactload weapons/deinoload
+$alias weapons/singleactopen weapons/deinoopen
+$alias weapons/singleactclose weapons/deinoclose
+$alias weapons/singleacteject weapons/deinoeject
+
+// Plasma Buster
+$alias weapons/pbust_arczap misc/arczap
+$alias weapons/pbust_x weapons/plasmax
+$alias weapons/pbust_fire weapons/plasmaf
+$alias weapons/pbust_s weapons/plasmas
+$alias weapons/pbust_open weapons/plasopen
+$alias weapons/pbust_load weapons/plasload
+$alias weapons/pbust_close weapons/plasclose
+$alias weapons/pbust_close2 weapons/plasclose2
+
+// Phazer
+$alias weapons/phazer_fire weapons/plasmaf
+$alias weapons/phazer_open weapons/plasopen
+$alias weapons/phazer_load weapons/plasload
+$alias weapons/phazer_close weapons/plasclose
+$alias weapons/phazer_close2 weapons/plasclose2
+
+// Obrozz
+$alias weapons/obrozz_fire weapons/bigrifle2
+$alias weapons/obrozz_boltfwd weapons/boltfwd
+$alias weapons/obrozz_load weapons/bossload
+$alias weapons/obrozz_click weapons/rifleclick
+$alias weapons/obrozz_boltback weapons/boltback
+$alias weapons/obrozz_click2 weapons/rifleclick2
+$alias weapons/obrozz_loadm weapons/bossloadm
+
+// Minerva
 weapons/minerva    dspistol
 $limit weapons/minerva  0
 
+$alias weapons/minerva_fmswitch weapons/fmswitch
+$alias weapons/minerva_click weapons/rifleclick
+$alias weapons/minerva_click2 weapons/rifleclick2
 weapons/mnvabelt      dsbelt
 weapons/mnvamag       dsriflod
 weapons/mnvaumag      dsrifclk
@@ -91,6 +144,98 @@ $random weapons/mnvafix     {weapons/mnvashunt weapons/mnvaforcemag weapons/mnva
 $random weapons/mnvatryfix  {weapons/mnvashunt weapons/mnvaforcemag}
 $random weapons/mnvatryfix2 {weapons/mnvashunt weapons/mnvaopen1 weapons/mnvaumag weapons/mnvaforcemag weapons/mnvaextract weapons/bigcrack weapons/pocket}
 
-// Worldfar for shooting.
 world/mnvafar   dsriffar    $limit world/mnvafar 0
 
+// Less-Lethal Hunter
+$alias weapons/lesslethalhunter weapons/Hunter
+$alias weapons/llh_far world/shotgunfar
+$alias weapons/llh_reload weapons/huntreload
+$alias weapons/llh_short weapons/huntshort
+$alias weapons/llh_rackup weapons/huntrackup
+$alias weapons/llh_rackdown weapons/huntrackdown
+$alias weapons/llh_open weapons/huntopen
+$alias weapons/llh_rack weapons/huntrack
+
+// Juan.
+$alias weapons/juan_fire weapons/pistol
+$alias weapons/juan_dry weapons/pistoldry
+
+$alias weapons/juan_chamber1 weapons/pischamber1
+$alias weapons/juan_chamber2 weapons/pischamber2
+$alias weapons/juan_magclick weapons/pismagclick
+
+// Hushpuppy
+$alias weapons/hushpup_fire weapons/sten
+
+$alias weapons/hushpup_magclick weapons/pismagclick
+$alias weapons/hushpup_chamber1 weapons/pischamber1
+$alias weapons/hushpup_chamber2 weapons/pischamber2
+
+// I'd do the hacked zm but as it's basically just a zm i don't really feel like doing it.
+// Imagine that it's all $alias'd here then just use the ZM66 sounds :) - [Ted]
+
+// Single-Action but Gold
+$alias weapons/goldsingleact_cyl weapons/deinocyl
+$alias weapons/goldsingleact_load weapons/deinoload
+$alias weapons/goldsingleact_open weapons/deinoopen
+$alias weapons/goldsingleact_close weapons/deinoclose
+$alias weapons/goldsingleact_eject weapons/deinoeject
+$alias weapons/goldsingleact_click weapons/deinoclick
+
+// Frag Cannon
+$alias weapons/fragcannon_open weapons/rockopen
+$alias weapons/fragcannon_open2 weapons/rockopen2
+$alias weapons/fragcannon_reload weapons/rockreload
+
+// Flare Gun(s)
+// honestly the sounds for this could probably be changed a decent bit but I'll do that at a later date. - [Ted]
+$alias weapons/flaregun_shellfire weapons/hunter
+$alias weapons/flaregun_shellfar world/shotgunfar
+
+// Explosive Hunter
+$alias weapons/esg_fire weapons/hunter
+$alias weapons/esg_firefar world/shotgunfar
+$alias weapons/esg_reload weapons/huntreload
+$alias weapons/esg_short weapons/huntshort
+$alias weapons/esg_rackup weapons/huntrackup
+$alias weapons/esg_rackdown weapons/huntrackdown
+$alias weapons/esg_open weapons/huntopen
+$alias weapons/esg_rack weapons/huntrack
+
+// Dynamite
+$alias weapons/dynamite_stick doorbust/stick
+$alias weapons/dynaknock misc/fragknock
+$alias weapons/dynaroll misc/fragroll
+
+// Doomed Hunter
+$alias weapons/doomhunt_fire weapons/hunter
+$alias weapons/dhunt_far world/shotgunfar
+$alias weapons/dhunt_reload weapons/huntreload
+$alias weapons/dhunt_short weapons/huntshort
+$alias weapons/dhunt_rackup weapons/huntrackup
+$alias weapons/dhunt_rackdown weapons/huntrackdown
+$alias weapons/dhunt_open weapons/huntopen
+$alias weapons/dhunt_rack weapons/huntrack
+
+// Combat Shotgun
+$alias weapons/csg_fire weapons/hunter
+$alias weapons/csg_firefar world/shotgunfar
+$alias weapons/csg_reload weapons/huntreload
+$alias weapons/csg_short weapons/huntshort
+$alias weapons/csg_rackup weapons/huntrackup
+$alias weapons/csg_rackdown weapons/huntrackdown
+$alias weapons/csg_open weapons/huntopen
+
+// Colt 1911
+$alias weapons/1911dryfire wewapons/pistoldry
+
+$alias weapons/1911chamber1 weapons/pischamber1
+$alias weapons/1911chamber2 weapons/pischamber2
+$alias weapons/1911_magclick weapons/pismagclick
+
+// 10mm Pistol
+$alias weapons/10pis_dry weapons/pistoldry
+
+$alias weapons/10pis_chamber1 weapons/pischamber1
+$alias weapons/10pis_chamber2 weapons/pischamber2
+$alias weapons/10pis_magclick weapons/pismagclick

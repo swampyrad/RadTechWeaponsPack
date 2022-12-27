@@ -159,7 +159,7 @@ class PhazerPistol:HDHandgun{
 		goto nope;
 	shoot:
   #### A 0 {A_GunFlash();
-            A_StartSound("weapons/plasmaf");}
+            A_StartSound("weapons/phazer_fire");}
   #### B 1 bright {HDBulletActor.FireBullet(self,"HDB_Plasma");}
   #### C 1 {
 		//aftereffects
@@ -263,7 +263,7 @@ class PhazerPistol:HDHandgun{
 			A_MuzzleClimb(frandom(-1.2,-2.4),frandom(1.2,2.4));
 		}
 		#### A 3 offset(0,35);
-		#### A 2 offset(0,40) A_StartSound("weapons/plasopen",8);
+		#### A 2 offset(0,40) A_StartSound("weapons/phazer_open",8);
 		#### A 0{
 			int bat=invoker.weaponstatus[TBS_BATTERY];
 			A_MuzzleClimb(frandom(-1.2,-2.4),frandom(1.2,2.4));
@@ -317,8 +317,8 @@ class PhazerPistol:HDHandgun{
 		#### A 2 offset(0,44) A_StartSound("weapons/pocket",9);
 		#### A 4 offset(0,43) A_StartSound("weapons/pocket",9);
 		#### A 6 offset(0,42);
-		#### A 8 offset(0,38)A_StartSound("weapons/plasload",8);
-		#### A 4 offset(0,36)A_StartSound("weapons/plasclose",8);
+		#### A 8 offset(0,38)A_StartSound("weapons/phazer_load",8);
+		#### A 4 offset(0,36)A_StartSound("weapons/phazer_close",8);
 
 		#### A 0{
 			let mmm=HDMagAmmo(findinventory("HDMicroCell"));
@@ -327,7 +327,7 @@ class PhazerPistol:HDHandgun{
 
 	reload3:
 		#### A 6 offset(0,40){
-			A_StartSound("weapons/plasclose2",8);
+			A_StartSound("weapons/phazer_close2",8);
 		}
 		#### A 2 offset(0,36);
 		#### A 4 offset(0,33);
@@ -344,7 +344,5 @@ class PhazerPistol:HDHandgun{
 	override void initializewepstats(bool idfa){
 		weaponstatus[TBS_BATTERY]=10;
 		weaponstatus[PHAZER_CAP]=PHAZER_MAXCAP;
-	}
-	override void loadoutconfigure(string input){
 	}
 }

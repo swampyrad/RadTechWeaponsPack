@@ -334,32 +334,6 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 
 			aaa.destroy();
 		}
-		if(!punchee)invoker.targethealth=0;else{
-			invoker.targethealth=punchee.health;
-			invoker.targetspawnhealth=punchee.spawnhealth();
-			invoker.targettimer=0;
-			if(
-				(
-					punchee.bismonster
-					||!!punchee.player
-				)
-				&&countinv("HDZerk")>HDZerk.HDZERK_COOLOFF
-			){
-				if(
-					punchee.bcorpse
-					&&puncheewasalive
-				){
-					A_StartSound("weapons/zerkding2",CHAN_WEAPON,CHANF_OVERLAP|CHANF_LOCAL);
-					givebody(10);
-					if(onr){
-						onr.fatigue-=onr.fatigue>>2;
-						onr.usegametip("\cfK I L L !");
-					}
-				}else{
-					A_StartSound("weapons/zerkding",CHAN_WEAPON,CHANF_OVERLAP|CHANF_LOCAL);
-				}
-			}
-		}
 	}
 
 	states{
@@ -427,9 +401,9 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 		STNG D 2 offset(0,52);
 		STNG D 3 offset(2,62);
 		STNG D 4 offset(4,74);
-		STNG D 7 offset(6,78)A_StartSound("weapons/csawopen",8);
+		STNG D 7 offset(6,78)A_StartSound("weapons/taseropen",8);
 		STNG D 0{
-			A_StartSound("weapons/csawload",8,CHANF_OVERLAP);
+			A_StartSound("weapons/taserload",8,CHANF_OVERLAP);
 			if(
 				!PressingUnload()&&!PressingReload()
 			){
@@ -476,7 +450,7 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 		}
 	reloadend:
 		STNG D 6 offset(5,72);
-		STNG D 5 offset(4,74)A_StartSound("weapons/csawclose",8);
+		STNG D 5 offset(4,74)A_StartSound("weapons/taserclose",8);
 		STNG D 4 offset(2,62);
 		STNG D 3 offset(0,52);
 		STNG D 4 offset(0,44);
@@ -503,6 +477,3 @@ enum taserstatus{
 	STUNGUNS_BATTERY=1,
 	STUNGUNS_INERTIA=2,
 };
-
-
-

@@ -338,7 +338,7 @@ class HDHorseshoePistol:HDHandgun{
 		#### B 3 offset(0,34);
 		#### C 4 offset(0,37){
 			A_MuzzleClimb(frandom(0.4,0.5),-frandom(0.6,0.8));
-			A_StartSound("weapons/pischamber2",8);
+			A_StartSound("weapons/juan_chamber2",8);
 			int psch=invoker.weaponstatus[HPISS_CHAMBER];
 			invoker.weaponstatus[HPISS_CHAMBER]=0;
 			if(psch==2){
@@ -379,7 +379,7 @@ class HDHorseshoePistol:HDHandgun{
 			A_EjectCasing("HDSpent9mm",-frandom(89,92),(frandom(6,7),0,0),(13,0,0));
 			invoker.weaponstatus[HPISS_CHAMBER]=0;
 			if(invoker.weaponstatus[HPISS_MAG]<1){
-				A_StartSound("weapons/pistoldry",8,CHANF_OVERLAP,0.9);
+				A_StartSound("weapons/juan_dry",8,CHANF_OVERLAP,0.9);
 				setweaponstate("nope");
 			}
 		}
@@ -428,7 +428,7 @@ class HDHorseshoePistol:HDHandgun{
 			-frandom(muzzle1 + muzzlemod, muzzle2 + (muzzlemod/2)),
 			-frandom(muzzle3 + muzzlemod, muzzle4 + (muzzlemod/2)));
 		}
-		---- A 0 A_StartSound("weapons/pistol",CHAN_WEAPON);
+		---- A 0 A_StartSound("weapons/juan_fire",CHAN_WEAPON);
 		---- A 0 A_Light0();
 		stop;
 	unload:
@@ -451,7 +451,7 @@ class HDHorseshoePistol:HDHandgun{
 			if(countinv("HDPistolAmmo")){
 				A_TakeInventory("HDPistolAmmo",1,TIF_NOTAKEINFINITE);
 				invoker.weaponstatus[HPISS_CHAMBER]=2;
-				A_StartSound("weapons/pischamber1",8);
+				A_StartSound("weapons/juan_chamber1",8);
 			}
 		}
 		#### B 2 offset(5,76);
@@ -489,7 +489,7 @@ class HDHorseshoePistol:HDHandgun{
 		---- A 2 offset(2,42);
 		---- A 3 offset(3,46)
 		{
-			A_StartSound("weapons/pismagclick",8,CHANF_OVERLAP);
+			A_StartSound("weapons/juan_magclick",8,CHANF_OVERLAP);
 		}
 		---- A 0{
 			int pmg=invoker.weaponstatus[HPISS_MAG];
@@ -532,7 +532,7 @@ class HDHorseshoePistol:HDHandgun{
 			let mmm=hdmagammo(findinventory("hdhorseshoe9m"));
 			if(mmm){
 				invoker.weaponstatus[HPISS_MAG]=mmm.TakeMag(true);
-				A_StartSound("weapons/pismagclick",8);
+				A_StartSound("weapons/juan_magclick",8);
 				invoker.MAG_30 = true;
 				invoker.MAG_15 = false;
 				setweaponstate("reloadend");
@@ -567,7 +567,7 @@ class HDHorseshoePistol:HDHandgun{
 		---- A 2 offset(2,42);
 		---- A 3 offset(3,46)
 		{
-			A_StartSound("weapons/pismagclick",8,CHANF_OVERLAP);
+			A_StartSound("weapons/juan_magclick",8,CHANF_OVERLAP);
 		}
 		---- A 0{
 			int pmg=invoker.weaponstatus[HPISS_MAG];
@@ -609,7 +609,7 @@ class HDHorseshoePistol:HDHandgun{
 			let mmm=hdmagammo(findinventory("hd9mmag15"));
 			if(mmm){
 				invoker.weaponstatus[HPISS_MAG]=mmm.TakeMag(true);
-				A_StartSound("weapons/pismagclick",8);
+				A_StartSound("weapons/juan_magclick",8);
 				invoker.MAG_15 = true;
 				invoker.MAG_30 = false;
 				setweaponstate("reloadend");

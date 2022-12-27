@@ -525,7 +525,7 @@ class HDDynamiteRoller:HDActor{
 		-noextremedeath -floorclip +shootable +noblood +forcexybillboard
 		+activatemcross -noteleport +noblockmonst +explodeonwater
 		+missile +bounceonactors +usebouncestate
-			bouncetype "doom";bouncesound "misc/fragknock";
+			bouncetype "doom";bouncesound "weapons/dynaknock";
 		radius 2;height 2;damagetype "none";
 		scale 0.3;
 		obituary "%o was blown to smitheteens by %k.";
@@ -546,8 +546,8 @@ class HDDynamiteRoller:HDActor{
 		DYNA A 0 A_StartSound("weapons/dyna_spoonoff");
 	spawn2:
 		#### BCD 2{
-			if(abs(vel.z-keeprolling.z)>10)A_StartSound("misc/fragknock",CHAN_BODY);
-			else if(floorz>=pos.z)A_StartSound("misc/fragroll");
+			if(abs(vel.z-keeprolling.z)>10)A_StartSound("weapons/dynaknock",CHAN_BODY);
+			else if(floorz>=pos.z)A_StartSound("weapons/dynaroll");
 			keeprolling=vel;
 			if(abs(vel.x)<0.4 && abs(vel.y)<0.4) setstatelabel("death");
 		}loop;
@@ -559,7 +559,7 @@ class HDDynamiteRoller:HDActor{
 	death:
 		---- A 2{
 			if(abs(vel.z-keeprolling.z)>3){
-				A_StartSound("misc/fragknock",CHAN_BODY);
+				A_StartSound("weapons/dynaknock",CHAN_BODY);
 				keeprolling=vel;
 			}
 			if(abs(vel.x)>0.4 || abs(vel.y)>0.4) setstatelabel("spawn");
@@ -737,7 +737,7 @@ class HDDynamite:SlowProjectile{
 			gr.fuze=self.fuze;
 			gr.vel=self.keeprolling;
 			gr.keeprolling=self.keeprolling;
-			gr.A_StartSound("misc/fragknock",CHAN_BODY);
+			gr.A_StartSound("weapons/dynaknock",CHAN_BODY);
 			HDMobAI.Frighten(gr,512);
 		}stop;
 	}

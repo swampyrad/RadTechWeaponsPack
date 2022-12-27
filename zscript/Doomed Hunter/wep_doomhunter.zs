@@ -51,8 +51,8 @@ override void postbeginplay(){
   HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random( 3, 5),speedfactor:speedfactor,amount:1);//9
   HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,aimoffx:random(-1, 1),speedfactor:speedfactor,amount:1);//10
 		let p=HDBulletActor.FireBullet(caller,"HDB_00",	spread:spread,speedfactor:speedfactor,amount:0);//this one's just so the script works
-		distantnoise.make(p,"world/shotgunfar");
-		caller.A_StartSound("weapons/hunter",CHAN_WEAPON);
+		distantnoise.make(p,"weapons/dhunt_far");
+		caller.A_StartSound("weapons/doomhunt_fire",CHAN_WEAPON);
 		return shotpower;
 	}
 	const HUNTER_MINSHOTPOWER=0.901;
@@ -203,7 +203,7 @@ override void postbeginplay(){
 		}
 		invoker.weaponstatus[DHUNS_TUBE]++;
 		invoker.handshells--;
-		A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+		A_StartSound("weapons/dhunt_reload",8,CHANF_OVERLAP);
 		return true;
 	}
 	action bool A_GrabShells(int maxhand=3,bool settics=false,bool alwaysone=false){
@@ -336,7 +336,7 @@ override void postbeginplay(){
 		SHTG AB 3 A_MuzzleClimb(0,frandom(0.6,1.));
 		SHTG C 2 A_JumpIf(pressingaltfire(),"longstroke");
 		SHTG CB 3 A_MuzzleClimb(0,-frandom(0.6,1.));
-		SHTG B 0 A_StartSound("weapons/huntshort",8);
+		SHTG B 0 A_StartSound("weapons/dhunt_short",8);
 		SHTG A 0 A_Refire("ready");
 		goto ready;
 	longstroke:
@@ -382,7 +382,7 @@ override void postbeginplay(){
 		SHTG D 1 offset(-4,42);
 		SHTG D 2 offset(-4,41);
 		SHTG D 3 offset(-4,40){
-			A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+			A_StartSound("weapons/dhunt_reload",8,CHANF_OVERLAP);
 			invoker.weaponstatus[DHUNS_CHAMBER]=2;
 			invoker.handshells--;
 			EmptyHand(careful:true);
@@ -416,7 +416,7 @@ override void postbeginplay(){
 				vel.z+sin(pitch)*random(4,6),
 				0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
 			);
-			if(chm)A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+			if(chm)A_StartSound("weapons/dhunt_reload",8,CHANF_OVERLAP);
 		}
 		SHTG D 5 offset(-4,41);
 		SHTG D 4 offset(-4,40) A_JumpIf(invoker.handshells>0,"rackloadone");
@@ -432,11 +432,11 @@ override void postbeginplay(){
 		SHTG A 0 A_ClearRefire();
 		goto ready;
 	playsgco:
-		TNT1 A 8 A_StartSound("weapons/huntrackup",8);
+		TNT1 A 8 A_StartSound("weapons/dhunt_rackup",8);
 		TNT1 A 0 A_StopSound(8);
 		stop;
 	playsgco2:
-		TNT1 A 8 A_StartSound("weapons/huntrackdown",8);
+		TNT1 A 8 A_StartSound("weapons/dhunt_rackdown",8);
 		TNT1 A 0 A_StopSound(8);
 		stop;
 	chamberauto:
@@ -535,7 +535,7 @@ override void postbeginplay(){
 			else if(invoker.handshells<1)setweaponstate("reloadstarthand");
 		}goto reloadashell;
 	reloadend:
-		SHTG C 4 offset(0,34) A_StartSound("weapons/huntopen",8);
+		SHTG C 4 offset(0,34) A_StartSound("weapons/dhunt_open",8);
 		SHTG C 1 offset(0,36) EmptyHand(careful:true);
 		SHTG C 1 offset(0,34);
 		SHTG CBA 3;
@@ -585,20 +585,20 @@ override void postbeginplay(){
 		}
 		SHTG BC 4 A_MuzzleClimb(frandom(1.2,2.4),-frandom(1.2,2.4));
 		SHTG C 1 offset(0,34);
-		SHTG C 1 offset(0,36) A_StartSound("weapons/huntopen",8);
+		SHTG C 1 offset(0,36) A_StartSound("weapons/dhunt_open",8);
 		SHTG C 1 offset(0,38);
 		SHTG C 4 offset(0,36){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
 			if(invoker.weaponstatus[DHUNS_CHAMBER]<1){
 				setweaponstate("unloadtube");
-			}else A_StartSound("weapons/huntrack",8,CHANF_OVERLAP);
+			}else A_StartSound("weapons/dhunt_rack",8,CHANF_OVERLAP);
 		}
 		SHTG D 8 offset(0,34){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
 			int chm=invoker.weaponstatus[DHUNS_CHAMBER];
 			invoker.weaponstatus[DHUNS_CHAMBER]=0;
 			if(chm>1){
-				A_StartSound("weapons/huntreload",8);
+				A_StartSound("weapons/dhunt_reload",8);
 				if(A_JumpIfInventory("HDShellAmmo",0,"null"))A_SpawnItemEx("HDFumblingShell",
 					cos(pitch)*8,0,height-7-sin(pitch)*8,
 					vel.x+cos(pitch)*cos(angle-random(86,90))*5,
@@ -631,7 +631,7 @@ override void postbeginplay(){
 				invoker.weaponstatus[DHUNS_TUBE]--;
 			}
 		}
-		SHTG C 4 offset(0,40) A_StartSound("weapons/huntreload",8);
+		SHTG C 4 offset(0,40) A_StartSound("weapons/dhunt_reload",8);
 		loop;
 	unloadloopend:
 		SHTG C 6 offset(1,41);

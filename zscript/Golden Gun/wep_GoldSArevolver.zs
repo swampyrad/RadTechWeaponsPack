@@ -171,7 +171,7 @@ if(ninemil>0){
 	}
 	action void A_RotateCylinder(bool clockwise=true){
 		invoker.RotateCylinder(clockwise);
-		A_StartSound("weapons/deinocyl",8);
+		A_StartSound("weapons/goldsingleact_cyl",8);
 	}
 	void RotateCylinder(bool clockwise=true){
 		if(clockwise){
@@ -202,16 +202,16 @@ if(ninemil>0){
 		class<inventory>ammotype=useninemil?"HDGold45LCAmmo":"HDGold45LCAmmo";
 		A_TakeInventory(ammotype,1,TIF_NOTAKEINFINITE);
 		invoker.weaponstatus[GSAS_CYL1]=useninemil?GSAS_NINEMIL:GSAS_MASTERBALL;
-		A_StartSound("weapons/deinoload",8,CHANF_OVERLAP);
+		A_StartSound("weapons/goldsingleact_load",8,CHANF_OVERLAP);
 	}
 	action void A_OpenCylinder(){
-		A_StartSound("weapons/deinoopen",8);
+		A_StartSound("weapons/goldsingleact_open",8);
 		invoker.weaponstatus[0]&=~GSAF_COCKED;
 		invoker.cylinderopen=true;
 		A_SetHelpText();
 	}
 	action void A_CloseCylinder(){
-		A_StartSound("weapons/deinoclose",8);
+		A_StartSound("weapons/goldsingleact_close",8);
 		invoker.cylinderopen=false;
 		A_SetHelpText();
 	}
@@ -240,7 +240,7 @@ if(ninemil>0){
 				invoker.weaponstatus[i]=0;
 			}
 		}
-		A_StartSound("weapons/deinoeject",8,CHANF_OVERLAP);
+		A_StartSound("weapons/goldsingleact_eject",8,CHANF_OVERLAP);
 	}
 	action void A_ExtractAll(){
 		double cosp=cos(pitch);
@@ -475,7 +475,7 @@ if(ninemil>0){
 	uncock:
 		#### C 1 offset(0,38);
 		#### B 1 offset(0,34);
-		#### A 2 offset(0,36) A_StartSound("weapons/deinoclick",8,CHANF_OVERLAP);
+		#### A 2 offset(0,36) A_StartSound("weapons/goldsingleact_click",8,CHANF_OVERLAP);
 		#### A 0 A_CockHammer(false);
 		goto nope;
 	reload:

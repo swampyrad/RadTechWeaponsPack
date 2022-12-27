@@ -40,8 +40,8 @@ class ExplosiveHunter:HDShotgunExplosive{
 		let p=HDBulletActor.FireBullet(caller,"HDB_12GuageSlugMissile",
 			spread:spread,speedfactor:speedfactor,amount:1
 		);
-		distantnoise.make(p,"world/shotgunfar");
-		caller.A_StartSound("weapons/hunter",CHAN_WEAPON);
+		distantnoise.make(p,"weapons/esg_firefar");
+		caller.A_StartSound("weapons/esg_fire",CHAN_WEAPON);
 		return shotpower;
 	}
 	const EXHUNTER_MINSHOTPOWER=0.901;
@@ -210,7 +210,7 @@ override void failedpickupunload(){
 		}
 		invoker.weaponstatus[EXHUNTS_TUBE]++;
 		invoker.exhandshells--;
-		A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+		A_StartSound("weapons/esg_reload",8,CHANF_OVERLAP);
 		return true;
 	}
 	action bool A_GrabShells(int maxhand=3,bool settics=false,bool alwaysone=false){
@@ -343,7 +343,7 @@ override void failedpickupunload(){
 		XLSG AE 1 A_MuzzleClimb(0,frandom(0.6,1.));
 		XLSG E 1 A_JumpIf(pressingaltfire(),"longstroke");
 		XLSG EA 1 A_MuzzleClimb(0,-frandom(0.6,1.));
-		XLSG E 0 A_StartSound("weapons/huntshort",8);
+		XLSG E 0 A_StartSound("weapons/esg_short",8);
 		XLSG E 0 A_Refire("ready");
 		goto ready;
 	longstroke:
@@ -389,7 +389,7 @@ override void failedpickupunload(){
 		XLSG F 1 offset(-4,42);
 		XLSG F 2 offset(-4,41);
 		XLSG F 3 offset(-4,40){
-			A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+			A_StartSound("weapons/esg_reload",8,CHANF_OVERLAP);
 			invoker.weaponstatus[EXHUNTS_CHAMBER]=2;
 			invoker.exhandshells--;
 			ExEmptyHand(careful:true);
@@ -423,7 +423,7 @@ override void failedpickupunload(){
 				vel.z+sin(pitch)*random(4,6),
 				0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
 			);
-			if(chm)A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+			if(chm)A_StartSound("weapons/esg_reload",8,CHANF_OVERLAP);
 		}
 		XLSG F 5 offset(-4,41);
 		XLSG F 4 offset(-4,40) A_JumpIf(invoker.exhandshells>0,"rackloadone");
@@ -439,11 +439,11 @@ override void failedpickupunload(){
 		XLSG A 0 A_ClearRefire();
 		goto ready;
 	playsgco:
-		TNT1 A 8 A_StartSound("weapons/huntrackup",8);
+		TNT1 A 8 A_StartSound("weapons/esg_rackup",8);
 		TNT1 A 0 A_StopSound(8);
 		stop;
 	playsgco2:
-		TNT1 A 8 A_StartSound("weapons/huntrackdown",8);
+		TNT1 A 8 A_StartSound("weapons/esg_rackdown",8);
 		TNT1 A 0 A_StopSound(8);
 		stop;
 	chamberauto:
@@ -542,7 +542,7 @@ override void failedpickupunload(){
 			else if(invoker.exhandshells<1)setweaponstate("reloadstarthand");
 		}goto reloadashell;
 	reloadend:
-		XLSG C 4 offset(0,34) A_StartSound("weapons/huntopen",8);
+		XLSG C 4 offset(0,34) A_StartSound("weapons/esg_open",8);
 		XLSG C 1 offset(0,36) ExEmptyHand(careful:true);
 		XLSG C 1 offset(0,34);
 		XLSG CBA 3;
@@ -594,20 +594,20 @@ override void failedpickupunload(){
 		}
 		XLSG BC 4 A_MuzzleClimb(frandom(1.2,2.4),-frandom(1.2,2.4));
 		XLSG C 1 offset(0,34);
-		XLSG C 1 offset(0,36) A_StartSound("weapons/huntopen",8);
+		XLSG C 1 offset(0,36) A_StartSound("weapons/esg_open",8);
 		XLSG C 1 offset(0,38);
 		XLSG C 4 offset(0,36){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
 			if(invoker.weaponstatus[EXHUNTS_CHAMBER]<1){
 				setweaponstate("unloadtube");
-			}else A_StartSound("weapons/huntrack",8,CHANF_OVERLAP);
+			}else A_StartSound("weapons/esg_rack",8,CHANF_OVERLAP);
 		}
 		XLSG D 8 offset(0,34){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
 			int chm=invoker.weaponstatus[EXHUNTS_CHAMBER];
 			invoker.weaponstatus[EXHUNTS_CHAMBER]=0;
 			if(chm>1){
-				A_StartSound("weapons/huntreload",8);
+				A_StartSound("weapons/esg_reload",8);
 				if(A_JumpIfInventory("HDExplosiveShellAmmo",0,"null"))A_SpawnItemEx("HDFumblingExplosiveShell",
 					cos(pitch)*8,0,height-7-sin(pitch)*8,
 					vel.x+cos(pitch)*cos(angle-random(86,90))*5,
@@ -640,7 +640,7 @@ override void failedpickupunload(){
 				invoker.weaponstatus[EXHUNTS_TUBE]--;
 			}
 		}
-		XLSG C 4 offset(0,40) A_StartSound("weapons/huntreload",8);
+		XLSG C 4 offset(0,40) A_StartSound("weapons/esg_reload",8);
 		loop;
 	unloadloopend:
 		XLSG C 6 offset(1,41);

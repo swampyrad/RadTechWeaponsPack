@@ -63,7 +63,7 @@ version "4.8"
 #include "zscript/Doomed Hunter/wep_doomhunter.zs"
 
 // Hacked ZM66
-#include "zscript/Hacked ZM66/zscript.hackedzm66.zs"
+#include "zscript/Hacked ZM66/wep_hackedzm66.zs"
 
 // Plasma Buster
 #include "zscript/Plasma Buster/wep_plasmabuster.zs"

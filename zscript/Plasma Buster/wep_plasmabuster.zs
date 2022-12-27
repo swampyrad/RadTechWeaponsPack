@@ -37,7 +37,7 @@ class PlasmaFoof:HDFireball{
 	}
 	void ZapPlasma(){
 		roll=frandom(0,360);
-		A_StartSound("misc/arczap",CHAN_BODY);
+		A_StartSound("weapons/pbust_arczap",CHAN_BODY);
                 HDMobAI.Frighten(self,512);//oh no, a ball of sparkly hot death, run away !!!
 		blockthingsiterator it=blockthingsiterator.create(self,32);
 		actor tb=target;
@@ -99,7 +99,7 @@ class PlasmaFoof:HDFireball{
 		loop;
 	death:
 		PLSS A 0 A_SprayDecal("CacoScorch",radius*1.5);
-		PLSS A 0 A_StartSound("weapons/plasmax",5);
+		PLSS A 0 A_StartSound("weapons/pbust_x",5);
    PLSS A 0 A_AlertMonsters(400);
    PLSS A 0 A_HDBlast(
 			immolateradius:32,
@@ -228,7 +228,7 @@ override void DrawSightPicture(
 		goto nope;
 	shoot:
   #### A 0 {A_GunFlash();
-            A_StartSound("weapons/plasmaf");}
+            A_StartSound("weapons/pbust_fire");}
             //zappy noises
   #### A 1 bright {HDBulletActor.FireBullet(self,"HDB_Plasma");}
                     //this makes zappy balls fly out
@@ -243,7 +243,7 @@ override void DrawSightPicture(
 		#### A 1 offset(-1,33) A_WeaponReady(WRF_NONE);
 		#### A 0{
 			if(invoker.weaponstatus[TBS_BATTERY]<1){
-				A_StartSound("weapons/plasmas",CHAN_WEAPON);
+				A_StartSound("weapons/pbust_s",CHAN_WEAPON);
 				A_GunFlash();
 				setweaponstate("nope");
 			}else{
@@ -276,7 +276,7 @@ override void DrawSightPicture(
   #### A 0 A_GunFlash();
   #### AAAAA 1 bright {
     HDBulletActor.FireBullet(self,"HDB_Plasma");
-    A_StartSound("weapons/plasmaf");//zappy noises
+    A_StartSound("weapons/pbust_fire");//zappy noises
     A_MuzzleClimb(-frandom(0.8,1.6),-frandom(0.8,1.6));
     }
   #### A 0 {
@@ -292,7 +292,7 @@ override void DrawSightPicture(
 		}
 		#### A 0{
 			if(invoker.weaponstatus[TBS_BATTERY]<1){
-				A_StartSound("weapons/plasmas",CHAN_WEAPON);
+				A_StartSound("weapons/pbust_s",CHAN_WEAPON);
 				A_GunFlash();
 				setweaponstate("nope");
 			}else{
@@ -329,7 +329,7 @@ override void DrawSightPicture(
 			A_MuzzleClimb(frandom(-1.2,-2.4),frandom(1.2,2.4));
 		}
 		#### A 3 offset(0,35);
-		#### A 2 offset(0,40) A_StartSound("weapons/plasopen",8);
+		#### A 2 offset(0,40) A_StartSound("weapons/pbust_open",8);
 		#### A 0{
 			int bat=invoker.weaponstatus[TBS_BATTERY];
 			A_MuzzleClimb(frandom(-1.2,-2.4),frandom(1.2,2.4));
@@ -384,9 +384,9 @@ override void DrawSightPicture(
 		#### A 2 offset(0,44) A_StartSound("weapons/pocket",9);
 		#### A 4 offset(0,43) A_StartSound("weapons/pocket",9);
 		#### A 6 offset(0,42);
-		#### A 8 offset(0,38)A_StartSound("weapons/plasload",8);
+		#### A 8 offset(0,38)A_StartSound("weapons/pbust_load",8);
 		#### A 4 offset(0,37){if(health>39)A_SetTics(0);}
-		#### A 4 offset(0,36)A_StartSound("weapons/plasclose",8);
+		#### A 4 offset(0,36)A_StartSound("weapons/pbust_close",8);
 
 		#### A 0{
 			let mmm=HDMagAmmo(findinventory("HDBattery"));
@@ -398,7 +398,7 @@ override void DrawSightPicture(
 			invoker.weaponstatus[TBS_MAXRANGEDISPLAY]=int(
 				(8000+200*invoker.weaponstatus[TBS_BATTERY])/HDCONST_ONEMETRE
 			);
-			A_StartSound("weapons/plasclose2",8);
+			A_StartSound("weapons/pbust_close2",8);
 		}
 		#### A 2 offset(0,36);
 		#### A 4 offset(0,33);

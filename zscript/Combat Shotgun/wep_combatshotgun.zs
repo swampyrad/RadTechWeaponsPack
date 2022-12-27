@@ -42,8 +42,8 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 		let p=HDBulletActor.FireBullet(caller,"HDB_00",
 			spread:spread,speedfactor:speedfactor,amount:10
 		);
-		distantnoise.make(p,"world/shotgunfar");
-		caller.A_StartSound("weapons/hunter",CHAN_WEAPON);
+		distantnoise.make(p,"weapons/csg_firefar");
+		caller.A_StartSound("weapons/csg_fire",CHAN_WEAPON);
 		return shotpower;
 	}
 	const HUNTER_MINSHOTPOWER=0.901;
@@ -133,7 +133,7 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 		}
 		invoker.weaponstatus[HUNTS_TUBE]++;
 		invoker.handshells--;
-		A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+		A_StartSound("weapons/csg_reload",8,CHANF_OVERLAP);
 		return true;
 	}
 
@@ -271,7 +271,7 @@ clearscope string getpickupframe(bool usespare){
 		IM37 AB 3 A_MuzzleClimb(0,frandom(0.6,1.));
 		IM37 C 2 A_JumpIf(pressingaltfire(),"longstroke");
 		IM37 CB 3 A_MuzzleClimb(0,-frandom(0.6,1.));
-		IM37 B 0 A_StartSound("weapons/huntshort",8);
+		IM37 B 0 A_StartSound("weapons/csg_short",8);
 		IM37 A 0 A_Refire("ready");
 		goto ready;
 	longstroke:
@@ -316,11 +316,11 @@ clearscope string getpickupframe(bool usespare){
 		goto ready;
 
 	playsgco:
-		TNT1 A 8 A_StartSound("weapons/huntrackup",8);
+		TNT1 A 8 A_StartSound("weapons/csg_rackup",8);
 		TNT1 A 0 A_StopSound(8);
 		stop;
 	playsgco2:
-		TNT1 A 8 A_StartSound("weapons/huntrackdown",8);
+		TNT1 A 8 A_StartSound("weapons/csg_rackdown",8);
 		TNT1 A 0 A_StopSound(8);
 		stop;
 
@@ -408,7 +408,7 @@ clearscope string getpickupframe(bool usespare){
   //this is where the reload loop ends
 
 	reloadend:
-		IM37 C 4 offset(0,34) A_StartSound("weapons/huntopen",8);
+		IM37 C 4 offset(0,34) A_StartSound("weapons/csg_open",8);
 		IM37 C 1 offset(0,36) EmptyHand(careful:true);
 		IM37 C 1 offset(0,34);
 		IM37 CBA 3;
@@ -427,7 +427,7 @@ clearscope string getpickupframe(bool usespare){
 		}
 		IM37 BC 4 A_MuzzleClimb(frandom(1.2,2.4),-frandom(1.2,2.4));
 		IM37 C 1 offset(0,34);
-		IM37 C 1 offset(0,36) A_StartSound("weapons/huntopen",8);
+		IM37 C 1 offset(0,36) A_StartSound("weapons/csg_open",8);
 		IM37 C 1 offset(0,38);
 		IM37 C 4 offset(0,36){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
@@ -476,7 +476,7 @@ clearscope string getpickupframe(bool usespare){
 				invoker.weaponstatus[HUNTS_TUBE]--;
 			}
 		}
-		IM37 C 4 offset(0,40) A_StartSound("weapons/huntreload",8);
+		IM37 C 4 offset(0,40) A_StartSound("weapons/csg_reload",8);
 		loop;
 	unloadloopend:
 		IM37 C 6 offset(1,41);

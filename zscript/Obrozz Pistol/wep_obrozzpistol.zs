@@ -329,7 +329,7 @@ action void A_CheckRifleHand()
 			A_Gunflash();
 			invoker.weaponstatus[OBROZZS_CHAMBER]=1;
 			invoker.weaponstatus[0]&=~OBROZZF_RECAST;
-			A_StartSound("weapons/bigrifle2",CHAN_WEAPON,CHANF_OVERLAP,
+			A_StartSound("weapons/obrozz_fire",CHAN_WEAPON,CHANF_OVERLAP,
 				pitch:!(invoker.weaponstatus[0]&OBROZZF_CUSTOMCHAMBER)?1.1:1.
 			);
 			A_AlertMonsters();
@@ -407,7 +407,7 @@ action void A_CheckRifleHand()
 			return resolvestate("altholdend");
 		}
 	altholdend:
-		#### E 0 A_StartSound("weapons/boltfwd",8);
+		#### E 0 A_StartSound("weapons/obrozz_boltfwd",8);
 		#### DC 2 A_WeaponReady(WRF_NOFIRE);
 		#### B 3{
 			A_WeaponReady(WRF_NOFIRE);
@@ -424,7 +424,7 @@ action void A_CheckRifleHand()
 		#### E 2 offset(7,72);
 		TNT1 A 18 A_StartSound("weapons/pocket",9);
 		TNT1 A 4{
-			A_StartSound("weapons/bossload",8,volume:0.7);
+			A_StartSound("weapons/obrozz_load",8,volume:0.7);
 			if(invoker.weaponstatus[0]&OBROZZF_UNLOADONLY){
 				bool recast=invoker.weaponstatus[0]&OBROZZF_RECAST;
 				int chm=invoker.weaponstatus[OBROZZS_CHAMBER];
@@ -513,7 +513,7 @@ action void A_CheckRifleHand()
 			else if(chm<3)invoker.weaponstatus[OBROZZS_CHAMBER]+=2;
 		}
 	jamderp:
-		#### A 0 A_StartSound("weapons/rifleclick",8,CHANF_OVERLAP);
+		#### A 0 A_StartSound("weapons/obrozz_click",8,CHANF_OVERLAP);
 		#### D 1 offset(4,38);
 		#### D 2 offset(2,36);
 		#### D 2 offset(4,38)A_MuzzleClimb(frandom(-0.5,0.6),frandom(-0.3,0.6));
@@ -542,7 +542,7 @@ action void A_CheckRifleHand()
 					-frandom(0.6,1.3),-frandom(0.6,1.3)
 				);
 				setweaponstate("jamderp");
-			}else A_StartSound("weapons/boltback",8);
+			}else A_StartSound("weapons/obrozz_boltback",8);
 		}
 		#### D 2 offset(1,34)A_JumpIf(invoker.weaponstatus[0]&OBROZZF_CUSTOMCHAMBER,1);
 		#### D 1 offset(2,36){
@@ -603,11 +603,11 @@ action void A_CheckRifleHand()
 		#### A 1 offset(2,36);
 		#### A 1 offset(4,40);
 		#### A 2 offset(8,42){
-			A_StartSound("weapons/rifleclick2",8,CHANF_OVERLAP,0.9,pitch:0.95);
+			A_StartSound("weapons/obrozz_click2",8,CHANF_OVERLAP,0.9,pitch:0.95);
 			A_MuzzleClimb(-frandom(0.4,0.8),frandom(0.4,1.4));
 		}
 		#### A 4 offset(14,46){
-			A_StartSound("weapons/bossloadm",8,CHANF_OVERLAP);
+			A_StartSound("weapons/obrozz_loadm",8,CHANF_OVERLAP);
 			A_MuzzleClimb(-frandom(0.4,0.8),frandom(0.4,1.4));
 		}
 		#### A 0{
@@ -661,7 +661,7 @@ action void A_CheckRifleHand()
 			invoker.handrounds--;
 			invoker.weaponstatus[OBROZZS_MAG]++;
 
-			A_StartSound("weapons/rifleclick2",8);
+			A_StartSound("weapons/obrozz_click2",8);
 		}loop;
 	loadhandnext:
 		#### A 8 offset(16,48){
@@ -705,7 +705,7 @@ action void A_CheckRifleHand()
 				}
 
 				//strip one round and load it
-				A_StartSound("weapons/rifleclick2",CHAN_WEAPONBODY);
+				A_StartSound("weapons/obrozz_click2",CHAN_WEAPONBODY);
 
 				if(HD7mMag.CheckRecast(ccc.mags[magindex])){
 					invoker.weaponstatus[OBROZZS_RECASTS]++;
@@ -724,10 +724,10 @@ action void A_CheckRifleHand()
 		,"reloaddone");
 		loop;
 	loadwholeclip:
-		#### A 4 offset(16,50) A_StartSound("weapons/rifleclick2",8);
-		#### AAA 3 offset(17,52) A_StartSound("weapons/rifleclick2",8,pitch:1.01);
-		#### AAA 2 offset(16,50) A_StartSound("weapons/rifleclick2",8,CHANF_OVERLAP,pitch:1.02);
-		#### AAA 1 offset(15,48) A_StartSound("weapons/rifleclick2",8,CHANF_OVERLAP,pitch:1.02);
+		#### A 4 offset(16,50) A_StartSound("weapons/obrozz_click2",8);
+		#### AAA 3 offset(17,52) A_StartSound("weapons/obrozz_click2",8,pitch:1.01);
+		#### AAA 2 offset(16,50) A_StartSound("weapons/obrozz_click2",8,CHANF_OVERLAP,pitch:1.02);
+		#### AAA 1 offset(15,48) A_StartSound("weapons/obrozz_click2",8,CHANF_OVERLAP,pitch:1.02);
 		#### A 2 offset(14,46){
 			A_StartSound("weapons/rifleclick",CHAN_WEAPONBODY);
 			let ccc=hdmagammo(findinventory("HD7mClip"));
@@ -757,11 +757,11 @@ action void A_CheckRifleHand()
 		#### A 1 offset(4,40);
 		#### A 2 offset(8,42){
 			A_MuzzleClimb(-frandom(0.4,0.8),frandom(0.4,1.4));
-			A_StartSound("weapons/rifleclick2",8);
+			A_StartSound("weapons/obrozz_click2",8);
 		}
 		#### A 4 offset (14,46){
 			A_MuzzleClimb(-frandom(0.4,0.8),frandom(0.4,1.4));
-			A_StartSound("weapons/bossloadm",8);
+			A_StartSound("weapons/obrozz_loadm",8);
 		}
 	unloadloop:
 		#### A 4 offset(3,41){
@@ -771,7 +771,7 @@ action void A_CheckRifleHand()
 				bool recast=HD7mMag.CheckRecast(bbm,invoker.weaponstatus[OBROZZS_RECASTS]);
 				class<inventory> rndtp=recast?"SevenMilAmmoRecast":"SevenMilAmmo";
 
-				A_StartSound("weapons/rifleclick2",8);
+				A_StartSound("weapons/obrozz_click2",8);
 				invoker.weaponstatus[OBROZZS_MAG]--;
 				if(recast)invoker.weaponstatus[OBROZZS_RECASTS]--;
 				if(A_JumpIfInventory(rndtp,0,"null")){
@@ -798,7 +798,7 @@ action void A_CheckRifleHand()
 	unloaddone:
 		#### A 2 offset(2,42);
 		#### A 3 offset(3,41);
-		#### A 1 offset(4,40) A_StartSound("weapons/rifleclick",8);
+		#### A 1 offset(4,40) A_StartSound("weapons/obrozz_click",8);
 		#### A 1 offset(2,36);
 		#### A 1 offset(0,34);
 		goto ready;

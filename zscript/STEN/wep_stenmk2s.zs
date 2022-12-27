@@ -262,7 +262,7 @@ class HDStenMk2:HDWeapon{
 			invoker.weaponstatus[STENS_CHAMBER]=0;
 			invoker.weaponstatus[STENS_JAMMED]=0;  
 			A_StartSound("weapons/sten_chamber",8,CHANF_OVERLAP);
-			A_StartSound("weapons/riflejam",CHAN_WEAPON,CHANF_OVERLAP);
+			A_StartSound("weapons/stenjam",CHAN_WEAPON,CHANF_OVERLAP);
 
 	        A_MuzzleClimb(frandom(0.2,0.24),-frandom(0.3,0.36),frandom(0.2,0.24),-frandom(0.3,0.36));
   
@@ -302,9 +302,9 @@ class HDStenMk2:HDWeapon{
 		STEN B 1 offset(-1,36){
 		    invoker.weaponstatus[STENS_CHAMBER]=1;
 		    invoker.weaponstatus[STENS_JAMMED]=1;  
-			A_StartSound("weapons/riflejam",CHAN_WEAPON,CHANF_OVERLAP);
+			A_StartSound("weapons/stenjam",CHAN_WEAPON,CHANF_OVERLAP);
 			}
-		STEN A 1 offset(1,30) A_StartSound("weapons/riflejam",CHAN_WEAPON,CHANF_OVERLAP);
+		STEN A 1 offset(1,30) A_StartSound("weapons/stenjam",CHAN_WEAPON,CHANF_OVERLAP);
 		goto nope;
 		
 	overheat:
@@ -340,10 +340,10 @@ class HDStenMk2:HDWeapon{
 		#### A 1 offset(0,34) A_SetCrosshair(21);
 		#### A 1 offset(5,42);
 		#### A 1 offset(10,50);
-		#### B 2 offset(20,58) A_StartSound("weapons/smgmagclick",8);
+		#### B 2 offset(20,58) A_StartSound("weapons/stenmagclick",8);
 		#### B 4 offset(30,70){
 			A_MuzzleClimb(0.3,0.4);
-			A_StartSound("weapons/smgmagmove",8,CHANF_OVERLAP);
+			A_StartSound("weapons/stenmagmove",8,CHANF_OVERLAP);
 		}
 		#### B 0{
 			int magamt=invoker.weaponstatus[STENS_MAG];
@@ -381,7 +381,7 @@ class HDStenMk2:HDWeapon{
 			let mmm=hdmagammo(findinventory("HD9mMag30"));
 			if(mmm){
 				invoker.weaponstatus[STENS_MAG]=mmm.TakeMag(true);
-				A_StartSound("weapons/smgmagclick",8,CHANF_OVERLAP);
+				A_StartSound("weapons/stenmagclick",8,CHANF_OVERLAP);
 			}
 			if(
 				invoker.weaponstatus[STENS_MAG]<1

@@ -200,7 +200,7 @@ class HDColt1911:HDHandgun{
 		#### B 3 offset(0,34);
 		#### C 4 offset(0,37){
 			A_MuzzleClimb(frandom(0.4,0.5),-frandom(0.6,0.8));
-			A_StartSound("weapons/pischamber2",8);
+			A_StartSound("weapons/1911chamber2",8);
 			int psch=invoker.weaponstatus[PISS_CHAMBER];
 			invoker.weaponstatus[PISS_CHAMBER]=0;
 
@@ -257,7 +257,7 @@ class HDColt1911:HDHandgun{
 
 			invoker.weaponstatus[PISS_CHAMBER]=0;
 			if(invoker.weaponstatus[PISS_MAG]<1){
-				A_StartSound("weapons/pistoldry",8,CHANF_OVERLAP,0.9);
+				A_StartSound("weapons/1911dryfire",8,CHANF_OVERLAP,0.9);
 				setweaponstate("nope");
 			}
 		}
@@ -312,7 +312,7 @@ class HDColt1911:HDHandgun{
 			if(countinv("HD45ACPAmmo")){
 				A_TakeInventory("HD45ACPAmmo",1,TIF_NOTAKEINFINITE);
 				invoker.weaponstatus[PISS_CHAMBER]=2;
-				A_StartSound("weapons/pischamber1",8);
+				A_StartSound("weapons/1911chamber1",8);
 			}
 		}
 		#### B 2 offset(5,76);
@@ -344,7 +344,7 @@ class HDColt1911:HDHandgun{
 		---- A 1 offset(0,34) A_SetCrosshair(21);
 		---- A 1 offset(1,38);
 		---- A 2 offset(2,42);
-		---- A 3 offset(3,46) A_StartSound("weapons/pismagclick",8,CHANF_OVERLAP);
+		---- A 3 offset(3,46) A_StartSound("weapons/1911_magclick",8,CHANF_OVERLAP);
 		---- A 0{
 			int pmg=invoker.weaponstatus[PISS_MAG];
 			invoker.weaponstatus[PISS_MAG]=-1;
@@ -380,7 +380,7 @@ class HDColt1911:HDHandgun{
 			let mmm=hdmagammo(findinventory("HDColtMag7"));
 			if(mmm){
 				invoker.weaponstatus[PISS_MAG]=mmm.TakeMag(true);
-				A_StartSound("weapons/pismagclick",8);
+				A_StartSound("weapons/1911_magclick",8);
 			}
 		}
 		goto reloadend;

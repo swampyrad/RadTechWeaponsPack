@@ -238,8 +238,8 @@ action void A_CheckFlareGunHand(bool filled)
 					}
 
 			
-			distantnoise.make(sss,"world/shotgunfar");
-			self.A_StartSound("weapons/hunter",CHAN_WEAPON);
+			distantnoise.make(sss,"weapons/flaregun_shellfar");
+			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
 			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
 	}
 	
@@ -251,8 +251,8 @@ action void A_CheckFlareGunHand(bool filled)
 			let sss=HDBulletActor.FireBullet(self,"HDB_00",
 			spread:35,speedfactor:1,amount:10
 			);
-			distantnoise.make(sss,"world/shotgunfar");
-			self.A_StartSound("weapons/hunter",CHAN_WEAPON);
+			distantnoise.make(sss,"weapons/flaregun_shellfar");
+			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
 			invoker.weaponstatus[0]=FLARE_SPENTSHELL;
 			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
 	}
@@ -266,8 +266,8 @@ action void A_FireShellPlastic()
 			let sss=HDBulletActor.FireBullet(self,"HDB_00",
 			spread:35,speedfactor:0.5,amount:10
 			);
-			distantnoise.make(sss,"world/shotgunfar");
-			self.A_StartSound("weapons/hunter",CHAN_WEAPON);
+			distantnoise.make(sss,"weapons/flaregun_shellfar");
+			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
 			invoker.weaponstatus[0]=FLARE_SPENTSHELL;
 			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
 	}
