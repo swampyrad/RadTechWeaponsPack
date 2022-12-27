@@ -239,3 +239,8 @@ $alias weapons/10pis_dry weapons/pistoldry
 $alias weapons/10pis_chamber1 weapons/pischamber1
 $alias weapons/10pis_chamber2 weapons/pischamber2
 $alias weapons/10pis_magclick weapons/pismagclick
+
+// Sigcow
+$alias weapons/sigcow_chamber weapons/smgchamber
+$alias weapons/sigcow_magclick weapons/smgmagclick
+$alias weapons/sigcow_magmove weapons/smgmagmove
