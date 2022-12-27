@@ -257,7 +257,7 @@ class RadTechHandler : EventHandler
 
 		// Phazer
 		Array<RTSpawnItemEntry> spawns_phazer;  
-		spawns_phazer.push(additementry('ClipBox', phazer_spawn_bias));
+		spawns_phazer.push(additementry('HDAmBox', phazer_spawn_bias));
 		additem('PhazerPistol', spawns_phazer, phazer_persistent_spawning);
 		
 		// Microcells
@@ -274,11 +274,17 @@ class RadTechHandler : EventHandler
 		spawns_plasmabuster.push(additementry('ThunderBuster', pbuster_cpack_spawn_bias)); 
 		additem('PlasmaBuster', spawns_plasmabuster, pbuster_persistent_spawning);
 
-		// Hush puppy
+		// Hush Puppy
 		Array<RTSpawnItemEntry> spawns_hushpuppy;  
 		spawns_HushPuppy.push(additementry('HDHandgunRandomDrop', hushpuppy_spawn_bias)); 
 		spawns_hushpuppy.push(additementry('HDPistol', hushpuppy_spawn_bias)); 
 		additem('HushPuppyPistol', spawns_hushpuppy,  hushpuppy_persistent_spawning);
+
+		// Frag Cannon
+		Array<RTSpawnItemEntry> spawns_fragcannon;  
+		spawns_phazer.push(additementry('HDAmBox', phazer_spawn_bias));
+	    spawns_phazer.push(additementry('HunterRandom', phazer_spawn_bias));
+		additem('PhazerPistol', spawns_phazer, phazer_persistent_spawning);
 
 		// Colt 1911 .45 Pistol
 		Array<RTSpawnItemEntry> spawns_colt1911;  
@@ -294,14 +300,14 @@ class RadTechHandler : EventHandler
 			    
 		//Random ammobox spawns
 		Array<RTSpawnItemEntry> spawns_colt1911_ammobox;
-		spawns_colt1911_ammobox.push(additementry('ClipBox', colt1911_ammobox_spawn_bias));
+		spawns_colt1911_ammobox.push(additementry('HDAmBox', colt1911_ammobox_spawn_bias));
 		spawns_colt1911_ammobox.push(additementry('ClipBoxPickup', colt1911_ammobox_spawn_bias));
 		additem('HDColt1911Spawn', spawns_colt1911_ammobox, colt1911_persistent_spawning);
 
 		// STEN Mk. 2(S)
 		Array<RTSpawnItemEntry> spawns_sten;  
 		spawns_sten.push(additementry('HDSMGRandom', sten_spawn_bias));
-		spawns_sten.push(additementry('ClipBox', sten_ammobox_spawn_bias));
+		spawns_sten.push(additementry('HDAmBox', sten_ammobox_spawn_bias));
 		spawns_sten.push(additementry('ClipBoxPickup', sten_ammobox_spawn_bias));
 		additem('HDSTENRandom', spawns_sten,  sten_persistent_spawning);  
         
@@ -333,20 +339,21 @@ class RadTechHandler : EventHandler
 
 		// M-211 Sigcow
 		Array<RTSpawnItemEntry> spawns_sigcow;
-		spawns_sigcow.push(additementry('ClipBox', sigcow_cbox_spawn_bias));
+		spawns_sigcow.push(additementry('HDAmBox', sigcow_cbox_spawn_bias));
 		spawns_sigcow.push(additementry('ClipBoxPickup', sigcow_cbox_spawn_bias));
 		additem('SigCowRandomSpawn', spawns_sigcow, sigcow_persistent_spawning);
 		
 		// Sigcow Magazines
 		Array<RTSpawnItemEntry> spawns_sigcow_mags;
-		spawns_sigcow_mags.push(additementry('HD4mMag', sigcow_cbox_spawn_bias));
+		spawns_sigcow_mags.push(additementry('HD9mMag15', sigcow_cbox_spawn_bias));
 		spawns_sigcow_mags.push(additementry('ClipMagPickup', sigcow_cbox_spawn_bias));
 		additem('HD10mMag25', spawns_sigcow_mags, sigcow_persistent_spawning);
 
 		// Delta Elite spawns
 		Array<RTSpawnItemEntry> spawns_10mm_pistol;
 		spawns_10mm_pistol.push(additementry('HDHandgunRandomDrop', tenpis_handgun_spawn_bias));
-		additem('HDTenMilRandomDrop', spawns_10mm_pistol, tenpis_persistent_spawning);
+	    spawns_10mm_pistol.push(additementry('HDPistol', tenpis_handgun_spawn_bias));
+		additem('HD10mmPistol', spawns_10mm_pistol, tenpis_persistent_spawning);
 		
 		// Delta Elite Magazines
 		Array<RTSpawnItemEntry> spawns_10mm_pistol_mags;
@@ -357,6 +364,7 @@ class RadTechHandler : EventHandler
 		// Hacked ZM66
 		Array<RTSpawnItemEntry> spawns_hackedzm66;
 		spawns_hackedzm66.push(additementry('ZM66Random', hacked_zm66_spawn_bias));
+		spawns_hackedzm66.push(additementry('HDAmBox', hacked_zm66_spawn_bias));
 		additem('HackedZM66Random', spawns_hackedzm66, hacked_persistent_spawning);
 
 		// Minerva
@@ -389,26 +397,42 @@ class RadTechHandler : EventHandler
 		Array<RTSpawnItemEntry> spawns_snose_pistol;
 		spawns_snose_pistol.push(additementry('HDHandgunRandomDrop', snose_pistol_spawn_bias));
 		spawns_snose_pistol.push(additementry('DeinoSpawn', snose_pistol_spawn_bias));	
+		spawns_snose_pistol.push(additementry('HunterRandom', snose_pistol_spawn_bias));	
 		additem('SnubNoseSpawn', spawns_snose_pistol, snose_persistent_spawning);
 
 		// Single-Action Revolver
 		Array<RTSpawnItemEntry> spawns_sixgun;
 		spawns_sixgun.push(additementry('HDHandgunRandomDrop', sa_pistol_spawn_bias));
-		spawns_sixgun.push(additementry('ClipBox', sa_pistol_spawn_bias));
-		spawns_sixgun.push(additementry('ClipBoxPickup', sa_pistol_spawn_bias));
-		additem('SASpawn', spawns_sixgun, sa_persistent_spawning);
+		spawns_sixgun.push(additementry('HDPistol', sa_pistol_spawn_bias));
+		additem('HDSingleActionRevolver', spawns_sixgun, sa_persistent_spawning);
+        
+        Array<RTSpawnItemEntry> spawns_sixgun_bundle;
+		spawns_sixgun_bundle.push(additementry('HDAmBox', sa_bundle_spawn_bias));
+		spawns_sixgun_bundle.push(additementry('HunterRandom', sa_bundle_spawn_bias));
+		additem('SASpawn', spawns_sixgun_bundle, sa_persistent_spawning);
+
 
 		// Gold Single-Action
 		Array<RTSpawnItemEntry> spawns_goldengun;
 		spawns_goldengun.push(additementry('HDHandgunRandomDrop', gsa_pistol_spawn_bias));
-		spawns_goldengun.push(additementry('ClipBox', gsa_pistol_spawn_bias));
+		spawns_goldengun.push(additementry('HDAmBox', gsa_pistol_spawn_bias));
 		spawns_goldengun.push(additementry('ClipBoxPickup', gsa_pistol_spawn_bias));
+		spawns_goldengun.push(additementry('HunterRandom', gsa_pistol_spawn_bias));
 		additem('GoldSASpawn', spawns_goldengun, gsa_persistent_spawning);
+
+/*  tried something, didn't work, maybe fix later??
+
+		// 'Juan' Horseshoe Pistol
+		Array<RTSpawnItemEntry> spawns_juan;
+		spawns_juan.push(additementry('HDHandgunRandomDrop', ja_weapon_drop_chance_bias));
+		spawns_juan.push(additementry('HDPistol', ja_weapon_drop_chance_bias));
+		additem('HDHorseShoePistol', spawns_juan, ja_persistent_spawning);
+*/
 
 		// Obrozz Rifle
 		Array<RTSpawnItemEntry> spawns_obrozz;
 		spawns_obrozz.push(additementry('HunterRandom', obrozz_spawn_bias));
-		spawns_obrozz.push(additementry('ClipBox', obrozz_spawn_bias));
+		spawns_obrozz.push(additementry('HDAmBox', obrozz_spawn_bias));
 		spawns_obrozz.push(additementry('ClipBoxPickup', obrozz_spawn_bias));
 		additem('ObrozzSpawner', spawns_obrozz, obrozz_persistent_spawning);
 	}
