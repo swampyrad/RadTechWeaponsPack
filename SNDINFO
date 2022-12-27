@@ -73,7 +73,7 @@ $limit flaregun/flareburn 0
 
 // For custom resounds. 
 // Format taken from hd's sndinfo lump. 
-weapons/minerva    dsrifle
+weapons/minerva    dspistol
 $limit weapons/minerva  0
 
 weapons/mnvabelt      dsbelt
