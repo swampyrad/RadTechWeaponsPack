@@ -591,8 +591,10 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 * Dynamite code based off Frag Grenade code by mc776
 * DM-93 Plasma Rifle and Phazer code based off Thunderbuster code by mc776
 * Phazer weapon sprites by Mike12, JAM Software, and PaulNWN
-* Micro-Cell code based off HDBattery code by mc76
+* Micro-Cell code based off HDBattery code by mc776
 * Phazer and Micro-Cell pickup sprites by Swampyrad
+* Frag Cannon code based off HD Grenade Launcher code by mc776
+* Frag Cannon weapon sprite and sound by id Software, pickup sprite by Swampyrad
 * Ted the Dragon for various code, organization and documentation improvements.
 
 ## Extra thanks to
