@@ -154,11 +154,11 @@ class FragCannon:HDWeapon{
 		---- A 0 A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
 		goto nope;
 	loadcommon:
-		---- A 1 offset(2,34)A_StartSound("weapons/rockopen",8,CHANF_OVERLAP);
+		---- A 1 offset(2,34)A_StartSound("weapons/fragcannon_open",8,CHANF_OVERLAP);
 		---- A 1 offset(4,38)A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
 		---- A 1 offset(10,44);
 		---- A 2 offset(12,50)A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
-		---- A 3 offset(13,55) A_StartSound("weapons/rockopen2",8,CHANF_OVERLAP);
+		---- A 3 offset(13,55) A_StartSound("weapons/fragcannon_open2",8,CHANF_OVERLAP);
 		---- A 3 offset(14,60);
 		---- A 3 offset(11,64)A_StartSound("weapons/pocket",9);
 		---- A 7 offset(10,66);
@@ -166,7 +166,7 @@ class FragCannon:HDWeapon{
 			if(health<40)A_SetTics(7);
 			else if(health<60)A_SetTics(3);
 		}
-		---- D 4 offset(12,68) A_StartSound("weapons/rockreload",8);
+		---- D 4 offset(12,68) A_StartSound("weapons/fragcannon_reload",8);
 		---- D 2 offset(10,66){
 			if(invoker.weaponstatus[0]&BLOPF_JUSTUNLOAD){
 				if(
@@ -199,10 +199,10 @@ class FragCannon:HDWeapon{
 			}
 		}
 	reloadend:
-		---- D 1 offset(12,68) A_StartSound("weapons/rockopen2",8);
+		---- D 1 offset(12,68) A_StartSound("weapons/fragcannon_open2",8);
 		---- D 1 offset(11,70);
 		---- D 4 offset(10,69);
-		---- D 0 A_StartSound("weapons/rockopen",8,CHANF_OVERLAP);
+		---- D 0 A_StartSound("weapons/fragcannon_open",8,CHANF_OVERLAP);
 		---- D 1 offset(9,66);
 		---- D 1 offset(9,60);
 		---- C 1 offset(8,53);

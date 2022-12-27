@@ -168,7 +168,7 @@ class HushpuppyPistol:HDHandgun{
 		#### B 3 offset(0,34);
 		#### C 4 offset(0,37){
 			A_MuzzleClimb(frandom(0.4,0.5),-frandom(0.6,0.8));
-			A_StartSound("weapons/pischamber2",8);
+			A_StartSound("weapons/hushpup_chamber2",8);
 			int psch=invoker.weaponstatus[PUPPY_CHAMBER];
 			invoker.weaponstatus[PUPPY_CHAMBER]=0;
 			if(psch==2){
@@ -243,7 +243,7 @@ class HushpuppyPistol:HDHandgun{
 			A_ZoomRecoil(0.995);
 			A_MuzzleClimb(-frandom(0.4,1.2),-frandom(0.4,1.6));
 		}
-		---- A 0 A_StartSound("weapons/sten",CHAN_WEAPON,volume:0.5);//same gunshot sound as Sten, but quieter
+		---- A 0 A_StartSound("weapons/hushpup_fire",CHAN_WEAPON,volume:0.5);//same gunshot sound as Sten, but quieter
 		---- A 0 A_Light0();
 		stop;
 	unload:
@@ -265,7 +265,7 @@ class HushpuppyPistol:HDHandgun{
 			if(countinv("HDPistolAmmo")){
 				A_TakeInventory("HDPistolAmmo",1,TIF_NOTAKEINFINITE);
 				invoker.weaponstatus[PUPPY_CHAMBER]=2;
-				A_StartSound("weapons/pischamber1",8);
+				A_StartSound("weapons/hushpup_chamber1",8);
 			}
 		}
 		#### B 2 offset(5,76);
@@ -333,7 +333,7 @@ class HushpuppyPistol:HDHandgun{
 			let mmm=hdmagammo(findinventory("HD9mMag15"));
 			if(mmm){
 				invoker.weaponstatus[PUPPY_MAG]=mmm.TakeMag(true);
-				A_StartSound("weapons/pismagclick",8);
+				A_StartSound("weapons/hushpup_magclick",8);
 			}
 		}
 		goto reloadend;

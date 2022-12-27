@@ -37,7 +37,7 @@ class LLHunter:HDLLShotgun{
 		let p=HDBulletActor.FireBullet(caller,"HDB_00Rubber",
 			spread:spread,speedfactor:speedfactor,amount:10
 		);
-		distantnoise.make(p,"world/shotgunfar");
+		distantnoise.make(p,"weapons/llh_far");
 		caller.A_StartSound("weapons/hunter",CHAN_WEAPON);
 		return shotpower;
 	}
@@ -188,7 +188,7 @@ class LLHunter:HDLLShotgun{
 		}
 		invoker.weaponstatus[LL_HUNTS_TUBE]++;
 		invoker.handshells--;
-		A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+		A_StartSound("weapons/llh_reload",8,CHANF_OVERLAP);
 		return true;
 	}
 	action bool A_GrabShells(int maxhand=3,bool settics=false,bool alwaysone=false){
@@ -321,7 +321,7 @@ class LLHunter:HDLLShotgun{
 		LLSG AE 1 A_MuzzleClimb(0,frandom(0.6,1.));
 		LLSG E 1 A_JumpIf(pressingaltfire(),"longstroke");
 		LLSG EA 1 A_MuzzleClimb(0,-frandom(0.6,1.));
-		LLSG E 0 A_StartSound("weapons/huntshort",8);
+		LLSG E 0 A_StartSound("weapons/llh_short",8);
 		LLSG E 0 A_Refire("ready");
 		goto ready;
 	longstroke:
@@ -367,7 +367,7 @@ class LLHunter:HDLLShotgun{
 		LLSG F 1 offset(-4,42);
 		LLSG F 2 offset(-4,41);
 		LLSG F 3 offset(-4,40){
-			A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+			A_StartSound("weapons/llh_reload",8,CHANF_OVERLAP);
 			invoker.weaponstatus[LL_HUNTS_CHAMBER]=2;
 			invoker.handshells--;
 			EmptyHand(careful:true);
@@ -401,7 +401,7 @@ class LLHunter:HDLLShotgun{
 				vel.z+sin(pitch)*random(4,6),
 				0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
 			);
-			if(chm)A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+			if(chm)A_StartSound("weapons/llh_reload",8,CHANF_OVERLAP);
 		}
 		LLSG F 5 offset(-4,41);
 		LLSG F 4 offset(-4,40) A_JumpIf(invoker.handshells>0,"rackloadone");
@@ -417,11 +417,11 @@ class LLHunter:HDLLShotgun{
 		LLSG A 0 A_ClearRefire();
 		goto ready;
 	playsgco:
-		TNT1 A 8 A_StartSound("weapons/huntrackup",8);
+		TNT1 A 8 A_StartSound("weapons/llh_rackup",8);
 		TNT1 A 0 A_StopSound(8);
 		stop;
 	playsgco2:
-		TNT1 A 8 A_StartSound("weapons/huntrackdown",8);
+		TNT1 A 8 A_StartSound("weapons/llh_rackdown",8);
 		TNT1 A 0 A_StopSound(8);
 		stop;
 	chamberauto:
@@ -520,7 +520,7 @@ class LLHunter:HDLLShotgun{
 			else if(invoker.handshells<1)setweaponstate("reloadstarthand");
 		}goto reloadashell;
 	reloadend:
-		LLSG C 4 offset(0,34) A_StartSound("weapons/huntopen",8);
+		LLSG C 4 offset(0,34) A_StartSound("weapons/llh_open",8);
 		LLSG C 1 offset(0,36) EmptyHand(careful:true);
 		LLSG C 1 offset(0,34);
 		LLSG CBA 3;
@@ -564,20 +564,20 @@ class LLHunter:HDLLShotgun{
 		}
 		LLSG BC 4 A_MuzzleClimb(frandom(1.2,2.4),-frandom(1.2,2.4));
 		LLSG C 1 offset(0,34);
-		LLSG C 1 offset(0,36) A_StartSound("weapons/huntopen",8);
+		LLSG C 1 offset(0,36) A_StartSound("weapons/llh_open",8);
 		LLSG C 1 offset(0,38);
 		LLSG C 4 offset(0,36){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
 			if(invoker.weaponstatus[LL_HUNTS_CHAMBER]<1){
 				setweaponstate("unloadtube");
-			}else A_StartSound("weapons/huntrack",8,CHANF_OVERLAP);
+			}else A_StartSound("weapons/llh_rack",8,CHANF_OVERLAP);
 		}
 		LLSG D 8 offset(0,34){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
 			int chm=invoker.weaponstatus[LL_HUNTS_CHAMBER];
 			invoker.weaponstatus[LL_HUNTS_CHAMBER]=0;
 			if(chm>1){
-				A_StartSound("weapons/huntreload",8);
+				A_StartSound("weapons/llh_reload",8);
 				if(A_JumpIfInventory("HDLLShellAmmo",0,"null"))A_SpawnItemEx("HDLLFumblingShell",
 					cos(pitch)*8,0,height-7-sin(pitch)*8,
 					vel.x+cos(pitch)*cos(angle-random(86,90))*5,
@@ -610,7 +610,7 @@ class LLHunter:HDLLShotgun{
 				invoker.weaponstatus[LL_HUNTS_TUBE]--;
 			}
 		}
-		LLSG C 4 offset(0,40) A_StartSound("weapons/huntreload",8);
+		LLSG C 4 offset(0,40) A_StartSound("weapons/llh_reload",8);
 		loop;
 	unloadloopend:
 		LLSG C 6 offset(1,41);

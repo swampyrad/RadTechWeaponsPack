@@ -532,7 +532,7 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 			if(countinv("HD10mAmmo")){
 				A_TakeInventory("HD10mAmmo",1,TIF_NOTAKEINFINITE);
 				invoker.weaponstatus[SCWS_CHAMBER]=2;
-				A_StartSound("weapons/smgchamber",8);
+				A_StartSound("weapons/sigcow_chamber",8);
 			}else A_SetTics(4);
 		}
 		#### A 3 offset(9,76);
@@ -577,10 +577,10 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 		#### A 1 offset(0,34) A_SetCrosshair(21);
 		#### A 1 offset(5,38);
 		#### A 1 offset(10,42);
-		#### B 2 offset(20,46) A_StartSound("weapons/smgmagclick",8);
+		#### B 2 offset(20,46) A_StartSound("weapons/sigcow_magclick",8);
 		#### B 4 offset(30,52){
 			A_MuzzleClimb(0.3,0.4);
-			A_StartSound("weapons/smgmagmove",8,CHANF_OVERLAP);
+			A_StartSound("weapons/sigcow_magmove",8,CHANF_OVERLAP);
 		}
 		#### B 0{
 			int magamt=invoker.weaponstatus[SCWS_MAG];
@@ -618,7 +618,7 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 			let mmm=hdmagammo(findinventory("HD10mMag25"));
 			if(mmm){
 				invoker.weaponstatus[SCWS_MAG]=mmm.TakeMag(true);
-				A_StartSound("weapons/smgmagclick",8,CHANF_OVERLAP);
+				A_StartSound("weapons/sigcow_magclick",8,CHANF_OVERLAP);
 			}
 			if(
 				invoker.weaponstatus[SCWS_MAG]<1
@@ -645,7 +645,7 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 			invoker.weaponstatus[SCWS_MAG]--;
 			invoker.weaponstatus[SCWS_CHAMBER]=2;
 		}
-		#### B 3 offset(5,35) A_StartSound("weapons/smgchamber",8,CHANF_OVERLAP);
+		#### B 3 offset(5,35) A_StartSound("weapons/sigcow_chamber",8,CHANF_OVERLAP);
 		#### A 1 offset(3,32);
 		#### A 1 offset(2,31);
 		goto nope;

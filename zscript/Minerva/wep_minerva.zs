@@ -255,7 +255,7 @@ override void postbeginplay(){
 			if(pressingzoom())A_ZoomAdjust(MNVS_ZOOM,16,70);
 			else if(justpressed(BT_FIREMODE|BT_ALTFIRE)){
 				invoker.weaponstatus[0]^=MNVF_FAST;
-				A_StartSound("weapons/fmswitch",CHAN_WEAPON,CHANF_OVERLAP,0.4);
+				A_StartSound("weapons/minerva_fmswitch",CHAN_WEAPON,CHANF_OVERLAP,0.4);
 				A_SetHelpText();
 				A_WeaponReady(WRF_NONE);
 			}else A_WeaponReady(WRF_ALL);
@@ -421,7 +421,7 @@ override void postbeginplay(){
 	lowertoopen:
 		MNVG A 2 offset(0,36);
 		MNVG A 2 offset(4,38){
-			A_StartSound("weapons/rifleclick2",CHAN_WEAPON);
+			A_StartSound("weapons/minerva_click2",CHAN_WEAPON);
 			A_MuzzleClimb(-frandom(1.2,1.8),-frandom(1.8,2.4));
 		}
 		MNVG A 6 offset(9,41)A_StartSound("weapons/pocket",CHAN_WEAPON);
@@ -629,7 +629,7 @@ override void postbeginplay(){
 			A_MuzzleClimb(-frandom(0.4,0.8),-frandom(0.5,0.7));
 		}
 		MNVG A 8 offset(9,38){
-			A_StartSound("weapons/rifleclick",CHAN_WEAPON,CHANF_OVERLAP);
+			A_StartSound("weapons/minerva_click",CHAN_WEAPON,CHANF_OVERLAP);
 			A_MuzzleClimb(
 				-frandom(0.2,0.8),-frandom(0.2,0.3)
 				-frandom(0.2,0.8),-frandom(0.2,0.3)
