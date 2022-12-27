@@ -791,7 +791,7 @@ override void postbeginplay(){
 		if(!random(0,255))invoker.weaponstatus[MNVS_BREAKCHANCE]++;
 
 		if(flash2)A_GunFlash("flash2");else A_GunFlash("flash");
-		A_StartSound("weapons/pistol",CHAN_WEAPON,CHANF_OVERLAP);
+		A_StartSound("weapons/minerva",CHAN_WEAPON,CHANF_OVERLAP);
 		A_AlertMonsters();
 
 		double cm=countinv("IsMoving");if(
