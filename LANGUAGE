@@ -33,6 +33,7 @@ TAG_C19 = "Colt 1911";
 TAG_HPUPPY = "Hush Puppy Silenced Pistol";
 TAG_STUNGUN = "Stun Gun";
 TAG_PHAZER = "Phazer";
+TAG_FRAGCANNON = "'Frag Cannon' Frag Grenade Launcher";
 
 // Weapon Pickup messages. Like tags, but when you get your grubby hands on it. - [Ted]
 PICKUP_10MMPISTOL = "You got the 10mm pistol! It really packs a punch!";
@@ -69,6 +70,7 @@ PICKUP_DETECTIVESPECIAL = "You got the Detective Special! Feels pretty small, ey
 PICKUP_STENMK2 = "You got the Sten Mk.2(S)! Warm to the touch!";
 PICKUP_STUNGUN = "You got the Stun Gun! Zap, zap!";
 PICKUP_PHAZER = "You got the Phazer! It's set to 'KILL'!";
+PICKUP_FRAGCANNON = "You got the Frag Cannon!";
 
 // Item Tags, same as weapons but these are just for the items. - [Ted]
 TAG_10RELOADER = "10mm Auto Reloader";
@@ -85,7 +87,6 @@ PICKUP_10MAG8 = "Picked up a 10mm pistol magazine.";
 PICKUP_10MRELOADER = "Picked up a 10mm reloading device!";
 PICKUP_JUANMAG = "Picked up a horseshoe-shaped pistol magazine..?";
 PICKUP_MICROCELL = "You picked up a micro-cell.";
-
 
 // Obituaries, useful for other mod developers. Like myself. - [Ted]
 OB_STUNGUN = "%o got fried by %k's stun gun.";
@@ -108,7 +109,7 @@ OB_10MMPISTOL = "%o was dealt a fatal blow by %k's 10mm pistol.";
 OB_COLT1911 = "%o got a taste of %k's Colt .45.";
 OB_STUNGUN = "%o got fried by %k's stun gun.";
 OB_PHAZER = "%o got vaporized out by %k's Phazer.";
-
+OB_FRAGCANNON = "%o got frag'd by %k's cannon.";
 
 // EVERYTHING below this is Menu stuff. Feast upon the horror. - [Ted]
 
@@ -144,9 +145,9 @@ MENU_MFGNCONVERCONTROL = "Control the natural spawn rate of Metal Flare Guns.";
 MENU_MFGUNDROP = "Control the chance that Metal Flare Guns drop from enemies.";
 MENU_METALCONVRATE = "Metal Conversion Rate: ";
 
-MENU_FGUNLORE1 = "A common survival tool, useful for lighting up dark areas, or the occasional zombie or two.";
-MENU_FGUNLORE2 = "It can also fire buckshot shells, but at a price.";
-MENU_FGUNLORE3 = "Metallic versions exist to aide with this issue, though are much heavier.";
+MENU_FGUNLORE1 = "A common survival tool, useful for lighting up dark areas, or the occasional";
+MENU_FGUNLORE2 = "zombie or two. It can also fire buckshot shells, but at a price. Metallic";
+MENU_FGUNLORE3 = "versions exist to aide with this issue, though are much heavier.";
 
 // Hush Puppy
 MENU_PUPTITLE = "------ Hush Puppy Silenced Pistol Options ------";
@@ -156,6 +157,14 @@ MENU_HPUPLORE1 = "A modified version of the 99FX pistol with a suppressor attach
 MENU_HPUPLORE2 = "Has a slide lock installed to stop another round from being chambered";
 MENU_HPUPLORE3 = "automatically, which reduces gunshot volume greatly. The downside is";
 MENU_HPUPLORE4 = "the user has to chamber rounds manually after each and every shot.";
+
+// Frag Cannon
+MENU_FRAGCANNONTITLE = "----- 'Frag Cannon' Frag Grenade Launcher Options ------";
+MENU_FRAGCANNONTEXT = "Control the spawn rate of the Frag Cannon on ammobox spawns.";
+
+MENU_FCNLORE1 = "A different type of 'grenade' launcher, this weapon can load common";
+MENU_FCNLORE2 = "fragmentation grenades and propel them at high speeds, useful for";
+MENU_FCNLORE3 = "those who have a weak throwing arm or bad coordination.";
 
 
 //Phazer
@@ -325,6 +334,7 @@ MENU_EHUNTERLORE3 = "Use of this weapon in close-quarters is ill-advised if you 
 // Single Action
 MENU_SINGACTTITLE = "------ Single-Action Revolver Options ------";
 MENU_SINGACTTEXT1 = "Control the spawn rate of the Single-Action on Pistols";
+MENU_SINGACTTEXT2 = "Control the spawn rate of Single-Action bundles on Ammoboxes ";
 
 MENU_SINGACTLORE1 = "An ancient firearm better suited for a gunslinger than a space marine.";
 MENU_SINGACTLORE2 = "Chambered in .45 Long Colt, this revolver will definitely punch a hole into whatever it hits.";

@@ -24,6 +24,9 @@ version "4.8"
 // Single-action Revolver
 #include "zscript/Single Action Revolver/wep_SArevolver.zs"
 
+//Frag Cannon
+#include "zscript/FragCannon/wep_fragcannon.zs"
+
 //Phazer Pistol
 #include "zscript/Phazer/wep_phazerpistol.zs"
 

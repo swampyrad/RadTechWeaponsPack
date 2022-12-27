@@ -42,6 +42,17 @@ sprite mclld0, 5, 11{
 	patch mclla0, 0, 0 {translation "112:120=96:111"}
 }
 
+//Frag Cannon
+sprite FCNNA0, 55, 70{
+    offset -132, -110
+    patch FCNNA0, 0, 0
+}
+
+sprite FGCNA0, 56, 18{
+    offset 28, 18
+    patch FGCNA0, 0, 0
+}
+
 
 //Hush Puppy
 

@@ -53,6 +53,8 @@ OptionMenu RadTechWeaponry
 	StaticText ""
 	Submenu "$TAG_DYNAMITE", "Dynamite", 0, 1
 	StaticText ""
+	Submenu "$TAG_FRAGCANNON", "FragCannon", 0, 1
+	StaticText ""
 	Submenu "$TAG_MICROCELL", "MicroCell", 0, 1
 	StaticText ""
     Submenu "$TAG_FLAREGUN", "flareguns", 0, 1
@@ -120,7 +122,7 @@ OptionMenu HushPuppy
     StaticText ""
 	StaticText "$MENU_SPAWNOPTIONS", "Red"
     StaticText  "$MENU_HPUPPYHANDGUNTEXT", "white"
-	Option "$MENU_WEPSPAWNRATE", "HushPuppy_spawn_bias", "SpawnBias"
+	Option "$MENU_WEPSPAWNRATE", "hushpuppy_spawn_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETWEP", "resetcvar hushpuppy_spawn_bias"
  	StaticText ""
     StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
@@ -137,6 +139,34 @@ OptionMenu HushPuppy
 	StaticText "$MENU_HPUPLORE2", "white"
 	StaticText "$MENU_HPUPLORE3", "white"
 	StaticText "$MENU_HPUPLORE4", "white"
+	
+}
+
+OptionMenu FragCannon
+{
+    Title "$MENU_FRAGCANNONTITLE"
+   	StaticText "$MENU_NOTICE", "Red"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Red"
+    StaticText  "$MENU_FRAGCANNONTEXT", "white"
+	Option "$MENU_WEPSPAWNRATE", "fragcannon_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar fragcannon_spawn_bias"
+ 	StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "fragcannon_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar fragcannon_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "fragcannon_reset_cvars"
+	StaticText ""
+	StaticText "$MENU_LORETAG", "Red"
+	StaticText ""
+	StaticText "$MENU_FCNLORE1", "white"
+	StaticText "$MENU_FCNLORE2", "white"
+	StaticText "$MENU_FCNLORE3", "white"
 	
 }
 
@@ -244,6 +274,17 @@ OptionMenu Juan9mm
     StaticText  "$MENU_JUANTEXT4", "white"
 	Option "$MENU_MAGSPAWNRATE", "ja_mag_spawn_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETMAG", "resetcvar ja_mag_spawn_bias"
+	StaticText ""
+	
+	/* this does nothing yet
+	Option "$MENU_PERSISTENCY", "ja_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar ja_persistent_spawning"
+ 	StaticText ""
+ 	*/
+ 	
+ 	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "juan_reset_cvars"
 	StaticText ""
 	StaticText "$MENU_LORETAG", "green"
 	StaticText ""
@@ -619,6 +660,10 @@ OptionMenu SingleActionRevolver
     StaticText  "$MENU_SINGACTTEXT1", "white"
 	Option "$MENU_WEPSPAWNRATE", "sa_pistol_spawn_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETWEP", "resetcvar sa_pistol_spawn_bias"
+ 	StaticText ""
+ 	StaticText  "$MENU_SINGACTTEXT2", "white"
+	Option "$MENU_WEPSPAWNRATE", "sa_bundle_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar sa_bundle_spawn_bias"
  	StaticText ""
     StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
 	Option "$MENU_PERSISTENCY", "sa_persistent_spawning", "OnOff"

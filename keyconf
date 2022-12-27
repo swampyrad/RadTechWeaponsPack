@@ -12,7 +12,7 @@ alias minerva_reset_cvars "resetcvar minerva_chaingun_spawn_bias; resetcvar mine
 alias llh_reset_cvars "resetcvar llh_shotgun_spawn_bias; resetcvar llhs_shell_spawn_bias; resetcvar llhs_box_spawn_bias; resetcvar llh_persistent_spawning"
 alias hzm_reset_cvars "resetcvar hacked_zm66_spawn_bias; resetcvar hacked_persistent_spawning"
 alias esg_reset_cvars "resetcvar esg_shotgun_spawn_bias; resetcvar esgs_shell_spawn_bias; resetcvar esgs_box_spawn_bias; resetcvar esg_persistent_spawning"
-alias sa_reset_cvars "resetcvar sa_pistol_spawn_bias; resetcvar sa_persistent_spawning"
+alias sa_reset_cvars "resetcvar sa_pistol_spawn_bias; resetcvar sa_bundle_spawn_bias; resetcvar sa_persistent_spawning"
 alias gsa_reset_cvars "resetcvar gsa_pistol_spawn_bias; resetcvar gsa_persistent_spawning"
 alias flreset_cvars "resetcvar fl_weapon_spawn_bias; resetcvar fl_weapon_drop_chance_bias; resetcvar fl_weapon_persistent_spawning; resetcvar fl_metal_spawn_bias; resetcvar fl_metal_drop_chance_bias; resetcvar fl_metal_persistent_spawning"
 alias obrozz_reset_cvars "resetcvar obrozz_spawn_bias; resetcvar obrozz_persistent_spawning"
@@ -23,6 +23,7 @@ alias stungun_reset_cvars "resetcvar stungun_spawn_bias; resetcvar stungun_persi
 alias hushpuppy_reset_cvars "resetcvar hushpuppy_spawn_bias; resetcvar hushpuppy_persistent_spawning"
 alias phazer_reset_cvars "resetcvar phazer_spawn_bias; resetcvar phazer_persistent_spawning"
 alias microcell_reset_cvars "resetcvar microcell_spawn_bias; resetcvar microcell_persistent_spawning"
+alias fcn_reset_cvars "resetcvar fragcannon_spawn_bias; resetcvar fragcannon_persistent_spawning"
+alias juan_reset_cvars "resetcvar ja_weapon_spawn_bias; resetcvar ja_mag_spawn_bias; resetcvar ja_firemode_chance_bias; resetcvar ja_weapon_drop_chance_bias; resetcvar ja_persistent_spawning"
 
-
-alias RTWP_Reset_Cvars "flreset_cvars; dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars; llh_reset_cvars; hzm_reset_cvars; esg_reset_cvars; sa_reset_cvars; gsa_reset_cvars; obrozz_reset_cvars; dynamite_reset_cvars; colt1911_reset_cvars; sten_reset_cvars; stungun_reset_cvars; hushpuppy_reset_cvars;phazer_reset_cvars;microcell_reset_cvars"
+alias RTWP_Reset_Cvars "flreset_cvars; dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars; llh_reset_cvars; hzm_reset_cvars; esg_reset_cvars; sa_reset_cvars; gsa_reset_cvars; obrozz_reset_cvars; dynamite_reset_cvars; colt1911_reset_cvars; sten_reset_cvars; stungun_reset_cvars; hushpuppy_reset_cvars; phazer_reset_cvars; microcell_reset_cvars; fcn_reset_cvars; juan_reset_cvars"

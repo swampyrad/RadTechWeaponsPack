@@ -26,6 +26,10 @@ server bool fl_metal_persistent_spawning = false;
 server int hushpuppy_spawn_bias = 19;
 server bool hushpuppy_persistent_spawning = false;
 
+//Frag Cannon
+server int fragcannon_spawn_bias = 19;
+server bool fragcannon_persistent_spawning = false;
+
 //Stun Gun
 server int stungun_spawn_bias = 19;
 server bool stungun_persistent_spawning = false;
@@ -58,6 +62,7 @@ server int ja_weapon_spawn_bias = 19;
 server int ja_mag_spawn_bias = 9;
 server int ja_firemode_chance_bias = 49;
 server int ja_weapon_drop_chance_bias = 49;
+server bool ja_persistent_spawning = false;
 
 // Doomed Hunter
 server int dHunt_shotgun_spawn_bias = 19;
@@ -112,6 +117,7 @@ server bool esg_persistent_spawning = false;
 
 // Single-Action Revolver
 server int sa_pistol_spawn_bias = 24;
+server int sa_bundle_spawn_bias = 24;
 server bool sa_persistent_spawning = false;
 
 // Gold Single-Action Revolver

@@ -1,46 +1,45 @@
 //10mm Weapons
-weapons/sigcow     SCWFIRE
-weapons/delta10mm  DELTAGUN
-
+weapons/sigcow      SCWFIRE
+weapons/delta10mm   DELTAGUN
 
 //Single Action Revolver
 // firing
 weapons/rsa_shoot   rsablast
 // hammercock
-weapons/rsa_click  rsaclick
-
+weapons/rsa_click   rsaclick
 
 //Golden Gun
 // firing
-weapons/goldengun    goldngun
+weapons/goldengun   goldngun
 
 //Taser
-weapons/taser   taserclk
-weapons/taserzap   taserzap
+weapons/taser       taserclk
+weapons/taserzap    taserzap
 
 //Dynamite
-
-weapons/dyna_pinin    zipclose
-weapons/dyna_pinout   ziplight
-weapons/dyna_spoonoff tntfuse
-weapons/dyna_throw    tnttoss
+weapons/dyna_pinin      zipclose
+weapons/dyna_pinout     ziplight
+weapons/dyna_spoonoff   tntfuse
+weapons/dyna_throw      tnttoss
 
 //STEN Mk. 2(S)
 weapons/sten            stenfire
 weapons/sten_chamber    stenchbr
 weapons/sten_overheat   stenheat
 
+//Frag Cannon
+weapons/fragcannon  CANFWOOP
 
 //Detective Special
 // firing
-weapons/snubnose  snubfire
+weapons/snubnose    snubfire
 
 //Colt 1911
-weapons/colt1911  COLT1911
+weapons/colt1911    COLT1911
 
 //Flare Gun
 // plastic breaking.
-weapons/fgnclk dsrifclk
+weapons/fgnclk  dsrifclk
 $limit weapons/fgnclk 0
 
 // reloading.
@@ -56,15 +55,15 @@ weapons/fgnrel3 dsdbload
 $limit weapons/fgnrel3 0
 
 // shell firing.
-weapons/fgnshell dsshotg
+weapons/fgnshell    dsshotg
 $limit weapons/fgnshell 0
 
 // flare firing.
-weapons/fgnblast FGNBLAST
+weapons/fgnblast    FGNBLAST
 $limit weapons/fgnblast 0
 
 // For flare projectiles.
-flaregun/flareburn FLARBURN
+flaregun/flareburn  FLARBURN
 $limit flaregun/flareburn 0
 
 
@@ -93,5 +92,5 @@ $random weapons/mnvatryfix  {weapons/mnvashunt weapons/mnvaforcemag}
 $random weapons/mnvatryfix2 {weapons/mnvashunt weapons/mnvaopen1 weapons/mnvaumag weapons/mnvaforcemag weapons/mnvaextract weapons/bigcrack weapons/pocket}
 
 // Worldfar for shooting.
-world/mnvafar     dsriffar    $limit world/mnvafar 0
+world/mnvafar   dsriffar    $limit world/mnvafar 0
 
