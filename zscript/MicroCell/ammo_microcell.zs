@@ -15,9 +15,12 @@ class HDMicroCell:HDBattery{
 		hdpickup.bulk ENC_BATTERY/2;
 		hdmagammo.magbulk ENC_BATTERY/2;
 		hdmagammo.mustshowinmagmanager true;
-		inventory.pickupmessage "$PICKUP_MICROCELL";
 		inventory.icon "MCLLA0";
 		scale 0.4;
+	}
+	
+	override string pickupmessage(){
+		return Stringtable.Localize("$PICKUP_MICROCELL");
 	}
 	
 	override void doeffect(){
