@@ -409,7 +409,7 @@ class RadTechHandler : EventHandler
         Array<RTSpawnItemEntry> spawns_sixgun_bundle;
 		spawns_sixgun_bundle.push(additementry('HDAmBox', sa_bundle_spawn_bias));
 		spawns_sixgun_bundle.push(additementry('HunterRandom', sa_bundle_spawn_bias));
-		additem('SASpawn', spawns_sixgun_bundle, sa_persistent_spawning);
+		additem('SADeinoSpawn', spawns_sixgun_bundle, sa_persistent_spawning);
 
 
 		// Gold Single-Action
@@ -418,7 +418,7 @@ class RadTechHandler : EventHandler
 		spawns_goldengun.push(additementry('HDAmBox', gsa_pistol_spawn_bias));
 		spawns_goldengun.push(additementry('ClipBoxPickup', gsa_pistol_spawn_bias));
 		spawns_goldengun.push(additementry('HunterRandom', gsa_pistol_spawn_bias));
-		additem('GoldSASpawn', spawns_goldengun, gsa_persistent_spawning);
+		additem('GoldSADeinoSpawn', spawns_goldengun, gsa_persistent_spawning);
 
 /*  tried something, didn't work, maybe fix later??
 
