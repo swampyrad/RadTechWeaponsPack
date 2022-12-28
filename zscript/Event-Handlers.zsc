@@ -282,9 +282,9 @@ class RadTechHandler : EventHandler
 
 		// Frag Cannon
 		Array<RTSpawnItemEntry> spawns_fragcannon;  
-		spawns_phazer.push(additementry('HDAmBox', phazer_spawn_bias));
-	    spawns_phazer.push(additementry('HunterRandom', phazer_spawn_bias));
-		additem('PhazerPistol', spawns_phazer, phazer_persistent_spawning);
+		spawns_fragcannon.push(additementry('HDAmBox', fragcannon_spawn_bias));
+	    spawns_fragcannon.push(additementry('HunterRandom', fragcannon_spawn_bias));
+		additem('FragCannonPickup', spawns_fragcannon, fragcannon_persistent_spawning);
 
 		// Colt 1911 .45 Pistol
 		Array<RTSpawnItemEntry> spawns_colt1911;  
