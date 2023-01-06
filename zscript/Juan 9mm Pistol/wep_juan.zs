@@ -66,7 +66,7 @@ class HDHorseshoePistol:HDHandgun{
         if(GetSpareWeaponValue(0,usespare)&PISF_SELECTFIRE)
         {
 			// For ammo reloads via cheats. 
-			if(GetSpareWeaponValue(HPISS_MAG, usespare) >= 0)
+			if(GetSpareWeaponValue(HPISS_MAG, usespare) >= 0&&MAG_30)
 			{
 				if(GetSpareWeaponValue(HPISS_CHAMBER, usespare)<1)
 					sprind="F";
@@ -84,7 +84,7 @@ class HDHorseshoePistol:HDHandgun{
         else
 		{
 			// For ammo reloads via cheats. 
-			if(GetSpareWeaponValue(HPISS_MAG, usespare) >= 0)
+			if(GetSpareWeaponValue(HPISS_MAG, usespare) >= 0&&MAG_30)
 			{
 				if(GetSpareWeaponValue(HPISS_CHAMBER, usespare)<1)
 					sprind="B";
@@ -101,49 +101,6 @@ class HDHorseshoePistol:HDHandgun{
 		}
         return sprname..sprind.."0",1.;
     }
-	
-	/*	
-	override string,double getpickupsprite()
-    {
-        string sprind;
-        
-        if(weaponstatus[0]&HPISF_SELECTFIRE)
-        {
-			if(weaponstatus[HPISS_MAG] >= 0)
-			{
-				if(weaponstatus[HPISS_CHAMBER]<1)
-					sprind="F";
-				else
-					sprind="E";
-			}
-			else
-			{
-				if(weaponstatus[HPISS_CHAMBER]<1)
-					sprind="H";
-				else
-					sprind="G";
-			}
-        }
-        else
-		{
-			if(weaponstatus[HPISS_MAG] >= 0)
-			{
-				if(weaponstatus[HPISS_CHAMBER]<1)
-					sprind="B";
-				else
-					sprind="A";
-			}
-			else
-			{
-				if(weaponstatus[HPISS_CHAMBER]<1)
-					sprind="D";
-				else
-					sprind="C";
-			}
-		}
-        return "HPIS"..sprind.."0",1.;
-    }
-		*/
 
 	// Carbon copy of getpickupsprite for spawned weapons. 
 	int	getframeindex()
@@ -158,7 +115,7 @@ class HDHorseshoePistol:HDHandgun{
 		}
 		
 		// For ammo reloads via cheats. 
-		if(weaponstatus[HPISS_MAG] >= 0)
+		if(weaponstatus[HPISS_MAG] >= 0&&MAG_30)
 		{
 			if(weaponstatus[HPISS_CHAMBER]<1)
 				frind+=1;
@@ -463,7 +420,7 @@ class HDHorseshoePistol:HDHandgun{
 		goto readyend;
 
 	 reload:
-	    ---- A 0 A_JumpIf(invoker.MAG_15,"reload2");
+	    ---- A 0 A_JumpIf(!invoker.MAG_30,"reload2");
 		---- A 0
 			{
 			invoker.weaponstatus[0]&=~HPISF_JUSTUNLOAD;
