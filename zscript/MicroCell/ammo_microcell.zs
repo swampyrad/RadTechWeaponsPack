@@ -123,7 +123,7 @@ class HDMicroCell:HDBattery{
 	}
 	
 	override string,string,name,double getmagsprite(int thismagamt){
-		string magsprite;
+		string magsprite="MCLLA0";
 		if(thismagamt>6)magsprite="MCLLA0";
 		else if(thismagamt>3)magsprite="MCLLB0";
 		else if(thismagamt>0)magsprite="MCLLC0";
@@ -138,14 +138,15 @@ class HDMicroCell:HDBattery{
 	
 	states(actor){
 	spawn:
-		MCLL CAB -1 nodelay{
+		MCLL A -1 nodelay{
 			if(!mags.size()){destroy();return;}
 			int amt=mags[0];
-			if(amt>6)frame=0;
-			else if(amt>3)frame=1;
+			if(amt>6)A_SetTranslation("ResetGreen");//frame=0;
+			else if(amt>3)A_SetTranslation("GreenToOrange");//frame=1;
+			else if(amt>0)A_SetTranslation("GreenToRed");
 		}stop;
 	spawnempty:
-		MCLL D -1;
+		MCLL A -1 A_SetTranslation("GreenToGrey");
 		stop;
 	}
 }
