@@ -250,175 +250,218 @@ class RadTechHandler : EventHandler
 		// Weapon/Item Spawns
 		// --------------------
 
+        // Note:
+        // Anything that replaces items directly must have persistent 
+        // spawns disabled to avoid them getting "transmogrified" in 
+        // weird ways, like mags ejected when firing/reloading, or 
+        // dumping the contents of a backpack.
+        //
+        // I changed most of the weapon spawners to replace ammoboxes and
+        // spawn mags on shell pickups. I couldn't find any decent way to
+        // spawn items on clip/mag spawns, so this is the best I could do.
+        //
+        //
+        // -- Swampie
+        
+    // ----- Energy Weapons -----
+        
 		// Stun Gun
 		Array<RTSpawnItemEntry> spawns_stungun;
 		spawns_stungun.push(additementry('Lumberjack', stungun_spawn_bias));
-		additem('HDStunGun', spawns_stungun, stungun_persistent_spawning);
+		additem('HDStunGun', spawns_stungun, false);
 
-		// Phazer
+		// Phazer Plasma Pistol
 		Array<RTSpawnItemEntry> spawns_phazer;  
-		spawns_phazer.push(additementry('HDAmBox', phazer_spawn_bias));
+		spawns_phazer.push(additementry('HDAmBoxUnarmed', phazer_spawn_bias));
 		additem('PhazerPistol', spawns_phazer, phazer_persistent_spawning);
+
 		
-		// Microcells
+		// Micro-Cells
 		Array<RTSpawnItemEntry> spawns_microcell;
-		spawns_microcell.push(additementry('Clip', microcell_spawn_bias));
-		spawns_microcell.push(additementry('ClipMagPickup', microcell_spawn_bias));
-		spawns_microcell.push(additementry('HD9mMag15', microcell_spawn_bias));
-		spawns_microcell.push(additementry('HDBattery', microcell_spawn_bias));
+		spawns_microcell.push(additementry('ShellPickup', microcell_spawn_bias));
+	    spawns_microcell.push(additementry('HDIEDPack', microcell_spawn_bias));
+        spawns_microcell.push(additementry('HDIEDKits', microcell_spawn_bias));
 		additem('HDMicroCell', spawns_microcell, microcell_persistent_spawning);
 
-		// DM-93
+		// DM-93 Plasma Rifle
 		Array<RTSpawnItemEntry> spawns_plasmabuster;  
-		spawns_plasmabuster.push(additementry('HDBattery', pbuster_cpack_spawn_bias)); 
-		spawns_plasmabuster.push(additementry('ThunderBuster', pbuster_cpack_spawn_bias)); 
-		additem('PlasmaBuster', spawns_plasmabuster, pbuster_persistent_spawning);
+		spawns_plasmabuster.push(additementry('Thunderbuster', pbuster_cpack_spawn_bias)); 
+		additem('PlasmaBuster', spawns_plasmabuster, false);
 
-		// Hush Puppy
+    // ----- Pistols -----
+        
+		// Hush Puppy Silenced Pistol
 		Array<RTSpawnItemEntry> spawns_hushpuppy;  
-		spawns_HushPuppy.push(additementry('HDHandgunRandomDrop', hushpuppy_spawn_bias)); 
-		spawns_hushpuppy.push(additementry('HDPistol', hushpuppy_spawn_bias)); 
+		spawns_HushPuppy.push(additementry('HDAmBoxUnarmed', hushpuppy_spawn_bias)); 
+	    spawns_HushPuppy.push(additementry('HDAmBox', hushpuppy_spawn_bias)); 
 		additem('HushPuppyPistol', spawns_hushpuppy,  hushpuppy_persistent_spawning);
 
-		// Frag Cannon
-		Array<RTSpawnItemEntry> spawns_fragcannon;  
-		spawns_fragcannon.push(additementry('HDAmBox', fragcannon_spawn_bias));
-	    spawns_fragcannon.push(additementry('HunterRandom', fragcannon_spawn_bias));
-		additem('FragCannonPickup', spawns_fragcannon, fragcannon_persistent_spawning);
 
 		// Colt 1911 .45 Pistol
-		Array<RTSpawnItemEntry> spawns_colt1911;  
-		spawns_colt1911.push(additementry('HDHandgunRandomDrop', colt1911_spawn_bias)); 
-		spawns_colt1911.push(additementry('HDPistol', colt1911_spawn_bias)); 
-		additem('HDColt1911', spawns_colt1911,  colt1911_persistent_spawning);
+	//	Array<RTSpawnItemEntry> spawns_colt1911;  
+	//	spawns_colt1911.push(additementry('HunterRandom', colt1911_spawn_bias)); 
+	//	spawns_colt1911.push(additementry('HDPistol', colt1911_spawn_bias)); 
+	//	additem('HDColt1911', spawns_colt1911,  colt1911_persistent_spawning);
 	    
 		// Colt 1911 Mags
 		Array<RTSpawnItemEntry> spawns_colt1911_mags;
-		spawns_colt1911_mags.push(additementry('HD9mMag15', colt1911_mags_spawn_bias));
-		spawns_colt1911_mags.push(additementry('ClipMagPickup', colt1911_mags_spawn_bias));
+		spawns_colt1911_mags.push(additementry('ShellPickup', colt1911_mags_spawn_bias));
+        spawns_colt1911_mags.push(additementry('HDIEDPack', colt1911_mags_spawn_bias));
+        spawns_colt1911_mags.push(additementry('HDIEDKits', colt1911_mags_spawn_bias));
 		additem('HDColtMag7', spawns_colt1911_mags, colt1911_persistent_spawning);
 			    
 		//Random ammobox spawns
 		Array<RTSpawnItemEntry> spawns_colt1911_ammobox;
+		spawns_colt1911_ammobox.push(additementry('HDAmBoxUnarmed', colt1911_ammobox_spawn_bias));
 		spawns_colt1911_ammobox.push(additementry('HDAmBox', colt1911_ammobox_spawn_bias));
-		spawns_colt1911_ammobox.push(additementry('ClipBoxPickup', colt1911_ammobox_spawn_bias));
 		additem('HDColt1911Spawn', spawns_colt1911_ammobox, colt1911_persistent_spawning);
 
-		// STEN Mk. 2(S)
-		Array<RTSpawnItemEntry> spawns_sten;  
-		spawns_sten.push(additementry('HDSMGRandom', sten_spawn_bias));
-		spawns_sten.push(additementry('HDAmBox', sten_ammobox_spawn_bias));
-		spawns_sten.push(additementry('ClipBoxPickup', sten_ammobox_spawn_bias));
-		additem('HDSTENRandom', spawns_sten,  sten_persistent_spawning);  
-        
-		// Single bits of Dynamite
-		Array<RTSpawnItemEntry> spawns_dynamite;  
-		spawns_dynamite.push(additementry('HDRocketAmmo', dynamite_spawn_bias)); 
-		spawns_dynamite.push(additementry('HDFragGrenades', dynamite_spawn_bias)); 
-		additem('HDDynamiteAmmo', spawns_dynamite, dynamite_persistent_spawning);
-	    
-	    // Dynamite Packs
-		Array<RTSpawnItemEntry> spawns_dynamitebundle;  
-		spawns_dynamitebundle.push(additementry('RocketBox', dynamite_spawn_bias)); 
-       	spawns_dynamitebundle.push(additementry('HDFragGrenadeP', dynamite_spawn_bias)); 
-		additem('HDDynamitePickup', spawns_dynamitebundle, dynamite_persistent_spawning);
-
-		// Plastic Flaregun
-		Array<RTSpawnItemEntry> spawns_flaregun_plastic; 
-		spawns_flaregun_plastic.push(additementry("Hunter", fl_weapon_spawn_bias)); 
-		spawns_flaregun_plastic.push(additementry("Slayer", fl_weapon_spawn_bias)); 
-		spawns_flaregun_plastic.push(additementry('HDHandgunRandomDrop', fl_weapon_drop_chance_bias));
-		additem("WildFlareGun", spawns_flaregun_plastic, fl_weapon_persistent_spawning, false); 
-
-		// Metal Flaregun
-		Array<RTSpawnItemEntry> spawns_flaregun_metal; 
-		spawns_flaregun_metal.push(additementry("Hunter", fl_metal_spawn_bias));
-		spawns_flaregun_metal.push(additementry("Slayer", fl_metal_spawn_bias));
-		spawns_flaregun_metal.push(additementry('HDHandgunRandomDrop', fl_metal_drop_chance_bias));
-		additem("WildMetalFlareGun", spawns_flaregun_metal, fl_metal_persistent_spawning, false);
-
-		// M-211 Sigcow
-		Array<RTSpawnItemEntry> spawns_sigcow;
-		spawns_sigcow.push(additementry('HDAmBox', sigcow_cbox_spawn_bias));
-		spawns_sigcow.push(additementry('ClipBoxPickup', sigcow_cbox_spawn_bias));
-		additem('SigCowRandomSpawn', spawns_sigcow, sigcow_persistent_spawning);
-		
-		// Sigcow Magazines
-		Array<RTSpawnItemEntry> spawns_sigcow_mags;
-		spawns_sigcow_mags.push(additementry('HD9mMag15', sigcow_cbox_spawn_bias));
-		spawns_sigcow_mags.push(additementry('ClipMagPickup', sigcow_cbox_spawn_bias));
-		additem('HD10mMag25', spawns_sigcow_mags, sigcow_persistent_spawning);
 
 		// Delta Elite spawns
 		Array<RTSpawnItemEntry> spawns_10mm_pistol;
-		spawns_10mm_pistol.push(additementry('HDHandgunRandomDrop', tenpis_handgun_spawn_bias));
-	    spawns_10mm_pistol.push(additementry('HDPistol', tenpis_handgun_spawn_bias));
+		spawns_10mm_pistol.push(additementry('HDAmBoxUnarmed', tenpis_handgun_spawn_bias));
+        spawns_10mm_pistol.push(additementry('HDAmBox', tenpis_handgun_spawn_bias));
 		additem('HD10mmPistol', spawns_10mm_pistol, tenpis_persistent_spawning);
 		
 		// Delta Elite Magazines
 		Array<RTSpawnItemEntry> spawns_10mm_pistol_mags;
-		spawns_sigcow_mags.push(additementry('HD9mMag15', tenpismag_cmag_spawn_bias));
-		spawns_sigcow_mags.push(additementry('ClipMagPickup', tenpismag_cmag_spawn_bias));
-		additem('HD10mMag8', spawns_10mm_pistol_mags, tenpismag_persistent_spawning);
+		spawns_10mm_pistol_mags.push(additementry('ShellPickup', tenpismag_cmag_spawn_bias));
+		spawns_10mm_pistol_mags.push(additementry('HDIEDPack', tenpismag_cmag_spawn_bias));
+        spawns_10mm_pistol_mags.push(additementry('HDIEDKits', tenpismag_cmag_spawn_bias));
+		additem('HD10mMag8', spawns_10mm_pistol_mags, tenpis_persistent_spawning);
+        
 
-		// Hacked ZM66
-		Array<RTSpawnItemEntry> spawns_hackedzm66;
-		spawns_hackedzm66.push(additementry('ZM66Random', hacked_zm66_spawn_bias));
-		spawns_hackedzm66.push(additementry('HDAmBox', hacked_zm66_spawn_bias));
-		additem('HackedZM66Random', spawns_hackedzm66, hacked_persistent_spawning);
+		// Obrozz Sawn-Off Boss Pistol
+		Array<RTSpawnItemEntry> spawns_obrozz;
+		spawns_obrozz.push(additementry('HDAmBoxUnarmed', obrozz_spawn_bias));
+	    spawns_obrozz.push(additementry('HDAmBox', obrozz_spawn_bias));
+		additem('ObrozzSpawner', spawns_obrozz, obrozz_persistent_spawning);
+        
 
-		// Minerva
-		Array<RTSpawnItemEntry> spawns_minerva;
-		spawns_minerva.push(additementry('Vulcanette', minerva_chaingun_spawn_bias));
-		spawns_minerva.push(additementry('HDSMGRandom', minerva_smg_spawn_bias));
-		additem('MinervaRandom', spawns_minerva, minerva_persistent_spawning);
+    // --- Revolvers ---
+
+		// Detective Special
+		Array<RTSpawnItemEntry> spawns_snose_pistol;
+		spawns_snose_pistol.push(additementry('DeinoSpawn', snose_pistol_spawn_bias));	
+		additem('SnubNoseSpawn', spawns_snose_pistol, snose_persistent_spawning);
+
+
+		// Single-Action Revolver
+	//	Array<RTSpawnItemEntry> spawns_sixgun;
+	//	spawns_sixgun.push(additementry('HDHandgunRandomDrop', sa_pistol_spawn_bias));
+	//	spawns_sixgun.push(additementry('HDPistol', sa_pistol_spawn_bias));
+	//	additem('HDSingleActionRevolver', spawns_sixgun, sa_persistent_spawning);
+        
+        Array<RTSpawnItemEntry> spawns_sixgun_bundle;
+		spawns_sixgun_bundle.push(additementry('DeinoSpawn', sa_bundle_spawn_bias));
+		additem('SADeinoSpawn', spawns_sixgun_bundle, sa_persistent_spawning);
+
+
+		// Gold Single-Action
+		Array<RTSpawnItemEntry> spawns_goldengun;
+		spawns_goldengun.push(additementry('DeinoSpawn', gsa_pistol_spawn_bias));
+		additem('GoldSADeinoSpawn', spawns_goldengun, gsa_persistent_spawning);
+
+
+    // ----- Shotguns -----
 
 		// Ithaca M37 Combat Shotgun
 		Array<RTSpawnItemEntry> spawns_combatshotgun;
 		spawns_combatshotgun.push(additementry('HunterRandom', cshotgun_shotgun_spawn_bias));
 		additem('HDCombatShotgunRandom', spawns_combatshotgun, cshotgun_persistent_spawning);
 
+
 		// Doomed Shotgun
 		Array<RTSpawnItemEntry> spawns_doomedshotgun;
 		spawns_doomedshotgun.push(additementry('HunterRandom', dHunt_shotgun_spawn_bias));
 		additem('DoomHunterRandom', spawns_doomedshotgun, dHunt_persistent_spawning);
+
 
 		// Less-Lethal Shotgun
 		Array<RTSpawnItemEntry> spawns_llshotgun;
 		spawns_llshotgun.push(additementry('HunterRandom', llh_shotgun_spawn_bias));
 		additem('LLHunter', spawns_llshotgun, llh_persistent_spawning);
 
+
 		// Explosive Shotgun
 		Array<RTSpawnItemEntry> spawns_exshotgun;
 		spawns_exshotgun.push(additementry('HunterRandom', esg_shotgun_spawn_bias));
 		additem('ExplosiveHunter', spawns_exshotgun, esg_persistent_spawning);
 
-		// Detective Special
-		Array<RTSpawnItemEntry> spawns_snose_pistol;
-		spawns_snose_pistol.push(additementry('HDHandgunRandomDrop', snose_pistol_spawn_bias));
-		spawns_snose_pistol.push(additementry('DeinoSpawn', snose_pistol_spawn_bias));	
-		spawns_snose_pistol.push(additementry('HunterRandom', snose_pistol_spawn_bias));	
-		additem('SnubNoseSpawn', spawns_snose_pistol, snose_persistent_spawning);
 
-		// Single-Action Revolver
-		Array<RTSpawnItemEntry> spawns_sixgun;
-		spawns_sixgun.push(additementry('HDHandgunRandomDrop', sa_pistol_spawn_bias));
-		spawns_sixgun.push(additementry('HDPistol', sa_pistol_spawn_bias));
-		additem('HDSingleActionRevolver', spawns_sixgun, sa_persistent_spawning);
+		// Plastic Flaregun
+		Array<RTSpawnItemEntry> spawns_flaregun_plastic; 
+		spawns_flaregun_plastic.push(additementry("Hunter", fl_weapon_spawn_bias)); 
+		spawns_flaregun_plastic.push(additementry("Slayer", fl_weapon_spawn_bias)); 
+		additem("WildFlareGun", spawns_flaregun_plastic, fl_weapon_persistent_spawning, false); 
+
+		// Metal Flaregun
+		Array<RTSpawnItemEntry> spawns_flaregun_metal; 
+		spawns_flaregun_metal.push(additementry("Hunter", fl_metal_spawn_bias));
+		spawns_flaregun_metal.push(additementry("Slayer", fl_metal_spawn_bias));
+		additem("WildMetalFlareGun", spawns_flaregun_metal, fl_metal_persistent_spawning, false);
+
+
+    // ----- Automatic Weapons -----
+
+		// M-211 Sigcow
+		Array<RTSpawnItemEntry> spawns_sigcow;
+		spawns_sigcow.push(additementry('HDAmBoxUnarmed', sigcow_cbox_spawn_bias));
+        spawns_sigcow.push(additementry('HDAmBox', sigcow_cbox_spawn_bias));
+		additem('SigCowRandomSpawn', spawns_sigcow, sigcow_persistent_spawning);
+		
+		// Sigcow Magazines
+		Array<RTSpawnItemEntry> spawns_sigcow_mags;
+		spawns_sigcow_mags.push(additementry('ShellPickup', sigcow_cbox_spawn_bias));
+        spawns_sigcow_mags.push(additementry('HDIEDPack', sigcow_cbox_spawn_bias));
+        spawns_sigcow_mags.push(additementry('HDIEDKits', sigcow_cbox_spawn_bias));
+		additem('HD10mMag25', spawns_sigcow_mags, sigcow_persistent_spawning);
+
+		// Hacked ZM66
+		Array<RTSpawnItemEntry> spawns_hackedzm66random;
+		spawns_hackedzm66random.push(additementry('HDAmBoxUnarmed', hacked_zm66_spawn_bias));
+        spawns_hackedzm66random.push(additementry('HDAmBox', hacked_zm66_spawn_bias));
+		additem('HackedZM66Random', spawns_hackedzm66random, hacked_persistent_spawning);
+
+
+		// STEN Mk. 2(S)
+		Array<RTSpawnItemEntry> spawns_sten;  
+		spawns_sten.push(additementry('HDSMGRandom', sten_spawn_bias));
+		spawns_sten.push(additementry('HDAmBoxUnarmed', sten_ammobox_spawn_bias));
+        spawns_sten.push(additementry('HDAmBox', sten_ammobox_spawn_bias));
+		additem('HDSTENRandom', spawns_sten,  sten_persistent_spawning);  
+
+
+		// Minerva
+		Array<RTSpawnItemEntry> spawns_minerva;
+		spawns_minerva.push(additementry('Vulcanette', minerva_chaingun_spawn_bias));
+		additem('MinervaRandom', spawns_minerva, false);
         
-        Array<RTSpawnItemEntry> spawns_sixgun_bundle;
-		spawns_sixgun_bundle.push(additementry('HDAmBox', sa_bundle_spawn_bias));
-		spawns_sixgun_bundle.push(additementry('HunterRandom', sa_bundle_spawn_bias));
-		additem('SADeinoSpawn', spawns_sixgun_bundle, sa_persistent_spawning);
+        Array<RTSpawnItemEntry> spawns_minerva_smg;
+        spawns_minerva_smg.push(additementry('HDSMGRandom', minerva_smg_spawn_bias));
+		additem('MinervaRandom', spawns_minerva_smg, minerva_persistent_spawning);
 
 
-		// Gold Single-Action
-		Array<RTSpawnItemEntry> spawns_goldengun;
-		spawns_goldengun.push(additementry('HDHandgunRandomDrop', gsa_pistol_spawn_bias));
-		spawns_goldengun.push(additementry('HDAmBox', gsa_pistol_spawn_bias));
-		spawns_goldengun.push(additementry('ClipBoxPickup', gsa_pistol_spawn_bias));
-		spawns_goldengun.push(additementry('HunterRandom', gsa_pistol_spawn_bias));
-		additem('GoldSADeinoSpawn', spawns_goldengun, gsa_persistent_spawning);
+    // ----- Explosives -----
+
+		// Single bits of Dynamite
+		Array<RTSpawnItemEntry> spawns_dynamite;  
+		spawns_dynamite.push(additementry('HDRocketAmmo', dynamite_spawn_bias)); 
+		spawns_dynamite.push(additementry('HDFragP', dynamite_spawn_bias)); 
+		additem('HDDynamiteAmmo', spawns_dynamite, false);
+	    
+	    
+	    // Dynamite Packs
+		Array<RTSpawnItemEntry> spawns_dynamitebundle;  
+		spawns_dynamitebundle.push(additementry('RocketBigPickup', dynamite_spawn_bias)); 
+		additem('HDDynamitePickup', spawns_dynamitebundle, dynamite_persistent_spawning);
+
+
+		// Frag Cannon
+		Array<RTSpawnItemEntry> spawns_fragcannon;  
+		spawns_fragcannon.push(additementry('RocketBigPickup', fragcannon_spawn_bias));
+		additem('FragCannonPickup', spawns_fragcannon, fragcannon_persistent_spawning);
+
 
 /*  tried something, didn't work, maybe fix later??
 
@@ -429,12 +472,6 @@ class RadTechHandler : EventHandler
 		additem('HDHorseShoePistol', spawns_juan, ja_persistent_spawning);
 */
 
-		// Obrozz Rifle
-		Array<RTSpawnItemEntry> spawns_obrozz;
-		spawns_obrozz.push(additementry('HunterRandom', obrozz_spawn_bias));
-		spawns_obrozz.push(additementry('HDAmBox', obrozz_spawn_bias));
-		spawns_obrozz.push(additementry('ClipBoxPickup', obrozz_spawn_bias));
-		additem('ObrozzSpawner', spawns_obrozz, obrozz_persistent_spawning);
 	}
 	
 	// Random stuff, stores it and forces negative values just to be 0.
