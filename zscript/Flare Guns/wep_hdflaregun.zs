@@ -212,6 +212,7 @@ action void A_CheckFlareGunHand(bool filled)
 			for(int i=0;i<5;i++)A_SpawnItemEx("FourMilChunk",0,0,invoker.owner.height * 0.80,
 				random(4,7),random(-2,2),random(-2,1),0,SXF_NOCHECKPOSITION
 			);
+			A_AlertMonsters();
 	}
 	
 	
@@ -241,6 +242,7 @@ action void A_CheckFlareGunHand(bool filled)
 			distantnoise.make(sss,"weapons/flaregun_shellfar");
 			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
 			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
+			A_AlertMonsters();
 	}
 	
 	
@@ -255,6 +257,7 @@ action void A_CheckFlareGunHand(bool filled)
 			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
 			invoker.weaponstatus[0]=FLARE_SPENTSHELL;
 			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
+			A_AlertMonsters();
 	}
 
 //the damn thing explodes when you do this,
