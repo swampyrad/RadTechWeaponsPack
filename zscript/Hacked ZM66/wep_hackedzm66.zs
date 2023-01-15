@@ -109,7 +109,7 @@ class HackedZM66AssaultRifle:ZM66ScopeHaver{
 
 		if(!(hdw.weaponstatus[0]&ZM66HACKEDF_NOFIRESELECT))
 		sb.drawwepcounter(hdw.weaponstatus[ZM66HACKEDS_AUTO],
-			-22,-10,"RBRSA3A7","STFULAUT","STBURAUT"
+			-22,-10,"RBRSA3A7","STFULAUT","STQBURST"
 		);
 		if(hdw.weaponstatus[0]&ZM66HACKEDF_GRENADELOADED)sb.drawrect(-20,-14,4,2.6);
 		int lod=clamp(hdw.weaponstatus[ZM66HACKEDS_MAG]%100,0,50);
@@ -309,7 +309,7 @@ class HackedZM66AssaultRifle:ZM66ScopeHaver{
 	hold:
 		RIFG A 0 A_JumpIf(invoker.weaponstatus[0]&ZM66HACKEDF_GLMODE,"FireFrag");
 		RIFG A 0 A_JumpIf(invoker.weaponstatus[0]&ZM66HACKEDF_NOFIRESELECT,"nope");
-		RIFG A 0 A_JumpIf(invoker.weaponstatus[ZM66HACKEDS_AUTO]>4,"nope");
+		RIFG A 0 A_JumpIf(invoker.weaponstatus[ZM66HACKEDS_AUTO]>5,"nope");
 		RIFG A 0 A_JumpIf(invoker.weaponstatus[ZM66HACKEDS_AUTO],"shootgun");
 	althold:
 		---- A 1{
@@ -368,7 +368,7 @@ class HackedZM66AssaultRifle:ZM66ScopeHaver{
 		}
 		RIFG B 0 A_CheckCookoff();
 		RIFG B 0 A_JumpIf(invoker.weaponstatus[ZM66HACKEDS_AUTO]<1,"nope");
-		RIFG B 0 A_JumpIf(invoker.weaponstatus[ZM66HACKEDS_AUTO]>4,"nope");
+		RIFG B 0 A_JumpIf(invoker.weaponstatus[ZM66HACKEDS_AUTO]>5,"nope");
 		RIFG B 2 A_JumpIf(invoker.weaponstatus[ZM66HACKEDS_AUTO]>1,1);
 		RIFG B 1;//the delay tick! slows the firerate to eliminate cookoff on fullauto
 		RIFG B 0 A_Refire();
