@@ -42,6 +42,15 @@ sprite mclld0, 5, 11{
 	patch mclla0, 0, 0 {translation "112:120=96:111"}
 }
 
+//custom quadburst symbol for Hacked ZM66
+graphic STQBURST,6,3
+{
+	patch PBRSC0G0,0,0 {}
+	patch PBRSC0G0,2,0 {}
+	patch PBRSC0G0,1,2 {}
+	patch PBRSC0G0,3,2 {}
+}
+
 //Frag Cannon
 sprite FCNNA0, 55, 70{
     offset -132, -110
