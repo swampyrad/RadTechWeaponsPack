@@ -70,6 +70,12 @@ AddOptionMenu "OptionsMenu"
     Submenu "$RADTECH_MENU", "RadTechWeaponry"
 }
 
+// Same as above but HDAddonMenu
+AddOptionMenu "HDAddonMenu"
+{
+    Submenu "$RADTECH_MENU", "RadTechWeaponry"
+}
+
 OptionMenu FlareGuns
 {
 	Title "$MENU_FGUNTITLE"
