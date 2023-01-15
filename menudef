@@ -3,29 +3,7 @@
 OptionMenu RadTechWeaponry
 {
     Title "------ Radtech Weapons Pack ------"
-	StaticText "--- Rifles ---", "orange"
-	StaticText ""
-    Submenu "$TAG_SIGCOW", "Sigcow", 0, 1
-	StaticText ""
-    Submenu "$TAG_OBROZZ", "ObrozzPistol", 0, 1
-	StaticText ""
-	Submenu "$TAG_HACKEDZM", "HackedZM66", 0, 1
-	StaticText ""
-	SubMenu "$TAG_STEN", "STEN", 0, 1
-	StaticText ""
-	Submenu "$TAG_MINERVA", "Minerva", 0, 1
-	StaticText ""
-	StaticText "--- Shotguns ---", "red"
-    StaticText ""
-    Submenu "$TAG_DOOMHUNT", "DoomedHunter", 0, 1
-    StaticText ""
-    Submenu "$TAG_COMBATSHOTGUN", "CombatShotgun", 0, 1
-	StaticText ""
-	Submenu "$TAG_EXPLOSIVESHOTGUN", "ExplosiveHunter", 0, 1
-	StaticText ""
-	Submenu "$TAG_LESSLETHALHUNTER", "LessLethalHunter", 0, 1
-	StaticText ""
-	StaticText "--- Pistols ---", "green"
+    StaticText "--- Pistols ---", "green"
 	StaticText ""
 	Submenu "$TAG_SINGLEACTREV", "SingleActionRevolver", 0, 1
 	StaticText ""
@@ -41,6 +19,28 @@ OptionMenu RadTechWeaponry
 	StaticText ""
 	Submenu "$TAG_SNUBNOSE", "snose", 0, 1
     StaticText ""
+	StaticText "--- Shotguns ---", "red"
+    StaticText ""
+    Submenu "$TAG_DOOMHUNT", "DoomedHunter", 0, 1
+    StaticText ""
+    Submenu "$TAG_COMBATSHOTGUN", "CombatShotgun", 0, 1
+	StaticText ""
+	Submenu "$TAG_EXPLOSIVESHOTGUN", "ExplosiveHunter", 0, 1
+	StaticText ""
+	Submenu "$TAG_LESSLETHALHUNTER", "LessLethalHunter", 0, 1
+	StaticText ""
+	StaticText "--- Rifles ---", "orange"
+	StaticText ""
+    Submenu "$TAG_SIGCOW", "Sigcow", 0, 1
+	StaticText ""
+    Submenu "$TAG_OBROZZ", "ObrozzPistol", 0, 1
+	StaticText ""
+	Submenu "$TAG_HACKEDZM", "HackedZM66", 0, 1
+	StaticText ""
+	SubMenu "$TAG_STEN", "STEN", 0, 1
+	StaticText ""
+	Submenu "$TAG_MINERVA", "Minerva", 0, 1
+	StaticText ""
 	StaticText "--- Energy Weapons ---", "cyan"
 	StaticText ""
     Submenu "$TAG_DM93PLASMA", "PlasmaBuster", 0, 1
@@ -188,10 +188,12 @@ OptionMenu StunGun
 	Option "$MENU_WEPSPAWNRATE", "stungun_spawn_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETWEP", "resetcvar stungun_spawn_bias"
  	StaticText ""
+/*
     StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
 	Option "$MENU_PERSISTENCY", "stungun_persistent_spawning", "OnOff"
 	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar stungun_persistent_spawning"
  	StaticText ""
+*/
    	StaticText ""
 	StaticText "$MENU_RESETOPTIONS", "Red"
 	SafeCommand "$MENU_RESETALLOPTIONS", "stungun_reset_cvars"
@@ -339,10 +341,12 @@ OptionMenu PlasmaBuster
 	Option "$MENU_WEPSPAWNRATE", "pbuster_cpack_spawn_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETWEP", "resetcvar pbuster_cpack_spawn_bias"
  	StaticText ""
+/*
     StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
 	Option "$MENU_PERSISTENCY", "pbuster_persistent_spawning", "OnOff"
 	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar pbuster_persistent_spawning"
  	StaticText ""
+*/
    	StaticText ""
 	StaticText "$MENU_RESETOPTIONS", "Cyan"
 	SafeCommand "$MENU_RESETALLOPTIONS", "pbuster_reset_cvars"
@@ -480,11 +484,13 @@ OptionMenu Colt1911
     StaticText  "$MENU_SUPPRESS1", "white"
     StaticText  "$MENU_SUPPRESS2", "white"
     StaticText ""
+/*
 	StaticText "$MENU_SPAWNOPTIONS", "Green"
     StaticText  "$MENU_COLTTEXT1", "white"
 	Option "$MENU_WEPSPAWNRATE", "colt1911_spawn_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETWEP", "resetcvar colt1911_spawn_bias"
     StaticText ""
+*/
     StaticText  "$MENU_COLTTEXT2", "white"
 	Option "$MENU_WEPSPAWNRATE", "colt1911_ammobox_spawn_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETWEP", "resetcvar colt1911_ammobox_spawn_bias"
@@ -662,11 +668,13 @@ OptionMenu SingleActionRevolver
     StaticText  "$MENU_SUPPRESS1", "white"
     StaticText  "$MENU_SUPPRESS2", "white"
     StaticText ""
+/*
 	StaticText "$MENU_SPAWNOPTIONS", "Green"
     StaticText  "$MENU_SINGACTTEXT1", "white"
 	Option "$MENU_WEPSPAWNRATE", "sa_pistol_spawn_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETWEP", "resetcvar sa_pistol_spawn_bias"
  	StaticText ""
+*/
  	StaticText  "$MENU_SINGACTTEXT2", "white"
 	Option "$MENU_WEPSPAWNRATE", "sa_bundle_spawn_bias", "SpawnBias"
 	SafeCommand "$MENU_RESETWEP", "resetcvar sa_bundle_spawn_bias"

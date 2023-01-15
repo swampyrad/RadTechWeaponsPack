@@ -151,7 +151,7 @@ MENU_FGUNLORE3 = "versions exist to aide with this issue, though are much heavie
 
 // Hush Puppy
 MENU_PUPTITLE = "------ Hush Puppy Silenced Pistol Options ------";
-MENU_HPUPPYHANDGUNTEXT = "Control the spawn rate of Hush Puppys on handgun spawns.";
+MENU_HPUPPYHANDGUNTEXT = "Control the spawn rate of Hush Puppys on Ammo Boxes.";
 
 MENU_HPUPLORE1 = "A modified version of the 99FX pistol with a suppressor attachment.";
 MENU_HPUPLORE2 = "Has a slide lock installed to stop another round from being chambered";
@@ -160,7 +160,7 @@ MENU_HPUPLORE4 = "the user has to chamber rounds manually after each and every s
 
 // Frag Cannon
 MENU_FRAGCANNONTITLE = "----- 'Frag Cannon' Frag Grenade Launcher Options ------";
-MENU_FRAGCANNONTEXT = "Control the spawn rate of the Frag Cannon on ammobox spawns.";
+MENU_FRAGCANNONTEXT = "Control the spawn rate of the Frag Cannon on Rocket Ammo Boxes.";
 
 MENU_FCNLORE1 = "A different type of 'grenade' launcher, this weapon can load common";
 MENU_FCNLORE2 = "fragmentation grenades and propel them at high speeds, useful for";
@@ -169,7 +169,7 @@ MENU_FCNLORE3 = "those who have a weak throwing arm or bad coordination.";
 
 //Phazer
 MENU_PHAZERTITLE = "------ Phazer Options ------";
-MENU_PHAZERBOXTEXT = "Control the spawn rate of Phazers on Ammo Box spawns.";
+MENU_PHAZERBOXTEXT = "Control the spawn rate of Phazers on Ammo Boxes.";
 
 MENU_PHAZERLORE1 = "An energy pistol featuring a miniaturized version of the DM-93's";
 MENU_PHAZERLORE2 = "particle beam emitter system. Because of its size, the Phazer is";
@@ -177,7 +177,7 @@ MENU_PHAZERLORE3 = "only powerful enough to fire single shots at a time.";
 
 //Micro-Cell
 MENU_MCELLTITLE = "------ Micro-Cell Options ------";
-MENU_MCELLCLIPTEXT = "Control the spawn rate of Micro-Cells on Clip spawns.";
+MENU_MCELLCLIPTEXT = "Control the spawn rate of Micro-Cells on Shell Ammo spawns.";
 
 MENU_MICROLORE1 = "A smaller, compact version of the Cell Battery, designed";
 MENU_MICROLORE2 = "for use in the Phazer and other such low-power devices.";
@@ -222,7 +222,7 @@ MENU_DHUNTLORE2 = "These older Hunters came with Duckbill Chokes to control thei
 
 // DM-93
 MENU_PBUSTITLE = "------ DM-93 Plasma Buster Options ------";
-MENU_PBUSTTEXT1 = "Control the spawn rate of the Plasma Buster on Cell Packs";
+MENU_PBUSTTEXT1 = "Control the spawn rate of the Plasma Buster on Thunderbusters";
 
 MENU_PBUSTLORE1 = "A revised version of the 'Thunder Buster' particle beam gun.";
 MENU_PBUSTLORE2 = "After receiving a disturbing number of incident reports involving self-detonations caused by mismanagement,";
@@ -235,7 +235,7 @@ MENU_PBUSTLORE8 = "shoots out a spread of many shots in rapid succession.";
 
 // Obrozz
 MENU_OBROZZTITLE = "------ Obrozz Sawn-off Boss Rifle Options ------";
-MENU_OBROZZTEXT = "Control the spawn rate of the Obrozz Pistol on Shotguns and Ammo Boxes";
+MENU_OBROZZTEXT = "Control the spawn rate of the Obrozz Pistol on Ammo Boxes";
 
 MENU_OBROZZLORE1 = "A Boss rifle that has been reduced down to the bare essentials.";
 MENU_OBROZZLORE2 = "Its decreased size makes it easier to conceal, allowing for easy";
@@ -252,7 +252,7 @@ MENU_CSHOTLORE3 = "Toss one in your pack the next time you leave HQ, it may beco
 
 // Sigcow
 MENU_SIGCOWTITLE = "------ M-211 Sigcow Options ------";
-MENU_SIGCOWTEXT1 = "Control the spawn rate of the Sigcow on Clip Boxes";
+MENU_SIGCOWTEXT1 = "Control the spawn rate of the Sigcow on Ammo Boxes";
 
 MENU_SIGCOWLORE1 = "A pistol-caliber carbine chambered in 10mm Auto";
 MENU_SIGCOWLORE2 = "and the trusted weapon of the UAC's Light Drop Infantry division.";
@@ -261,7 +261,7 @@ MENU_SIGCOWLORE3 = "Includes a bayonet attachment for ease of use in close-quart
 // 10 Piss
 MENU_10PTITLE = "------ Delta Elite 10mm Pistol Options ------";
 MENU_10PTEXT1 = "Control the spawn rate of the 10mm Pistol on Handguns";
-MENU_10PTEXT2 = "Control the spawn rate of the 10mm Pistol's magazines on Clip Magazines.";
+MENU_10PTEXT2 = "Control the spawn rate of the 10mm Pistol's magazines on Shell Ammo spawns.";
 
 MENU_10PLORE1 = "A handgun released in the late 80s, adopted by the FBI following the aftermath of a tragic shooting incident.";
 MENU_10PLORE2 = "This pistol offers better penetration and a much higher muzzle velocity";
@@ -270,8 +270,8 @@ MENU_10PLORE3 = "than either 9x22mm Parumpudicum or .355 firearms, but is much m
 // Colt 1911
 MENU_COLTTITLE = "------ Colt 1911 .45 Pistol Options ------";
 MENU_COLTTEXT1 = "Control the spawn rate of the Colt 1911 on Handguns";
-MENU_COLTTEXT2 = "Control the spawn rate of Colt 1911 bundles on Ammoboxes";
-MENU_COLTTEXT3 = "Control the spawn rate of the Colt 1911's magazines on Clip Magazines.";
+MENU_COLTTEXT2 = "Control the spawn rate of Colt 1911 bundles on Ammo Boxes";
+MENU_COLTTEXT3 = "Control the spawn rate of the Colt 1911's magazines on Shell Ammo spawns.";
 
 MENU_C19LORE1 = "The Colt 1911 is chambered in .45 ACP, delivering a";
 MENU_C19LORE2 = "powerful blow that can bring down most humanoids";
@@ -289,7 +289,7 @@ MENU_STENLORE4 = "silencing gunfire to the level of a handclap.";
 
 // snose :)
 MENU_SNOSETITLE = "------ Detective Special Snubnose Revolver Options ------";
-MENU_SNOSETEXT1 = "Control the spawn rate of the Snubnose Revolver on handguns";
+MENU_SNOSETEXT1 = "Control the spawn rate of the Snubnose Revolver on Revolver spawns";
 
 MENU_SNOSELORE1 = "A sidearm once popular with police and private investigators of the past.";
 MENU_SNOSELORE2 = "This revolver's smaller stature fits much better in your pocket,";
@@ -315,7 +315,7 @@ MENU_LLHLORE3 = "Useful for situations where maintaining a low fatality count is
 
 // Hecked zm66
 MENU_HZMTITLE = "------ Hacked ZM66 Assault Rifle Options ------";
-MENU_HZMTEXT1 = "Control the spawn rate of the Hacked ZM66 on ZM66s";
+MENU_HZMTEXT1 = "Control the spawn rate of the Hacked ZM66 on Ammo Boxes";
 
 MENU_HZMLORE1 = "A 'jailbroken' model of the Volt ZM66 Assault Rifle,";
 MENU_HZMLORE2 = "this weapon has been stripped of most of it's less desireable features.";
@@ -333,8 +333,8 @@ MENU_EHUNTERLORE3 = "Use of this weapon in close-quarters is ill-advised if you 
 
 // Single Action
 MENU_SINGACTTITLE = "------ Single-Action Revolver Options ------";
-MENU_SINGACTTEXT1 = "Control the spawn rate of the Single-Action on Pistols";
-MENU_SINGACTTEXT2 = "Control the spawn rate of Single-Action bundles on Ammoboxes ";
+MENU_SINGACTTEXT1 = "Control the spawn rate of the Single-Action on Revolver spawns";
+MENU_SINGACTTEXT2 = "Control the spawn rate of the Single-Action on Revolver spawns";
 
 MENU_SINGACTLORE1 = "An ancient firearm better suited for a gunslinger than a space marine.";
 MENU_SINGACTLORE2 = "Chambered in .45 Long Colt, this revolver will definitely punch a hole into whatever it hits.";
@@ -342,7 +342,7 @@ MENU_SINGACTLORE3 = "With how old these rounds are, they have a good chance to r
 
 // Single Action but pis- gold
 MENU_GREVVYTITLE = "------ Gold Single-Action Revolver Options ------";
-MENU_GREVVYTEXT1 = "Control the spawn rate of the Golden Single-Action on Pistols";
+MENU_GREVVYTEXT1 = "Control the spawn rate of the Golden Single-Action on Revolver spawns";
 
 MENU_GREVVYLORE1 = "A special golden version of the Single-Action Revolver.";
 MENU_GREVVYLORE2 = "Not much is known about it due to their immense rarity.";
