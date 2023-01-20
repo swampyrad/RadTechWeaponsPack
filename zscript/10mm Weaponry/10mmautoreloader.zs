@@ -104,8 +104,8 @@ class TenMilAutoReloadingThingy:HDWeapon{
 	}
 	states{
 	chug:
-		---- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA 4{invoker.A_Chug();}
-  ---- AAA 0 A_EjectCasing("HDSpent9mm",-frandom(89,92),(frandom(2,3),0,0),(13,0,0));
+		---- AAAAAAAAAAAAAAAAAAAA 4{invoker.A_Chug();}
+        ---- AAA 0 A_EjectCasing("HDSpent9mm",-frandom(89,92),(frandom(2,3),0,0),(13,0,0));
 		---- A 10{invoker.A_MakeRound();}
 		---- A 0 A_Jump(256,"spawn");
 	}
