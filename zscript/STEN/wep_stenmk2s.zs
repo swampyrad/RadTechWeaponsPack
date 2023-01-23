@@ -121,7 +121,7 @@ class HDStenMk2:HDWeapon{
 			);
 			bobb.y=clamp(bobb.y,-8,8);
 			sb.drawimage(
-				"smgfrntsit",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP
+				"stenfsit",(0,-5)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP
 			);
 			sb.SetClipRect(cx,cy,cw,ch);
 			sb.drawimage(
