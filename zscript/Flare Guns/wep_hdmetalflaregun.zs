@@ -287,11 +287,16 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		}
 		goto reloadend;
 	
-	
+	firemode:
+	fmhold:
+	    ---- A 1;
+		---- A 1{if(PressingAltReload())setweaponstate("mark");
+		            else if(PressingFireMode())setweaponstate("fmhold");
+	}goto nope;
+
 	
 	altreload:
 		#### A 0;
-		#### A 3 A_JumpIf(pressingfiremode(), "mark");
 		#### A 0 A_JumpIf(
 		invoker.weaponstatus[0]&FLARE_LOADED         ||
 		invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
