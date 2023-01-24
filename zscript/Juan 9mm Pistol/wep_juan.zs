@@ -6,6 +6,7 @@
 class HDHorseshoePistol:HDHandgun{
     bool MAG_15;
     bool MAG_30;
+    bool FORCE_15;
     
 	default{
 		+hdweapon.fitsinbackpack
@@ -176,6 +177,7 @@ class HDHorseshoePistol:HDHandgun{
 		..((weaponstatus[0]&HPISF_SELECTFIRE)?(WEPHELP_FIREMODE.."  Semi/Auto\n"):"")
 		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
 		..WEPHELP_RELOAD.."  Reload mag (horseshoe mags first)\n"
+		..WEPHELP_FIREMODE.."+"..WEPHELP_RELOAD.."  Force standard mag reload\n"
 		..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
 		..WEPHELP_MAGMANAGER
 		..WEPHELP_UNLOADUNLOAD
@@ -261,7 +263,9 @@ class HDHorseshoePistol:HDHandgun{
 		#### A 0 A_JumpIf(invoker.weaponstatus[HPISS_CHAMBER]>0,2);
 		#### C 0;
 		#### # 0 A_SetCrosshair(21);
-		#### # 1 A_WeaponReady(WRF_ALL);
+		#### # 1 {A_WeaponReady(WRF_ALL);
+		        invoker.FORCE_15=FALSE;
+		        }
 		goto readyend;
 	
 	user3:
@@ -274,6 +278,13 @@ class HDHorseshoePistol:HDHandgun{
 			invoker.weaponstatus[0]^=HPISF_FIREMODE;
 			else invoker.weaponstatus[0]&=~HPISF_FIREMODE;
 		}
+	fmhold:
+	    ---- A 1;
+		---- A 1{if(PressingReload())
+		            {invoker.FORCE_15=true;
+		             setweaponstate("reload2");
+		            }else if(PressingFireMode())setweaponstate("fmhold");
+	}
 		goto nope;
 	altfire:
 		---- A 0{
@@ -420,7 +431,7 @@ class HDHorseshoePistol:HDHandgun{
 		goto readyend;
 
 	 reload:
-	    ---- A 0 A_JumpIf(!invoker.MAG_30,"reload2");
+	    ---- A 0 A_JumpIf(invoker.MAG_15,"reload2");
 		---- A 0
 			{
 			invoker.weaponstatus[0]&=~HPISF_JUSTUNLOAD;
@@ -444,10 +455,7 @@ class HDHorseshoePistol:HDHandgun{
 		---- A 1 offset(0,34) A_SetCrosshair(21);
 		---- A 1 offset(1,38);
 		---- A 2 offset(2,42);
-		---- A 3 offset(3,46)
-		{
-			A_StartSound("weapons/juan_magclick",8,CHANF_OVERLAP);
-		}
+		---- A 3 offset(3,46) A_StartSound("weapons/juan_magclick",8,CHANF_OVERLAP);
 		---- A 0{
 			int pmg=invoker.weaponstatus[HPISS_MAG];
 			invoker.weaponstatus[HPISS_MAG]=-1;
@@ -476,7 +484,9 @@ class HDHorseshoePistol:HDHandgun{
 	magout:
 		---- A 0{
 			if(invoker.weaponstatus[0]&HPISF_JUSTUNLOAD)setweaponstate("reloadend");
-			else setweaponstate("loadmag");
+    		else if(invoker.FORCE_15)setweaponstate("loadmag2");
+	
+    		else setweaponstate("loadmag");
 		}
 
 	loadmag:
