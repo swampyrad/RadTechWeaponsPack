@@ -96,7 +96,7 @@ action void A_CheckRifleHand()
    //stays hot longer due to less barrel to disperse heat away
 	}
 	override double gunmass(){
-		return 15;//12+3=15, it`s heavier because you're one-handing it
+		return 8;// made it lighter, making it heavier was a mistake 
 	}
 	override double weaponbulk(){
 		return 74+weaponstatus[OBROZZS_MAG]*ENC_776_LOADED;//144-70=74
