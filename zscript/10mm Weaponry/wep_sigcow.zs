@@ -473,7 +473,7 @@ if(!punchee.countinv("HDArmourWorn")){
   //empty casing in the chamber
 		}
 		SCWF A 1 bright{
-			HDFlashAlpha(-200);
+			HDFlashAlpha(-100);
 			A_Light1();
   //display muzzle flash
 		}
