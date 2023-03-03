@@ -73,7 +73,7 @@ sprite DMSGD0, 113, 131{
 
 //  Muzzleflash
 sprite DSGFA0, 54, 44{
-    offset -133, -89
+    offset -138, -94
     patch SHTFA0, 0, 0
 }
 
