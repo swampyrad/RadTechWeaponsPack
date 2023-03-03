@@ -51,6 +51,63 @@ graphic STQBURST,6,3
 	patch PBRSC0G0,3,2 {}
 }
 
+// Doomed Shotgun
+
+//  Weapon sprites
+sprite DMSGA0, 105, 60{
+    offset -95, -108
+    patch SHTGA0, 0, 0
+}
+sprite DMSGB0, 119, 121{
+    offset -50, -50
+    patch SHTGB0, 0, 0
+}
+sprite DMSGC0, 87, 151{
+    offset -30, -20
+    patch SHTGC0, 0, 0
+}
+sprite DMSGD0, 113, 131{
+    offset -20, -40
+    patch SHTGD0, 0, 0
+}
+
+//  Muzzleflash
+sprite DSGFA0, 54, 44{
+    offset -133, -89
+    patch SHTFA0, 0, 0
+}
+
+//  Pickup sprites
+
+sprite DHUNA0,65,12{
+	offset 24,11
+	patch HUNTA0,0,0{}
+}
+sprite DHUNB0,65,12{
+	offset 24,11
+	patch HUNTB0,0,0{}
+}
+sprite DHUNC0,65,12{
+	offset 24,11
+	patch HUNTC0,0,0{}
+}
+sprite DHUND0,65,12{
+	offset 24,11
+	patch HUNTD0,0,0{}
+}
+sprite DHUNE0,65,12{
+	offset 24,11
+	patch HUNTE0,0,0{}
+}
+sprite DHUNF0,65,12{
+	offset 24,11
+	patch HUNTF0,0,0{}
+}
+sprite DHUNG0,65,12{
+	offset 24,11
+	patch HUNTG0,0,0{}
+}
+
 //Frag Cannon
 sprite FCNNA0, 55, 70{
     offset -132, -110
