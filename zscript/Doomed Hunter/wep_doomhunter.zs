@@ -321,8 +321,8 @@ override void postbeginplay(){
 	shoot:
 		DMSG A 2;
 		DMSG A 1 offset(0,36) A_FireHunter();
-		DMSG E 1;
-		DMSG E 0{
+		DMSG A 1;
+		DMSG A 0{
 			if(
 				invoker.weaponstatus[DHUNS_FIREMODE]>0
 				&&invoker.shotpower>HUNTER_MINSHOTPOWER
