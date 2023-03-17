@@ -55,14 +55,10 @@ class PlasmaFoof:HDFireball{
 					&&(
 						!tb
 						||zit==tb.target
-/*
-						||!(zit is "Trilobite")
-*/
 					)
 				){
 					A_Face(zit,0,0,flags:FAF_MIDDLE);
 					ZapArc(self,zit,ARC2_RANDOMDEST);
-      //zit.damagemobj(self,tb,random(0,1),"thermal");
 					zit.damagemobj(self,tb,random(0,1),"electrical");//less spark damage
 					didzap=true;
 					break;
@@ -90,21 +86,21 @@ class PlasmaFoof:HDFireball{
 	}
 	states{
 	spawn:
-  PLSS A 0 A_AlertMonsters(400);
-  PLSS AB 2;
+        PLSS A 0 A_AlertMonsters(400);
+        PLSS AB 2;
   zap:
 		PLSS A 0 ZapPlasma();
 		PLSS AB 2 light("PLAZMABX1");//no corkscrews
-		PLSS A 0 A_JumpIf(vel.x < 1 || vel.y < 1, "death");//plasma sometimes gets stuck in walls if fired too close
+		PLSS A 0 A_JumpIf(vel.x == 0 || vel.y == 0 || vel.z == 0, "death");//plasma sometimes gets stuck in walls if fired too close
 		loop;
 	death:
 		PLSS A 0 A_SprayDecal("CacoScorch",radius*1.5);
 		PLSS A 0 A_StartSound("weapons/pbust_x",5);
-   PLSS A 0 A_AlertMonsters(400);
-   PLSS A 0 A_HDBlast(
+        PLSS A 0 A_AlertMonsters(400);
+        PLSS A 0 A_HDBlast(
 			immolateradius:32,
-    immolateamount:random(8,15),
-    immolatechance:50,
+            immolateamount:random(8,15),
+            immolatechance:50,
 			source:target
 		);
 		PLSE ABCDE 3 light("BAKAPOST1") ZapPlasma();
