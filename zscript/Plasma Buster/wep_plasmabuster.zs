@@ -46,7 +46,7 @@ class PlasmaFoof:HDFireball{
 		while(it.next()){
 			if(
 				it.thing.bshootable
-				&&abs(it.thing.pos.z-pos.z)<16//decreased zap range
+				&&abs(it.thing.pos.z-pos.z)<32//testing wider zap range
 			){
 				zit=it.thing;
 				if(
@@ -66,9 +66,9 @@ class PlasmaFoof:HDFireball{
 			}
 		}
 		if(!zit||zit==tb){pitch=frandom(-90,90);angle=frandom(0,360);}
-		if(!didzap)ZapArc(self,null,ARC2_SILENT,radius:4,height:4,pvel:vel);//smaller arcs
+		if(!didzap)ZapArc(self,null,ARC2_SILENT,radius:16,height:16,pvel:vel);//changes size of zap arcs
 
-		A_FaceTracer(4,4);
+		A_FaceTracer(16,16);
 
 		if(
 			bmissile
@@ -87,8 +87,8 @@ class PlasmaFoof:HDFireball{
 	states{
 	spawn:
         PLSS A 0 A_AlertMonsters(400);
-        PLSS AB 2;
-  zap:
+        PLSS ABAB 2;//extend pre-zap stage by 4 tics
+    zap:
 		PLSS A 0 ZapPlasma();
 		PLSS AB 2 light("PLAZMABX1");//no corkscrews
 		PLSS A 0 A_JumpIf(vel.x == 0 || vel.y == 0 || vel.z == 0, "death");//plasma sometimes gets stuck in walls if fired too close
@@ -107,6 +107,7 @@ class PlasmaFoof:HDFireball{
 	death2:
 		PLSE E 0 ZapPlasma();
 		PLSE E 2 light("PLAZMABX2") A_FadeOut(0.3);
+		PLSE E 0 {if(!random(0,2))ArcZap(self,radius*16,16,true);}
 		loop;
 	}
 }
