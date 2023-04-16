@@ -176,7 +176,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 
 	States
 	{
-	deselect0:
+	
 	select0:
 		FML1 A 0;
 		FML1 B 0;
@@ -192,6 +192,16 @@ action void A_CheckMetalFlareGunHand(bool filled)
 			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
 		}
 		#### A 0;
+		#### A 1;
+		goto select0small;
+		
+	deselect0:
+	deselect0real:
+		FML1 A 0;
+		#### A 0
+		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
+		}
 		#### A 1;
 		goto deselect0small;
 
