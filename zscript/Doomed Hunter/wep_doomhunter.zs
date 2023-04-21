@@ -212,7 +212,7 @@ override void postbeginplay(){
 		int toload=min(
 			fromsidesaddles?invoker.weaponstatus[SHOTS_SIDESADDLE]:countinv("HDShellAmmo"),
 			alwaysone?1:(invoker.weaponstatus[DHUNS_TUBESIZE]-invoker.weaponstatus[DHUNS_TUBE]),
-			max(1,health/22),
+			maxhand,
 			maxhand
 		);
 		if(toload<1)return false;
@@ -278,7 +278,7 @@ override void postbeginplay(){
 			int hnd=min(
 				countinv("HDShellAmmo"),
 				12-invoker.weaponstatus[SHOTS_SIDESADDLE],
-				max(1,health/22),
+				3,
 				3
 			);
 			if(hnd<1)setweaponstate("reloadSSend");
@@ -497,7 +497,7 @@ override void postbeginplay(){
 		goto reloadashell;
 	reloadpocket:
 		DMSG C 4 offset(0,39) A_GrabShells(3,false);
-		DMSG C 6 offset(0,40) A_JumpIf(health>40,1);
+	//	DMSG C 6 offset(0,40) A_JumpIf(health>40,1);
 		DMSG C 4 offset(0,40) A_StartSound("weapons/pocket",9);
 		DMSG C 8 offset(0,42) A_StartSound("weapons/pocket",9);
 		DMSG C 6 offset(0,41) A_StartSound("weapons/pocket",9);
