@@ -307,8 +307,8 @@ clearscope string getpickupframe(bool usespare){
 
 	unrack: 
 		IM37 D 0 A_Overlay(120,"playsgco2");
-		IM37 C 3 A_JumpIf(!pressingfire(),1);
-		IM37 BA 3{
+		IM37 C 2 A_JumpIf(!pressingfire(),1);
+		IM37 BA 2{
 			if(pressingfire())A_SetTics(1);
 			A_MuzzleClimb(0,-frandom(0.6,1.));
 		}
