@@ -333,14 +333,14 @@ override void postbeginplay(){
 		DMSG A 0 A_JumpIf(invoker.weaponstatus[0]&DHUNF_ALTHOLDING,"nope");
 		DMSG A 0 A_SetAltHold(true);
 		DMSG A 1 A_Overlay(120,"playsgco");
-		DMSG AB 3 A_MuzzleClimb(0,frandom(0.6,1.));
-		DMSG C 2 A_JumpIf(pressingaltfire(),"longstroke");
-		DMSG CB 3 A_MuzzleClimb(0,-frandom(0.6,1.));
+		DMSG AB 2 A_MuzzleClimb(0,frandom(0.6,1.));
+		DMSG C 1 A_JumpIf(pressingaltfire(),"longstroke");
+		DMSG CB 2 A_MuzzleClimb(0,-frandom(0.6,1.));
 		DMSG B 0 A_StartSound("weapons/dhunt_short",8);
 		DMSG A 0 A_Refire("ready");
 		goto ready;
 	longstroke:
-		DMSG D 2 A_MuzzleClimb(frandom(1.,2.));
+		DMSG D 1 A_MuzzleClimb(frandom(1.,2.));
 		DMSG D 0{
 			A_Chamber();
 			A_MuzzleClimb(-frandom(1.,2.));
