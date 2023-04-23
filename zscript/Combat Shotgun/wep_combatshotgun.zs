@@ -256,7 +256,7 @@ clearscope string getpickupframe(bool usespare){
 	shoot:
 		IM37 A 2;
 		IM37 A 1 offset(0,36) A_FireHunter();
-		IM37 A 1;
+	//	IM37 A 1;
 		IM37 A 0{
 			if(
 				invoker.weaponstatus[HUNTS_FIREMODE]>0
@@ -268,14 +268,14 @@ clearscope string getpickupframe(bool usespare){
 		IM37 A 0 A_JumpIf(invoker.weaponstatus[0]&HUNTF_ALTHOLDING,"nope");
 		IM37 A 0 A_SetAltHold(true);
 		IM37 A 1 A_Overlay(120,"playsgco");
-		IM37 AB 3 A_MuzzleClimb(0,frandom(0.6,1.));
-		IM37 C 2 A_JumpIf(pressingaltfire(),"longstroke");
-		IM37 CB 3 A_MuzzleClimb(0,-frandom(0.6,1.));
+		IM37 AB 2 A_MuzzleClimb(0,frandom(0.6,1.));
+		IM37 C 1 A_JumpIf(pressingaltfire(),"longstroke");
+		IM37 CB 2 A_MuzzleClimb(0,-frandom(0.6,1.));
 		IM37 B 0 A_StartSound("weapons/csg_short",8);
 		IM37 A 0 A_Refire("ready");
 		goto ready;
 	longstroke:
-		IM37 D 2 A_MuzzleClimb(frandom(1.,2.));
+		IM37 D 1 A_MuzzleClimb(frandom(1.,2.));
 		IM37 D 0{
 			A_Chamber();
 			A_MuzzleClimb(-frandom(1.,2.));
