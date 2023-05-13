@@ -1,7 +1,7 @@
 # RadTechWeaponsPack
 
 A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyrad and more.
-**Requires [HDBulletLib-Recasted](https://github.com/Gay-Snake-Squad/HDBulletLib-Recasted)!**
+**Requires [HDBulletLib-Recasted](https://github.com/HDest-Community/HDBulletLib-Recasted)!**
 
 ## M-211 Semi-Automatic Gas-Operated Combat Weapon
 
