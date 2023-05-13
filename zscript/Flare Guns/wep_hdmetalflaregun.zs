@@ -50,7 +50,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 
 	override double weaponbulk()
 	{
-		double result = 48;
+		double result = 36;
 		if(weaponstatus[0]&FLARE_LOADED)
 			result += ENC_SHELL;
 		else if(weaponstatus[0]&FLARE_LOADEDSHELL)
