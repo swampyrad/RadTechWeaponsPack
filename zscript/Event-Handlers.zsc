@@ -519,11 +519,6 @@ class RadTechHandler : EventHandler
 		int i, j;
 		bool isAmmo = false;
 
-		// Return if range.
-        if(level.MapName ~== "RANGE")
-        {
-                return;
-        }
 		
 		// Populates the main arrays if they haven't been already. 
 		if(!cvarsAvailable)
@@ -566,6 +561,16 @@ class RadTechHandler : EventHandler
 				}
 			}
 		}
+		
+		//Do this AFTER pushing ItemsThatUseThis()
+		//or ammo purging gets messed up lol
+		
+		// Return if range.
+        if(level.MapName ~== "RANGE")
+        {
+                return;
+        }
+				
 				
 		// Iterates through the list of item candidates for e.thing.
 		for(i = 0; i < itemspawnlistsize; i++)
