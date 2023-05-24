@@ -1,6 +1,9 @@
 enum PhazerNums{
-PHAZER_CAP=5,
-PHAZER_MAXCAP=30}
+PHAZER_BATTERY=1,//same as TBS_BATTERY
+PHAZER_CAP=5,//use 5 as statnum
+PHAZER_MAXCAP=40,//max charge allowed for capacitor
+PHAZER_SHOTCOST=12//amount of cap charge used when fired
+}
 
 class PhazerPistol:HDHandgun{
     
@@ -28,20 +31,24 @@ class PhazerPistol:HDHandgun{
 	override void tick(){
 		super.tick();
 		let capcharge = weaponstatus[PHAZER_CAP];
-		let cellcharge = weaponstatus[TBS_BATTERY];
+		let cellcharge = weaponstatus[PHAZER_BATTERY];
 		
-		if(capcharge<PHAZER_MAXCAP&&cellcharge>0){
+		if(capcharge<PHAZER_MAXCAP //don't charge capacitor if full
+		    &&cellcharge>0  //charge capacitor if battery not dead
+		    ){
 		    weaponstatus[PHAZER_CAP]++;
-		    if (!random(0,99))weaponstatus[TBS_BATTERY]--;
-		    }
-	}
+		    if (!random(0,99+capcharge))
+		       weaponstatus[PHAZER_BATTERY]--;
+		    }// battery drains faster if capacitor runs low
+	}	     // as a penalty for spamming shots
+	
 
 	override string pickupmessage(){
 		return Stringtable.Localize("$PICKUP_PHAZER");
 	}
 
 	override double gunmass(){
-		return 4+(weaponstatus[TBS_BATTERY]<0?0:1);
+		return 5+(weaponstatus[PHAZER_BATTERY]<0?0:1);
 	}
 
 	override double weaponbulk(){
@@ -67,7 +74,9 @@ class PhazerPistol:HDHandgun{
 			sb.drawnum(hpl.countinv("HDMicroCell"),-46,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		}
 		
-		sb.drawwepnum(hdw.weaponstatus[PHAZER_CAP],PHAZER_MAXCAP,-16,-10);//capacitor charge indicator
+		sb.drawwepnum(hdw.weaponstatus[PHAZER_CAP],
+		              PHAZER_MAXCAP-(hdw.weaponstatus[PHAZER_CAP]==PHAZER_MAXCAP?10:0),
+		              -16,-10);//capacitor charge indicator, yellow tick means full charge
 		
 		if(!hdw.weaponstatus[1])sb.drawstring(
 			sb.mamountfont,"00000",(-16,-9),sb.DI_TEXT_ALIGN_RIGHT|
@@ -108,11 +117,13 @@ class PhazerPistol:HDHandgun{
 	}
 	
 	override void failedpickupunload(){
-		failedpickupunloadmag(TBS_BATTERY,"HDMicroCell");
+		failedpickupunloadmag(PHAZER_BATTERY,"HDMicroCell");
 	}
 	
 	override void consolidate(){
-		CheckBFGCharge(TBS_BATTERY);
+	//	CheckBFGCharge(PHAZER_BATTERY);
+	// micro-cell weaponry is not compatible 
+	// with the BFG auto-charge mechanic
 	}
 
     action void A_SwapPhazers(){
@@ -155,25 +166,34 @@ class PhazerPistol:HDHandgun{
 		}goto readyend;
 	fire:
 	hold:
-		#### A 0 A_JumpIf(invoker.weaponstatus[PHAZER_CAP]>10,"shoot");
+		#### A 0 A_JumpIf(invoker.weaponstatus[PHAZER_CAP]>PHAZER_SHOTCOST,"shoot");
 		goto nope;
 	shoot:
-  #### A 0 {A_GunFlash();
-            A_StartSound("weapons/phazer_fire");}
-  #### B 1 bright {HDBulletActor.FireBullet(self,"HDB_Plasma");}
-  #### C 1 {
+  #### A 0 A_StartSound("weapons/phazer_fire");
+  #### B 1 bright {A_GunFlash();
+                   HDBulletActor.FireBullet(self,"HDB_Plasma");
+                  }
+  
+  #### B 1 {
 		//aftereffects
-    A_MuzzleClimb(-frandom(0.5,1),-frandom(0.5,1));
-	invoker.weaponstatus[PHAZER_CAP]-=10;
+    A_MuzzleClimb(
+                  -frandom(0.7,1.3),
+                  -frandom(1.0,1.9),
+                  -frandom(0.6,1.1),
+                  frandom(0.5,0.9),
+                  frandom(0.3,0.5)
+                  );
 }
+        #### C 2;
 		#### D 1 A_WeaponReady(WRF_NONE);
-		#### A 0{
+		#### D 0{
 			A_WeaponReady(WRF_NOFIRE);
 		}goto nope;
 	flash:
 		#### B 1 bright{
 			HDFlashAlpha(64);
 			A_Light2();
+			invoker.weaponstatus[PHAZER_CAP]-=PHAZER_SHOTCOST;
 		}
 		stop;
 	altfire:
@@ -253,7 +273,7 @@ class PhazerPistol:HDHandgun{
 	unload:
 		#### A 0{
 			invoker.weaponstatus[0]|=TBF_JUSTUNLOAD;
-			if(invoker.weaponstatus[TBS_BATTERY]>=0)
+			if(invoker.weaponstatus[PHAZER_BATTERY]>=0)
 				return resolvestate("unmag");
 			return resolvestate("nope");
 		}
@@ -265,7 +285,7 @@ class PhazerPistol:HDHandgun{
 		#### A 3 offset(0,35);
 		#### A 2 offset(0,40) A_StartSound("weapons/phazer_open",8);
 		#### A 0{
-			int bat=invoker.weaponstatus[TBS_BATTERY];
+			int bat=invoker.weaponstatus[PHAZER_BATTERY];
 			A_MuzzleClimb(frandom(-1.2,-2.4),frandom(1.2,2.4));
 			if(
 				(
@@ -279,8 +299,8 @@ class PhazerPistol:HDHandgun{
 
 	dropmag:
 		---- A 0{
-			int bat=invoker.weaponstatus[TBS_BATTERY];
-			invoker.weaponstatus[TBS_BATTERY]=-1;
+			int bat=invoker.weaponstatus[PHAZER_BATTERY];
+			invoker.weaponstatus[PHAZER_BATTERY]=-1;
 			if(bat>=0){
 				HDMagAmmo.SpawnMag(self,"HDMicroCell",bat);
 			}
@@ -288,8 +308,8 @@ class PhazerPistol:HDHandgun{
 
 	pocketmag:
 		---- A 0{
-			int bat=invoker.weaponstatus[TBS_BATTERY];
-			invoker.weaponstatus[TBS_BATTERY]=-1;
+			int bat=invoker.weaponstatus[PHAZER_BATTERY];
+			invoker.weaponstatus[PHAZER_BATTERY]=-1;
 			if(bat>=0){
 				HDMagAmmo.GiveMag(self,"HDMicroCell",bat);
 			}
@@ -306,7 +326,7 @@ class PhazerPistol:HDHandgun{
 		#### A 0{
 			invoker.weaponstatus[0]&=~TBF_JUSTUNLOAD;
 			if(
-				invoker.weaponstatus[TBS_BATTERY]<10
+				invoker.weaponstatus[PHAZER_BATTERY]<10
 				&&countinv("HDMicroCell")
 			)setweaponstate("unmag");
 		}goto nope;
@@ -322,7 +342,7 @@ class PhazerPistol:HDHandgun{
 
 		#### A 0{
 			let mmm=HDMagAmmo(findinventory("HDMicroCell"));
-			if(mmm)invoker.weaponstatus[TBS_BATTERY]=mmm.TakeMag(true);
+			if(mmm)invoker.weaponstatus[PHAZER_BATTERY]=mmm.TakeMag(true);
 		}goto reload3;
 
 	reload3:
@@ -342,7 +362,7 @@ class PhazerPistol:HDHandgun{
 		stop;
 	}
 	override void initializewepstats(bool idfa){
-		weaponstatus[TBS_BATTERY]=10;
-		weaponstatus[PHAZER_CAP]=PHAZER_MAXCAP;
+		weaponstatus[PHAZER_BATTERY]=10;//full battery is 20
+		weaponstatus[PHAZER_CAP]=PHAZER_MAXCAP;//charge capacitor to 30
 	}
 }
