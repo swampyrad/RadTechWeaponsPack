@@ -138,15 +138,14 @@ class HDMicroCell:HDBattery{
 	
 	states(actor){
 	spawn:
-		MCLL A -1 nodelay{
+		MCLL CAB -1 nodelay{
 			if(!mags.size()){destroy();return;}
 			int amt=mags[0];
-			if(amt>6)A_SetTranslation("ResetGreen");//frame=0;
-			else if(amt>3)A_SetTranslation("GreenToOrange");//frame=1;
-			else if(amt>0)A_SetTranslation("GreenToRed");
+			if(amt>6)frame=0;
+			else if(amt>3)frame=1;
 		}stop;
 	spawnempty:
-		MCLL A -1 A_SetTranslation("GreenToGrey");
+		MCLL D -1;
 		stop;
 	}
 }
