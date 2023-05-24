@@ -8,6 +8,10 @@
 // Mike12, JAM Software, PaulNWN
 
 // Phazer and Micro-Cell sprites by Swampyrad
+sprite phzpa0, 28, 18 {
+    offset 14, 18
+    patch phzpa0, 0, 0
+}
 
 // Phazer
 sprite phz2a0, 68, 74 {
