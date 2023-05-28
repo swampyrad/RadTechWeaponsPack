@@ -617,11 +617,14 @@ class HDDynamite:SlowProjectile{
 		//caller.A_SpawnChunksFrags();
 
 		caller.A_HDBlast(
-			pushradius:256,pushamount:256,fullpushradius:64,
-			fragradius:HDCONST_ONEMETRE*16
+			pushradius:128,
+			pushamount:4096,
+			fullpushradius:64,
+			fragradius:HDCONST_ONEMETRE*64
 		);
-		caller.A_Explode(50,16);
-		caller.A_Blast(5,16);
+		
+	//	caller.A_Explode(50,16);
+	//	caller.A_Blast(10,64);
 	}
 	    //a copy of HDHEAT.HEATShot
 		static void DynamiteShot(actor caller,double squirtamt){
