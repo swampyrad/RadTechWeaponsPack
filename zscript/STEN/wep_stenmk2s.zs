@@ -42,7 +42,7 @@ class HDStenMk2:HDWeapon{
 	}
 	override double weaponbulk(){
 		int mg=weaponstatus[STENS_MAG];
-		if(mg<0)return 80;
+		if(mg<0)return 80;//lighter than the SMG
 		else return (80+ENC_9MAG30_LOADED)+mg*ENC_9_LOADED;
 	}
 	override void failedpickupunload(){
@@ -84,22 +84,20 @@ class HDStenMk2:HDWeapon{
 			sb.drawnum(hpl.countinv("HD9mMag30"),-43,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		}
 		
-		
 		if(weaponstatus[STENS_SWITCHTYPE]!=1)sb.drawwepcounter(hdw.weaponstatus[STENS_AUTO],
 			-22,-10,"RBRSA3A7","STBURAUT","STFULAUT"
 		);
 		
-		
 		sb.drawwepnum(hdw.weaponstatus[STENS_MAG],30);
-		sb.drawwepnum(hdw.weaponstatus[STENS_HEAT],HDSTEN_OVERHEAT,-16,-14);
+		sb.drawwepnum(hdw.weaponstatus[STENS_HEAT],HDSTEN_OVERHEAT-5,-16,-14);
 		//draws a heat indicator bar above the firemode
 		
-		if(hdw.weaponstatus[STENS_CHAMBER]>=1)sb.drawrect(-19,-11,3,1);
+		if(hdw.weaponstatus[STENS_CHAMBER]>0)sb.drawrect(-19,-11,3,1);
 	}
 	override string gethelptext(){
 		return
 		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.."  Clear jam\n"
+		..WEPHELP_ALTFIRE.."  Open bolt/Clear jam\n"
 		..WEPHELP_RELOAD.."  Reload mag\n"
 		//..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
 		..WEPHELP_FIREMODE.."  Semi/Auto\n"
@@ -135,49 +133,65 @@ class HDStenMk2:HDWeapon{
 	action void A_CheckReflexSight(){
 		Player.GetPSprite(PSP_WEAPON).sprite=getspriteindex("STENA0");
 	}
+	
+	
 	states{
 	select0:
-		STEN A 0 ;
+		STEN A 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]>-1
+		                &&!invoker.weaponstatus[STENS_JAMMED], 4);//has mag,and bolt open
+		#### C 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]>-1
+		                &&invoker.weaponstatus[STENS_JAMMED], 3);//has mag, but bolt closed/jammed
+		#### D 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]<0
+		                &&!invoker.weaponstatus[STENS_JAMMED],2);//no mag, bolt open
+		#### E 0 ;//no mag, bolt closed/jammed
+		#### # 0 ;
 		goto select0small;
 	deselect0:
-		STEN A 0 ;
+		STEN A 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]>-1
+		                &&!invoker.weaponstatus[STENS_JAMMED], 4);//has mag,and bolt open
+		#### C 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]>-1
+		                &&invoker.weaponstatus[STENS_JAMMED], 3);//has mag, but bolt closed/jammed
+		#### D 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]<0
+		                &&!invoker.weaponstatus[STENS_JAMMED],2);//no mag, bolt open
+		#### E 0 ;//no mag, bolt closed/jammed
+		#### # 0 ;
 		goto deselect0small;
-		STEN AB 0;
-		STEN AB 0;
 
 	ready:
-		STEN A 0;
-		#### A 1{
+		STEN A 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]>-1
+		                &&!invoker.weaponstatus[STENS_JAMMED], 4);//has mag,and bolt open
+		#### C 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]>-1
+		                &&invoker.weaponstatus[STENS_JAMMED], 3);//has mag, but bolt closed/jammed
+		#### D 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]<0
+		                &&!invoker.weaponstatus[STENS_JAMMED],2);//no mag, bolt open
+		#### E 0 ;//no mag, bolt closed/jammed
+		#### # 0 ;
+		#### # 1{
 			A_SetCrosshair(21);
-			invoker.weaponstatus[STENS_RATCHET]=0;
+			//invoker.weaponstatus[STENS_RATCHET]=0;
 			A_WeaponReady(WRF_ALL);
 		}
 		goto readyend;
 	user3:
-		---- A 0 A_MagManager("HD9mMag30");
+		---- # 0 A_MagManager("HD9mMag30");
 		goto ready;
 	altfire:
-		goto unloadchamber;
+		goto unjam;
 	althold:
 		//goto nope;
 
 	hold:
-		#### A 0{
-			if(
-				invoker.weaponstatus[STENS_MAG]>0  // if mag is empty, stop firing
-				&&(
-					invoker.weaponstatus[STENS_AUTO]==2  //full auto
-					||(
-						invoker.weaponstatus[STENS_AUTO]==1  //burst
-						&&invoker.weaponstatus[STENS_RATCHET]<=2
-					)
-				)
+		#### # 0{
+			if(invoker.weaponstatus[STENS_MAG]>0  // if mag is empty, stop firing
+			 &&invoker.weaponstatus[STENS_AUTO]==2  //full auto
 			)setweaponstate("fire2");
+		    else if(invoker.weaponstatus[STENS_AUTO]==2)setweaponstate("jam");
 		}goto nope;
+		
 	user2:
 	firemode:
     //no burst, only semi and auto
-		---- A 1{ 
+		---- # 1{ 
 			    int canaut=invoker.weaponstatus[STENS_AUTO];
 			
 			    //if set to auto, reset to semi
@@ -185,20 +199,17 @@ class HDStenMk2:HDWeapon{
 				
                 //set to auto if in semi
 		    	else invoker.weaponstatus[STENS_AUTO]=2;
-			
 		    }
 	    	goto nope;
 		
 		
 	fire:
-	   	#### A 0 A_JumpIf(
-		         invoker.weaponstatus[STENS_MAG]<1||
-		         invoker.weaponstatus[STENS_JAMMED]
-	             ,"nope");
-	             //do nothing if no ammo left
+	    #### # 0 A_JumpIf(invoker.weaponstatus[STENS_JAMMED],"nope");
+	    #### # 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]==-1,"dryfire");
+	   	#### # 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]==0,"jam");
+	             //do nothing if jammed, no ammo or no mag
 	fire2:     
 	    #### A 1 {
-	            
 	    		if(invoker.weaponstatus[STENS_MAG]>0){
 				    invoker.weaponstatus[STENS_MAG]--;
 				    invoker.weaponstatus[STENS_CHAMBER]=2;
@@ -209,28 +220,27 @@ class HDStenMk2:HDWeapon{
 	    	    A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),frandom(0.2,0.24),-frandom(0.3,0.36));
                 //play chamber sfx 
                 //weapon jumps sightly before firing
-                
 	    	    }
 	
-		#### A 1 {
+		#### C 1 {
 		        A_GunFlash();//fire the gun, then eject the spent casing
 		       
-		        if(!random(0,50))setweaponstate("jam");
-				 //random chance to jam
-				 
-		        if(invoker.weaponstatus[STENS_CHAMBER]==1){
-		            
-				    A_EjectCasing("HDSpent9mm",
+		        if(!random(0,79-invoker.weaponstatus[STENS_HEAT]))
+		            setweaponstate("jam");
+				 //random chance to jam, overheating makes it more likely
+				 			    
+			    if(invoker.weaponstatus[STENS_HEAT]>=HDSTEN_OVERHEAT)
+			        setweaponstate("overheat");
+			     //jams if overheating
+		}
+		#### B 1 {A_EjectCasing("HDSpent9mm",
 					frandom(-1,2),
 					(frandom(0.2,0.3),-frandom(7,7.5),frandom(0,0.2)),
 					(0,0,-2)
 				    );
 				    invoker.weaponstatus[STENS_CHAMBER]=0;
-			    }
-			if(invoker.weaponstatus[STENS_HEAT]>=HDSTEN_OVERHEAT)setweaponstate("overheat");
-			//stop the gun once it hits max heat
-		}
-		#### A 3;//+2 tic, slower firerate than the SMG
+				  }
+		#### BA 1;//+2 tic, slower firerate than the SMG
 		#### A 0 A_ReFire();
 		goto ready;
 	flash:
@@ -255,63 +265,59 @@ class HDStenMk2:HDWeapon{
 		TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),-frandom(0.3,0.36));
 		goto lightdone;
 
-	unloadchamber:
-		#### B 4 A_JumpIf(!invoker.weaponstatus[STENS_JAMMED],"nope");
-		#### B 10{
-			//class<actor>which=invoker.weaponstatus[STENS_CHAMBER]>1?"HDPistolAmmo":"HDSpent9mm";
-			invoker.weaponstatus[STENS_CHAMBER]=0;
-			invoker.weaponstatus[STENS_JAMMED]=0;  
-			A_StartSound("weapons/sten_chamber",8,CHANF_OVERLAP);
-			A_StartSound("weapons/stenjam",CHAN_WEAPON,CHANF_OVERLAP);
+	unjam:
+		#### # 0 A_JumpIf(!invoker.weaponstatus[STENS_JAMMED],"nope");
+		#### # 1 offset(0,34) A_SetCrosshair(21);
+		#### # 1 offset(5,42);
+		#### # 1 offset(10,50);
+		#### # 2 offset(20,58){
+			A_StartSound("weapons/stenmagclick",CHAN_WEAPON,CHANF_OVERLAP);
 
 	        A_MuzzleClimb(frandom(0.2,0.24),-frandom(0.3,0.36),frandom(0.2,0.24),-frandom(0.3,0.36));
-  
+            
+            if(invoker.weaponstatus[STENS_CHAMBER]==1)
+            {
 			A_SpawnItemEx("HDSpent9mm",
 				cos(pitch)*10,0,height*0.82-sin(pitch)*10,
 				vel.x,vel.y,vel.z,
 				0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
-			);
-		}goto readyend;
-		
-	loadchamber:
-		---- A 0 A_JumpIf(invoker.weaponstatus[STENS_CHAMBER]>0,"nope");
-		---- A 0 A_JumpIf(!countinv("HDPistolAmmo"),"nope");
-		---- A 1 offset(0,34) A_StartSound("weapons/pocket",9);
-		---- A 1 offset(2,36);
-		---- A 1 offset(2,44);
-		#### B 1 offset(5,58);
-		#### B 2 offset(7,70);
-		#### B 6 offset(8,80);
-		#### A 10 offset(8,87){
-			if(countinv("HDPistolAmmo")){
-				A_TakeInventory("HDPistolAmmo",1,TIF_NOTAKEINFINITE);
-				invoker.weaponstatus[STENS_CHAMBER]=2;
-				A_StartSound("weapons/sten_chamber",8);
-			}else A_SetTics(4);
+			    );
+			A_StartSound("weapons/sten_chamber",8,CHANF_OVERLAP);
+			}
+			invoker.weaponstatus[STENS_CHAMBER]=0;
+			invoker.weaponstatus[STENS_JAMMED]=0;  
 		}
-		#### A 3 offset(9,76);
-		---- A 2 offset(5,70);
-		---- A 1 offset(5,64);
-		---- A 1 offset(5,52);
-		---- A 1 offset(5,42);
-		---- A 1 offset(2,36);
-		---- A 2 offset(0,34);
-		goto nope;
+		#### A 0 A_JumpIf(invoker.weaponstatus[STENS_MAG]>-1,2);
+		#### D 0; 
+		#### # 2 offset(20,58);		
+		#### # 1 offset(10,50);
+		#### # 1 offset(5,42);
+		#### # 1 offset(0,34); 
+		goto readyend;
 		
 	jam:
-		STEN B 1 offset(-1,36){
-		    invoker.weaponstatus[STENS_CHAMBER]=1;
+		#### C 1 offset(-1,36){
 		    invoker.weaponstatus[STENS_JAMMED]=1;  
 			A_StartSound("weapons/stenjam",CHAN_WEAPON,CHANF_OVERLAP);
+			A_StartSound("weapons/stenmagclick",CHAN_WEAPON,CHANF_OVERLAP);
 			}
-		STEN A 1 offset(1,30) A_StartSound("weapons/stenjam",CHAN_WEAPON,CHANF_OVERLAP);
+		#### # 1 offset(1,30);
+		goto nope;
+		
+	dryfire:
+		#### E 1 offset(-1,36){
+		    invoker.weaponstatus[STENS_JAMMED]=1;  
+			A_StartSound("weapons/stenmagclick",CHAN_WEAPON,CHANF_OVERLAP);
+			}
+		#### # 1 offset(1,30);
 		goto nope;
 		
 	overheat:
-	    STEN A 1 offset(-1,36){
+	    #### C 1 offset(-1,36){
 			A_StartSound("weapons/sten_overheat",CHAN_WEAPON,CHANF_OVERLAP);
-			}
-		STEN BBBBBA 10 offset(1,30) A_SpawnItemEx("HDGunSmoke",
+			invoker.weaponstatus[STENS_JAMMED]=1;
+			}//bolt gets stuck due to heat warping
+		#### CCCCC 10 offset(1,30) A_SpawnItemEx("HDGunSmoke",
 				cos(pitch)*10,0,height*0.82-sin(pitch)*10,
 				vel.x,vel.y,vel.z,
 				0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
@@ -319,15 +325,15 @@ class HDStenMk2:HDWeapon{
         goto nope;
 	user4:
 	unload:
-		#### A 0{
+		#### # 0{
 			invoker.weaponstatus[0]|=STENF_JUSTUNLOAD;
 			if(
 				invoker.weaponstatus[STENS_MAG]>=0
 			)setweaponstate("unmag");
-			else if(invoker.weaponstatus[STENS_CHAMBER]>0)setweaponstate("unloadchamber");
+			else if(invoker.weaponstatus[STENS_CHAMBER]>0)setweaponstate("unjam");
 		}goto nope;
 	reload:
-		#### A 0{
+		#### # 0{
 			invoker.weaponstatus[0]&=~STENF_JUSTUNLOAD;
 			bool nomags=HDMagAmmo.NothingLoaded(self,"HD9mMag30");
 			if(invoker.weaponstatus[STENS_MAG]>=30)setweaponstate("nope");
@@ -337,15 +343,15 @@ class HDStenMk2:HDWeapon{
 		}goto unmag;
 		
 	unmag:
-		#### A 1 offset(0,34) A_SetCrosshair(21);
-		#### A 1 offset(5,42);
-		#### A 1 offset(10,50);
-		#### B 2 offset(20,58) A_StartSound("weapons/stenmagclick",8);
-		#### B 4 offset(30,70){
+		#### # 1 offset(0,34) A_SetCrosshair(21);
+		#### # 1 offset(5,42);
+		#### # 1 offset(10,50);
+		#### # 2 offset(20,58) A_StartSound("weapons/stenmagclick",8);
+		#### # 4 offset(30,70){
 			A_MuzzleClimb(0.3,0.4);
 			A_StartSound("weapons/stenmagmove",8,CHANF_OVERLAP);
 		}
-		#### B 0{
+		#### # 0{
 			int magamt=invoker.weaponstatus[STENS_MAG];
 			if(magamt<0){
 				setweaponstate("magout");
@@ -365,19 +371,19 @@ class HDStenMk2:HDWeapon{
 			}
 		}
 	pocketmag:
-		#### BB 7 offset(35,80) A_MuzzleClimb(frandom(0.2,-0.8),frandom(-0.2,0.4));
+		#### DD 7 offset(35,80) A_MuzzleClimb(frandom(0.2,-0.8),frandom(-0.2,0.4));
 	magout:
-		#### B 0{
-			if(invoker.weaponstatus[0]&STENF_JUSTUNLOAD)setweaponstate("reloadend");
+		#### D 0{
+			if(invoker.weaponstatus[0]&STENF_JUSTUNLOAD)setweaponstate("reloadend_nomag");
 			else setweaponstate("loadmag");
 		}
 
 	loadmag:
-		#### B 0 A_StartSound("weapons/pocket",9);
-		#### B 6 offset(35,80) A_MuzzleClimb(frandom(0.2,-0.8),frandom(-0.2,0.4));
-		#### B 7 offset(33,79) A_MuzzleClimb(frandom(0.2,-0.8),frandom(-0.2,0.4));
-		#### B 10 offset(32,77);
-		#### B 3 offset(32,75){
+		#### D 0 A_StartSound("weapons/pocket",9);
+		#### D 6 offset(35,80) A_MuzzleClimb(frandom(0.2,-0.8),frandom(-0.2,0.4));
+		#### D 7 offset(33,79) A_MuzzleClimb(frandom(0.2,-0.8),frandom(-0.2,0.4));
+		#### D 10 offset(32,77);
+		#### D 3 offset(32,75){
 			let mmm=hdmagammo(findinventory("HD9mMag30"));
 			if(mmm){
 				invoker.weaponstatus[STENS_MAG]=mmm.TakeMag(true);
@@ -391,11 +397,24 @@ class HDStenMk2:HDWeapon{
 		goto reloadend;
 
 	reloadend:
-		#### B 3 offset(30,69);
-		#### B 2 offset(20,59);
-		#### A 1 offset(10,49);
-		#### A 1 offset(5,38);
-		#### A 1 offset(0,34);
+	    #### C 0 A_JumpIf(invoker.weaponstatus[STENS_JAMMED],2);
+	    #### A 0;
+		#### # 3 offset(30,69); 
+		#### # 2 offset(20,59);
+		#### # 1 offset(10,49);
+		#### # 1 offset(5,38);
+		#### # 2 offset(0,34);
+		#### # 0;
+		goto nope;
+		
+    reloadend_nomag:
+        #### E 0 A_JumpIf(invoker.weaponstatus[STENS_JAMMED],2);
+        #### D 0;
+		#### # 3 offset(30,69); 
+		#### # 2 offset(20,59);
+		#### # 1 offset(10,49);
+		#### # 1 offset(5,38);
+		#### # 1 offset(0,34);
 		goto nope;
 
 	chamber_manual://no manual chamber, it's openbolt
