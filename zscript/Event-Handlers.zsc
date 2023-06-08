@@ -14,12 +14,32 @@ class RTSpawnItem play
 	int 	                   spawnreplacessize;    // Cached size of the above array
 	bool                       isPersistent;         // Whether or not to persistently spawn.
 	bool					   replaceitem;
+
+	string toString() {
+
+		let replacements = "[";
+		if (spawnReplaces.size()) {
+			replacements = replacements..spawnReplaces[0].toString();
+
+			for (let i = 1; i < spawnReplaces.size(); i++) {
+				replacements = replacements..", "..spawnReplaces[i].toString();
+			}
+		}
+		replacements = replacements.."]";
+
+
+		return String.format("{ spawnName=%s, spawnReplaces=%s, isPersistent=%b, replaceItem=%b }", spawnname, replacements, isPersistent, replaceitem);
+	}
 }
 
 class RTSpawnItemEntry play
 {
 	string name;
 	int    chance;
+
+	string toString() {
+		return String.format("{ name=%s, chance=%s }", name, chance >= 0 ? "1/"..(chance + 1) : "never");
+	}
 }
 
 // Struct for passing useinformation to ammunition. 
@@ -28,6 +48,21 @@ class RTSpawnAmmo play
 	string		  ammoname;		   // ID by string for the header ammo.
 	Array<string> weaponnames;     // ID by string for weapons using that ammo.
 	int           weaponnamessize; // Cached size of the above array
+	
+	string toString() {
+
+		let weapons = "[";
+		if (weaponNames.size()) {
+			weapons = weapons..weaponNames[0];
+
+			for (let i = 1; i < weaponNames.size(); i++) {
+				weapons = weapons..", "..weaponNames[i];
+			}
+		}
+		weapons = weapons.."]";
+
+		return String.format("{ ammoName=%s, weaponNames=%s }", ammoname, weapons);
+	}
 }
 
 
@@ -70,6 +105,16 @@ class RadTechHandler : EventHandler
 	// appends an entry to itemspawnlist;
 	void additem(string name, Array<RTSpawnItemEntry> replacees, bool persists, bool rep=true)
 	{
+
+		if (hd_debug) {
+			let msg = "Adding "..(persists ? "Persistent" : "Non-Persistent").." Replacement Entry for "..name..": ["..replacees[0].toString();
+
+			if (replacees.size() > 1) {
+				for (let i = 1; i < replacees.size(); i++) msg = msg..", "..replacees[i].toString();
+			}
+
+			console.printf(msg.."]");
+		}
 		// Creates a new struct;
 		RTSpawnItem spawnee = RTSpawnItem(new('RTSpawnItem'));
 		
@@ -479,6 +524,9 @@ class RadTechHandler : EventHandler
 	{
 		bool result = false;
 		int iii = random(0, chance);
+
+		if (hd_debug) console.printf("Rolled a "..iii.." out of "..(chance + 1));
+
 		if(iii < 0)
 			iii = 0;
 		if (iii == 0)
@@ -502,6 +550,8 @@ class RadTechHandler : EventHandler
 			{
 				if(rep)
 				{
+					if (hd_debug) console.printf(e.thing.GetClassName().." -> "..f.spawnname);
+					
 					e.thing.destroy();
 					result = true;
 				}
@@ -596,6 +646,8 @@ class RadTechHandler : EventHandler
 				{
 					if(itemspawnlist[i].spawnreplaces[j].name == candidatename)
 					{
+						if (hd_debug) console.printf("Attempting to replace "..candidatename.." with "..itemspawnlist[i].spawnname.."...");
+
 						if(trycreateitem(e, itemspawnlist[i], j, itemspawnlist[i].replaceitem))
 						{
 							j = itemspawnlist[i].spawnreplacessize;
