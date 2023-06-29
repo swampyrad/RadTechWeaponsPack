@@ -9,11 +9,17 @@
 // Struct for itemspawn information. 
 class RTSpawnItem play
 {
-	string    		           spawnname;            // ID by string for spawner
-	Array<RTSpawnItemEntry>    spawnreplaces;        // ID by string for spawnees
-	int 	                   spawnreplacessize;    // Cached size of the above array
-	bool                       isPersistent;         // Whether or not to persistently spawn.
-	bool					   replaceitem;
+	// ID by string for spawner
+	string spawnName;
+	
+	// ID by string for spawnees
+	Array<RTSpawnItemEntry> spawnReplaces;
+	
+	// Whether or not to persistently spawn.
+	bool isPersistent;
+
+	// Whether or not to replace the original item.
+	bool replaceItem;
 
 	string toString() {
 
@@ -21,14 +27,12 @@ class RTSpawnItem play
 		if (spawnReplaces.size()) {
 			replacements = replacements..spawnReplaces[0].toString();
 
-			for (let i = 1; i < spawnReplaces.size(); i++) {
-				replacements = replacements..", "..spawnReplaces[i].toString();
-			}
+			foreach (spawnReplace : spawnReplaces) replacements = replacements..", "..spawnReplace.toString();
 		}
 		replacements = replacements.."]";
 
 
-		return String.format("{ spawnName=%s, spawnReplaces=%s, isPersistent=%b, replaceItem=%b }", spawnname, replacements, isPersistent, replaceitem);
+		return String.format("{ spawnName=%s, spawnReplaces=%s, isPersistent=%b, replaceItem=%b }", spawnName, replacements, isPersistent, replaceItem);
 	}
 }
 
@@ -45,9 +49,11 @@ class RTSpawnItemEntry play
 // Struct for passing useinformation to ammunition. 
 class RTSpawnAmmo play
 {
-	string		  ammoname;		   // ID by string for the header ammo.
-	Array<string> weaponnames;     // ID by string for weapons using that ammo.
-	int           weaponnamessize; // Cached size of the above array
+	// ID by string for the header ammo.
+	string ammoName;
+	
+	// ID by string for weapons using that ammo.
+	Array<string> weaponNames;
 	
 	string toString() {
 
@@ -55,13 +61,11 @@ class RTSpawnAmmo play
 		if (weaponNames.size()) {
 			weapons = weapons..weaponNames[0];
 
-			for (let i = 1; i < weaponNames.size(); i++) {
-				weapons = weapons..", "..weaponNames[i];
-			}
+			foreach (weaponName : weaponNames) weapons = weapons..", "..weaponName;
 		}
 		weapons = weapons.."]";
 
-		return String.format("{ ammoName=%s, weaponNames=%s }", ammoname, weapons);
+		return String.format("{ ammoName=%s, weaponNames=%s }", ammoName, weapons);
 	}
 }
 
@@ -73,7 +77,7 @@ class RadTechHandler : EventHandler
 
 	// List of persistent classes to completely ignore. 
 	// This -should- mean this mod has no performance impact. 
-	static const class<actor> blacklist[] =
+	static const string blacklist[] =
 	{
 		"HDSmoke",
 		"BloodTrail",
@@ -93,80 +97,65 @@ class RadTechHandler : EventHandler
 
 	// List of weapon-ammo associations.
 	// Used for ammo-use association on ammo spawn (happens very often). 
-	array<RTSpawnAmmo> ammospawnlist;
-	int ammospawnlistsize;
+	array<RTSpawnAmmo> ammoSpawnList;
 	
 	// List of item-spawn associations.
 	// used for item-replacement on mapload. 
-	array<RTSpawnItem> itemspawnlist;
-	int itemspawnlistsize;
+	array<RTSpawnItem> itemSpawnList;
+
+	bool cvarsAvailable;
 	
-	
-	// appends an entry to itemspawnlist;
+	// appends an entry to itemSpawnList;
 	void additem(string name, Array<RTSpawnItemEntry> replacees, bool persists, bool rep=true)
 	{
 
 		if (hd_debug) {
 			let msg = "Adding "..(persists ? "Persistent" : "Non-Persistent").." Replacement Entry for "..name..": ["..replacees[0].toString();
 
-			if (replacees.size() > 1) {
-				for (let i = 1; i < replacees.size(); i++) msg = msg..", "..replacees[i].toString();
-			}
+			if (replacees.size() > 1) foreach (replacee : replacees) msg = msg..", "..replacee.toString();
 
 			console.printf(msg.."]");
 		}
+
 		// Creates a new struct;
 		RTSpawnItem spawnee = RTSpawnItem(new('RTSpawnItem'));
 		
 		// Populates the struct with relevant information,
-		spawnee.spawnname = name;
+		spawnee.spawnName = name;
 		spawnee.isPersistent = persists;
-		spawnee.replaceitem = rep;
-		for(int i = 0; i < replacees.size(); i++)
-		{
-			spawnee.spawnreplaces.push(replacees[i]);
-			spawnee.spawnreplacessize++;
-		}
+		spawnee.replaceItem = rep;
+
+		foreach (replacee : replacees) spawnee.spawnReplaces.push(replacee);
 		
 		// Pushes the finished struct to the array. 
-		itemspawnlist.push(spawnee);
-		itemspawnlistsize++;
+		itemSpawnList.push(spawnee);
 	}
 
-
-	RTSpawnItemEntry additementry(string name, int chance)
+	RTSpawnItemEntry addItemEntry(string name, int chance)
 	{
 		// Creates a new struct;
 		RTSpawnItemEntry spawnee = RTSpawnItemEntry(new('RTSpawnItemEntry'));
-		spawnee.name = name.makelower();
+		spawnee.name = name.makeLower();
 		spawnee.chance = chance;
 		return spawnee;
-		
 	}
 
-
-	// appends an entry to ammospawnlist;
-	void addammo(string name, Array<string> weapons)
+	// appends an entry to ammoSpawnList;
+	void addAmmo(string name, Array<string> weapons)
 	{
 	
 		// Creates a new struct;
 		RTSpawnAmmo spawnee = RTSpawnAmmo(new('RTSpawnAmmo'));
-		spawnee.ammoname = name.makelower();
+		spawnee.ammoName = name.makeLower();
 		
 		// Populates the struct with relevant information,
-		for(int i = 0; i < weapons.size(); i++)
-		{
-			spawnee.weaponnames.push(weapons[i].makelower());
-			spawnee.weaponnamessize++;
-		}
+		foreach (weapon : weapons) spawnee.weaponNames.push(weapon.makeLower());
 		
 		// Pushes the finished struct to the array. 
-		ammospawnlist.push(spawnee);
-		ammospawnlistsize++;
+		ammoSpawnList.push(spawnee);
 	}
-
-	bool cvarsAvailable;
 	
+
 	// Populates the replacement and association arrays. 
 	void init()
 	{
@@ -520,139 +509,92 @@ class RadTechHandler : EventHandler
 	}
 	
 	// Random stuff, stores it and forces negative values just to be 0.
-	bool giverandom(int chance)
+	bool giveRandom(int chance)
 	{
-		bool result = false;
-		int iii = random(0, chance);
-
-		if (hd_debug) console.printf("Rolled a "..iii.." out of "..(chance + 1));
-
-		if(iii < 0)
-			iii = 0;
-		if (iii == 0)
+		if (chance > -1)
 		{
-			if(chance > -1)
-				result = true;
+			let result = random(0, chance);
+
+			if (hd_debug) console.printf("Rolled a "..result.." out of "..(chance + 1));
+
+			return result == 0;
 		}
 		
-		return result;
+		return false;
 	}
 
 	// Tries to create the item via random spawning.
-	bool trycreateitem(worldevent e, RTSpawnItem f, int g, bool rep)
+	bool tryCreateItem(Actor thing, string spawnName, int chance, bool rep)
 	{
-		bool result = false;
-		if(giverandom(f.spawnreplaces[g].chance))
+		if (giveRandom(chance))
 		{
-			vector3 spawnpos = e.thing.pos;
-			let spawnitem = Actor.Spawn(f.spawnname, (spawnpos.x, spawnpos.y, spawnpos.z));
-			if(spawnitem)
+			if (Actor.Spawn(spawnName, thing.pos) && rep)
 			{
-				if(rep)
-				{
-					if (hd_debug) console.printf(e.thing.GetClassName().." -> "..f.spawnname);
-					
-					e.thing.destroy();
-					result = true;
-				}
+				if (hd_debug) console.printf(thing.getClassName().." -> "..spawnName);
+				
+				thing.destroy();
+				
+				return true;
 			}
-
 		}
-		return result;
+
+		return false;
 	}
 	
-	override void worldthingspawned(worldevent e)
+	override void worldThingSpawned(WorldEvent e)
 	{
-		string candidatename;
-		
-		// loop controls.
-		int i, j;
-		bool isAmmo = false;
-
-		
 		// Populates the main arrays if they haven't been already. 
-		if(!cvarsAvailable)
-			init();
-		
-		
-		for(i = 0; i < blacklist.size(); i++)
-		{
-			if (e.thing is blacklist[i])
-				return;
-		}
-		
-		// Checks for null events. 
-		if(!e.Thing)
-		{
-			return;
-		}
+		if (!cvarsAvailable) init();
 
-		candidatename  = e.Thing.GetClassName();
-		candidatename = candidatename.makelower();
+		// If thing spawned doesn't exist, quit
+		if (!e.thing) return;
+		
+		// If thing spawned is blacklisted, quit
+		foreach (bl : blacklist) if (e.thing is bl) return;
+
+		string candidateName = e.thing.getClassName();
+		candidateName = candidateName.makeLower();
 		
 		// Pointers for specific classes.
-		let ammo_ptr   = HDAmmo(e.Thing);
+		let ammo = HDAmmo(e.thing);
 		
-		// Whether or not an item can use this.
-		if(ammo_ptr)
-		{
-			// Goes through the entire ammospawn array.
-			for(i = 0; i < ammospawnlistsize; i++)
-			{
-				if(candidatename == ammospawnlist[i].ammoname)
-				{
-					// Appends each entry in that ammo's subarray.
-					for(j = 0; j < ammospawnlist[i].weaponnamessize; j++)
-					{
-						// Actual pushing to itemsthatusethis().
-						if(ammo_ptr)
-							ammo_ptr.ItemsThatUseThis.Push(ammospawnlist[i].weaponnames[j]);
-					}
-				}
-			}
-		}
+		// If the thing spawned is an ammunition, add any and all items that can use this.
+		if (ammo) handleAmmoUses(ammo, candidateName);
 		
 		//Do this AFTER pushing ItemsThatUseThis()
 		//or ammo purging gets messed up lol
 		
-		// Return if range.
-        if(level.MapName ~== "RANGE")
-        {
-                return;
-        }
+		// Return if range before replacing things.
+        if (level.MapName ~== "RANGE") return;
 				
-				
-		// Iterates through the list of item candidates for e.thing.
-		for(i = 0; i < itemspawnlistsize; i++)
-		{
-			// Tries to cast the item as an inventory. 
-			let thing_inv_ptr = Inventory(e.thing);
-		
-			// Checks if the item in question is owned.
-			bool owned    = thing_inv_ptr && (thing_inv_ptr.owner);
+		handleWeaponReplacements(e.thing, ammo, candidateName);
+	}
 
-			// Checks if the level has been loaded more than 1 tic.
-			bool prespawn = !(level.maptime > 1);
-			
-			// Checks if persistent spawning is on.
-			bool persist  = (itemspawnlist[i].isPersistent);
-			
+	private void handleAmmoUses(HDAmmo ammo, string candidateName)
+	{
+		foreach (ammoSpawn : ammoSpawnList) if (candidateName == ammoSpawn.ammoName) ammo.itemsThatUseThis.copy(ammoSpawn.weaponNames);
+	}
+
+	private void handleWeaponReplacements(Actor thing, HDAmmo ammo, string candidateName)
+	{
+		// Checks if the level has been loaded more than 1 tic.
+		bool prespawn = !(level.maptime > 1);
+
+		// Iterates through the list of item candidates for e.thing.
+		foreach (itemSpawn : itemSpawnList)
+		{
 			// if an item is owned or is an ammo (doesn't retain owner ptr), 
 			// do not replace it. 
-			if ((prespawn || persist) && (!owned && (!ammo_ptr || prespawn)))
+			let item = Inventory(thing);
+			if ((prespawn || itemSpawn.isPersistent) && (!(item && item.owner) && (!ammo || prespawn)))
 			{
-				int original_i = i;
-				for(j = 0; j < itemspawnlist[original_i].spawnreplacessize; j++)
+				foreach (spawnReplace : itemSpawn.spawnReplaces)
 				{
-					if(itemspawnlist[i].spawnreplaces[j].name == candidatename)
+					if (spawnReplace.name == candidateName)
 					{
-						if (hd_debug) console.printf("Attempting to replace "..candidatename.." with "..itemspawnlist[i].spawnname.."...");
+						if (hd_debug) console.printf("Attempting to replace "..candidateName.." with "..itemSpawn.spawnName.."...");
 
-						if(trycreateitem(e, itemspawnlist[i], j, itemspawnlist[i].replaceitem))
-						{
-							j = itemspawnlist[i].spawnreplacessize;
-							i = itemspawnlistsize;
-						}
+						if (tryCreateItem(thing, itemSpawn.spawnName, spawnReplace.chance, itemSpawn.replaceItem)) return;
 					}
 				}
 			}
@@ -699,13 +641,13 @@ class JuanEvent : EventHandler
 		int iii = random(0, chance);
 		
 		// force negative values to be 0. 
-		if(iii < 0)
+		if (iii < 0)
 			iii = 0;
 			
 		
 		if (iii == 0)
 		{
-			if(chance > -1)
+			if (chance > -1)
 				result = true;
 		}
 		
@@ -717,7 +659,7 @@ class JuanEvent : EventHandler
 	{
 		// Makes sure the values are always loaded before
 		// taking in replaceevents. 
-		if(!cvarsAvailable)
+		if (!cvarsAvailable)
 			init();
 		
 		// Don't replace if it's final, or doesn't exist. 
@@ -738,9 +680,9 @@ class JuanEvent : EventHandler
 			case 'HDPistol':
 				{
 					
-					if(giverandom(weaponSpawnBiasActual))
+					if (giverandom(weaponSpawnBiasActual))
 					{
-						if(giverandom(autoSpawnBiasActual))
+						if (giverandom(autoSpawnBiasActual))
 						{
 							e.Replacement = "HDHorseShoePistolAuto";
 						}
@@ -752,7 +694,7 @@ class JuanEvent : EventHandler
 					break;
 				}
 			case 'HD9mMag15':
-				if(giverandom(magSpawnBiasActual))
+				if (giverandom(magSpawnBiasActual))
 				{
 					e.Replacement = "HDHorseshoe9m"; 
 				}
@@ -778,7 +720,7 @@ class WildFlareGun : IdleDummy
 		Spawn:
 			TNT1 A 0 NODELAY
 			{
-				if(weaponToSpawn != "none")
+				if (weaponToSpawn != "none")
 				{
 					let weapon = Actor.Spawn(invoker.weaponToSpawn, (invoker.pos.x, invoker.pos.y, invoker.pos.z + 5));
 					weapon.vel.x += frandom[huminahumina](-2,2);
