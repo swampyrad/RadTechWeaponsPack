@@ -196,6 +196,11 @@ class RadTechHandler : EventHandler
 		wep_12ga.push("DoomHunter");
 		addammo('HDShellAmmo', wep_12ga);	
 		
+		// 12 gauge (birdshot) ammo.
+		Array<string> wep_12gaberd;
+		wep_12gaberd.push("DuckHunter");
+		addammo("HDBirdshotShellAmmo", wep_12gaberd);
+		
 		// 12 gauge (less lethal) ammo.
 		Array<string> wep_12gall;
 		wep_12gall.push("LLHunter");
@@ -222,6 +227,7 @@ class RadTechHandler : EventHandler
 		// 4mm 'volt caseless'
 		Array<string> wep_4mmvolt;
 		wep_4mmvolt.push("HackedZM66AssaultRifle");
+		wep_4mmvolt.push("SavageAutoReloader");
 		addammo('FourMilAmmo', wep_4mmvolt);	
 		
 		// Volt 4mm Magazines
@@ -290,6 +296,28 @@ class RadTechHandler : EventHandler
 		Array<string> wep_7mmR;
 		wep_7mmR.push("ObrozzPistol");
 		addammo('SevenMilAmmoRecast', wep_7mmR);
+		
+		// Savage .300
+		Array<string> wep_S300;
+		wep_S300.push("Savage99SniperRifle");
+		addammo('Savage300Ammo', wep_S300);
+		
+		// Savage .300 (brass)
+		Array<string> wep_S300B;
+		wep_S300B.push("SavageAutoReloader");
+		addammo('Savage300Brass', wep_S300B);
+
+        // 7mm Tokarev
+		Array<string> wep_7mmTokarev;
+		wep_7mmTokarev.push("TT33Pistol");
+		wep_7mmTokarev.push("HDPPSh41");
+		addammo('HD762TokarevAmmo', wep_7mmTokarev);
+		
+		// 7mm Tokarev (brass)
+		Array<string> wep_7mmTokarevB;
+		wep_7mmTokarevB.push("TokarevAutoReloader");
+		addammo('HDSpent762Tokarev', wep_7mmTokarevB);
+
 
 		// --------------------
 		// Weapon/Item Spawns
@@ -317,10 +345,10 @@ class RadTechHandler : EventHandler
 
 		// Phazer Plasma Pistol
 		Array<RTSpawnItemEntry> spawns_phazer;  
+		spawns_phazer.push(additementry('HDAmBox', phazer_spawn_bias));
 		spawns_phazer.push(additementry('HDAmBoxUnarmed', phazer_spawn_bias));
 		additem('PhazerPistol', spawns_phazer, phazer_persistent_spawning);
 
-		
 		// Micro-Cells
 		Array<RTSpawnItemEntry> spawns_microcell;
 		spawns_microcell.push(additementry('ShellPickup', microcell_spawn_bias));
@@ -334,6 +362,7 @@ class RadTechHandler : EventHandler
 		additem('PlasmaBuster', spawns_plasmabuster, false);
 
     // ----- Pistols -----
+    // (pistols spawn on ammoboxes)
         
 		// Hush Puppy Silenced Pistol
 		Array<RTSpawnItemEntry> spawns_hushpuppy;  
@@ -341,13 +370,8 @@ class RadTechHandler : EventHandler
 	    spawns_HushPuppy.push(additementry('HDAmBox', hushpuppy_spawn_bias)); 
 		additem('HushPuppyPistol', spawns_hushpuppy,  hushpuppy_persistent_spawning);
 
-
 		// Colt 1911 .45 Pistol
-	//	Array<RTSpawnItemEntry> spawns_colt1911;  
-	//	spawns_colt1911.push(additementry('HunterRandom', colt1911_spawn_bias)); 
-	//	spawns_colt1911.push(additementry('HDPistol', colt1911_spawn_bias)); 
-	//	additem('HDColt1911', spawns_colt1911,  colt1911_persistent_spawning);
-	    
+		
 		// Colt 1911 Mags
 		Array<RTSpawnItemEntry> spawns_colt1911_mags;
 		spawns_colt1911_mags.push(additementry('ShellPickup', colt1911_mags_spawn_bias));
@@ -361,6 +385,7 @@ class RadTechHandler : EventHandler
 		spawns_colt1911_ammobox.push(additementry('HDAmBox', colt1911_ammobox_spawn_bias));
 		additem('HDColt1911Spawn', spawns_colt1911_ammobox, colt1911_persistent_spawning);
 
+        // Delta Elite 10mm Pistol
 
 		// Delta Elite spawns
 		Array<RTSpawnItemEntry> spawns_10mm_pistol;
@@ -374,6 +399,21 @@ class RadTechHandler : EventHandler
 		spawns_10mm_pistol_mags.push(additementry('HDIEDPack', tenpismag_cmag_spawn_bias));
         spawns_10mm_pistol_mags.push(additementry('HDIEDKits', tenpismag_cmag_spawn_bias));
 		additem('HD10mMag8', spawns_10mm_pistol_mags, tenpis_persistent_spawning);
+
+        // TT-33 Tokarev Pistol
+
+		// TT-33 spawns
+		Array<RTSpawnItemEntry> spawns_tt33;
+		spawns_tt33.push(additementry('HDAmBoxUnarmed', tt33_ammobox_spawn_bias));
+        spawns_tt33.push(additementry('HDAmBox', tt33_ammobox_spawn_bias));
+		additem('TT33Spawn', spawns_tt33, tt33_persistent_spawning);
+		
+		// TT-33 Magazines
+		Array<RTSpawnItemEntry> spawns_tt33_mags;
+		spawns_tt33_mags.push(additementry('ShellPickup', tt33_mag_shell_spawn_bias));
+		spawns_tt33_mags.push(additementry('HDIEDPack', tt33_mag_shell_spawn_bias));
+        spawns_tt33_mags.push(additementry('HDIEDKits', tt33_mag_shell_spawn_bias));
+		additem('HDTokarevMag8', spawns_tt33_mags, tt33_persistent_spawning);
         
 
 		// Obrozz Sawn-Off Boss Pistol
@@ -382,13 +422,21 @@ class RadTechHandler : EventHandler
 	    spawns_obrozz.push(additementry('HDAmBox', obrozz_spawn_bias));
 		additem('ObrozzSpawner', spawns_obrozz, obrozz_persistent_spawning);
         
+        
+    	// FP-45 'Liberator' Pistol
+    	//(these spawns around bonuses instead)
+		Array<RTSpawnItemEntry> spawns_fp45;  
+		spawns_fp45.push(additementry('BlueFrag', fp45_bonus_spawn_bias)); 
+	    spawns_fp45.push(additementry('HelmFrag', fp45_bonus_spawn_bias)); 
+		additem('FP45LiberatorPistol', spawns_fp45,  fp45_persistent_spawning);
 
     // --- Revolvers ---
+    // (revolvers spawn on shotguns)
 
 		// Detective Special
-		Array<RTSpawnItemEntry> spawns_snose_pistol;
-		spawns_snose_pistol.push(additementry('DeinoSpawn', snose_pistol_spawn_bias));	
-		additem('SnubNoseSpawn', spawns_snose_pistol, snose_persistent_spawning);
+		Array<RTSpawnItemEntry> spawns_snubnose;
+		spawns_snubnose.push(additementry('HunterRandom', snose_pistol_spawn_bias));	
+		additem('SnubNoseSpawn', spawns_snubnose, snose_persistent_spawning);
 
 
 		// Single-Action Revolver
@@ -398,13 +446,13 @@ class RadTechHandler : EventHandler
 	//	additem('HDSingleActionRevolver', spawns_sixgun, sa_persistent_spawning);
         
         Array<RTSpawnItemEntry> spawns_sixgun_bundle;
-		spawns_sixgun_bundle.push(additementry('DeinoSpawn', sa_bundle_spawn_bias));
+		spawns_sixgun_bundle.push(additementry('HunterRandom', sa_bundle_spawn_bias));
 		additem('SADeinoSpawn', spawns_sixgun_bundle, sa_persistent_spawning);
 
 
 		// Gold Single-Action
 		Array<RTSpawnItemEntry> spawns_goldengun;
-		spawns_goldengun.push(additementry('DeinoSpawn', gsa_pistol_spawn_bias));
+		spawns_goldengun.push(additementry('SlayerRandom', gsa_pistol_spawn_bias));
 		additem('GoldSADeinoSpawn', spawns_goldengun, gsa_persistent_spawning);
 
 
@@ -446,8 +494,15 @@ class RadTechHandler : EventHandler
 		spawns_flaregun_metal.push(additementry("Slayer", fl_metal_spawn_bias));
 		additem("WildMetalFlareGun", spawns_flaregun_metal, fl_metal_persistent_spawning, false);
 
+    // ----- Rifles ----- (just the one so far)
+    
+        // Savage 99
+		Array<RTSpawnItemEntry> spawns_s99;
+		spawns_s99.push(additementry('HunterRandom', savage99_shotgun_spawn_bias));
+		additem('Savage99RifleSpawner', spawns_s99, savage99_persistent_spawning);
 
-    // ----- Automatic Weapons -----
+
+    // ----- Automatic Weapons ----- 
 
 		// M-211 Sigcow
 		Array<RTSpawnItemEntry> spawns_sigcow;
@@ -476,6 +531,17 @@ class RadTechHandler : EventHandler
         spawns_sten.push(additementry('HDAmBox', sten_ammobox_spawn_bias));
 		additem('HDSTENRandom', spawns_sten,  sten_persistent_spawning);  
 
+    	// PPSh-41
+		Array<RTSpawnItemEntry> spawns_ppsh41;  
+		spawns_ppsh41.push(additementry('HDSMGRandom', ppsh41_smg_spawn_bias));
+		spawns_ppsh41.push(additementry('HDAmBoxUnarmed', ppsh41_ammobox_spawn_bias));
+        spawns_ppsh41.push(additementry('HDAmBox', ppsh41_ammobox_spawn_bias));
+		additem('PapashaSpawn', spawns_ppsh41,  ppsh41_persistent_spawning);  
+
+    	// PPSh-41 magazines
+		Array<RTSpawnItemEntry> spawns_ppsh41_mags;  
+		spawns_ppsh41.push(additementry('ShellPickup', ppsh41_mag_spawn_bias));
+		additem('PapashaMagSpawner', spawns_ppsh41_mags,  ppsh41_persistent_spawning);  
 
 		// Minerva
 		Array<RTSpawnItemEntry> spawns_minerva;
