@@ -22,6 +22,19 @@ weapons/dyna_pinout     ziplight
 weapons/dyna_spoonoff   tntfuse
 weapons/dyna_throw      tnttoss
 
+//TT-33 sound credits:
+//(firing sounds made as a composite of sounds from these videos)
+//MasterHand1: https://youtu.be/N1u6KuLVdD0
+//Forgotten Weapons for click/chamber sounds : https://youtu.be/zapDoI_q3JM
+//PPSh-41 firing sound:https://m.youtube.com/watch?v=2H2RWq-hteg&pp=ygUNcHBzaDQxIGZpcmluZw%3D%3D
+
+weapons/tt33            tt33fire
+weapons/tt33_load       tt33load
+weapons/tt33_chamber    ttchambr
+
+// PPSh-41
+weapons/ppsh41          ppshfire
+
 //STEN Mk. 2(S)
 weapons/sten            stenfire
 weapons/sten_chamber    stenchbr
@@ -33,6 +46,9 @@ weapons/fragcannon  CANFWOOP
 //Detective Special
 // firing
 weapons/snubnose    snubfire
+
+//FP-45 Liberator
+weapons/fp45    fp45fire
 
 //Colt 1911
 weapons/colt1911    COLT1911

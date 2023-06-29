@@ -1,0 +1,1 @@
+cameratexture HDXCAM_SAVAGE99 720 720
