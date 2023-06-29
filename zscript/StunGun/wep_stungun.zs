@@ -70,8 +70,11 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 	override double weaponbulk(){
 		return 30+(weaponstatus[STUNGUNS_BATTERY]>=0?ENC_BATTERY_LOADED/2:0);
 	}
+	
 	override void consolidate(){
-		CheckBFGCharge(STUNGUNS_BATTERY);
+	//	CheckBFGCharge(STUNGUNS_BATTERY);
+	// micro-cell weaponry is not compatible 
+	// with the BFG auto-charge mechanic
 	}
 	
 	action void A_HDTase(){
@@ -354,7 +357,8 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 		STNG C 1 A_JumpIf(invoker.weaponstatus[STUNGUNS_BATTERY]>0,"tase");
 		goto nope;
 	altfire://super zap punch!
-		STNG C 2 Offset(-30,-25);
+		STNG F 0;//disables blur if invisible
+		#### C 2 Offset(-30,-25);
 		#### C 2 Offset(-10, -5);
 		#### C 0 Offset(30,15) HD_StunProd(10);//hits a bit weaker than a regular punch
 		#### D 8 Offset(30,15) A_JumpIf(invoker.weaponstatus[STUNGUNS_BATTERY]>0,"zappunch");
@@ -378,7 +382,7 @@ class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
 	reload:
 		STNG C 0{
 			if(
-				invoker.weaponstatus[STUNGUNS_BATTERY]>=20
+				invoker.weaponstatus[STUNGUNS_BATTERY]>=10
 				||!countinv("HDMicroCell")
 			){return resolvestate("nope");}
 			invoker.weaponstatus[0]&=~STUNGUNF_JUSTUNLOAD;
