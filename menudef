@@ -13,6 +13,10 @@ OptionMenu RadTechWeaponry
     StaticText ""
     Submenu "$TAG_HPUPPY", "HushPuppy", 0, 1
     StaticText ""
+    Submenu "$TAG_FP45", "FP45", 0, 1
+	StaticText ""
+	Submenu "$TAG_TT33", "TT33", 0, 1
+	StaticText ""
     Submenu "$TAG_C19", "Colt1911", 0, 1
 	StaticText ""
     Submenu "$TAG_10PIS", "10pis", 0, 1
@@ -23,6 +27,8 @@ OptionMenu RadTechWeaponry
     StaticText ""
     Submenu "$TAG_DOOMHUNT", "DoomedHunter", 0, 1
     StaticText ""
+    Submenu "$TAG_DUCKHUNT", "DuckHunter", 0, 1
+    StaticText ""
     Submenu "$TAG_COMBATSHOTGUN", "CombatShotgun", 0, 1
 	StaticText ""
 	Submenu "$TAG_EXPLOSIVESHOTGUN", "ExplosiveHunter", 0, 1
@@ -31,11 +37,15 @@ OptionMenu RadTechWeaponry
 	StaticText ""
 	StaticText "--- Rifles ---", "orange"
 	StaticText ""
+	Submenu "$TAG_S99", "Savage99", 0, 1
+	StaticText ""
     Submenu "$TAG_SIGCOW", "Sigcow", 0, 1
 	StaticText ""
     Submenu "$TAG_OBROZZ", "ObrozzPistol", 0, 1
 	StaticText ""
 	Submenu "$TAG_HACKEDZM", "HackedZM66", 0, 1
+	StaticText ""
+	Submenu "$TAG_PPSH41", "PPSH41", 0, 1
 	StaticText ""
 	SubMenu "$TAG_STEN", "STEN", 0, 1
 	StaticText ""
@@ -146,6 +156,103 @@ OptionMenu HushPuppy
 	StaticText "$MENU_HPUPLORE3", "white"
 	StaticText "$MENU_HPUPLORE4", "white"
 	
+}
+
+OptionMenu TT33
+{
+    Title "$MENU_TT33TITLE"
+   	StaticText "$MENU_NOTICE", "Red"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Red"
+    StaticText  "$MENU_TT33TEXT1", "white"
+	Option "$MENU_WEPSPAWNRATE", "tt33_ammobox_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar tt33_ammobox_spawn_bias"
+ 	StaticText ""
+ 	StaticText  "$MENU_TT33TEXT2", "white"
+	Option "$MENU_MAGSPAWNRATE", "tt33_mag_shell_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETMAG", "resetcvar tt33_mag_shell_spawn_bias"
+ 	StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "tt33_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar tt33_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "tt33_reset_cvars"
+	StaticText ""
+	StaticText "$MENU_LORETAG", "Red"
+	StaticText ""
+	StaticText "$MENU_TT33LORE1", "white"
+	StaticText "$MENU_TT33LORE2", "white"
+	StaticText "$MENU_TT33LORE3", "white"
+}
+
+OptionMenu PPSH41
+{
+    Title "$MENU_PPSH41TITLE"
+   	StaticText "$MENU_NOTICE", "Red"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Red"
+    StaticText  "$MENU_PPSH41TEXT1", "white"
+	Option "$MENU_WEPSPAWNRATE", "ppsh41_smg_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar ppsh41_smg_spawn_bias"
+ 	StaticText ""
+ 	StaticText  "$MENU_PPSH41TEXT2", "white"
+	Option "$MENU_WEPSPAWNRATE", "ppsh41_ammobox_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar ppsh41_ammobox_spawn_bias"
+ 	StaticText ""
+    StaticText  "$MENU_PPSH41TEXT3", "white"
+	Option "$MENU_WEPSPAWNRATE", "ppsh41_mag_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar ppsh41_mag_spawn_bias"
+ 	StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "ppsh41_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar ppsh41_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "ppsh41_reset_cvars"
+	StaticText ""
+	StaticText "$MENU_LORETAG", "Red"
+	StaticText ""
+	StaticText "$MENU_PPSH41LORE1", "white"
+	StaticText "$MENU_PPSH41LORE2", "white"
+	StaticText "$MENU_PPSH41LORE3", "white"
+}
+
+
+OptionMenu FP45
+{
+    Title "$MENU_FP45TITLE"
+   	StaticText "$MENU_NOTICE", "Red"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Red"
+    StaticText  "$MENU_FP45BONUSTEXT", "white"
+	Option "$MENU_WEPSPAWNRATE", "fp45_bonus_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar fp45_bonus_spawn_bias"
+ 	StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "fp45_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar fp45_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "fp45_reset_cvars"
+	StaticText ""
+	StaticText "$MENU_LORETAG", "Red"
+	StaticText ""
+	StaticText "$MENU_FP45LORE1", "white"
+	StaticText "$MENU_FP45LORE2", "white"
+	StaticText "$MENU_FP45LORE3", "white"
+	StaticText "$MENU_FP45LORE4", "white"
+	StaticText "$MENU_FP45LORE5", "white"
+	StaticText "$MENU_FP45LORE6", "white"
 }
 
 OptionMenu FragCannon
@@ -301,6 +408,33 @@ OptionMenu Juan9mm
 	StaticText "$MENU_JUANLORE3", "white"
 	StaticText "$MENU_JUANLORE4", "white"
 	StaticText "$MENU_JUANLORE5", "white"
+}
+
+OptionMenu Savage99
+{
+    Title "$MENU_S99TITLE"
+   	StaticText "$MENU_NOTICE", "Red"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Red"
+    StaticText  "$MENU_S99TEXT", "white"
+	Option "$MENU_WEPSPAWNRATE", "savage99_shotgun_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar s99_shotgun_spawn_bias"
+ 	StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "savage99_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar savage99_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "s99_reset_cvars"
+	StaticText ""
+	StaticText "$MENU_LORETAG", "Red"
+	StaticText ""
+	StaticText "$MENU_S99LORE1", "white"
+	StaticText "$MENU_S99LORE2", "white"
+	StaticText "$MENU_S99LORE3", "white"
 }
 
 OptionMenu DoomedHunter
@@ -659,6 +793,34 @@ OptionMenu ExplosiveHunter
 	StaticText "$MENU_EHUNTERLORE1", "white"
 	StaticText "$MENU_EHUNTERLORE2", "white"
 	StaticText "$MENU_EHUNTERLORE3", "white"
+}
+
+OptionMenu DuckHunter
+{
+    Title "$MENU_DUCKHUNTTITLE"
+   	StaticText "$MENU_NOTICE", "Red"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Red"
+    StaticText  "$MENU_DUCKHUNTTEXT", "white"
+	Option "$MENU_WEPSPAWNRATE", "duckhunt_shotgun_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar duckhunt_shotgun_spawn_bias"
+ 	StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "duckhunt_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar duckhunt_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "duckhunt_reset_cvars"
+	StaticText ""
+	StaticText "$MENU_LORETAG", "Red"
+	StaticText ""
+	StaticText "$MENU_DUCKHUNTLORE1", "white"
+	StaticText "$MENU_DUCKHUNTLORE2", "white"
+	StaticText "$MENU_DUCKHUNTLORE3", "white"
+	StaticText "$MENU_DUCKHUNTLORE4", "white"
 }
 
 OptionMenu SingleActionRevolver

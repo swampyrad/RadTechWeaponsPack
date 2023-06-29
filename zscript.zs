@@ -24,6 +24,14 @@ version "4.8"
 // Single-action Revolver
 #include "zscript/Single Action Revolver/wep_SArevolver.zs"
 
+// TT-33
+#include "zscript/TT-33/wep_tt33.zs"
+#include "zscript/TT-33/TokarevAutoReloader.zs"
+
+// PPSh-41
+#include "zscript/PPSh-41/wep_ppsh41.zs"
+#include "zscript/PPSh-41/mag_ppsh41.zs"
+
 //Frag Cannon
 #include "zscript/FragCannon/wep_fragcannon.zs"
 
@@ -43,9 +51,16 @@ version "4.8"
 // Minerva
 #include "zscript/Minerva/wep_minerva.zs"
 
-// Less-lethal Shotgun
+// Less-Lethal Shotgun
 #include "zscript/Less Lethal Hunter/wep_LLshotgun.zs"
 #include "zscript/Less Lethal Hunter/wep_LLhunter.zs"
+
+// Duck Hunter
+#include "zscript/Duck Hunter/wep_duckhunter.zs"
+
+// Savage 99 
+#include "zscript/Savage 99/wep_savage99rifle.zs"
+#include "zscript/Savage 99/item_savagereloader.zs"
 
 // Juan Pistol
 #include "zscript/Juan 9mm Pistol/mag_9mmhorseshoe.zs"

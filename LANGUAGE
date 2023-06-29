@@ -6,34 +6,39 @@
 RADTECH_MENU = "\c[Red]Ⓡ\c- Radtech Weapons Pack";
 
 // Weapon Tags, this allows external mods to change the tag names of these weapons. Very handy for resprites. - [Ted]
-TAG_SNUBNOSE = "Detective Special";
+TAG_SNUBNOSE = "'Detective Special' Snub-Nose Revolver";
 TAG_SINGLEACTREV = "Single-Action Revolver";
 TAG_DM93PLASMA = "DM-93 Plasma Rifle";
-TAG_OBROZZ = "Obrozz Sawn-Off Boss";
-TAG_MINERVA = "Minerva 9mm Chaingun";
+TAG_OBROZZ = "'Obrozz' Sawn-Off Boss";
+TAG_MINERVA = "'Minerva' 9mm Chaingun";
 TAG_LESSLETHALHUNTER = "Bernoulli M1053 Less-Lethal Shotgun";
-TAG_JUANPIS = "9mm 'Juan' Horseshoe Pistol";
-TAG_JUANAUTO = "9mm 'Juan' Pistol (select-fire)";
+TAG_JUANPIS = "'Juan' Horseshoe Pistol";
+TAG_JUANAUTO = "'Juan' Horseshoe Pistol (select-fire)";
 TAG_HACKEDZM = "Modified Volt ZM66 Assault Rifle";
 TAG_HZMSEMI = "Modified Volt ZM66 Assault Rifle (Semi)";
-TAG_HZMREGULAR = "Modified Volt ZM66 assault rifle (no GL)";
-TAG_HZMIRREGULAR = "Modified Volt ZM66 assault rifle (semi with GL)";
-TAG_GOLDSINGLEACTION = "Golden Single-Action Revolver";
+TAG_HZMREGULAR = "Modified Volt ZM66 Assault Rifle (no GL)";
+TAG_HZMIRREGULAR = "Modified Volt ZM66 Assault Rifle (semi with GL)";
+TAG_GOLDSINGLEACTION = "The Golden Gun";
 TAG_FLAREGUN = "Flare Gun";
-TAG_METALFLAREGUN = "Metallic Flare Gun";
+TAG_METALFLAREGUN = "Steel Flare Gun";
 TAG_EXPLOSIVESHOTGUN = "Bernoulli Explosive Hunter";
 TAG_DYNAMITE = "Dynamite";
-TAG_DOOMHUNT = "Doomed Hunter Shotgun";
+TAG_DOOMHUNT = "'Doomed' Hunter V-Choke Shotgun";
 TAG_COMBATSHOTGUN = "Combat Shotgun";
 TAG_10PIS = "10mm Combat Pistol";
-TAG_10PSLECT = "10mm Combat Pistol (Select Fire";
-TAG_SIGCOW = "M-211 Sig-Cow";
-TAG_STEN = "STEN Mk.2(S)";
+TAG_10PSLECT = "10mm Combat Pistol (Select Fire)";
+TAG_SIGCOW = "M-211 'Sig-Cow' 10mm Carbine";
+TAG_STEN = "STEN Mk.2(S) Silenced SMG";
 TAG_C19 = "Colt 1911";
-TAG_HPUPPY = "Hush Puppy Silenced Pistol";
-TAG_STUNGUN = "Stun Gun";
-TAG_PHAZER = "Phazer";
+TAG_HPUPPY = "'Hush Puppy' Silenced Pistol";
+TAG_STUNGUN = "'ShokStop' Stun Gun";
+TAG_PHAZER = "'Phazer' Energy Pistol";
 TAG_FRAGCANNON = "'Frag Cannon' Frag Grenade Launcher";
+TAG_TT33 = "TT-33 'Tokarev' Pistol";
+TAG_PPSH41 = "PPSh-41 'Papasha' SMG";
+TAG_S99 = "Savage 99 Lever-Action Rifle";
+TAG_FP45 = "FP-45 'Liberator' Pistol";
+TAG_DUCKHUNT = "Duck Hunter";
 
 // Weapon Pickup messages. Like tags, but when you get your grubby hands on it. - [Ted]
 PICKUP_10MMPISTOL = "You got the 10mm pistol! It really packs a punch!";
@@ -42,11 +47,11 @@ PICKUP_COLT1911 = "You got the Colt 1911! Semper Fi!";
 PICKUP_COMBATSHOTGUN = "You got the Combat Shotgun!";
 PICKUP_DOOMEDHUNTER1 = "You got the Doomed Shotgun!";
 PICKUP_DOOMEDHUNTER2 = "You got the Doomed Shotgun! There's some funky tool marks near the fire selector...";
-PICKUP_DOOMEDHUNTER3 = "You got the Doomed Shotgun! Where is the fire selector on this thing!?";
+PICKUP_DOOMEDHUNTER3 = "You got the Doomed Shotgun! Huh, no fire selector? Man, I hate pumping this thing!";
 PICKUP_DOOMEDHUNTER4 = "You got the Doomed Shotgun! What force of nature created this cursed thing?";
 PICKUP_DYNAMITE = "Picked up a bundle of dynamite.";
 PICKUP_EXPLOSIVEHUNTER1 = "You got the Bernoulli Explosive Hunter! Yeah, eat this!";
-PICKUP_EXPLOSIVEHUNTER2 = "You got the Bernoulli Explosive Hunter! Where is the fire selector on this thing!?";
+PICKUP_EXPLOSIVEHUNTER2 = "You got the Bernoulli Explosive Hunter! Dangit, where's the fire selector!?";
 PICKUP_EXPLOSIVEHUNTER3 = "You got the Bernoulli Explosive Hunter! There's some weird tool marks near the fire selector...";
 PICKUP_PLASTICFLAREGUN = "You got the Flare Gun! It's like christmas morning...";
 PICKUP_METALFLAREGUN = "You got the Metal Flare Gun! Feels pretty hefty...";
@@ -60,7 +65,7 @@ PICKUP_LESSLETHALHUNTER2 = "You got the Bernoulli Less-Lethal Shotgun! Where is 
 PICKUP_LESSLETHALHUNTER3 = "You got the Bernoulli Less-Lethal Shotgun! There's some weird tool marks near the fire selector...";
 PICKUP_MINERVA = "You got the Minerva 9mm Chaingun!";
 PICKUP_MINERVADAMAGE0 = " She's beautiful!";
-PICKUP_MINERVADAMAGE100 = " She looks alright.";
+PICKUP_MINERVADAMAGE100 = " She's doing okay.";
 PICKUP_MINERVADAMAGE200 = " She ain't looking so hot.";
 PICKUP_MINERVADAMAGE500 = " She's barely hanging on...";
 PICKUP_OBROZZ = "You got the Obrozz rifle! Pretty light!";
@@ -71,15 +76,25 @@ PICKUP_STENMK2 = "You got the Sten Mk.2(S)! Warm to the touch!";
 PICKUP_STUNGUN = "You got the Stun Gun! Zap, zap!";
 PICKUP_PHAZER = "You got the Phazer! It's set to 'KILL'!";
 PICKUP_FRAGCANNON = "You got the Frag Cannon!";
+PICKUP_FP45 = "You got the Liberator pistol! Better make it count!";
+PICKUP_TT33 = "You got the TT-33!";
+PICKUP_PPSH41 = "You got the PPSh-41!";
+PICKUP_S99 = "You got the Savage 99!";
+PICKUP_DUCKHUNT = "You got the Duck Hunter!";
 
 // Item Tags, same as weapons but these are just for the items. - [Ted]
-TAG_10RELOADER = "10mm Auto Reloader";
-TAG_10PISMAG = "10mm pistol magazine";
-TAG_SCWMAG = "Sig-Cow magazine";
-TAG_CM7 = "Colt 1911 magazine";
-TAG_DYNAMITEBUNDLE = "Bundle of Dynamite";
+TAG_10RELOADER = "10mm Auto-Reloader";
+TAG_10PISMAG = "10mm Pistol Magazine";
+TAG_SCWMAG = "Sig-Cow Magazine";
+TAG_CM7 = "Colt 1911 Magazine";
+TAG_DYNAMITEBUNDLE = "bundle of dynamite";
 TAG_JUANMAG = "9mm pistol magazine (horseshoe)";
 TAG_MICROCELL = "Micro-Cell";
+TAG_S300RELOADER = ".300 Savage Auto-Reloader";
+TAG_TOKRELOADER = "7mm Tokarev Auto-Reloader";
+TAG_PPSH41MAG35 = "PPSh-41 Magazine";
+TAG_PPSH41MAG71 = "PPSh-41 Drum";
+TAG_TT33MAG = "TT-33 Magazine";
 
 // Item Pickups, same as Weapon Pickups but this time it's not a weapon. - [Ted]
 PICKUP_10MAG25 = "Picked up a Sig-Cow magazine.";
@@ -87,6 +102,10 @@ PICKUP_10MAG8 = "Picked up a 10mm pistol magazine.";
 PICKUP_10MRELOADER = "Picked up a 10mm reloading device!";
 PICKUP_JUANMAG = "Picked up a horseshoe-shaped pistol magazine..?";
 PICKUP_MICROCELL = "You picked up a micro-cell.";
+PICKUP_PPSH41MAG35 = "Picked up a PPSh-41 magazine.";
+PICKUP_PPSH41MAG71 = "Picked up a PPSh-41 drum.";
+PICKUP_TT33MAG = "Picked up a TT-33 magazine.";
+PICKUP_TOKRELOADER = "You got the Tokarev reloading machine! Own the means of production!";
 
 // Obituaries, useful for other mod developers. Like myself. - [Ted]
 OB_STUNGUN = "%o got fried by %k's stun gun.";
@@ -110,6 +129,12 @@ OB_COLT1911 = "%o got a taste of %k's Colt .45.";
 OB_STUNGUN = "%o got fried by %k's stun gun.";
 OB_PHAZER = "%o got vaporized out by %k's Phazer.";
 OB_FRAGCANNON = "%o got frag'd by %k's cannon.";
+OB_TT33 = "k's TT-33 made %o go blyat.";
+OB_PPSH41 = "o% got popped by k%'s Papasha.";
+OB_S99 = "%o got sniped by %k's Savage 99";
+OB_DUCKHUNTER = "%o couldn't convince %k it was rabbit season."
+OB_FP45 = "%k liberated %o from life.";
+
 
 // EVERYTHING below this is Menu stuff. Feast upon the horror. - [Ted]
 
@@ -166,10 +191,57 @@ MENU_FCNLORE1 = "A different type of 'grenade' launcher, this weapon can load co
 MENU_FCNLORE2 = "fragmentation grenades and propel them at high speeds, useful for";
 MENU_FCNLORE3 = "those who have a weak throwing arm or bad coordination.";
 
+//TT-33
+MENU_TT33TITLE = "------ TT-33 Options ------";
+MENU_TT33TEXT1 = "Control the spawn rate of TT-33s on Ammobox spawns.";
+MENU_TT33TEXT2 = "Control the spawn rate of TT-33 magazines on Shell spawns.";
+
+MENU_TT33LORE1 = "A Soviet-era pistol chambered in 7.62x25mm Tokarev, offers";
+MENU_TT33LORE2 = "slightly better penetration than 9mm, but at the cost of";
+MENU_TT33LORE3 = "requiring constant maintenance due to fouling issues.";
+
+//PPSh-41
+MENU_PPSH41TITLE = "------ PPSh-41 Options ------";
+MENU_PPSH41TEXT1 = "Control the spawn rate of PPSh-41s on SMG spawns.";
+MENU_PPSH41TEXT2 = "Control the spawn rate of PPSh-41s on Ammobox spawns.";
+MENU_PPSH41TEXT3 = "Control the spawn rate of PPSh-41 magazines on Shell spawns.";
+
+MENU_PPSH41LORE1 = "A Soviet-era SMG chambered in 7.62x25mm Tokarev, has an";
+MENU_PPSH41LORE2 = "incredible firerate, but suffers from frequent jams due";
+MENU_PPSH41LORE3 = "to magazines not seating properly, drums especially.";
+
+//FP-45
+MENU_FP45TITLE = "------ FP-45 Options ------";
+MENU_FP45BONUSTEXT = "Control the spawn rate of FP-45s on Bonus spawns.";
+
+MENU_FP45LORE1 = "A single-shot pistol developed by the U.S. military during WWII,";
+MENU_FP45LORE2 = "chambered in .45 ACP. It was designed to provide resistance forces";
+MENU_FP45LORE3 = "with a tool for dispatching guards and stealing their better weapons.";
+MENU_FP45LORE4 = "However, its terrible build quality and logistics issues caused the";
+MENU_FP45LORE5 = "project and most of the pistols to be scrapped, but a rare handful of";
+MENU_FP45LORE6 = "them can still be found hiding around in the strangest of places.";
+
+//Savage 99
+MENU_S99TITLE = "------ Savage 99 Options ------";
+MENU_S99TEXT = "Control the spawn rate of Savage 99s on Shotgun spawns.";
+
+MENU_S99LORE1 = "A lever-action hunting rifle chambered in .300 Savage, features a scope,";
+MENU_S99LORE2 = "a rotary magazine design and a counter showing the number of remaining";
+MENU_S99LORE3 = "rounds. Unlike the Boss, the bolt must be held open to insert/remove ammo.";
+
+//Duck Hunter
+MENU_DUCKHUNTTITLE = "------ Duck Hunter Options ------";
+MENU_DUCKHUNTTEXT = "Control the spawn rate of Savage 99s on Shotgun spawns.";
+
+MENU_DUCKHUNTLORE1 = "A civilian model of the Hunter designed for shooting game fowl. Instead of";
+MENU_DUCKHUNTLORE2 = "buckshot, this shotgun fires birdshot shells, spreading many pellets over a";
+MENU_DUCKHUNTLORE3 = "wide area. This makes it effective at hitting multiple targets in one shot,";
+MENU_DUCKHUNTLORE4 = "but the small pellet size makes it virtually useless against armored enemies.";
+
 
 //Phazer
 MENU_PHAZERTITLE = "------ Phazer Options ------";
-MENU_PHAZERBOXTEXT = "Control the spawn rate of Phazers on Ammo Boxes.";
+MENU_PHAZERTEXT = "Control the spawn rate of Phazers on Ammo Boxes.";
 
 MENU_PHAZERLORE1 = "An energy pistol featuring a miniaturized version of the DM-93's";
 MENU_PHAZERLORE2 = "particle beam emitter system. Because of its size, the Phazer is";

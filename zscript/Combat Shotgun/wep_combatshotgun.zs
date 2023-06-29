@@ -20,6 +20,11 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 		obituary "$OB_COMBATSHOTGUN";
 	}
 
+	override void postbeginplay(){
+		super.postbeginplay();
+		weaponspecial=1337;
+	}
+
 	override string pickupmessage(){
 		return Stringtable.Localize("$PICKUP_COMBATSHOTGUN");
 	}

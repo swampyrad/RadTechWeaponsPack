@@ -52,6 +52,17 @@ server int colt1911_ammobox_spawn_bias = 19;
 server int colt1911_mags_spawn_bias = 19;
 server bool colt1911_persistent_spawning = false;
 
+//TT-33 Tokarev Pistol
+server int tt33_ammobox_spawn_bias = 19;
+server int tt33_mag_shell_spawn_bias = 19;
+server bool tt33_persistent_spawning = false;
+
+// PPSh-41 
+server int ppsh41_smg_spawn_bias = 19;
+server int ppsh41_ammobox_spawn_bias = 19;
+server int ppsh41_mag_spawn_bias = 19;
+server bool ppsh41_persistent_spawning = false;
+
 // STEN Mk. 2(S)
 server int sten_spawn_bias = 19;
 server int sten_ammobox_spawn_bias = 19;
@@ -76,6 +87,14 @@ server bool pbuster_persistent_spawning = false;
 server int cshotgun_shotgun_spawn_bias = 24;
 server bool cshotgun_persistent_spawning = false;
 
+// Savage 99
+server int savage99_shotgun_spawn_bias = 24;
+server bool savage99_persistent_spawning = false;
+
+// FP-45 'Liberator'
+server int fp45_bonus_spawn_bias = 49;
+server bool fp45_persistent_spawning = false;
+
 // Sigcow
 server int sigcow_cbox_spawn_bias = 9;
 server bool sigcow_persistent_spawning = false;
@@ -97,8 +116,6 @@ server bool minerva_persistent_spawning = false;
 
 // Less Lethal Hunter
 server int llh_shotgun_spawn_bias = 49;
-server int llhs_shell_spawn_bias = 49;
-server int llhs_box_spawn_bias = 49;
 server bool llh_persistent_spawning = false;
 
 // Hacked ZM66
@@ -111,9 +128,11 @@ server bool obrozz_persistent_spawning = false;
 
 // Explosive Shotgun
 server int esg_shotgun_spawn_bias = 49;
-server int esgs_shell_spawn_bias = 49;
-server int esgs_box_spawn_bias = 49;
 server bool esg_persistent_spawning = false;
+
+// Duck Hunter
+server int duckhunt_shotgun_spawn_bias = 49;
+server bool duckhunt_persistent_spawning = false;
 
 // Single-Action Revolver
 server int sa_pistol_spawn_bias = 24;

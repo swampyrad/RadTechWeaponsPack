@@ -55,6 +55,391 @@ graphic STQBURST,6,3
 	patch PBRSC0G0,3,2 {}
 }
 
+// FP-45 Liberator
+
+//weapon sprites
+sprite FP45A0, 65, 60{
+    offset -127, -108
+    patch FP45A0, 0, 0{}
+}
+sprite FP45B0, 65, 60{
+    offset -127, -109
+    patch FP45B0, 0, 0{}
+}
+sprite FP45C0, 65, 60{
+    offset -127, -110
+    patch FP45C0, 0, 0{}
+}
+sprite FP45D0, 65, 60{
+    offset -127, -108
+    patch FP45D0, 0, 0{}
+}
+
+//wronghand sprites
+sprite F245A0, 65, 60{
+    offset -127, -108
+    patch FP45A0, 0, 0{flipx}
+}
+sprite F245B0, 65, 60{
+    offset -127, -109
+    patch FP45B0, 0, 0{flipx}
+}
+sprite F245C0, 65, 60{
+    offset -127, -110
+    patch FP45C0, 0, 0{flipx}
+}
+sprite F245D0, 65, 60{
+    offset -127, -108
+    patch FP45D0, 0, 0{flipx}
+}
+
+sprite FP45F0, 27, 21{
+    offset -146, -99
+    patch FP45F0, 0, 0{}
+}
+
+//pickup sprite
+sprite LIBPA0, 20, 16{
+    offset 10, 16
+    patch LIBPA0, 0, 0{}
+}
+
+
+// Savage 99
+
+//scope graphic
+graphic s99scope,128,128{
+	xscale 1.38
+	yscale 1.38
+	patch s99scope,0,0{}
+}
+
+// reloader
+sprite SRLDA0, 15, 14{
+    offset 6, 14
+    patch SRLDA0, 0, 0
+}
+
+// pickup sprite
+sprite SV39A0, 60, 14{
+    offset 30, 14
+    patch SV39A0, 0, 0
+}
+
+sprite SAVGA0, 164, 181{
+    offset -78, 12
+    patch SAVGA0, 0, 0
+}
+
+sprite SAVGB0, 164, 181{
+    offset -68, 12
+    patch SAVGB0, 0, 0
+}
+sprite SAVGC0, 164, 181{
+    offset -58, 12
+    patch SAVGC0, 0, 0
+}
+sprite SAVGD0, 164, 181{
+    offset -48, 12
+    patch SAVGD0, 0, 0
+}
+
+sprite SAVGE0, 164, 181{
+    offset -56, 2
+    patch SAVGD0, 0, 0
+}
+
+//muzzle flash
+sprite SVGFA0, 164, 181{
+    offset -78, 12
+    patch SVGFA0, 0, 0
+}
+
+
+// Duck Hunter 
+
+// weapon sprites
+sprite DHNTA0, 66, 12{
+    offset 33, 12
+    patch DHNTA0, 0, 0
+}
+sprite DHNTB0, 66, 12{
+    offset 33, 12
+    patch DHNTB0, 0, 0
+}
+sprite DHNTC0, 66, 12{
+    offset 33, 12
+    patch DHNTC0, 0, 0
+}
+sprite DHNTD0, 66, 12{
+    offset 33, 12
+    patch DHNTD0, 0, 0
+}
+sprite DHNTE0, 66, 12{
+    offset 33, 12
+    patch DHNTE0, 0, 0
+}
+sprite DHNTF0, 66, 12{
+    offset 33, 12
+    patch DHNTF0, 0, 0
+}
+sprite DHNTG0, 66, 12{
+    offset 33, 12
+    patch DHNTG0, 0, 0
+}
+
+//muzzle flash
+sprite DKSFA0, 54, 44{
+    offset -133, -89
+    patch DKSFA0, 0, 0
+}
+
+//weapon sprites
+sprite DKSGA0, 79, 60{
+    offset -118, -110
+    patch DKSGA0, 0, 0
+}
+sprite DKSGB0, 119, 121{
+    offset -50, -50
+    patch DKSGB0, 0, 0
+}
+sprite DKSGC0, 87, 151{
+    offset -30, -20
+    patch DKSGC0, 0, 0
+}
+sprite DKSGD0, 113, 131{
+    offset -20, -40
+    patch DKSGD0, 0, 0
+}
+sprite DKSGE0, 79, 60{
+    offset -118, -110
+    patch DKSGE0, 0, 0
+}
+sprite DKSGF0, 79, 60{
+    offset -118, -110
+    patch DKSGF0, 0, 0
+}
+
+// TT-33 Pistol sprites based off ChopBlock223's 1911 sprites
+// Tokarev Reloader sprite based off 7mm Reloader sprite by mc776
+
+sprite RDT7A0, 13, 14{
+    offset 7, 14
+    patch RDT7A0,0,0
+}
+
+sprite T7BXA0, 30, 14{
+    offset 15, 14
+    patch T7BXA0,0,0
+}
+
+sprite T762A0, 8, 20{
+    offset 4, 20
+    xscale 2.5
+    yscale 2.5
+    patch T762A0,0,0
+}
+
+sprite T710A0, 40, 23{
+    offset 20, 23
+    xscale 2.5
+    yscale 2.5
+    patch T710A0,0,0
+}
+
+sprite T7CSA0, 10, 16{
+    offset 5, 16
+    xscale 2
+    yscale 2
+    patch T7CSA0,0,0
+}
+
+sprite T7CSB0, 15, 15{
+    offset 7, 15
+    xscale 2
+    yscale 2
+    patch T7CSB0,0,0
+}
+
+// pistol pickup sprite
+sprite TKRVA0,69,43{
+    xscale 3.5
+    yscale 3.5
+    offset 34,43
+    patch TKRVA0,0,0{}
+}
+
+// pistol pickup sprite, empty
+sprite TKRVB0,77,43{
+    xscale 3.5
+    yscale 3.5
+    offset 38,43
+    patch TKRVB0,0,0{}
+}
+
+// pistol (selectfire) pickup sprite
+sprite TKRVC0,69,43{
+    xscale 3.5
+    yscale 3.5
+    offset 34,43
+    patch TKRVA0,0,0{}
+}
+
+// pistol (selectfire) pickup sprite, empty
+sprite TKRVD0,77,43{
+    xscale 3.5
+    yscale 3.5
+    offset 38,43
+    patch TKRVB0,0,0{}
+}
+
+//weapon sprites
+sprite TT33A0,79,84{
+offset -105,-96
+patch TT33A0,0,0{}
+}
+
+sprite TT33B0,80,84{
+offset -105,-96
+patch TT33B0,0,0{}
+}
+
+sprite TT33C0,79,83{
+offset -105,-96
+patch TT33C0,0,0{}
+}
+
+//wronghand weapon sprites
+sprite T233A0,79,84{
+offset -136,-96
+patch T233A0,0,0{}
+}
+
+sprite T233B0,80,84{
+offset -136,-96
+patch T233B0,0,0{}
+}
+
+sprite T233C0,79,83{
+offset -136,-96
+patch T233C0,0,0{}
+}
+
+// TT-33 magazine sprites
+sprite TMG8A0,7,15{
+offset 3,15
+patch TMG8A0,0,0{}
+}
+
+sprite TMG8B0,7,15{
+offset 3,15
+patch TMG8B0,0,0{}
+}
+
+sprite TMG8C0,15,7{
+offset 7,7
+patch TMG8MPTY,0,0{}
+}
+
+sprite TMG8NORM,7,15{
+offset 3,15
+patch TMG8A0,0,0{}
+}
+
+sprite TMG8GREY,7,15{
+offset 3,15
+patch TMG8GREY,0,0{}
+}
+
+sprite TMG8MPTY,15,7{
+offset 7,7
+patch TMG8MPTY,0,0{}
+}
+
+
+//PPSh-41 sprites
+
+// PPSh-41 weapon sprites by DenisBelmondo from ZDoom Forums
+// drum/box magazines and PPSh-41 pickup sprites by Swampyrad
+
+//ready
+sprite PPSHA0, 84, 76{
+    offset -115, -94
+    patch PPSHA0, 0, 0
+}
+//flash
+sprite PPSHB0, 84, 97{
+    offset -115, -73
+    patch PPSHB0, 0, 0
+}
+//unloaded
+sprite PPSHC0, 84, 76{
+    offset -115, -94
+    patch PPSHC0, 0, 0
+}
+//box mag loaded
+sprite PPSHD0, 84, 76{
+    offset -115, -94
+    patch PPSHD0, 0, 0
+}
+
+//pickup sprites
+
+//drum mag loaded
+sprite PS41A0, 53, 13{
+    offset 26, 13
+    patch PS41A0, 0, 0
+}
+//no mag loaded
+sprite PS41B0, 53, 13{
+    offset 26, 11
+    patch PS41B0, 0, 0
+}
+//box mag loaded
+sprite PS41C0, 53, 13{
+    offset 26, 13
+    patch PS41C0, 0, 0
+}
+
+
+//drum mag pickup
+sprite PSDMA0, 18, 19{
+    offset 9, 19
+    patch PSDMA0, 0, 0
+}
+sprite PSDMB0, 18, 19{
+    offset 9, 19
+    patch PSDMB0, 0, 0
+}
+sprite PSDMC0, 18, 19{
+    offset 9, 19
+    patch PSDMC0, 0, 0
+}
+sprite PSDMD0, 19, 18{
+    offset 9, 18
+    patch PSDMD0, 0, 0
+}
+
+
+//box mag pickup
+sprite PSHMA0, 9, 19{
+    offset 4, 19
+    patch PSHMA0, 0, 0 
+}
+sprite PSHMB0, 9, 19{
+    offset 4, 19
+    patch PSHMB0, 0, 0 
+}
+sprite PSHMC0, 9, 19{
+    offset 4, 19
+    patch PSHMC0, 0, 0 
+}
+sprite PSHMD0, 19, 9{
+    offset 9, 9
+    patch PSHMD0, 0, 0 
+}
+
+
 // Doomed Shotgun
 
 //  Weapon sprites
