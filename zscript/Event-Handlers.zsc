@@ -74,7 +74,6 @@ class RTSpawnAmmo play
 // One handler to rule them all. 
 class RadTechHandler : EventHandler
 {
-
 	// List of persistent classes to completely ignore. 
 	// This -should- mean this mod has no performance impact. 
 	static const string blacklist[] =
@@ -95,6 +94,12 @@ class RadTechHandler : EventHandler
 		"HDLadderSection"
 	};
 
+	// List of CVARs for Backpack Spawns
+	array<Class <Inventory> > backpackBlacklist;
+
+    // Cache of Ammo Box Loot Table
+    private HDAmBoxList ammoBoxList;
+
 	// List of weapon-ammo associations.
 	// Used for ammo-use association on ammo spawn (happens very often). 
 	array<RTSpawnAmmo> ammoSpawnList;
@@ -106,7 +111,7 @@ class RadTechHandler : EventHandler
 	bool cvarsAvailable;
 	
 	// appends an entry to itemSpawnList;
-	void additem(string name, Array<RTSpawnItemEntry> replacees, bool persists, bool rep=true)
+	void addItem(string name, Array<RTSpawnItemEntry> replacees, bool persists, bool rep=true)
 	{
 
 		if (hd_debug) {
@@ -160,6 +165,49 @@ class RadTechHandler : EventHandler
 	void init()
 	{
 		cvarsAvailable = true;
+		
+		//-----------------
+		// Backpack Spawns
+		//-----------------
+
+		if (!fl_weapon_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("FireBlooper"));
+		if (!fl_metal_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("MetalFireBlooper"));
+		if (!hushpuppy_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HushPuppyPistol"));
+		if (!fragcannon_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)("FragCannon"));
+		if (!stungun_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)("HDStunGun"));
+		if (!phazer_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("PhazerPistol"));
+		if (!colt1911_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("HDColt1911"));
+		if (!ppsh41_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("HDPPSh41"));
+		if (!sten_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)("HDStenMk2"));
+		if (!ja_weapon_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HDHorseshoePistol"));
+		if (!dHunt_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)("DoomHunter"));
+		if (!pbuster_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)("PlasmaBuster"));
+		if (!cshotgun_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("HDCombatShotgun"));
+		if (!savage99_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("Savage99SniperRifle"));
+		if (!sigcow_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("HDSigcow"));
+		if (!tenpis_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("HD10mmPistol"));
+		if (!snose_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)("HDSnubNoseRevolver"));
+		if (!minerva_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)("MinervaChaingun"));
+		if (!llh_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)("LLHunter"));
+		if (!hacked_zm66_allowBackpacks)   backpackBlacklist.push((Class<Inventory>)("HackedZM66AssaultRifle"));
+		if (!obrozz_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("ObrozzPistol"));
+		if (!esg_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)("ExplosiveHunter"));
+		if (!duckhunt_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("DuckHunter"));
+		if (!sa_allowBackpacks)            backpackBlacklist.push((Class<Inventory>)("HDSingleActionRevolver"));
+		if (!tt33_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)("HDTT33Pistol"));
+		if (!gsa_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)("HDGoldSingleActionRevolver"));
+		// if (!fp45_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)("HDFP45"));
+		
+		if (!microcell_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HDMicroCell"));
+		if (!dynamite_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("HDDynamiteAmmo"));
+		if (!colt1911_mags_allowBackpacks) backpackBlacklist.push((Class<Inventory>)("HDColtMag7"));
+		if (!tt33_mag_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("HDTokarevMag8"));
+		if (!ppsh41_mag_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)("HDTokarevMag35"));
+		if (!ppsh41_mag_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)("HDTokarevMag71"));
+		if (!ja_mag_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("HDHorseshoe9m"));
+		if (!tenpismag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HD10mMag8"));
+		if (!sigcowmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HD10mMag25"));
+
 
 		// --------------------
 		// Ammo and Magazine Association
@@ -529,7 +577,7 @@ class RadTechHandler : EventHandler
 
     	// PPSh-41 magazines
 		Array<RTSpawnItemEntry> spawns_ppsh41_mags;  
-		spawns_ppsh41.push(additementry('ShellPickup', ppsh41_mag_spawn_bias));
+		spawns_ppsh41_mags.push(additementry('ShellPickup', ppsh41_mag_spawn_bias));
 		additem('PapashaMagSpawner', spawns_ppsh41_mags,  ppsh41_persistent_spawning);  
 
 		// Minerva
@@ -581,7 +629,7 @@ class RadTechHandler : EventHandler
 		{
 			let result = random(0, chance);
 
-			if (hd_debug) console.printf("Rolled a "..result.." out of "..(chance + 1));
+			if (hd_debug) console.printf("Rolled a "..(result + 1).." out of "..(chance + 1));
 
 			return result == 0;
 		}
@@ -607,11 +655,20 @@ class RadTechHandler : EventHandler
 		return false;
 	}
 	
-	override void worldThingSpawned(WorldEvent e)
+	override void worldLoaded(WorldEvent e)
 	{
 		// Populates the main arrays if they haven't been already. 
 		if (!cvarsAvailable) init();
 
+        foreach (bl : backpackBlacklist) {
+			if (hd_debug) console.printf("Removing "..bl.getClassName().." from Backpack Spawn Pool");
+                
+			BPSpawnPool.removeItem(bl);
+        }
+	}
+
+	override void worldThingSpawned(WorldEvent e)
+	{
 		// If thing spawned doesn't exist, quit
 		if (!e.thing) return;
 		
@@ -633,7 +690,31 @@ class RadTechHandler : EventHandler
 		// Return if range before replacing things.
         if (level.MapName ~== "RANGE") return;
 				
-		handleWeaponReplacements(e.thing, ammo, candidateName);
+		if (e.thing is 'HDAmBox') {
+			handleAmmoBoxLootTable();
+		} else {
+			handleWeaponReplacements(e.thing, ammo, candidateName);
+		}
+	}
+
+	private void handleAmmoBoxLootTable()
+	{
+        if (!ammoBoxList)
+		{
+            ammoBoxList = HDAmBoxList.Get();
+
+			foreach (bl : backpackBlacklist)
+			{
+				let index = ammoBoxList.invClasses.find(bl.getClassName());
+
+				if (index != ammoBoxList.invClasses.Size())
+				{
+					if (hd_debug) console.printf("Removing "..bl.getClassName().." from Ammo Box Loot Table");
+
+					ammoBoxList.invClasses.Delete(index);
+				}
+			}
+        }
 	}
 
 	private void handleAmmoUses(HDAmmo ammo, string candidateName)
