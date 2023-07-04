@@ -24,13 +24,10 @@ class RTSpawnItem play
 	string toString() {
 
 		let replacements = "[";
-		if (spawnReplaces.size()) {
-			replacements = replacements..spawnReplaces[0].toString();
 
-			foreach (spawnReplace : spawnReplaces) replacements = replacements..", "..spawnReplace.toString();
-		}
+		foreach (spawnReplace : spawnReplaces) replacements = replacements..", "..spawnReplace.toString();
+
 		replacements = replacements.."]";
-
 
 		return String.format("{ spawnName=%s, spawnReplaces=%s, isPersistent=%b, replaceItem=%b }", spawnName, replacements, isPersistent, replaceItem);
 	}
@@ -58,11 +55,9 @@ class RTSpawnAmmo play
 	string toString() {
 
 		let weapons = "[";
-		if (weaponNames.size()) {
-			weapons = weapons..weaponNames[0];
 
-			foreach (weaponName : weaponNames) weapons = weapons..", "..weaponName;
-		}
+		foreach (weaponName : weaponNames) weapons = weapons..", "..weaponName;
+
 		weapons = weapons.."]";
 
 		return String.format("{ ammoName=%s, weaponNames=%s }", ammoName, weapons);
@@ -78,20 +73,20 @@ class RadTechHandler : EventHandler
 	// This -should- mean this mod has no performance impact. 
 	static const string blacklist[] =
 	{
-		"HDSmoke",
-		"BloodTrail",
-		"CheckPuff",
-		"WallChunk",
-		"HDBulletPuff",
-		"HDFireballTail",
-		"ReverseImpBallTail",
-		"HDSmokeChunk",
-		"ShieldSpark",
-		"HDFlameRed",
-		"HDMasterBlood",
-		"PlantBit",
-		"HDBulletActor",
-		"HDLadderSection"
+        'HDSmoke',
+        'BloodTrail',
+        'CheckPuff',
+        'WallChunk',
+        'HDBulletPuff',
+        'HDFireballTail',
+        'ReverseImpBallTail',
+        'HDSmokeChunk',
+        'ShieldSpark',
+        'HDFlameRed',
+        'HDMasterBlood',
+        'PlantBit',
+        'HDBulletActor',
+        'HDLadderSection'
 	};
 
 	// List of CVARs for Backpack Spawns
@@ -113,11 +108,11 @@ class RadTechHandler : EventHandler
 	// appends an entry to itemSpawnList;
 	void addItem(string name, Array<RTSpawnItemEntry> replacees, bool persists, bool rep=true)
 	{
+		if (hd_debug)
+		{
+            let msg = "Adding "..(persists ? "Persistent" : "Non-Persistent").." Replacement Entry for "..name..": [";
 
-		if (hd_debug) {
-			let msg = "Adding "..(persists ? "Persistent" : "Non-Persistent").." Replacement Entry for "..name..": ["..replacees[0].toString();
-
-			if (replacees.size() > 1) foreach (replacee : replacees) msg = msg..", "..replacee.toString();
+            foreach (replacee : replacees) msg = msg..", "..replacee.toString();
 
 			console.printf(msg.."]");
 		}
@@ -129,8 +124,7 @@ class RadTechHandler : EventHandler
 		spawnee.spawnName = name;
 		spawnee.isPersistent = persists;
 		spawnee.replaceItem = rep;
-
-		foreach (replacee : replacees) spawnee.spawnReplaces.push(replacee);
+        spawnee.spawnReplaces.copy(replacees);
 		
 		// Pushes the finished struct to the array. 
 		itemSpawnList.push(spawnee);
@@ -140,7 +134,7 @@ class RadTechHandler : EventHandler
 	{
 		// Creates a new struct;
 		RTSpawnItemEntry spawnee = RTSpawnItemEntry(new('RTSpawnItemEntry'));
-		spawnee.name = name.makeLower();
+		spawnee.name = name;
 		spawnee.chance = chance;
 		return spawnee;
 	}
@@ -148,13 +142,19 @@ class RadTechHandler : EventHandler
 	// appends an entry to ammoSpawnList;
 	void addAmmo(string name, Array<string> weapons)
 	{
-	
+        if (hd_debug)
+		{
+            let msg = "Adding Ammo Association Entry for "..name..": [";
+
+            foreach (weapon : weapons) msg = msg..", "..weapon;
+
+            console.printf(msg.."]");
+        }
+
 		// Creates a new struct;
 		RTSpawnAmmo spawnee = RTSpawnAmmo(new('RTSpawnAmmo'));
-		spawnee.ammoName = name.makeLower();
-		
-		// Populates the struct with relevant information,
-		foreach (weapon : weapons) spawnee.weaponNames.push(weapon.makeLower());
+		spawnee.ammoName = name;
+        spawnee.weaponNames.copy(weapons);
 		
 		// Pushes the finished struct to the array. 
 		ammoSpawnList.push(spawnee);
@@ -170,43 +170,43 @@ class RadTechHandler : EventHandler
 		// Backpack Spawns
 		//-----------------
 
-		if (!fl_weapon_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("FireBlooper"));
-		if (!fl_metal_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("MetalFireBlooper"));
-		if (!hushpuppy_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HushPuppyPistol"));
-		if (!fragcannon_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)("FragCannon"));
-		if (!stungun_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)("HDStunGun"));
-		if (!phazer_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("PhazerPistol"));
-		if (!colt1911_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("HDColt1911"));
-		if (!ppsh41_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("HDPPSh41"));
-		if (!sten_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)("HDStenMk2"));
-		if (!ja_weapon_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HDHorseshoePistol"));
-		if (!dHunt_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)("DoomHunter"));
-		if (!pbuster_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)("PlasmaBuster"));
-		if (!cshotgun_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("HDCombatShotgun"));
-		if (!savage99_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("Savage99SniperRifle"));
-		if (!sigcow_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("HDSigcow"));
-		if (!tenpis_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("HD10mmPistol"));
-		if (!snose_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)("HDSnubNoseRevolver"));
-		if (!minerva_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)("MinervaChaingun"));
-		if (!llh_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)("LLHunter"));
-		if (!hacked_zm66_allowBackpacks)   backpackBlacklist.push((Class<Inventory>)("HackedZM66AssaultRifle"));
-		if (!obrozz_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("ObrozzPistol"));
-		if (!esg_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)("ExplosiveHunter"));
-		if (!duckhunt_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("DuckHunter"));
-		if (!sa_allowBackpacks)            backpackBlacklist.push((Class<Inventory>)("HDSingleActionRevolver"));
-		if (!tt33_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)("HDTT33Pistol"));
-		if (!gsa_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)("HDGoldSingleActionRevolver"));
-		// if (!fp45_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)("HDFP45"));
+		if (!fl_weapon_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('FireBlooper'));
+		if (!fl_metal_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('MetalFireBlooper'));
+		if (!hushpuppy_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HushPuppyPistol'));
+		if (!fragcannon_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('FragCannon'));
+		if (!stungun_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)('HDStunGun'));
+		if (!phazer_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('PhazerPistol'));
+		if (!colt1911_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDColt1911'));
+		if (!ppsh41_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HDPPSh41'));
+		if (!sten_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)('HDStenMk2'));
+		if (!ja_weapon_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDHorseshoePistol'));
+		if (!dHunt_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)('DoomHunter'));
+		if (!pbuster_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)('PlasmaBuster'));
+		if (!cshotgun_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDCombatShotgun'));
+		if (!savage99_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('Savage99SniperRifle'));
+		if (!sigcow_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HDSigcow'));
+		if (!tenpis_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HD10mmPistol'));
+		if (!snose_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)('HDSnubNoseRevolver'));
+		if (!minerva_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)('MinervaChaingun'));
+		if (!llh_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)('LLHunter'));
+		if (!hacked_zm66_allowBackpacks)   backpackBlacklist.push((Class<Inventory>)('HackedZM66AssaultRifle'));
+		if (!obrozz_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('ObrozzPistol'));
+		if (!esg_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)('ExplosiveHunter'));
+		if (!duckhunt_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('DuckHunter'));
+		if (!sa_allowBackpacks)            backpackBlacklist.push((Class<Inventory>)('HDSingleActionRevolver'));
+		if (!tt33_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)('HDTT33Pistol'));
+		if (!gsa_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)('HDGoldSingleActionRevolver'));
+		// if (!fp45_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)('HDFP45'));
 		
-		if (!microcell_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HDMicroCell"));
-		if (!dynamite_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("HDDynamiteAmmo"));
-		if (!colt1911_mags_allowBackpacks) backpackBlacklist.push((Class<Inventory>)("HDColtMag7"));
-		if (!tt33_mag_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)("HDTokarevMag8"));
-		if (!ppsh41_mag_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)("HDTokarevMag35"));
-		if (!ppsh41_mag_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)("HDTokarevMag71"));
-		if (!ja_mag_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)("HDHorseshoe9m"));
-		if (!tenpismag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HD10mMag8"));
-		if (!sigcowmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)("HD10mMag25"));
+		if (!microcell_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDMicroCell'));
+		if (!dynamite_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDDynamiteAmmo'));
+		if (!colt1911_mags_allowBackpacks) backpackBlacklist.push((Class<Inventory>)('HDColtMag7'));
+		if (!tt33_mag_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDTokarevMag8'));
+		if (!ppsh41_mag_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('HDTokarevMag35'));
+		if (!ppsh41_mag_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('HDTokarevMag71'));
+		if (!ja_mag_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HDHorseshoe9m'));
+		if (!tenpismag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HD10mMag8'));
+		if (!sigcowmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HD10mMag25'));
 
 
 		// --------------------
@@ -215,144 +215,144 @@ class RadTechHandler : EventHandler
 	
 		// HDBattery. 
 		Array<string> wep_battery;  
-		wep_battery.push("PlasmaBuster");
-		wep_battery.push("MinervaChaingun");
+		wep_battery.push('PlasmaBuster');
+		wep_battery.push('MinervaChaingun');
 		addammo('HDBattery', wep_battery);
 		
 		// 12ga Flare Ammo. 
 		Array<string> wep_flare;  
-		wep_flare.push("FireBlooper"); 
-		wep_flare.push("MetalFireBlooper"); 
+		wep_flare.push('FireBlooper'); 
+		wep_flare.push('MetalFireBlooper'); 
 		addammo('HDFlareAmmo', wep_flare);	
 
 		// 12 gauge (normal) Ammo. 
 		Array<string> wep_12ga;  
-		wep_12ga.push("FireBlooper"); 
-		wep_12ga.push("MetalFireBlooper");
-		wep_12ga.push("HDCombatShotgun");
-		wep_12ga.push("DoomHunter");
+		wep_12ga.push('FireBlooper'); 
+		wep_12ga.push('MetalFireBlooper');
+		wep_12ga.push('HDCombatShotgun');
+		wep_12ga.push('DoomHunter');
 		addammo('HDShellAmmo', wep_12ga);	
 		
 		// 12 gauge (birdshot) ammo.
 		Array<string> wep_12gaberd;
-		wep_12gaberd.push("DuckHunter");
-		addammo("HDBirdshotShellAmmo", wep_12gaberd);
+		wep_12gaberd.push('DuckHunter');
+		addammo('HDBirdshotShellAmmo', wep_12gaberd);
 		
 		// 12 gauge (less lethal) ammo.
 		Array<string> wep_12gall;
-		wep_12gall.push("LLHunter");
-		addammo("HDLLShellAmmo", wep_12gall);
+		wep_12gall.push('LLHunter');
+		addammo('HDLLShellAmmo', wep_12gall);
 
 		// 12 gauge (explosive) ammo.
 		Array<string> wep_12gaex;
-		wep_12gaex.push("ExplosiveHunter");
-		wep_12gaex.push("MetalFireBlooper");
-		addammo("HDExplosiveShellAmmo", wep_12gaex);
+		wep_12gaex.push('ExplosiveHunter');
+		wep_12gaex.push('MetalFireBlooper');
+		addammo('HDExplosiveShellAmmo', wep_12gaex);
 				
 		// 10mm ammo
 		Array<string> wep_10mm;  
-		wep_10mm.push("HD10mmPistol"); 
-		wep_10mm.push("HDSigcow");
-		wep_10mm.push("TenMilAutoReloadingThingy");
+		wep_10mm.push('HD10mmPistol'); 
+		wep_10mm.push('HDSigcow');
+		wep_10mm.push('TenMilAutoReloadingThingy');
 		addammo ('HD10mAmmo', wep_10mm);
 
 		// 10mm ammo (brass)
 		Array<string> wep_10mmbrass;  
-		wep_10mmbrass.push("TenMilAutoReloadingThingy");
+		wep_10mmbrass.push('TenMilAutoReloadingThingy');
 		addammo ('TenMilBrass', wep_10mmbrass);
 
 		// 4mm 'volt caseless'
 		Array<string> wep_4mmvolt;
-		wep_4mmvolt.push("HackedZM66AssaultRifle");
-		wep_4mmvolt.push("SavageAutoReloader");
+		wep_4mmvolt.push('HackedZM66AssaultRifle');
+		wep_4mmvolt.push('SavageAutoReloader');
 		addammo('FourMilAmmo', wep_4mmvolt);	
 		
 		// Volt 4mm Magazines
 		Array<string> wep_4mmvolt50;
-		wep_4mmvolt50.push("HackedZM66AssaultRifle");
+		wep_4mmvolt50.push('HackedZM66AssaultRifle');
 		addammo('HD4mMag', wep_4mmvolt50);
 			
 		// Rocket (Gyro) Grenades.
 		Array<string> wep_rocket;
-		wep_rocket.push("HackedZM66AssaultRifle");
+		wep_rocket.push('HackedZM66AssaultRifle');
 		addammo('HDRocketAmmo', wep_rocket);
 
 		// 9mm
 		Array<string> wep_9mm;
-		wep_9mm.push("MinervaChaingun");
-		wep_9mm.push("HDSnubNoseRevolver");
-		wep_9mm.push("TenMilAutoReloadingThingy");
-		wep_9mm.push("HDStenMk2");
-		wep_9mm.push("HushPuppyPistol");
-		wep_9mm.push("HDHorseshoePistol");
+		wep_9mm.push('MinervaChaingun');
+		wep_9mm.push('HDSnubNoseRevolver');
+		wep_9mm.push('TenMilAutoReloadingThingy');
+		wep_9mm.push('HDStenMk2');
+		wep_9mm.push('HushPuppyPistol');
+		wep_9mm.push('HDHorseshoePistol');
 		addammo('HDPistolAmmo', wep_9mm);
 		
 		// 9mm pistol magazines
 		Array<string> wep_9mm15;
-		wep_9mm15.push("HushPuppyPistol");
-		wep_9mm15.push("HDHorseshoePistol");
+		wep_9mm15.push('HushPuppyPistol');
+		wep_9mm15.push('HDHorseshoePistol');
 		addammo('HD9mMag15', wep_9mm15);
 		
 		// 9mm smg magazines
 		Array<string> wep_9mm30;
-		wep_9mm30.push("MinervaChaingun");
-		wep_9mm30.push("HDStenMk2");
+		wep_9mm30.push('MinervaChaingun');
+		wep_9mm30.push('HDStenMk2');
 		addammo('HD9mMag30', wep_9mm30);
 
 		// 355
 		Array<string> wep_355;
-		wep_355.push("HDSnubNoseRevolver");
+		wep_355.push('HDSnubNoseRevolver');
 		addammo('HDRevolverAmmo', wep_355);
 
 		// 45 ACP
 		Array<string> wep_45acp;
-		wep_45acp.push("HDColt1911");
+		wep_45acp.push('HDColt1911');
 		addammo('HD45ACPAmmo', wep_45acp);
 
 		// 45 Long Colt
 		Array<string> wep_45lc;
-		wep_45lc.push("HDSingleActionRevolver");
+		wep_45lc.push('HDSingleActionRevolver');
 		addammo('HD45LCAmmo', wep_45lc);
 
 		// 45 Long Colt (gold)
 		Array<string> wep_45lcgold;
-		wep_45lcgold.push("HDGoldenSingleActionRevolver");
+		wep_45lcgold.push('HDGoldenSingleActionRevolver');
 		addammo('HDGold45LCAmmo', wep_45lcgold);
 
 		// 7mm Clips
 		Array<string> wep_7mmClip;
-		wep_7mmClip.push("ObrozzPistol");
+		wep_7mmClip.push('ObrozzPistol');
 		addammo('HD7mClip', wep_7mmClip);
 
 		// 7mm
 		Array<string> wep_7mm;
-		wep_7mm.push("ObrozzPistol");
+		wep_7mm.push('ObrozzPistol');
 		addammo('SevenMilAmmo', wep_7mm);
 
 		// 7mm Recast
 		Array<string> wep_7mmR;
-		wep_7mmR.push("ObrozzPistol");
+		wep_7mmR.push('ObrozzPistol');
 		addammo('SevenMilAmmoRecast', wep_7mmR);
 		
 		// Savage .300
 		Array<string> wep_S300;
-		wep_S300.push("Savage99SniperRifle");
+		wep_S300.push('Savage99SniperRifle');
 		addammo('Savage300Ammo', wep_S300);
 		
 		// Savage .300 (brass)
 		Array<string> wep_S300B;
-		wep_S300B.push("SavageAutoReloader");
+		wep_S300B.push('SavageAutoReloader');
 		addammo('Savage300Brass', wep_S300B);
 
         // 7mm Tokarev
 		Array<string> wep_7mmTokarev;
-		wep_7mmTokarev.push("TT33Pistol");
-		wep_7mmTokarev.push("HDPPSh41");
+		wep_7mmTokarev.push('TT33Pistol');
+		wep_7mmTokarev.push('HDPPSh41');
 		addammo('HD762TokarevAmmo', wep_7mmTokarev);
 		
 		// 7mm Tokarev (brass)
 		Array<string> wep_7mmTokarevB;
-		wep_7mmTokarevB.push("TokarevAutoReloader");
+		wep_7mmTokarevB.push('TokarevAutoReloader');
 		addammo('HDSpent762Tokarev', wep_7mmTokarevB);
 
 
@@ -521,15 +521,15 @@ class RadTechHandler : EventHandler
 
 		// Plastic Flaregun
 		Array<RTSpawnItemEntry> spawns_flaregun_plastic; 
-		spawns_flaregun_plastic.push(additementry("Hunter", fl_weapon_spawn_bias)); 
-		spawns_flaregun_plastic.push(additementry("Slayer", fl_weapon_spawn_bias)); 
-		additem("WildFlareGun", spawns_flaregun_plastic, fl_weapon_persistent_spawning, false); 
+		spawns_flaregun_plastic.push(additementry('Hunter', fl_weapon_spawn_bias)); 
+		spawns_flaregun_plastic.push(additementry('Slayer', fl_weapon_spawn_bias)); 
+		additem('WildFlareGun', spawns_flaregun_plastic, fl_weapon_persistent_spawning, false); 
 
 		// Metal Flaregun
 		Array<RTSpawnItemEntry> spawns_flaregun_metal; 
-		spawns_flaregun_metal.push(additementry("Hunter", fl_metal_spawn_bias));
-		spawns_flaregun_metal.push(additementry("Slayer", fl_metal_spawn_bias));
-		additem("WildMetalFlareGun", spawns_flaregun_metal, fl_metal_persistent_spawning, false);
+		spawns_flaregun_metal.push(additementry('Hunter', fl_metal_spawn_bias));
+		spawns_flaregun_metal.push(additementry('Slayer', fl_metal_spawn_bias));
+		additem('WildMetalFlareGun', spawns_flaregun_metal, fl_metal_persistent_spawning, false);
 
     // ----- Rifles ----- (just the one so far)
     
@@ -676,7 +676,6 @@ class RadTechHandler : EventHandler
 		foreach (bl : blacklist) if (e.thing is bl) return;
 
 		string candidateName = e.thing.getClassName();
-		candidateName = candidateName.makeLower();
 		
 		// Pointers for specific classes.
 		let ammo = HDAmmo(e.thing);
@@ -688,7 +687,7 @@ class RadTechHandler : EventHandler
 		//or ammo purging gets messed up lol
 		
 		// Return if range before replacing things.
-        if (level.MapName ~== "RANGE") return;
+        if (level.MapName == 'RANGE') return;
 				
 		if (e.thing is 'HDAmBox') {
 			handleAmmoBoxLootTable();
@@ -719,7 +718,16 @@ class RadTechHandler : EventHandler
 
 	private void handleAmmoUses(HDAmmo ammo, string candidateName)
 	{
-		foreach (ammoSpawn : ammoSpawnList) if (candidateName == ammoSpawn.ammoName) ammo.itemsThatUseThis.copy(ammoSpawn.weaponNames);
+        foreach (ammoSpawn : ammoSpawnList) if (candidateName ~== ammoSpawn.ammoName)
+		{
+            if (hd_debug)
+			{
+                console.printf("Adding the following to the list of items that use "..ammo.getClassName().."");
+                foreach (weapon : ammoSpawn.weaponNames) console.printf("* "..weapon);
+			}
+
+            ammo.itemsThatUseThis.append(ammoSpawn.weaponNames);
+        }
 	}
 
 	private void handleWeaponReplacements(Actor thing, HDAmmo ammo, string candidateName)
@@ -737,7 +745,7 @@ class RadTechHandler : EventHandler
 			{
 				foreach (spawnReplace : itemSpawn.spawnReplaces)
 				{
-					if (spawnReplace.name == candidateName)
+					if (spawnReplace.name ~== candidateName)
 					{
 						if (hd_debug) console.printf("Attempting to replace "..candidateName.." with "..itemSpawn.spawnName.."...");
 
