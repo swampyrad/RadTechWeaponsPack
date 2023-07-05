@@ -208,6 +208,10 @@ class RadTechHandler : EventHandler
 		if (!tenpismag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HD10mMag8'));
 		if (!sigcowmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HD10mMag25'));
 
+		if (!reloader10mm_allowBackpacks)  backpackBlacklist.push((Class<Inventory>)('TenMilAutoReloader'));
+		if (!reloader300S_allowBackpacks)  backpackBlacklist.push((Class<Inventory>)('SavageAutoReloader'));
+		if (!reloader762_allowBackpacks)   backpackBlacklist.push((Class<Inventory>)('TokarevAutoReloader'));
+
 
 		// --------------------
 		// Ammo and Magazine Association
