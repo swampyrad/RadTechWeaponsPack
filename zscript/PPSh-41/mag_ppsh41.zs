@@ -113,7 +113,7 @@ class HDPPSh41EmptyDrum:IdleDummy{
 	}
 }
 
-class PapashaMagSpawn:actor{
+class PapashaMagSpawner:actor{
 	override void postbeginplay(){
 		super.postbeginplay();
 		if(!random(0,3)) spawn("HDTokarevMag71",pos,ALLOW_REPLACE);
