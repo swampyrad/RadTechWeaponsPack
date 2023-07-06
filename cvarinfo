@@ -177,3 +177,8 @@ server bool sa_persistent_spawning = false;
 server bool gsa_allowBackpacks = true;
 server int gsa_pistol_spawn_bias = 99;
 server bool gsa_persistent_spawning = false;
+
+// Reloading Devices
+server bool reloader10mm_allowBackpacks = true;
+server bool reloader300S_allowBackpacks = true;
+server bool reloader762_allowBackpacks = true;

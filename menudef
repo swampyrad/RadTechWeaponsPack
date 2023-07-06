@@ -69,6 +69,8 @@ OptionMenu RadTechWeaponry
 	StaticText ""
     Submenu "$TAG_FLAREGUN", "flareguns", 0, 1
 	StaticText ""
+    Submenu "$MENU_RELOADINGDEVICES", "reloadingDevices", 0, 1
+	StaticText ""
 	StaticText "--- Reset Options ---", "red"
 	StaticText ""
 	SafeCommand "Reset all options for Radtech Weapons", "RTWP_Reset_Cvars"
@@ -398,6 +400,33 @@ OptionMenu MicroCell
 	StaticText ""
 	StaticText "$MENU_MICROLORE1", "white"
 	StaticText "$MENU_MICROLORE2", "white"
+}
+
+OptionMenu reloadingDevices
+{
+    Title "$MENU_RELOADINGDEVICES"
+   	StaticText "$MENU_NOTICE", "Red"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Yellow"
+    StaticText  "$MENU_10MMRELOADERBACKPACK", "white"
+	Option "$MENU_BACKPACKSALLOWED", "reloader10mm_allowBackpacks", "OnOff"
+	StaticText ""
+	StaticText  "$MENU_300SRELOADERBACKPACK", "white"
+	Option "$MENU_BACKPACKSALLOWED", "reloader300S_allowBackpacks", "OnOff"
+ 	StaticText ""
+	StaticText  "$MENU_762RELOADERBACKPACK", "white"
+	Option "$MENU_BACKPACKSALLOWED", "reloader762_allowBackpacks", "OnOff"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Red"
+	SafeCommand "$MENU_RESETALLOPTIONS", "reloaders_reset_cvars"
+	StaticText ""
+	StaticText "$MENU_LORETAG", "Red"
+	StaticText ""
+	StaticText "$MENU_RELOADERLORE1", "white"
+	StaticText "$MENU_RELOADERLORE2", "white"
 }
 
 OptionMenu Juan9mm

@@ -160,6 +160,7 @@ MENU_RESETCONV = "Reset conv. options";
 MENU_RESETDROP = "Reset drop. options";
 MENU_RESETWEP = "Reset wep. options";
 MENU_RESETMAG = "Reset mag options";
+MENU_RELOADINGDEVICES = "Reloading Devices";
 
 // Flare Guns
 MENU_FGUNTITLE = "------ Flare Gun Options ------";
@@ -455,3 +456,11 @@ MENU_GREVVYBACKPACK = "Control whether the Golden Single-Action Revolvers spawn 
 MENU_GREVVYLORE1 = "A special golden version of the Single-Action Revolver.";
 MENU_GREVVYLORE2 = "Not much is known about it due to their immense rarity.";
 MENU_GREVVYLORE3 = "...Though those who have found one talk highly about its power.";
+
+// Reloading Devices
+MENU_10MMRELOADERBACKPACK = "Control Whether the 10mm Reloading Devices spawn in Backpacks";
+MENU_300SRELOADERBACKPACK = "Control Whether the .300 Savage Reloading Devices spawn in Backpacks";
+MENU_762RELOADERBACKPACK = "Control Whether the 7.62 Tokarev Reloading Devices spawn in Backpacks";
+
+MENU_RELOADERLORE1 = "TODO: Add Lore";
+MENU_RELOADERLORE2 = "";
