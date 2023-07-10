@@ -32,6 +32,9 @@ version "4.10"
 #include "zscript/PPSh-41/wep_ppsh41.zs"
 #include "zscript/PPSh-41/mag_ppsh41.zs"
 
+// FP-45 Liberator Pistol
+#include "zscript/FP-45 Liberator/wep_fp45.zs"
+
 //Frag Cannon
 #include "zscript/FragCannon/wep_fragcannon.zs"
 
