@@ -468,8 +468,8 @@ class RadTechHandler : EventHandler
     	//(these spawns around bonuses instead)
 		Array<RTSpawnItemEntry> spawns_fp45;  
 		spawns_fp45.push(additementry('BlueFrag', fp45_bonus_spawn_bias)); 
-	    spawns_fp45.push(additementry('HelmFrag', fp45_bonus_spawn_bias)); 
-		additem('FP45LiberatorPistol', spawns_fp45,  fp45_persistent_spawning);
+	    	spawns_fp45.push(additementry('HelmFrag', fp45_bonus_spawn_bias)); 
+		additem('HDFP45Spawn', spawns_fp45,  fp45_persistent_spawning, false);
 
     // --- Revolvers ---
     // (revolvers spawn on shotguns)
