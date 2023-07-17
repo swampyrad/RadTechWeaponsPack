@@ -358,6 +358,7 @@ if(!punchee.countinv("HDArmourWorn")){
 	goto ready;
 	
 	altfire:
+	RBAY B 1;
 	RBAY B 1 A_JumpIf(pressingaltfire(),"altfire");//adds a windup before stabbing
 	RBAY C 3 {A_StrengthTics(0,2); A_Recoil(-1);}// adds a short charge before stabbing
 	RBAY D 0 A_Recoil(min(0,1.-invoker.strength));
