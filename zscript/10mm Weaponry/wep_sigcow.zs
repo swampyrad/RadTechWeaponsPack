@@ -357,9 +357,7 @@ if(!punchee.countinv("HDArmourWorn")){
 	---- A 0 A_MagManager("HD10mMag25");
 	goto ready;
 	
-	//you can now run while stabbing enemies with the rifle :D
 	altfire:
-	RBAY B 1 {invoker.bdontnull = true;} //this should keep the rifle out while you're charging for a stab
 	RBAY B 1 A_JumpIf(pressingaltfire(),"altfire");//adds a windup before stabbing
 	RBAY C 3 {A_StrengthTics(0,2); A_Recoil(-1);}// adds a short charge before stabbing
 	RBAY D 0 A_Recoil(min(0,1.-invoker.strength));
