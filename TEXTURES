@@ -727,6 +727,20 @@ sprite fbpsite, 5,13
 	patch fbpsite, 0, 0{}
 }
 
+// Combat Shotgun
+
+// Front Sight
+sprite csgftsit, 5,13
+{
+	patch sgfrntsit, 0, 0{}
+}
+
+// Invisible Back Sight
+sprite csgbksit, 0,0
+{
+	// There's no back sight on the weapon sprites
+}
+
 // Golden Single-Action Revolver
 
 sprite C45GA0,11,17{

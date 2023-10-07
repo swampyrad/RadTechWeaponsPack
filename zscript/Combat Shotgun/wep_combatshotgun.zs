@@ -102,12 +102,11 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 		);
 		vector2 bobb=bob*2.2; //2x more bobbing because there's no stock
 		sb.drawimage(
-			"frntsite",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP
+			"csgftsit",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP
 		);
 		sb.SetClipRect(cx,cy,cw,ch);
 		sb.drawimage(
-			"sgbaksit",(0,0)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
-			alpha:0.0//there's no back sight on the weapon sprites
+			"csgbksit",(0,0)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP
 		);
 	}
 	override double gunmass(){
