@@ -196,7 +196,7 @@ class RadTechHandler : EventHandler
 		if (!sa_allowBackpacks)            backpackBlacklist.push((Class<Inventory>)('HDSingleActionRevolver'));
 		if (!tt33_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)('HDTT33Pistol'));
 		if (!gsa_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)('HDGoldSingleActionRevolver'));
-		// if (!fp45_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)('HDFP45'));
+		if (!fp45_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)('HDFP45'));
 		
 		if (!microcell_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDMicroCell'));
 		if (!dynamite_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDDynamiteAmmo'));
