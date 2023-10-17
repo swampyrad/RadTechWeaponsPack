@@ -100,6 +100,7 @@ TAG_TT33MAG = "TT-33 Magazine";
 PICKUP_10MAG25 = "Picked up a Sig-Cow magazine.";
 PICKUP_10MAG8 = "Picked up a 10mm pistol magazine.";
 PICKUP_10MRELOADER = "Picked up a 10mm reloading device!";
+PICKUP_CM7 = "Picked up a Colt 1911 magazine.";
 PICKUP_JUANMAG = "Picked up a horseshoe-shaped pistol magazine..?";
 PICKUP_MICROCELL = "You picked up a micro-cell.";
 PICKUP_PPSH41MAG35 = "Picked up a PPSh-41 magazine.";
