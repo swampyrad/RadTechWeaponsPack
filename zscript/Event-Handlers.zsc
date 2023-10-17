@@ -386,7 +386,7 @@ class RadTechHandler : EventHandler
 
 		// Phazer Plasma Pistol
 		Array<RTSpawnItemEntry> spawns_phazer;  
-		spawns_phazer.push(additementry('HDPistol', phazer_spawn_bias));
+		spawns_phazer.push(additementry('HDAutoPistol', phazer_spawn_bias));
 		additem('PhazerPistol', spawns_phazer, phazer_persistent_spawning);
 
 		// Micro-Cells
@@ -404,7 +404,7 @@ class RadTechHandler : EventHandler
         
 		// Hush Puppy Silenced Pistol
 		Array<RTSpawnItemEntry> spawns_hushpuppy;  
-		spawns_HushPuppy.push(additementry('HDPistol', hushpuppy_spawn_bias)); 
+		spawns_HushPuppy.push(additementry('HDAutoPistol', hushpuppy_spawn_bias)); 
 		additem('HushPuppyPistol', spawns_hushpuppy,  hushpuppy_persistent_spawning);
 
 		// Colt 1911 .45 Pistol
@@ -416,14 +416,14 @@ class RadTechHandler : EventHandler
 			    
 		//Random ammobox spawns
 		Array<RTSpawnItemEntry> spawns_colt1911_ammobox;
-		spawns_colt1911_ammobox.push(additementry('HDPistol', colt1911_ammobox_spawn_bias));
+		spawns_colt1911_ammobox.push(additementry('HDAutoPistol', colt1911_ammobox_spawn_bias));
 		additem('HDColt1911Spawn', spawns_colt1911_ammobox, colt1911_persistent_spawning);
 
         // Delta Elite 10mm Pistol
 
 		// Delta Elite spawns
 		Array<RTSpawnItemEntry> spawns_10mm_pistol;
-		spawns_10mm_pistol.push(additementry('HDPistol', tenpis_handgun_spawn_bias));
+		spawns_10mm_pistol.push(additementry('HDAutoPistol', tenpis_handgun_spawn_bias));
 		additem('HD10mmPistol', spawns_10mm_pistol, tenpis_persistent_spawning);
 		
 		// Delta Elite Magazines
@@ -452,7 +452,7 @@ class RadTechHandler : EventHandler
         
     	// FP-45 'Liberator' Pistol
 		Array<RTSpawnItemEntry> spawns_fp45;  
-		spawns_fp45.push(additementry('HDPistol', fp45_bonus_spawn_bias)); 
+		spawns_fp45.push(additementry('HDAutoPistol', fp45_bonus_spawn_bias)); 
 		additem('HDFP45Spawn', spawns_fp45,  fp45_persistent_spawning, false);
 
     // --- Revolvers ---
@@ -467,7 +467,7 @@ class RadTechHandler : EventHandler
 		// Single-Action Revolver
 	//	Array<RTSpawnItemEntry> spawns_sixgun;
 	//	spawns_sixgun.push(additementry('HDHandgunRandomDrop', sa_pistol_spawn_bias));
-	//	spawns_sixgun.push(additementry('HDPistol', sa_pistol_spawn_bias));
+	//	spawns_sixgun.push(additementry('HDAutoPistol', sa_pistol_spawn_bias));
 	//	additem('HDSingleActionRevolver', spawns_sixgun, sa_persistent_spawning);
         
         Array<RTSpawnItemEntry> spawns_sixgun_bundle;
@@ -593,7 +593,7 @@ class RadTechHandler : EventHandler
 		// 'Juan' Horseshoe Pistol
 		Array<RTSpawnItemEntry> spawns_juan;
 		spawns_juan.push(additementry('HDHandgunRandomDrop', ja_weapon_drop_chance_bias));
-		spawns_juan.push(additementry('HDPistol', ja_weapon_drop_chance_bias));
+		spawns_juan.push(additementry('HDAutoPistol', ja_weapon_drop_chance_bias));
 		additem('HDHorseShoePistol', spawns_juan, ja_persistent_spawning);
 */
 
