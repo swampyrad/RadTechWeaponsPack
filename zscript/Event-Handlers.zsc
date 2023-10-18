@@ -396,7 +396,7 @@ class RadTechHandler : EventHandler
 
 		// DM-93 Plasma Rifle
 		Array<RTSpawnItemEntry> spawns_plasmabuster;  
-		spawns_plasmabuster.push(additementry('ThunderBuster', pbuster_cpack_spawn_bias)); 
+		spawns_plasmabuster.push(additementry('PlasmaReplaces', pbuster_cpack_spawn_bias)); 
 		additem('PlasmaBuster', spawns_plasmabuster, false);
 
     // ----- Pistols -----
