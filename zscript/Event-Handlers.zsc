@@ -384,7 +384,8 @@ class RadTechHandler : EventHandler {
 
         // Phazer Plasma Pistol
         Array<RTSpawnItemEntry> spawns_phazer;
-        spawns_phazer.push(additementry('PistolReplaces', phazer_spawn_bias));
+        spawns_phazer.push(additementry('PistolReplaces', phazer_pistol_spawn_bias));
+        spawns_phazer.push(additementry('ClipBoxPickup2', phazer_clipbox_spawn_bias));
         additem('PhazerPistol', spawns_phazer, phazer_persistent_spawning);
 
         // Micro-Cells

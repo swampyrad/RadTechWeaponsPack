@@ -42,7 +42,8 @@ server bool stungun_persistent_spawning = false;
 
 //Phazer Pistol
 server bool phazer_allowBackpacks = true;
-server int phazer_spawn_bias = 19;
+server int phazer_pistol_spawn_bias = 19;
+server int phazer_clipbox_spawn_bias = 19;
 server bool phazer_persistent_spawning = false;
 
 //Micro-Cell Ammo
