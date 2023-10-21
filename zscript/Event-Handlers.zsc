@@ -390,7 +390,8 @@ class RadTechHandler : EventHandler {
 
         // Micro-Cells
         Array<RTSpawnItemEntry> spawns_microcell;
-        spawns_microcell.push(additementry('CellRandom', microcell_spawn_bias));
+        spawns_microcell.push(additementry('ShellRandom', microcell_shell_spawn_bias));
+        spawns_microcell.push(additementry('CellRandom', microcell_battery_spawn_bias));
         additem('HDMicroCell', spawns_microcell, microcell_persistent_spawning);
 
         // DM-93 Plasma Rifle
@@ -410,10 +411,10 @@ class RadTechHandler : EventHandler {
         // Colt 1911 .45 Pistol
 
         // Colt 1911 spawns
-        Array<RTSpawnItemEntry> spawns_colt1911_ammobox;
-        spawns_colt1911_ammobox.push(additementry('PistolReplaces', colt1911_pistol_spawn_bias));
-        spawns_colt1911_ammobox.push(additementry('ClipBoxPickup2', colt1911_clipbox_spawn_bias));
-        additem('HDColt1911Spawn', spawns_colt1911_ammobox, colt1911_persistent_spawning);
+        Array<RTSpawnItemEntry> spawns_colt1911;
+        spawns_colt1911.push(additementry('PistolReplaces', colt1911_pistol_spawn_bias));
+        spawns_colt1911.push(additementry('ClipBoxPickup2', colt1911_clipbox_spawn_bias));
+        additem('HDColt1911Spawn', spawns_colt1911, colt1911_persistent_spawning);
 
         // Colt 1911 Magazines
         Array<RTSpawnItemEntry> spawns_colt1911_mags;
@@ -449,7 +450,8 @@ class RadTechHandler : EventHandler {
 
         // Obrozz Sawn-Off Boss Pistol
         Array<RTSpawnItemEntry> spawns_obrozz;
-        spawns_obrozz.push(additementry('BossRifleSpawner', obrozz_spawn_bias));
+        spawns_obrozz.push(additementry('BossRifleSpawner', obrozz_boss_spawn_bias));
+        spawns_obrozz.push(additementry('ClipBoxPickup2', obrozz_clipbox_spawn_bias));
         additem('ObrozzSpawner', spawns_obrozz, obrozz_persistent_spawning);
 
 
@@ -548,7 +550,8 @@ class RadTechHandler : EventHandler {
 
         // Hacked ZM66
         Array<RTSpawnItemEntry> spawns_hackedzm66random;
-        spawns_hackedzm66random.push(additementry('ZM66Random', hacked_zm66_spawn_bias));
+        spawns_hackedzm66random.push(additementry('ZM66Random', hacked_zm66_zm66_spawn_bias));
+        spawns_hackedzm66random.push(additementry('ClipBoxPickup1', hacked_zm66_clipbox_spawn_bias));
         additem('HackedZM66Random', spawns_hackedzm66random, hacked_persistent_spawning);
 
 

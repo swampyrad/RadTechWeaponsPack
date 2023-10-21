@@ -48,7 +48,8 @@ server bool phazer_persistent_spawning = false;
 
 //Micro-Cell Ammo
 server bool microcell_allowBackpacks = true;
-server int microcell_spawn_bias = 19;
+server int microcell_shell_spawn_bias = 19;
+server int microcell_battery_spawn_bias = 19;
 server bool microcell_persistent_spawning = false;
 
 // Dynamite
@@ -155,12 +156,14 @@ server bool llh_persistent_spawning = false;
 
 // Hacked ZM66
 server bool hacked_zm66_allowBackpacks = true;
-server int hacked_zm66_spawn_bias = 24;
+server int hacked_zm66_zm66_spawn_bias = 24;
+server int hacked_zm66_clipbox_spawn_bias = 24;
 server bool hacked_persistent_spawning = false;
 
 // Obrozz Pistol
 server bool obrozz_allowBackpacks = true;
-server int obrozz_spawn_bias = 24;
+server int obrozz_boss_spawn_bias = 24;
+server int obrozz_clipbox_spawn_bias = 24;
 server bool obrozz_persistent_spawning = false;
 
 // Explosive Shotgun
