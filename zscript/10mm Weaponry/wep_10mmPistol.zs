@@ -206,9 +206,15 @@ class HD10mmPistol:HDHandgun{
 			int psch=invoker.weaponstatus[PISS_CHAMBER];
 			invoker.weaponstatus[PISS_CHAMBER]=0;
 			if(psch==2){
-				A_EjectCasing("HD10mAmmo",-frandom(89,92),(frandom(2,3),0,0),(13,0,0));
+				A_EjectCasing("HD10mAmmo",
+				    -frandom(89,92),
+				    (frandom(2,3),0,0)
+                );
 			}else if(psch==1){
-				A_EjectCasing("HDSpent10mm",-frandom(89,92),(frandom(6,7),0,0),(13,0,0));
+				A_EjectCasing("HDSpent10mm",
+				    -frandom(89,92),
+				    (frandom(6,7),0,0)
+                );
 			}
 			if(invoker.weaponstatus[PISS_MAG]>0){
 				invoker.weaponstatus[PISS_CHAMBER]=2;
@@ -243,7 +249,10 @@ class HD10mmPistol:HDHandgun{
 		}//even more beef, to balance for trimming the
     // fat off of the SigCow, and more sideclimb added
 		#### C 0{
-			A_EjectCasing("HDSpent10mm",-frandom(89,92),(frandom(6,7),0,0),(13,0,0));
+			A_EjectCasing("HDSpent10mm",
+			    -frandom(89,92),
+			    (frandom(6,7),0,0)
+            );
 			invoker.weaponstatus[PISS_CHAMBER]=0;
 			if(invoker.weaponstatus[PISS_MAG]<1){
 				A_StartSound("weapons/10pis_dry",8,CHANF_OVERLAP,0.9);
