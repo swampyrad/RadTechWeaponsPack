@@ -1351,3 +1351,8 @@ sprite RSR1E0,7,7{
 	offset -170,-111
 	patch rsaround,0,0{}
 }
+
+sprite P10FB0,46,48{
+	offset-136,-72
+	patch P10FA0,0,0{flipx}
+}

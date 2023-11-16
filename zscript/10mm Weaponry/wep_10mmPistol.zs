@@ -265,9 +265,9 @@ class HD10mmPistol:HDHandgun{
 			}else A_Refire();
 		}goto ready;
 	flash:
-		P10F A 0 A_JumpIf(invoker.wronghand,2);
-		P10F A 0;
-		---- A 1 bright{
+		P10F A 0 A_JumpIf(!invoker.wronghand,2);
+		P10F B 0;
+		#### # 1 bright{
 			HDFlashAlpha(64);
 			A_Light1();
 			let bbb=HDBulletActor.FireBullet(self,"HDB_10",spread:2.,speedfactor:frandom(0.97,1.03));
@@ -280,8 +280,8 @@ class HD10mmPistol:HDHandgun{
 			A_MuzzleClimb(-frandom(0.8,2.7),-frandom(0.8,3.3));
                     //extra recoil (+0.5,+1.5)
 		}                  //kicks like a MFer lol
-		---- A 0 A_StartSound("weapons/delta10mm",CHAN_WEAPON);
-		---- A 0 A_Light0();
+		#### # 0 A_StartSound("weapons/delta10mm",CHAN_WEAPON);
+		#### # 0 A_Light0();
 		stop;
 	unload:
 		---- A 0{
