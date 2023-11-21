@@ -13,6 +13,29 @@ enum flaregunstatus
 	FLARE_METAL=26,
 };
 
+//dummy bullet, used to transfer weapon pitch to flare ball
+//(using the same hack as the plasma rifle because
+// i'm too dumb ro figure out a better way
+
+class HDB_FlareMissile:HDBulletActor{
+    
+    default{speed 32;}
+    
+	states{
+	spawn:
+		TNT1 A 0;
+	death:
+	    TNT1 A 0 A_SpawnItemEx(
+	                "HDFlareBall",
+	                0, 0, 0,
+                    invoker.vel.x,
+                    invoker.vel.y,
+                    invoker.vel.z,
+                    invoker.angle,
+	                SXF_TRANSFERPOINTERS);
+		stop;
+	}
+}
 
 class FireBlooper : HDHandgun
 {
@@ -204,8 +227,10 @@ action void A_CheckFlareGunHand(bool filled)
 	
 	action void A_FireFlare()
 	{
+		
 			A_StartSound("weapons/fgnblast", CHAN_WEAPON,CHANF_OVERLAP);
-			A_SpawnProjectile("HDFlareBall",(11+hdplayerpawn(self).height/2)*hdplayerpawn(self).heightmult,0,frandom(-1,1),CMF_AIMDIRECTION,pitch+frandom(-2,1.8));;
+			HDBulletActor.FireBullet(self,"HDB_FlareMissile");
+			
 			invoker.weaponstatus[0]&=~FLARE_LOADED;
 			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
 			A_StartSound("weapons/fgnclk",CHAN_WEAPON,CHANF_OVERLAP);
