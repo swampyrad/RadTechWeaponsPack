@@ -21,19 +21,19 @@ action void A_CheckMetalFlareGunHand(bool filled)
 {
 		if(invoker.wronghand && filled)
 		{
-			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FMR1A0");//just use the same sprites lol
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FMR1A0");
 		}
 		else if(invoker.wronghand && !filled)
 		{
-			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FMR2A0");//just use the same sprites lol
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FMR2A0");
 		}
 		else if(!(invoker.wronghand) && filled)
 		{
-			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FML1A0");//just use the same sprites lol
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FML1A0");
 		}
 		else if(!(invoker.wronghand) && !filled)
 		{
-			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FML2A0");//just use the same sprites lol
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FML2A0");
 		}
 }
 
@@ -41,21 +41,30 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	override double gunmass()
 	{
 		double result = 7;
+
 		if(weaponstatus[0]&FLARE_LOADED)
 			result += 1;
-		else if(weaponstatus[0]&FLARE_LOADEDSHELL)
-			result += 1;
+		else if(weaponstatus[0]&FLARE_LOADEDSHELL
+		      ||weaponstatus[0]&FLARE_LOADEDSLUG)
+			result += 2;
+		else if(weaponstatus[0]&FLARE_LOADEDSLUGEXP)
+			result += 3;
 		return result;
 	}
 
 	override double weaponbulk()
 	{
 		double result = 36;
-		if(weaponstatus[0]&FLARE_LOADED)
-			result += ENC_SHELL;
-		else if(weaponstatus[0]&FLARE_LOADEDSHELL)
+		if(weaponstatus[0]&FLARE_LOADED)//flare shell
 			result += ENC_SHELL/2;
-		else if(weaponstatus[0]&FLARE_SPENTSHELL)
+		else if(weaponstatus[0]&FLARE_LOADEDSHELL
+		      ||weaponstatus[0]&FLARE_LOADEDSLUG)//shotgun shell
+			result += ENC_SHELL;
+		else if(weaponstatus[0]&FLARE_LOADEDSLUGEXP)//explosive slug
+			result += ENC_SHELL*2;
+		else if(weaponstatus[0]&FLARE_SPENTSHELL    //spent shells
+		      ||weaponstatus[0]&FLARE_SPENTSLUG
+		      ||weaponstatus[0]&FLARE_SPENTSLUGEXP)
 			result += ENC_SHELL/3;
 		return result;
 	}
@@ -70,44 +79,41 @@ action void A_CheckMetalFlareGunHand(bool filled)
 			index  = "A0";
 		return result..index,1.;
 	}
-
-	/*	
-	override string,double getpickupsprite()
-	{
-		string result = "FLGM";
-		string index  = "B0";
-		if((weaponstatus[0]&FLARE_LOADED))
-			index  = "A0";
-		else if((weaponstatus[0]&FLARE_LOADEDSHELL))
-			index  = "A0";
-		return result..index,1.;
-	}
-			*/
 	
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl)
 	{
 		if(sb.hudlevel==1)
-		{
-			sb.drawimage("FLARA0",(-47,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(0.6,0.6));
-			sb.drawnum(hpl.countinv("HDFlareAmmo"),-40,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+		{   	sb.drawimage("SLG1A0",(-53,-19),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.1,1.1));
+			    sb.drawnum(hpl.countinv("HDSlugAmmo"),-50,-23,sb.DI_SCREEN_CENTER_BOTTOM);
+		    
+				sb.drawimage("XLS1A0",(-38,-19),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.1,1.1));
+			    sb.drawnum(hpl.countinv("HDExplosiveShellAmmo"),-35,-23,sb.DI_SCREEN_CENTER_BOTTOM);
+
+			    sb.drawimage("FLARA0",(-48,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(0.6,0.6));
+			    sb.drawnum(hpl.countinv("HDFlareAmmo"),-40,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 				
-			sb.drawimage("SHL1A0",(-30,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.4,1.4));
-			sb.drawnum(hpl.countinv("HDShellAmmo"),-25,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+			    sb.drawimage("SHL1A0",(-33,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.4,1.4));
+			    sb.drawnum(hpl.countinv("HDShellAmmo"),-25,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+            
 		}
+		
 		if(hdw.weaponstatus[0]&FLARE_LOADED)
-		{
+		    {
 			sb.drawrect(-24,-13,7,3);
-		}
-		else if(hdw.weaponstatus[0]==FLARE_LOADEDSHELL || hdw.weaponstatus[0]==FLARE_LOADEDSHELLEXP)
-		{
+		    }
+		else if(hdw.weaponstatus[0]==FLARE_LOADEDSHELL ||
+		        hdw.weaponstatus[0]==FLARE_LOADEDSLUG  ||  //make distinct slug graphic later
+    	        hdw.weaponstatus[0]==FLARE_LOADEDSLUGEXP)
+		    {
 			sb.drawrect(-24,-13,5,3);
 			sb.drawrect(-18,-13,2,3);
-		}
-		else if(hdw.weaponstatus[0]==FLARE_SPENTSHELL || hdw.weaponstatus[0]==FLARE_SPENTSHELLEXP)
-		{
+		    }
+		else if(hdw.weaponstatus[0]==FLARE_SPENTSHELL ||
+		        hdw.weaponstatus[0]==FLARE_SPENTSLUG  ||
+		        hdw.weaponstatus[0]==FLARE_SPENTSLUGEXP)
+		    {
 			sb.drawrect(-18,-13,2,3);
-		}
-		//sb.drawwepnum(hpl.countinv("HDFlareAmmo"),(HDCONST_MAXPOCKETSPACE/ENC_ROCKET));
+		    }
 	}
 	
 	// No sight picture. 
@@ -126,29 +132,37 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	{
 		return
 		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE..", "..WEPHELP_FIREMODE.."  Quick-Swap (if available)\n"
-		..WEPHELP_RELOADRELOAD
-		..WEPHELP_ALTRELOAD.."  Load a shotgun shell\n"
+		..WEPHELP_ALTFIRE.."  Quick-Swap (if available)\n"
+		..WEPHELP_RELOAD.."  Load flares\n"
+		..WEPHELP_ALTRELOAD.."  Load shells\n"
+		..WEPHELP_FIREMODE.."+"..WEPHELP_RELOAD.."  Load slugs\n"
+		..WEPHELP_FIREMODE.."+"..WEPHELP_ALTRELOAD.."  Load explosive slugs\n"
 		..WEPHELP_UNLOADUNLOAD
-
 		;
 	}
 	
 	
 	bool A_IsFilled()
 	{
-		return self.weaponstatus[0]&FLARE_LOADED || 
-		self.weaponstatus[0]&FLARE_LOADEDSHELL || self.weaponstatus[0]&FLARE_LOADEDSHELLEXP;
+		return self.weaponstatus[0]&FLARE_LOADED    ||
+		    self.weaponstatus[0]&FLARE_LOADEDSHELL  ||
+		    self.weaponstatus[0]&FLARE_LOADEDSLUG   ||
+		    self.weaponstatus[0]&FLARE_LOADEDSLUGEXP;
 	}
 	
 
 	override void loadoutconfigure(string input){
 
 		int shellround=getloadoutvar(input,"shell",1);
+		int sluground=getloadoutvar(input,"slug",1);
+		int exsluground=getloadoutvar(input,"markcollins",1);
+		
 		if(shellround==1)
 			weaponstatus[0]=FLARE_LOADEDSHELL;
-		else if(shellround==2)
-					weaponstatus[0]=FLARE_LOADEDSHELLEXP;// ;)
+		else if(sluground==1)
+			weaponstatus[0]=FLARE_LOADEDSLUG;
+		else if(exsluground==1)
+			weaponstatus[0]=FLARE_LOADEDSLUGEXP;// ;)
 		else
 			weaponstatus[0]=FLARE_LOADED;
 	}
@@ -227,8 +241,9 @@ action void A_CheckMetalFlareGunHand(bool filled)
 
 	fire:
 		#### A 0 A_JumpIf(invoker.weaponstatus[0]==FLARE_LOADEDSHELL,"reallyshootshell");
+		#### A 0 A_JumpIf(invoker.weaponstatus[0]==FLARE_LOADEDSLUG,"reallyshootslug");
 		#### A 0 A_JumpIf(invoker.weaponstatus[0]==FLARE_LOADED,"reallyshoot");
-		#### A 0 A_JumpIf(invoker.weaponstatus[0]==FLARE_LOADEDSHELLEXP,"reallyshoothell");
+		#### A 0 A_JumpIf(invoker.weaponstatus[0]==FLARE_LOADEDSLUGEXP,"reallyshoothell");
 		goto nope;
 
 	reallyshoothell:
@@ -253,6 +268,18 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		#### A 1;
 		#### A 0;
 		goto nope;
+		
+	reallyshootslug:
+		//shoot a slug
+		#### A 2 offset(0,37)
+		{
+			A_FireSlug();
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
+		}
+		#### A 1;
+		#### A 0;
+		goto nope;
+		
 
 	//i think it finally works!!!
 	reallyshoot:
@@ -266,13 +293,49 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		#### A 0;
 		goto nope;
 
+    loadslug:
+
+		#### A 0 A_JumpIf(
+		invoker.weaponstatus[0]&FLARE_LOADED         ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
+		invoker.weaponstatus[0]&FLARE_SPENTSHELL     ||
+		invoker.weaponstatus[0]&FLARE_SPENTSLUG     ||
+		invoker.weaponstatus[0]&FLARE_SPENTSLUGEXP  ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSLUG    ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSLUGEXP ||
+		!countinv("HDSlugAmmo"), "nope");
+		#### A 1 offset(2,36)A_StartSound("weapons/fgnrel1",8);
+		#### A 1 offset(4,42)A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
+		#### A 1 offset(10,50);
+		#### A 2 offset(12,60)A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
+		#### A 1 offset(13,72) A_StartSound("weapons/fgnrel2",8,CHANF_OVERLAP);
+		#### A 1 offset(14,74);
+		#### A 1 offset(11,76)A_StartSound("weapons/fgnrel3",9);
+		#### A 3 offset(10,72);
+		FML1 B 0
+		{
+			A_CheckMetalFlareGunHand(invoker.A_IsFilled());
+			if(health<40)A_SetTics(3);
+			else if(health<60)A_SetTics(2);
+		}
+		#### B 2 offset(12,74) A_StartSound("weapons/fgnrel1",8);
+		#### B 1 offset(10,72)
+		{
+			A_TakeInventory("HDSlugAmmo",1,TIF_NOTAKEINFINITE);
+			invoker.weaponstatus[0]|=FLARE_LOADEDSLUG;
+			A_SetTics(5);
+		}
+		goto reloadend;
 
 	mark:
 		#### A 0 A_JumpIf(
 		invoker.weaponstatus[0]&FLARE_LOADED         ||
 		invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
 		invoker.weaponstatus[0]&FLARE_SPENTSHELL     ||
-		invoker.weaponstatus[0]&FLARE_LOADEDSHELLEXP ||
+		invoker.weaponstatus[0]&FLARE_SPENTSLUG     ||
+		invoker.weaponstatus[0]&FLARE_SPENTSLUGEXP  ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSLUG    ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSLUGEXP ||
 		!countinv("HDExplosiveShellAmmo"), "nope");
 		#### A 1 offset(2,36)A_StartSound("weapons/fgnrel1",8);
 		#### A 1 offset(4,42)A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
@@ -292,7 +355,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		#### B 1 offset(10,72)
 		{
 			A_TakeInventory("HDExplosiveShellAmmo",1,TIF_NOTAKEINFINITE);
-			invoker.weaponstatus[0]|=FLARE_LOADEDSHELLEXP;
+			invoker.weaponstatus[0]|=FLARE_LOADEDSLUGEXP;
 			A_SetTics(5);
 		}
 		goto reloadend;
@@ -300,7 +363,8 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	firemode:
 	fmhold:
 	    ---- A 1;
-		---- A 1{if(PressingAltReload())setweaponstate("mark");
+		---- A 1{if(PressingReload())setweaponstate("loadslug");
+		        else if(PressingAltReload())setweaponstate("mark");
 		            else if(PressingFireMode())setweaponstate("fmhold");
 	}goto nope;
 
@@ -308,10 +372,13 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	altreload:
 		#### A 0;
 		#### A 0 A_JumpIf(
-		invoker.weaponstatus[0]&FLARE_LOADED         ||
-		invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
-		invoker.weaponstatus[0]&FLARE_SPENTSHELL     ||
-		invoker.weaponstatus[0]&FLARE_LOADEDSHELLEXP ||
+		invoker.weaponstatus[0]&FLARE_LOADED        ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSHELL   ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSLUG    ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSLUGEXP ||
+		invoker.weaponstatus[0]&FLARE_SPENTSHELL    ||
+		invoker.weaponstatus[0]&FLARE_SPENTSLUG     ||
+		invoker.weaponstatus[0]&FLARE_SPENTSLUGEXP  ||
 		!countinv("HDShellAmmo"), "nope");
 		#### A 0 offset(2,36)A_StartSound("weapons/fgnrel1",8);
 		#### A 1 offset(4,42)A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
@@ -346,8 +413,10 @@ action void A_CheckMetalFlareGunHand(bool filled)
 			(
 			invoker.weaponstatus[0]&FLARE_LOADED         ||
 			invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
-			invoker.weaponstatus[0]&FLARE_LOADEDSHELLEXP ||
-			invoker.weaponstatus[0]&FLARE_SPENTSHELLEXP  ||
+			invoker.weaponstatus[0]&FLARE_LOADEDSLUG ||
+			invoker.weaponstatus[0]&FLARE_LOADEDSLUGEXP ||
+			invoker.weaponstatus[0]&FLARE_SPENTSLUG  ||
+			invoker.weaponstatus[0]&FLARE_SPENTSLUGEXP  ||
 			invoker.weaponstatus[0]&FLARE_SPENTSHELL
 			)
 			{
@@ -382,23 +451,29 @@ action void A_CheckMetalFlareGunHand(bool filled)
 					
 				// Toss ammo if not pressing anything. 
 				if(
-					(!PressingUnload()&&!PressingReload())             ||
-					A_JumpIfInventory("HDFlareAmmo",0,"null")          ||
-					A_JumpIfInventory("HDShellAmmo",0,"null")          ||
-					A_JumpIfInventory("HDExplosiveShellAmmo",0,"null") ||
-					invoker.weaponstatus[0]==FLARE_SPENTSHELL          ||
-					invoker.weaponstatus[0]==FLARE_SPENTSHELLEXP
+					(!PressingUnload()&&!PressingReload())              ||
+					A_JumpIfInventory("HDFlareAmmo",0,"null")           ||
+					A_JumpIfInventory("HDShellAmmo",0,"null")           ||
+					A_JumpIfInventory("HDSlugAmmo",0,"null")            ||
+					A_JumpIfInventory("HDExplosiveShellAmmo",0,"null")  ||
+					invoker.weaponstatus[0]==FLARE_SPENTSHELL           ||
+					invoker.weaponstatus[0]==FLARE_SPENTSLUG            ||
+					invoker.weaponstatus[0]==FLARE_SPENTSLUGEXP     
 				)
 				{
-					if(invoker.weaponstatus[0]==FLARE_SPENTSHELLEXP)
+					if(invoker.weaponstatus[0]==FLARE_SPENTSLUGEXP)
 						A_SpawnItemEx("HDSpentExplosiveShell",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
 					else if(invoker.weaponstatus[0]==FLARE_SPENTSHELL)
 						A_SpawnItemEx("HDSpentShell",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
+					else if(invoker.weaponstatus[0]==FLARE_SPENTSLUG)
+						A_SpawnItemEx("HDSpentSlug",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
 					else if(invoker.weaponstatus[0]==FLARE_LOADED)
 						A_SpawnItemEx("HDFlareAmmo",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
 					else if(invoker.weaponstatus[0]==FLARE_LOADEDSHELL)
 						A_SpawnItemEx("HDShellAmmo",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
-					else if(invoker.weaponstatus[0]==FLARE_LOADEDSHELLEXP)
+                    else if(invoker.weaponstatus[0]==FLARE_LOADEDSLUG)
+						A_SpawnItemEx("HDSlugAmmo",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
+					else if(invoker.weaponstatus[0]==FLARE_LOADEDSLUGEXP)
 						A_SpawnItemEx("HDExplosiveShellAmmo",10,0,height-16,vel.x,vel.y,vel.z+2,0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION);
 				
 					
@@ -420,7 +495,13 @@ action void A_CheckMetalFlareGunHand(bool filled)
 						A_StartSound("weapons/pocket",9);
 						A_SetTics(4);
 					}
-					else if(!(invoker.weaponstatus[0]&~FLARE_LOADEDSHELLEXP))
+					else if(!(invoker.weaponstatus[0]&~FLARE_LOADEDSLUG))
+					{
+						A_GiveInventory("HDSlugAmmo",1);
+						A_StartSound("weapons/pocket",9);
+						A_SetTics(4);
+					}
+					else if(!(invoker.weaponstatus[0]&~FLARE_LOADEDSLUGEXP))
 					{
 						A_GiveInventory("HDExplosiveShellAmmo",1);
 						A_StartSound("weapons/pocket",9);
@@ -441,7 +522,7 @@ action void A_CheckMetalFlareGunHand(bool filled)
 		#### A 0 A_JumpIf(
 		invoker.weaponstatus[0]&FLARE_LOADED         ||
 		invoker.weaponstatus[0]&FLARE_LOADEDSHELL    ||
-		invoker.weaponstatus[0]&FLARE_LOADEDSHELLEXP ||
+		invoker.weaponstatus[0]&FLARE_LOADEDSLUGEXP ||
 		invoker.weaponstatus[0]&FLARE_SPENTSHELL     ||
 		!countinv("HDFlareAmmo"), "nope");
 		#### A 1 offset(2,36)A_StartSound("weapons/fgnrel1",8);

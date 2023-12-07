@@ -8,8 +8,10 @@ enum flaregunstatus
 	FLARE_STATUS=0,
 	FLARE_LOADEDSHELL=2,
 	FLARE_SPENTSHELL=4,
-	FLARE_LOADEDSHELLEXP=45,
-	FLARE_SPENTSHELLEXP=44,
+	FLARE_LOADEDSLUG=8,
+	FLARE_SPENTSLUG=16,
+	FLARE_LOADEDSLUGEXP=32,
+	FLARE_SPENTSLUGEXP=34,
 	FLARE_METAL=26,
 };
 
@@ -95,19 +97,19 @@ action void A_CheckFlareGunHand(bool filled)
 {
 		if(invoker.wronghand && filled)
 		{
-			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBR1A0");//just use the same sprites lol
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBR1A0");
 		}
 		else if(invoker.wronghand && !filled)
 		{
-			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBR2A0");//just use the same sprites lol
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBR2A0");
 		}
 		else if(!(invoker.wronghand) && filled)
 		{
-			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBL1A0");//just use the same sprites lol
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBL1A0");
 		}
 		else if(!(invoker.wronghand) && !filled)
 		{
-			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBL2A0");//just use the same sprites lol
+			player.getpsprite(PSP_WEAPON).sprite=getspriteindex("FBL2A0");
 		}
 }
 
@@ -127,18 +129,19 @@ action void A_CheckFlareGunHand(bool filled)
 		if(weaponstatus[0]&FLARE_LOADED)
 			result += 1;
 		else if(weaponstatus[0]&FLARE_LOADEDSHELL)
-			result += 1;
+			result += 2;
 		return result;
 	}
 
 	override double weaponbulk()
 	{
-		double result = 24;
-		if(weaponstatus[0]&FLARE_LOADED)
-			result += ENC_SHELL;
-		else if(weaponstatus[0]&FLARE_LOADEDSHELL)
+		double result = 24;//the flaregun itself
+		
+		if(weaponstatus[0]&FLARE_LOADED)//flare shell
 			result += ENC_SHELL/2;
-		else if(weaponstatus[0]&FLARE_SPENTSHELL)
+		else if(weaponstatus[0]&FLARE_LOADEDSHELL)//shotgun shell
+			result += ENC_SHELL;
+		else if(weaponstatus[0]&FLARE_SPENTSHELL)//spent shells
 			result += ENC_SHELL/3;
 		return result;
 	}
@@ -153,29 +156,18 @@ action void A_CheckFlareGunHand(bool filled)
 			index  = "A0";
 		return result..index,1.;
 	}
-
-		/*
-	override string,double getpickupsprite()
-	{
-		string result = "FLGN";
-		string index  = "B0";
-		if((weaponstatus[0]&FLARE_LOADED))
-			index  = "A0";
-		else if((weaponstatus[0]&FLARE_LOADEDSHELL))
-			index  = "A0";
-		return result..index,1.;
-	}
-	*/
 	
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl)
 	{
 		if(sb.hudlevel==1)
-		{
+		{//toggle alternate ammo counters for slugs
+		    
 			sb.drawimage("FLARA0",(-47,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(0.6,0.6));
 			sb.drawnum(hpl.countinv("HDFlareAmmo"),-40,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 				
 			sb.drawimage("SHL1A0",(-30,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.4,1.4));
 			sb.drawnum(hpl.countinv("HDShellAmmo"),-25,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+		    
 		}
 		if(hdw.weaponstatus[0]&FLARE_LOADED)
 		{
@@ -190,10 +182,8 @@ action void A_CheckFlareGunHand(bool filled)
 		{
 			sb.drawrect(-18,-13,2,3);
 		}
-		//sb.drawwepnum(hpl.countinv("HDFlareAmmo"),(HDCONST_MAXPOCKETSPACE/ENC_ROCKET));
 	}
 	
-	// No sight picture. 
 	override void DrawSightPicture(
 		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
 		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
@@ -210,8 +200,10 @@ action void A_CheckFlareGunHand(bool filled)
 		return
 		WEPHELP_FIRESHOOT
 		..WEPHELP_ALTFIRE..", "..WEPHELP_FIREMODE.."  Quick-Swap (if available)\n"
-		..WEPHELP_RELOADRELOAD
-		..WEPHELP_ALTRELOAD.."  Load a shotgun shell\n"
+		..WEPHELP_RELOAD.."  Load flares\n"
+		..WEPHELP_ALTRELOAD.."  Load shells\n"
+		..WEPHELP_FIREMODE.."+"..WEPHELP_RELOAD.."  Load slugs\n"
+		..WEPHELP_FIREMODE.."+"..WEPHELP_ALTRELOAD.."  Load explosive slugs\n"
 		..WEPHELP_UNLOADUNLOAD
 		;
 	}
@@ -219,8 +211,10 @@ action void A_CheckFlareGunHand(bool filled)
 	
 	bool A_IsFilled()
 	{
-		return self.weaponstatus[0]==FLARE_LOADED || 
-		self.weaponstatus[0]==FLARE_LOADEDSHELL || self.weaponstatus[0]==FLARE_LOADEDSHELLEXP;
+		return self.weaponstatus[0]==FLARE_LOADED   ||
+		self.weaponstatus[0]==FLARE_LOADEDSHELL     ||
+		self.weaponstatus[0]==FLARE_LOADEDSLUG      ||
+		self.weaponstatus[0]==FLARE_LOADEDSLUGEXP;
 	}
 	
 	
@@ -240,10 +234,39 @@ action void A_CheckFlareGunHand(bool filled)
 			A_AlertMonsters();
 	}
 	
-	
-	action void A_FireHell()
+	action void A_FireShell()
 	{
-			invoker.weaponstatus[0]=FLARE_SPENTSHELLEXP;
+			invoker.weaponstatus[0]&=~FLARE_LOADEDSHELL;
+			HDBulletActor.FireBullet(self,"HDB_wad");
+			let sss=HDBulletActor.FireBullet(self,"HDB_00",
+			spread:35,speedfactor:1,amount:10
+			);
+			distantnoise.make(sss,"weapons/flaregun_shellfar");
+			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
+			invoker.weaponstatus[0]=FLARE_SPENTSHELL;
+			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
+			A_AlertMonsters();
+	}
+	
+	action void A_FireSlug()
+	{
+			invoker.weaponstatus[0]&=~FLARE_LOADEDSLUG;
+			
+			HDBulletActor.FireBullet(self,"HDB_wad");
+			let sss=HDBulletActor.FireBullet(self,"HDB_Slug",
+			spread:3,speedfactor:1,amount:1
+			);
+			distantnoise.make(sss,"weapons/flaregun_shellfar");
+			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
+			invoker.weaponstatus[0]=FLARE_SPENTSLUG;
+			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
+			A_AlertMonsters();
+	}
+	
+    action void A_FireHell()
+	{
+			invoker.weaponstatus[0]|=FLARE_SPENTSLUGEXP;
+			
 			HDBulletActor.FireBullet(self,"HDB_wad");
 			let sss=HDBulletActor.FireBullet(self,"HDB_12GuageSlugMissile",
 			spread:3,speedfactor:1,amount:1
@@ -262,41 +285,25 @@ action void A_CheckFlareGunHand(bool filled)
 						damagemobj(invoker,self,5,"bashing");
 						IsMoving.Give(self,3);
 					}
-
 			
 			distantnoise.make(sss,"weapons/flaregun_shellfar");
 			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
 			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
 			A_AlertMonsters();
 	}
-	
-	
-	action void A_FireShell()
-	{
-			invoker.weaponstatus[0]&=~FLARE_LOADEDSHELL;
-			HDBulletActor.FireBullet(self,"HDB_wad");
-			let sss=HDBulletActor.FireBullet(self,"HDB_00",
-			spread:35,speedfactor:1,amount:10
-			);
-			distantnoise.make(sss,"weapons/flaregun_shellfar");
-			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
-			invoker.weaponstatus[0]=FLARE_SPENTSHELL;
-			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
-			A_AlertMonsters();
-	}
+
 
 //the damn thing explodes when you do this,
 //of course the damage output is going to suffer
 action void A_FireShellPlastic()
 	{
-			invoker.weaponstatus[0]&=~FLARE_LOADEDSHELL;
+	   		invoker.weaponstatus[0]=FLARE_SPENTSHELL; 
+	   		
 			HDBulletActor.FireBullet(self,"HDB_wad");
 			let sss=HDBulletActor.FireBullet(self,"HDB_00",
-			spread:35,speedfactor:0.5,amount:10
-			);
+			spread:35,speedfactor:frandom(0.5,0.6),amount:10);
 			distantnoise.make(sss,"weapons/flaregun_shellfar");
 			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
-			invoker.weaponstatus[0]=FLARE_SPENTSHELL;
 			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
 	}
 
