@@ -511,7 +511,7 @@ class HDColtMag7:HDMagAmmo{
 		hdmagammo.roundbulk HD45ACPAmmo.EncRoundLoaded;
 		hdmagammo.magbulk enc_1911MAG_EMPTY;
 		tag "$TAG_CM7";
-		inventory.pickupmessage "Picked up a Colt 1911 magazine.";
+		inventory.pickupmessage "$PICKUP_CM7";
 		hdpickup.refid "CM7";
    scale 0.45;
 	}

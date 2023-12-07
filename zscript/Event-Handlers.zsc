@@ -6,73 +6,72 @@
 
 
 
-// Struct for itemspawn information. 
-class RTSpawnItem play
-{
-	// ID by string for spawner
-	string spawnName;
-	
-	// ID by string for spawnees
-	Array<RTSpawnItemEntry> spawnReplaces;
-	
-	// Whether or not to persistently spawn.
-	bool isPersistent;
+// Struct for itemspawn information.
+class RTSpawnItem play {
 
-	// Whether or not to replace the original item.
-	bool replaceItem;
+    // ID by string for spawner
+    string spawnName;
 
-	string toString() {
+    // ID by string for spawnees
+    Array<RTSpawnItemEntry> spawnReplaces;
 
-		let replacements = "[";
+    // Whether or not to persistently spawn.
+    bool isPersistent;
 
-		foreach (spawnReplace : spawnReplaces) replacements = replacements..", "..spawnReplace.toString();
+    // Whether or not to replace the original item.
+    bool replaceItem;
 
-		replacements = replacements.."]";
+    string toString() {
 
-		return String.format("{ spawnName=%s, spawnReplaces=%s, isPersistent=%b, replaceItem=%b }", spawnName, replacements, isPersistent, replaceItem);
-	}
+        let replacements = "[";
+
+        foreach (spawnReplace : spawnReplaces) replacements = replacements..", "..spawnReplace.toString();
+
+        replacements = replacements.."]";
+
+        return String.format("{ spawnName=%s, spawnReplaces=%s, isPersistent=%b, replaceItem=%b }", spawnName, replacements, isPersistent, replaceItem);
+    }
 }
 
-class RTSpawnItemEntry play
-{
-	string name;
-	int    chance;
+class RTSpawnItemEntry play {
 
-	string toString() {
-		return String.format("{ name=%s, chance=%s }", name, chance >= 0 ? "1/"..(chance + 1) : "never");
-	}
+    string name;
+    int    chance;
+
+    string toString() {
+        return String.format("{ name=%s, chance=%s }", name, chance >= 0 ? "1/"..(chance + 1) : "never");
+    }
 }
 
-// Struct for passing useinformation to ammunition. 
-class RTSpawnAmmo play
-{
-	// ID by string for the header ammo.
-	string ammoName;
-	
-	// ID by string for weapons using that ammo.
-	Array<string> weaponNames;
-	
-	string toString() {
+// Struct for passing useinformation to ammunition.
+class RTSpawnAmmo play {
 
-		let weapons = "[";
+    // ID by string for the header ammo.
+    string ammoName;
 
-		foreach (weaponName : weaponNames) weapons = weapons..", "..weaponName;
+    // ID by string for weapons using that ammo.
+    Array<string> weaponNames;
 
-		weapons = weapons.."]";
+    string toString() {
 
-		return String.format("{ ammoName=%s, weaponNames=%s }", ammoName, weapons);
-	}
+        let weapons = "[";
+
+        foreach (weaponName : weaponNames) weapons = weapons..", "..weaponName;
+
+        weapons = weapons.."]";
+
+        return String.format("{ ammoName=%s, weaponNames=%s }", ammoName, weapons);
+    }
 }
 
 
 
-// One handler to rule them all. 
-class RadTechHandler : EventHandler
-{
-	// List of persistent classes to completely ignore. 
-	// This -should- mean this mod has no performance impact. 
-	static const string blacklist[] =
-	{
+// One handler to rule them all.
+class RadTechHandler : EventHandler {
+
+    // List of persistent classes to completely ignore.
+    // This -should- mean this mod has no performance impact.
+    static const string blacklist[] = {
         'HDSmoke',
         'BloodTrail',
         'CheckPuff',
@@ -87,63 +86,62 @@ class RadTechHandler : EventHandler
         'PlantBit',
         'HDBulletActor',
         'HDLadderSection'
-	};
+    };
 
-	// List of CVARs for Backpack Spawns
-	array<Class <Inventory> > backpackBlacklist;
+    // List of CVARs for Backpack Spawns
+    array<Class <Inventory> > backpackBlacklist;
 
     // Cache of Ammo Box Loot Table
     private HDAmBoxList ammoBoxList;
 
-	// List of weapon-ammo associations.
-	// Used for ammo-use association on ammo spawn (happens very often). 
-	array<RTSpawnAmmo> ammoSpawnList;
-	
-	// List of item-spawn associations.
-	// used for item-replacement on mapload. 
-	array<RTSpawnItem> itemSpawnList;
+    // List of weapon-ammo associations.
+    // Used for ammo-use association on ammo spawn (happens very often).
+    array<RTSpawnAmmo> ammoSpawnList;
 
-	bool cvarsAvailable;
-	
-	// appends an entry to itemSpawnList;
-	void addItem(string name, Array<RTSpawnItemEntry> replacees, bool persists, bool rep=true)
-	{
-		if (hd_debug)
-		{
+    // List of item-spawn associations.
+    // used for item-replacement on mapload.
+    array<RTSpawnItem> itemSpawnList;
+
+    bool cvarsAvailable;
+
+    // appends an entry to itemSpawnList;
+    void addItem(string name, Array<RTSpawnItemEntry> replacees, bool persists, bool rep=true) {
+
+        if (hd_debug) {
+
             let msg = "Adding "..(persists ? "Persistent" : "Non-Persistent").." Replacement Entry for "..name..": [";
 
             foreach (replacee : replacees) msg = msg..", "..replacee.toString();
 
-			console.printf(msg.."]");
-		}
+            console.printf(msg.."]");
+        }
 
-		// Creates a new struct;
-		RTSpawnItem spawnee = RTSpawnItem(new('RTSpawnItem'));
-		
-		// Populates the struct with relevant information,
-		spawnee.spawnName = name;
-		spawnee.isPersistent = persists;
-		spawnee.replaceItem = rep;
+        // Creates a new struct;
+        RTSpawnItem spawnee = RTSpawnItem(new('RTSpawnItem'));
+
+        // Populates the struct with relevant information,
+        spawnee.spawnName = name;
+        spawnee.isPersistent = persists;
+        spawnee.replaceItem = rep;
         spawnee.spawnReplaces.copy(replacees);
-		
-		// Pushes the finished struct to the array. 
-		itemSpawnList.push(spawnee);
-	}
 
-	RTSpawnItemEntry addItemEntry(string name, int chance)
-	{
-		// Creates a new struct;
-		RTSpawnItemEntry spawnee = RTSpawnItemEntry(new('RTSpawnItemEntry'));
-		spawnee.name = name;
-		spawnee.chance = chance;
-		return spawnee;
-	}
+        // Pushes the finished struct to the array.
+        itemSpawnList.push(spawnee);
+    }
 
-	// appends an entry to ammoSpawnList;
-	void addAmmo(string name, Array<string> weapons)
-	{
-        if (hd_debug)
-		{
+    RTSpawnItemEntry addItemEntry(string name, int chance) {
+
+        // Creates a new struct;
+        RTSpawnItemEntry spawnee = RTSpawnItemEntry(new('RTSpawnItemEntry'));
+        spawnee.name = name;
+        spawnee.chance = chance;
+        return spawnee;
+    }
+
+    // appends an entry to ammoSpawnList;
+    void addAmmo(string name, Array<string> weapons) {
+
+        if (hd_debug) {
             let msg = "Adding Ammo Association Entry for "..name..": [";
 
             foreach (weapon : weapons) msg = msg..", "..weapon;
@@ -151,223 +149,223 @@ class RadTechHandler : EventHandler
             console.printf(msg.."]");
         }
 
-		// Creates a new struct;
-		RTSpawnAmmo spawnee = RTSpawnAmmo(new('RTSpawnAmmo'));
-		spawnee.ammoName = name;
+        // Creates a new struct;
+        RTSpawnAmmo spawnee = RTSpawnAmmo(new('RTSpawnAmmo'));
+        spawnee.ammoName = name;
         spawnee.weaponNames.copy(weapons);
-		
-		// Pushes the finished struct to the array. 
-		ammoSpawnList.push(spawnee);
-	}
-	
 
-	// Populates the replacement and association arrays. 
-	void init()
-	{
-		cvarsAvailable = true;
-		
-		//-----------------
-		// Backpack Spawns
-		//-----------------
-
-		if (!fl_weapon_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('FireBlooper'));
-		if (!fl_metal_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('MetalFireBlooper'));
-		if (!hushpuppy_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HushPuppyPistol'));
-		if (!fragcannon_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('FragCannon'));
-		if (!stungun_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)('HDStunGun'));
-		if (!phazer_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('PhazerPistol'));
-		if (!colt1911_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDColt1911'));
-		if (!ppsh41_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HDPPSh41'));
-		if (!sten_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)('HDStenMk2'));
-		if (!ja_weapon_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDHorseshoePistol'));
-		if (!dHunt_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)('DoomHunter'));
-		if (!pbuster_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)('PlasmaBuster'));
-		if (!cshotgun_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDCombatShotgun'));
-		if (!savage99_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('Savage99SniperRifle'));
-		if (!sigcow_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HDSigcow'));
-		if (!tenpis_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HD10mmPistol'));
-		if (!snose_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)('HDSnubNoseRevolver'));
-		if (!minerva_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)('MinervaChaingun'));
-		if (!llh_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)('LLHunter'));
-		if (!hacked_zm66_allowBackpacks)   backpackBlacklist.push((Class<Inventory>)('HackedZM66AssaultRifle'));
-		if (!obrozz_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('ObrozzPistol'));
-		if (!esg_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)('ExplosiveHunter'));
-		if (!duckhunt_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('DuckHunter'));
-		if (!sa_allowBackpacks)            backpackBlacklist.push((Class<Inventory>)('HDSingleActionRevolver'));
-		if (!tt33_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)('HDTT33Pistol'));
-		if (!gsa_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)('HDGoldSingleActionRevolver'));
-		// if (!fp45_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)('HDFP45'));
-		
-		if (!microcell_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDMicroCell'));
-		if (!dynamite_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDDynamiteAmmo'));
-		if (!colt1911_mags_allowBackpacks) backpackBlacklist.push((Class<Inventory>)('HDColtMag7'));
-		if (!tt33_mag_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDTokarevMag8'));
-		if (!ppsh41_mag_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('HDTokarevMag35'));
-		if (!ppsh41_mag_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('HDTokarevMag71'));
-		if (!ja_mag_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HDHorseshoe9m'));
-		if (!tenpismag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HD10mMag8'));
-		if (!sigcowmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HD10mMag25'));
-
-		if (!reloader10mm_allowBackpacks)  backpackBlacklist.push((Class<Inventory>)('TenMilAutoReloader'));
-		if (!reloader300S_allowBackpacks)  backpackBlacklist.push((Class<Inventory>)('SavageAutoReloader'));
-		if (!reloader762_allowBackpacks)   backpackBlacklist.push((Class<Inventory>)('TokarevAutoReloader'));
+        // Pushes the finished struct to the array.
+        ammoSpawnList.push(spawnee);
+    }
 
 
-		// --------------------
-		// Ammo and Magazine Association
-		// --------------------
-	
-		// HDBattery. 
-		Array<string> wep_battery;  
-		wep_battery.push('PlasmaBuster');
-		wep_battery.push('MinervaChaingun');
-		addammo('HDBattery', wep_battery);
-		
-		// 12ga Flare Ammo. 
-		Array<string> wep_flare;  
-		wep_flare.push('FireBlooper'); 
-		wep_flare.push('MetalFireBlooper'); 
-		addammo('HDFlareAmmo', wep_flare);	
+    // Populates the replacement and association arrays.
+    void init() {
 
-		// 12 gauge (normal) Ammo. 
-		Array<string> wep_12ga;  
-		wep_12ga.push('FireBlooper'); 
-		wep_12ga.push('MetalFireBlooper');
-		wep_12ga.push('HDCombatShotgun');
-		wep_12ga.push('DoomHunter');
-		addammo('HDShellAmmo', wep_12ga);	
-		
-		// 12 gauge (birdshot) ammo.
-		Array<string> wep_12gaberd;
-		wep_12gaberd.push('DuckHunter');
-		addammo('HDBirdshotShellAmmo', wep_12gaberd);
-		
-		// 12 gauge (less lethal) ammo.
-		Array<string> wep_12gall;
-		wep_12gall.push('LLHunter');
-		addammo('HDLLShellAmmo', wep_12gall);
+        cvarsAvailable = true;
 
-		// 12 gauge (explosive) ammo.
-		Array<string> wep_12gaex;
-		wep_12gaex.push('ExplosiveHunter');
-		wep_12gaex.push('MetalFireBlooper');
-		addammo('HDExplosiveShellAmmo', wep_12gaex);
-				
-		// 10mm ammo
-		Array<string> wep_10mm;  
-		wep_10mm.push('HD10mmPistol'); 
-		wep_10mm.push('HDSigcow');
-		wep_10mm.push('TenMilAutoReloadingThingy');
-		addammo ('HD10mAmmo', wep_10mm);
+        //-----------------
+        // Backpack Spawns
+        //-----------------
 
-		// 10mm ammo (brass)
-		Array<string> wep_10mmbrass;  
-		wep_10mmbrass.push('TenMilAutoReloadingThingy');
-		addammo ('TenMilBrass', wep_10mmbrass);
+        if (!fl_weapon_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('FireBlooper'));
+        if (!fl_metal_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('MetalFireBlooper'));
+        if (!hushpuppy_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HushPuppyPistol'));
+        if (!fragcannon_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('FragCannon'));
+        if (!stungun_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)('HDStunGun'));
+        if (!phazer_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('PhazerPistol'));
+        if (!colt1911_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDColt1911'));
+        if (!ppsh41_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HDPPSh41'));
+        if (!sten_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)('HDStenMk2'));
+        if (!ja_weapon_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDHorseshoePistol'));
+        if (!dHunt_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)('DoomHunter'));
+        if (!pbuster_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)('PlasmaBuster'));
+        if (!cshotgun_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDCombatShotgun'));
+        if (!savage99_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('Savage99SniperRifle'));
+        if (!sigcow_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HDSigcow'));
+        if (!tenpis_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HD10mmPistol'));
+        if (!snose_allowBackpacks)         backpackBlacklist.push((Class<Inventory>)('HDSnubNoseRevolver'));
+        if (!minerva_allowBackpacks)       backpackBlacklist.push((Class<Inventory>)('MinervaChaingun'));
+        if (!llh_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)('LLHunter'));
+        if (!hacked_zm66_allowBackpacks)   backpackBlacklist.push((Class<Inventory>)('HackedZM66AssaultRifle'));
+        if (!obrozz_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('ObrozzPistol'));
+        if (!esg_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)('ExplosiveHunter'));
+        if (!duckhunt_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('DuckHunter'));
+        if (!sa_allowBackpacks)            backpackBlacklist.push((Class<Inventory>)('HDSingleActionRevolver'));
+        if (!tt33_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)('HDTT33Pistol'));
+        if (!gsa_allowBackpacks)           backpackBlacklist.push((Class<Inventory>)('HDGoldSingleActionRevolver'));
+        if (!fp45_allowBackpacks)          backpackBlacklist.push((Class<Inventory>)('HDFP45'));
 
-		// 4mm 'volt caseless'
-		Array<string> wep_4mmvolt;
-		wep_4mmvolt.push('HackedZM66AssaultRifle');
-		wep_4mmvolt.push('SavageAutoReloader');
-		addammo('FourMilAmmo', wep_4mmvolt);	
-		
-		// Volt 4mm Magazines
-		Array<string> wep_4mmvolt50;
-		wep_4mmvolt50.push('HackedZM66AssaultRifle');
-		addammo('HD4mMag', wep_4mmvolt50);
-			
-		// Rocket (Gyro) Grenades.
-		Array<string> wep_rocket;
-		wep_rocket.push('HackedZM66AssaultRifle');
-		addammo('HDRocketAmmo', wep_rocket);
+        if (!microcell_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HDMicroCell'));
+        if (!dynamite_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDDynamiteAmmo'));
+        if (!colt1911mag_allowBackpacks) backpackBlacklist.push((Class<Inventory>)('HDColtMag7'));
+        if (!tt33mag_allowBackpacks)      backpackBlacklist.push((Class<Inventory>)('HDTokarevMag8'));
+        if (!ppsh41mag_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('HDTokarevMag35'));
+        if (!ppsh41mag_allowBackpacks)    backpackBlacklist.push((Class<Inventory>)('HDTokarevMag71'));
+        if (!jamag_allowBackpacks)        backpackBlacklist.push((Class<Inventory>)('HDHorseshoe9m'));
+        if (!tenpismag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HD10mMag8'));
+        if (!sigcowmag_allowBackpacks)     backpackBlacklist.push((Class<Inventory>)('HD10mMag25'));
 
-		// 9mm
-		Array<string> wep_9mm;
-		wep_9mm.push('MinervaChaingun');
-		wep_9mm.push('HDSnubNoseRevolver');
-		wep_9mm.push('TenMilAutoReloadingThingy');
-		wep_9mm.push('HDStenMk2');
-		wep_9mm.push('HushPuppyPistol');
-		wep_9mm.push('HDHorseshoePistol');
-		addammo('HDPistolAmmo', wep_9mm);
-		
-		// 9mm pistol magazines
-		Array<string> wep_9mm15;
-		wep_9mm15.push('HushPuppyPistol');
-		wep_9mm15.push('HDHorseshoePistol');
-		addammo('HD9mMag15', wep_9mm15);
-		
-		// 9mm smg magazines
-		Array<string> wep_9mm30;
-		wep_9mm30.push('MinervaChaingun');
-		wep_9mm30.push('HDStenMk2');
-		addammo('HD9mMag30', wep_9mm30);
+        if (!reloader10mm_allowBackpacks)  backpackBlacklist.push((Class<Inventory>)('TenMilAutoReloader'));
+        if (!reloader300S_allowBackpacks)  backpackBlacklist.push((Class<Inventory>)('SavageAutoReloader'));
+        if (!reloader762_allowBackpacks)   backpackBlacklist.push((Class<Inventory>)('TokarevAutoReloader'));
 
-		// 355
-		Array<string> wep_355;
-		wep_355.push('HDSnubNoseRevolver');
-		addammo('HDRevolverAmmo', wep_355);
 
-		// 45 ACP
-		Array<string> wep_45acp;
-		wep_45acp.push('HDColt1911');
-		addammo('HD45ACPAmmo', wep_45acp);
+        // --------------------
+        // Ammo and Magazine Association
+        // --------------------
 
-		// 45 Long Colt
-		Array<string> wep_45lc;
-		wep_45lc.push('HDSingleActionRevolver');
-		addammo('HD45LCAmmo', wep_45lc);
+        // HDBattery.
+        Array<string> wep_battery;
+        wep_battery.push('PlasmaBuster');
+        wep_battery.push('MinervaChaingun');
+        addammo('HDBattery', wep_battery);
 
-		// 45 Long Colt (gold)
-		Array<string> wep_45lcgold;
-		wep_45lcgold.push('HDGoldenSingleActionRevolver');
-		addammo('HDGold45LCAmmo', wep_45lcgold);
+        // 12ga Flare Ammo.
+        Array<string> wep_flare;
+        wep_flare.push('FireBlooper');
+        wep_flare.push('MetalFireBlooper');
+        addammo('HDFlareAmmo', wep_flare);
 
-		// 7mm Clips
-		Array<string> wep_7mmClip;
-		wep_7mmClip.push('ObrozzPistol');
-		addammo('HD7mClip', wep_7mmClip);
+        // 12 gauge (normal) Ammo.
+        Array<string> wep_12ga;
+        wep_12ga.push('FireBlooper');
+        wep_12ga.push('MetalFireBlooper');
+        wep_12ga.push('HDCombatShotgun');
+        wep_12ga.push('DoomHunter');
+        addammo('HDShellAmmo', wep_12ga);
 
-		// 7mm
-		Array<string> wep_7mm;
-		wep_7mm.push('ObrozzPistol');
-		addammo('SevenMilAmmo', wep_7mm);
+        // 12 gauge (birdshot) ammo.
+        Array<string> wep_12gaberd;
+        wep_12gaberd.push('DuckHunter');
+        addammo('HDBirdshotShellAmmo', wep_12gaberd);
 
-		// 7mm Recast
-		Array<string> wep_7mmR;
-		wep_7mmR.push('ObrozzPistol');
-		addammo('SevenMilAmmoRecast', wep_7mmR);
-		
-		// Savage .300
-		Array<string> wep_S300;
-		wep_S300.push('Savage99SniperRifle');
-		addammo('Savage300Ammo', wep_S300);
-		
-		// Savage .300 (brass)
-		Array<string> wep_S300B;
-		wep_S300B.push('SavageAutoReloader');
-		addammo('Savage300Brass', wep_S300B);
+        // 12 gauge (less lethal) ammo.
+        Array<string> wep_12gall;
+        wep_12gall.push('LLHunter');
+        addammo('HDLLShellAmmo', wep_12gall);
+
+        // 12 gauge (explosive) ammo.
+        Array<string> wep_12gaex;
+        wep_12gaex.push('ExplosiveHunter');
+        wep_12gaex.push('MetalFireBlooper');
+        addammo('HDExplosiveShellAmmo', wep_12gaex);
+
+        // 10mm ammo
+        Array<string> wep_10mm;
+        wep_10mm.push('HD10mmPistol');
+        wep_10mm.push('HDSigcow');
+        wep_10mm.push('TenMilAutoReloadingThingy');
+        addammo ('HD10mAmmo', wep_10mm);
+
+        // 10mm ammo (brass)
+        Array<string> wep_10mmbrass;
+        wep_10mmbrass.push('TenMilAutoReloadingThingy');
+        addammo ('TenMilBrass', wep_10mmbrass);
+
+        // 4mm 'volt caseless'
+        Array<string> wep_4mmvolt;
+        wep_4mmvolt.push('HackedZM66AssaultRifle');
+        wep_4mmvolt.push('SavageAutoReloader');
+        addammo('FourMilAmmo', wep_4mmvolt);
+
+        // Volt 4mm Magazines
+        Array<string> wep_4mmvolt50;
+        wep_4mmvolt50.push('HackedZM66AssaultRifle');
+        addammo('HD4mMag', wep_4mmvolt50);
+
+        // Rocket (Gyro) Grenades.
+        Array<string> wep_rocket;
+        wep_rocket.push('HackedZM66AssaultRifle');
+        addammo('HDRocketAmmo', wep_rocket);
+
+        // 9mm
+        Array<string> wep_9mm;
+        wep_9mm.push('MinervaChaingun');
+        wep_9mm.push('HDSnubNoseRevolver');
+        wep_9mm.push('TenMilAutoReloadingThingy');
+        wep_9mm.push('HDStenMk2');
+        wep_9mm.push('HushPuppyPistol');
+        wep_9mm.push('HDHorseshoePistol');
+        addammo('HDPistolAmmo', wep_9mm);
+
+        // 9mm pistol magazines
+        Array<string> wep_9mm15;
+        wep_9mm15.push('HushPuppyPistol');
+        wep_9mm15.push('HDHorseshoePistol');
+        addammo('HD9mMag15', wep_9mm15);
+
+        // 9mm smg magazines
+        Array<string> wep_9mm30;
+        wep_9mm30.push('MinervaChaingun');
+        wep_9mm30.push('HDStenMk2');
+        addammo('HD9mMag30', wep_9mm30);
+
+        // .355
+        Array<string> wep_355;
+        wep_355.push('HDSnubNoseRevolver');
+        addammo('HDRevolverAmmo', wep_355);
+
+        // .45 ACP
+        Array<string> wep_45acp;
+        wep_45acp.push('HDColt1911');
+        addammo('HD45ACPAmmo', wep_45acp);
+
+        // .45 Long Colt
+        Array<string> wep_45lc;
+        wep_45lc.push('HDSingleActionRevolver');
+        addammo('HD45LCAmmo', wep_45lc);
+
+        // .45 Long Colt (gold)
+        Array<string> wep_45lcgold;
+        wep_45lcgold.push('HDGoldenSingleActionRevolver');
+        addammo('HDGold45LCAmmo', wep_45lcgold);
+
+        // 7mm Clips
+        Array<string> wep_7mmClip;
+        wep_7mmClip.push('ObrozzPistol');
+        addammo('HD7mClip', wep_7mmClip);
+
+        // 7mm
+        Array<string> wep_7mm;
+        wep_7mm.push('ObrozzPistol');
+        addammo('SevenMilAmmo', wep_7mm);
+
+        // 7mm Recast
+        Array<string> wep_7mmR;
+        wep_7mmR.push('ObrozzPistol');
+        addammo('SevenMilAmmoRecast', wep_7mmR);
+
+        // Savage .300
+        Array<string> wep_S300;
+        wep_S300.push('Savage99SniperRifle');
+        addammo('Savage300Ammo', wep_S300);
+
+        // Savage .300 (brass)
+        Array<string> wep_S300B;
+        wep_S300B.push('SavageAutoReloader');
+        addammo('Savage300Brass', wep_S300B);
 
         // 7mm Tokarev
-		Array<string> wep_7mmTokarev;
-		wep_7mmTokarev.push('TT33Pistol');
-		wep_7mmTokarev.push('HDPPSh41');
-		addammo('HD762TokarevAmmo', wep_7mmTokarev);
-		
-		// 7mm Tokarev (brass)
-		Array<string> wep_7mmTokarevB;
-		wep_7mmTokarevB.push('TokarevAutoReloader');
-		addammo('HDSpent762Tokarev', wep_7mmTokarevB);
+        Array<string> wep_7mmTokarev;
+        wep_7mmTokarev.push('TT33Pistol');
+        wep_7mmTokarev.push('HDPPSh41');
+        addammo('HD762TokarevAmmo', wep_7mmTokarev);
+
+        // 7mm Tokarev (brass)
+        Array<string> wep_7mmTokarevB;
+        wep_7mmTokarevB.push('TokarevAutoReloader');
+        addammo('HDSpent762Tokarev', wep_7mmTokarevB);
 
 
-		// --------------------
-		// Weapon/Item Spawns
-		// --------------------
+        // --------------------
+        // Weapon/Item Spawns
+        // --------------------
 
         // Note:
-        // Anything that replaces items directly must have persistent 
-        // spawns disabled to avoid them getting "transmogrified" in 
-        // weird ways, like mags ejected when firing/reloading, or 
+        // Anything that replaces items directly must have persistent
+        // spawns disabled to avoid them getting "transmogrified" in
+        // weird ways, like mags ejected when firing/reloading, or
         // dumping the contents of a backpack.
         //
         // I changed most of the weapon spawners to replace ammoboxes and
@@ -376,542 +374,564 @@ class RadTechHandler : EventHandler
         //
         //
         // -- Swampie
-        
-    // ----- Energy Weapons -----
-        
-		// Stun Gun
-		Array<RTSpawnItemEntry> spawns_stungun;
-		spawns_stungun.push(additementry('Lumberjack', stungun_spawn_bias));
-		additem('HDStunGun', spawns_stungun, false);
 
-		// Phazer Plasma Pistol
-		Array<RTSpawnItemEntry> spawns_phazer;  
-		spawns_phazer.push(additementry('HDAmBox', phazer_spawn_bias));
-		spawns_phazer.push(additementry('HDAmBoxUnarmed', phazer_spawn_bias));
-		additem('PhazerPistol', spawns_phazer, phazer_persistent_spawning);
+        // ----- Energy Weapons -----
 
-		// Micro-Cells
-		Array<RTSpawnItemEntry> spawns_microcell;
-		spawns_microcell.push(additementry('ShellPickup', microcell_spawn_bias));
-	    spawns_microcell.push(additementry('HDIEDPack', microcell_spawn_bias));
-        spawns_microcell.push(additementry('HDIEDKits', microcell_spawn_bias));
-		additem('HDMicroCell', spawns_microcell, microcell_persistent_spawning);
+        // Stun Gun
+        Array<RTSpawnItemEntry> spawns_stungun;
+        spawns_stungun.push(additementry('ChainsawReplaces', stungun_spawn_bias));
+        additem('HDStunGun', spawns_stungun, false);
 
-		// DM-93 Plasma Rifle
-		Array<RTSpawnItemEntry> spawns_plasmabuster;  
-		spawns_plasmabuster.push(additementry('Thunderbuster', pbuster_cpack_spawn_bias)); 
-		additem('PlasmaBuster', spawns_plasmabuster, false);
+        // Phazer Plasma Pistol
+        Array<RTSpawnItemEntry> spawns_phazer;
+        spawns_phazer.push(additementry('PistolReplaces', phazer_pistol_spawn_bias));
+        spawns_phazer.push(additementry('ClipBoxPickup2', phazer_clipbox_spawn_bias));
+        additem('PhazerPistol', spawns_phazer, phazer_persistent_spawning);
 
-    // ----- Pistols -----
-    // (pistols spawn on ammoboxes)
-        
-		// Hush Puppy Silenced Pistol
-		Array<RTSpawnItemEntry> spawns_hushpuppy;  
-		spawns_HushPuppy.push(additementry('HDAmBoxUnarmed', hushpuppy_spawn_bias)); 
-	    spawns_HushPuppy.push(additementry('HDAmBox', hushpuppy_spawn_bias)); 
-		additem('HushPuppyPistol', spawns_hushpuppy,  hushpuppy_persistent_spawning);
+        // Micro-Cells
+        Array<RTSpawnItemEntry> spawns_microcell;
+        spawns_microcell.push(additementry('ShellRandom', microcell_shell_spawn_bias));
+        spawns_microcell.push(additementry('CellRandom', microcell_battery_spawn_bias));
+        additem('HDMicroCell', spawns_microcell, microcell_persistent_spawning);
 
-		// Colt 1911 .45 Pistol
-		
-		// Colt 1911 Mags
-		Array<RTSpawnItemEntry> spawns_colt1911_mags;
-		spawns_colt1911_mags.push(additementry('ShellPickup', colt1911_mags_spawn_bias));
-        spawns_colt1911_mags.push(additementry('HDIEDPack', colt1911_mags_spawn_bias));
-        spawns_colt1911_mags.push(additementry('HDIEDKits', colt1911_mags_spawn_bias));
-		additem('HDColtMag7', spawns_colt1911_mags, colt1911_persistent_spawning);
-			    
-		//Random ammobox spawns
-		Array<RTSpawnItemEntry> spawns_colt1911_ammobox;
-		spawns_colt1911_ammobox.push(additementry('HDAmBoxUnarmed', colt1911_ammobox_spawn_bias));
-		spawns_colt1911_ammobox.push(additementry('HDAmBox', colt1911_ammobox_spawn_bias));
-		additem('HDColt1911Spawn', spawns_colt1911_ammobox, colt1911_persistent_spawning);
+        // DM-93 Plasma Rifle
+        Array<RTSpawnItemEntry> spawns_plasmabuster;
+        spawns_plasmabuster.push(additementry('PlasmaReplaces', pbuster_plasma_spawn_bias));
+        additem('PlasmaBuster', spawns_plasmabuster, false);
+
+        // ----- Pistols -----
+        // (pistols spawn on ammoboxes)
+
+        // Hush Puppy Silenced Pistol
+        Array<RTSpawnItemEntry> spawns_hushpuppy;
+        spawns_HushPuppy.push(additementry('PistolReplaces', hushpuppy_pistol_spawn_bias));
+        spawns_HushPuppy.push(additementry('ClipBoxPickup2', hushpuppy_clipbox_spawn_bias));
+        additem('HushPuppyPistol', spawns_hushpuppy,  hushpuppy_persistent_spawning);
+
+        // Colt 1911 .45 Pistol
+
+        // Colt 1911 spawns
+        Array<RTSpawnItemEntry> spawns_colt1911;
+        spawns_colt1911.push(additementry('PistolReplaces', colt1911_pistol_spawn_bias));
+        spawns_colt1911.push(additementry('ClipBoxPickup2', colt1911_clipbox_spawn_bias));
+        additem('HDColt1911Spawn', spawns_colt1911, colt1911_persistent_spawning);
+
+        // Colt 1911 Magazines
+        Array<RTSpawnItemEntry> spawns_colt1911_mags;
+        spawns_colt1911_mags.push(additementry('ClipMagPickup', colt1911mag_clipmag_spawn_bias));
+        additem('HDColtMag7', spawns_colt1911_mags, colt1911_persistent_spawning);
 
         // Delta Elite 10mm Pistol
 
-		// Delta Elite spawns
-		Array<RTSpawnItemEntry> spawns_10mm_pistol;
-		spawns_10mm_pistol.push(additementry('HDAmBoxUnarmed', tenpis_handgun_spawn_bias));
-        spawns_10mm_pistol.push(additementry('HDAmBox', tenpis_handgun_spawn_bias));
-		additem('HD10mmPistol', spawns_10mm_pistol, tenpis_persistent_spawning);
-		
-		// Delta Elite Magazines
-		Array<RTSpawnItemEntry> spawns_10mm_pistol_mags;
-		spawns_10mm_pistol_mags.push(additementry('ShellPickup', tenpismag_cmag_spawn_bias));
-		spawns_10mm_pistol_mags.push(additementry('HDIEDPack', tenpismag_cmag_spawn_bias));
-        spawns_10mm_pistol_mags.push(additementry('HDIEDKits', tenpismag_cmag_spawn_bias));
-		additem('HD10mMag8', spawns_10mm_pistol_mags, tenpis_persistent_spawning);
+        // Delta Elite spawns
+        Array<RTSpawnItemEntry> spawns_10mm_pistol;
+        spawns_10mm_pistol.push(additementry('PistolReplaces', tenpis_pistol_spawn_bias));
+        spawns_10mm_pistol.push(additementry('ClipBoxPickup2', tenpis_clipbox_spawn_bias));
+        additem('HD10mmPistol', spawns_10mm_pistol, tenpis_persistent_spawning);
+
+        // Delta Elite Magazines
+        Array<RTSpawnItemEntry> spawns_10mm_pistol_mags;
+        spawns_10mm_pistol_mags.push(additementry('ClipMagPickup', tenpismag_clipmag_spawn_bias));
+        additem('HD10mMag8', spawns_10mm_pistol_mags, tenpis_persistent_spawning);
 
         // TT-33 Tokarev Pistol
 
-		// TT-33 spawns
-		Array<RTSpawnItemEntry> spawns_tt33;
-		spawns_tt33.push(additementry('HDAmBoxUnarmed', tt33_ammobox_spawn_bias));
-        spawns_tt33.push(additementry('HDAmBox', tt33_ammobox_spawn_bias));
-		additem('TT33Spawn', spawns_tt33, tt33_persistent_spawning);
-		
-		// TT-33 Magazines
-		Array<RTSpawnItemEntry> spawns_tt33_mags;
-		spawns_tt33_mags.push(additementry('ShellPickup', tt33_mag_shell_spawn_bias));
-		spawns_tt33_mags.push(additementry('HDIEDPack', tt33_mag_shell_spawn_bias));
-        spawns_tt33_mags.push(additementry('HDIEDKits', tt33_mag_shell_spawn_bias));
-		additem('HDTokarevMag8', spawns_tt33_mags, tt33_persistent_spawning);
-        
+        // TT-33 spawns
+        Array<RTSpawnItemEntry> spawns_tt33;
+        spawns_tt33.push(additementry('PistolReplaces', tt33_pistol_spawn_bias));
+        spawns_tt33.push(additementry('ClipBoxPickup2', tt33_clipbox_spawn_bias));
+        additem('TT33Spawn', spawns_tt33, tt33_persistent_spawning);
 
-		// Obrozz Sawn-Off Boss Pistol
-		Array<RTSpawnItemEntry> spawns_obrozz;
-		spawns_obrozz.push(additementry('HDAmBoxUnarmed', obrozz_spawn_bias));
-	    spawns_obrozz.push(additementry('HDAmBox', obrozz_spawn_bias));
-		additem('ObrozzSpawner', spawns_obrozz, obrozz_persistent_spawning);
-        
-        
-    	// FP-45 'Liberator' Pistol
-    	//(these spawns around bonuses instead)
-		Array<RTSpawnItemEntry> spawns_fp45;  
-		spawns_fp45.push(additementry('BlueFrag', fp45_bonus_spawn_bias)); 
-	    	spawns_fp45.push(additementry('HelmFrag', fp45_bonus_spawn_bias)); 
-		additem('HDFP45Spawn', spawns_fp45,  fp45_persistent_spawning, false);
-
-    // --- Revolvers ---
-    // (revolvers spawn on shotguns)
-
-		// Detective Special
-		Array<RTSpawnItemEntry> spawns_snubnose;
-		spawns_snubnose.push(additementry('HunterRandom', snose_pistol_spawn_bias));	
-		additem('SnubNoseSpawn', spawns_snubnose, snose_persistent_spawning);
+        // TT-33 Magazines
+        Array<RTSpawnItemEntry> spawns_tt33_mags;
+        spawns_tt33_mags.push(additementry('ClipMagPickup', tt33mag_clipmag_spawn_bias));
+        additem('HDTokarevMag8', spawns_tt33_mags, tt33_persistent_spawning);
 
 
-		// Single-Action Revolver
-	//	Array<RTSpawnItemEntry> spawns_sixgun;
-	//	spawns_sixgun.push(additementry('HDHandgunRandomDrop', sa_pistol_spawn_bias));
-	//	spawns_sixgun.push(additementry('HDPistol', sa_pistol_spawn_bias));
-	//	additem('HDSingleActionRevolver', spawns_sixgun, sa_persistent_spawning);
-        
+        // Obrozz Sawn-Off Boss Pistol
+        Array<RTSpawnItemEntry> spawns_obrozz;
+        spawns_obrozz.push(additementry('BossRifleSpawner', obrozz_boss_spawn_bias));
+        spawns_obrozz.push(additementry('ClipBoxPickup2', obrozz_clipbox_spawn_bias));
+        additem('ObrozzSpawner', spawns_obrozz, obrozz_persistent_spawning);
+
+
+        // FP-45 'Liberator' Pistol
+        Array<RTSpawnItemEntry> spawns_fp45;
+        spawns_fp45.push(additementry('PistolReplaces', fp45_pistol_spawn_bias));
+        spawns_fp45.push(additementry('ClipBoxPickup2', fp45_clipbox_spawn_bias));
+        additem('HDFP45Spawn', spawns_fp45,  fp45_persistent_spawning, false);
+
+        // --- Revolvers ---
+        // (revolvers spawn on shotguns)
+
+        // Detective Special
+        Array<RTSpawnItemEntry> spawns_snubnose;
+        spawns_snubnose.push(additementry('DeinoSpawn', snose_revolver_spawn_bias));
+        spawns_snubnose.push(additementry('HunterRandom', snose_hunter_spawn_bias));
+        additem('SnubNoseSpawn', spawns_snubnose, snose_persistent_spawning);
+
+
+        // Single-Action Revolver
+        // Array<RTSpawnItemEntry> spawns_sixgun;
+        // spawns_sixgun.push(additementry('HDHandgunRandomDrop', sa_pistol_spawn_bias));
+        // spawns_sixgun.push(additementry('PistolReplaces', sa_pistol_spawn_bias));
+        // additem('HDSingleActionRevolver', spawns_sixgun, sa_persistent_spawning);
+
         Array<RTSpawnItemEntry> spawns_sixgun_bundle;
-		spawns_sixgun_bundle.push(additementry('HunterRandom', sa_bundle_spawn_bias));
-		additem('SADeinoSpawn', spawns_sixgun_bundle, sa_persistent_spawning);
+        spawns_sixgun_bundle.push(additementry('DeinoSpawn', sa_revolver_spawn_bias));
+        spawns_sixgun_bundle.push(additementry('HunterRandom', sa_hunter_spawn_bias));
+        additem('SADeinoSpawn', spawns_sixgun_bundle, sa_persistent_spawning);
 
 
-		// Gold Single-Action
-		Array<RTSpawnItemEntry> spawns_goldengun;
-		spawns_goldengun.push(additementry('SlayerRandom', gsa_pistol_spawn_bias));
-		additem('GoldSADeinoSpawn', spawns_goldengun, gsa_persistent_spawning);
+        // Gold Single-Action
+        Array<RTSpawnItemEntry> spawns_goldengun;
+        spawns_goldengun.push(additementry('DeinoSpawn', gsa_revolver_spawn_bias));
+        spawns_goldengun.push(additementry('SlayerRandom', gsa_slayer_spawn_bias));
+        additem('GoldSADeinoSpawn', spawns_goldengun, gsa_persistent_spawning);
 
 
-    // ----- Shotguns -----
+        // ----- Shotguns -----
 
-		// Ithaca M37 Combat Shotgun
-		Array<RTSpawnItemEntry> spawns_combatshotgun;
-		spawns_combatshotgun.push(additementry('HunterRandom', cshotgun_shotgun_spawn_bias));
-		additem('HDCombatShotgunRandom', spawns_combatshotgun, cshotgun_persistent_spawning);
-
-
-		// Doomed Shotgun
-		Array<RTSpawnItemEntry> spawns_doomedshotgun;
-		spawns_doomedshotgun.push(additementry('HunterRandom', dHunt_shotgun_spawn_bias));
-		additem('DoomHunterRandom', spawns_doomedshotgun, dHunt_persistent_spawning);
+        // Ithaca M37 Combat Shotgun
+        Array<RTSpawnItemEntry> spawns_combatshotgun;
+        spawns_combatshotgun.push(additementry('HunterRandom', cshotgun_hunter_spawn_bias));
+        additem('HDCombatShotgunRandom', spawns_combatshotgun, cshotgun_persistent_spawning);
 
 
-		// Less-Lethal Shotgun
-		Array<RTSpawnItemEntry> spawns_llshotgun;
-		spawns_llshotgun.push(additementry('HunterRandom', llh_shotgun_spawn_bias));
-		additem('LLHunter', spawns_llshotgun, llh_persistent_spawning);
+        // Doomed Shotgun
+        Array<RTSpawnItemEntry> spawns_doomedshotgun;
+        spawns_doomedshotgun.push(additementry('HunterRandom', dHunt_hunter_spawn_bias));
+        additem('DoomHunterRandom', spawns_doomedshotgun, dHunt_persistent_spawning);
 
 
-		// Explosive Shotgun
-		Array<RTSpawnItemEntry> spawns_exshotgun;
-		spawns_exshotgun.push(additementry('HunterRandom', esg_shotgun_spawn_bias));
-		additem('ExplosiveHunter', spawns_exshotgun, esg_persistent_spawning);
+        // Less-Lethal Shotgun
+        Array<RTSpawnItemEntry> spawns_llshotgun;
+        spawns_llshotgun.push(additementry('HunterRandom', llh_hunter_spawn_bias));
+        additem('LLHunter', spawns_llshotgun, llh_persistent_spawning);
 
 
-		// Plastic Flaregun
-		Array<RTSpawnItemEntry> spawns_flaregun_plastic; 
-		spawns_flaregun_plastic.push(additementry('Hunter', fl_weapon_spawn_bias)); 
-		spawns_flaregun_plastic.push(additementry('Slayer', fl_weapon_spawn_bias)); 
-		additem('WildFlareGun', spawns_flaregun_plastic, fl_weapon_persistent_spawning, false); 
+        // Explosive Shotgun
+        Array<RTSpawnItemEntry> spawns_exshotgun;
+        spawns_exshotgun.push(additementry('HunterRandom', esg_hunter_spawn_bias));
+        additem('ExplosiveHunter', spawns_exshotgun, esg_persistent_spawning);
 
-		// Metal Flaregun
-		Array<RTSpawnItemEntry> spawns_flaregun_metal; 
-		spawns_flaregun_metal.push(additementry('Hunter', fl_metal_spawn_bias));
-		spawns_flaregun_metal.push(additementry('Slayer', fl_metal_spawn_bias));
-		additem('WildMetalFlareGun', spawns_flaregun_metal, fl_metal_persistent_spawning, false);
 
-    // ----- Rifles ----- (just the one so far)
-    
+        // Plastic Flaregun
+        Array<RTSpawnItemEntry> spawns_flaregun_plastic;
+        spawns_flaregun_plastic.push(additementry('HunterRandom', fl_weapon_spawn_bias));
+        spawns_flaregun_plastic.push(additementry('SlayerRandom', fl_weapon_spawn_bias));
+        additem('WildFlareGun', spawns_flaregun_plastic, fl_weapon_persistent_spawning, false);
+
+        // Metal Flaregun
+        Array<RTSpawnItemEntry> spawns_flaregun_metal;
+        spawns_flaregun_metal.push(additementry('HunterRandom', fl_metal_spawn_bias));
+        spawns_flaregun_metal.push(additementry('SlayerRandom', fl_metal_spawn_bias));
+        additem('WildMetalFlareGun', spawns_flaregun_metal, fl_metal_persistent_spawning, false);
+
+        // ----- Rifles ----- (just the one so far)
+
         // Savage 99
-		Array<RTSpawnItemEntry> spawns_s99;
-		spawns_s99.push(additementry('HunterRandom', savage99_shotgun_spawn_bias));
-		additem('Savage99RifleSpawner', spawns_s99, savage99_persistent_spawning);
+        Array<RTSpawnItemEntry> spawns_s99;
+        spawns_s99.push(additementry('HunterRandom', savage99_hunter_spawn_bias));
+        additem('Savage99RifleSpawner', spawns_s99, savage99_persistent_spawning);
 
 
-    // ----- Automatic Weapons ----- 
+        // ----- Automatic Weapons -----
 
-		// M-211 Sigcow
-		Array<RTSpawnItemEntry> spawns_sigcow;
-		spawns_sigcow.push(additementry('HDAmBoxUnarmed', sigcow_cbox_spawn_bias));
-        spawns_sigcow.push(additementry('HDAmBox', sigcow_cbox_spawn_bias));
-		additem('SigCowRandomSpawn', spawns_sigcow, sigcow_persistent_spawning);
-		
-		// Sigcow Magazines
-		Array<RTSpawnItemEntry> spawns_sigcow_mags;
-		spawns_sigcow_mags.push(additementry('ShellPickup', sigcow_cbox_spawn_bias));
-        spawns_sigcow_mags.push(additementry('HDIEDPack', sigcow_cbox_spawn_bias));
-        spawns_sigcow_mags.push(additementry('HDIEDKits', sigcow_cbox_spawn_bias));
-		additem('HD10mMag25', spawns_sigcow_mags, sigcow_persistent_spawning);
+        // M-211 Sigcow
+        Array<RTSpawnItemEntry> spawns_sigcow;
+        spawns_sigcow.push(additementry('ClipBoxPickup2', sigcow_clipbox_spawn_bias));
+        additem('SigCowRandomSpawn', spawns_sigcow, sigcow_persistent_spawning);
 
-		// Hacked ZM66
-		Array<RTSpawnItemEntry> spawns_hackedzm66random;
-		spawns_hackedzm66random.push(additementry('HDAmBoxUnarmed', hacked_zm66_spawn_bias));
-        spawns_hackedzm66random.push(additementry('HDAmBox', hacked_zm66_spawn_bias));
-		additem('HackedZM66Random', spawns_hackedzm66random, hacked_persistent_spawning);
+        // Sigcow Magazines
+        Array<RTSpawnItemEntry> spawns_sigcow_mags;
+        spawns_sigcow_mags.push(additementry('ClipMagPickup', sigcowmag_clipmag_spawn_bias));
+        additem('HD10mMag25', spawns_sigcow_mags, sigcow_persistent_spawning);
+
+        // Hacked ZM66
+        Array<RTSpawnItemEntry> spawns_hackedzm66random;
+        spawns_hackedzm66random.push(additementry('ZM66Random', hacked_zm66_zm66_spawn_bias));
+        spawns_hackedzm66random.push(additementry('ClipBoxPickup1', hacked_zm66_clipbox_spawn_bias));
+        additem('HackedZM66Random', spawns_hackedzm66random, hacked_persistent_spawning);
 
 
-		// STEN Mk. 2(S)
-		Array<RTSpawnItemEntry> spawns_sten;  
-		spawns_sten.push(additementry('HDSMGRandom', sten_spawn_bias));
-		spawns_sten.push(additementry('HDAmBoxUnarmed', sten_ammobox_spawn_bias));
-        spawns_sten.push(additementry('HDAmBox', sten_ammobox_spawn_bias));
-		additem('HDSTENRandom', spawns_sten,  sten_persistent_spawning);  
+        // STEN Mk. 2(S)
+        Array<RTSpawnItemEntry> spawns_sten;
+        spawns_sten.push(additementry('ClipBoxPickup2', sten_clipbox_spawn_bias));
+        additem('HDSTENRandom', spawns_sten,  sten_persistent_spawning);
 
-    	// PPSh-41
-		Array<RTSpawnItemEntry> spawns_ppsh41;  
-		spawns_ppsh41.push(additementry('HDSMGRandom', ppsh41_smg_spawn_bias));
-		spawns_ppsh41.push(additementry('HDAmBoxUnarmed', ppsh41_ammobox_spawn_bias));
-        spawns_ppsh41.push(additementry('HDAmBox', ppsh41_ammobox_spawn_bias));
-		additem('PapashaSpawn', spawns_ppsh41,  ppsh41_persistent_spawning);  
+        // PPSh-41
+        Array<RTSpawnItemEntry> spawns_ppsh41;
+        spawns_ppsh41.push(additementry('ClipBoxPickup2', ppsh41_clipbox_spawn_bias));
+        additem('PapashaSpawn', spawns_ppsh41,  ppsh41_persistent_spawning);
 
-    	// PPSh-41 magazines
-		Array<RTSpawnItemEntry> spawns_ppsh41_mags;  
-		spawns_ppsh41_mags.push(additementry('ShellPickup', ppsh41_mag_spawn_bias));
-		additem('PapashaMagSpawner', spawns_ppsh41_mags,  ppsh41_persistent_spawning);  
+        // PPSh-41 magazines
+        Array<RTSpawnItemEntry> spawns_ppsh41_mags;
+        spawns_ppsh41_mags.push(additementry('ClipMagPickup', ppsh41mag_clipmag_spawn_bias));
+        additem('PapashaMagSpawner', spawns_ppsh41_mags,  ppsh41_persistent_spawning);
 
-		// Minerva
-		Array<RTSpawnItemEntry> spawns_minerva;
-		spawns_minerva.push(additementry('Vulcanette', minerva_chaingun_spawn_bias));
-		additem('MinervaRandom', spawns_minerva, false);
-        
-        Array<RTSpawnItemEntry> spawns_minerva_smg;
-        spawns_minerva_smg.push(additementry('HDSMGRandom', minerva_smg_spawn_bias));
-		additem('MinervaRandom', spawns_minerva_smg, minerva_persistent_spawning);
+        // Minerva
+        Array<RTSpawnItemEntry> spawns_minerva;
+        spawns_minerva.push(additementry('ChaingunReplaces', minerva_chaingun_spawn_bias));
+        spawns_minerva.push(additementry('ClipBoxPickup2', minerva_clipbox_spawn_bias));
+        additem('MinervaRandom', spawns_minerva, minerva_persistent_spawning);
 
 
-    // ----- Explosives -----
+        // ----- Explosives -----
 
-		// Single bits of Dynamite
-		Array<RTSpawnItemEntry> spawns_dynamite;  
-		spawns_dynamite.push(additementry('HDRocketAmmo', dynamite_spawn_bias)); 
-		spawns_dynamite.push(additementry('HDFragP', dynamite_spawn_bias)); 
-		additem('HDDynamiteAmmo', spawns_dynamite, false);
-	    
-	    
-	    // Dynamite Packs
-		Array<RTSpawnItemEntry> spawns_dynamitebundle;  
-		spawns_dynamitebundle.push(additementry('RocketBigPickup', dynamite_spawn_bias)); 
-		additem('HDDynamitePickup', spawns_dynamitebundle, dynamite_persistent_spawning);
+        // Single bits of Dynamite
+        Array<RTSpawnItemEntry> spawns_dynamite;
+        spawns_dynamite.push(additementry('RocketAmmo', dynamite_spawn_bias));
+        spawns_dynamite.push(additementry('HDFragP', dynamite_spawn_bias));
+        additem('HDDynamiteAmmo', spawns_dynamite, false);
 
 
-		// Frag Cannon
-		Array<RTSpawnItemEntry> spawns_fragcannon;  
-		spawns_fragcannon.push(additementry('RocketBigPickup', fragcannon_spawn_bias));
-		additem('FragCannonPickup', spawns_fragcannon, fragcannon_persistent_spawning);
+        // Dynamite Packs
+        Array<RTSpawnItemEntry> spawns_dynamitebundle;
+        spawns_dynamitebundle.push(additementry('RocketBoxRandom', dynamite_spawn_bias));
+        additem('HDDynamitePickup', spawns_dynamitebundle, dynamite_persistent_spawning);
 
 
-/*  tried something, didn't work, maybe fix later??
+        // Frag Cannon
+        Array<RTSpawnItemEntry> spawns_fragcannon;
+        spawns_fragcannon.push(additementry('RocketBoxRandom', fragcannon_spawn_bias));
+        additem('FragCannonPickup', spawns_fragcannon, fragcannon_persistent_spawning);
 
-		// 'Juan' Horseshoe Pistol
-		Array<RTSpawnItemEntry> spawns_juan;
-		spawns_juan.push(additementry('HDHandgunRandomDrop', ja_weapon_drop_chance_bias));
-		spawns_juan.push(additementry('HDPistol', ja_weapon_drop_chance_bias));
-		additem('HDHorseShoePistol', spawns_juan, ja_persistent_spawning);
-*/
 
-	}
-	
-	// Random stuff, stores it and forces negative values just to be 0.
-	bool giveRandom(int chance)
-	{
-		if (chance > -1)
-		{
-			let result = random(0, chance);
+        /* tried something, didn't work, maybe fix later??
+        // 'Juan' Horseshoe Pistol
+        Array<RTSpawnItemEntry> spawns_juan;
+        spawns_juan.push(additementry('HDHandgunRandomDrop', ja_weapon_drop_chance_bias));
+        spawns_juan.push(additementry('PistolReplaces', ja_weapon_drop_chance_bias));
+        additem('HDHorseShoePistol', spawns_juan, ja_persistent_spawning);
+        */
+    }
 
-			if (hd_debug) console.printf("Rolled a "..(result + 1).." out of "..(chance + 1));
+    // Random stuff, stores it and forces negative values just to be 0.
+    bool giveRandom(int chance) {
+        if (chance > -1) {
+            let result = random(0, chance);
 
-			return result == 0;
-		}
-		
-		return false;
-	}
+            if (hd_debug) console.printf("Rolled a "..(result + 1).." out of "..(chance + 1));
 
-	// Tries to create the item via random spawning.
-	bool tryCreateItem(Actor thing, string spawnName, int chance, bool rep)
-	{
-		if (giveRandom(chance))
-		{
-			if (Actor.Spawn(spawnName, thing.pos) && rep)
-			{
-				if (hd_debug) console.printf(thing.getClassName().." -> "..spawnName);
-				
-				thing.destroy();
-				
-				return true;
-			}
-		}
+            return result == 0;
+        }
 
-		return false;
-	}
-	
-	override void worldLoaded(WorldEvent e)
-	{
-		// Populates the main arrays if they haven't been already. 
-		if (!cvarsAvailable) init();
+        return false;
+    }
+
+    // Tries to replace the item during spawning.
+    bool tryReplaceItem(ReplaceEvent e, string spawnName, int chance) {
+        if (giveRandom(chance)) {
+            if (hd_debug) console.printf(e.replacee.getClassName().." -> "..spawnName);
+
+            e.replacement = spawnName;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    // Tries to create the item via random spawning.
+    bool tryCreateItem(Actor thing, string spawnName, int chance) {
+        if (giveRandom(chance)) {
+            if (hd_debug) console.printf(thing.getClassName().." + "..spawnName);
+
+            Actor.Spawn(spawnName, thing.pos);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    override void worldLoaded(WorldEvent e) {
+
+        // Populates the main arrays if they haven't been already.
+        if (!cvarsAvailable) init();
 
         foreach (bl : backpackBlacklist) {
-			if (hd_debug) console.printf("Removing "..bl.getClassName().." from Backpack Spawn Pool");
-                
-			BPSpawnPool.removeItem(bl);
+            if (hd_debug) console.printf("Removing "..bl.getClassName().." from Backpack Spawn Pool");
+
+            BPSpawnPool.removeItem(bl);
         }
-	}
+    }
 
-	override void worldThingSpawned(WorldEvent e)
-	{
-		// If thing spawned doesn't exist, quit
-		if (!e.thing) return;
-		
-		// If thing spawned is blacklisted, quit
-		foreach (bl : blacklist) if (e.thing is bl) return;
+    override void checkReplacement(ReplaceEvent e) {
 
-		string candidateName = e.thing.getClassName();
-		
-		// Pointers for specific classes.
-		let ammo = HDAmmo(e.thing);
-		
-		// If the thing spawned is an ammunition, add any and all items that can use this.
-		if (ammo) handleAmmoUses(ammo, candidateName);
-		
-		//Do this AFTER pushing ItemsThatUseThis()
-		//or ammo purging gets messed up lol
-		
-		// Return if range before replacing things.
+        // Populates the main arrays if they haven't been already.
+        if (!cvarsAvailable) init();
+
+        // If there's nothing to replace or if the replacement is final, quit.
+        if (!e.replacee || e.isFinal) return;
+
+        // If thing being replaced is blacklisted, quit.
+        foreach (bl : blacklist) if (e.replacee is bl) return;
+
+        string candidateName = e.replacee.getClassName();
+
+        // If current map is Range, quit.
         if (level.MapName == 'RANGE') return;
-				
-		if (e.thing is 'HDAmBox') {
-			handleAmmoBoxLootTable();
-		} else {
-			handleWeaponReplacements(e.thing, ammo, candidateName);
-		}
-	}
 
-	private void handleAmmoBoxLootTable()
-	{
-        if (!ammoBoxList)
-		{
-            ammoBoxList = HDAmBoxList.Get();
+        handleWeaponReplacements(e, candidateName);
+    }
 
-			foreach (bl : backpackBlacklist)
-			{
-				let index = ammoBoxList.invClasses.find(bl.getClassName());
+    override void worldThingSpawned(WorldEvent e) {
 
-				if (index != ammoBoxList.invClasses.Size())
-				{
-					if (hd_debug) console.printf("Removing "..bl.getClassName().." from Ammo Box Loot Table");
+        // Populates the main arrays if they haven't been already.
+        if (!cvarsAvailable) init();
 
-					ammoBoxList.invClasses.Delete(index);
-				}
-			}
+        // If thing spawned doesn't exist, quit.
+        if (!e.thing) return;
+
+        // If thing spawned is blacklisted, quit.
+        foreach (bl : blacklist) if (e.thing is bl) return;
+
+        // Handle Ammo Box Loot Table Filtering
+        if (e.thing is 'HDAmBox' && !ammoBoxList) handleAmmoBoxLootTable();
+
+        string candidateName = e.thing.getClassName();
+
+        // Pointers for specific classes.
+        let ammo = HDAmmo(e.thing);
+
+        // If the thing spawned is an ammunition, add any and all items that can use this.
+        if (ammo) handleAmmoUses(ammo, candidateName);
+
+        //Do this AFTER pushing ItemsThatUseThis()
+        //or ammo purging gets messed up lol
+
+        // If current map is Range, quit.
+        if (level.MapName == 'RANGE') return;
+
+        handleWeaponSpawns(e.thing, ammo, candidateName);
+    }
+
+    private void handleAmmoBoxLootTable() {
+        ammoBoxList = HDAmBoxList.Get();
+
+        foreach (bl : backpackBlacklist) {
+            let index = ammoBoxList.invClasses.find(bl.getClassName());
+
+            if (index != ammoBoxList.invClasses.Size()) {
+                if (hd_debug) console.printf("Removing "..bl.getClassName().." from Ammo Box Loot Table");
+
+                ammoBoxList.invClasses.Delete(index);
+            }
         }
-	}
+    }
 
-	private void handleAmmoUses(HDAmmo ammo, string candidateName)
-	{
-        foreach (ammoSpawn : ammoSpawnList) if (candidateName ~== ammoSpawn.ammoName)
-		{
-            if (hd_debug)
-			{
+    private void handleAmmoUses(HDAmmo ammo, string candidateName) {
+        foreach (ammoSpawn : ammoSpawnList) if (candidateName ~== ammoSpawn.ammoName) {
+            if (hd_debug) {
                 console.printf("Adding the following to the list of items that use "..ammo.getClassName().."");
                 foreach (weapon : ammoSpawn.weaponNames) console.printf("* "..weapon);
-			}
+            }
 
             ammo.itemsThatUseThis.append(ammoSpawn.weaponNames);
         }
-	}
+    }
 
-	private void handleWeaponReplacements(Actor thing, HDAmmo ammo, string candidateName)
-	{
-		// Checks if the level has been loaded more than 1 tic.
-		bool prespawn = !(level.maptime > 1);
+    private void handleWeaponReplacements(ReplaceEvent e, string candidateName) {
 
-		// Iterates through the list of item candidates for e.thing.
-		foreach (itemSpawn : itemSpawnList)
-		{
-			// if an item is owned or is an ammo (doesn't retain owner ptr), 
-			// do not replace it. 
-			let item = Inventory(thing);
-			if ((prespawn || itemSpawn.isPersistent) && (!(item && item.owner) && (!ammo || prespawn)))
-			{
-				foreach (spawnReplace : itemSpawn.spawnReplaces)
-				{
-					if (spawnReplace.name ~== candidateName)
-					{
-						if (hd_debug) console.printf("Attempting to replace "..candidateName.." with "..itemSpawn.spawnName.."...");
+        // Checks if the level has been loaded more than 1 tic.
+        bool prespawn = !(level.maptime > 1);
 
-						if (tryCreateItem(thing, itemSpawn.spawnName, spawnReplace.chance, itemSpawn.replaceItem)) return;
-					}
-				}
-			}
-		}
-	}
+        // Iterates through the list of item candidates for e.thing.
+        foreach (itemSpawn : itemSpawnList) {
+
+            if ((prespawn || itemSpawn.isPersistent) && itemSpawn.replaceItem) {
+                foreach (spawnReplace : itemSpawn.spawnReplaces) {
+                    if (spawnReplace.name ~== candidateName) {
+                        if (hd_debug) console.printf("Attempting to replace "..candidateName.." with "..itemSpawn.spawnName.."...");
+
+                        if (tryReplaceItem(e, itemSpawn.spawnName, spawnReplace.chance)) return;
+                    }
+                }
+            }
+        }
+    }
+
+    private void handleWeaponSpawns(Actor thing, HDAmmo ammo, string candidateName) {
+
+        // Checks if the level has been loaded more than 1 tic.
+        bool prespawn = !(level.maptime > 1);
+
+        // Iterates through the list of item candidates for e.thing.
+        foreach (itemSpawn : itemSpawnList) {
+
+            // if an item is owned or is an ammo (doesn't retain owner ptr),
+            // do not replace it.
+            let item = Inventory(thing);
+            if (
+                (prespawn || itemSpawn.isPersistent)
+             && (!(item && item.owner) && (!ammo || prespawn))
+             && !itemSpawn.replaceItem
+            ) {
+                foreach (spawnReplace : itemSpawn.spawnReplaces) {
+                    if (spawnReplace.name ~== candidateName) {
+                        if (hd_debug) console.printf("Attempting to spawn "..itemSpawn.spawnName.." with "..candidateName.."...");
+
+                        if (tryCreateItem(thing, itemSpawn.spawnName, spawnReplace.chance)) return;
+                    }
+                }
+            }
+        }
+    }
 }
 
 // Juan Handler
 
 class JuanEvent : EventHandler
 {
-	private bool cvarsAvailable;
-	private int weaponSpawnBiasActual;
-	private int magSpawnBiasActual;
-	private int autoSpawnBiasActual;
-	private int weaponDropBiasActual;
+    private bool cvarsAvailable;
+    private int weaponSpawnBiasActual;
+    private int magSpawnBiasActual;
+    private int autoSpawnBiasActual;
+    private int weaponDropBiasActual;
 
-	// Shoves cvar values into their non-cvar shaped holes.
-	// I have no idea why names for cvars become reserved here.
-	// But, this works. So no complaints. 
-	void init()
-	{
-		cvarsAvailable = true;
-		weaponSpawnBiasActual = ja_weapon_spawn_bias;
-		magSpawnBiasActual    = ja_mag_spawn_bias;
-		autoSpawnBiasActual   = ja_firemode_chance_bias;
-		weaponDropBiasActual  = ja_weapon_drop_chance_bias;
-	}
+    // Shoves cvar values into their non-cvar shaped holes.
+    // I have no idea why names for cvars become reserved here.
+    // But, this works. So no complaints.
+    void init()
+    {
+        cvarsAvailable = true;
+        weaponSpawnBiasActual = ja_weapon_spawn_bias;
+        magSpawnBiasActual    = jamag_spawn_bias;
+        autoSpawnBiasActual   = ja_firemode_chance_bias;
+        weaponDropBiasActual  = ja_weapon_drop_chance_bias;
+    }
 
-	// 'Initalizes' the event handler,
-	// In my testing, this is called after events are fired. 
-	override void WorldLoaded(WorldEvent e)
-	{
-		// always calls init.
-		init();
-		super.WorldLoaded(e);
-	}
+    // 'Initalizes' the event handler,
+    // In my testing, this is called after events are fired.
+    override void WorldLoaded(WorldEvent e)
+    {
+        // always calls init.
+        init();
+        super.WorldLoaded(e);
+    }
 
-	bool giverandom(int chance)
-	{
-		bool result = false;
-		
-		// temp storage for the random value. 
-		int iii = random(0, chance);
-		
-		// force negative values to be 0. 
-		if (iii < 0)
-			iii = 0;
-			
-		
-		if (iii == 0)
-		{
-			if (chance > -1)
-				result = true;
-		}
-		
-		return result;
-	}
+    bool giverandom(int chance)
+    {
+        bool result = false;
 
-	// Handles 'item propegation'. Woo, fancy. 
-	override void CheckReplacement(ReplaceEvent e)
-	{
-		// Makes sure the values are always loaded before
-		// taking in replaceevents. 
-		if (!cvarsAvailable)
-			init();
-		
-		// Don't replace if it's final, or doesn't exist. 
-		if (!e.Replacement || e.IsFinal)
-		{
-			return;
-		}
-		
-		switch(e.Replacement.GetClassName())
-		{
-			case 'HDHandgunRandomDrop':
-			case 'PepperPistolReplacer':
-				// dirty inverted logic gate for spawn drops. 
-				if (random(0, weaponDropBiasActual) || weaponDropBiasActual == -1)
-				{
-					break;
-				}
-			case 'HDPistol':
-				{
-					
-					if (giverandom(weaponSpawnBiasActual))
-					{
-						if (giverandom(autoSpawnBiasActual))
-						{
-							e.Replacement = "HDHorseShoePistolAuto";
-						}
-						else
-						{
-							e.Replacement = "HDHorseShoePistol";
-						}
-					}
-					break;
-				}
-			case 'HD9mMag15':
-				if (giverandom(magSpawnBiasActual))
-				{
-					e.Replacement = "HDHorseshoe9m"; 
-				}
-				break;
-		}
-		
-	}
+        // temp storage for the random value.
+        int iii = random(0, chance);
+
+        // force negative values to be 0.
+        if (iii < 0)
+            iii = 0;
+
+
+        if (iii == 0)
+        {
+            if (chance > -1)
+                result = true;
+        }
+
+        return result;
+    }
+
+    // Handles 'item propegation'. Woo, fancy.
+    override void CheckReplacement(ReplaceEvent e)
+    {
+        // Makes sure the values are always loaded before
+        // taking in replaceevents.
+        if (!cvarsAvailable)
+            init();
+
+        // Don't replace if it's final, or doesn't exist.
+        if (!e.Replacement || e.IsFinal)
+        {
+            return;
+        }
+
+        switch(e.Replacement.GetClassName())
+        {
+            case 'HDHandgunRandomDrop':
+            case 'PepperPistolReplacer':
+                // dirty inverted logic gate for spawn drops.
+                if (random(0, weaponDropBiasActual) || weaponDropBiasActual == -1)
+                {
+                    break;
+                }
+            case 'HDPistol':
+                {
+
+                    if (giverandom(weaponSpawnBiasActual))
+                    {
+                        if (giverandom(autoSpawnBiasActual))
+                        {
+                            e.Replacement = "HDHorseShoePistolAuto";
+                        }
+                        else
+                        {
+                            e.Replacement = "HDHorseShoePistol";
+                        }
+                    }
+                    break;
+                }
+            case 'HD9mMag15':
+                if (giverandom(magSpawnBiasActual))
+                {
+                    e.Replacement = "HDHorseshoe9m";
+                }
+                break;
+        }
+
+    }
 }
 
-// Wild flaregun spawns; mostly self explanatory. 
+// Wild flaregun spawns; mostly self explanatory.
 class WildFlareGun : IdleDummy
 {
-	class<hdweapon> weaponToSpawn;
-	property weaponToSpawn : weaponToSpawn;
-	
-	default
-	{
-		wildflaregun.weaponToSpawn 'FireBlooper';
-	}
-	
-	states
-	{
-		Spawn:
-			TNT1 A 0 NODELAY
-			{
-				if (weaponToSpawn != "none")
-				{
-					let weapon = Actor.Spawn(invoker.weaponToSpawn, (invoker.pos.x, invoker.pos.y, invoker.pos.z + 5));
-					weapon.vel.x += frandom[huminahumina](-2,2);
-					weapon.vel.y += frandom[huminahumina](-2,2);
-					weapon.vel.z += frandom[huminahumina](1,2);
-				}
-				
-				let ammo = HDFlareAmmo(Actor.Spawn("HDFlareAmmo", (invoker.pos.x, invoker.pos.y, invoker.pos.z + 5)));
-				ammo.vel.x += frandom[huminahumina](-2,2);
-				ammo.vel.y += frandom[huminahumina](-2,2);
-				ammo.vel.z += frandom[huminahumina](1,2);
-				ammo.amount += random(2,5);
-			}
-			stop;
-	}
+    class<hdweapon> weaponToSpawn;
+    property weaponToSpawn : weaponToSpawn;
+
+    default
+    {
+        wildflaregun.weaponToSpawn 'FireBlooper';
+    }
+
+    states
+    {
+        Spawn:
+            TNT1 A 0 NODELAY
+            {
+                if (weaponToSpawn != "none")
+                {
+                    let weapon = Actor.Spawn(invoker.weaponToSpawn, (invoker.pos.x, invoker.pos.y, invoker.pos.z + 5));
+                    weapon.vel.x += frandom[huminahumina](-2,2);
+                    weapon.vel.y += frandom[huminahumina](-2,2);
+                    weapon.vel.z += frandom[huminahumina](1,2);
+                }
+
+                let ammo = HDFlareAmmo(Actor.Spawn("HDFlareAmmo", (invoker.pos.x, invoker.pos.y, invoker.pos.z + 5)));
+                ammo.vel.x += frandom[huminahumina](-2,2);
+                ammo.vel.y += frandom[huminahumina](-2,2);
+                ammo.vel.z += frandom[huminahumina](1,2);
+                ammo.amount += random(2,5);
+            }
+            stop;
+    }
 }
 
 class WildMetalFlareGun : WildFlareGun
 {
-	
-	default
-	{
-		wildflaregun.weaponToSpawn 'MetalFireBlooper';
-	}
+
+    default
+    {
+        wildflaregun.weaponToSpawn 'MetalFireBlooper';
+    }
 }
 
-// only spawns the ammo (used for spawning ontop of shellpickups). 
+// only spawns the ammo (used for spawning ontop of shellpickups).
 class HDFlareAmmoRandom : WildFlareGun
 {
-	
-	default
-	{
-		wildflaregun.weaponToSpawn "none";
-	}
+
+    default
+    {
+        wildflaregun.weaponToSpawn "none";
+    }
 }

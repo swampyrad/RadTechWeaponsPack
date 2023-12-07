@@ -100,6 +100,7 @@ TAG_TT33MAG = "TT-33 Magazine";
 PICKUP_10MAG25 = "Picked up a Sig-Cow magazine.";
 PICKUP_10MAG8 = "Picked up a 10mm pistol magazine.";
 PICKUP_10MRELOADER = "Picked up a 10mm reloading device!";
+PICKUP_CM7 = "Picked up a Colt 1911 magazine.";
 PICKUP_JUANMAG = "Picked up a horseshoe-shaped pistol magazine..?";
 PICKUP_MICROCELL = "You picked up a micro-cell.";
 PICKUP_PPSH41MAG35 = "Picked up a PPSh-41 magazine.";
@@ -180,7 +181,8 @@ MENU_FGUNLORE3 = "versions exist to aide with this issue, though are much heavie
 
 // Hush Puppy
 MENU_PUPTITLE = "------ Hush Puppy Silenced Pistol Options ------";
-MENU_HPUPPYHANDGUNTEXT = "Control the spawn rate of Hush Puppies on Ammo Boxes.";
+MENU_HPUPPYTEXT1 = "Control the spawn rate of Hush Puppies on Pistols.";
+MENU_HPUPPYTEXT2 = "Control the spawn rate of Hush Puppies on Clip Boxes.";
 MENU_HPUPPYBACKPACK = "Control whether the Hush Puppies spawn in Backpacks";
 
 MENU_HPUPLORE1 = "A modified version of the 99FX pistol with a suppressor attachment.";
@@ -199,8 +201,9 @@ MENU_FCNLORE3 = "those who have a weak throwing arm or bad coordination.";
 
 //TT-33
 MENU_TT33TITLE = "------ TT-33 Options ------";
-MENU_TT33TEXT1 = "Control the spawn rate of TT-33s on Ammobox spawns.";
-MENU_TT33TEXT2 = "Control the spawn rate of TT-33 magazines on Shell spawns.";
+MENU_TT33TEXT1 = "Control the spawn rate of TT-33s on Pistol spawns.";
+MENU_TT33TEXT2 = "Control the spawn rate of TT-33s on Clip Box spawns.";
+MENU_TT33TEXT3 = "Control the spawn rate of TT-33 magazines on Shell spawns.";
 MENU_TT33BACKPACK = "Control whether the TT-33s spawn in Backpacks";
 MENU_TT33MAGBACKPACK = "Control whether the TT-33 magazines spawn in Backpacks & Ammo Boxes";
 
@@ -210,9 +213,8 @@ MENU_TT33LORE3 = "requiring constant maintenance due to fouling issues.";
 
 //PPSh-41
 MENU_PPSH41TITLE = "------ PPSh-41 Options ------";
-MENU_PPSH41TEXT1 = "Control the spawn rate of PPSh-41s on SMG spawns.";
-MENU_PPSH41TEXT2 = "Control the spawn rate of PPSh-41s on Ammobox spawns.";
-MENU_PPSH41TEXT3 = "Control the spawn rate of PPSh-41 magazines on Shell spawns.";
+MENU_PPSH41TEXT1 = "Control the spawn rate of PPSh-41s on Clip Box spawns.";
+MENU_PPSH41TEXT2 = "Control the spawn rate of PPSh-41 magazines on Clip Magazine spawns.";
 MENU_PPSH41BACKPACK = "Control whether the PPSh-41s spawn in Backpacks";
 MENU_PPSH41MAGBACKPACK = "Control whether the PPSh-41s spawn in Backpacks & Ammo Boxes";
 
@@ -222,7 +224,8 @@ MENU_PPSH41LORE3 = "to magazines not seating properly, drums especially.";
 
 //FP-45
 MENU_FP45TITLE = "------ FP-45 Options ------";
-MENU_FP45BONUSTEXT = "Control the spawn rate of FP-45s on Bonus spawns.";
+MENU_FP45TEXT1 = "Control the spawn rate of FP-45s on Pistol spawns.";
+MENU_FP45TEXT2 = "Control the spawn rate of FP-45s on Clip Box spawns.";
 MENU_FP45BACKPACK = "Control whether the FP-45s spawn in Backpacks";
 
 MENU_FP45LORE1 = "A single-shot pistol developed by the U.S. military during WWII,";
@@ -234,7 +237,7 @@ MENU_FP45LORE6 = "them can still be found hiding around in the strangest of plac
 
 //Savage 99
 MENU_S99TITLE = "------ Savage 99 Options ------";
-MENU_S99TEXT = "Control the spawn rate of Savage 99s on Shotgun spawns.";
+MENU_S99TEXT = "Control the spawn rate of Savage 99s on Hunter spawns.";
 MENU_S99BACKPACK = "Control whether the Savage 99s spawn in Backpacks";
 
 MENU_S99LORE1 = "A lever-action hunting rifle chambered in .300 Savage, features a scope,";
@@ -243,7 +246,7 @@ MENU_S99LORE3 = "rounds. Unlike the Boss, the bolt must be held open to insert/r
 
 //Duck Hunter
 MENU_DUCKHUNTTITLE = "------ Duck Hunter Options ------";
-MENU_DUCKHUNTTEXT = "Control the spawn rate of Duck Hunter Shotguns on Shotgun spawns.";
+MENU_DUCKHUNTTEXT = "Control the spawn rate of Duck Hunter Shotgun on Hunter spawns.";
 MENU_DUCKHUNTBACKPACK = "Control whether the Duck Hunter Shotguns spawn in Backpacks";
 
 MENU_DUCKHUNTLORE1 = "A civilian model of the Hunter designed for shooting game fowl. Instead of";
@@ -254,7 +257,8 @@ MENU_DUCKHUNTLORE4 = "but the small pellet size makes it virtually useless again
 
 //Phazer
 MENU_PHAZERTITLE = "------ Phazer Options ------";
-MENU_PHAZERTEXT = "Control the spawn rate of Phazers on Ammo Boxes.";
+MENU_PHAZERTEXT1 = "Control the spawn rate of Phazers on Pistol spawns.";
+MENU_PHAZERTEXT2 = "Control the spawn rate of Phazers on Clip Box spawns.";
 MENU_PHAZERBACKPACK = "Control whether the Phazers spawn in Backpacks";
 
 MENU_PHAZERLORE1 = "An energy pistol featuring a miniaturized version of the DM-93's";
@@ -263,7 +267,8 @@ MENU_PHAZERLORE3 = "only powerful enough to fire single shots at a time.";
 
 //Micro-Cell
 MENU_MCELLTITLE = "------ Micro-Cell Options ------";
-MENU_MCELLCLIPTEXT = "Control the spawn rate of Micro-Cells on Shell Ammo spawns.";
+MENU_MCELLCLIPTEXT1 = "Control the spawn rate of Micro-Cells on Shell Ammo spawns.";
+MENU_MCELLCLIPTEXT2 = "Control the spawn rate of Micro-Cells on Battery spawns.";
 MENU_MCELLBACKPACK = "Control whether Micro-Cells spawn in Backpacks & Ammo Boxes";
 
 MENU_MICROLORE1 = "A smaller, compact version of the Cell Battery, designed";
@@ -306,7 +311,7 @@ MENU_JUANLORE5 = "instead leaving users to use a 'galloping' shooting pattern to
 
 // Doomed Hunter
 MENU_DHUNTITLE = "------ Doomed Hunter Options ------";
-MENU_DHUNTTEXT1 = "Control the spawn rate of the Doomed Hunter on Shotguns";
+MENU_DHUNTTEXT1 = "Control the spawn rate of the Doomed Hunter on Hunter spawns";
 MENU_DHUNTBACKPACK = "Control whether the Doomed Hunters spawn in Backpacks";
 
 MENU_DHUNTLORE1 = "An older modelled and decrepit Hunter that's lost it's ease of pumping over the years.";
@@ -314,7 +319,8 @@ MENU_DHUNTLORE2 = "These older Hunters came with Duckbill Chokes to control thei
 
 // DM-93
 MENU_PBUSTITLE = "------ DM-93 Plasma Buster Options ------";
-MENU_PBUSTTEXT1 = "Control the spawn rate of the Plasma Buster on Thunderbusters";
+MENU_PBUSTTEXT1 = "Control the spawn rate of the Plasma Buster on Thunderbuster spawns";
+MENU_PBUSTTEXT2 = "Control the spawn rate of the Plasma Buster on Cell Pack spawns";
 MENU_PBUSTBACKPACK = "Control whether the Plasma Busters spawn in Backpacks";
 
 MENU_PBUSTLORE1 = "A revised version of the 'Thunder Buster' particle beam gun.";
@@ -328,7 +334,8 @@ MENU_PBUSTLORE8 = "shoots out a spread of many shots in rapid succession.";
 
 // Obrozz
 MENU_OBROZZTITLE = "------ Obrozz Sawn-off Boss Rifle Options ------";
-MENU_OBROZZTEXT = "Control the spawn rate of the Obrozz Pistol on Ammo Boxes";
+MENU_OBROZZTEXT1 = "Control the spawn rate of the Obrozz Pistol on Boss Rifle spawns";
+MENU_OBROZZTEXT2 = "Control the spawn rate of the Obrozz Pistol on Clip Box spawns";
 MENU_OBROZZBACKPACK = "Control whether the Obrozz Pistols spawn in Backpacks";
 
 MENU_OBROZZLORE1 = "A Boss rifle that has been reduced down to the bare essentials.";
@@ -338,7 +345,7 @@ MENU_OBROZZLORE4 = "lack of any proper sighting system makes accurate shooting d
 
 // Combat Shotgun
 MENU_CSHOTTITLE = "------ Ithaca M37 Combat Shotgun Options ------";
-MENU_CSHOTTEXT = "Control the spawn rate of the Combat Shotgun on Shotguns";
+MENU_CSHOTTEXT = "Control the spawn rate of the Combat Shotgun on Hunter spawns";
 MENU_CSHOTBACKPACK = "Control whether the Combat Shotguns spawn in Backpacks";
 
 MENU_CSHOTLORE1 = "A compact shotgun often seen in the hands of space marines throughout the galaxy.";
@@ -347,7 +354,8 @@ MENU_CSHOTLORE3 = "Toss one in your pack the next time you leave HQ, it may beco
 
 // Sigcow
 MENU_SIGCOWTITLE = "------ M-211 Sigcow Options ------";
-MENU_SIGCOWTEXT1 = "Control the spawn rate of the Sigcow on Ammo Boxes";
+MENU_SIGCOWTEXT1 = "Control the spawn rate of the Sigcow on Clip Box spawns";
+MENU_SIGCOWTEXT2 = "Control the spawn rate of the Sigcow Magazines on Clip Magazine spawns";
 MENU_SIGCOWBACKPACK = "Control whether the Sigcows spawn in Backpacks";
 MENU_SIGCOWMAGBACKPACK = "Control whether the Sigcow's magazines spawn in Backpacks & Ammo Boxes";
 
@@ -357,8 +365,8 @@ MENU_SIGCOWLORE3 = "Includes a bayonet attachment for ease of use in close-quart
 
 // 10 Piss
 MENU_10PTITLE = "------ Delta Elite 10mm Pistol Options ------";
-MENU_10PTEXT1 = "Control the spawn rate of the 10mm Pistol on Handguns";
-MENU_10PTEXT2 = "Control the spawn rate of the 10mm Pistol's magazines on Shell Ammo spawns.";
+MENU_10PTEXT1 = "Control the spawn rate of the 10mm Pistol on Pistol Spawns";
+MENU_10PTEXT2 = "Control the spawn rate of the 10mm Pistol's magazines on Clip Magazine spawns.";
 MENU_10PBACKPACK = "Control whether the 10mm Pistols spawn in Backpacks";
 MENU_10PMAGBACKPACK = "Control whether the 10mm Pistol's magazines spawn in Backpacks & Ammo Boxes";
 
@@ -368,9 +376,9 @@ MENU_10PLORE3 = "than either 9x22mm Parumpudicum or .355 firearms, but is much m
 
 // Colt 1911
 MENU_COLTTITLE = "------ Colt 1911 .45 Pistol Options ------";
-MENU_COLTTEXT1 = "Control the spawn rate of the Colt 1911 on Handguns";
-MENU_COLTTEXT2 = "Control the spawn rate of Colt 1911 bundles on Ammo Boxes";
-MENU_COLTTEXT3 = "Control the spawn rate of the Colt 1911's magazines on Shell Ammo spawns.";
+MENU_COLTTEXT1 = "Control the spawn rate of the Colt 1911 on Pistol Spawns";
+MENU_COLTTEXT2 = "Control the spawn rate of Colt 1911 on Clip Boxes";
+MENU_COLTTEXT3 = "Control the spawn rate of the Colt 1911's magazines on Clip Magazine spawns.";
 MENU_COLTBACKPACK = "Control whether the Colt 1911s spawn in Backpacks";
 MENU_COLTMAGBACKPACK = "Control whether the Colt 1911's mags spawn in Backpacks & Ammo Boxes";
 
@@ -380,8 +388,7 @@ MENU_C19LORE3 = "in a couple of well-placed shots.";
 
 // sten
 MENU_STENTITLE = "------ STEN Mk. 2(S) Suppressed SMG Options ------";
-MENU_STENTEXT1 = "Control the spawn rate of the STEN on SMG spawns";
-MENU_STENTEXT2 = "Control the spawn rate of STENs on Ammoboxes";
+MENU_STENTEXT1 = "Control the spawn rate of the STEN on Clip Box spawns";
 MENU_STENBACKPACK = "Control whether the STENs spawn in Backpacks";
 
 MENU_STENLORE1 = "A sub-machine gun designed by the British during WWII,";
@@ -392,6 +399,7 @@ MENU_STENLORE4 = "silencing gunfire to the level of a handclap.";
 // snose :)
 MENU_SNOSETITLE = "------ Detective Special Snubnose Revolver Options ------";
 MENU_SNOSETEXT1 = "Control the spawn rate of the Snubnose Revolver on Revolver spawns";
+MENU_SNOSETEXT2 = "Control the spawn rate of the Snubnose Revolver on Hunter spawns";
 MENU_SNOSEBACKPACK = "Control whether the Snubnose Revolvers spawn in Backpacks";
 
 MENU_SNOSELORE1 = "A sidearm once popular with police and private investigators of the past.";
@@ -400,8 +408,8 @@ MENU_SNOSELORE3 = "Though the smaller barrel cuts down your accuracy and firepow
 
 // Minerva
 MENU_MINERVATITLE = "------ Minerva 9mm Chaingun Options ------";
-MENU_MINERVATEXT1 = "Control the spawn rate of the Minerva on Chainguns";
-MENU_MINERVATEXT2 = "Control the spawn rate of the Minerva on SMGs";
+MENU_MINERVATEXT1 = "Control the spawn rate of the Minerva on Chaingun spawns";
+MENU_MINERVATEXT2 = "Control the spawn rate of the Minerva on Clip Box spawns";
 MENU_MINERVABACKPACK = "Control whether the Minervas spawn in Backpacks";
 
 MENU_MINERVALORE1 = "A support weapon chambered in 9x22mm Parumpudicum,";
@@ -411,7 +419,7 @@ MENU_MINERVALORE4 = "Just remember to keep your empty mags.";
 
 // LLH
 MENU_TITLELLH = "------ Bernoulli M1053 Less-Lethal Shotgun Options ------";
-MENU_LLHTEXT1 = "Control the spawn rate of the Less-Lethal Hunter Shotgun on Shotguns";
+MENU_LLHTEXT1 = "Control the spawn rate of the Less-Lethal Hunter Shotgun on Hunter spawns";
 MENU_LLHBACKPACK = "Control whether the Less-Lethal Hunter Shotguns spawn in Backpacks";
 
 MENU_LLHLORE1 = "A polymer-based shotgun designed for riot control and crowd dispersion.";
@@ -420,7 +428,8 @@ MENU_LLHLORE3 = "Useful for situations where maintaining a low fatality count is
 
 // Hecked zm66
 MENU_HZMTITLE = "------ Hacked ZM66 Assault Rifle Options ------";
-MENU_HZMTEXT1 = "Control the spawn rate of the Hacked ZM66 on Ammo Boxes";
+MENU_HZMTEXT1 = "Control the spawn rate of the Hacked ZM66 on ZM66 Assault Rifle spawns";
+MENU_HZMTEXT2 = "Control the spawn rate of the Hacked ZM66 on Clip Box spawns";
 MENU_HZMBACKPACK = "Control whether the Hacked ZM66s spawn in Backpacks";
 
 MENU_HZMLORE1 = "A 'jailbroken' model of the Volt ZM66 Assault Rifle,";
@@ -431,7 +440,7 @@ MENU_HZMLORE5 = "Mainly of these models come with a 4 round 'Quad Burst' firemod
 
 // Explosive Hunter
 MENU_EHUNTERTITLE = "------ Explosive Shotgun Options ------";
-MENU_EHUNTERTEXT1 = "Control the spawn rate of the Explosive Shotgun on Shotguns";
+MENU_EHUNTERTEXT1 = "Control the spawn rate of the Explosive Shotgun on Hunter spawns";
 MENU_EHUNTERBACKPACK = "Control whether the Explosive Shotguns spawn in Backpacks";
 
 MENU_EHUNTERLORE1 = "The antithesis of the Bernoulli M1053, this modified hunter fires slugs loaded with miniature HE grenades.";
@@ -441,7 +450,7 @@ MENU_EHUNTERLORE3 = "Use of this weapon in close-quarters is ill-advised if you 
 // Single Action
 MENU_SINGACTTITLE = "------ Single-Action Revolver Options ------";
 MENU_SINGACTTEXT1 = "Control the spawn rate of the Single-Action on Revolver spawns";
-MENU_SINGACTTEXT2 = "Control the spawn rate of the Single-Action on Revolver spawns";
+MENU_SINGACTTEXT2 = "Control the spawn rate of the Single-Action on Hunter spawns";
 MENU_SINGACTBACKPACK = "Control whether the Single-Action Revolvers spawn in Backpacks";
 
 MENU_SINGACTLORE1 = "An ancient firearm better suited for a gunslinger than a space marine.";
@@ -451,6 +460,7 @@ MENU_SINGACTLORE3 = "With how old these rounds are, they have a good chance to r
 // Single Action but pis- gold
 MENU_GREVVYTITLE = "------ Gold Single-Action Revolver Options ------";
 MENU_GREVVYTEXT1 = "Control the spawn rate of the Golden Single-Action on Revolver spawns";
+MENU_GREVVYTEXT2 = "Control the spawn rate of the Golden Single-Action on Slayer spawns";
 MENU_GREVVYBACKPACK = "Control whether the Golden Single-Action Revolvers spawn in Backpacks";
 
 MENU_GREVVYLORE1 = "A special golden version of the Single-Action Revolver.";
