@@ -1,8 +1,12 @@
 // ------------------------------------------------------------
-// A 12-gauge pump for bird hunting
+// A 20-gauge pump for bird hunting
 // ------------------------------------------------------------
 const HDLD_DUCKUNT = "DUK";
 
+//yes, it's a 20g shotgun now,
+//because 12g shells hold too many pellets
+//to fire them all at once without
+//performance issues
 
 class DuckHunter:HDShotgun{
 	default{
@@ -44,8 +48,8 @@ class DuckHunter:HDShotgun{
 		spread*=shotpower;
 		speedfactor*=shotpower;
 		HDBulletActor.FireBullet(caller,"HDB_wad");
-		let p=HDBulletActor.FireBullet(caller,"HDB_No2Birdshot",
-			spread:spread,speedfactor:speedfactor,amount:50 //cutting it down to 50, 100 is too OP
+		let p=HDBulletActor.FireBullet(caller,"HDB_BBShot",
+			spread:spread,speedfactor:speedfactor,amount:30
 		);
 		distantnoise.make(p,"world/shotgunfar");
 		caller.A_StartSound("weapons/hunter",CHAN_WEAPON);
