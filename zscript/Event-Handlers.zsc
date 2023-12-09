@@ -251,6 +251,11 @@ class RadTechHandler : EventHandler {
         wep_12gaex.push('MetalFireBlooper');
         addammo('HDExplosiveShellAmmo', wep_12gaex);
 
+        // 12 gauge (slug) ammo.
+        Array<string> wep_12slug;
+        wep_12slug.push('MetalFireBlooper');
+        addammo('HDSlugAmmo', wep_12slug);
+
         // 10mm ammo
         Array<string> wep_10mm;
         wep_10mm.push('HD10mmPistol');
