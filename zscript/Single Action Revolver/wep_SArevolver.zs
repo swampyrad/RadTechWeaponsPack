@@ -447,23 +447,23 @@ if(ninemil>0){
 		#### A 0;
 		---- A 1 A_WeaponReady(WRF_ALLOWRELOAD|WRF_ALLOWUSER1|WRF_ALLOWUSER2|WRF_ALLOWUSER3|WRF_ALLOWUSER4);
 		goto readyend;
-  fanfire:
-  #### A 1 A_JumpIf(!pressingfire(),"nope");
+  
 	fire:
-		#### A 1 A_JumpIf(invoker.weaponstatus[0]&RSAF_COCKED,"hammertime");
-  #### A 1 A_JumpIf(pressingaltfire(),"altfire");
-  #### A 1 A_JumpIf(!pressingfire(),"nope");
-		//#### A 1 offset(0,34);
-		//#### A 0 offset(0,32);
-  goto fire;
+		#### # 0 A_JumpIf(invoker.weaponstatus[0]&RSAF_COCKED,"hammertime");//fire if cocked
+        #### # 0 A_JumpIf(!pressingfire(),"nope");//reset if not holding Fire
+        #### # 0 A_JumpIf(pressingaltfire(),"altfire");//cock hammer while holding Fire to fan your shots
+        #### # 1;
+        goto fire;
+  
 	hammertime:
 		#### A 0 A_ClearRefire();
-		#### A 1 A_FireRevolver();
-		goto fire;
+		#### A 1 A_FireRevolver();//drop the hammer if cocked
 	firerecoil:
 		#### D 2;
-		#### A 0;
-		goto ready;
+		#### A 1;
+	aftershot://let go of AltFire to get out of this loop
+		#### A 1 A_JumpIf(!pressingaltfire(),"ready");
+		goto aftershot;
 	flash:
 		SARF A 1 bright;
 		---- A 0 A_Light0();
@@ -471,20 +471,21 @@ if(ninemil>0){
 		stop;
 		RSVG ABCD 0;
 		stop;
+		
 	altfire:
 		---- A 0 A_JumpIf(invoker.weaponstatus[0]&RSAF_COCKED,"uncock");
 		#### B 1 offset(0,34) A_ClearRefire();
-		#### B 2 offset(0,36) A_RotateCylinder();
+		#### C 1 offset(0,36) A_RotateCylinder();
 	cocked:
 		#### C 0 {A_CockHammer(); A_StartSound("weapons/rsa_click",8,CHANF_OVERLAP);}
-		---- A 0 A_JumpIf(pressingaltfire(),"nope");
-		goto fanfire;
+		---- C 2 A_JumpIf(pressingfire(),"hammertime");
+        goto nope;
 	uncock:
-		#### C 1 offset(0,38);
-		#### B 1 offset(0,34);
-		#### A 2 offset(0,36) A_StartSound("weapons/rsa_click",8,CHANF_OVERLAP);
+		#### C 2 offset(0,38);
+		#### B 2 offset(0,34);
+		#### A 1 offset(0,36) A_StartSound("weapons/rsa_click",8,CHANF_OVERLAP);
 		#### A 0 A_CockHammer(false);
-		goto nope;
+		goto fire;
 	reload:
 	unload:
 		#### C 0 A_JumpIf(!(invoker.weaponstatus[0]&RSAF_COCKED),3);
