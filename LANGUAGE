@@ -38,7 +38,7 @@ TAG_TT33 = "TT-33 'Tokarev' Pistol";
 TAG_PPSH41 = "PPSh-41 'Papasha' SMG";
 TAG_S99 = "Savage 99 Lever-Action Rifle";
 TAG_FP45 = "FP-45 'Liberator' Pistol";
-TAG_DUCKHUNT = "Duck Hunter";
+TAG_DUCKHUNT = "'Duck Hunter' 20g Shotgun";
 
 // Weapon Pickup messages. Like tags, but when you get your grubby hands on it. - [Ted]
 PICKUP_10MMPISTOL = "You got the 10mm pistol! It really packs a punch!";
