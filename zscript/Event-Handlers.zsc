@@ -353,7 +353,7 @@ class RadTechHandler : EventHandler {
 
         // 7mm Tokarev
         Array<string> wep_7mmTokarev;
-        wep_7mmTokarev.push('TT33Pistol');
+        wep_7mmTokarev.push('HDTT33Pistol');
         wep_7mmTokarev.push('HDPPSh41');
         addammo('HD762TokarevAmmo', wep_7mmTokarev);
 
