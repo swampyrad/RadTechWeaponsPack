@@ -221,11 +221,10 @@ class RadTechHandler : EventHandler {
         wep_battery.push('MinervaChaingun');
         addammo('HDBattery', wep_battery);
 
-        // 12ga Flare Ammo.
-        Array<string> wep_flare;
-        wep_flare.push('FireBlooper');
-        wep_flare.push('MetalFireBlooper');
-        addammo('HDFlareAmmo', wep_flare);
+        // 20 gauge (birdshot) ammo.
+        Array<string> wep_20gaberd;
+        wep_20gaberd.push('DuckHunter');
+        addammo('HDBirdshotShellAmmo', wep_20gaberd);
 
         // 12 gauge (normal) Ammo.
         Array<string> wep_12ga;
@@ -235,15 +234,16 @@ class RadTechHandler : EventHandler {
         wep_12ga.push('DoomHunter');
         addammo('HDShellAmmo', wep_12ga);
 
-        // 12 gauge (birdshot) ammo.
-        Array<string> wep_12gaberd;
-        wep_12gaberd.push('DuckHunter');
-        addammo('HDBirdshotShellAmmo', wep_12gaberd);
-
         // 12 gauge (less lethal) ammo.
         Array<string> wep_12gall;
         wep_12gall.push('LLHunter');
         addammo('HDLLShellAmmo', wep_12gall);
+
+        // 12 gauge (flare) Ammo.
+        Array<string> wep_flare;
+        wep_flare.push('FireBlooper');
+        wep_flare.push('MetalFireBlooper');
+        addammo('HDFlareAmmo', wep_flare);
 
         // 12 gauge (explosive) ammo.
         Array<string> wep_12gaex;
@@ -519,6 +519,12 @@ class RadTechHandler : EventHandler {
         Array<RTSpawnItemEntry> spawns_exshotgun;
         spawns_exshotgun.push(additementry('HunterRandom', esg_hunter_spawn_bias));
         additem('ExplosiveHunter', spawns_exshotgun, esg_persistent_spawning);
+
+
+        // Duck Hunter 20ga Shotgun
+        Array<RTSpawnItemEntry> spawns_duckshotgun;
+        spawns_duckshotgun.push(additementry('HunterRandom', duckhunt_hunter_spawn_bias));
+        additem('DuckHunter', spawns_duckshotgun, duckhunt_persistent_spawning);
 
 
         // Plastic Flaregun
