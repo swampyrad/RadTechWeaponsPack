@@ -39,6 +39,7 @@ TAG_PPSH41 = "PPSh-41 'Papasha' SMG";
 TAG_S99 = "Savage 99 Lever-Action Rifle";
 TAG_FP45 = "FP-45 'Liberator' Pistol";
 TAG_DUCKHUNT = "'Duck Hunter' 20g Shotgun";
+TAG_COP357 = "C.O.P. .357 Derringer";
 
 // Weapon Pickup messages. Like tags, but when you get your grubby hands on it. - [Ted]
 PICKUP_10MMPISTOL = "You got the 10mm pistol! It really packs a punch!";
@@ -81,6 +82,7 @@ PICKUP_TT33 = "You got the TT-33!";
 PICKUP_PPSH41 = "You got the PPSh-41!";
 PICKUP_S99 = "You got the Savage 99!";
 PICKUP_DUCKHUNT = "You got the Duck Hunter!";
+PICKUP_COP357 = "You got the COP .357! What a bastard of a gun!";
 
 // Item Tags, same as weapons but these are just for the items. - [Ted]
 TAG_10RELOADER = "10mm Auto-Reloader";
@@ -135,7 +137,7 @@ OB_PPSH41 = "o% got popped by k%'s Papasha.";
 OB_S99 = "%o got sniped by %k's Savage 99";
 OB_DUCKHUNTER = "%o couldn't convince %k it was rabbit season."
 OB_FP45 = "%k liberated %o from life.";
-
+OB_COP357 = "%o got COP'd by %k.";
 
 // EVERYTHING below this is Menu stuff. Feast upon the horror. - [Ted]
 
@@ -405,6 +407,17 @@ MENU_SNOSEBACKPACK = "Control whether the Snubnose Revolvers spawn in Backpacks"
 MENU_SNOSELORE1 = "A sidearm once popular with police and private investigators of the past.";
 MENU_SNOSELORE2 = "This revolver's smaller stature fits much better in your pocket,";
 MENU_SNOSELORE3 = "Though the smaller barrel cuts down your accuracy and firepower.";
+
+// COP .357
+MENU_COP357TITLE = "------ C.O.P. .357 4-Shot Derringer Options ------";
+MENU_COP357TEXT1 = "Control the spawn rate of the C.O.P. .357 on Revolver spawns";
+MENU_COP357TEXT2 = "Control the spawn rate of the C.O.P. .357 on Hunter spawns";
+MENU_COP357BACKPACK = "Control whether C.O.P. .357s spawn in Backpacks";
+
+MENU_COP357LORE1 = "";
+MENU_COP357LORE2 = "";
+MENU_COP357LORE3 = "";
+
 
 // Minerva
 MENU_MINERVATITLE = "------ Minerva 9mm Chaingun Options ------";

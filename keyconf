@@ -30,7 +30,9 @@ alias s99_reset_cvars "resetcvar savage99_shotgun_spawn_bias; resetcvar savage99
 alias fp45_reset_cvars "resetcvar fp45_bonus_spawn_bias; resetcvar fp45_allowBackpacks; resetcvar fp45_persistent_spawning"
 alias tt33_reset_cvars "resetcvar tt33_ammobox_spawn_bias; resetcvar tt33_mag_shell_spawn_bias; resetcvar tt33_allowBackpacks; resetcvar tt33_mag_allowBackpacks; resetcvar tt33_persistent_spawning" 
 alias ppsh41_reset_cvars "resetcvar ppsh41_smg_spawn_bias; resetcvar ppsh41_ammobox_spawn_bias; resetcvar ppsh41_mag_spawn_bias; resetcvar ppsh41_allowBackpacks; resetcvar ppsh41_mag_allowBackpacks; resetcvar ppsh41_persistent_spawning; "
+alias cop_reset_cvars "resetcvar cop_pistol_spawn_bias; resetcvar cop_allowBackpacks; resetcvar cop_persistent_spawning"
+
 
 alias reloaders_reset_cvars "resetcvar reloader10mm_allowBackpacks; resetcvar reloader300S_allowBackpacks; resetcvar reloader762_allowBackpacks"
 
-alias RTWP_Reset_Cvars "flreset_cvars; dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars; llh_reset_cvars; hzm_reset_cvars; esg_reset_cvars; sa_reset_cvars; gsa_reset_cvars; obrozz_reset_cvars; dynamite_reset_cvars; colt1911_reset_cvars; sten_reset_cvars; stungun_reset_cvars; hushpuppy_reset_cvars; phazer_reset_cvars; microcell_reset_cvars; fcn_reset_cvars; juan_reset_cvars; duckhunt_reset_cvars; s99_reset_cvars; fp45_reset_cvars; tt33_reset_cvars; ppsh41_reset_cvars; reloaders_reset_cvars"
+alias RTWP_Reset_Cvars "flreset_cvars; dHunt_reset_cvars; pBuster_reset_cvars; cshotgun_reset_cvars; sigcow_reset_cvars; 10pis_reset_cvars; snose_reset_cvars; minerva_reset_cvars; llh_reset_cvars; hzm_reset_cvars; esg_reset_cvars; sa_reset_cvars; gsa_reset_cvars; obrozz_reset_cvars; dynamite_reset_cvars; colt1911_reset_cvars; sten_reset_cvars; stungun_reset_cvars; hushpuppy_reset_cvars; phazer_reset_cvars; microcell_reset_cvars; fcn_reset_cvars; juan_reset_cvars; duckhunt_reset_cvars; s99_reset_cvars; fp45_reset_cvars; tt33_reset_cvars; ppsh41_reset_cvars; cop_reset_cvars; reloaders_reset_cvars"

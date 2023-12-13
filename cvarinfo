@@ -143,6 +143,12 @@ server int snose_revolver_spawn_bias = 19;
 server int snose_hunter_spawn_bias = 19;
 server bool snose_persistent_spawning = false;
 
+// C.O.P. .357
+server bool cop_allowBackpacks = true;
+server int cop_revolver_spawn_bias = 19;
+server int cop_hunter_spawn_bias = 19;
+server bool cop_persistent_spawning = false;
+
 // Minerva
 server bool minerva_allowBackpacks = true;
 server int minerva_chaingun_spawn_bias = 24;

@@ -21,6 +21,9 @@ version "4.10"
 // Snubnose Revolver
 #include "zscript/Snubnose Revolver/wep_snubnose.zs"
 
+// COP .357
+#include "zscript/COP357/wep_cop357.zs"
+
 // Single-action Revolver
 #include "zscript/Single Action Revolver/wep_SArevolver.zs"
 

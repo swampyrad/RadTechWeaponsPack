@@ -104,6 +104,88 @@ sprite LIBPA0, 20, 16{
     patch LIBPA0, 0, 0{}
 }
 
+// C.O.P. .357
+
+//pickup sprites
+sprite COPPA0, 22, 14{
+  offset 11, 14
+  patch COPPA0, 0, 0
+}
+
+//muzzle flash
+
+sprite COPFA0, 64, 64{
+  offset -128, -64
+  patch COPFA0, 0, 0
+}
+
+//wronghand sprites
+sprite COPVA0, 320, 240{
+  offset  0, 72
+  patch COPDA0, 0, 0{flipx}
+}
+
+sprite COPVB0, 320, 240{
+  offset  0, 72
+  patch COPDB0, 0, 0{flipx}
+}
+
+sprite COPVC0, 320, 240{
+  offset  0, 72
+  patch COPDC0, 0, 0{flipx}
+}
+
+sprite COPVD0, 320, 240{
+  offset  0, 70
+  patch COPDD0, 0, 0{flipx}
+}
+
+sprite COPVE0, 320, 240{
+  offset  0, 68
+  patch COPDE0, 0, 0{flipx}
+}
+
+//chambered round sprites
+
+//used on E frame, when
+//chamber fully open
+sprite CPD1A0, 7, 6{
+offset -152, -92
+patch "coprnd1", 0, 0
+}
+sprite CPD2A0, 7, 6{
+offset -161, -92
+patch "coprnd1", 0, 0
+}
+sprite CPD3A0, 7, 6{
+offset -161, -100
+patch "coprnd1", 0, 0
+}
+sprite CPD4A0, 7, 6{
+offset -152, -100
+patch "coprnd1", 0, 0
+}
+
+//used on D frame, when
+//chamber is half-open
+sprite CPD1B0, 7, 6{
+offset -152, -94
+patch "coprnd1", 0, 0
+}
+sprite CPD2B0, 7, 6{
+offset -161, -94
+patch "coprnd1", 0, 0
+}
+sprite CPD3B0, 7, 5{
+offset -161, -102
+patch "coprnd3", 0, 0
+}
+sprite CPD4B0, 7, 5{
+offset -152, -102
+patch "coprnd4", 0, 0
+}
+
+
 
 // Savage 99
 

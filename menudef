@@ -23,6 +23,8 @@ OptionMenu RadTechWeaponry
 	StaticText ""
 	Submenu "$TAG_SNUBNOSE", "snose", 0, 1
     StaticText ""
+    Submenu "$TAG_COP357", "cop357", 0, 1
+	StaticText ""
 	StaticText "--- Shotguns ---", "red"
     StaticText ""
     Submenu "$TAG_DOOMHUNT", "DoomedHunter", 0, 1
@@ -803,7 +805,7 @@ OptionMenu STEN
 
 OptionMenu Snose
 {
-    Title "------ Detective Special Snubnose Revolver Options ------"
+    Title "$MENU_SNOSETITLE"
    	StaticText "$MENU_NOTICE", "Green"
     StaticText  "$MENU_SUPPRESS1", "white"
     StaticText  "$MENU_SUPPRESS2", "white"
@@ -833,6 +835,43 @@ OptionMenu Snose
 	StaticText "$MENU_SNOSELORE1", "white"
 	StaticText "$MENU_SNOSELORE2", "white"
 	StaticText "$MENU_SNOSELORE3", "white"
+}
+
+OptionMenu cop357
+{
+    Title "$MENU_COP357TITLE"
+   	StaticText "$MENU_NOTICE", "Green"
+    StaticText  "$MENU_SUPPRESS1", "white"
+    StaticText  "$MENU_SUPPRESS2", "white"
+    StaticText ""
+	StaticText "$MENU_SPAWNOPTIONS", "Green"
+    StaticText  "$MENU_COP357TEXT1", "white"
+	Option "$MENU_WEPSPAWNRATE", "cop_revolver_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar cop_revolver_spawn_bias"
+	StaticText ""
+    StaticText  "$MENU_COP357TEXT2", "white"
+	Option "$MENU_WEPSPAWNRATE", "cop_hunter_spawn_bias", "SpawnBias"
+	SafeCommand "$MENU_RESETWEP", "resetcvar cop_hunter_spawn_bias"
+	StaticText ""
+	StaticText  "$MENU_COP357BACKPACK", "white"
+	Option "$MENU_BACKPACKSALLOWED", "cop_allowBackpacks", "OnOff"
+ 	StaticText ""
+    StaticText  "$MENU_REPLACEAFTERMAPLOAD", "white"
+	Option "$MENU_PERSISTENCY", "cop_persistent_spawning", "OnOff"
+	SafeCommand "$MENU_RESETPERSISTENCY", "resetcvar cop_persistent_spawning"
+ 	StaticText ""
+   	StaticText ""
+	StaticText "$MENU_RESETOPTIONS", "Green"
+	SafeCommand "$MENU_RESETALLOPTIONS", "cop_reset_cvars"
+	StaticText ""
+	
+	/* no lore yet
+	StaticText "$MENU_LORETAG", "Green"
+	StaticText ""
+	StaticText "$MENU_SNOSELORE1", "white"
+	StaticText "$MENU_SNOSELORE2", "white"
+	StaticText "$MENU_SNOSELORE3", "white"
+	*/
 }
 
 OptionMenu Minerva
