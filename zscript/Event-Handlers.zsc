@@ -292,6 +292,7 @@ class RadTechHandler : EventHandler {
         wep_9mm.push('HDStenMk2');
         wep_9mm.push('HushPuppyPistol');
         wep_9mm.push('HDHorseshoePistol');
+        wep_9mm.push('COP357Pistol');
         addammo('HDPistolAmmo', wep_9mm);
 
         // 9mm pistol magazines
@@ -309,6 +310,7 @@ class RadTechHandler : EventHandler {
         // .355
         Array<string> wep_355;
         wep_355.push('HDSnubNoseRevolver');
+        wep_355.push('COP357Pistol');
         addammo('HDRevolverAmmo', wep_355);
 
         // .45 ACP
@@ -474,6 +476,13 @@ class RadTechHandler : EventHandler {
         spawns_snubnose.push(additementry('DeinoSpawn', snose_revolver_spawn_bias));
         spawns_snubnose.push(additementry('HunterRandom', snose_hunter_spawn_bias));
         additem('SnubNoseSpawn', spawns_snubnose, snose_persistent_spawning);
+
+        // COP .357
+        Array<RTSpawnItemEntry> spawns_cop357;
+        spawns_cop357.push(additementry('DeinoSpawn', cop_revolver_spawn_bias));
+        spawns_cop357.push(additementry('HunterRandom', cop_hunter_spawn_bias));
+        additem('COP357Spawn', spawns_cop357, cop_persistent_spawning);
+
 
 
         // Single-Action Revolver
