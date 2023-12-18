@@ -18,16 +18,16 @@ class HDSingleActionRevolver:HDHandgun{
 		obituary "$OB_RSA";
 		tag "$TAG_SINGLEACTREV";
 		hdweapon.refid "rsa";//revolver, single action
-		hdweapon.barrelsize 12,0.3,0.5; //twice the barrel length
+		hdweapon.barrelsize 22,0.3,0.5; //twice the barrel length
 	}
 	override double gunmass(){
 		double blk=0;
 		for(int i=SING_CYL1;i<=SING_CYL6;i++){
 			int wi=weaponstatus[i];
-			if(wi==SING_MASTERBALL)blk+=0.45;
-			else if(wi==SING_NINEMIL)blk+=0.45;
+			if(wi==SING_MASTERBALL)blk+=0.15;
+			else if(wi==SING_NINEMIL)blk+=0.15;
 		}
-		return blk+7;
+		return blk+6;
 	}
 
 	override string pickupmessage(){
@@ -117,7 +117,7 @@ if(ninemil>0){
 		int cx,cy,cw,ch;
 		[cx,cy,cw,ch]=screen.GetClipRect();
 		vector2 scc;
-		vector2 bobb=bob*1.6;
+		vector2 bobb=bob*1.3;
 
 		sb.SetClipRect(
 			-8+bob.x,-9+bob.y,16,15,

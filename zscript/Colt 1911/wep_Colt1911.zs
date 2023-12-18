@@ -20,7 +20,7 @@ class HDColt1911:HDHandgun{
 //		inventory.pickupmessage "You got the Colt 1911! Semper Fi!";
 		tag "$TAG_C19";
 		hdweapon.refid "c19";
-		hdweapon.barrelsize 10,0.3,0.5;
+		hdweapon.barrelsize 19,0.3,0.5;
 	}
 
 	override string pickupmessage(){
@@ -95,7 +95,7 @@ class HDColt1911:HDHandgun{
 		int cx,cy,cw,ch;
 		[cx,cy,cw,ch]=screen.GetClipRect();
 		vector2 scc;
-		vector2 bobb=bob*1.6;
+		vector2 bobb=bob*1.3;
 
 		//if slide is pushed back, throw sights off line
 		if(hpl.player.getpsprite(PSP_WEAPON).frame>=2){

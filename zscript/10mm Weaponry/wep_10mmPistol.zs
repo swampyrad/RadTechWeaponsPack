@@ -19,7 +19,7 @@ class HD10mmPistol:HDHandgun{
 //		inventory.pickupmessage "You got the 10mm pistol! It really packs a punch!";
 		tag "$TAG_10PIS";
 		hdweapon.refid "p1m";//Pistol, 10 millimeter.
-		hdweapon.barrelsize 10,0.3,0.5;
+		hdweapon.barrelsize 19,0.3,0.5;
 
 		hdweapon.loadoutcodes "
 			\cuselectfire - 0/1, whether it has a fire selector
@@ -98,7 +98,7 @@ class HD10mmPistol:HDHandgun{
 		int cx,cy,cw,ch;
 		[cx,cy,cw,ch]=screen.GetClipRect();
 		vector2 scc;
-		vector2 bobb=bob*1.6;
+		vector2 bobb=bob*1.3;
 
 		//if slide is pushed back, throw sights off line
 		if(hpl.player.getpsprite(PSP_WEAPON).frame>=2){

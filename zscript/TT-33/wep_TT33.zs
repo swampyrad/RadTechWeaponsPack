@@ -69,7 +69,7 @@ class HDTT33Pistol:HDHandgun{
 		obituary "$OB_TT33";
 		tag "$TAG_TT33";
 		hdweapon.refid "t33";
-		hdweapon.barrelsize 10,0.3,0.5;
+		hdweapon.barrelsize 19,0.3,0.5;
 
 		hdweapon.loadoutcodes "
 			\cuselectfire - 0/1, whether it has a fire selector
@@ -178,7 +178,7 @@ class HDTT33Pistol:HDHandgun{
 		int cx,cy,cw,ch;
 		[cx,cy,cw,ch]=screen.GetClipRect();
 		vector2 scc;
-		vector2 bobb=bob*1.6;
+		vector2 bobb=bob*1.3;
 
 		//if slide is pushed back, throw sights off line
 		if(hpl.player.getpsprite(PSP_WEAPON).frame>=2){
