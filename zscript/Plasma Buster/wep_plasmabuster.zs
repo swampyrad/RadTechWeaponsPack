@@ -184,7 +184,7 @@ override void DrawSightPicture(
 			-16+bob.x,-32+bob.y,32,40,
 			sb.DI_SCREEN_CENTER
 		);
-		vector2 bobb=bob*2;
+		vector2 bobb=bob*1.2;
 //		bobb.y=clamp(bobb.y,-8,8);
 		sb.drawimage(
 			"tbfrntsit",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP

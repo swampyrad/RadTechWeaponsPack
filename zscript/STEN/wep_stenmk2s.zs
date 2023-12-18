@@ -117,7 +117,7 @@ class HDStenMk2:HDWeapon{
 				-16+bob.x,-4+bob.y,32,16,
 				sb.DI_SCREEN_CENTER
 			);
-			bobb.y=clamp(bobb.y,-8,8);
+			//bobb.y=clamp(bobb.y,-8,8);
 			sb.drawimage(
 				"stenfsit",(0,-5)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP
 			);

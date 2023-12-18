@@ -19,7 +19,7 @@ class PhazerPistol:HDHandgun{
 		weapon.ammouse 1;
 		scale 0.6;
 		obituary "$OB_PHAZER";
-		hdweapon.barrelsize 10,1.6,3;
+		hdweapon.barrelsize 19,1.6,3;
 		hdweapon.refid "PHZ";
 		tag "$TAG_PHAZER";
 	}
@@ -104,7 +104,7 @@ class PhazerPistol:HDHandgun{
 			-16+bob.x,-32+bob.y,32,40,
 			sb.DI_SCREEN_CENTER
 		);
-		vector2 bobb=bob*2;
+		vector2 bobb=bob*1.2;
 
 		sb.drawimage(
 			"frntsite",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP

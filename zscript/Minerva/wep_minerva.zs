@@ -44,9 +44,9 @@ class MinervaChaingun:ZM66ScopeHaver{
 		weapon.slotnumber 4;
 		weapon.slotpriority 1;
 		weapon.kickback 24;
-		weapon.bobrangex 1.4;
-		weapon.bobrangey 3.5;
-		weapon.bobspeed 2.1;
+		weapon.bobrangex 1.2;
+		weapon.bobrangey 1.5;
+		weapon.bobspeed 1.8;
 		weapon.bobstyle "normal";
 		obituary "$OB_MINERVA";
 		hdweapon.barrelsize 30,3,4;
@@ -80,6 +80,26 @@ override void postbeginplay(){
 		else if(bc>100)msg=msg..Stringtable.Localize("$PICKUP_MINERVADAMAGE100");
 		return msg;
 	}
+
+	override void DoEffect(){
+		let hdp=hdplayerpawn(owner);
+		if(hdp){
+			//droop downwards
+			if(
+				!hdp.gunbraced
+				&&!!hdp.player
+				&&hdp.player.readyweapon==self
+				&&hdp.strength
+				&&hdp.pitch<frandom(5,8)
+				&&!(weaponstatus[0]&BFGF_STRAPPED)
+			)hdp.A_MuzzleClimb((
+				frandom(-0.05,0.05),
+				frandom(0.1,clamp(1-pitch,0.06/hdp.strength,0.12))
+			),(0,0),(0,0),(0,0));
+		}
+		Super.DoEffect();
+	}
+
 
 	override void tick(){
 		super.tick();
@@ -172,18 +192,12 @@ override void postbeginplay(){
 		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
 		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
 	){
-		if(hpl.countinv("IsMoving")>2){
-			sb.drawimage(
-				"riflsite",(bob.x,bob.y+48),sb.DI_SCREEN_CENTER|sb.DI_ITEM_CENTER
-			);
-			return;
-		}
 		double dotoff=max(abs(bob.x),abs(bob.y));
-		if(dotoff<6){
+		if(dotoff<40){
 			string whichdot=sb.ChooseReflexReticle(hdw.weaponstatus[MNVS_DOT]);
 			sb.drawimage(
-				whichdot,(0,0)+bob*3,sb.DI_SCREEN_CENTER|sb.DI_ITEM_CENTER,
-				alpha:0.8-dotoff*0.04,
+				whichdot,(0,0)+bob*1.18,sb.DI_SCREEN_CENTER|sb.DI_ITEM_CENTER,
+				alpha:0.8-dotoff*0.01,
 				col:0xFF000000|sb.crosshaircolor.GetInt()
 			);
 		}
@@ -232,23 +246,10 @@ override void postbeginplay(){
 	select0:
    TNT1 A 1 ;//wait tic to avoid droop crash bug
 		MNVG A 0 A_CheckDefaultReflexReticle(MNVS_DOT);
-		MNVG A 0 A_Overlay(2,"droop");
 		goto select0bfg;
 	deselect0:
 		MNVG A 0;
 		goto deselect0bfg;
-
-	droop:
-		TNT1 A 1{
-			if(pitch<frandom(5,8)&&(!gunbraced())){
-				A_MuzzleClimb(frandom(-0.06,0.06),
-					frandom(0.1,clamp(1-pitch,
-						hdplayerpawn(self)?0.06/hdplayerpawn(self).strength:0.2
-					,0.25))//decreases aim droop
-				);
-			}
-		}loop;
-
 	ready:
 		MNVG A 1{
 			A_SetCrosshair(21);

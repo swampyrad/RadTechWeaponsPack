@@ -322,7 +322,7 @@ if(!punchee.countinv("HDArmourWorn")){
 				-16+bob.x,-4+bob.y,32,16,
 				sb.DI_SCREEN_CENTER
 			);
-			bobb.y=clamp(bobb.y,-8,8);
+			//bobb.y=clamp(bobb.y,-8,8);
 			sb.drawimage(
 				"smgfrntsit",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP
 			);

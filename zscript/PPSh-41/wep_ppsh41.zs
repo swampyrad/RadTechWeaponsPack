@@ -145,7 +145,7 @@ class HDPPSh41 :HDHandgun{
 		int cx,cy,cw,ch;
 		[cx,cy,cw,ch]=screen.GetClipRect();
 		vector2 scc;
-		vector2 bobb=bob*1.6;
+		vector2 bobb=bob*1.3;
 			
 		sb.SetClipRect(
 			-8+bob.x,-9+bob.y,16,15,

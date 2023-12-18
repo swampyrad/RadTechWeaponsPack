@@ -18,7 +18,7 @@ class HDSnubNoseRevolver:HDHandgun{
 		obituary "$OB_SNUBNOSE";
 		tag "$TAG_SNUBNOSE";
 		hdweapon.refid "snb";
-		hdweapon.barrelsize 2,0.3,0.5; //very short barrel, duh
+		hdweapon.barrelsize 16,0.3,0.5; //very short barrel, duh
 	}
 
 	override void postbeginplay(){
@@ -30,10 +30,10 @@ class HDSnubNoseRevolver:HDHandgun{
 		double blk=0;
 		for(int i=SNBN_CYL1;i<=SNBN_CYL6;i++){
 			int wi=weaponstatus[i];
-			if(wi==SNBN_MASTERBALL)blk+=0.35;
-			else if(wi==SNBN_NINEMIL)blk+=0.3;
+			if(wi==SNBN_MASTERBALL)blk+=0.12;
+			else if(wi==SNBN_NINEMIL)blk+=0.1;
 		}
-		return blk+7;
+		return blk+3.5;
 	}
 
 	override string pickupmessage(){
@@ -121,7 +121,7 @@ class HDSnubNoseRevolver:HDHandgun{
 		int cx,cy,cw,ch;
 		[cx,cy,cw,ch]=screen.GetClipRect();
 		vector2 scc;
-		vector2 bobb=bob*1.6;
+		vector2 bobb=bob*1.3;
 
 		sb.SetClipRect(
 			-8+bob.x,-9+bob.y,16,15,

@@ -18,7 +18,7 @@ class HDGoldSingleActionRevolver:HDHandgun{
 		obituary "$OB_GOLDENGUN";
 		tag "$TAG_GOLDSINGLEACTION";
 		hdweapon.refid "gsa";//golden single action
-		hdweapon.barrelsize 6,0.3,0.5;
+		hdweapon.barrelsize 20,0.3,0.5;
 	}
 	override string pickupmessage(){
 		return Stringtable.Localize("$PICKUP_GOLDENSINGLEACTION");
@@ -27,10 +27,10 @@ class HDGoldSingleActionRevolver:HDHandgun{
 		double blk=0;
 		for(int i=GSAS_CYL1;i<=GSAS_CYL6;i++){
 			int wi=weaponstatus[i];
-			if(wi==GSAS_MASTERBALL)blk+=1.3;
-			else if(wi==GSAS_NINEMIL)blk+=1.3;
+			if(wi==GSAS_MASTERBALL)blk+=0.3;
+			else if(wi==GSAS_NINEMIL)blk+=0.3;
 		}
-		return blk+15;
+		return blk+9;
 	}
 	override double weaponbulk(){
 		double blk=0;
@@ -115,7 +115,7 @@ if(ninemil>0){
 		int cx,cy,cw,ch;
 		[cx,cy,cw,ch]=screen.GetClipRect();
 		vector2 scc;
-		vector2 bobb=bob*1.6;
+		vector2 bobb=bob*1.3;
 
 		sb.SetClipRect(
 			-8+bob.x,-9+bob.y,16,15,
