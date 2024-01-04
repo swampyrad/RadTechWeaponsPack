@@ -2,7 +2,7 @@
 // Micro-Cell ammo for the Phazer pistol and other such gadgets
 // ------------------------------------------------------------
 
-class HDMicroCell:HDBattery{
+class HDMicroCell:HDMagAmmo{
 	default{
 		//$Category "Ammo/Hideous Destructor/"
 		//$Title "Micro-Cell"
@@ -18,7 +18,16 @@ class HDMicroCell:HDBattery{
 		inventory.icon "MCLLA0";
 		scale 0.4;
 	}
-	
+	enum BatteryChargeModes{
+		BATT_UNDEFINED=0,
+		BATT_DONTCHARGE=1,
+		BATT_CHARGEMAX=2,
+		BATT_CHARGESELECTED=3,
+		BATT_CHARGEDEFAULT=BATT_CHARGEMAX,
+	}
+	int ticker;
+	int lastamount;
+	int chargemode;
 	override string pickupmessage(){
 		return Stringtable.Localize("$PICKUP_MICROCELL");
 	}
@@ -130,7 +139,25 @@ class HDMicroCell:HDBattery{
 		else magsprite="MCLLD0";
 		return magsprite,"MCLPA0","HDMicroCell",0.8;
 	}
-	
+	override void DrawRoundCount(HDStatusBar sb,HDPlayerPawn hpl,name roundsprite,double scl,int offx,int offy){
+		bool helptext=hpl.hd_helptext.getbool();
+		offx+=40;
+		scl=1;
+		let battt=chargemode;
+		string batts="uNone";
+		if(battt==hdbattery.BATT_CHARGEMAX)batts="eAuto";
+		else if(battt==hdbattery.BATT_CHARGESELECTED)batts="ySelected";
+		sb.DrawString(
+			sb.psmallfont,string.format("%s\c%s%s",helptext?"Charging: ":"",batts,helptext?"\n\cu(\cqReload\cu to cycle)":""),(offx+2,offy),
+			sb.DI_SCREEN_CENTER|sb.DI_TEXT_ALIGN_LEFT,
+			wrapwidth:smallfont.StringWidth("m")*80
+		);
+
+		sb.drawimage("MCLLA0",(offx,offy),
+			sb.DI_SCREEN_CENTER|sb.DI_ITEM_RIGHT_TOP,
+			scale:(scl,scl)
+		);
+	}
 	override void GetItemsThatUseThis(){
 		itemsthatusethis.push("PhazerPistol");
 		itemsthatusethis.push("HDStunGun");
