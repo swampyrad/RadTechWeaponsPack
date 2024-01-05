@@ -7,7 +7,7 @@ const HDLD_STUNGUN="STU";
 const STUNGUNDRAIN=400;//was 1023; lower values mean faster drain
 
 
-class HDStunGun:HDCellWeapon{//Tasers and stun guns are not the same, apparently
+class HDStunGun:HDWeapon{//Tasers and stun guns are not the same, apparently
 	default{
 		//$Category "Weapons/Hideous Destructor"
 		//$Title "Stun Gun"
