@@ -314,7 +314,7 @@ class Savage99SniperRifle:HDWeapon{
 					-frandom(0.6,1.3),-frandom(0.6,1.3)
 				);
 				setweaponstate("jamderp");
-			}else A_StartSound("weapons/boltback",8);
+			}else A_StartSound("weapons/savage_cock",8);
 		}
 		#### C 1 offset(2,36){
 			if(gunbraced())A_MuzzleClimb(
@@ -393,7 +393,7 @@ class Savage99SniperRifle:HDWeapon{
 			return resolvestate("altholdend");
 		}
 	altholdend:
-		#### E 0 A_StartSound("weapons/boltfwd",8);
+		#### E 0 A_StartSound("weapons/savage_uncock",8);
 		#### DCB 2 A_WeaponReady(WRF_NOFIRE);
 		goto ready;
 	unloadchamber:
