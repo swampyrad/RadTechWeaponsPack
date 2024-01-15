@@ -22,6 +22,12 @@ weapons/dyna_pinout     ziplight
 weapons/dyna_spoonoff   tntfuse
 weapons/dyna_throw      tnttoss
 
+//Lever Action sounds
+//Cocking SFX by Tenacious Trilobite on YouTube:
+//https://m.youtube.com/watch?v=ljYbFV1dwDQ&pp=ygUQbGV2ZXIgYWN0aW9uIHNmeA%3D%3D
+weapons/savage_cock     levrcock
+weapons/savage_uncock   lvuncock
+
 //TT-33 sound credits:
 //(firing sounds made as a composite of sounds from these videos)
 //MasterHand1: https://youtu.be/N1u6KuLVdD0
