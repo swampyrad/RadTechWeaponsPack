@@ -83,18 +83,18 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl)
 	{
 		if(sb.hudlevel==1)
-		{   	sb.drawimage("SLG1A0",(-53,-19),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.1,1.1));
-			    sb.drawnum(hpl.countinv("HDSlugAmmo"),-50,-23,sb.DI_SCREEN_CENTER_BOTTOM);
-		    
-				sb.drawimage("XLS1A0",(-38,-19),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.1,1.1));
-			    sb.drawnum(hpl.countinv("HDExplosiveShellAmmo"),-35,-23,sb.DI_SCREEN_CENTER_BOTTOM);
+		{
+			sb.drawimage("SLG1A0",(-53,-19),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.1,1.1));
+			sb.drawnum(hpl.countinv("HDSlugAmmo"),-50,-23,sb.DI_SCREEN_CENTER_BOTTOM);
+		
+			sb.drawimage("XLS1A0",(-38,-19),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.1,1.1));
+			sb.drawnum(hpl.countinv("HDExplosiveShellAmmo"),-35,-23,sb.DI_SCREEN_CENTER_BOTTOM);
 
-			    sb.drawimage("FLARA0",(-48,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(0.6,0.6));
-			    sb.drawnum(hpl.countinv("HDFlareAmmo"),-40,-8,sb.DI_SCREEN_CENTER_BOTTOM);
-				
-			    sb.drawimage("SHL1A0",(-33,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.4,1.4));
-			    sb.drawnum(hpl.countinv("HDShellAmmo"),-25,-8,sb.DI_SCREEN_CENTER_BOTTOM);
-            
+			sb.drawimage("FLARA0",(-48,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(0.6,0.6));
+			sb.drawnum(hpl.countinv("HDFlareAmmo"),-45,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+			
+			sb.drawimage("SHL1A0",(-33,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.1,1.1));
+			sb.drawnum(hpl.countinv("HDShellAmmo"),-28,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		}
 		
 		if(hdw.weaponstatus[0]&FLARE_LOADED)

@@ -162,11 +162,11 @@ action void A_CheckFlareGunHand(bool filled)
 		if(sb.hudlevel==1)
 		{//toggle alternate ammo counters for slugs
 		    
-			sb.drawimage("FLARA0",(-47,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(0.6,0.6));
-			sb.drawnum(hpl.countinv("HDFlareAmmo"),-40,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+			sb.drawimage("FLARA0",(-48,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(0.6,0.6));
+			sb.drawnum(hpl.countinv("HDFlareAmmo"),-45,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 				
-			sb.drawimage("SHL1A0",(-30,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.4,1.4));
-			sb.drawnum(hpl.countinv("HDShellAmmo"),-25,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+			sb.drawimage("SHL1A0",(-33,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1.1,1.1));
+			sb.drawnum(hpl.countinv("HDShellAmmo"),-28,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		    
 		}
 		if(hdw.weaponstatus[0]&FLARE_LOADED)
