@@ -206,9 +206,15 @@ class HD10mmPistol:HDHandgun{
 			int psch=invoker.weaponstatus[PISS_CHAMBER];
 			invoker.weaponstatus[PISS_CHAMBER]=0;
 			if(psch==2){
-				A_EjectCasing("HD10mAmmo",-frandom(89,92),(frandom(2,3),0,0),(13,0,0));
+				A_EjectCasing("HD10mAmmo",
+				    -frandom(89,92),
+				    (frandom(2,3),0,0)
+                );
 			}else if(psch==1){
-				A_EjectCasing("HDSpent10mm",-frandom(89,92),(frandom(6,7),0,0),(13,0,0));
+				A_EjectCasing("HDSpent10mm",
+				    -frandom(89,92),
+				    (frandom(6,7),0,0)
+                );
 			}
 			if(invoker.weaponstatus[PISS_MAG]>0){
 				invoker.weaponstatus[PISS_CHAMBER]=2;
@@ -243,7 +249,10 @@ class HD10mmPistol:HDHandgun{
 		}//even more beef, to balance for trimming the
     // fat off of the SigCow, and more sideclimb added
 		#### C 0{
-			A_EjectCasing("HDSpent10mm",-frandom(89,92),(frandom(6,7),0,0),(13,0,0));
+			A_EjectCasing("HDSpent10mm",
+			    -frandom(89,92),
+			    (frandom(6,7),0,0)
+            );
 			invoker.weaponstatus[PISS_CHAMBER]=0;
 			if(invoker.weaponstatus[PISS_MAG]<1){
 				A_StartSound("weapons/10pis_dry",8,CHANF_OVERLAP,0.9);
@@ -265,9 +274,9 @@ class HD10mmPistol:HDHandgun{
 			}else A_Refire();
 		}goto ready;
 	flash:
-		P10F A 0 A_JumpIf(invoker.wronghand,2);
-		P10F A 0;
-		---- A 1 bright{
+		P10F A 0 A_JumpIf(!invoker.wronghand,2);
+		P10F B 0;
+		#### # 1 bright{
 			HDFlashAlpha(64);
 			A_Light1();
 			let bbb=HDBulletActor.FireBullet(self,"HDB_10",spread:2.,speedfactor:frandom(0.97,1.03));
@@ -280,8 +289,8 @@ class HD10mmPistol:HDHandgun{
 			A_MuzzleClimb(-frandom(0.8,2.7),-frandom(0.8,3.3));
                     //extra recoil (+0.5,+1.5)
 		}                  //kicks like a MFer lol
-		---- A 0 A_StartSound("weapons/delta10mm",CHAN_WEAPON);
-		---- A 0 A_Light0();
+		#### # 0 A_StartSound("weapons/delta10mm",CHAN_WEAPON);
+		#### # 0 A_Light0();
 		stop;
 	unload:
 		---- A 0{
