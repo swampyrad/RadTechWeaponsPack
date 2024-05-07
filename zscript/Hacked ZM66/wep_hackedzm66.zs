@@ -253,7 +253,7 @@ class HackedZM66AssaultRifle:ZM66ScopeHaver{
 	select0:
 		RIFG A 0{
 			A_CheckDefaultReflexReticle(ZM66HACKEDS_DOT);
-			invoker.weaponstatus[0]&=~ZM66HACKEDF_GLMODE;
+			if(!countinv("NulledWeapon"))invoker.weaponstatus[0]&=~ZM66HACKEDF_GLMODE;
 			if(invoker.weaponstatus[0]&ZM66HACKEDF_NOLAUNCHER){
 				invoker.weaponstatus[0]&=~ZM66HACKEDF_GRENADELOADED;
 				setweaponstate("select0small");
