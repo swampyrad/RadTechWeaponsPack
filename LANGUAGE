@@ -164,6 +164,10 @@ MENU_RESETDROP = "Reset drop. options";
 MENU_RESETWEP = "Reset wep. options";
 MENU_RESETMAG = "Reset mag options";
 MENU_RELOADINGDEVICES = "Reloading Devices";
+MENU_ENABLED = "Enabled";
+MENU_DISABLED = "Disabled";
+MENU_REPLACEALL = "Replace All";
+MENU_WITHALL = "With All";
 
 // Flare Guns
 MENU_FGUNTITLE = "------ Flare Gun Options ------";
