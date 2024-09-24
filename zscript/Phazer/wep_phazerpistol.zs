@@ -13,6 +13,7 @@ class PhazerPistol:HDHandgun{
 		//$Sprite "PHZP0"
 
 		+hdweapon.fitsinbackpack
+		+hdweapon.reverseguninertia
 		weapon.selectionorder 70;
 		weapon.slotnumber 2;
 		weapon.slotpriority 5;
