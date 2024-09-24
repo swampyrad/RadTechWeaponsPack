@@ -279,7 +279,7 @@ clearscope string getpickupframe(bool usespare){
 		IM37 A 0 A_Refire("ready");
 		goto ready;
 	longstroke:
-		IM37 D 1 A_MuzzleClimb(frandom(1.,2.));
+		IM37 C 2 A_MuzzleClimb(frandom(1.,2.));
 		IM37 D 0{
 			A_Chamber();
 			A_MuzzleClimb(-frandom(1.,2.));
