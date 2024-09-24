@@ -17,7 +17,8 @@ class ObrozzSpawner:IdleDummy{
 
 class ObrozzPistol:HDHandgun{
 	default{
-   +hdweapon.fitsinbackpack
+    		+hdweapon.fitsinbackpack
+		+hdweapon.reverseguninertia
 		weapon.slotnumber 8;
 		weapon.slotpriority 2;
 		weapon.kickback 15;
