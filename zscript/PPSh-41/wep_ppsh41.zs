@@ -8,7 +8,6 @@ class HDPPSh41 :HDHandgun{
     
 	default{
 		+hdweapon.fitsinbackpack
-		+hdweapon.reverseguninertia
 		scale 0.65;
 		weapon.selectionorder 50;
 		weapon.slotnumber 4;//it doesn't really fit in the same spot as handguns
