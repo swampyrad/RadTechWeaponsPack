@@ -51,8 +51,8 @@ class DuckHunter:HDShotgun{
 		let p=HDBulletActor.FireBullet(caller,"HDB_BBShot",
 			spread:spread,speedfactor:speedfactor,amount:30
 		);
-		distantnoise.make(p,"world/shotgunfar");
-		caller.A_StartSound("weapons/hunter",CHAN_WEAPON);
+		distantnoise.make(p,"world/duckfar");
+		caller.A_StartSound("weapons/duckhunter",CHAN_WEAPON);
 		return shotpower;
 	}
 	const HUNTER_MINSHOTPOWER=0.901;
@@ -386,7 +386,7 @@ class DuckHunter:HDShotgun{
 		DKSG AE 1 A_MuzzleClimb(0,frandom(0.6,1.));
 		DKSG E 1 A_JumpIf(pressingaltfire(),"longstroke");
 		DKSG EA 1 A_MuzzleClimb(0,-frandom(0.06,0.1));
-		DKSG E 0 A_StartSound("weapons/huntshort",8);
+		DKSG E 0 A_StartSound("weapons/duckshort",8);
 		DKSG E 0 A_Refire("ready");
 		goto ready;
 	longstroke:
@@ -432,7 +432,7 @@ class DuckHunter:HDShotgun{
 		DKSG F 1 offset(-4,42);
 		DKSG F 2 offset(-4,41);
 		DKSG F 3 offset(-4,40){
-			A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+			A_StartSound("weapons/duckreload",8,CHANF_OVERLAP);
 			invoker.weaponstatus[DUCKHUNTS_CHAMBER]=2;
 			invoker.handshells--;
 			EmptyHand(careful:true);
@@ -466,7 +466,7 @@ class DuckHunter:HDShotgun{
 				vel.z+sin(pitch)*random(4,6),
 				0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
 			);
-			if(chm)A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+			if(chm)A_StartSound("weapons/duckreload",8,CHANF_OVERLAP);
 		}
 		DKSG F 5 offset(-4,41);
 		DKSG F 4 offset(-4,40) A_JumpIf(invoker.handshells>0,"rackloadone");
@@ -482,11 +482,11 @@ class DuckHunter:HDShotgun{
 		DKSG A 0 A_ClearRefire();
 		goto ready;
 	playsgco:
-		TNT1 A 8 A_StartSound("weapons/huntrackup",8);
+		TNT1 A 8 A_StartSound("weapons/duckrackup",8);
 		TNT1 A 0 A_StopSound(8);
 		stop;
 	playsgco2:
-		TNT1 A 8 A_StartSound("weapons/huntrackdown",8);
+		TNT1 A 8 A_StartSound("weapons/duckrackdown",8);
 		TNT1 A 0 A_StopSound(8);
 		stop;
 	chamberauto:
@@ -583,7 +583,7 @@ class DuckHunter:HDShotgun{
 			else if(invoker.handshells<1)setweaponstate("reloadstarthand");
 		}goto reloadashell;
 	reloadend:
-		DKSG C 4 offset(0,34) A_StartSound("weapons/huntopen",8);
+		DKSG C 4 offset(0,34) A_StartSound("weapons/duckopen",8);
 		DKSG C 1 offset(0,36) EmptyDuckHand(careful:true);
 		DKSG C 1 offset(0,34);
 		DKSG CBA 3;
@@ -633,20 +633,20 @@ class DuckHunter:HDShotgun{
 		}
 		DKSG BC 4 A_MuzzleClimb(frandom(1.2,2.4),-frandom(1.2,2.4));
 		DKSG C 1 offset(0,34);
-		DKSG C 1 offset(0,36) A_StartSound("weapons/huntopen",8);
+		DKSG C 1 offset(0,36) A_StartSound("weapons/duckopen",8);
 		DKSG C 1 offset(0,38);
 		DKSG C 4 offset(0,36){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
 			if(invoker.weaponstatus[DUCKHUNTS_CHAMBER]<1){
 				setweaponstate("unloadtube");
-			}else A_StartSound("weapons/huntrack",8,CHANF_OVERLAP);
+			}else A_StartSound("weapons/duckrack",8,CHANF_OVERLAP);
 		}
 		DKSG D 8 offset(0,34){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
 			int chm=invoker.weaponstatus[DUCKHUNTS_CHAMBER];
 			invoker.weaponstatus[DUCKHUNTS_CHAMBER]=0;
 			if(chm>1){
-				A_StartSound("weapons/huntreload",8);
+				A_StartSound("weapons/duckreload",8);
 				if(A_JumpIfInventory("HDBirdshotShellAmmo",0,"null"))A_SpawnItemEx("HDFumblingShell",
 					cos(pitch)*8,0,height-7-sin(pitch)*8,
 					vel.x+cos(pitch)*cos(angle-random(86,90))*5,
@@ -679,7 +679,7 @@ class DuckHunter:HDShotgun{
 				invoker.weaponstatus[DUCKHUNTS_TUBE]--;
 			}
 		}
-		DKSG C 4 offset(0,40) A_StartSound("weapons/huntreload",8);
+		DKSG C 4 offset(0,40) A_StartSound("weapons/duckreload",8);
 		loop;
 	unloadloopend:
 		DKSG C 6 offset(1,41);
