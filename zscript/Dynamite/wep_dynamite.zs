@@ -795,7 +795,7 @@ class HDDynamiteAmmo:HDAmmo{
 	}
 	override void DetachFromOwner()
 	{
-		if(!(owner.player.ReadyWeapon is "HDDynamites"))
+		if(owner && owner.player && !(owner.player.ReadyWeapon is "HDDynamites"))
 		{
 			TakeInventory("HDDynamites", 1);
 		}
