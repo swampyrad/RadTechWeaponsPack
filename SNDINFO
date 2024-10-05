@@ -88,6 +88,13 @@ $limit weapons/fgnblast 0
 flaregun/flareburn  FLARBURN
 $limit flaregun/flareburn 0
 
+// Shotgun pumping 
+// (adding my own custom sounds since the  
+//  original sound defs stopped working)
+// Source:https://quicksounds.com/library/sounds/shotgun "Shotgun Pump Single"
+weapons/rtrackup  rtpump1
+weapons/rtrackdown rtpump2
+
 // All this stuff below is made by Ted the Dragon and FDA, to be organized more later.
 // All of this is aliases of what the original sound was so it's still compatible with sound packs intended before this or for vanilla,
 // Though this still allows specifically replacing these sounds. - [Ted]
@@ -173,8 +180,8 @@ $alias weapons/lesslethalhunter weapons/Hunter
 $alias weapons/llh_far world/shotgunfar
 $alias weapons/llh_reload weapons/huntreload
 $alias weapons/llh_short weapons/huntshort
-$alias weapons/llh_rackup weapons/huntrackup
-$alias weapons/llh_rackdown weapons/huntrackdown
+$alias weapons/llh_rackup weapons/rtrackup
+$alias weapons/llh_rackdown weapons/rtrackdown
 $alias weapons/llh_open weapons/huntopen
 $alias weapons/llh_rack weapons/huntrack
 
@@ -219,8 +226,8 @@ $alias weapons/esg_fire weapons/hunter
 $alias weapons/esg_firefar world/shotgunfar
 $alias weapons/esg_reload weapons/huntreload
 $alias weapons/esg_short weapons/huntshort
-$alias weapons/esg_rackup weapons/huntrackup
-$alias weapons/esg_rackdown weapons/huntrackdown
+$alias weapons/esg_rackup weapons/rtrackup
+$alias weapons/esg_rackdown weapons/rtrackdown
 $alias weapons/esg_open weapons/huntopen
 $alias weapons/esg_rack weapons/huntrack
 
@@ -234,8 +241,8 @@ $alias weapons/doomhunt_fire weapons/hunter
 $alias weapons/dhunt_far world/shotgunfar
 $alias weapons/dhunt_reload weapons/huntreload
 $alias weapons/dhunt_short weapons/huntshort
-$alias weapons/dhunt_rackup weapons/huntrackup
-$alias weapons/dhunt_rackdown weapons/huntrackdown
+$alias weapons/dhunt_rackup weapons/rtrackup
+$alias weapons/dhunt_rackdown weapons/rtrackdown
 $alias weapons/dhunt_open weapons/huntopen
 $alias weapons/dhunt_rack weapons/huntrack
 
@@ -244,9 +251,19 @@ $alias weapons/csg_fire weapons/hunter
 $alias weapons/csg_firefar world/shotgunfar
 $alias weapons/csg_reload weapons/huntreload
 $alias weapons/csg_short weapons/huntshort
-$alias weapons/csg_rackup weapons/huntrackup
-$alias weapons/csg_rackdown weapons/huntrackdown
+$alias weapons/csg_rackup weapons/rtrackup
+$alias weapons/csg_rackdown weapons/rtrackdown
 $alias weapons/csg_open weapons/huntopen
+
+// Duck Hunter
+$alias weapons/duckhunter weapons/hunter
+$alias weapons/duckfar world/shotgunfar
+$alias weapons/duckreload weapons/huntreload
+$alias weapons/duckshort weapons/huntshort
+$alias weapons/duckrackup weapons/rtrackup
+$alias weapons/duckrackdown weapons/rtrackdown
+$alias weapons/duckopen weapons/huntopen
+$alias weapons/duckrack weapons/huntrack
 
 // Colt 1911
 $alias weapons/1911dryfire wewapons/pistoldry
