@@ -943,7 +943,7 @@ OptionMenu HackedZM66
 	StaticText "$MENU_HZMLORE2", "white"
 	StaticText "$MENU_HZMLORE3", "white"
 	StaticText "$MENU_HZMLORE4", "white"
-	StaticText "%MENU_HZMLORE5", "white"
+	StaticText "$MENU_HZMLORE5", "white"
 }
 
 OptionMenu ExplosiveHunter
