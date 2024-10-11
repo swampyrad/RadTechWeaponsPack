@@ -347,7 +347,7 @@ MENU_OBROZZBACKPACK = "Control whether the Obrozz Pistols spawn in Backpacks";
 MENU_OBROZZLORE1 = "A Boss rifle that has been reduced down to the bare essentials.";
 MENU_OBROZZLORE2 = "Its decreased size makes it easier to conceal, allowing for easy";
 MENU_OBROZZLORE3 = "use of two by keeping a backup Obrozz handy. However, the";
-MENU_OBROZZLORE4 = "lack of any proper sighting system makes accurate shooting difficult."
+MENU_OBROZZLORE4 = "lack of any proper sighting system makes accurate shooting difficult.";
 
 // Combat Shotgun
 MENU_CSHOTTITLE = "------ Ithaca M37 Combat Shotgun Options ------";
