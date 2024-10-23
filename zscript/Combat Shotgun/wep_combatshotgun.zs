@@ -260,7 +260,6 @@ clearscope string getpickupframe(bool usespare){
 	shoot:
 		IM37 A 2;
 		IM37 A 1 offset(0,36) A_FireHunter();
-	//	IM37 A 1;
 		IM37 A 0{
 			if(
 				invoker.weaponstatus[HUNTS_FIREMODE]>0
@@ -285,21 +284,46 @@ clearscope string getpickupframe(bool usespare){
 			A_MuzzleClimb(-frandom(1.,2.));
 		}
 	racked:
+	//saw a video of someone loading one of these and realized 
+	//you actually CAN access the chamber through the loading port 
+	//so i'm reverting this shit, sorry guys
 		IM37 D 1 A_WeaponReady(WRF_NOFIRE);
 		IM37 D 0 A_JumpIf(!pressingaltfire(),"unrack");
-		IM37 D 0 A_JumpIf(pressingunload(),"racked");
+		IM37 D 0 A_JumpIf(pressingunload(),"rackunload");
 		IM37 D 0 A_JumpIf(invoker.weaponstatus[HUNTS_CHAMBER],"racked");
-		loop;
+		IM37 D 0{
+			int rld=0;
+			if(pressingreload()||pressingaltreload()){
+      rld=2;
+				invoker.weaponstatus[0]|=HUNTF_FROMPOCKETS;
+			}
 
+			if(
+				(rld==2&&countinv("HDShellAmmo"))
+				||(rld==1&&invoker.weaponstatus[SHOTS_SIDESADDLE]>0)
+			)setweaponstate("rackreload");
+		}
+
+		loop;
 	rackreload:
-		IM37 D 1 offset(-1,35) A_WeaponBusy(true);
+		IM37 D 1 offset(-1,35) A_WeaponBusy(true);//slow down player when chambering a shell
 		IM37 D 2 offset(-2,37);
 		IM37 D 4 offset(-3,40);
-		IM37 D 1 offset(-4,42) A_GrabShells(1,true,true);
+		IM37 D 1 offset(-4,42) A_GrabShells(1,true,true);//put a shell in your hand
 		IM37 D 0 A_JumpIf(!(invoker.weaponstatus[0]&HUNTF_FROMPOCKETS),"rackloadone");
 		IM37 D 6 offset(-5,43);
 		IM37 D 6 offset(-4,41) A_StartSound("weapons/pocket",9);
 	rackloadone:
+		IM37 D 1 offset(-4,42);
+		IM37 D 2 offset(-4,41);
+		IM37 D 3 offset(-4,40){
+			A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+			invoker.weaponstatus[HUNTS_CHAMBER]=2;
+			invoker.handshells--;
+			EmptyHand(careful:true);
+		}
+		IM37 D 5 offset(-4,41);
+		IM37 D 4 offset(-4,40) A_JumpIf(invoker.handshells>0,"rackloadone");
 		goto rackreloadend;
 	rackreloadend:
 		IM37 D 1 offset(-3,39);
@@ -307,6 +331,31 @@ clearscope string getpickupframe(bool usespare){
 		IM37 D 1 offset(-1,34);
 		IM37 D 0 A_WeaponBusy(false);
 		goto racked;
+    
+    rackunload:
+		IM37 D 1 offset(-1,35) A_WeaponBusy(true);
+		IM37 D 2 offset(-2,37);
+		IM37 D 4 offset(-3,40);
+		IM37 D 1 offset(-4,42);
+		IM37 D 2 offset(-4,41);
+		IM37 D 3 offset(-4,40){
+			int chm=invoker.weaponstatus[HUNTS_CHAMBER];//check if chambered round is spent or not
+			invoker.weaponstatus[HUNTS_CHAMBER]=0;//chamber is cleared
+			if(chm==2){//remove unspent shell from chamber
+				invoker.handshells++;
+				EmptyHand(careful:true);
+			}else if(chm==1)A_SpawnItemEx("HDSpentShell",//remove spent shell from chamber
+				cos(pitch)*8,0,height-7-sin(pitch)*8,
+				vel.x+cos(pitch)*cos(angle-random(86,90))*5,
+				vel.y+cos(pitch)*sin(angle-random(86,90))*5,
+				vel.z+sin(pitch)*random(4,6),
+				0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
+			);
+			if(chm)A_StartSound("weapons/huntreload",8,CHANF_OVERLAP);
+		}
+		IM37 D 5 offset(-4,41);
+		IM37 D 4 offset(-4,40) A_JumpIf(invoker.handshells>0,"rackloadone");
+		goto rackreloadend;
 
 
 	unrack: 
@@ -347,14 +396,14 @@ clearscope string getpickupframe(bool usespare){
  reload:
 	altreload:
 	reloadfrompockets:
-		IM37 A 0{
+		IM37 A 0{//stop if no ammo left
 			if(!countinv("HDShellAmmo"))setweaponstate("nope");
 			else invoker.weaponstatus[0]|=HUNTF_FROMPOCKETS;
 		}goto startreload;
 
 	startreload:
 		IM37 A 1{
-			if(//if the tube is full but you still have ammo, then do nothing
+			if(//if tube is full but you still have ammo, do nothing
 				invoker.weaponstatus[HUNTS_TUBE]>=invoker.weaponstatus[HUNTS_TUBESIZE]
 			  ){
 				  if(countinv("HDShellAmmo"))setweaponstate("nope");
@@ -427,7 +476,7 @@ clearscope string getpickupframe(bool usespare){
     if(
 				invoker.weaponstatus[HUNTS_CHAMBER]<1
 				&&invoker.weaponstatus[HUNTS_TUBE]<1
-			)setweaponstate("nope");
+			)setweaponstate("nope");//do nothing if tube and chamber are empty
 		}
 		IM37 BC 4 A_MuzzleClimb(frandom(1.2,2.4),-frandom(1.2,2.4));
 		IM37 C 1 offset(0,34);
@@ -435,17 +484,16 @@ clearscope string getpickupframe(bool usespare){
 		IM37 C 1 offset(0,38);
 		IM37 C 4 offset(0,36){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
-			//if(invoker.weaponstatus[HUNTS_CHAMBER]<1){
+			if(invoker.weaponstatus[HUNTS_CHAMBER]<1){//go straight to unloading tube if chamber is already empty
 				setweaponstate("unloadtube");
 				}
-			/*
-}else A_StartSound("weapons/huntrack",8,CHANF_OVERLAP);
+        else A_StartSound("weapons/huntrack",8,CHANF_OVERLAP);
 		}
 		IM37 D 8 offset(0,34){
 			A_MuzzleClimb(-frandom(1.2,2.4),frandom(1.2,2.4));
 			int chm=invoker.weaponstatus[HUNTS_CHAMBER];
 			invoker.weaponstatus[HUNTS_CHAMBER]=0;
-			if(chm>1){
+			if(chm>1){//unload unspent shell
 				A_StartSound("weapons/huntreload",8);
 				if(A_JumpIfInventory("HDShellAmmo",0,"null"))A_SpawnItemEx("HDFumblingShell",
 					cos(pitch)*8,0,height-7-sin(pitch)*8,
@@ -458,7 +506,7 @@ clearscope string getpickupframe(bool usespare){
 					A_StartSound("weapons/pocket",9);
 					A_SetTics(5);
 				}
-			}else if(chm>0)A_SpawnItemEx("HDSpentShell",
+			}else if(chm>0)A_SpawnItemEx("HDSpentShell",//unload spent shell
 				cos(pitch)*8,0,height-7-sin(pitch)*8,
 				vel.x+cos(pitch)*cos(angle-random(86,90))*5,
 				vel.y+cos(pitch)*sin(angle-random(86,90))*5,
@@ -466,19 +514,18 @@ clearscope string getpickupframe(bool usespare){
 				0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
 			);
 		}
-	*/
 		IM37 C 0 A_JumpIf(!pressingunload(),"reloadend");
 		IM37 C 4 offset(0,40);
 	unloadtube:
 		IM37 C 6 offset(0,40) EmptyHand(careful:true);
 	unloadloop:
 		IM37 C 8 offset(1,41){
-			if(invoker.weaponstatus[HUNTS_TUBE]<1)setweaponstate("reloadend");
-			else if(invoker.handshells>=3)setweaponstate("unloadloopend");
+			if(invoker.weaponstatus[HUNTS_TUBE]<1)setweaponstate("reloadend");//stop if tube is empty
+			else if(invoker.handshells>=3)setweaponstate("unloadloopend");//stop if holding 3 shells in hand
 			else{
 				invoker.handshells++;
 				invoker.weaponstatus[HUNTS_TUBE]--;
-			}
+			}//move shell from tube to hand
 		}
 		IM37 C 4 offset(0,40) A_StartSound("weapons/csg_reload",8);
 		loop;
@@ -489,12 +536,12 @@ clearscope string getpickupframe(bool usespare){
 			if(rmm>0){
 				A_StartSound("weapons/pocket",9);
 				A_SetTics(8);
-				HDF.Give(self,"HDShellAmmo",min(rmm,invoker.handshells));
+				HDF.Give(self,"HDShellAmmo",min(rmm,invoker.handshells));//move held shells to inv
 				invoker.handshells=max(invoker.handshells-rmm,0);
 			}
 		}
-		IM37 C 0 EmptyHand(careful:true);
-		IM37 C 6 A_Jumpif(!pressingunload(),"reloadend");
+		IM37 C 0 EmptyHand(careful:true);//not holding shels anymore
+		IM37 C 6 A_Jumpif(!pressingunload(),"reloadend");//stop if not holding unload
 		goto unloadloop;
 	spawn:
 	 CTSG A -1;
@@ -523,8 +570,8 @@ class HDCombatShotgunRandom:IdleDummy{
 				ggg.weaponstatus[0]|=HUNTF_EXPORT;//no semi-auto, 5-shell tube
 				ggg.weaponstatus[0]&=~HUNTF_CANFULLAUTO;
 			
-			int tubesize=((ggg.weaponstatus[0]&HUNTF_EXPORT)?5:5);
-			if(ggg.weaponstatus[HUNTS_TUBE]>tubesize)ggg.weaponstatus[HUNTS_TUBE]=tubesize;
+			int tubesize=5;
+			ggg.weaponstatus[HUNTS_TUBE]=tubesize;
 			ggg.weaponstatus[HUNTS_TUBESIZE]=tubesize;
 		}stop;
 	}
