@@ -55,6 +55,54 @@ graphic STQBURST,6,3
 	patch PBRSC0G0,3,2 {}
 }
 
+//Dynamite
+
+//pickup/hud sprite (unlit)
+
+sprite DYNAA0, 11, 33{
+    offset 6, 33
+    patch DYNAA0,0,0
+}
+
+//thrown dynamite (unlit)
+sprite DYNAB0D0, 60, 20{
+    offset 30, 20
+    patch DYNAB0D0,0,0
+}
+
+sprite DYNAC0, 40, 24{
+  offset 20, 20
+  patch DYNAC0,0,0
+}
+
+sprite DYNAE0, 28, 20{
+  offset 14, 20
+  patch DYNAE0,0,0
+}
+
+//hud sprite (lit)
+sprite DYNAF0, 11, 33{
+  offset 6, 33
+  patch DYNAF0,0,0
+}
+
+//thrown dynamite (lit)
+sprite DYNAG0I0, 100, 20{
+  offset 50, 20
+  patch DYNAG0I0,0,0
+}
+
+sprite DYNAH0, 44, 24{
+  offset 22, 20
+  patch DYNAH0,0,0
+}
+
+sprite DYNAJ0, 30, 24{
+  offset 15, 20
+  patch DYNAJ0,0,0
+}
+
+
 // FP-45 Liberator
 
 //weapon sprites
@@ -184,8 +232,6 @@ sprite CPD4B0, 7, 5{
 offset -152, -102
 patch "coprnd4", 0, 0
 }
-
-
 
 // Savage 99
 
