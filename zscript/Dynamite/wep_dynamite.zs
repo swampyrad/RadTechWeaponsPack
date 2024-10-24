@@ -16,7 +16,9 @@ class HDDynamiteThrower:HDWeapon{
 	int botid;
 	
 	default{
-		+weapon.no_auto_switch +weapon.noalert +weapon.wimpy_weapon
+		+weapon.no_auto_switch 
+		+weapon.noalert 
+		+weapon.wimpy_weapon
 		+hdweapon.dontdisarm
 		+hdweapon.dontnull
 		+nointeraction
@@ -262,8 +264,6 @@ class HDDynamiteThrower:HDWeapon{
 		weaponstatus[0]|=DYNAF_JUSTTHREW;
 	}
 	
-	
-	
 	override int getsbarnum(int flags){return botid;}
 	action void A_PlantDynamite(){//copied from doorbuster code
 		if(invoker.amount<1){
@@ -289,8 +289,6 @@ class HDDynamiteThrower:HDWeapon{
 			A_Log("Can't plant here.",true);
 			return;
 		}
-		//ddd.botid=invoker.botid;
-		//ddd.ChangeTid(HDDYNA_TID);
 		ddd.A_StartSound("doorbust/stick",CHAN_BODY);
 		ddd.stuckline=dlt.hitline;
 		ddd.translation=translation;
@@ -518,18 +516,36 @@ class HDDynamites:HDDynamiteThrower{//the actual weapon
 }
 
 
-class HDDynamiteRoller:HDActor{
+class HDDynamiteRoller:HDActor{//the projectile after it hits the ground
 	int fuze;
 	vector3 keeprolling;
 	default{
-		-noextremedeath -floorclip +shootable +noblood +forcexybillboard
-		+activatemcross -noteleport +noblockmonst +explodeonwater
-		+missile +bounceonactors +usebouncestate
-			bouncetype "doom";bouncesound "weapons/dynaknock";
-		radius 2;height 2;damagetype "none";
+		-noextremedeath 
+		-floorclip 
+		+shootable 
+		+noblood 
+		+forcexybillboard
+		+activatemcross 
+		-noteleport 
+		+noblockmonst 
+		+explodeonwater
+		+missile 
+		+bounceonactors 
+		+usebouncestate
+		
+		health 25;
+		
+		bouncetype "doom";
+		bouncesound "weapons/dynaknock";
+		radius 8;
+		height 8;
+		damagetype "none";
 		scale 0.3;
 		obituary "%o was blown to smitheteens by %k.";
-		radiusdamagefactor 0.04;pushfactor 1.4;maxstepheight 2;mass 30;
+		radiusdamagefactor 0.04;
+		pushfactor 1.4;
+		maxstepheight 2;
+		mass 30;
 	}
 	override bool used(actor user){
 		angle=user.angle;
@@ -584,7 +600,7 @@ class HDDynamiteRoller:HDActor{
 			return;
 		}else{
 			fuze++;
-			if(fuze>=180 && !bnointeraction){
+			if(health<1 || fuze>=180 && !bnointeraction){
 				setstatelabel("destroy");
 				NextTic();
 				return;
@@ -594,19 +610,30 @@ class HDDynamiteRoller:HDActor{
 }
 
 
-class HDDynamite:SlowProjectile{
+class HDDynamite:SlowProjectile{//the projectile when thrown
 	int fuze;
 	vector3 keeprolling;
 	class<actor> rollertype;
 	property rollertype:rollertype;
 	default{
-		-noextremedeath -floorclip +bloodlessimpact
-		+shootable -noblockmap +noblood
-		+activatemcross -noteleport
-		radius 5;height 5;damagetype "none";
+		-noextremedeath 
+		-floorclip 
+		+bloodlessimpact
+		+shootable 
+		-noblockmap 
+		+noblood
+		+activatemcross 
+		-noteleport
+	//	-nointeraction  //adding this so they can be shot midair
+		
+		health 25;
+		
+		radius 8;
+		height 8;
+		damagetype "none";
 		scale 0.3;
 		obituary "%o was blown to smithereens by %k.";
-		mass 500;
+		mass 400;
 		hddynamite.rollertype "HDDynamiteRoller";
 	}
 	static void Kaboom(HDActor caller){
@@ -622,9 +649,7 @@ class HDDynamite:SlowProjectile{
 			fullpushradius:64,
 			fragradius:HDCONST_ONEMETRE*64
 		);
-		
-	//	caller.A_Explode(50,16);
-	//	caller.A_Blast(10,64);
+
 	}
 	    //a copy of HDHEAT.HEATShot
 		static void DynamiteShot(actor caller,double squirtamt){
@@ -704,6 +729,10 @@ class HDDynamite:SlowProjectile{
 	override void tick(){
 		ClearInterpolation();
 		if(isfrozen())return;
+		if(health<1){
+				Kaboom(self);
+				destroy();return;
+			}
 		if(!bmissile){
 			hdactor.tick();return;
 		}else if(fuze<180){
