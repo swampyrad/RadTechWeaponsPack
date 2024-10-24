@@ -118,26 +118,29 @@ class HDDynamiteThrower:HDWeapon{
 	//for involuntary dropping
 	override void OnPlayerDrop(){
 		if(weaponstatus[0]&DYNAF_SPOONOFF)TossDynamite(true);//do this only if fuse is lit
-		else{
-			bool inhand=weaponstatus[0]&DYNAF_INHAND;
-			if(inhand||owner.countinv(dynamiteammotype)){
-				if(!inhand)A_TakeInventory(dynamiteammotype,1);
-				A_DropItem(dynamiteammotype);
-			    }
-			weaponstatus[0]&=~DYNAF_INHAND;
-		}
+		else if(weaponstatus[0]&DYNAF_PINOUT)TossDynamiteUnlit(true);//otherwise drop unlit bundle
+		
+		//reset "ready throw" and "lighter ready" flags
+		weaponstatus[0]&=~DYNAF_INHAND;
+		weaponstatus[0]&=~DYNAF_PINOUT;
+		
 	}
 	
 	void DropDynamite(){
-		if(weaponstatus[0]&DYNAF_SPOONOFF)TossDynamite(true);//do this only if fuse is lit
-		else{
+		if(weaponstatus[0]&DYNAF_SPOONOFF){
+			TossDynamite(true);
+		}else if(weaponstatus[0]&DYNAF_PINOUT){
+		    TossDynamiteUnlit(true);
+		}else{
 			bool inhand=weaponstatus[0]&DYNAF_INHAND;
 			if(inhand||owner.countinv(dynamiteammotype)){
 				if(!inhand)A_TakeInventory(dynamiteammotype,1);
 				A_DropItem(dynamiteammotype);
-			    }
-			weaponstatus[0]&=~DYNAF_INHAND;
-		    }
+			}
+			//reset "ready throw" and "lighter ready" flags
+	    	weaponstatus[0]&=~DYNAF_INHAND;
+	    	weaponstatus[0]&=~DYNAF_PINOUT;
+		}
 	}
 	
 	//any reset should do this
