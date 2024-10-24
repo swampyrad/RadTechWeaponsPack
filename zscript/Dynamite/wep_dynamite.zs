@@ -32,8 +32,7 @@ class HDDynamiteThrower:HDWeapon{
 		hddynamitethrower.throwtype "HDDynamite";
 		hddynamitethrower.throwtype_unlit "HDDynamiteUnlit";
 		hddynamitethrower.spoontype "HDDynaFuse";
-		//hddynamitethrower.wiretype "TripwireDynamite";
-		
+
 		inventory.maxamount 1;
 	}
 	
@@ -45,7 +44,6 @@ class HDDynamiteThrower:HDWeapon{
 				||weaponstatus[DYNAS_TIMER]>176
 			)TossDynamite(true);//throw if player is dead or fuse is burnt out
 		}
-		
 		else if(
 			weaponstatus[0]&DYNAF_INHAND
 			&&weaponstatus[0]&DYNAF_PINOUT
@@ -61,7 +59,7 @@ class HDDynamiteThrower:HDWeapon{
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
 			sb.drawimage(
-				(weaponstatus[0]&DYNAF_SPOONOFF)?"DYNAB0D0":
+				(weaponstatus[0]&DYNAF_SPOONOFF)?"DYNAG0I0":
 				(weaponstatus[0]&DYNAF_PINOUT)?"DYNAF0":"DYNAA0",
 				(-52,-4),sb.DI_SCREEN_CENTER_BOTTOM,scale:(0.6,0.6)
 			);
@@ -587,7 +585,7 @@ class HDDynamites:HDDynamiteThrower{//the actual weapon
 		hddynamitethrower.ammotype "HDDynamiteAmmo";
 		hddynamitethrower.throwtype "HDDynamite";
 		hddynamitethrower.spoontype "HDDynaFuse";
-		//hddynamitethrower.wiretype "Tripwire";
+		
 		inventory.icon "DYNAA0";
 	}
 }
@@ -638,21 +636,21 @@ class HDDynamiteRoller:HDActor{//the projectile after it hits the ground
 		DYNA A 0 nodelay{
 			HDMobAI.Frighten(self,256);
 		}
-		DYNA A 0 A_StartSound("weapons/dyna_spoonoff");
+		#### A 0 A_StartSound("weapons/dyna_spoonoff");
 	spawn2:
-		#### BCD 2{
+		DYNA GHIJ 2{
 			if(abs(vel.z-keeprolling.z)>10)A_StartSound("weapons/dynaknock",CHAN_BODY);
 			else if(floorz>=pos.z)A_StartSound("weapons/dynaroll");
 			keeprolling=vel;
 			if(abs(vel.x)<0.4 && abs(vel.y)<0.4) setstatelabel("death");
 		}loop;
 	bounce:
-		---- A 0{
+		#### # 0{
 			bmissile=false;
 			vel*=0.3;
 		}goto spawn2;
 	death:
-		---- A 2{
+		#### # 2{
 			if(abs(vel.z-keeprolling.z)>3){
 				A_StartSound("weapons/dynaknock",CHAN_BODY);
 				keeprolling=vel;
@@ -839,7 +837,7 @@ class HDDynamite:SlowProjectile{//the projectile when thrown
 	
 	states{
 	spawn:
-		DYNA BCD 2;
+		DYNA GHIJ 2;
 		loop;
 	death:
 		TNT1 A 10{
@@ -926,19 +924,19 @@ class HDDynamiteRollerUnlit:HDUPK{//the projectile after it hits the ground
 	spawn:
 		DYNA A 0;
 	spawn2:
-		#### BCD 2{
+		#### BCDE 2{
 			if(abs(vel.z-keeprolling.z)>10)A_StartSound("weapons/dynaknock",CHAN_BODY);
 			else if(floorz>=pos.z)A_StartSound("weapons/dynaroll");
 			keeprolling=vel;
 			if(abs(vel.x)<0.4 && abs(vel.y)<0.4) setstatelabel("death");
 		}loop;
 	bounce:
-		---- A 0{
+		#### # 0{
 			bmissile=false;
 			vel*=0.3;
 		}goto spawn2;
 	death:
-		---- A 2{
+		#### # 2{
 			if(abs(vel.z-keeprolling.z)>3){
 				A_StartSound("weapons/dynaknock",CHAN_BODY);
 				keeprolling=vel;
@@ -1014,7 +1012,7 @@ class HDDynamiteUnlit:HDDynamite{//the projectile when thrown
 	
 	states{
 	spawn:
-		DYNA BCD 2;
+		DYNA BCDE 2;
 		loop;
 	death:
 		TNT1 A 10{
@@ -1041,7 +1039,6 @@ class HDDynamiteAmmo:HDAmmo{
 		inventory.amount 1;
 		scale 0.3;
 		inventory.maxamount 50;
-//		inventory.pickupmessage "Picked up a bundle of dynamite.";
 		inventory.pickupsound "weapons/pocket";
 		tag "$TAG_DYNAMITEBUNDLE";
 		hdpickup.refid "DYN";
