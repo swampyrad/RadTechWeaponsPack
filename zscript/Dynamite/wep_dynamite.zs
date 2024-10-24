@@ -8,10 +8,10 @@ class HDDynamiteThrower:HDWeapon{
 	property ammotype:dynamiteammotype;
 	class<actor> throwtype;
 	property throwtype:throwtype;
+	class<actor> throwtype_unlit;
+	property throwtype_unlit:throwtype_unlit;
 	class<actor> spoontype;
 	property spoontype:spoontype;
-	//class<weapon> wiretype;
-	//property wiretype:wiretype;
 	
 	int botid;
 	
@@ -30,29 +30,33 @@ class HDDynamiteThrower:HDWeapon{
 		//adding the defaults here to prevent needless crashes
 		hddynamitethrower.ammotype "HDDynamiteAmmo";
 		hddynamitethrower.throwtype "HDDynamite";
+		hddynamitethrower.throwtype_unlit "HDDynamiteUnlit";
 		hddynamitethrower.spoontype "HDDynaFuse";
 		//hddynamitethrower.wiretype "TripwireDynamite";
 		
 		inventory.maxamount 1;
 	}
+	
 	override void DoEffect(){
 		if(weaponstatus[0]&DYNAF_SPOONOFF){
-			weaponstatus[DYNAS_TIMER]++;
+			weaponstatus[DYNAS_TIMER]++;//continue burning fuse if already lit
 			if(
 				owner.health<1
 				||weaponstatus[DYNAS_TIMER]>176
-			)TossDynamite(true);
-		}else if(
+			)TossDynamite(true);//throw if player is dead or fuse is burnt out
+		}
+		
+		else if(
 			weaponstatus[0]&DYNAF_INHAND
 			&&weaponstatus[0]&DYNAF_PINOUT
 			&&owner.player.cmd.buttons&BT_ATTACK
 			&&owner.player.cmd.buttons&BT_ALTFIRE
 			&&!(owner.player.oldbuttons&BT_ALTFIRE)
-		){
-			StartCooking();
-		}
+		    )StartCooking();//light fuse if preparing throw and lighter is ready
+		
 		super.doeffect();
 	}
+	
 	override string,double getpickupsprite(){return "DYNAA0",0.6;}
 	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
 		if(sb.hudlevel==1){
@@ -63,10 +67,12 @@ class HDDynamiteThrower:HDWeapon{
 			);
 			sb.drawnum(hpl.countinv("HDDynamiteAmmo"),-45,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		}
+		
 		sb.drawwepnum(
 			hpl.countinv("HDDynamiteAmmo"),
 			(HDCONST_MAXPOCKETSPACE/(ENC_DYNAMITE))
 		);
+		
 		sb.drawwepnum(hdw.weaponstatus[DYNAS_FORCE],50,posy:-10,alwaysprecise:true);
 		if(!(hdw.weaponstatus[0]&DYNAF_SPOONOFF)){
 			sb.drawrect(-21,-19,5,4);
@@ -76,16 +82,18 @@ class HDDynamiteThrower:HDWeapon{
 			if(timer%3)sb.drawwepnum(180-timer,180,posy:-15,alwaysprecise:true);
 		}
 	}
+	
 	override string gethelptext(){
 		if(weaponstatus[0]&DYNAF_SPOONOFF)return
 		WEPHELP_FIRE.."  Wind up, release to throw\n(\cxSTOP READING AND DO THIS"..WEPHELP_RGCOL..")";
 		return
-		WEPHELP_FIRE.."  Light fuse/wind up (release to light and throw)\n"
+		WEPHELP_FIRE.."  Wind up, release to throw\n"
 		..WEPHELP_ALTFIRE.."  Ready lighter, again to light fuse\n"
 		..WEPHELP_RELOAD.."  Abort/close lighter\n"
 		..WEPHELP_FIREMODE.."  Plant a bomb"
 		;
 	}
+	
 	override inventory CreateTossable(int amt){
 		ReturnHandToOwner();
 		owner.A_DropInventory(dynamiteammotype,owner.countinv(dynamiteammotype));
@@ -93,40 +101,47 @@ class HDDynamiteThrower:HDWeapon{
 		owner.A_SelectWeapon("HDFist");
 		return null;
 	}
+	
 	override void InitializeWepStats(bool idfa){
 		//if(idfa)owner.A_SetInventory(dynamiteammotype,max(3,owner.countinv(dynamiteammotype)));
 	}
+	
 	override void DropOneAmmo(int amt){
 		if(owner){
 			amt=clamp(amt,1,10);
 			owner.A_DropInventory(dynamiteammotype,1);
 		}
 	}
+	
 	override void ForceBasicAmmo(){
 		owner.A_SetInventory("HDDynamiteAmmo",1);
 	}
+	
 	//for involuntary dropping
 	override void OnPlayerDrop(){
-		if(
-			weaponstatus[0]&DYNAF_SPOONOFF
-			||weaponstatus[0]&DYNAF_PINOUT
-		)TossDynamite(true);
-	}
-	void DropDynamite(){
-		if(
-			weaponstatus[0]&DYNAF_SPOONOFF
-			||weaponstatus[0]&DYNAF_PINOUT
-		){
-			TossDynamite(true);
-		}else{
+		if(weaponstatus[0]&DYNAF_SPOONOFF)TossDynamite(true);//do this only if fuse is lit
+		else{
 			bool inhand=weaponstatus[0]&DYNAF_INHAND;
 			if(inhand||owner.countinv(dynamiteammotype)){
 				if(!inhand)A_TakeInventory(dynamiteammotype,1);
 				A_DropItem(dynamiteammotype);
-			}
+			    }
 			weaponstatus[0]&=~DYNAF_INHAND;
 		}
 	}
+	
+	void DropDynamite(){
+		if(weaponstatus[0]&DYNAF_SPOONOFF)TossDynamite(true);//do this only if fuse is lit
+		else{
+			bool inhand=weaponstatus[0]&DYNAF_INHAND;
+			if(inhand||owner.countinv(dynamiteammotype)){
+				if(!inhand)A_TakeInventory(dynamiteammotype,1);
+				A_DropItem(dynamiteammotype);
+			    }
+			weaponstatus[0]&=~DYNAF_INHAND;
+		    }
+	}
+	
 	//any reset should do this
 	action void A_ReturnHandToOwner(){invoker.ReturnHandToOwner();}
 	void ReturnHandToOwner(){
@@ -139,6 +154,7 @@ class HDDynamiteThrower:HDWeapon{
 					owner.A_StartSound("weapons/dyna_pinout",8);
 					weaponstatus[0]&=~DYNAF_PINOUT;
 				}
+				
 				if(
 					owner.A_JumpIfInventory(dynamiteammotype,0,"null")
 				)owner.A_DropItem(dynamiteammotype);
@@ -149,6 +165,7 @@ class HDDynamiteThrower:HDWeapon{
 		weaponstatus[DYNAS_FORCE]=0;
 		weaponstatus[DYNAS_REALLYPULL]=0;
 	}
+	
 	vector3 SwingThrow(){
 		vector2 iyy=(owner.angle,owner.pitch);
 		double cosp=cos(iyy.y);
@@ -170,18 +187,22 @@ class HDDynamiteThrower:HDWeapon{
 		);
 		return newpos-oldpos;
 	}
+	
 	//because it's tedious to type each time
 	action bool NoDynamite(){
-		return !(invoker.weaponstatus[0]&DYNAF_INHAND)&&!countinv(invoker.dynamiteammotype);
+		return !(invoker.weaponstatus[0]&DYNAF_INHAND)
+		        &&!countinv(invoker.dynamiteammotype);
 	}
-	//pull the pin
+	
+	//ready the lighter
 	action void A_LightFuse(){
 		invoker.weaponstatus[DYNAS_REALLYPULL]=0;
 		invoker.weaponstatus[0]|=(DYNAF_PINOUT|DYNAF_INHAND);
 		A_TakeInventory(invoker.dynamiteammotype,1,TIF_NOTAKEINFINITE);
 		A_StartSound("weapons/dyna_pinin",8);
 	}
-	//drop the spoon
+	
+	//actually light the fuse
 	action void A_StartCooking(){
 		invoker.StartCooking();
 		A_SetHelpText();
@@ -203,6 +224,7 @@ class HDDynamiteThrower:HDWeapon{
 		if(DoHelpText(owner))A_WeaponMessage("\cgThe fuse is lit!\n\n\n\n\cgRemember to throw!",100);
 		owner.A_StartSound("weapons/dyna_spoonoff",8,attenuation:20);
 	}
+	
 	//we need to start from the inventory itself so it can go into DoEffect
 	action void A_TossDynamite(bool oshit=false){
 		invoker.TossDynamite(oshit);
@@ -245,9 +267,8 @@ class HDDynamiteThrower:HDWeapon{
 		let dynamite=HDDynamite(ggg);if(!dynamite)return;
 		dynamite.fuze=weaponstatus[DYNAS_TIMER];
 
-		if(owner.player){
-			dynamite.vel+=SwingThrow()*gforce;
-		}
+		if(owner.player){dynamite.vel+=SwingThrow()*gforce;}
+		
 		dynamite.a_changevelocity(
 			cpp*gforce*0.6,
 			0,
@@ -260,6 +281,55 @@ class HDDynamiteThrower:HDWeapon{
 		weaponstatus[0]&=~DYNAF_SPOONOFF;
 		weaponstatus[DYNAS_REALLYPULL]=0;
 
+		weaponstatus[0]&=~DYNAF_INHAND;
+		weaponstatus[0]|=DYNAF_JUSTTHREW;
+	}
+	
+	//separate function for throwing unlit dynamite
+	action void A_TossDynamiteUnlit(bool oshit=false){
+		invoker.TossDynamiteUnlit(oshit);
+	//	A_SetHelpText();
+	}
+	void TossDynamiteUnlit(bool oshit=false){
+		if(!owner)return;
+		int garbage;actor ggg;
+		double cpp=cos(owner.pitch);
+		double spp=sin(owner.pitch);
+        
+        //play throw sound
+        A_StartSound("weapons/dyna_throw",8);
+
+		//create the dynamite
+		[garbage,ggg]=owner.A_SpawnItemEx(throwtype_unlit,
+			0,0,owner.height*0.88,
+			cpp*4,
+			0,
+			-spp*4,
+			0,SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
+		);
+		ggg.vel+=owner.vel;
+
+		//force calculation
+		double gforce=clamp(weaponstatus[DYNAS_FORCE]*0.5,1,40+owner.health*0.1);
+		if(oshit)gforce=min(gforce,frandom(4,20));
+		if(hdplayerpawn(owner))gforce*=hdplayerpawn(owner).strength;
+
+		let dynamite=HDDynamiteUnlit(ggg);if(!dynamite)return;
+		dynamite.fuze=weaponstatus[DYNAS_TIMER];
+
+		if(owner.player){dynamite.vel+=SwingThrow()*gforce;}
+		
+		dynamite.a_changevelocity(
+			cpp*gforce*0.6,
+			0,
+			-spp*gforce*0.6,
+			CVF_RELATIVE
+		);
+		weaponstatus[DYNAS_TIMER]=0;
+		weaponstatus[DYNAS_FORCE]=0;
+		weaponstatus[0]&=~DYNAF_PINOUT;
+		weaponstatus[DYNAS_REALLYPULL]=0;
+		
 		weaponstatus[0]&=~DYNAF_INHAND;
 		weaponstatus[0]|=DYNAF_JUSTTHREW;
 	}
@@ -323,7 +393,11 @@ class HDDynamiteThrower:HDWeapon{
 		string feedback=string.format("Dynamite planted! Now get away!");
 		A_Log(feedback,true);
 		TakeInventory("HDDynamiteAmmo", 1);
-		if(!countinv("HDDynamiteAmmo"))invoker.destroy();
+		if(!countinv("HDDynamiteAmmo")){
+		    string feedback=string.format("You have no dynamite to plant.");
+		    A_Log(feedback,true);
+		    invoker.destroy();
+		    }
 	}
 	
 	states{
@@ -378,8 +452,8 @@ class HDDynamiteThrower:HDWeapon{
 		loop;
 
 	altfire:
-		TNT1 A 0 A_JumpIf(invoker.weaponstatus[0]&DYNAF_SPOONOFF,"nope");
-		TNT1 A 0 A_JumpIf(invoker.weaponstatus[0]&DYNAF_PINOUT,"startcooking");
+		TNT1 A 0 A_JumpIf(invoker.weaponstatus[0]&DYNAF_SPOONOFF,"nope");//do nothing if already lit
+		TNT1 A 0 A_JumpIf(invoker.weaponstatus[0]&DYNAF_PINOUT,"startcooking");//light fuse if light ready
 		TNT1 A 0 A_JumpIf(NoDynamite(),"selectinstant");
 		TNT1 A 0 A_Refire();
 		goto ready;
@@ -390,7 +464,7 @@ class HDDynamiteThrower:HDWeapon{
 		goto startpull;
 	startpull:
 		FRGG B 1{
-			if(invoker.weaponstatus[DYNAS_REALLYPULL]>=26)setweaponstate("endpull");
+			if(invoker.weaponstatus[DYNAS_REALLYPULL]>=16)setweaponstate("endpull");
 			else invoker.weaponstatus[DYNAS_REALLYPULL]++;
 		}
 		FRGG B 0 A_Refire();
@@ -433,7 +507,7 @@ class HDDynamiteThrower:HDWeapon{
 		goto hold3;
 	hold3a:
 		FRGG # 0{
-			if(invoker.weaponstatus[DYNAS_FORCE]<50)invoker.weaponstatus[FRAGS_FORCE]++;
+			if(invoker.weaponstatus[DYNAS_FORCE]<50)invoker.weaponstatus[DYNAS_FORCE]++;
 		}
 	hold3:
 		FRGG # 1{
@@ -446,7 +520,10 @@ class HDDynamiteThrower:HDWeapon{
 		goto throw;
 	throw:
 		TNT1 A 0 A_JumpIf(NoDynamite(),"selectinstant");
-		FRGG A 1 offset(0,34) A_TossDynamite();
+		FRGG A 1 offset(0,34) {if(invoker.weaponstatus[0]&DYNAF_SPOONOFF)
+		                        {A_TossDynamite();}//check if fuse is lit
+		                        else A_TossDynamiteUnlit();//otherwise just throw unlit bundle
+		                      }
 		FRGG A 1 offset(0,38);
 		FRGG A 1 offset(0,48);
 		FRGG A 1 offset(0,52);
@@ -478,7 +555,7 @@ class HDDynamiteThrower:HDWeapon{
 		FRGG B 1 offset(0,34);
 		goto ready;
 		
-	firemode:
+	firemode://uses dynamite like it's a doorbuster
 	    plantbomb:
 	    TNT1 A 1 A_PlantDynamite();
 	    goto nope;
@@ -515,7 +592,7 @@ class HDDynamites:HDDynamiteThrower{//the actual weapon
 	}
 }
 
-
+//lit dynamite bundles
 class HDDynamiteRoller:HDActor{//the projectile after it hits the ground
 	int fuze;
 	vector3 keeprolling;
@@ -533,7 +610,7 @@ class HDDynamiteRoller:HDActor{//the projectile after it hits the ground
 		+bounceonactors 
 		+usebouncestate
 		
-		health 25;
+		health 10;
 		
 		bouncetype "doom";
 		bouncesound "weapons/dynaknock";
@@ -547,6 +624,7 @@ class HDDynamiteRoller:HDActor{//the projectile after it hits the ground
 		maxstepheight 2;
 		mass 30;
 	}
+	
 	override bool used(actor user){
 		angle=user.angle;
 		A_StartSound(bouncesound);
@@ -554,10 +632,11 @@ class HDDynamiteRoller:HDActor{//the projectile after it hits the ground
 		else A_ChangeVelocity(12,0,4,CVF_RELATIVE);
 		return true;
 	}
+	
 	states{
 	spawn:
 		DYNA A 0 nodelay{
-			HDMobAI.Frighten(self,512);
+			HDMobAI.Frighten(self,256);
 		}
 		DYNA A 0 A_StartSound("weapons/dyna_spoonoff");
 	spawn2:
@@ -593,6 +672,7 @@ class HDDynamiteRoller:HDActor{//the projectile after it hits the ground
 		}
 		stop;
 	}
+	
 	override void tick(){
 		if(isfrozen())return;
 		else if(bnointeraction){
@@ -609,7 +689,6 @@ class HDDynamiteRoller:HDActor{//the projectile after it hits the ground
 	}
 }
 
-
 class HDDynamite:SlowProjectile{//the projectile when thrown
 	int fuze;
 	vector3 keeprolling;
@@ -624,9 +703,8 @@ class HDDynamite:SlowProjectile{//the projectile when thrown
 		+noblood
 		+activatemcross 
 		-noteleport
-	//	-nointeraction  //adding this so they can be shot midair
-		
-		health 25;
+
+		health 10;
 		
 		radius 8;
 		height 8;
@@ -726,13 +804,14 @@ class HDDynamite:SlowProjectile{//the projectile when thrown
 			}
 		}
 	}
+	
 	override void tick(){
 		ClearInterpolation();
 		if(isfrozen())return;
 		if(health<1){
-				Kaboom(self);
-				destroy();return;
-			}
+			Kaboom(self);
+			destroy();return;
+		}
 		if(!bmissile){
 			hdactor.tick();return;
 		}else if(fuze<180){
@@ -750,12 +829,14 @@ class HDDynamite:SlowProjectile{//the projectile when thrown
 			destroy();return;
 		}
 	}
+	
 	override void postbeginplay(){
 		hdactor.postbeginplay();
 		divrad=1./(radius*1.9);
 		grav=getgravity();
 		A_StartSound("weapons/dyna_spoonoff",8);
 	}
+	
 	states{
 	spawn:
 		DYNA BCD 2;
@@ -770,20 +851,20 @@ class HDDynamite:SlowProjectile{//the projectile when thrown
 			gr.vel=self.keeprolling;
 			gr.keeprolling=self.keeprolling;
 			gr.A_StartSound("weapons/dynaknock",CHAN_BODY);
-			HDMobAI.Frighten(gr,512);
+			HDMobAI.Frighten(gr,256);
 		}stop;
 	}
 }
 
+//dummy spoon that exists just to play the fuse sfx
 class HDDynaFuse:HDDebris{
-	default{
-		scale 0.3;bouncefactor 0.6;
-		//bouncesound "misc/casing4";
-	}
+	default{scale 0.3;bouncefactor 0.6;}
+	
 	override void postbeginplay(){
 	    A_StartSound("weapons/dyna_spoonoff",8);
 		super.postbeginplay();
 	}
+	
 	states{
 	spawn:
 	death:
@@ -791,6 +872,160 @@ class HDDynaFuse:HDDebris{
 	}
 }
 
+//unlit bundles you can toss to set off at your leisure
+//can be picked back up later if you change your mind
+
+class HDDynamiteRollerUnlit:HDUPK{//the projectile after it hits the ground
+	int fuze;
+	vector3 keeprolling;
+	default{
+		-noextremedeath 
+		-floorclip 
+		+shootable 
+		+noblood 
+		+forcexybillboard
+		+activatemcross 
+		-noteleport 
+		+noblockmonst 
+		+explodeonwater
+		+missile 
+		+bounceonactors 
+		+usebouncestate
+		
+		hdupk.amount 1;
+		hdupk.pickuptype "HDDynamiteAmmo";
+		hdupk.pickupmessage "Picked up a bundle of dynamite.";
+		hdupk.pickupsound "weapons/rifleclick2";
+		stamina 1;
+		
+		health 10;
+		
+		bouncetype "doom";
+		bouncesound "weapons/dynaknock";
+		radius 8;
+		height 8;
+		damagetype "none";
+		scale 0.3;
+		obituary "%o was blown to smitheteens by %k.";
+		radiusdamagefactor 0.04;
+		pushfactor 1.4;
+		maxstepheight 2;
+		mass 30;
+	}
+	
+	override bool used(actor user){
+		return true;
+	}
+	
+	//adding this so it doesn't phase through monsters or objects
+	override bool cancollidewith(actor other,bool passive){
+		return HDPickerUpper(other) || HDActor(other);
+	}
+	
+	states{
+	spawn:
+		DYNA A 0;
+	spawn2:
+		#### BCD 2{
+			if(abs(vel.z-keeprolling.z)>10)A_StartSound("weapons/dynaknock",CHAN_BODY);
+			else if(floorz>=pos.z)A_StartSound("weapons/dynaroll");
+			keeprolling=vel;
+			if(abs(vel.x)<0.4 && abs(vel.y)<0.4) setstatelabel("death");
+		}loop;
+	bounce:
+		---- A 0{
+			bmissile=false;
+			vel*=0.3;
+		}goto spawn2;
+	death:
+		---- A 2{
+			if(abs(vel.z-keeprolling.z)>3){
+				A_StartSound("weapons/dynaknock",CHAN_BODY);
+				keeprolling=vel;
+			}
+			if(abs(vel.x)>0.4 || abs(vel.y)>0.4) setstatelabel("spawn");
+		}wait;
+	destroy:
+		TNT1 A 1{
+			bsolid=false;bpushable=false;bmissile=false;bnointeraction=true;bshootable=false;
+			HDDynamite.Kaboom(self);
+			HDDynamite.DynamiteShot(self,64);
+			actor xpl=spawn("WallChunker",self.pos-(0,0,1),ALLOW_REPLACE);
+				xpl.target=target;xpl.master=master;xpl.stamina=stamina;
+			xpl=spawn("HDExplosion",self.pos-(0,0,1),ALLOW_REPLACE);
+				xpl.target=target;xpl.master=master;xpl.stamina=stamina;
+			A_SpawnChunks("BigWallChunk",14,4,12);
+		}
+		stop;
+	}
+	
+	override void tick(){
+		if(isfrozen())return;
+		else if(bnointeraction){
+			NextTic();
+			return;
+		}else{
+			fuze=0;
+			if(health<1 || fuze>=180 && !bnointeraction){
+				setstatelabel("destroy");
+				NextTic();
+				return;
+			}else super.tick();
+		}
+	}
+}
+
+class HDDynamiteUnlit:HDDynamite{//the projectile when thrown
+	default{+bounceonactors 
+	        hddynamite.rollertype "HDDynamiteRollerUnlit";
+	        }
+	
+	override void tick(){
+		ClearInterpolation();
+		if(isfrozen())return;
+		if(health<1){
+			Kaboom(self);
+			destroy();return;
+		}
+		if(!bmissile){
+			hdactor.tick();return;
+		}else if(fuze<180){
+			keeprolling=vel;
+			super.tick();
+		}else{
+			if(inthesky){
+				destroy();return;
+			}
+			let gr=HDDynamiteRollerUnlit(spawn(rollertype,pos,ALLOW_REPLACE));
+			gr.target=self.target;gr.master=self.master;gr.vel=self.vel;
+			gr.fuze=fuze;
+			destroy();return;//remove self and spawn roller
+		}
+	}
+	
+	override void postbeginplay(){
+		hdactor.postbeginplay();
+		divrad=1./(radius*1.9);
+		grav=getgravity();
+	}
+	
+	states{
+	spawn:
+		DYNA BCD 2;
+		loop;
+	death:
+		TNT1 A 10{
+			bmissile=false;
+			let gr=HDDynamiteRollerUnlit(spawn(rollertype,self.pos,ALLOW_REPLACE));
+			if(!gr)return;
+			gr.target=self.target;gr.master=self.master;
+			gr.fuze=self.fuze;  
+			gr.vel=self.keeprolling;
+			gr.keeprolling=self.keeprolling;
+			gr.A_StartSound("weapons/dynaknock",CHAN_BODY);
+		}stop;
+	}
+}
 
 class HDDynamiteAmmo:HDAmmo{
 	default{
