@@ -815,7 +815,7 @@ class HDDynamite:SlowProjectile{//the projectile when thrown
 		if(!bmissile){
 			hdactor.tick();return;
 		}else if(fuze<180){
-			fuze++;
+		    fuze++;
 			keeprolling=vel;
 			super.tick();
 		}else{
@@ -965,8 +965,9 @@ class HDDynamiteRollerUnlit:HDUPK{//the projectile after it hits the ground
 			NextTic();
 			return;
 		}else{
-			fuze=0;
-			if(health<1 || fuze>=180 && !bnointeraction){
+			if(health >= 1)fuze=170;
+			else fuze++;
+			if(fuze>=180 && !bnointeraction){
 				setstatelabel("destroy");
 				NextTic();
 				return;
@@ -983,7 +984,9 @@ class HDDynamiteUnlit:HDDynamite{//the projectile when thrown
 	override void tick(){
 		ClearInterpolation();
 		if(isfrozen())return;
+		if(health >= 1)fuze=170;
 		if(health<1){
+		//    fuze++;
 			Kaboom(self);
 			destroy();return;
 		}
@@ -998,7 +1001,7 @@ class HDDynamiteUnlit:HDDynamite{//the projectile when thrown
 			}
 			let gr=HDDynamiteRollerUnlit(spawn(rollertype,pos,ALLOW_REPLACE));
 			gr.target=self.target;gr.master=self.master;gr.vel=self.vel;
-			gr.fuze=fuze;
+			gr.fuze=170;
 			destroy();return;//remove self and spawn roller
 		}
 	}
@@ -1019,7 +1022,7 @@ class HDDynamiteUnlit:HDDynamite{//the projectile when thrown
 			let gr=HDDynamiteRollerUnlit(spawn(rollertype,self.pos,ALLOW_REPLACE));
 			if(!gr)return;
 			gr.target=self.target;gr.master=self.master;
-			gr.fuze=self.fuze;  
+			gr.fuze=170;  
 			gr.vel=self.keeprolling;
 			gr.keeprolling=self.keeprolling;
 			gr.A_StartSound("weapons/dynaknock",CHAN_BODY);
