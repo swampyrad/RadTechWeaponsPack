@@ -2,6 +2,7 @@
 // M-211 Semi-Automatic Gas-Operated Combat Weapon (aka Sig-Cow)
 // ------------------------------------------------------------
 
+//Sig-Cow magazine encumberance values
 const enc_10MAG=9;
 const enc_10MAG_EMPTY=enc_10MAG*0.3;
 const enc_10MAG_LOADED=enc_10MAG_EMPTY*0.1;
@@ -10,68 +11,15 @@ const enc_10MAG25=enc_10MAG25_EMPTY+enc_10_LOADED*25;
 const enc_10MAG25_LOADED=enc_10MAG25*0.8;
 
 class HDSigCow:HDWeapon{
-int targettimer;
+    //melee stuff
+    int targettimer;
 	int targethealth;
 	int targetspawnhealth;
 	bool flicked;
 	bool washolding;
 
-	default{
-		//$Category "Weapons/Hideous Destructor"
-		//$Title "Sig-Cow"
-		//$Sprite "RF10A0"
-
-		+hdweapon.fitsinbackpack
-		
-		obituary "%o stepped in %k's cow pie.";
-		weapon.selectionorder 24;
-		weapon.slotnumber 4;
-		weapon.slotpriority 2;
-		weapon.kickback 30;//this does nothing to recoil :(
-		weapon.bobrangex 0.3;
-		weapon.bobrangey 0.6;
-		weapon.bobspeed 2.5;
-		scale 0.55;
-//		inventory.pickupmessage "You got the M-211 Sig-Cow!"; 
-		hdweapon.barrelsize 26,0.5,1;
-		hdweapon.refid "SCW";
-		tag "$TAG_SIGCOW";
-		inventory.icon "RF10A0";
-		
-		hdweapon.loadoutcodes "
-			\cufiremode - 0-2, semi/burst/auto
-			\cufireswitch - 0-4, default/semi/auto/full/all";
-	}
-
-	override string pickupmessage(){
-		return Stringtable.Localize("$PICKUP_SIGCOW");
-	}
-
-	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
-	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
-
-	override double gunmass(){
-		return 5+(weaponstatus[SCWS_MAG]<0)?-0.5:(weaponstatus[SCWS_MAG]*0.02);
-	}
-
-	override double weaponbulk(){
-		int mg=weaponstatus[SCWS_MAG];
-		if(mg<0)return 80;//-10 bulk less than the SMG
-		else return (80+ENC_10MAG25_LOADED)+mg*(ENC_10_LOADED);
-	}
-	override void failedpickupunload(){
-		failedpickupunloadmag(SCWS_MAG,"HD10mMag25");
-	}
-
-	override void DropOneAmmo(int amt){
-		if(owner){
-			amt=clamp(amt,1,10);
-			if(owner.countinv("HD10mAmmo"))owner.A_DropInventory("HD10mAmmo",amt*25);
-			else owner.A_DropInventory("HD10mMag25",amt);
-		}
-	}
-
-double strength;
+    //track player strength to modify melee damage/attack speed
+    double strength;
 	action void A_StrengthTics(int mintics,int maxtics=-1){
 		if(invoker.strength==1.)return;
 		if(maxtics<0)maxtics=tics;
@@ -79,6 +27,148 @@ double strength;
 		A_SetTics(max(mintics,int(ttt)));
 	}
 
+	default{
+		//$Category "Weapons/Hideous Destructor"
+		//$Title "Sig-Cow"
+		//$Sprite "RF10A0"
+		
+		+hdweapon.fitsinbackpack
+		obituary "%o stepped in %k's cow pie.";
+		weapon.selectionorder 24;
+		weapon.slotnumber 4;
+		weapon.slotpriority 0.1;
+		weapon.kickback 30;
+		weapon.bobrangex 0.3;
+		weapon.bobrangey 0.8;
+		weapon.bobspeed 2.5;
+		scale 0.55;
+		inventory.pickupmessage "$PICKUP_SIGCOW";
+		hdweapon.barrelsize 26,0.5,1;
+		hdweapon.refid "scw";
+		tag "$TAG_SIGCOW";
+		inventory.icon "RF10A0";
+
+		hdweapon.ammo1 "HD10mMag25",1;
+
+		hdweapon.loadoutcodes "
+			\cufiremode - 0-2, semi/burst/auto
+			\cufireswitch - 0-4, default/semi/auto/full/all
+		";
+	}
+	
+	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
+	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
+	
+	override double gunmass(){
+		return 5+((weaponstatus[SCWS_MAG]<0)?-0.5:(weaponstatus[SCWS_MAG]*0.05));
+	}
+	
+	override double weaponbulk(){
+		int mg=weaponstatus[SCWS_MAG];
+		if(mg<0)return 80;//-10 bulk less than the SMG
+		else return (80+ENC_10MAG25_LOADED)+mg*(ENC_10_LOADED);
+	}
+	
+	override void failedpickupunload(){
+		failedpickupunloadmag(SCWS_MAG,"HD10mMag25");
+	}
+	
+	override void DropOneAmmo(int amt){
+		if(owner){
+			amt=clamp(amt,1,10);
+			if(owner.countinv("HD10mAmmo"))owner.A_DropInventory("HD10mAmmo",amt*25);
+			else owner.A_DropInventory("HD10mMag25",amt);
+		}
+	}
+	
+	override void postbeginplay(){
+		super.postbeginplay();
+		if(weaponstatus[SCWS_AUTO]>0){
+		switch(weaponstatus[SCWS_SWITCHTYPE]){
+		case 1:
+			weaponstatus[SCWS_AUTO]=0;
+			break;
+		case 2:
+			weaponstatus[SCWS_AUTO]=1;
+			break;
+		case 3:
+			weaponstatus[SCWS_AUTO]=2;
+			break;
+		default:
+			break;
+		}}
+	}
+	
+	override void ForceBasicAmmo(){
+		owner.A_TakeInventory("HD10mAmmo");
+		ForceOneBasicAmmo("HD10mMag25");
+	}
+	
+	override string,double getpickupsprite(bool usespare){
+		int wep0=GetSpareWeaponValue(0,usespare);
+		return ("RF10")
+			..((GetSpareWeaponValue(SCWS_MAG,usespare)<0)?"B":"A").."0",1.;
+	}
+
+	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
+		if(sb.hudlevel==1){
+			int nextmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory("HD10mMag25")));
+			if(nextmagloaded>=25){
+				sb.drawimage("C10MA0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1,1));
+			}else if(nextmagloaded<1){
+				sb.drawimage("C10MD0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextmagloaded?0.6:1.,scale:(1,1));
+			}else sb.drawbar(
+				"C10MA0","C10MC0",
+				nextmagloaded,25,
+				(-46,-3),-1,
+				sb.SHADER_VERT,sb.DI_SCREEN_CENTER_BOTTOM
+			);
+			sb.drawnum(hpl.countinv("HD10mMag25"),-43,-8,sb.DI_SCREEN_CENTER_BOTTOM);
+		}
+
+		if(weaponstatus[SCWS_SWITCHTYPE]!=1)sb.drawwepcounter(hdw.weaponstatus[SCWS_AUTO],
+			-22,-10,"RBRSA3A7","STBURAUT","STFULAUT"
+		);
+		sb.drawwepnum(hdw.weaponstatus[SCWS_MAG],25);
+		if(hdw.weaponstatus[SCWS_CHAMBER]==2)sb.drawrect(-19,-11,3,1);
+	}
+
+	override string gethelptext(){
+		return  
+		WEPHELP_FIRESHOOT
+        ..WEPHELP_ALTFIRE.."  Bayonet Stab\n"
+		..WEPHELP_RELOAD.."  Reload mag\n"
+		..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
+		..WEPHELP_FIREMODE.."  Semi/Burst/Auto\n"
+		..WEPHELP_MAGMANAGER
+		..WEPHELP_UNLOADUNLOAD  
+		;
+	}
+
+
+	override void DrawSightPicture(
+		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
+		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
+	){
+		vector2 bobb=bob*1.18;
+		
+		int cx,cy,cw,ch;
+		[cx,cy,cw,ch]=screen.GetClipRect();
+		sb.SetClipRect(
+			-16+bob.x,-4+bob.y,32,16,
+			sb.DI_SCREEN_CENTER
+		);
+		sb.drawimage(
+			"smgfrntsit",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP
+		);
+		sb.SetClipRect(cx,cy,cw,ch);
+		sb.drawimage(
+			"scbksite",(0,0)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
+			alpha:0.9
+		);
+	}
+	
+	//check for melee target and berserk activated
 	override void DoEffect(){
 		super.DoEffect();
 		if(targettimer<70)targettimer++;else{
@@ -86,19 +176,27 @@ double strength;
 			targettimer=0;
 			targethealth=0;
 		}
+		
 		let hdp=hdplayerpawn(owner);
 		strength=hdp?hdp.strength:1.;
 		if(owner.countinv("HDZerk")>HDZerk.HDZERK_COOLOFF){
 			strength*=1.2;
 			if(!random[zrkbs](0,70)){
-				static const string zrkbs[]={"kill","k i l l","k I L L","K\n   I\n       L\n          L","Kill.","KILL","k i l l","Kill!","K  I  L  L","kill...","Kill...","k i l l . . .","      kill","  ... kill ...","kill,","kiiiilllll!!!","kill~","kill <3","kill uwu"};
+				static const string zrkbs[]={"kill","k i l l","k I L L",
+				                            "K\n   I\n       L\n          L",
+				                            "Kill.","KILL","k i l l","Kill!",
+				                            "K  I  L  L","kill...","Kill...",
+				                            "k i l l . . .","      kill","  ... kill ...",
+				                            "kill,","kiiiilllll!!!","kill~","kill <3",
+				                            "kill uwu"};
 				hdp.usegametip("\cr"..zrkbs[random(0,zrkbs.size()-1)]);
 			}
 		}
 	}
-
+	
+	//bayonet stab attack
 	action void HD_SigCowStab(double dmg){
-		let punchrange=96;// 1.5x etra range compared to fist attack
+		let punchrange=96;// 1.5x extra range compared to fist attack
 		if(hdplayerpawn(self))punchrange*=hdplayerpawn(self).heightmult;
 
 		flinetracedata punchline;
@@ -124,20 +222,19 @@ double strength;
 
 		if(!punchline.hitactor){
 			HDF.Give(self,"WallChunkAmmo",1);
-			if(punchline.hitline)doordestroyer.CheckDirtyWindowBreak(punchline.hitline,0.06+0.01*invoker.strength,punchline.hitlocation);
-			//this is the part that does window damage, 
-			//gave it 2x window damage because sharp points 
-			//break glass more easily
-			
+			if(punchline.hitline){
+			    doordestroyer.CheckDirtyWindowBreak(punchline.hitline,
+			                                        0.15+0.01*invoker.strength,
+			                                        punchline.hitlocation
+			                                        );
+			 }
 			return;
 		}
 		actor punchee=punchline.hitactor;
 
-
 		//charge!
 		dmg*=1.5;
 		dmg += 1;
-		//else dmg+=HDMath.TowardsEachOther(self,punchee)*3;
 
 		//come in swinging
 		let onr=hdplayerpawn(self);
@@ -153,7 +250,6 @@ double strength;
 
 		//shit happens
 		dmg*=invoker.strength*frandom(1.,1.2);
-
 
 		//other effects
 		if(
@@ -204,17 +300,13 @@ double strength;
 		{
 			aaa.master = invoker;
 			punchee.damagemobj(aaa,self,int(dmg),"slashing");
- //bleed code borrowed from PBWeappns knife zscript
- //bonus points to BenitezClanceIV for suggesting it
-if(!punchee.countinv("HDArmourWorn")){
-	    HDBleedingWound.inflict(punchee,dmg*frandom(1.3,1.8));
-	    HDBleedingWound.inflict(punchee,dmg*frandom(1.3,1.8));
-	    //increasing bleed chance, the medical rework nerfed bleed out
-	    //since the wounds close up too fast now
-	    //also, it should roll twice for each tip of the bayonet
-	    //now that i think about it
-    }		
-
+        
+        //bleed code borrowed from PBWeappns knife zscript
+        //bonus points to BenitezClanceIV for suggesting it
+        if(!punchee.countinv("HDArmourWorn")){
+	        HDBleedingWound.inflict(punchee,dmg*frandom(1.3,1.8));
+	        HDBleedingWound.inflict(punchee,dmg*frandom(1.3,1.8));
+            }		
 			aaa.destroy();
 		}
 		if(!punchee)invoker.targethealth=0;else{
@@ -244,96 +336,7 @@ if(!punchee.countinv("HDArmourWorn")){
 			}
 		}
 	}
-
-
-	override void postbeginplay(){
-		super.postbeginplay();
-    weaponspecial=1337;
-		if(weaponstatus[SCWS_AUTO]>0){
-		switch(weaponstatus[SCWS_SWITCHTYPE]){
-		case 1:
-			weaponstatus[SCWS_AUTO]=0;
-			break;
-		case 2:
-			weaponstatus[SCWS_AUTO]=1;
-			break;
-		case 3:
-			weaponstatus[SCWS_AUTO]=2;
-			break;
-		default:
-			break;
-		}}
-	}
-
-	override void ForceBasicAmmo(){
-		owner.A_TakeInventory("HD10mAmmo");
-		ForceOneBasicAmmo("HD10mMag25");
-	}
-	override string,double getpickupsprite(bool usespare){
-		int wep0=GetSpareWeaponValue(0,usespare);
-		return ("RF10")
-			..((GetSpareWeaponValue(SCWS_MAG,usespare)<0)?"B":"A").."0",1.;
-	}
-
-	override void DrawHUDStuff(HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl){
-		if(sb.hudlevel==1){
-			int nextmagloaded=sb.GetNextLoadMag(hdmagammo(hpl.findinventory("HD10mMag25")));
-			if(nextmagloaded>=25){
-				sb.drawimage("C10MA0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1,1));
-			}else if(nextmagloaded<1){
-				sb.drawimage("C10MD0",(-46,-3),sb.DI_SCREEN_CENTER_BOTTOM,alpha:nextmagloaded?0.6:1.,scale:(1,1));
-			}else sb.drawbar(
-				"C10MA0","C10MC0",
-				nextmagloaded,25,
-				(-46,-3),-1,
-				sb.SHADER_VERT,sb.DI_SCREEN_CENTER_BOTTOM
-			);
-			sb.drawnum(hpl.countinv("HD10mMag25"),-43,-8,sb.DI_SCREEN_CENTER_BOTTOM);
-		}
-
-		if(weaponstatus[SCWS_SWITCHTYPE]!=1)sb.drawwepcounter(hdw.weaponstatus[SCWS_AUTO],
-			-22,-10,"RBRSA3A7","STBURAUT","STFULAUT"
-		);
-		sb.drawwepnum(hdw.weaponstatus[SCWS_MAG],25);
-		if(hdw.weaponstatus[SCWS_CHAMBER]==2)sb.drawrect(-19,-11,3,1);
-	}
-
-
-	override string gethelptext(){
-		return
-		WEPHELP_FIRESHOOT
-  ..WEPHELP_ALTFIRE.." Bayonet Stab\n"
-		..WEPHELP_RELOAD.."  Reload mag\n"
-		..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
-		..WEPHELP_FIREMODE.."  Semi/Burst/Auto\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD
-		;
-	}
-	override void DrawSightPicture(
-		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
-		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
-	){
-		vector2 bobb=bob*1.18;
-		{
-			int cx,cy,cw,ch;
-			[cx,cy,cw,ch]=screen.GetClipRect();
-			sb.SetClipRect(
-				-16+bob.x,-4+bob.y,32,16,
-				sb.DI_SCREEN_CENTER
-			);
-			//bobb.y=clamp(bobb.y,-8,8);
-			sb.drawimage(
-				"smgfrntsit",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP
-			);
-			sb.SetClipRect(cx,cy,cw,ch);
-			sb.drawimage(
-				"scbksite",(0,0)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
-				alpha:0.9
-			);
-		}
-	}
-
+	
 	states{
 	select0:
 		RBAY A 0;
@@ -342,23 +345,21 @@ if(!punchee.countinv("HDArmourWorn")){
 		RBAY A 0;
 		goto deselect0small;
 		RBAY AB 0;
-		SMSG AB 0;
 
 	ready:
-	RBAY A 0;
-	#### A 1{
-		A_SetCrosshair(21);
-		invoker.weaponstatus[SCWS_RATCHET]=0;
-		A_WeaponReady(WRF_ALL);
-	}
-	goto readyend;
-	
+		RBAY A 0{invoker.breverseguninertia=false;}
+		#### A 1{
+			A_SetCrosshair(21);
+			invoker.weaponstatus[SCWS_RATCHET]=0;
+			A_WeaponReady(WRF_ALL);
+		}
+		goto readyend;
 	user3:
-	---- A 0 A_MagManager("HD10mMag25");
-	goto ready;
-	
+		---- A 0 A_MagManager("HD10mMag25");
+		goto ready;
+		
 	altfire:
-	RBAY B 1;
+	RBAY B 1{invoker.breverseguninertia=true;}
 	RBAY B 1 A_JumpIf(pressingaltfire(),"altfire");//adds a windup before stabbing
 	RBAY C 3 {A_StrengthTics(0,2); A_Recoil(-1);}// adds a short charge before stabbing
 	RBAY D 0 A_Recoil(min(0,1.-invoker.strength));
@@ -372,140 +373,88 @@ if(!punchee.countinv("HDArmourWorn")){
 	
 	althold:
 	//	goto altfire;
+	
 	hold:
 		#### A 0{
 			if(
-				invoker.weaponstatus[SCWS_CHAMBER]==2  
-      //live round chambered
+				invoker.weaponstatus[SCWS_CHAMBER]==2  //live round chambered
 				&&(
-					invoker.weaponstatus[SCWS_AUTO]==2  
-      //full auto
+					invoker.weaponstatus[SCWS_AUTO]==2  //full auto
 					||(
-						invoker.weaponstatus[SCWS_AUTO]==1  
-      //burst
+						invoker.weaponstatus[SCWS_AUTO]==1  //burst
 						&&invoker.weaponstatus[SCWS_RATCHET]<=2
 					)
 				)
 			)setweaponstate("fire2");
 		}goto nope;
 	user2:
-
 	firemode:
-    //do this when firemode is triggered
 		---- A 1{
 			int canaut=invoker.weaponstatus[SCWS_SWITCHTYPE];
-    //canaut checks if selectfire set to Auto
 			if(canaut==1){
 				invoker.weaponstatus[SCWS_AUTO]=0;
-    //if it is, set selectfire to Semi-Auto
 				return;
 			}
 			int maxmode=(canaut>0)?(canaut-1):2;
-  //maxmode checks that canaut doesn't go higher than 2
 			int aut=invoker.weaponstatus[SCWS_AUTO];
-  //aut checks the current selectfire mode
 			if(aut>=maxmode)invoker.weaponstatus[SCWS_AUTO]=0;
-  //if aut is greater than canaut, force Semi-Auto
 			else if(aut<0)invoker.weaponstatus[SCWS_AUTO]=0;
-  //but, if aut is somehow less than 0, also force Semi-Auto
 			else if(canaut>0)invoker.weaponstatus[SCWS_AUTO]=maxmode;
-  //but, if aut is greater than 0, 
-  //aut equals maxmode, force Auto
 			else invoker.weaponstatus[SCWS_AUTO]++;
-  //finally set selectfire to Burst 
-  //once all of these checks failed
 		}goto nope;
-
 	fire:
 		#### A 0;
-  //don't mess with this lol
-
 	fire2:
 		#### B 0{
 			if(invoker.weaponstatus[SCWS_CHAMBER]==2)A_GunFlash();
-   //check if a round is chambered, then jump to state "flash"
 			else setweaponstate("chamber_manual");
 		}
-  //jump to state "chamber_manual" if no round is found
-
 		#### A 1;
-
 		#### A 0{
 			if(invoker.weaponstatus[SCWS_CHAMBER]==1){
-				A_EjectCasing("HDSpent10mm",-frandom(79,81),(frandom(7,7.5),0,0),(13,0,0));
-  //if a round has been fired, eject a spent casing
+				A_EjectCasing("HDSpent10mm",
+					frandom(-1,2),
+					(frandom(0.2,0.3),-frandom(7,7.5),frandom(0,0.2)),
+					(0,0,-2)
+				);
 				invoker.weaponstatus[SCWS_CHAMBER]=0;
 			}
-  //chamber is empty
 			if(invoker.weaponstatus[SCWS_MAG]>0){
-  //do this if chamber is empty
 				invoker.weaponstatus[SCWS_MAG]--;
-  //remove one round from the magazine
 				invoker.weaponstatus[SCWS_CHAMBER]=2;
-  //chamber the round
 			}
 			if(invoker.weaponstatus[SCWS_AUTO]==2)A_SetTics(1);
+
+			//don't allow firing if supposed to be lowered
+			A_WeaponReady(WRF_NOFIRE);
 		}
-  #### A 2 {if(invoker.weaponstatus[SCWS_AUTO]==1)A_SetTics(1);}
-  //gives burst fire a faster firerate than auto, for better grouping
+		#### A 2 {if(invoker.weaponstatus[SCWS_AUTO]==1)A_SetTics(1);}
+		//burst-fire is faster than full-auto
 		#### A 0 A_ReFire();
-  //fire another round if selectfire is set to Auto
 		goto ready;
-  //jump to state "ready"
-
-
 	flash:
 		#### B 0{
 			let bbb=HDBulletActor.FireBullet(self,"HDB_10",speedfactor:1.1);
-  //fire a 10mm bullet
 			if(
 				frandom(16,ceilingz-floorz)<bbb.speed*0.1
 			)A_AlertMonsters(200);
-  //loud bang make imp ANGRY >:[
 
 			A_ZoomRecoil(0.995);
-  //do the weird zoomin effect to simulate recoil
-			A_StartSound("weapons/sigcow",CHAN_WEAPON,volume:1);
-  //play gunshot sfx
+			A_StartSound("weapons/sigcow",CHAN_WEAPON);
 			invoker.weaponstatus[SCWS_RATCHET]++;
 			invoker.weaponstatus[SCWS_CHAMBER]=1;
-  //empty casing in the chamber
 		}
 		SCWF A 1 bright{
-			HDFlashAlpha(-100);
+			HDFlashAlpha(-200);
 			A_Light1();
-  //display muzzle flash
 		}
-		TNT1 A 0 A_MuzzleClimb(
-				-frandom(0.1,0.1),-frandom(0,0.1),
-				-0.2,-frandom(0.3,0.4),
-				-frandom(0.4,1.4),-frandom(1.3,2.6)
-    );
-//it seems the way this works is, 
-//it progresses to higher values
-//the more consecutive shots are made,
-//getting worse and worse until it reaches
-//the last set of values
-//in other wprds, "short, controlled bursts"
-
-
-  //using zm66's MuzzleClimb code
-  //A_muzzleClimb moves the camera around
-
-
-/* original smg MuzzleClimb, wimpy
-
-TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),-frandom(0.3,0.36));
-
-*/
-
+		TNT1 A 0 A_MuzzleClimb(-frandom(0.4,0.48),-frandom(0.6,0.72),
+                               -frandom(0.6,0.72),-frandom(0.8,0.96));
 		goto lightdone;
 
 
 	unloadchamber:
 		#### B 4 A_JumpIf(invoker.weaponstatus[SCWS_CHAMBER]<1,"nope");
-  //checks if there's even a round to eject
-  //if not, do nothing
 		#### B 10{
 			class<actor>which=invoker.weaponstatus[SCWS_CHAMBER]>1?"HD10mAmmo":"HDSpent10mm";
 			invoker.weaponstatus[SCWS_CHAMBER]=0;
@@ -514,10 +463,7 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 				vel.x,vel.y,vel.z,
 				0,SXF_ABSOLUTEMOMENTUM|SXF_NOCHECKPOSITION|SXF_TRANSFERPITCH
 			);
-    //this checks whether to eject 
-    //a casing or an unspent round
 		}goto readyend;
-
 	loadchamber:
 		---- A 0 A_JumpIf(invoker.weaponstatus[SCWS_CHAMBER]>0,"nope");
 		---- A 0 A_JumpIf(!countinv("HD10mAmmo"),"nope");
@@ -542,9 +488,7 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 		---- A 1 offset(2,36);
 		---- A 2 offset(0,34);
 		goto nope;
-
 	user4:
-
 	unload:
 		#### A 0{
 			invoker.weaponstatus[0]|=SCWF_JUSTUNLOAD;
@@ -571,7 +515,6 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 				else setweaponstate("nope");
 			}else if(nomags)setweaponstate("nope");
 		}goto unmag;
-
 	unmag:
 		#### A 1 offset(0,34) A_SetCrosshair(21);
 		#### A 1 offset(5,38);
@@ -617,7 +560,7 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 			let mmm=hdmagammo(findinventory("HD10mMag25"));
 			if(mmm){
 				invoker.weaponstatus[SCWS_MAG]=mmm.TakeMag(true);
-				A_StartSound("weapons/sigcow_magclick",8,CHANF_OVERLAP);
+				A_StartSound("weapons/smgmagclick",8,CHANF_OVERLAP);
 			}
 			if(
 				invoker.weaponstatus[SCWS_MAG]<1
@@ -669,12 +612,13 @@ TNT1 A 0 A_MuzzleClimb(-frandom(0.2,0.24),-frandom(0.3,0.36),-frandom(0.2,0.24),
 
 		int fireswitch=getloadoutvar(input,"fireswitch",1);
 
-  if(fireswitch<0)weaponstatus[SCWS_SWITCHTYPE]=1;
+    if(fireswitch<0)weaponstatus[SCWS_SWITCHTYPE]=1;
     //standard issue is semi-only, just like in the books
 		if(fireswitch>3)weaponstatus[SCWS_SWITCHTYPE]=0;
 		else if(fireswitch>0)weaponstatus[SCWS_SWITCHTYPE]=clamp(fireswitch,0,3);
 	}
 }
+
 enum sigcowstatus{
 	SCWF_JUSTUNLOAD=1,
 
@@ -763,7 +707,6 @@ class HD10mMag8:HDMagAmmo{
 		hdmagammo.magbulk enc_10MAG_EMPTY; 
 		scale 0.35;
 		tag "$TAG_10PISMAG";
-//		inventory.pickupmessage "Picked up a 10mm pistol magazine.";
 		hdpickup.refid "SC8";
 	}
 
@@ -799,7 +742,6 @@ class HD10mMag25:HD10mMag8{
 		hdmagammo.maxperunit 25;
 		hdmagammo.magbulk enc_10mag25_EMPTY;
 		tag "$TAG_SCWMAG";
-//		inventory.pickupmessage "Picked up an Sig-Cow magazine.";
 		hdpickup.refid "S25";
 	}
 
