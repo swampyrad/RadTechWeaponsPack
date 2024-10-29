@@ -266,10 +266,10 @@ class PhazerPistol:HDHandgun{
   
 	select0:
 		PHZR D 0 A_CheckPhazerHand();
-		goto select0big;
+		goto select0small;
 	deselect0:
 		PHZR D 0 A_CheckPhazerHand();
-		goto deselect0big;
+		goto deselect0small;
 
 	unload:
 		#### A 0{
