@@ -63,17 +63,20 @@ class HushpuppyPistol:HDHandgun{
 		sb.drawwepnum(hdw.weaponstatus[PUPPY_MAG],15);
 		if(hdw.weaponstatus[PUPPY_CHAMBER]==2)sb.drawrect(-19,-11,3,1);
 	}
+	
 	override string gethelptext(){
 		return
 		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.."  Rack slide\n"
+	    ..WEPHELP_ALTFIRE.."  Rack slide\n"
 		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
 		..WEPHELP_RELOAD.."  Reload mag\n"
-		..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
+		..WEPHELP_ALTFIRE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
+		..WEPHELP_ALTFIRE.."+"..WEPHELP_UNLOAD.."  Unload chamber\n"
 		..WEPHELP_MAGMANAGER
 		..WEPHELP_UNLOADUNLOAD
 		;
 	}
+	
 	override void DrawSightPicture(
 		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,
 		bool sightbob,vector2 bob,double fov,bool scopeview,actor hpc
@@ -158,40 +161,100 @@ class HushpuppyPistol:HDHandgun{
 	user2:
 	firemode:
 		goto nope;
-	altfire:
-		goto chamber_manual;
 		
-	chamber_manual:
-	//you can always work the slide
-	//even on unspent rounds
+	//reuse TT-33's sliderack chamber style for more *immersion*
+	altfire:
+    #### B 3;
+	#### B 1 offset(0,34){if(!PressingAltFire())setweaponstate("nope");}
 
-		#### B 3 offset(0,34);
-		#### C 4 offset(0,37){
+	chamber_start:
+		#### C 5 offset(0,37){
 			A_MuzzleClimb(frandom(0.4,0.5),-frandom(0.6,0.8));
-			A_StartSound("weapons/hushpup_chamber2",8);
-			int psch=invoker.weaponstatus[PUPPY_CHAMBER];
-			invoker.weaponstatus[PUPPY_CHAMBER]=0;
+			A_StartSound("weapons/tt33_load",8);
+			int psch=invoker.weaponstatus[PISS_CHAMBER];
+			invoker.weaponstatus[PISS_CHAMBER]=0;
 			if(psch==2){
 				A_EjectCasing("HDPistolAmmo",
-					frandom(-1,2),
-					(-frandom(2,3),frandom(0,0.2),frandom(0.4,0.5)),
-					(-2,0,-1)
-				);
+				              -frandom(89,92),
+				              (frandom(2,3),0,0),
+				              (13,0,0));
 			}else if(psch==1){
 				A_EjectCasing("HDSpent9mm",
-					-frandom(-1,2),
-					(frandom(0.4,0.7),-frandom(6,7),frandom(0.8,1)),
-					(-2,0,-1)
+				              -frandom(89,92),
+				              (frandom(6,7),0,0),
+				              (13,0,0));
+			}
+			if(invoker.weaponstatus[PISS_MAG]>0){
+				invoker.weaponstatus[PISS_CHAMBER]=2;
+				invoker.weaponstatus[PISS_MAG]--;
+			}
+		}goto althold;
+	
+	althold:
+	    #### C 1 offset(0,37){if(PressingUnload()){
+	              if(invoker.weaponstatus[PISS_CHAMBER]>0)
+	                setweaponstate("alt_unchamber");
+	            
+	                }
+	            if(invoker.weaponstatus[PISS_CHAMBER]<1
+	            &&PressingReload()
+	            &&countinv("HDPistolAmmo")
+	              )setweaponstate("alt_chamber");
+	            }
+	    #### C 0 A_JumpIf(!PressingAltFire(),"althold_end");
+	    goto althold;
+	    
+	alt_chamber:
+	    #### C 1 offset(2,36);
+	    #### C 1 offset(3,38);
+		#### C 1 offset(5,42);
+		#### C 1 offset(8,48);
+	    #### C 1 offset(7,52);
+	   	#### C 3 {
+				A_TakeInventory("HDPistolAmmo",1,TIF_NOTAKEINFINITE);
+				invoker.weaponstatus[PISS_CHAMBER]=2;
+				A_StartSound("weapons/hushpup_chamber1",8,0.3);
+		}
+		#### C 1 offset(7,52);
+		#### C 1 offset(8,48);
+		#### C 1 offset(5,42);
+		#### C 1 offset(3,38);
+		#### C 1 offset(2,36);
+        goto althold;
+    	
+	alt_unchamber:
+	    #### C 1 offset(2,36);
+	    #### C 1 offset(3,38);
+		#### C 1 offset(5,42);
+		#### C 1 offset(8,48);
+	    #### C 1 offset(7,52);
+	    #### C 3 {
+			A_MuzzleClimb(frandom(0.4,0.5),-frandom(0.6,0.8));
+			A_StartSound("weapons/hushpup_chamber1",8,0.3);
+			int psch=invoker.weaponstatus[PISS_CHAMBER];
+			invoker.weaponstatus[PISS_CHAMBER]=0;
+			if(psch==2){
+				A_EjectCasing("HDPistolAmmo",
+				-frandom(89,92),
+				(frandom(2,3),0,0),
+				(13,0,0)
 				);
 			}
-			if(invoker.weaponstatus[PUPPY_MAG]>0){
-				invoker.weaponstatus[PUPPY_CHAMBER]=2;
-				invoker.weaponstatus[PUPPY_MAG]--;
-			}
 		}
-		#### B 3 offset(0,35);
+		#### C 1 offset(7,52);
+		#### C 1 offset(8,48);
+		#### C 1 offset(5,42);
+		#### C 1 offset(3,38);
+		#### C 1 offset(2,36);
+        goto althold;
+        
+	althold_end:
+		#### B 2 offset(0,35);
+		#### B 0 A_StartSound("weapons/tt33_chamber",8);
 		goto nope;
-	althold:
+	
+	hold:
+		goto nope;
 	hold:
 		goto nope;
 	fire:
@@ -217,9 +280,6 @@ class HushpuppyPistol:HDHandgun{
 		#### C 0{
 			invoker.weaponstatus[PUPPY_CHAMBER]=1;//do not eject casing automatically
 			if(invoker.weaponstatus[PUPPY_MAG]<1){
-				//A_StartSound("weapons/pistoldry",8,CHANF_OVERLAP,0.9);
-				//the slide doesn't lock back after firing
-				//there's no reason for it to make this noise
 				setweaponstate("nope");
 			}
 		}
@@ -246,52 +306,20 @@ class HushpuppyPistol:HDHandgun{
 		---- A 0 A_StartSound("weapons/hushpup_fire",CHAN_WEAPON,volume:0.5);//same gunshot sound as Sten, but quieter
 		---- A 0 A_Light0();
 		stop;
-	unload:
+		
+	unload://only unloads mag
 		---- A 0{
 			invoker.weaponstatus[0]|=PUPF_JUSTUNLOAD;
 			if(invoker.weaponstatus[PUPPY_MAG]>=0)setweaponstate("unmag");
-		}goto chamber_manual;
-	loadchamber:
-		---- A 0 A_JumpIf(invoker.weaponstatus[PUPPY_CHAMBER]>0,"nope");
-		---- A 1 offset(0,36) A_StartSound("weapons/pocket",9);
-		---- A 1 offset(2,40);
-		---- A 1 offset(2,50);
-		---- A 1 offset(3,60);
-		---- A 2 offset(5,90);
-		---- A 2 offset(7,80);
-		---- A 2 offset(10,90);
-		#### C 2 offset(8,96);
-		#### C 3 offset(6,88){
-			if(countinv("HDPistolAmmo")){
-				A_TakeInventory("HDPistolAmmo",1,TIF_NOTAKEINFINITE);
-				invoker.weaponstatus[PUPPY_CHAMBER]=2;
-				A_StartSound("weapons/hushpup_chamber1",8);
-			}
-		}
-		#### B 2 offset(5,76);
-		#### B 1 offset(4,64);
-		#### B 1 offset(3,56);
-		#### B 1 offset(2,48);
-		#### B 2 offset(1,38);
-		#### B 3 offset(0,34);
-		goto readyend;
-	reload:
+		}goto nope;//must hold slide open to unchamber
+
+
+	reload://only loads mags
 		---- A 0{
 			invoker.weaponstatus[0]&=~PUPF_JUSTUNLOAD;
 			bool nomags=HDMagAmmo.NothingLoaded(self,"HD9mMag15");
 			if(invoker.weaponstatus[PUPPY_MAG]>=15)setweaponstate("nope");
-			else if(
-				invoker.weaponstatus[PUPPY_MAG]<1
-				&&(
-					pressinguse()
-					||nomags
-				)
-			){
-				if(
-					countinv("HDPistolAmmo")
-				)setweaponstate("loadchamber");
-				else setweaponstate("nope");
-			}else if(nomags)setweaponstate("nope");
+			else if(nomags)setweaponstate("nope");
 		}goto unmag;
 	unmag:
 		---- A 1 offset(0,34) A_SetCrosshair(21);
