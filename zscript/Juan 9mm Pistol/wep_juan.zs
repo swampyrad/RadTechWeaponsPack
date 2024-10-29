@@ -50,9 +50,11 @@ class HDHorseshoePistol:HDHandgun{
 		int mgg=weaponstatus[HPISS_MAG];
 		return result+(mgg<0?0:(ENC_9MAG_LOADED+mgg*ENC_9_LOADED));
 	}
+	//updated gunmass to match standard pistol's formula,
+	//was a lot heavier than it should have been
 	override double gunmass(){
 		int mgg=weaponstatus[HPISS_MAG];
-		return 6+(mgg<0?0:0.25*(mgg+1));
+		return 3.5+(mgg<0?0:0.08*(mgg+1));
 	}
 	override void failedpickupunload(){
 	if(MAG_15)failedpickupunloadmag(HPISS_MAG,"hd9mmag15");
@@ -168,7 +170,21 @@ class HDHorseshoePistol:HDHandgun{
 		if(hdw.weaponstatus[0]&HPISF_SELECTFIRE)sb.drawwepcounter(hdw.weaponstatus[0]&HPISF_FIREMODE,
 			-22,-10,"RBRSA3A7","STFULAUT"
 		);
-		sb.drawwepnum(hdw.weaponstatus[HPISS_MAG],30);
+		
+		//sb.drawwepnum(hdw.weaponstatus[HPISS_MAG],30);
+		//first value is current ammo left, second is max ammo capacity
+		
+		//use same code as PPSh-41 for drawing second ammobar
+		sb.drawwepnum(hdw.weaponstatus[HPISS_MAG],
+		              hdw.weaponstatus[HPISS_MAG]>15?
+		              hdw.weaponstatus[HPISS_MAG]:15,-16);
+		              //simple hack to make sure it never draws yellow "overload" tick 
+		              //if >15 rounds when horseshoe mag is loaded
+		              
+		//draw second ammobar if more than 15 rounds left (i.e. horseshoe mag loaded)
+		if(hdw.weaponstatus[HPISS_MAG]>15)
+	    	sb.drawwepnum(hdw.weaponstatus[HPISS_MAG]-15,15,-16,-2);
+
 		if(hdw.weaponstatus[HPISS_CHAMBER]==2)sb.drawrect(-19,-11,3,1);
 	}
 	override string gethelptext(){
@@ -233,9 +249,10 @@ class HDHorseshoePistol:HDHandgun{
 		if(invoker.wronghand)player.getpsprite(PSP_WEAPON).sprite=getspriteindex("PI2GA0");
 	}
 	
+	//updated to use new pistol sprite index
 	states{
 	select0:
-		PISG A 0{
+		PI1G A 0{
 			if(!countinv("NulledWeapon"))invoker.wronghand=false;
 			A_TakeInventory("NulledWeapon");
 			A_CheckPistolHand();
@@ -249,7 +266,7 @@ class HDHorseshoePistol:HDHandgun{
 		---- A 1 A_Raise(18);
 		wait;
 	deselect0:
-		PISG A 0 A_CheckPistolHand();
+		PI1G A 0 A_CheckPistolHand();
 		#### A 0 A_JumpIf(invoker.weaponstatus[HPISS_CHAMBER]>0,2);
 		#### C 0;
 		---- AAA 1 A_Lower();
@@ -259,7 +276,7 @@ class HDHorseshoePistol:HDHandgun{
 		wait;
 
 	ready:
-		PISG A 0 A_CheckPistolHand();
+		PI1G A 0 A_CheckPistolHand();
 		#### A 0 A_JumpIf(invoker.weaponstatus[HPISS_CHAMBER]>0,2);
 		#### C 0;
 		#### # 0 A_SetCrosshair(21);
@@ -609,10 +626,10 @@ class HDHorseshoePistol:HDHandgun{
 			}
 		}
 		TNT1 A 5;
-		PISG A 0 A_CheckPistolHand();
+		PI1G A 0 A_CheckPistolHand();
 		goto nope;
 	lowerleft:
-		PISG A 0 A_JumpIf(Wads.CheckNumForName("id",0)!=-1,2);
+		PI1G A 0 A_JumpIf(Wads.CheckNumForName("id",0)!=-1,2);
 		PI2G A 0;
 		#### B 1 offset(-6,38);
 		#### B 1 offset(-12,48);
@@ -622,7 +639,7 @@ class HDHorseshoePistol:HDHandgun{
 		stop;
 	lowerright:
 		PI2G A 0 A_JumpIf(Wads.CheckNumForName("id",0)!=-1,2);
-		PISG A 0;
+		PI1G A 0;
 		#### B 1 offset(6,38);
 		#### B 1 offset(12,48);
 		#### B 1 offset(20,60);
@@ -630,7 +647,7 @@ class HDHorseshoePistol:HDHandgun{
 		#### B 1 offset(50,86);
 		stop;
 	raiseleft:
-		PISG A 0 A_JumpIf(Wads.CheckNumForName("id",0)!=-1,2);
+		PI1G A 0 A_JumpIf(Wads.CheckNumForName("id",0)!=-1,2);
 		PI2G A 0;
 		#### A 1 offset(-50,86);
 		#### A 1 offset(-34,76);
@@ -640,7 +657,7 @@ class HDHorseshoePistol:HDHandgun{
 		stop;
 	raiseright:
 		PI2G A 0 A_JumpIf(Wads.CheckNumForName("id",0)!=-1,2);
-		PISG A 0;
+		PI1G A 0;
 		#### A 1 offset(50,86);
 		#### A 1 offset(34,76);
 		#### A 1 offset(20,60);
@@ -652,7 +669,7 @@ class HDHorseshoePistol:HDHandgun{
 		#### B 1 offset(0,60);
 		#### B 1 offset(0,76);
 		TNT1 A 7;
-		PISG A 0{
+		PI1G A 0{
 			invoker.wronghand=!invoker.wronghand;
 			A_CheckPistolHand();
 		}
