@@ -302,10 +302,10 @@ action void A_CheckRifleHand()
 	states{
 	select0:
 		BROZ A 0;
-		goto select0bfg;
+		goto select0small;
 	deselect0:
 		BROZ A 0 A_CheckRifleHand();
-		goto deselect0big;
+		goto deselect0small;
 
 	ready:
 	    BROZ A 0 A_CheckRifleHand();
