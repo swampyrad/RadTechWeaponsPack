@@ -233,11 +233,10 @@ class HD10mmPistol:HDHandgun{
 			else if(invoker.weaponstatus[PISS_MAG]>0)setweaponstate("chamber_manual");
 		}goto nope;
 	shoot:
-  #### B 1;//extra tic to increase trigger pull
+        #### A 1;//extra tic to increase trigger pull
 		#### B 1{
 			if(invoker.weaponstatus[PISS_CHAMBER]==2)A_GunFlash();
 		}
-  #### C 1;//extra tic here to hold slide back for a bit longer
 		#### C 1{
 			if(hdplayerpawn(self)){
 				hdplayerpawn(self).gunbraced=false;
@@ -246,8 +245,7 @@ class HD10mmPistol:HDHandgun{
 				-frandom(1.21,1.8),-frandom(1.3,2.1),
 				-frandom(0.5,1.3),frandom(.9,1.0),frandom(0.7,0.7)
 			);//beefed up the recoil, should feel more powerful
-		}//even more beef, to balance for trimming the
-    // fat off of the SigCow, and more sideclimb added
+		}
 		#### C 0{
 			A_EjectCasing("HDSpent10mm",
 			    -frandom(89,92),
@@ -259,8 +257,6 @@ class HD10mmPistol:HDHandgun{
 				setweaponstate("nope");
 			}
 		}
-  //#### B 1;//extra tic for longer cycle 
-  //removing delay, it sucks, actually
 		#### B 1{
 			A_WeaponReady(WRF_NOFIRE);
 			invoker.weaponstatus[PISS_CHAMBER]=2;
