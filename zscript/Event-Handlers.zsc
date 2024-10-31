@@ -260,12 +260,12 @@ class RadTechHandler : EventHandler {
         Array<string> wep_10mm;
         wep_10mm.push('HD10mmPistol');
         wep_10mm.push('HDSigcow');
-        wep_10mm.push('TenMilAutoReloadingThingy');
+        wep_10mm.push('TenMilAutoReloader');
         addammo ('HD10mAmmo', wep_10mm);
 
         // 10mm ammo (brass)
         Array<string> wep_10mmbrass;
-        wep_10mmbrass.push('TenMilAutoReloadingThingy');
+        wep_10mmbrass.push('TenMilAutoReloader');
         addammo ('TenMilBrass', wep_10mmbrass);
 
         // 4mm 'volt caseless'
@@ -324,9 +324,9 @@ class RadTechHandler : EventHandler {
         addammo('HD45LCAmmo', wep_45lc);
 
         // .45 Long Colt (gold)
-        Array<string> wep_45lcgold;
-        wep_45lcgold.push('HDGoldenSingleActionRevolver');
-        addammo('HDGold45LCAmmo', wep_45lcgold);
+        Array<string> wep_gold45lc;
+        wep_gold45lc.push('HDGoldSingleActionRevolver');
+        addammo('HDGold45LCAmmo', wep_gold45lc);
 
         // 7mm Clips
         Array<string> wep_7mmClip;
