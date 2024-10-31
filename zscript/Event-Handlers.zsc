@@ -362,7 +362,7 @@ class RadTechHandler : EventHandler {
         // 7mm Tokarev (brass)
         Array<string> wep_7mmTokarevB;
         wep_7mmTokarevB.push('TokarevAutoReloader');
-        addammo('HDSpent762Tokarev', wep_7mmTokarevB);
+        addammo('TokarevBrass', wep_7mmTokarevB);
 
 
         // --------------------
