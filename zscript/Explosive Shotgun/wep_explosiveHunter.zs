@@ -504,7 +504,6 @@ override void failedpickupunload(){
 		goto reloadashell;
 	reloadpocket:
 		XLSG C 4 offset(0,39) A_GrabShells(3,false);
-		XLSG C 6 offset(0,40) A_JumpIf(health>40,1);
 		XLSG C 4 offset(0,40) A_StartSound("weapons/pocket",9);
 		XLSG C 8 offset(0,42) A_StartSound("weapons/pocket",9);
 		XLSG C 6 offset(0,41) A_StartSound("weapons/pocket",9);
