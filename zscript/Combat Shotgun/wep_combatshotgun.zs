@@ -112,7 +112,7 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 	override double gunmass(){
 		int tube=weaponstatus[HUNTS_TUBE];
 		if(tube>4)tube+=(tube-4)*2;
-		return 8+tube*0.3; 
+		return 6+tube*0.3; //should be lighter since it has no stock
 	}
 	override double weaponbulk(){
 		return 100+(weaponstatus[HUNTS_TUBE])*ENC_SHELLLOADED;//125-25=100
