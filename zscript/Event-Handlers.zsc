@@ -316,6 +316,7 @@ class RadTechHandler : EventHandler {
         // .45 ACP
         Array<string> wep_45acp;
         wep_45acp.push('HDColt1911');
+        wep_45acp.push('HDFP45');
         addammo('HD45ACPAmmo', wep_45acp);
 
         // .45 Long Colt
