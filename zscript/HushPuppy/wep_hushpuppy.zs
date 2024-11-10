@@ -5,6 +5,8 @@
 // ------------------------------------------------------------
 
 class HushpuppyPistol:HDHandgun{
+    bool SLIDELOCK_OFF;
+
 	default{
 		+hdweapon.fitsinbackpack
 		+hdweapon.reverseguninertia
@@ -59,6 +61,10 @@ class HushpuppyPistol:HDHandgun{
 			sb.drawnum(hpl.countinv("HD9mMag15"),-43,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 		}
 		
+		//slidelock indicator
+		sb.drawwepcounter(hdw.weaponstatus[0]&PUPF_FIREMODE,
+			-22,-10,"TNT1A0","RBRSA3A7"
+		);
 		
 		sb.drawwepnum(hdw.weaponstatus[PUPPY_MAG],15);
 		if(hdw.weaponstatus[PUPPY_CHAMBER]==2)sb.drawrect(-19,-11,3,1);
@@ -68,6 +74,7 @@ class HushpuppyPistol:HDHandgun{
 		return
 		WEPHELP_FIRESHOOT
 	    ..WEPHELP_ALTFIRE.."  Rack slide\n"
+	    ..WEPHELP_FIREMODE.."  Toggle slidelock\n"
 		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
 		..WEPHELP_RELOAD.."  Reload mag\n"
 		..WEPHELP_ALTFIRE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
@@ -160,7 +167,11 @@ class HushpuppyPistol:HDHandgun{
 		goto ready;
 	user2:
 	firemode:
-		goto nope;
+		---- A 0{//toggles semi-auto/manual chambering
+			invoker.weaponstatus[0]^=PUPF_FIREMODE;
+			invoker.SLIDELOCK_OFF=!invoker.SLIDELOCK_OFF;
+			A_StartSound("weapons/pismagclick",8,CHANF_OVERLAP,0.9);
+		}goto nope;
 		
 	//reuse TT-33's sliderack chamber style for more *immersion*
 	altfire:
@@ -171,8 +182,8 @@ class HushpuppyPistol:HDHandgun{
 		#### C 5 offset(0,37){
 			A_MuzzleClimb(frandom(0.4,0.5),-frandom(0.6,0.8));
 			A_StartSound("weapons/tt33_load",8);
-			int psch=invoker.weaponstatus[PISS_CHAMBER];
-			invoker.weaponstatus[PISS_CHAMBER]=0;
+			int psch=invoker.weaponstatus[PUPPY_CHAMBER];
+			invoker.weaponstatus[PUPPY_CHAMBER]=0;
 			if(psch==2){
 				A_EjectCasing("HDPistolAmmo",
 				              -frandom(89,92),
@@ -184,19 +195,18 @@ class HushpuppyPistol:HDHandgun{
 				              (frandom(6,7),0,0),
 				              (13,0,0));
 			}
-			if(invoker.weaponstatus[PISS_MAG]>0){
-				invoker.weaponstatus[PISS_CHAMBER]=2;
-				invoker.weaponstatus[PISS_MAG]--;
+			if(invoker.weaponstatus[PUPPY_MAG]>0){
+				invoker.weaponstatus[PUPPY_CHAMBER]=2;
+				invoker.weaponstatus[PUPPY_MAG]--;
 			}
 		}goto althold;
 	
 	althold:
 	    #### C 1 offset(0,37){if(PressingUnload()){
-	              if(invoker.weaponstatus[PISS_CHAMBER]>0)
+	              if(invoker.weaponstatus[PUPPY_CHAMBER]>0)
 	                setweaponstate("alt_unchamber");
-	            
 	                }
-	            if(invoker.weaponstatus[PISS_CHAMBER]<1
+	            if(invoker.weaponstatus[PUPPY_CHAMBER]<1
 	            &&PressingReload()
 	            &&countinv("HDPistolAmmo")
 	              )setweaponstate("alt_chamber");
@@ -212,7 +222,7 @@ class HushpuppyPistol:HDHandgun{
 	    #### C 1 offset(7,52);
 	   	#### C 3 {
 				A_TakeInventory("HDPistolAmmo",1,TIF_NOTAKEINFINITE);
-				invoker.weaponstatus[PISS_CHAMBER]=2;
+				invoker.weaponstatus[PUPPY_CHAMBER]=2;
 				A_StartSound("weapons/hushpup_chamber1",8,0.3);
 		}
 		#### C 1 offset(7,52);
@@ -231,8 +241,8 @@ class HushpuppyPistol:HDHandgun{
 	    #### C 3 {
 			A_MuzzleClimb(frandom(0.4,0.5),-frandom(0.6,0.8));
 			A_StartSound("weapons/hushpup_chamber1",8,0.3);
-			int psch=invoker.weaponstatus[PISS_CHAMBER];
-			invoker.weaponstatus[PISS_CHAMBER]=0;
+			int psch=invoker.weaponstatus[PUPPY_CHAMBER];
+			invoker.weaponstatus[PUPPY_CHAMBER]=0;
 			if(psch==2){
 				A_EjectCasing("HDPistolAmmo",
 				-frandom(89,92),
@@ -278,33 +288,53 @@ class HushpuppyPistol:HDHandgun{
 			);
 		}
 		#### C 0{
-			invoker.weaponstatus[PUPPY_CHAMBER]=1;//do not eject casing automatically
-			if(invoker.weaponstatus[PUPPY_MAG]<1){
-				setweaponstate("nope");
-			}
+		    //check if slidelock is disabled
+		        if(invoker.SLIDELOCK_OFF){  
+		                invoker.weaponstatus[PUPPY_CHAMBER]=0;
+			            A_EjectCasing("HDSpent9mm"
+				            ,frandom(-1,2),
+				            (frandom(0.4,0.7),-frandom(6,7),frandom(0.8,1))
+			            );
+			        //check if mag still has rounds
+			        if(invoker.weaponstatus[PUPPY_MAG]<1){
+				        A_StartSound("weapons/pismagclick",8,CHANF_OVERLAP,0.9);
+				        setweaponstate("nope");
+			        }else{//chamber another round
+			            A_WeaponReady(WRF_NOFIRE);
+		        	    invoker.weaponstatus[PUPPY_CHAMBER]=2;
+		        	    invoker.weaponstatus[PUPPY_MAG]--;
+			        }
+		        }else{//standard slidelock behavior
+			        invoker.weaponstatus[PUPPY_CHAMBER]=1;//do not eject casing automatically
+			        if(invoker.weaponstatus[PUPPY_MAG]<1){
+			    	setweaponstate("nope");
+			    }
+		    }
 		}
-		
 		#### B 1;
 		goto nope;//do nothing until the Fire button is released
 	flash:
 		PP2F A 0 A_JumpIf(invoker.wronghand,2);
 		PUPF A 0;
 		---- A 1 bright{
-			HDFlashAlpha(64);
-			A_Light1();
-			let bbb=HDBulletActor.FireBullet(self,"HDB_9",spread:3.,speedfactor:frandom(0.83,0.89));
-			//same as Sten, subsonic muzzle velocity
-			//has poorer accuracy due to suppressor sights being imprecise
-			if(
-				frandom(0,ceilingz-floorz)<bbb.speed*0.3
-			)A_AlertMonsters(64);//was 256, quieter than the Sten
-
-			invoker.weaponstatus[PUPPY_CHAMBER]=1;
-			A_ZoomRecoil(0.995);
-			A_MuzzleClimb(-frandom(0.4,1.2),-frandom(0.4,1.6));
-		}
-		---- A 0 A_StartSound("weapons/hushpup_fire",CHAN_WEAPON,volume:0.5);//same gunshot sound as Sten, but quieter
-		---- A 0 A_Light0();
+			    HDFlashAlpha(64);
+			    A_Light1();
+			    let bbb=HDBulletActor.FireBullet(self,"HDB_9",spread:3.,speedfactor:frandom(0.83,0.89));
+			    //same as Sten, subsonic muzzle velocity
+			    //has poorer accuracy due to suppressor sights being imprecise
+			    if(frandom(0,ceilingz-floorz)<bbb.speed*0.3){
+			        if(invoker.SLIDELOCK_OFF){
+			      	    A_AlertMonsters(96);//semi-auto is slightly louder
+                    }else A_AlertMonsters(64);
+		    	A_ZoomRecoil(0.995);
+		    	A_MuzzleClimb(-frandom(0.4,1.2),-frandom(0.4,1.6));
+	    	    }
+		    }
+		---- A 0 {  A_Light0();
+		            if(invoker.SLIDELOCK_OFF){
+				        A_StartSound("weapons/hushpup_fire",CHAN_WEAPON);//semi-auto is slightly louder
+                    }else A_StartSound("weapons/hushpup_fire",CHAN_WEAPON,volume:0.5);
+                }
 		stop;
 		
 	unload://only unloads mag
@@ -458,7 +488,7 @@ class HushpuppyPistol:HDHandgun{
 	}
 }
 enum hushpuppystatus{
-	PUPF_SELECTFIRE=1,//unused
+	PUPF_SELECTFIRE=1,
 	PUPF_FIREMODE=2,
 	PUPF_JUSTUNLOAD=4,
 
