@@ -43,7 +43,7 @@ weapons/ppsh41          ppshfire
 
 //STEN Mk. 2(S)
 weapons/sten            stenfire
-weapons/sten_chamber    stenchbr
+weapons/sten_chamber    stenchbr  $volume weapons/sten_chamber 0.3
 weapons/sten_overheat   stenheat
 
 //Frag Cannon
