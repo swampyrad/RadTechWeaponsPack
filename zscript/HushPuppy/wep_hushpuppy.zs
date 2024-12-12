@@ -5,7 +5,6 @@
 // ------------------------------------------------------------
 
 class HushpuppyPistol:HDHandgun{
-    bool SLIDELOCK_OFF;
 
 	default{
 		+hdweapon.fitsinbackpack
@@ -169,7 +168,6 @@ class HushpuppyPistol:HDHandgun{
 	firemode:
 		---- A 0{//toggles semi-auto/manual chambering
 			invoker.weaponstatus[0]^=PUPF_FIREMODE;
-			invoker.SLIDELOCK_OFF=!invoker.SLIDELOCK_OFF;
 			A_StartSound("weapons/pismagclick",8,CHANF_OVERLAP,0.9);
 		}goto nope;
 		
@@ -289,7 +287,7 @@ class HushpuppyPistol:HDHandgun{
 		}
 		#### C 0{
 		    //check if slidelock is disabled
-		        if(invoker.SLIDELOCK_OFF){  
+		        if(invoker.weaponstatus[0]&PUPF_FIREMODE){  
 		                invoker.weaponstatus[PUPPY_CHAMBER]=0;
 			            A_EjectCasing("HDSpent9mm"
 				            ,frandom(-1,2),
@@ -323,7 +321,7 @@ class HushpuppyPistol:HDHandgun{
 			    //same as Sten, subsonic muzzle velocity
 			    //has poorer accuracy due to suppressor sights being imprecise
 			    if(frandom(0,ceilingz-floorz)<bbb.speed*0.3){
-			        if(invoker.SLIDELOCK_OFF){
+			        if(invoker.weaponstatus[0]&PUPF_FIREMODE){
 			      	    A_AlertMonsters(96);//semi-auto is slightly louder
                     }else A_AlertMonsters(64);
 		    	A_ZoomRecoil(0.995);
@@ -331,7 +329,7 @@ class HushpuppyPistol:HDHandgun{
 	    	    }
 		    }
 		---- A 0 {  A_Light0();
-		            if(invoker.SLIDELOCK_OFF){
+		            if(invoker.weaponstatus[0]&PUPF_FIREMODE){
 				        A_StartSound("weapons/hushpup_fire",CHAN_WEAPON);//semi-auto is slightly louder
                     }else A_StartSound("weapons/hushpup_fire",CHAN_WEAPON,volume:0.5);
                 }
