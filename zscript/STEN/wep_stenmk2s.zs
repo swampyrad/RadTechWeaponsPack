@@ -55,11 +55,6 @@ class HDStenMk2:HDWeapon{
 			else owner.A_DropInventory("HD9mMag30",amt);
 		}
 	}
-	override void postbeginplay(){
-		super.postbeginplay();
-			weaponstatus[STENS_AUTO]=0;
-		    //set to semi by default
-	}
 	override void ForceBasicAmmo(){
 		owner.A_TakeInventory("HDPistolAmmo");
 		ForceOneBasicAmmo("HD9mMag30");
@@ -431,6 +426,7 @@ class HDStenMk2:HDWeapon{
 	}
 	override void initializewepstats(bool idfa){
 		weaponstatus[STENS_MAG]=30;
+		weaponstatus[STENS_AUTO]=0;
 		weaponstatus[STENS_CHAMBER]=0;//it's an openbolt, no round in the chamber
 		weaponstatus[STENS_JAMMED]=0;//clear any jams
 		weaponstatus[STENS_HEAT]=0;//remove any heat
