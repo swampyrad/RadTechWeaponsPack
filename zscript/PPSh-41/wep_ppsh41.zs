@@ -171,27 +171,21 @@ class HDPPSh41 :HDHandgun{
 		vector2 bobb=bob*1.3;
 			
 		sb.SetClipRect(
-			-8+bob.x,-9+bob.y,16,15,
+			-8+bob.x,-9+bob.y,17,19,
 			sb.DI_SCREEN_CENTER
 		);
 		scc=(0.6,0.6);
 		
 		//front sight
 		sb.drawimage(
-			"frntsite",(0,0)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
-			scale:scc
-		);
-		
-		//front sight hoop guard
-		sb.drawimage(
-			"xh25",(0,-3)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
+			"ppshfsit",(0,-3)+bobb,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
 			scale:scc
 		);
 
     //rear sight
 		sb.SetClipRect(cx,cy,cw,ch);
 		sb.drawimage(
-			"backsite",(0,0)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
+			"ppshbsit",(0,-3)+bob,sb.DI_SCREEN_CENTER|sb.DI_ITEM_TOP,
 			alpha:1,
 			scale:scc
 		);
