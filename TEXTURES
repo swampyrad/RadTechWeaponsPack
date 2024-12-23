@@ -488,47 +488,74 @@ patch TMG8MPTY,0,0{}
 //PPSh-41 sprites
 
 // PPSh-41 weapon sprites by DenisBelmondo from ZDoom Forums
+// Uses Doomguy hand sprites made by suupadave98
 // drum/box magazines and PPSh-41 pickup sprites by Swampyrad
 
-//ready
+//bolt cocked
+
+//unloaded
 sprite PPSHA0, 84, 76{
-    offset -115, -94
+    offset -116, -94
     patch PPSHA0, 0, 0
 }
-//flash
-sprite PPSHB0, 84, 97{
-    offset -115, -73
+
+//box mag loaded
+sprite PPSHB0, 84, 76{
+    offset -116, -94
     patch PPSHB0, 0, 0
 }
-//unloaded
+
+//drum mag loaded
 sprite PPSHC0, 84, 76{
-    offset -115, -94
+    offset -116, -94
     patch PPSHC0, 0, 0
 }
-//box mag loaded
+
+//bolt uncocked
+
+//unloaded
 sprite PPSHD0, 84, 76{
-    offset -115, -94
+    offset -116, -94
     patch PPSHD0, 0, 0
+}
+
+//box mag loaded
+sprite PPSHE0, 84, 76{
+    offset -116, -94
+    patch PPSHE0, 0, 0
+}
+
+//drum mag loaded
+sprite PPSHF0, 84, 76{
+    offset -116, -94
+    patch PPSHF0, 0, 0
+}
+
+//flash
+sprite PPFLA0, 84, 97{
+    offset -116, -73
+    patch PPFLA0, 0, 0
 }
 
 //pickup sprites
 
-//drum mag loaded
-sprite PS41A0, 53, 13{
-    offset 26, 13
+//no mag loaded
+sprite PS41A0, 58, 15{
+    offset 29, 14
     patch PS41A0, 0, 0
 }
-//no mag loaded
-sprite PS41B0, 53, 13{
-    offset 26, 11
+
+//box mag loaded
+sprite PS41B0, 58, 17{
+    offset 29, 14
     patch PS41B0, 0, 0
 }
-//box mag loaded
-sprite PS41C0, 53, 13{
-    offset 26, 13
+
+//drum mag loaded
+sprite PS41C0, 58, 15{
+    offset 29, 14
     patch PS41C0, 0, 0
 }
-
 
 //drum mag pickup
 sprite PSDMA0, 18, 19{
@@ -550,20 +577,20 @@ sprite PSDMD0, 19, 18{
 
 
 //box mag pickup
-sprite PSHMA0, 9, 19{
-    offset 4, 19
+sprite PSHMA0, 9, 25{
+    offset 4, 25
     patch PSHMA0, 0, 0 
 }
-sprite PSHMB0, 9, 19{
-    offset 4, 19
+sprite PSHMB0, 9, 25{
+    offset 4, 25
     patch PSHMB0, 0, 0 
 }
-sprite PSHMC0, 9, 19{
-    offset 4, 19
+sprite PSHMC0, 9, 25{
+    offset 4, 25
     patch PSHMC0, 0, 0 
 }
-sprite PSHMD0, 19, 9{
-    offset 9, 9
+sprite PSHMD0, 25, 9{
+    offset 12, 9
     patch PSHMD0, 0, 0 
 }
 
