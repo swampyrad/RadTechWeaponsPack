@@ -372,9 +372,11 @@ class HDPPSh41 :HDHandgun{
 		#### # 1 {//eject spent casing
 		          if(invoker.weaponstatus[PPSHS_CHAMBER]==1)
 		      	    A_EjectCasing("HDSpent762Tokarev",
-		      	                  -frandom(89,92),
-		      	                  (frandom(6,7),-5,0),
-		      	                  (13,0,0)
+		      	                   -frandom(89,91), //angle, -90 is standard
+		      	                  (0,               //x axis velocity
+		      	                   frandom(1,2),    //y axis velocity, positive is forward
+		      	                   frandom(6,7)),   //z axis velocity, positive is upwards
+		      	                  (13,0,0)          //spawn coordinates (z,x,y)
 		      	                 );
 	      		  
 	      		  //chamber empty, bolt recocked
