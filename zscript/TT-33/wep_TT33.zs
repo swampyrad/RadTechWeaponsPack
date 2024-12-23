@@ -10,14 +10,13 @@ class HDTokarevMag8:HDMagAmmo{
 	default{
 		//$Category "Ammo/Hideous Destructor/"
 		//$Title "Tokarev Pistol Magazine"
-		//$Sprite "CMG7A0"
+		//$Sprite "TMG8A0"
 		hdmagammo.maxperunit 8;
 		hdmagammo.roundtype "HD762TokarevAmmo";
 		hdmagammo.roundbulk ENC_762TOKAREV_LOADED;
 		hdmagammo.magbulk ENC_TOKAREV_MAG8_EMPTY; 
 		scale 0.35;
 		tag "$TAG_TT33MAG";
-	//	inventory.pickupmessage "Picked up a 7.62 Tokarev pistol magazine.";
 		hdpickup.refid "TM8";
 	}
 
@@ -25,9 +24,8 @@ class HDTokarevMag8:HDMagAmmo{
 		return Stringtable.Localize("$PICKUP_TT33MAG");
 	}
 
-
 	override string,string,name,double getmagsprite(int thismagamt){
-		string magsprite=(thismagamt>0)?"CMG7A0":"CMG7C0";
+		string magsprite=(thismagamt>0)?"TMG8A0":"TMG8C0";
 		return magsprite,"T762A0","HD762TokarevAmmo",0.6;
 	}
 	override void GetItemsThatUseThis(){
@@ -35,10 +33,10 @@ class HDTokarevMag8:HDMagAmmo{
 	}
 	states{
 	spawn:
-		CMG7 A -1;
+		TMG8 A -1;
 		stop;
 	spawnempty:
-		CMG7 B -1{
+		TMG8 B -1{
 			brollsprite=true;brollcenter=true;
 			roll=randompick(0,0,0,0,2,2,2,2,1,3)*90;
 		}stop;
