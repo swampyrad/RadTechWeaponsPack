@@ -31,7 +31,6 @@ class HDMicroCell:HDMagAmmo{
 	override string pickupmessage(){
 		return Stringtable.Localize("$PICKUP_MICROCELL");
 	}
-	
 	override void doeffect(){
 		//testingdoeffect();return;
 		if(chargemode==BATT_UNDEFINED)chargemode=BATT_CHARGEDEFAULT;
@@ -48,9 +47,15 @@ class HDMicroCell:HDMagAmmo{
 		}else ticker++;
 		super.doeffect();
 	}
-	
+	override double getbulk(){return amount*bulk;}
+	override bool Extract(){return false;}
+	override bool Insert(){
+		chargemode++;
+		if(chargemode>BATT_CHARGESELECTED)chargemode=BATT_DONTCHARGE;
+		return false;
+	}
 	override void Consolidate(){
-	    //not compatible with BFG auto-charge
+	//not compatible with BFG auto-charge
 		ChargeMicroCell(usetop:true);
 		ChargeMicroCell();
 	}
