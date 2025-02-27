@@ -1,9 +1,7 @@
 //based off Juan Horseshoe Pistol code
 
-class HDPPSh41 :HDHandgun{
+class HDPPSh41 :HDWeapon{//this shouldn't inherit from HDHandgun, that was an oversight
     //flags used for managing reloads
-    //bool MAG_BOX;
-    //bool MAG_DRUM;
     bool MAG_FORCEBOX;
     bool MAG_FORCEDRUM;
     
