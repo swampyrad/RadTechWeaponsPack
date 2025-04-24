@@ -371,7 +371,21 @@ class COP357Pistol:HDHandgun{
 		if(
 			frandom(0,ceilingz-floorz)<bbb.speed*(masterball?0.4:0.3)
 		)A_AlertMonsters(masterball?512:256);
-        damagemobj(invoker,self,random(2,4),"bashing");
+    
+		//flinching code borrowed from Brontornis
+		IsMoving.Give(self,gunbraced()?2:7);
+					if(
+					  !binvulnerable
+					  &&!random(0,1)
+					  &&(
+						floorz<pos.z
+						||IsMoving.Count(self)>6
+					  )
+					){
+						givebody(max(0,5-health));
+						damagemobj(invoker,self,5,"bashing",DMG_NO_ARMOR);
+						IsMoving.Give(self,3);
+					}
 
         //trigger muzzle flash
 		A_GunFlash();
