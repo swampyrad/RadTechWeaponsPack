@@ -595,6 +595,7 @@ A collection of weapons for the GZDoom mod 'Hideous Destructor' made by Swampyra
 * Phazer and Micro-Cell pickup sprites by Swampyrad
 * Frag Cannon code based off HD Grenade Launcher code by mc776
 * TT-33 gunshot sfx: "pistol shot" by user "mrfriends" from Pixabay
+* Sten weapon sprites by ZikShadow, based on the Sten model from Return to Castle Wolfenstein by id Software
 * Frag Cannon weapon sprite and sound by id Software, pickup sprite by Swampyrad
 * Ted the Dragon for various code, organization and documentation improvements.
 
