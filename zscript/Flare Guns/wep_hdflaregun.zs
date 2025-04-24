@@ -222,7 +222,6 @@ action void A_CheckFlareGunHand(bool filled)
 	
 	action void A_FireFlare()
 	{
-		
 			A_StartSound("weapons/fgnblast", CHAN_WEAPON,CHANF_OVERLAP);
 			HDBulletActor.FireBullet(self,"HDB_FlareMissile");
 			
@@ -240,12 +239,12 @@ action void A_CheckFlareGunHand(bool filled)
 			invoker.weaponstatus[0]&=~FLARE_LOADEDSHELL;
 			HDBulletActor.FireBullet(self,"HDB_wad");
 			let sss=HDBulletActor.FireBullet(self,"HDB_00",
-			spread:35,speedfactor:1,amount:10
+			spread:35,speedfactor:0.9,amount:10
 			);
 			distantnoise.make(sss,"weapons/flaregun_shellfar");
 			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
 			invoker.weaponstatus[0]=FLARE_SPENTSHELL;
-			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
+			A_MuzzleClimb(-frandom(3.,3.6),-frandom(4.,5.6));
 			A_AlertMonsters();
 	}
 	
@@ -255,12 +254,33 @@ action void A_CheckFlareGunHand(bool filled)
 			
 			HDBulletActor.FireBullet(self,"HDB_wad");
 			let sss=HDBulletActor.FireBullet(self,"HDB_Slug",
-			spread:3,speedfactor:1,amount:1
+			spread:5,speedfactor:0.7,amount:1
 			);
+			//these lose some power due to being shot 
+			//from such a short barrel
+			
+			//flinching code borrowed from Brontornis
+			IsMoving.Give(self,gunbraced()?2:7);
+					if(
+					  !binvulnerable
+					  &&(
+						floorz<pos.z
+						||IsMoving.Count(self)>6
+					  )
+					){
+						givebody(max(0,5-health));
+						damagemobj(invoker,self,5,"bashing",DMG_NO_ARMOR);
+						IsMoving.Give(self,3);
+					}
+			
 			distantnoise.make(sss,"weapons/flaregun_shellfar");
 			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
 			invoker.weaponstatus[0]=FLARE_SPENTSLUG;
-			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
+			A_MuzzleClimb(-frandom(4.,5.4),-frandom(6.8,10.4));
+			//need to really exaggerate the recoil on this one
+			//since these slugs just barely stop short of turning
+			//this thing into an instant hand remover
+			
 			A_AlertMonsters();
 	}
 	
@@ -283,13 +303,13 @@ action void A_CheckFlareGunHand(bool filled)
 					  )
 					){
 						givebody(max(0,5-health));
-						damagemobj(invoker,self,5,"bashing");
+						damagemobj(invoker,self,5,"bashing",DMG_NO_ARMOR);
 						IsMoving.Give(self,3);
 					}
 			
 			distantnoise.make(sss,"weapons/flaregun_shellfar");
 			self.A_StartSound("weapons/flaregun_shellfire",CHAN_WEAPON);
-			A_MuzzleClimb(-frandom(2.,2.7),-frandom(3.4,5.2));
+			A_MuzzleClimb(-frandom(3.,3.6),-frandom(4.,5.6));
 			A_AlertMonsters();
 	}
 
