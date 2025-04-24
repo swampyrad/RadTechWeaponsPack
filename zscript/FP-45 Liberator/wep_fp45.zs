@@ -218,8 +218,10 @@ class HDFP45:HDHandgun{
 			              -frandom(1.8,2.7),-frandom(2.1,3.3)
 			            );
 
-            damagemobj(invoker,self,random(3,5),"bashing");//make player flinch when shooting
-                                              //this weapon is "not pleasant to fire"
+      damagemobj(invoker,self,random(3,5),
+                 "bashing",DMG_NO_ARMOR);
+        //make player flinch when shooting
+        //this weapon is "not pleasant to fire"
 		}                  
 		---- # 0 A_StartSound("weapons/fp45",CHAN_WEAPON);
 		---- # 0 A_Light0();
