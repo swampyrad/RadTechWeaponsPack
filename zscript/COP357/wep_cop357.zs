@@ -123,14 +123,14 @@ class COP357Pistol:HDHandgun{
 	}
 	override string gethelptext(){
 		if(chamberopen)return
-		WEPHELP_FIRE.." Close cylinder\n"
-		..WEPHELP_UNLOAD.." Remove empty rounds \(double-tap to dump live rounds\)\n"
-		..WEPHELP_RELOAD.." Load round \(Hold "..WEPHELP_FIREMODE.." to force using 9mm\)\n"
+		LWPHELP_FIRE.." Close cylinder\n"
+		..LWPHELP_UNLOAD.." Remove empty rounds \(double-tap to dump live rounds\)\n"
+		..LWPHELP_RELOAD.." Load round \(Hold "..LWPHELP_FIREMODE.." to force using 9mm\)\n"
 		;
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTRELOAD.."/"..WEPHELP_FIREMODE.."  Quick-Swap (if available)\n"
-		..WEPHELP_UNLOAD.."/"..WEPHELP_RELOAD.." Open chamber\n"
+		LWPHELP_FIRESHOOT
+		..LWPHELP_ALTRELOAD.."/"..LWPHELP_FIREMODE.."  Quick-Swap (if available)\n"
+		..LWPHELP_UNLOAD.."/"..LWPHELP_RELOAD.." Open chamber\n"
 		;
 	}
 	override void DrawSightPicture(

@@ -63,18 +63,18 @@ class HDFP45:HDHandgun{
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_ALTFIRE.."  Cock/Uncock hammer\n"
-		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n\n"
+		LWPHELP_ALTFIRE.."  Cock/Uncock hammer\n"
+		..LWPHELP_ALTRELOAD.."  Quick-Swap (if available)\n\n"
 		.."When hammer is uncocked...\n"
-		.."  "..WEPHELP_RELOAD.."  Refill spare rounds\n"
-		.."  "..WEPHELP_UNLOAD.."  Remove a spare round\n"
-	    .."  "..WEPHELP_USE.." + "..WEPHELP_UNLOAD.."  Dump spare rounds\n\n"
+		.."  "..LWPHELP_RELOAD.."  Refill spare rounds\n"
+		.."  "..LWPHELP_UNLOAD.."  Remove a spare round\n"
+	    .."  "..LWPHELP_USE.." + "..LWPHELP_UNLOAD.."  Dump spare rounds\n\n"
 		.."When hammer is cocked...\n"
-		.."  "..WEPHELP_FIRESHOOT
-		.."  "..WEPHELP_RELOAD.."  Reload chamber (spare rounds first)\n"
-		.."  "..WEPHELP_UNLOAD.."  Unload chamber\n"
+		.."  "..LWPHELP_FIRESHOOT
+		.."  "..LWPHELP_RELOAD.."  Reload chamber (spare rounds first)\n"
+		.."  "..LWPHELP_UNLOAD.."  Unload chamber\n"
 		.."While emptying chamber...\n"
-		.."  "..WEPHELP_RELOAD.."(Hold)".."  Speed reload" 
+		.."  "..LWPHELP_RELOAD.."(Hold)".."  Speed reload" 
 		;
 	}
 	override void DrawSightPicture(

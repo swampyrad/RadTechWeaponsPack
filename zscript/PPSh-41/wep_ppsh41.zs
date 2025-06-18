@@ -149,13 +149,13 @@ class HDPPSh41 :HDWeapon{//this shouldn't inherit from HDHandgun, that was an ov
 	
 	override string gethelptext(){
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.."  Rack bolt\n"
-		..WEPHELP_FIREMODE.."  Semi/Auto\n"
-		..WEPHELP_RELOAD.."  Reload mag (drum mags first)\n"
-		..WEPHELP_ALTRELOAD.."  Reload box magazine\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+		..LWPHELP_ALTFIRE.."  Rack bolt\n"
+		..LWPHELP_FIREMODE.."  Semi/Auto\n"
+		..LWPHELP_RELOAD.."  Reload mag (drum mags first)\n"
+		..LWPHELP_ALTRELOAD.."  Reload box magazine\n"
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	

@@ -79,13 +79,13 @@ class HDColt1911:HDHandgun{
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRESHOOT
-		..((weaponstatus[0]&PISF_SELECTFIRE)?(WEPHELP_FIREMODE.."  Semi/Auto\n"):"")
-		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
-		..WEPHELP_RELOAD.."  Reload mag\n"
-		..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+		..((weaponstatus[0]&PISF_SELECTFIRE)?(LWPHELP_FIREMODE.."  Semi/Auto\n"):"")
+		..LWPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
+		..LWPHELP_RELOAD.."  Reload mag\n"
+		..LWPHELP_USE.."+"..LWPHELP_RELOAD.."  Reload chamber\n"
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	override void DrawSightPicture(

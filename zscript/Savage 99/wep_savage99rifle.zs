@@ -119,13 +119,13 @@ class Savage99SniperRifle:HDWeapon{
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.."  Work lever\n"
-		.."While holding "..WEPHELP_ALTFIRE.."...\n"
-		.."  +"..WEPHELP_RELOAD.."  Reload chamber/magazine\n"
-		.."  +"..WEPHELP_UNLOAD.."  Unload chamber/magazine/Clean rifle\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_FIREMODE.."  Zoom\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_USE.."  Bullet drop\n"
+		LWPHELP_FIRESHOOT
+		..LWPHELP_ALTFIRE.."  Work lever\n"
+		.."While holding "..LWPHELP_ALTFIRE.."...\n"
+		.."  +"..LWPHELP_RELOAD.."  Reload chamber/magazine\n"
+		.."  +"..LWPHELP_UNLOAD.."  Unload chamber/magazine/Clean rifle\n"
+		..LWPHELP_ZOOM.."+"..LWPHELP_FIREMODE.."  Zoom\n"
+		..LWPHELP_ZOOM.."+"..LWPHELP_USE.."  Bullet drop\n"
 	;
 	}
 	override void DrawSightPicture(

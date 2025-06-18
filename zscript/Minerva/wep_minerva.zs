@@ -177,15 +177,15 @@ override void postbeginplay(){
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_RELOAD.."  Reload mags\n"
-		..WEPHELP_ALTRELOAD.."  Reload battery\n"
-		..WEPHELP_FIREMODE.."  Switch to "..(weaponstatus[0]&MNVF_FAST?"700":"2100").." RPM\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_FIREMODE.."+"..WEPHELP_UPDOWN.."  Zoom\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_UNLOAD.."  Repair\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD
-		..WEPHELP_USE.."+"..WEPHELP_UNLOAD.."  or  "..WEPHELP_USE.."+"..WEPHELP_ALTRELOAD.."  Unload battery\n"
+		LWPHELP_FIRESHOOT
+		..LWPHELP_RELOAD.."  Reload mags\n"
+		..LWPHELP_ALTRELOAD.."  Reload battery\n"
+		..LWPHELP_FIREMODE.."  Switch to "..(weaponstatus[0]&MNVF_FAST?"700":"2100").." RPM\n"
+		..LWPHELP_ZOOM.."+"..LWPHELP_FIREMODE.."+"..LWPHELP_UPDOWN.."  Zoom\n"
+		..LWPHELP_ZOOM.."+"..LWPHELP_UNLOAD.."  Repair\n"
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOADUNLOAD
+		..LWPHELP_USE.."+"..LWPHELP_UNLOAD.."  or  "..LWPHELP_USE.."+"..LWPHELP_ALTRELOAD.."  Unload battery\n"
 		;
 	}
 	override void DrawSightPicture(

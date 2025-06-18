@@ -135,13 +135,13 @@ class HDSigCow:HDWeapon{
 
 	override string gethelptext(){
 		return  
-		WEPHELP_FIRESHOOT
-        ..WEPHELP_ALTFIRE.."  Bayonet Stab\n"
-		..WEPHELP_RELOAD.."  Reload mag\n"
-		..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
-		..WEPHELP_FIREMODE.."  Semi/Burst/Auto\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD  
+		LWPHELP_FIRESHOOT
+        ..LWPHELP_ALTFIRE.."  Bayonet Stab\n"
+		..LWPHELP_RELOAD.."  Reload mag\n"
+		..LWPHELP_USE.."+"..LWPHELP_RELOAD.."  Reload chamber\n"
+		..LWPHELP_FIREMODE.."  Semi/Burst/Auto\n"
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOADUNLOAD  
 		;
 	}
 

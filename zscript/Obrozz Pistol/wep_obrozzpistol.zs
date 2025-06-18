@@ -160,16 +160,16 @@ action void A_CheckRifleHand()
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRESHOOT
-                ..WEPHELP_FIREMODE.."  Quick-swap(if available)\n"
-		..WEPHELP_ALTFIRE.."  Work bolt\n"
-		..WEPHELP_RELOAD.."  Reload rounds/clip\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_FIREMODE.."  Zoom\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_USE.."  Bullet drop\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_DROPONE.."  Force drop non-recast\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_ALTRELOAD.."  Force load recast\n"
-		..WEPHELP_ALTFIRE.."+"..WEPHELP_UNLOAD.."  Unload chamber/Clean rifle\n"
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+                ..LWPHELP_FIREMODE.."  Quick-swap(if available)\n"
+		..LWPHELP_ALTFIRE.."  Work bolt\n"
+		..LWPHELP_RELOAD.."  Reload rounds/clip\n"
+		..LWPHELP_ZOOM.."+"..LWPHELP_FIREMODE.."  Zoom\n"
+		..LWPHELP_ZOOM.."+"..LWPHELP_USE.."  Bullet drop\n"
+		..LWPHELP_ZOOM.."+"..LWPHELP_DROPONE.."  Force drop non-recast\n"
+		..LWPHELP_ZOOM.."+"..LWPHELP_ALTRELOAD.."  Force load recast\n"
+		..LWPHELP_ALTFIRE.."+"..LWPHELP_UNLOAD.."  Unload chamber/Clean rifle\n"
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 

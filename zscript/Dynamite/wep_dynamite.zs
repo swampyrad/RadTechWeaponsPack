@@ -83,12 +83,12 @@ class HDDynamiteThrower:HDWeapon{
 	
 	override string gethelptext(){
 		if(weaponstatus[0]&DYNAF_SPOONOFF)return
-		WEPHELP_FIRE.."  Wind up, release to throw\n(\cxSTOP READING AND DO THIS"..WEPHELP_RGCOL..")";
+		LWPHELP_FIRE.."  Wind up, release to throw\n(\cxSTOP READING AND DO THIS"..WEPHELP_RGCOL..")";
 		return
-		WEPHELP_FIRE.."  Wind up, release to throw\n"
-		..WEPHELP_ALTFIRE.."  Ready lighter, again to light fuse\n"
-		..WEPHELP_RELOAD.."  Abort/close lighter\n"
-		..WEPHELP_FIREMODE.."  Plant a bomb"
+		LWPHELP_FIRE.."  Wind up, release to throw\n"
+		..LWPHELP_ALTFIRE.."  Ready lighter, again to light fuse\n"
+		..LWPHELP_RELOAD.."  Abort/close lighter\n"
+		..LWPHELP_FIREMODE.."  Plant a bomb"
 		;
 	}
 	

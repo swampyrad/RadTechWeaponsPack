@@ -91,13 +91,13 @@ class HDStenMk2:HDWeapon{
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.."  Open bolt/Clear jam\n"
-		..WEPHELP_RELOAD.."  Reload mag\n"
-		//..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
-		..WEPHELP_FIREMODE.."  Semi/Auto\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+		..LWPHELP_ALTFIRE.."  Open bolt/Clear jam\n"
+		..LWPHELP_RELOAD.."  Reload mag\n"
+		//..LWPHELP_USE.."+"..LWPHELP_RELOAD.."  Reload chamber\n"
+		..LWPHELP_FIREMODE.."  Semi/Auto\n"
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	override void DrawSightPicture(

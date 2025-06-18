@@ -96,16 +96,16 @@ if(ninemil>0){
 
 	override string gethelptext(){
 		if(cylinderopen)return
-		WEPHELP_FIRE.." Close cylinder\n"
-		..WEPHELP_ALTFIRE.." Cycle cylinder \(Hold "..WEPHELP_ZOOM.." to reverse\)\n"
-		..WEPHELP_UNLOAD.." Hit extractor \n"
-		..WEPHELP_RELOAD.." Load round \n"
+		LWPHELP_FIRE.." Close cylinder\n"
+		..LWPHELP_ALTFIRE.." Cycle cylinder \(Hold "..LWPHELP_ZOOM.." to reverse\)\n"
+		..LWPHELP_UNLOAD.." Hit extractor \n"
+		..LWPHELP_RELOAD.." Load round \n"
 		;
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.." Pull back hammer\n"
-		..WEPHELP_ALTRELOAD.."/"..WEPHELP_FIREMODE.."  Quick-Swap (if available)\n"
-		..WEPHELP_UNLOAD.."/"..WEPHELP_RELOAD.." Open cylinder\n"
+		LWPHELP_FIRESHOOT
+		..LWPHELP_ALTFIRE.." Pull back hammer\n"
+		..LWPHELP_ALTRELOAD.."/"..LWPHELP_FIREMODE.."  Quick-Swap (if available)\n"
+		..LWPHELP_UNLOAD.."/"..LWPHELP_RELOAD.." Open cylinder\n"
 		;
 	}
 	override void DrawSightPicture(

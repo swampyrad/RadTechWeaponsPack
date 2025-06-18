@@ -132,16 +132,16 @@ class HackedZM66AssaultRifle:ZM66ScopeHaver{
 		bool gl=!(weaponstatus[0]&ZM66HACKEDF_NOLAUNCHER);
 		bool glmode=gl&&(weaponstatus[0]&ZM66HACKEDF_GLMODE);
 		return
-		WEPHELP_FIRESHOOT
-		..(gl?(WEPHELP_ALTFIRE..(glmode?("  Rifle mode\n"):("  GL mode\n"))):"")
-		..WEPHELP_RELOAD.."  Reload mag\n"
-		..(gl?(WEPHELP_ALTRELOAD.."  Reload GL\n"):"")
-		..(glmode?(WEPHELP_FIREMODE.."+"..WEPHELP_UPDOWN.."  Airburst\n")
+		LWPHELP_FIRESHOOT
+		..(gl?(LWPHELP_ALTFIRE..(glmode?("  Rifle mode\n"):("  GL mode\n"))):"")
+		..LWPHELP_RELOAD.."  Reload mag\n"
+		..(gl?(LWPHELP_ALTRELOAD.."  Reload GL\n"):"")
+		..(glmode?(LWPHELP_FIREMODE.."+"..LWPHELP_UPDOWN.."  Airburst\n")
 			:(
-			((weaponstatus[0]&ZM66HACKEDF_NOFIRESELECT)?"":WEPHELP_FIREMODE.."  Semi/Auto/Burst\n")
-			..WEPHELP_ZOOM.."+"..WEPHELP_FIREMODE.."+"..WEPHELP_UPDOWN.."  Zoom\n"))
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOAD.."  Unload "..(glmode?"GL":"magazine")
+			((weaponstatus[0]&ZM66HACKEDF_NOFIRESELECT)?"":LWPHELP_FIREMODE.."  Semi/Auto/Burst\n")
+			..LWPHELP_ZOOM.."+"..LWPHELP_FIREMODE.."+"..LWPHELP_UPDOWN.."  Zoom\n"))
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOAD.."  Unload "..(glmode?"GL":"magazine")
 		;
 	}
 	override void DrawSightPicture(

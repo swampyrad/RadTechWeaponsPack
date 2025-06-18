@@ -58,10 +58,10 @@ class HDStunGun:HDWeapon{//Tasers and stun guns are not the same, apparently
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRE.."  Zap\n"
-		..WEPHELP_ALTFIRE.."  Quick Prod\n"
-		..WEPHELP_RELOADRELOAD
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRE.."  Zap\n"
+		..LWPHELP_ALTFIRE.."  Quick Prod\n"
+		..LWPHELP_RELOADRELOAD
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	override double gunmass(){

@@ -84,10 +84,10 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRE.."  Shoot\n"//no choke
-		..WEPHELP_ALTFIRE.."  Pump\n"
-		..WEPHELP_RELOAD.."  Reload\n"
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRE.."  Shoot\n"//no choke
+		..LWPHELP_ALTFIRE.."  Pump\n"
+		..LWPHELP_RELOAD.."  Reload\n"
+		..LWPHELP_UNLOADUNLOAD
 		;//no side saddles
 	}
 	override void DrawSightPicture(

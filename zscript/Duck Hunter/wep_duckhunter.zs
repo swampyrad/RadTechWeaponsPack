@@ -98,14 +98,14 @@ class DuckHunter:HDShotgun{
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRE.."  Shoot (choke: "..weaponstatus[DUCKHUNTS_CHOKE]..")\n"
-		..WEPHELP_ALTFIRE.."  Pump\n"
-		..WEPHELP_RELOAD.."  Reload (side saddles first)\n"
-		..WEPHELP_ALTRELOAD.."  Reload (pockets only)\n"
-	//	..(weaponstatus[0]&HUNTF_EXPORT?"":(WEPHELP_FIREMODE.."  Pump/Semi"..(weaponstatus[0]&HUNTF_CANFULLAUTO?"/Auto":"").."\n"))
-		..WEPHELP_FIREMODE.."+"..WEPHELP_RELOAD.."  Load side saddles\n"
-	//	..WEPHELP_USE.."+"..WEPHELP_UNLOAD.."  Steal ammo from Slayer\n"
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRE.."  Shoot (choke: "..weaponstatus[DUCKHUNTS_CHOKE]..")\n"
+		..LWPHELP_ALTFIRE.."  Pump\n"
+		..LWPHELP_RELOAD.."  Reload (side saddles first)\n"
+		..LWPHELP_ALTRELOAD.."  Reload (pockets only)\n"
+	//	..(weaponstatus[0]&HUNTF_EXPORT?"":(LWPHELP_FIREMODE.."  Pump/Semi"..(weaponstatus[0]&HUNTF_CANFULLAUTO?"/Auto":"").."\n"))
+		..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD.."  Load side saddles\n"
+	//	..LWPHELP_USE.."+"..LWPHELP_UNLOAD.."  Steal ammo from Slayer\n"
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	override void DrawSightPicture(

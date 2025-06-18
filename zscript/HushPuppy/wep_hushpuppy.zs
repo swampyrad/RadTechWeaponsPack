@@ -71,15 +71,15 @@ class HushpuppyPistol:HDHandgun{
 	
 	override string gethelptext(){
 		return
-		WEPHELP_FIRESHOOT
-	    ..WEPHELP_ALTFIRE.."  Rack slide\n"
-	    ..WEPHELP_FIREMODE.."  Toggle slidelock\n"
-		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
-		..WEPHELP_RELOAD.."  Reload mag\n"
-		..WEPHELP_ALTFIRE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
-		..WEPHELP_ALTFIRE.."+"..WEPHELP_UNLOAD.."  Unload chamber\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+	    ..LWPHELP_ALTFIRE.."  Rack slide\n"
+	    ..LWPHELP_FIREMODE.."  Toggle slidelock\n"
+		..LWPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
+		..LWPHELP_RELOAD.."  Reload mag\n"
+		..LWPHELP_ALTFIRE.."+"..LWPHELP_RELOAD.."  Reload chamber\n"
+		..LWPHELP_ALTFIRE.."+"..LWPHELP_UNLOAD.."  Unload chamber\n"
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	

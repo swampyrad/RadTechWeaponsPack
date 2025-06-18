@@ -131,13 +131,13 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	override string gethelptext()
 	{
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.."  Quick-Swap (if available)\n"
-		..WEPHELP_RELOAD.."  Load flares\n"
-		..WEPHELP_ALTRELOAD.."  Load shells\n"
-		..WEPHELP_FIREMODE.."+"..WEPHELP_RELOAD.."  Load slugs\n"
-		..WEPHELP_FIREMODE.."+"..WEPHELP_ALTRELOAD.."  Load explosive slugs\n"
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+		..LWPHELP_ALTFIRE.."  Quick-Swap (if available)\n"
+		..LWPHELP_RELOAD.."  Load flares\n"
+		..LWPHELP_ALTRELOAD.."  Load shells\n"
+		..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD.."  Load slugs\n"
+		..LWPHELP_FIREMODE.."+"..LWPHELP_ALTRELOAD.."  Load explosive slugs\n"
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	

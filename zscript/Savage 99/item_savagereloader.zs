@@ -161,8 +161,8 @@ class SavageAutoReloader:SavageAutoReloadingThingy{
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRE.."  Assemble rounds\n"
-		..WEPHELP_USE.."+"..WEPHELP_UNLOAD.."  same"
+		LWPHELP_FIRE.."  Assemble rounds\n"
+		..LWPHELP_USE.."+"..LWPHELP_UNLOAD.."  same"
 		;
 	}
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}

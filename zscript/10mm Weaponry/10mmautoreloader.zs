@@ -167,8 +167,8 @@ class TenMilAutoReloader:TenMilAutoReloadingThingy{
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRE.."  Assemble 10mm rounds\n"
-		..WEPHELP_USE.."+"..WEPHELP_UNLOAD.."  same"
+		LWPHELP_FIRE.."  Assemble 10mm rounds\n"
+		..LWPHELP_USE.."+"..LWPHELP_UNLOAD.."  same"
 		;
 	}
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}

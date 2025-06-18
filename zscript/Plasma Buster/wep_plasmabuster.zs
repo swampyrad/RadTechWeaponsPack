@@ -166,10 +166,10 @@ class PlasmaBuster:HDCellWeapon{
 
 	override string gethelptext(){
 		return
-		  WEPHELP_FIRE.."  Auto-fire\n"
-   ..WEPHELP_ALTFIRE.."  Burst-fire\n"
-		..WEPHELP_RELOADRELOAD
-		..WEPHELP_UNLOADUNLOAD
+		  LWPHELP_FIRE.."  Auto-fire\n"
+   ..LWPHELP_ALTFIRE.."  Burst-fire\n"
+		..LWPHELP_RELOADRELOAD
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 
