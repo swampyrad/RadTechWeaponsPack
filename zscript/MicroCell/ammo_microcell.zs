@@ -107,12 +107,12 @@ class HDMicroCell:HDMagAmmo{
 		){
 			if(chargemode==BATT_CHARGESELECTED){
 				if(biggestamt>=10){
-					owner.A_Log("Battery configuration error: full battery selected. Rerouting.",true);
+					owner.A_Log(Stringtable.Localize("$MBAT_USERERROR_1"),true);
 				}else if(
 					biggestindex==smallestindex
 					&&biggestindex==maxindex
 				){
-					owner.A_Log("Battery configuration error: lowest battery selected. Rerouting.",true);
+					owner.A_Log(Stringtable.Localize("$MBAT_USERERROR_2"),true);
 				}
 				chargemode=BATT_CHARGEMAX;
 			}
@@ -153,7 +153,7 @@ class HDMicroCell:HDMagAmmo{
 		if(battt==hdbattery.BATT_CHARGEMAX)batts="eAuto";
 		else if(battt==hdbattery.BATT_CHARGESELECTED)batts="ySelected";
 		sb.DrawString(
-			sb.psmallfont,string.format("%s\c%s%s",helptext?"Charging: ":"",batts,helptext?"\n\cu(\cqReload\cu to cycle)":""),(offx+2,offy),
+			sb.psmallfont,string.format(Stringtable.Localize("$MBAT_HELPTEXT_1"),helptext?Stringtable.Localize("$MBAT_HELPTEXT_2"):"",batts,helptext?Stringtable.Localize("$MBAT_HELPTEXT_3"):""),(offx+2,offy),
 			sb.DI_SCREEN_CENTER|sb.DI_TEXT_ALIGN_LEFT,
 			wrapwidth:smallfont.StringWidth("m")*80
 		);

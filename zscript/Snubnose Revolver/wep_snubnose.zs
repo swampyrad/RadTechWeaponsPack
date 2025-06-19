@@ -97,18 +97,20 @@ class HDSnubNoseRevolver:HDHandgun{
 			);
 		}
 	}
+
 	override string gethelptext(){
+		LocalizeHelp();
 		if(cylinderopen)return
-		LWPHELP_FIRE.." Close cylinder\n"
-		..LWPHELP_ALTFIRE.." Cycle cylinder \(Hold "..LWPHELP_ZOOM.." to reverse\)\n"
-		..LWPHELP_UNLOAD.." Hit extractor \(double-tap to dump live rounds\)\n"
-		..LWPHELP_RELOAD.." Load round \(Hold "..LWPHELP_FIREMODE.." to force using 9mm\)\n"
+		LWPHELP_FIRE..Stringtable.Localize("$DSPR_HELPTEXT_1")
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$DSPR_HELPTEXT_2")..LWPHELP_ZOOM..Stringtable.Localize("$DSPR_HELPTEXT_3")
+		..LWPHELP_UNLOAD..Stringtable.Localize("$DSPR_HELPTEXT_4")
+		..LWPHELP_RELOAD..Stringtable.Localize("$DSPR_HELPTEXT_5")
 		;
 		return
 		LWPHELP_FIRESHOOT
-		..LWPHELP_ALTFIRE.." Pull back hammer\n"
-		..LWPHELP_ALTRELOAD.."/"..LWPHELP_FIREMODE.."  Quick-Swap (if available)\n"
-		..LWPHELP_UNLOAD.."/"..LWPHELP_RELOAD.." Open cylinder\n"
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$DSPR_HELPTEXT_6")
+		..LWPHELP_ALTRELOAD.."/"..LWPHELP_FIREMODE..Stringtable.Localize("$DSPR_HELPTEXT_7")
+		..LWPHELP_UNLOAD.."/"..LWPHELP_RELOAD..Stringtable.Localize("$DSPR_HELPTEXT_8")
 		;
 	}
 

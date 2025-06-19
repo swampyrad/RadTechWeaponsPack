@@ -18,21 +18,20 @@ class COP357Pistol:HDHandgun{
 		weapon.bobrangey 0.6;
 		weapon.bobspeed 2.5;
 		weapon.bobstyle "normal";
-		obituary "%o got COP'd by %k.";
-		tag "COP .357";
+		obituary "$OB_COP357";
+		tag "$TAG_COP357";
+		inventory.pickupmessage "$PICKUP_COP357";
 		hdweapon.refid HDLD_COP357;
 		hdweapon.barrelsize 12,0.5,0.7; //shorter and thicker than the revolver
 	
 	    hdweapon.loadoutcodes "
-			\quadshot - modifies pistol to shoot all barrels at once"
-			;
+			\cuquadshot - modifies pistol to shoot all 4 barrels at once";
 	}
 	
 	override string PickupMessage() {
-	    String pickupmessage = "You got the COP .357! What a bastard of a gun!"; 
-	    String quadshotmsg = " You got the COP .357! What a bastard of a gun! It feels a bit off...";
-	    if(weaponstatus[COPS_QUADSHOT]) return quadshotmsg;
-	    return pickupmessage;
+	    String msg = Super.PickupMessage();
+		if(weaponstatus[COPS_QUADSHOT]) return Stringtable.Localize("$PICKUP_COP357OFF");
+	    return msg;
 	}
 	
 	override void loadoutconfigure(string input){
@@ -122,15 +121,16 @@ class COP357Pistol:HDHandgun{
 	
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		if(chamberopen)return
-		LWPHELP_FIRE.." Close cylinder\n"
-		..LWPHELP_UNLOAD.." Remove empty rounds \(double-tap to dump live rounds\)\n"
-		..LWPHELP_RELOAD.." Load round \(Hold "..LWPHELP_FIREMODE.." to force using 9mm\)\n"
+		LWPHELP_FIRE..Stringtable.Localize("$C357_HELPTEXT_1")
+		..LWPHELP_UNLOAD..Stringtable.Localize("$C357_HELPTEXT_2")
+		..LWPHELP_RELOAD..Stringtable.Localize("$C357_HELPTEXT_3")..LWPHELP_FIREMODE..Stringtable.Localize("$C357_HELPTEXT_4")
 		;
 		return
 		LWPHELP_FIRESHOOT
-		..LWPHELP_ALTRELOAD.."/"..LWPHELP_FIREMODE.."  Quick-Swap (if available)\n"
-		..LWPHELP_UNLOAD.."/"..LWPHELP_RELOAD.." Open chamber\n"
+		..LWPHELP_ALTRELOAD.."/"..LWPHELP_FIREMODE..Stringtable.Localize("$C357_HELPTEXT_5")
+		..LWPHELP_UNLOAD.."/"..LWPHELP_RELOAD..Stringtable.Localize("$C357_HELPTEXT_6")
 		;
 	}
 	override void DrawSightPicture(

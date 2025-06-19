@@ -17,7 +17,6 @@ class HDTokarevMag71:HDMagAmmo{
 		hdmagammo.roundbulk ENC_762TOKAREV_LOADED;
 		hdmagammo.magbulk ENC_TOKAREV_DRUM_EMPTY;
 		tag "$TAG_PPSH41MAG71";
-//		inventory.pickupmessage "Picked up a PPSh-41 drum magazine.";
 		hdpickup.refid "tm7";
 	}
     

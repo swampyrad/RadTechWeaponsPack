@@ -82,13 +82,14 @@ class HDDynamiteThrower:HDWeapon{
 	}
 	
 	override string gethelptext(){
+		LocalizeHelp();
 		if(weaponstatus[0]&DYNAF_SPOONOFF)return
-		LWPHELP_FIRE.."  Wind up, release to throw\n(\cxSTOP READING AND DO THIS"..WEPHELP_RGCOL..")";
+		LWPHELP_FIRE..Stringtable.Localize("$DYNA_HELPTEXT_1")..WEPHELP_RGCOL..Stringtable.Localize("$DYNA_HELPTEXT_2");
 		return
-		LWPHELP_FIRE.."  Wind up, release to throw\n"
-		..LWPHELP_ALTFIRE.."  Ready lighter, again to light fuse\n"
-		..LWPHELP_RELOAD.."  Abort/close lighter\n"
-		..LWPHELP_FIREMODE.."  Plant a bomb"
+		LWPHELP_FIRE..Stringtable.Localize("$DYNA_HELPTEXT_3")
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$DYNA_HELPTEXT_4")
+		..LWPHELP_RELOAD..Stringtable.Localize("$DYNA_HELPTEXT_5")
+		..LWPHELP_FIREMODE..Stringtable.Localize("$DYNA_HELPTEXT_6")
 		;
 	}
 	
@@ -895,7 +896,7 @@ class HDDynamiteRollerUnlit:HDUPK{//the projectile after it hits the ground
 		
 		hdupk.amount 1;
 		hdupk.pickuptype "HDDynamiteAmmo";
-		hdupk.pickupmessage "Picked up a bundle of dynamite.";
+		hdupk.pickupmessage "$PICKUP_DYNAMITE";
 		hdupk.pickupsound "weapons/rifleclick2";
 		stamina 1;
 		
@@ -907,7 +908,7 @@ class HDDynamiteRollerUnlit:HDUPK{//the projectile after it hits the ground
 		height 8;
 		damagetype "none";
 		scale 0.3;
-		obituary "%o was blown to smitheteens by %k.";
+		obituary "$OB_DYNAMITE";
 		radiusdamagefactor 0.04;
 		pushfactor 1.4;
 		maxstepheight 2;
@@ -1082,7 +1083,7 @@ class DynaP:HDUPK{
 		scale 0.3;height 3;radius 3;
 		hdupk.amount 1;
 		hdupk.pickuptype "HDDynamiteAmmo";
-		hdupk.pickupmessage "Picked up a bundle of dynamite.";
+		hdupk.pickupmessage "$PICKUP_DYNAMITE";
 		hdupk.pickupsound "weapons/rifleclick2";
 		stamina 1;
 	}

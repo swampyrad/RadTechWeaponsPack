@@ -97,14 +97,13 @@ class DuckHunter:HDShotgun{
 		}
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
-		LWPHELP_FIRE.."  Shoot (choke: "..weaponstatus[DUCKHUNTS_CHOKE]..")\n"
-		..LWPHELP_ALTFIRE.."  Pump\n"
-		..LWPHELP_RELOAD.."  Reload (side saddles first)\n"
-		..LWPHELP_ALTRELOAD.."  Reload (pockets only)\n"
-	//	..(weaponstatus[0]&HUNTF_EXPORT?"":(LWPHELP_FIREMODE.."  Pump/Semi"..(weaponstatus[0]&HUNTF_CANFULLAUTO?"/Auto":"").."\n"))
-		..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD.."  Load side saddles\n"
-	//	..LWPHELP_USE.."+"..LWPHELP_UNLOAD.."  Steal ammo from Slayer\n"
+		LWPHELP_FIRE..Stringtable.Localize("$QUAK_HELPTEXT_1")..weaponstatus[DUCKHUNTS_CHOKE]..Stringtable.Localize("$QUAK_HELPTEXT_2")
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$QUAK_HELPTEXT_3")
+		..LWPHELP_RELOAD..Stringtable.Localize("$QUAK_HELPTEXT_4")
+		..LWPHELP_ALTRELOAD..Stringtable.Localize("$QUAK_HELPTEXT_5")
+		..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD..Stringtable.Localize("$QUAK_HELPTEXT_6")
 		..LWPHELP_UNLOADUNLOAD
 		;
 	}

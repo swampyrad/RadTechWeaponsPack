@@ -176,16 +176,17 @@ override void postbeginplay(){
 		);
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
 		LWPHELP_FIRESHOOT
-		..LWPHELP_RELOAD.."  Reload mags\n"
-		..LWPHELP_ALTRELOAD.."  Reload battery\n"
-		..LWPHELP_FIREMODE.."  Switch to "..(weaponstatus[0]&MNVF_FAST?"700":"2100").." RPM\n"
-		..LWPHELP_ZOOM.."+"..LWPHELP_FIREMODE.."+"..LWPHELP_UPDOWN.."  Zoom\n"
-		..LWPHELP_ZOOM.."+"..LWPHELP_UNLOAD.."  Repair\n"
+		..LWPHELP_RELOAD..Stringtable.Localize("$9LMG_HELPTEXT_1")
+		..LWPHELP_ALTRELOAD..Stringtable.Localize("$9LMG_HELPTEXT_2")
+		..LWPHELP_FIREMODE..Stringtable.Localize("$9LMG_HELPTEXT_3")..(weaponstatus[0]&MNVF_FAST?Stringtable.Localize("$9LMG_HELPTEXT_4"):Stringtable.Localize("$9LMG_HELPTEXT_5"))..Stringtable.Localize("$9LMG_HELPTEXT_6")
+		..LWPHELP_ZOOM.."+"..LWPHELP_FIREMODE.."+"..LWPHELP_UPDOWN..Stringtable.Localize("$9LMG_HELPTEXT_7")
+		..LWPHELP_ZOOM.."+"..LWPHELP_UNLOAD..Stringtable.Localize("$9LMG_HELPTEXT_8")
 		..LWPHELP_MAGMANAGER
 		..LWPHELP_UNLOADUNLOAD
-		..LWPHELP_USE.."+"..LWPHELP_UNLOAD.."  or  "..LWPHELP_USE.."+"..LWPHELP_ALTRELOAD.."  Unload battery\n"
+		..LWPHELP_USE.."+"..LWPHELP_UNLOAD..Stringtable.Localize("$9LMG_HELPTEXT_9")..LWPHELP_USE.."+"..LWPHELP_ALTRELOAD..Stringtable.Localize("$9LMG_HELPTEXT_10")
 		;
 	}
 	override void DrawSightPicture(

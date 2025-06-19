@@ -118,14 +118,15 @@ class Savage99SniperRifle:HDWeapon{
 
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
 		LWPHELP_FIRESHOOT
-		..LWPHELP_ALTFIRE.."  Work lever\n"
-		.."While holding "..LWPHELP_ALTFIRE.."...\n"
-		.."  +"..LWPHELP_RELOAD.."  Reload chamber/magazine\n"
-		.."  +"..LWPHELP_UNLOAD.."  Unload chamber/magazine/Clean rifle\n"
-		..LWPHELP_ZOOM.."+"..LWPHELP_FIREMODE.."  Zoom\n"
-		..LWPHELP_ZOOM.."+"..LWPHELP_USE.."  Bullet drop\n"
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$SLAR_HELPTEXT_1")
+		..Stringtable.Localize("$SLAR_HELPTEXT_2")..LWPHELP_ALTFIRE..Stringtable.Localize("$SLAR_HELPTEXT_3")
+		.."  +"..LWPHELP_RELOAD..Stringtable.Localize("$SLAR_HELPTEXT_4")
+		.."  +"..LWPHELP_UNLOAD..Stringtable.Localize("$SLAR_HELPTEXT_5")
+		..LWPHELP_ZOOM.."+"..LWPHELP_FIREMODE..Stringtable.Localize("$SLAR_HELPTEXT_6")
+		..LWPHELP_ZOOM.."+"..LWPHELP_USE..Stringtable.Localize("$SLAR_HELPTEXT_7")
 	;
 	}
 	override void DrawSightPicture(

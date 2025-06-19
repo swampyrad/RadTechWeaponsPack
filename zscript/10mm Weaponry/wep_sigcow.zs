@@ -134,12 +134,13 @@ class HDSigCow:HDWeapon{
 	}
 
 	override string gethelptext(){
+		LocalizeHelp();
 		return  
 		LWPHELP_FIRESHOOT
-        ..LWPHELP_ALTFIRE.."  Bayonet Stab\n"
-		..LWPHELP_RELOAD.."  Reload mag\n"
-		..LWPHELP_USE.."+"..LWPHELP_RELOAD.."  Reload chamber\n"
-		..LWPHELP_FIREMODE.."  Semi/Burst/Auto\n"
+        ..LWPHELP_ALTFIRE..Stringtable.Localize("$SGCW_HELPTEXT_1")
+		..LWPHELP_RELOAD..Stringtable.Localize("$SGCW_HELPTEXT_2")
+		..LWPHELP_USE.."+"..LWPHELP_RELOAD..Stringtable.Localize("$SGCW_HELPTEXT_3")
+		..LWPHELP_FIREMODE..Stringtable.Localize("$SGCW_HELPTEXT_4")
 		..LWPHELP_MAGMANAGER
 		..LWPHELP_UNLOADUNLOAD  
 		;

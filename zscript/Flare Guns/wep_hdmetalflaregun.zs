@@ -130,13 +130,14 @@ action void A_CheckMetalFlareGunHand(bool filled)
 	
 	override string gethelptext()
 	{
+		LocalizeHelp();
 		return
 		LWPHELP_FIRESHOOT
-		..LWPHELP_ALTFIRE.."  Quick-Swap (if available)\n"
-		..LWPHELP_RELOAD.."  Load flares\n"
-		..LWPHELP_ALTRELOAD.."  Load shells\n"
-		..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD.."  Load slugs\n"
-		..LWPHELP_FIREMODE.."+"..LWPHELP_ALTRELOAD.."  Load explosive slugs\n"
+		..LWPHELP_ALTFIRE..", "..LWPHELP_FIREMODE..Stringtable.Localize("$FGUN_HELPTEXT_1")
+		..LWPHELP_RELOAD..Stringtable.Localize("$FGUN_HELPTEXT_2")
+		..LWPHELP_ALTRELOAD..Stringtable.Localize("$FGUN_HELPTEXT_3")
+		..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD..Stringtable.Localize("$FGUN_HELPTEXT_4")
+		..LWPHELP_FIREMODE.."+"..LWPHELP_ALTRELOAD..Stringtable.Localize("$FGUN_HELPTEXT_5")
 		..LWPHELP_UNLOADUNLOAD
 		;
 	}

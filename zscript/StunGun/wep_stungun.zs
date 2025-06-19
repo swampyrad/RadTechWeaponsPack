@@ -58,8 +58,8 @@ class HDStunGun:HDWeapon{//Tasers and stun guns are not the same, apparently
 	}
 	override string gethelptext(){
 		return
-		LWPHELP_FIRE.."  Zap\n"
-		..LWPHELP_ALTFIRE.."  Quick Prod\n"
+		LWPHELP_FIRE..Stringtable.Localize("$STUN_HELPTEXT_1")
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$STUN_HELPTEXT_2")
 		..LWPHELP_RELOADRELOAD
 		..LWPHELP_UNLOADUNLOAD
 		;

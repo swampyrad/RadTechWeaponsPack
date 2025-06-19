@@ -51,7 +51,7 @@ class TokarevAutoReloadingThingy:HDWeapon{
 		if(onpadd>0)owner.A_GiveInventory("HD762TokarevAmmo",onpadd);
 
 
-		owner.A_Log("You reloaded "..didmake.." 7.62 Tokarev rounds during your downtime, comrade.",true);
+		owner.A_Log(Stringtable.Localize("$TRRL_HELPTEXT_1")..didmake..Stringtable.Localize("$TRRL_HELPTEXT_2"),true);
 	}
 	override void actualpickup(actor other,bool silent){
 		super.actualpickup(other,silent);
@@ -170,8 +170,8 @@ class TokarevAutoReloader:TokarevAutoReloadingThingy{
 	}
 	override string gethelptext(){
 		return
-		LWPHELP_FIRE.."  Assemble 7.62 Tokarev rounds\n"
-		..LWPHELP_USE.."+"..LWPHELP_UNLOAD.."  same"
+		LWPHELP_FIRE..Stringtable.Localize("$TRRL_HELPTEXT_3")
+		..LWPHELP_USE.."+"..LWPHELP_UNLOAD..Stringtable.Localize("$TRRL_HELPTEXT_4")
 		;
 	}
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}

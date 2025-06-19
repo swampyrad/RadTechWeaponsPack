@@ -166,8 +166,8 @@ class PlasmaBuster:HDCellWeapon{
 
 	override string gethelptext(){
 		return
-		  LWPHELP_FIRE.."  Auto-fire\n"
-   ..LWPHELP_ALTFIRE.."  Burst-fire\n"
+		LWPHELP_FIRE..Stringtable.Localize("$PBST_HELPTEXT_1")
+   		..LWPHELP_ALTFIRE..Stringtable.Localize("$PBST_HELPTEXT_2")
 		..LWPHELP_RELOADRELOAD
 		..LWPHELP_UNLOADUNLOAD
 		;

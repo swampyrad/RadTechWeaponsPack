@@ -46,6 +46,7 @@ class FragCannon:HDWeapon{
 		);
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
 		LWPHELP_FIRESHOOT
 		..LWPHELP_RELOADRELOAD

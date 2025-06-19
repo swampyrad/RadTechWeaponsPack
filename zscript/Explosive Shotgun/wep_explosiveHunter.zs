@@ -107,13 +107,14 @@ override void failedpickupunload(){
 		}
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
-		LWPHELP_FIRE.."  Shoot\n"
-		..LWPHELP_ALTFIRE.."  Pump\n"
-		..LWPHELP_RELOAD.."  Reload (side saddles first)\n"
-		..LWPHELP_ALTRELOAD.."  Reload (pockets only)\n"
-		..(weaponstatus[0]&EXHUNTF_EXPORT?"":(LWPHELP_FIREMODE.."  Pump/Semi"..(weaponstatus[0]&EXHUNTF_CANFULLAUTO?"/Auto":"").."\n"))
-		..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD.."  Load side saddles\n"
+		LWPHELP_FIRE..Stringtable.Localize("$EHUN_HELPTEXT_1")
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$EHUN_HELPTEXT_2")
+		..LWPHELP_RELOAD..Stringtable.Localize("$EHUN_HELPTEXT_3")
+		..LWPHELP_ALTRELOAD..Stringtable.Localize("$EHUN_HELPTEXT_4")
+		..(weaponstatus[0]&EXHUNTF_EXPORT?"":(LWPHELP_FIREMODE..Stringtable.Localize("$EHUN_HELPTEXT_5")..(weaponstatus[0]&EXHUNTF_CANFULLAUTO?Stringtable.Localize("$EHUN_HELPTEXT_6"):"").."\n"))
+		..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD..Stringtable.Localize("$EHUN_HELPTEXT_7")
 		..LWPHELP_UNLOADUNLOAD
 		;
 	}

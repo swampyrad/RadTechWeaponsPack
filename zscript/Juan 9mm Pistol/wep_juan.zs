@@ -188,13 +188,14 @@ class HDHorseshoePistol:HDHandgun{
 		if(hdw.weaponstatus[HPISS_CHAMBER]==2)sb.drawrect(-19,-11,3,1);
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
 		LWPHELP_FIRESHOOT
-		..((weaponstatus[0]&HPISF_SELECTFIRE)?(LWPHELP_FIREMODE.."  Semi/Auto\n"):"")
-		..LWPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
-		..LWPHELP_RELOAD.."  Reload mag (horseshoe mags first)\n"
-		..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD.."  Force standard mag reload\n"
-		..LWPHELP_USE.."+"..LWPHELP_RELOAD.."  Reload chamber\n"
+		..((weaponstatus[0]&HPISF_SELECTFIRE)?(LWPHELP_FIREMODE..Stringtable.Localize("$JUAN_HELPTEXT_1")):"")
+		..LWPHELP_ALTRELOAD..Stringtable.Localize("$JUAN_HELPTEXT_2")
+		..LWPHELP_RELOAD..Stringtable.Localize("$JUAN_HELPTEXT_3")
+		..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD..Stringtable.Localize("$JUAN_HELPTEXT_4")
+		..LWPHELP_USE.."+"..LWPHELP_RELOAD..Stringtable.Localize("$JUAN_HELPTEXT_5")
 		..LWPHELP_MAGMANAGER
 		..LWPHELP_UNLOADUNLOAD
 		;
