@@ -129,19 +129,20 @@ class HackedZM66AssaultRifle:ZM66ScopeHaver{
 		);
 	}
 	override string gethelptext(){
-		bool gl=!(weaponstatus[0]&ZM66HACKEDF_NOLAUNCHER);
-		bool glmode=gl&&(weaponstatus[0]&ZM66HACKEDF_GLMODE);
+		bool gl=!(weaponstatus[0]&ZM66F_NOLAUNCHER);
+		bool glmode=gl&&(weaponstatus[0]&ZM66F_GLMODE);
+		LocalizeHelp();
 		return
-		WEPHELP_FIRESHOOT
-		..(gl?(WEPHELP_ALTFIRE..(glmode?("  Rifle mode\n"):("  GL mode\n"))):"")
-		..WEPHELP_RELOAD.."  Reload mag\n"
-		..(gl?(WEPHELP_ALTRELOAD.."  Reload GL\n"):"")
-		..(glmode?(WEPHELP_FIREMODE.."+"..WEPHELP_UPDOWN.."  Airburst\n")
+		LWPHELP_FIRESHOOT
+		..(gl?(LWPHELP_ALTFIRE..(glmode?(StringTable.Localize("$ZMWH_ALTFIRE1")):(StringTable.Localize("$ZMWH_ALTFIRE2")))):"")
+		..LWPHELP_RELOAD..StringTable.Localize("$ZMWH_RELOAD")
+		..(gl?(LWPHELP_ALTRELOAD..StringTable.Localize("$ZMWH_ALTRELOAD")):"")
+		..(glmode?(LWPHELP_FIREMODE.."+"..LWPHELP_UPDOWN..StringTable.Localize("$ZMWH_FMODPUD"))
 			:(
-			((weaponstatus[0]&ZM66HACKEDF_NOFIRESELECT)?"":WEPHELP_FIREMODE.."  Semi/Auto/Burst\n")
-			..WEPHELP_ZOOM.."+"..WEPHELP_FIREMODE.."+"..WEPHELP_UPDOWN.."  Zoom\n"))
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOAD.."  Unload "..(glmode?"GL":"magazine")
+			((weaponstatus[0]&ZM66F_NOFIRESELECT)?"":LWPHELP_FIREMODE..StringTable.Localize("$ZMWH_FMODE"))
+			..LWPHELP_ZOOM.."+"..LWPHELP_FIREMODE.."+"..LWPHELP_UPDOWN..StringTable.Localize("$ZMWH_ZPFMOD")))
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOAD..StringTable.Localize("$ZMWH_UNLOAD")..(glmode?StringTable.Localize("$ZMWH_GL"):StringTable.Localize("$ZMWH_MAG"))
 		;
 	}
 	override void DrawSightPicture(

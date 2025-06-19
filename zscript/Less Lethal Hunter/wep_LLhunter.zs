@@ -83,14 +83,14 @@ class LLHunter:HDLLShotgun{
 		}
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
-		WEPHELP_FIRE.."  Shoot\n"
-		..WEPHELP_ALTFIRE.."  Pump\n"
-		..WEPHELP_RELOAD.."  Reload (side saddles first)\n"
-		..WEPHELP_ALTRELOAD.."  Reload (pockets only)\n"
-                ..WEPHELP_FIREMODE.."+"..WEPHELP_RELOAD.."  Load side saddles\n"
-	        ..WEPHELP_UNLOADUNLOAD
-		;
+		LWPHELP_FIRE..Stringtable.Localize("$LLHN_HELPTEXT_1")
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$LLHN_HELPTEXT_2")
+		..LWPHELP_RELOAD..Stringtable.Localize("$LLHN_HELPTEXT_3")
+		..LWPHELP_ALTRELOAD..Stringtable.Localize("$LLHN_HELPTEXT_4")
+        ..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD..Stringtable.Localize("$LLHN_HELPTEXT_5")
+	    ..LWPHELP_UNLOADUNLOAD;
 	}
 	override void DrawSightPicture(
 		HDStatusBar sb,HDWeapon hdw,HDPlayerPawn hpl,

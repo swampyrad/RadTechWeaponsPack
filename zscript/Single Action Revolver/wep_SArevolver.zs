@@ -95,17 +95,18 @@ if(ninemil>0){
 	}
 
 	override string gethelptext(){
+		LocalizeHelp();
 		if(cylinderopen)return
-		WEPHELP_FIRE.." Close cylinder\n"
-		..WEPHELP_ALTFIRE.." Cycle cylinder \(Hold "..WEPHELP_ZOOM.." to reverse\)\n"
-		..WEPHELP_UNLOAD.." Hit extractor \n"
-		..WEPHELP_RELOAD.." Load round \n"
+		LWPHELP_FIRE..Stringtable.Localize("$SARV_HELPTEXT_1")
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$SARV_HELPTEXT_2")..LWPHELP_ZOOM..Stringtable.Localize("$SARV_HELPTEXT_3")
+		..LWPHELP_UNLOAD..Stringtable.Localize("$SARV_HELPTEXT_4")
+		..LWPHELP_RELOAD..Stringtable.Localize("$SARV_HELPTEXT_5")
 		;
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.." Pull back hammer\n"
-		..WEPHELP_ALTRELOAD.."/"..WEPHELP_FIREMODE.."  Quick-Swap (if available)\n"
-		..WEPHELP_UNLOAD.."/"..WEPHELP_RELOAD.." Open cylinder\n"
+		LWPHELP_FIRESHOOT
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$SARV_HELPTEXT_6")
+		..LWPHELP_ALTRELOAD.."/"..LWPHELP_FIREMODE..Stringtable.Localize("$SARV_HELPTEXT_7")
+		..LWPHELP_UNLOAD.."/"..LWPHELP_RELOAD..Stringtable.Localize("$SARV_HELPTEXT_8")
 		;
 	}
 	override void DrawSightPicture(

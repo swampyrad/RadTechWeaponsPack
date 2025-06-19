@@ -20,13 +20,13 @@ class HDPPSh41 :HDWeapon{//this shouldn't inherit from HDHandgun, that was an ov
 		tag "$TAG_PPSH41";
 		hdweapon.refid "pps";
 		hdweapon.barrelsize 30,0.3,0.4;
-    inventory.icon "PS41C0";
+	    inventory.icon "PS41C0";
 
-		hdweapon.loadoutcodes "
 		//switchtype config unused, afaik all 
 		//Soviet-era PPSh-41s had full-auto
+		hdweapon.loadoutcodes "
 			\cufiremode - 0/1, semi/auto
-			\box - start loaded with a box magazine instead"
+			\cubox - start loaded with a box magazine instead"
 			;
 	}
 
@@ -149,13 +149,13 @@ class HDPPSh41 :HDWeapon{//this shouldn't inherit from HDHandgun, that was an ov
 	
 	override string gethelptext(){
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.."  Rack bolt\n"
-		..WEPHELP_FIREMODE.."  Semi/Auto\n"
-		..WEPHELP_RELOAD.."  Reload mag (drum mags first)\n"
-		..WEPHELP_ALTRELOAD.."  Reload box magazine\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$PPSH_HELPTEXT_1")
+		..LWPHELP_FIREMODE..Stringtable.Localize("$PPSH_HELPTEXT_2")
+		..LWPHELP_RELOAD..Stringtable.Localize("$PPSH_HELPTEXT_3")
+		..LWPHELP_ALTRELOAD..Stringtable.Localize("$PPSH_HELPTEXT_4")
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	

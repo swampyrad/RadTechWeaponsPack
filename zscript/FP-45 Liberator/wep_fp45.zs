@@ -62,19 +62,20 @@ class HDFP45:HDHandgun{
 		}
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
-		WEPHELP_ALTFIRE.."  Cock/Uncock hammer\n"
-		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n\n"
-		.."When hammer is uncocked...\n"
-		.."  "..WEPHELP_RELOAD.."  Refill spare rounds\n"
-		.."  "..WEPHELP_UNLOAD.."  Remove a spare round\n"
-	    .."  "..WEPHELP_USE.." + "..WEPHELP_UNLOAD.."  Dump spare rounds\n\n"
-		.."When hammer is cocked...\n"
-		.."  "..WEPHELP_FIRESHOOT
-		.."  "..WEPHELP_RELOAD.."  Reload chamber (spare rounds first)\n"
-		.."  "..WEPHELP_UNLOAD.."  Unload chamber\n"
-		.."While emptying chamber...\n"
-		.."  "..WEPHELP_RELOAD.."(Hold)".."  Speed reload" 
+		LWPHELP_ALTFIRE..Stringtable.Localize("$FP45_HELPTEXT_1")
+		..LWPHELP_ALTRELOAD..Stringtable.Localize("$FP45_HELPTEXT_2")
+		..Stringtable.Localize("$FP45_HELPTEXT_3")
+		.."  "..LWPHELP_RELOAD..Stringtable.Localize("$FP45_HELPTEXT_4")
+		.."  "..LWPHELP_UNLOAD..Stringtable.Localize("$FP45_HELPTEXT_5")
+	    .."  "..LWPHELP_USE.." + "..LWPHELP_UNLOAD..Stringtable.Localize("$FP45_HELPTEXT_6")
+		..Stringtable.Localize("$FP45_HELPTEXT_7")
+		.."  "..LWPHELP_FIRESHOOT
+		.."  "..LWPHELP_RELOAD..Stringtable.Localize("$FP45_HELPTEXT_8")
+		.."  "..LWPHELP_UNLOAD..Stringtable.Localize("$FP45_HELPTEXT_9")
+		..Stringtable.Localize("$FP45_HELPTEXT_10")
+		.."  "..LWPHELP_RELOAD..Stringtable.Localize("$FP45_HELPTEXT_11")..Stringtable.Localize("$FP45_HELPTEXT_12") 
 		;
 	}
 	override void DrawSightPicture(

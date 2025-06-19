@@ -83,6 +83,8 @@ PICKUP_PPSH41 = "You got the PPSh-41!";
 PICKUP_S99 = "You got the Savage 99!";
 PICKUP_DUCKHUNT = "You got the Duck Hunter!";
 PICKUP_COP357 = "You got the COP .357! What a bastard of a gun!";
+PICKUP_COP357OFF = "You got the COP .357! What a bastard of a gun! Though this one feels a bit off...";
+PICKUP_ESHOTGUN = "You got a shotgun!";
 
 // Item Tags, same as weapons but these are just for the items. - [Ted]
 TAG_10RELOADER = "10mm Auto-Reloader";
@@ -138,6 +140,230 @@ OB_S99 = "%o got sniped by %k's Savage 99";
 OB_DUCKHUNTER = "%o couldn't convince %k it was rabbit season."
 OB_FP45 = "%k liberated %o from life.";
 OB_COP357 = "%o got COP'd by %k.";
+OB_DYNAMITE = "%o was blown to smithereens by %k.";
+OB_ESHOTGUN = "%o got %h the hot bullets of %k's shotgun to die.";
+OB_STENGUN = "%o was silenced by %k's STEN gun.";
+
+// Helptext
+
+// 10mm Reloader
+10RL_HELPTEXT_1 = "  Assemble 10mm rounds\n";
+10RL_HELPTEXT_2 = "  same";
+
+// 10mm Pistol
+10PS_HELPTEXT_1 = "  Semi/Auto\n";
+10PS_HELPTEXT_2 = "  Quick-Swap (if available)\n";
+10PS_HELPTEXT_3 = "  Reload mag\n";
+10PS_HELPTEXT_4 = "  Reload chamber\n";
+
+// Sigcow
+SGCW_HELPTEXT_1 = "  Bayonet Stab\n";
+SGCW_HELPTEXT_2 = "  Reload mag\n";
+SGCW_HELPTEXT_3 = "  Reload chamber\n";
+SGCW_HELPTEXT_4 = "  Semi/Burst/Auto\n";
+
+// Colt 1911
+1911_HELPTEXT_1 = "  Semi/Auto\n";
+1911_HELPTEXT_2 = "  Quick-Swap (if available)\n";
+1911_HELPTEXT_3 = "  Reload mag\n";
+1911_HELPTEXT_4 = "  Reload chamber\n";
+
+// Combat Shotgun
+CBSG_HELPTEXT_1 = "  Shoot\n";
+CBSG_HELPTEXT_2 = "  Pump\n";
+CBSG_HELPTEXT_3 = "  Reload\n";
+
+// COP 357
+C357_HELPTEXT_1 = " Close cylinder\n";
+C357_HELPTEXT_2 = " Remove empty rounds \(double-tap to dump live rounds\)\n";
+C357_HELPTEXT_3 = " Load round \(Hold ";
+C357_HELPTEXT_4 = " to force using 9mm\)\n";
+C357_HELPTEXT_5 = "  Quick-Swap (if available)\n";
+C357_HELPTEXT_6 = " Open chamber\n";
+
+// Doomed Hunter
+DHUN_HELPTEXT_1 = "  Shoot (choke: ";
+DHUN_HELPTEXT_2 = ")\n";
+DHUN_HELPTEXT_3 = "  Pump\n";
+DHUN_HELPTEXT_4 = "  Reload (side saddles first)\n";
+DHUN_HELPTEXT_5 = "  Reload (pockets only)\n";
+DHUN_HELPTEXT_6 = "  Pump/Semi";
+DHUN_HELPTEXT_7 = "/Auto";
+DHUN_HELPTEXT_8 = "  Load side saddles\n";
+DHUN_HELPTEXT_9 = "  Steal ammo from Slayer\n";
+
+// Duck Hunter
+QUAK_HELPTEXT_1 = "  Shoot (choke: ";
+QUAK_HELPTEXT_2 = ")\n";
+QUAK_HELPTEXT_3 = "  Pump\n";
+QUAK_HELPTEXT_4 = "  Reload (side saddles first)\n";
+QUAK_HELPTEXT_5 = "  Reload (pockets only)\n";
+QUAK_HELPTEXT_6 = "  Load side saddles\n";
+
+// Dynamite
+DYNA_HELPTEXT_1 = "  Wind up, release to throw\n(\cxSTOP READING AND DO THIS";
+DYNA_HELPTEXT_2 = ")";
+DYNA_HELPTEXT_3 = "  Wind up, release to throw\n";
+DYNA_HELPTEXT_4 = "  Ready lighter, again to light fuse\n";
+DYNA_HELPTEXT_5 = "Abort/close lighter\n";
+DYNA_HELPTEXT_6 = "  Plant a bomb";
+
+// Explosive Hunter
+EHUN_HELPTEXT_1 = "  Shoot\n";
+EHUN_HELPTEXT_2 = "  Pump\n";
+EHUN_HELPTEXT_3 = "  Reload (side saddles first)\n";
+EHUN_HELPTEXT_4 = "  Reload (pockets only)\n";
+EHUN_HELPTEXT_5 = "  Pump/Semi";
+EHUN_HELPTEXT_6 = "/Auto";
+EHUN_HELPTEXT_7 = "  Load side saddles\n";
+
+// Flare Gun(s)
+FGUN_HELPTEXT_1 = "  Quick-Swap (if available)\n";
+FGUN_HELPTEXT_2 = "  Load flares\n";
+FGUN_HELPTEXT_3 = "  Load shells\n";
+FGUN_HELPTEXT_4 = "  Load slugs\n";
+FGUN_HELPTEXT_5 = "  Load explosive slugs\n";
+
+// FP-45 Liberator
+FP45_HELPTEXT_1 = "  Cock/Uncock hammer\n";
+FP45_HELPTEXT_2 = "  Quick-Swap (if available)\n\n";
+FP45_HELPTEXT_3 = "When hammer is uncocked...\n";
+FP45_HELPTEXT_4 = "  Refill spare rounds\n";
+FP45_HELPTEXT_5 = "  Remove a spare round\n";
+FP45_HELPTEXT_6 = "  Dump spare rounds\n\n";
+FP45_HELPTEXT_7 = "When hammer is cocked...\n";
+FP45_HELPTEXT_8 = "  Reload chamber (spare rounds first)\n";
+FP45_HELPTEXT_9 = "  Unload chamber\n";
+FP45_HELPTEXT_10 = "While emptying chamber...\n";
+FP45_HELPTEXT_11 = "(Hold)";
+FP45_HELPTEXT_12 = "  Speed reload";
+
+// Golden Single-Action Revolver
+GSAR_HELPTEXT_1 = " Close cylinder\n";
+GSAR_HELPTEXT_2 = " Cycle cylinder \(Hold ";
+GSAR_HELPTEXT_3 = " to reverse\)\n";
+GSAR_HELPTEXT_4 = " Hit extractor \n";
+GSAR_HELPTEXT_5 = " Load round \n";
+GSAR_HELPTEXT_6 = " Pull back hammer\n";
+GSAR_HELPTEXT_7 = "  Quick-Swap (if available)\n";
+GSAR_HELPTEXT_8 = " Open cylinder\n";
+
+// Hush Puppy
+HPUP_HELPTEXT_1 = "  Rack slide\n";
+HPUP_HELPTEXT_2 = "  Toggle slidelock\n";
+HPUP_HELPTEXT_3 = "  Quick-Swap (if available)\n";
+HPUP_HELPTEXT_4 = "  Reload mag\n";
+HPUP_HELPTEXT_5 = "  Reload chamber\n";
+HPUP_HELPTEXT_6 = "  Unload chamber\n";
+
+// Juan.
+JUAN_HELPTEXT_1 = "  Semi/Auto\n";
+JUAN_HELPTEXT_2 = "  Quick-Swap (if available)\n";
+JUAN_HELPTEXT_3 = "  Reload mag (horseshoe mags first)\n";
+JUAN_HELPTEXT_4 = "  Force standard mag reload\n";
+JUAN_HELPTEXT_5 = "  Reload chamber\n";
+
+// Less Lethal Hunter
+LLHN_HELPTEXT_1 = "  Shoot\n";
+LLHN_HELPTEXT_2 = "  Pump\n";
+LLHN_HELPTEXT_3 = "  Reload (side saddles first)\n";
+LLHN_HELPTEXT_4 = "  Reload (pockets only)\n";
+LLHN_HELPTEXT_5 = "  Load side saddles\n";
+
+// Micro Batteries
+MBAT_HELPTEXT_1 = "%s\c%s%s";
+MBAT_HELPTEXT_2 = "Charging: ";
+MBAT_HELPTEXT_3 = "\n\cu(\cqReload\cu to cycle)";
+
+MBAT_USERERROR_1 = "Battery configuration error: full battery selected. Rerouting.";
+MBAT_USERERROR_2 = "Battery configuration error: lowest battery selected. Rerouting.";
+
+// Minerva
+9LMG_HELPTEXT_1 = "  Reload mags\n";
+9LMG_HELPTEXT_2 = "  Reload battery\n";
+9LMG_HELPTEXT_3 = "  Switch to ";
+9LMG_HELPTEXT_4 = "700";
+9LMG_HELPTEXT_5 = "2100";
+9LMG_HELPTEXT_6 = " RPM\n";
+9LMG_HELPTEXT_7 = "  Zoom\n";
+9LMG_HELPTEXT_8 = "  Repair\n";
+9LMG_HELPTEXT_9 = "  or  ";
+9LMG_HELPTEXT_10 = "  Unload battery\n";
+
+// Obrez
+OBRZ_HELPTEXT_1 = "  Quick-swap(if available)\n";
+
+// Phazer
+PHZR_HELPTEXT_1 = "  Fire\n";
+PHZR_HELPTEXT_2 = "  Quick-swap (if available)\n";
+
+// Plasma Buster
+PBST_HELPTEXT_1 = "  Auto-fire\n";
+PBST_HELPTEXT_2 = "  Burst-fire\n";
+
+// PPSh-41
+PPSH_HELPTEXT_1 = "  Rack bolt\n";
+PPSH_HELPTEXT_2 = "  Semi/Auto\n";
+PPSH_HELPTEXT_3 = "  Reload mag (drum mags first)\n";
+PPSH_HELPTEXT_4 = "  Reload box magazine\n";
+
+// Savage Reloader
+SRLD_HELPTEXT_1 = "You reloaded ";
+SRLD_HELPTEXT_2 = " .300 Savage rounds during your downtime.";
+SRLD_HELPTEXT_3 = "  Assemble rounds\n";
+SRLD_HELPTEXT_4 = "  same";
+
+// Savage-99
+SLAR_HELPTEXT_1 = "  Work lever\n";
+SLAR_HELPTEXT_2 = "While holding ";
+SLAR_HELPTEXT_3 = "...\n";
+SLAR_HELPTEXT_4 = "  Reload chamber/magazine\n";
+SLAR_HELPTEXT_5 = "  Unload chamber/magazine/Clean rifle\n";
+SLAR_HELPTEXT_6 = "  Zoom\n";
+SLAR_HELPTEXT_7 = "  Bullet drop\n";
+
+// Single Action Revolver
+SARV_HELPTEXT_1 = " Close cylinder\n";
+SARV_HELPTEXT_2 = " Cycle cylinder \(Hold ";
+SARV_HELPTEXT_3 = " to reverse\)\n";
+SARV_HELPTEXT_4 = " Hit extractor \n";
+SARV_HELPTEXT_5 = " Load round \n";
+SARV_HELPTEXT_6 = " Pull back hammer\n";
+SARV_HELPTEXT_7 = "  Quick-Swap (if available)\n";
+SARV_HELPTEXT_8 = " Open cylinder\n";
+
+// Detective Special Revolver
+DSPR_HELPTEXT_1 = " Close cylinder\n";
+DSPR_HELPTEXT_2 = " Cycle cylinder \(Hold ";
+DSPR_HELPTEXT_3 = " to reverse\)\n";
+DSPR_HELPTEXT_4 = " Hit extractor \n";
+DSPR_HELPTEXT_5 = " Load round \n";
+DSPR_HELPTEXT_6 = " Pull back hammer\n";
+DSPR_HELPTEXT_7 = "  Quick-Swap (if available)\n";
+DSPR_HELPTEXT_8 = " Open cylinder\n";
+
+// STEN Gun
+STEN_HELPTEXT_1 = "  Open bolt/Clear jam\n";
+STEN_HELPTEXT_2 = "  Reload mag\n";
+STEN_HELPTEXT_3 = "  Semi/Auto\n";
+
+// Stun Gun
+STUN_HELPTEXT_1 = "  Zap\n";
+STUN_HELPTEXT_2 = "  Quick Prod\n";
+
+// Tokarev Reloader
+TRRL_HELPTEXT_1 = "You reloaded ";
+TRRL_HELPTEXT_2 = " 7.62 Tokarev rounds during your downtime, comrade.";
+TRRL_HELPTEXT_3 = "  Assemble 7.62 Tokarev rounds\n";
+TRRL_HELPTEXT_4 = "  same";
+
+// TT-33
+TT33_HELPTEXT_1 = "  Semi/Auto\n";
+TT33_HELPTEXT_2 = "  Rack slide\n";
+TT33_HELPTEXT_3 = "  Quick-Swap (if available)\n";
+TT33_HELPTEXT_4 = "  Reload mag\n";
+TT33_HELPTEXT_5 = "  Reload chamber\n";
+TT33_HELPTEXT_6 = "  Unload chamber/Clean pistol\n";
 
 // EVERYTHING below this is Menu stuff. Feast upon the horror. - [Ted]
 

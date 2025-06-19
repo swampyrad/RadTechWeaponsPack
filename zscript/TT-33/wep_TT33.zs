@@ -158,15 +158,15 @@ class HDTT33Pistol:HDHandgun{
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRESHOOT
-		..((weaponstatus[0]&PISF_SELECTFIRE)?(WEPHELP_FIREMODE.."  Semi/Auto\n"):"")
-	    ..WEPHELP_ALTFIRE.."  Rack slide\n"
-		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
-		..WEPHELP_RELOAD.."  Reload mag\n"
-		..WEPHELP_ALTFIRE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
-		..WEPHELP_ALTFIRE.."+"..WEPHELP_UNLOAD.."  Unload chamber/Clean pistol\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+		..((weaponstatus[0]&PISF_SELECTFIRE)?(LWPHELP_FIREMODE..Stringtable.Localize("$TT33_HELPTEXT_1")):"")
+	    ..LWPHELP_ALTFIRE..Stringtable.Localize("$TT33_HELPTEXT_2")
+		..LWPHELP_ALTRELOAD..Stringtable.Localize("$TT33_HELPTEXT_3")
+		..LWPHELP_RELOAD..Stringtable.Localize("$TT33_HELPTEXT_4")
+		..LWPHELP_ALTFIRE.."+"..LWPHELP_RELOAD..Stringtable.Localize("$TT33_HELPTEXT_5")
+		..LWPHELP_ALTFIRE.."+"..LWPHELP_UNLOAD..Stringtable.Localize("$TT33_HELPTEXT_6")
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	override void DrawSightPicture(

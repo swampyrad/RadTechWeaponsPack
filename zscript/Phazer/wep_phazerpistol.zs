@@ -88,10 +88,10 @@ class PhazerPistol:HDHandgun{
 
 	override string gethelptext(){
 		return
-		  WEPHELP_FIRE.."  Fire\n"
-		..WEPHELP_FIREMODE.."  Quick-swap (if available)\n"
-		..WEPHELP_RELOADRELOAD
-		..WEPHELP_UNLOADUNLOAD
+		  LWPHELP_FIRE..Stringtable.Localize("$PHZR_HELPTEXT_1")
+		..LWPHELP_FIREMODE..Stringtable.Localize("$PHZR_HELPTEXT_2")
+		..LWPHELP_RELOADRELOAD
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 

@@ -51,9 +51,9 @@ class SavageAutoReloadingThingy:HDWeapon{
 		if(onpadd>0)owner.A_GiveInventory("Savage300Ammo",onpadd);
 
 
-		owner.A_Log("You reloaded "..didmake.." .300 Savage rounds during your downtime.",true);
+		owner.A_Log(Stringtable.Localize("$SRLD_HELPTEXT_1")..didmake..Stringtable.Localize("$SRLD_HELPTEXT_2"),true);
 	}
-	
+
 	override void actualpickup(actor other,bool silent){
 		super.actualpickup(other,silent);
 		if(!other)return;
@@ -161,8 +161,8 @@ class SavageAutoReloader:SavageAutoReloadingThingy{
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRE.."  Assemble rounds\n"
-		..WEPHELP_USE.."+"..WEPHELP_UNLOAD.."  same"
+		LWPHELP_FIRE..Stringtable.Localize("$SRLD_HELPTEXT_3")
+		..LWPHELP_USE.."+"..LWPHELP_UNLOAD..Stringtable.Localize("$SRLD_HELPTEXT_4")
 		;
 	}
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}

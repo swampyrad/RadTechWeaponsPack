@@ -70,17 +70,17 @@ class HushpuppyPistol:HDHandgun{
 	}
 	
 	override string gethelptext(){
+		LocalizeHelp();
 		return
-		WEPHELP_FIRESHOOT
-	    ..WEPHELP_ALTFIRE.."  Rack slide\n"
-	    ..WEPHELP_FIREMODE.."  Toggle slidelock\n"
-		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
-		..WEPHELP_RELOAD.."  Reload mag\n"
-		..WEPHELP_ALTFIRE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
-		..WEPHELP_ALTFIRE.."+"..WEPHELP_UNLOAD.."  Unload chamber\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD
-		;
+		LWPHELP_FIRESHOOT
+	    ..LWPHELP_ALTFIRE..Stringtable.Localize("$HPUP_HELPTEXT_1")
+	    ..LWPHELP_FIREMODE..Stringtable.Localize("$HPUP_HELPTEXT_2")
+		..LWPHELP_ALTRELOAD..StringTable.Localize("$HPUP_HELPTEXT_3")
+		..LWPHELP_RELOAD..Stringtable.Localize("$HPUP_HELPTEXT_4")
+		..LWPHELP_ALTFIRE.."+"..LWPHELP_RELOAD..Stringtable.Localize("$HPUP_HELPTEXT_5")
+		..LWPHELP_ALTFIRE.."+"..LWPHELP_UNLOAD..Stringtable.Localize("$HPUP_HELPTEXT_6")
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOADUNLOAD;
 	}
 	
 	override void DrawSightPicture(

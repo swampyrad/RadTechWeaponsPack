@@ -12,7 +12,7 @@ class HDStenMk2:HDWeapon{
 		//$Sprite "STENA0"
 
 		+hdweapon.fitsinbackpack
-		obituary "%o was silenced by %k's STEN gun.";
+		obituary "$OB_STENGUN";
 		weapon.selectionorder 24;
 		weapon.slotnumber 2;
 		weapon.slotpriority 0.9;
@@ -91,13 +91,12 @@ class HDStenMk2:HDWeapon{
 	}
 	override string gethelptext(){
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.."  Open bolt/Clear jam\n"
-		..WEPHELP_RELOAD.."  Reload mag\n"
-		//..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
-		..WEPHELP_FIREMODE.."  Semi/Auto\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$STEN_HELPTEXT_1")
+		..LWPHELP_RELOAD..Stringtable.Localize("$STEN_HELPTEXT_2")
+		..LWPHELP_FIREMODE..Stringtable.Localize("$STEN_HELPTEXT_3")
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	override void DrawSightPicture(

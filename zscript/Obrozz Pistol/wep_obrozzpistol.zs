@@ -159,17 +159,18 @@ action void A_CheckRifleHand()
 		);
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
-		WEPHELP_FIRESHOOT
-                ..WEPHELP_FIREMODE.."  Quick-swap(if available)\n"
-		..WEPHELP_ALTFIRE.."  Work bolt\n"
-		..WEPHELP_RELOAD.."  Reload rounds/clip\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_FIREMODE.."  Zoom\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_USE.."  Bullet drop\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_DROPONE.."  Force drop non-recast\n"
-		..WEPHELP_ZOOM.."+"..WEPHELP_ALTRELOAD.."  Force load recast\n"
-		..WEPHELP_ALTFIRE.."+"..WEPHELP_UNLOAD.."  Unload chamber/Clean rifle\n"
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+		..LWPHELP_FIREMODE..Stringtable.Localize("$OBRZ_HELPTEXT_1")
+		..LWPHELP_ALTFIRE..StringTable.Localize("$BOSWH_ALTFIRE")
+		..LWPHELP_RELOAD..StringTable.Localize("$BOSWH_RELOAD")
+		..LWPHELP_ZOOM.."+"..LWPHELP_FIREMODE..StringTable.Localize("$BOSWH_ZPFMOD")
+		..LWPHELP_ZOOM.."+"..LWPHELP_USE..StringTable.Localize("$BOSWH_ZPUSE")
+		..LWPHELP_ZOOM.."+"..LWPHELP_DROPONE..StringTable.Localize("$BOSWH_ZPDRON")
+		..LWPHELP_ZOOM.."+"..LWPHELP_ALTRELOAD..StringTable.Localize("$BOSWH_ZPALTRELOAD")
+		..LWPHELP_ALTFIRE.."+"..LWPHELP_UNLOAD..StringTable.Localize("$BOSWH_AFIREPUNL")
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 

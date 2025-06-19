@@ -50,12 +50,6 @@ class HDGoldSingleActionRevolver:HDHandgun{
 			sb.drawimage("GC45A0",(-47,-10),sb.DI_SCREEN_CENTER_BOTTOM,scale:(1,1));
 			sb.drawnum(hpl.countinv("HDGold45LCAmmo"),-44,-8,sb.DI_SCREEN_CENTER_BOTTOM);
 			int ninemil=hpl.countinv("HDGold45LCAmmo");
-/*			
-if(ninemil>0){
-				sb.drawimage("PRNDA0",(-64,-10),sb.DI_SCREEN_CENTER_BOTTOM,scale:(2.1,2.1));
-				sb.drawnum(ninemil,-60,-8,sb.DI_SCREEN_CENTER_BOTTOM);
-			}
-*/
 		}
 		int plf=hpl.player.getpsprite(PSP_WEAPON).frame;
 		for(int i=GSAS_CYL1;i<=GSAS_CYL6;i++){
@@ -93,17 +87,18 @@ if(ninemil>0){
 	}
 
 	override string gethelptext(){
+		LocalizeHelp();
 		if(cylinderopen)return
-		WEPHELP_FIRE.." Close cylinder\n"
-		..WEPHELP_ALTFIRE.." Cycle cylinder \(Hold "..WEPHELP_ZOOM.." to reverse\)\n"
-		..WEPHELP_UNLOAD.." Hit extractor \n"
-		..WEPHELP_RELOAD.." Load round \n"
+		LWPHELP_FIRE..Stringtable.Localize("$GSAR_HELPTEXT_1")
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$GSAR_HELPTEXT_2")..LWPHELP_ZOOM..Stringtable.Localize("$GSAR_HELPTEXT_3")
+		..LWPHELP_UNLOAD..Stringtable.Localize("$GSAR_HELPTEXT_4")
+		..LWPHELP_RELOAD..Stringtable.Localize("$GSAR_HELPTEXT_5")
 		;
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_ALTFIRE.." Pull back hammer\n"
-		..WEPHELP_ALTRELOAD.."/"..WEPHELP_FIREMODE.."  Quick-Swap (if available)\n"
-		..WEPHELP_UNLOAD.."/"..WEPHELP_RELOAD.." Open cylinder\n"
+		LWPHELP_FIRESHOOT
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$GSAR_HELPTEXT_6")
+		..LWPHELP_ALTRELOAD.."/"..LWPHELP_FIREMODE..Stringtable.Localize("$GSAR_HELPTEXT_7")
+		..LWPHELP_UNLOAD.."/"..LWPHELP_RELOAD..Stringtable.Localize("$GSAR_HELPTEXT_8")
 		;
 	}
 	override void DrawSightPicture(
@@ -137,7 +132,6 @@ if(ninemil>0){
 		if(owner){
 			amt=clamp(amt,6,12);
 			if(owner.countinv("HDGold45LCAmmo"))owner.A_DropInventory("HDGold45LCAmmo",amt);
-			//else owner.A_DropInventory("HDPistolAmmo",amt);
 		}
 	}
 	override void ForceBasicAmmo(){
@@ -198,7 +192,6 @@ if(ninemil>0){
 			player.cmd.buttons&BT_FIREMODE
 			||!countinv("HDGold45LCAmmo")
 		);
-		//if(useninemil&&!countinv("HDPistolAmmo"))return;
 		class<inventory>ammotype=useninemil?"HDGold45LCAmmo":"HDGold45LCAmmo";
 		A_TakeInventory(ammotype,1,TIF_NOTAKEINFINITE);
 		invoker.weaponstatus[GSAS_CYL1]=useninemil?GSAS_NINEMIL:GSAS_MASTERBALL;
@@ -533,9 +526,6 @@ if(ninemil>0){
 		}goto nope;
 	open_dumpcylinder:
 		GSAG F 1 A_HitExtractor();
-/*
-  GSAG G 4 A_RotateCylinder(pressingzoom());//works like reloading
-*/
 		goto readyopen;
 	open_dumpcylinder_all:
 		GSAG F 1 offset(0,34);

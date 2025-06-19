@@ -6,8 +6,8 @@ class HDShotgunExplosive:HDWeapon{
 		weapon.bobrangex 0.21;
 		weapon.bobrangey 0.86;
 		scale 0.6;
-		inventory.pickupmessage "You got a shotgun!";
-		obituary "%o got %h the hot bullets of %k's shotgun to die.";
+		inventory.pickupmessage "$PICKUP_ESHOTGUN";
+		obituary "$OB_ESHOTGUN";
 	}
 	override bool AddSpareWeapon(actor newowner){return AddSpareWeaponRegular(newowner);}
 	override hdweapon GetSpareWeapon(actor newowner,bool reverse,bool doselect){return GetSpareWeaponRegular(newowner,reverse,doselect);}
@@ -55,22 +55,7 @@ class HDShotgunExplosive:HDWeapon{
 		A_StartSound("weapons/pocket",9);
 		ExEmptyHand(uamt);
 	}
-/*
-	action void A_CannibalizeOtherExplosiveShotgun(){
-		let hhh=hdweapon(findinventory(invoker is "ExplosiveHunter"?"ExplosiveSlayer":"Hunter"));
-		if(hhh){
-			int totake=min(
-				hhh.weaponstatus[EXSHOTS_SIDESADDLE],
-				HDPickup.MaxGive(self,"HDExplosiveShellAmmo",ENC_SHELL),
-				4
-			);
-			if(totake>0){
-				hhh.weaponstatus[EXSHOTS_SIDESADDLE]-=totake;
-				A_GiveInventory("HDExplosiveShellAmmo",totake);
-			}
-		}
-	}
-*/
+
 	//not all loads are equal
 	double shotpower;
 	static double getshotpower(){return frandom(0.9,1.05);}

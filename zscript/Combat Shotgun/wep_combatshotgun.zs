@@ -83,11 +83,12 @@ class HDCombatShotgun:HDShotgun{ //hope you're good at pumping ;)
 
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
-		WEPHELP_FIRE.."  Shoot\n"//no choke
-		..WEPHELP_ALTFIRE.."  Pump\n"
-		..WEPHELP_RELOAD.."  Reload\n"
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRE..Stringtable.Localize("$CBSG_HELPTEXT_1")//no choke
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$CBSG_HELPTEXT_2")
+		..LWPHELP_RELOAD..Stringtable.Localize("$CBSG_HELPTEXT_3")
+		..LWPHELP_UNLOADUNLOAD
 		;//no side saddles
 	}
 	override void DrawSightPicture(

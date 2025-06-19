@@ -46,10 +46,11 @@ class FragCannon:HDWeapon{
 		);
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
-		WEPHELP_FIRESHOOT
-		..WEPHELP_RELOADRELOAD
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+		..LWPHELP_RELOADRELOAD
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	override void DrawSightPicture(

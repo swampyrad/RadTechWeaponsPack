@@ -81,14 +81,15 @@ class HD10mmPistol:HDHandgun{
 		if(hdw.weaponstatus[PISS_CHAMBER]==2)sb.drawrect(-19,-11,3,1);
 	}
 	override string gethelptext(){
+		LocalizeHelp();
 		return
-		WEPHELP_FIRESHOOT
-		..((weaponstatus[0]&PISF_SELECTFIRE)?(WEPHELP_FIREMODE.."  Semi/Auto\n"):"")
-		..WEPHELP_ALTRELOAD.."  Quick-Swap (if available)\n"
-		..WEPHELP_RELOAD.."  Reload mag\n"
-		..WEPHELP_USE.."+"..WEPHELP_RELOAD.."  Reload chamber\n"
-		..WEPHELP_MAGMANAGER
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRESHOOT
+		..((weaponstatus[0]&PISF_SELECTFIRE)?(LWPHELP_FIREMODE..Stringtable.Localize("$10PS_HELPTEXT_1")):"")
+		..LWPHELP_ALTRELOAD..Stringtable.Localize("$10PS_HELPTEXT_2")
+		..LWPHELP_RELOAD..Stringtable.Localize("$10PS_HELPTEXT_3")
+		..LWPHELP_USE.."+"..LWPHELP_RELOAD..Stringtable.Localize("$10PS_HELPTEXT_4")
+		..LWPHELP_MAGMANAGER
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 	override void DrawSightPicture(

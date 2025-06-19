@@ -101,15 +101,16 @@ class DoomHunter:HDShotgun{
 	}
 
 	override string gethelptext(){
+		LocalizeHelp();
 		return
-		WEPHELP_FIRE.."  Shoot (choke: "..weaponstatus[DHUNS_CHOKE]..")\n"
-		..WEPHELP_ALTFIRE.."  Pump\n"
-		..WEPHELP_RELOAD.."  Reload (side saddles first)\n"
-		..WEPHELP_ALTRELOAD.."  Reload (pockets only)\n"
-		..(weaponstatus[0]&DHUNF_EXPORT?"":(WEPHELP_FIREMODE.."  Pump/Semi"..(weaponstatus[0]&DHUNF_CANFULLAUTO?"/Auto":"").."\n"))
-		..WEPHELP_FIREMODE.."+"..WEPHELP_RELOAD.."  Load side saddles\n"
-		..WEPHELP_USE.."+"..WEPHELP_UNLOAD.."  Steal ammo from Slayer\n"
-		..WEPHELP_UNLOADUNLOAD
+		LWPHELP_FIRE..Stringtable.Localize("$DHUN_HELPTEXT_1")..weaponstatus[DHUNS_CHOKE]..Stringtable.Localize("$DHUN_HELPTEXT_2")
+		..LWPHELP_ALTFIRE..Stringtable.Localize("$DHUN_HELPTEXT_3")
+		..LWPHELP_RELOAD..Stringtable.Localize("$DHUN_HELPTEXT_4")
+		..LWPHELP_ALTRELOAD..Stringtable.Localize("$DHUN_HELPTEXT_5")
+		..(weaponstatus[0]&DHUNF_EXPORT?"":(LWPHELP_FIREMODE..Stringtable.Localize("$DHUN_HELPTEXT_6")..(weaponstatus[0]&DHUNF_CANFULLAUTO?Stringtable.Localize("$DHUN_HELPTEXT_7"):"").."\n"))
+		..LWPHELP_FIREMODE.."+"..LWPHELP_RELOAD..Stringtable.Localize("$DHUN_HELPTEXT_8")
+		..LWPHELP_USE.."+"..LWPHELP_UNLOAD..Stringtable.Localize("$DHUN_HELPTEXT_9")
+		..LWPHELP_UNLOADUNLOAD
 		;
 	}
 
